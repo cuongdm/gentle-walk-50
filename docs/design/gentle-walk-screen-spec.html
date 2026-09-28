@@ -80,6 +80,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   <a href="#s10b"><code>S10b</code>Outdoor prep</a>
   <a href="#s11"><code>S11</code>Walk player</a>
   <a href="#s12"><code>S12</code>Chair move player</a>
+  <a href="#s12b"><code>S12b</code>Stretch player</a>
   <a href="#s13"><code>S13</code>This hurts</a>
   <a href="#s14"><code>S14</code>Break</a>
   <a href="#s15"><code>S15</code>Complete</a>
@@ -101,7 +102,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   <span class="eyebrow">Spec màn hình · MVP · iOS</span>
   <h1>Gentle Walk 50+: mô tả màn hình cho designer</h1>
   <p class="lede">Bản mô tả để vẽ mockup toàn bộ MVP trong một lượt. Chữ trong ô nền xám là chữ hiển thị thật trên màn hình, bằng tiếng Anh US. Phần tiếng Việt là ghi chú cho người vẽ.</p>
-  <span class="meta">Cập nhật 28/09/2026: video động tác kiểu YouTube, hệ thống thông báo · chế độ đi ngoài trời, 5 hành trình, trial 14 ngày, gói trả một lần, nhân vật mới, onboarding theo phần · Tên làm việc, chưa phải tên store · Nguồn: docs/idea/gentle-walk-voice.md, app-context.md, spec PawSteps v3</span>
+  <span class="meta">Cập nhật 28/09/2026: buổi giãn cơ nhẹ (S12b), tuần mẫu, từ vựng cố định · video động tác kiểu YouTube, hệ thống thông báo · chế độ đi ngoài trời, 5 hành trình, trial 14 ngày, gói trả một lần, nhân vật mới, onboarding theo phần · Tên làm việc, chưa phải tên store · Nguồn: docs/idea/gentle-walk-voice.md, app-context.md, docs/content-plan.md, spec PawSteps v3</span>
 </header>
 
 <section id="brief">
@@ -123,7 +124,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <h4>Phong cách minh hoạ</h4>
 <ul>
   <li>Tranh gouache hoặc màu nước kỹ thuật số, nét mềm, texture giấy nhẹ, bóng đổ ấm. Không chibi, không 3D bóng bẩy.</li>
-  <li>Giữ phong cách và ghế gỗ của tranh mẫu trong <code>Idea-Fitness/docs/ai-test/</code>. <b>Vẽ lại nhân vật</b>: tranh mẫu trông khoảng 70 tuổi và mảnh hơn khách hàng.</li>
+  <li>Giữ phong cách và ghế gỗ của tranh mẫu trong <code>Idea-Fitness/docs/ai-test/</code> (dự án khác; cần chép vào <code>docs/design/reference/</code> của repo này). <b>Vẽ lại nhân vật</b>: tranh mẫu trông khoảng 70 tuổi và mảnh hơn khách hàng.</li>
 </ul>
 <h4>HLV trong video động tác (người thật do AI tạo)</h4>
 <ul>
@@ -163,8 +164,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <p><b>Lần đầu mở app</b></p>
 <div class="flow"><span>S01</span><i>→</i><span>P1</span><i>→</i><span>S02</span><i>→</i><span>S03</span><i>→</i><span>S04</span><i>→</i><span>P2</span><i>→</i><span>S05a–c</span><i>→</i><span>P3</span><i>→</i><span>S06</span><i>→</i><span>S07</span><i>→</i><span>S08 Paywall</span><i>→</i><span>S09</span><i>→</i><span>S11 First Walk</span><i>→</i><span>S15</span><i>→</i><span>S16</span><i>→</i><span>S17 Today</span></div>
 <p class="meta">Bấm "Maybe later" ở S08 vẫn đi thẳng vào First Walk bản miễn phí. Không bao giờ rơi vào Home trống.</p>
-<p><b>Mỗi ngày sau đó</b></p>
-<div class="flow"><span>S17 Today + check-in</span><i>→</i><span>S10 Preview</span><i>→</i><span>S11 Walk</span><i>→</i><span>S12 Chair moves</span><i>→</i><span>S15 Complete</span><i>→</i><span>S18 Journey</span></div>
+<p><b>Mỗi ngày sau đó</b> (loại buổi theo tuần mẫu: đi bộ · động tác ghế · giãn cơ, xem S07)</p>
+<div class="flow"><span>S17 Today + check-in</span><i>→</i><span>S10 Preview</span><i>→</i><span>S11 Walk</span><i>→</i><span>S12 Chair moves</span><i>→</i><span>S12b Stretch (hạ nhiệt)</span><i>→</i><span>S15 Complete</span><i>→</i><span>S18 Journey</span></div>
+<p class="meta">Ngày giãn cơ: S17 → S10 (danh sách tư thế) → S12b → S15. Ngày động tác ghế: S17 → S10 → S12 (4–6 bài) → S15. Bản miễn phí chỉ có ngày đi bộ kèm 1–2 động tác ghế và hạ nhiệt ngắn.</p>
 <p><b>Ngày đi ngoài trời</b> (chế độ phụ, người dùng tự chọn)</p>
 <div class="flow"><span>S10 chọn Outdoors</span><i>→</i><span>S10b Outdoor prep</span><i>→</i><span>S11 Outdoors</span><i>→</i><span>S15 Complete</span><i>→</i><span>S12 ở nhà (tuỳ chọn)</span></div>
 <p class="meta">Ngoài trời không phải định vị của app. Không vẽ cảnh ngoài trời ở Welcome, Paywall hay 3 screenshot đầu.</p>
@@ -226,6 +228,17 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <p><b>Từ nên dùng:</b> gentle, steady, stronger, steadier, at your pace, comfortable, your time, on your feet, keep up with.</p>
 <p><b>Giọng HLV:</b> nữ khoảng 60 tuổi, trầm ấm, chậm. Luôn nói phiên bản dễ trước rồi mới nói phiên bản khó. Ví dụ: <q>If your knees say no today, just march in the chair. Same benefit.</q></p>
 <p><b>So sánh:</b> chỉ so với chính mình (<q>2 more than last week</q>). Không bao giờ so với người khác, không ảnh trước/sau, cân nặng không xuất hiện ở MVP.</p>
+<p><b>Giãn cơ:</b> chỉ nói cảm giác (<q>a gentle pull</q>, <q>breathe into it</q>). Không hứa hết đau, sửa tư thế hay chữa khớp. Luôn <q>Stretch to a gentle pull, never to pain.</q></p>
+<h4>Từ vựng cố định (dùng đúng một tên cho một thứ, ở mọi màn)</h4>
+<div class="tbl"><table>
+<thead><tr><th>Trục</th><th>Giá trị</th><th>Ghi chú</th></tr></thead>
+<tbody>
+<tr><td>Loại buổi</td><td><q>Walk</q> · <q>Chair moves</q> · <q>Stretch</q> · <q>Balance</q></td><td>Balance chỉ ở Extras; ngày động tác ghế đã có bài thăng bằng</td></tr>
+<tr><td>Cấp đi bộ</td><td><q>Seated</q> · <q>In place</q> · <q>Walking pad</q> · <q>Outdoors</q></td><td>Outdoors là nơi tập, hiện cùng hàng ở S10; không có cấp cho buổi giãn cơ</td></tr>
+<tr><td>Cường độ theo check-in</td><td><q>Gentle</q> (Achy) · <q>Steady</q> (Okay) · <q>Strong</q> (Great)</td><td>Chỉ đổi thời lượng pha nhanh và số động tác, không đổi loại buổi trong ngày</td></tr>
+<tr><td>Bản của một động tác</td><td><q>Easier version</q> · <q>Harder version</q></td><td>Giãn cơ chỉ có Easier version</td></tr>
+<tr><td>Cây</td><td><q>Seed</q> · <q>Sprout</q> · <q>Sapling</q> · <q>Tree</q></td><td>Mốc ngày lên cấp chốt ở manh-skill-plan</td></tr>
+</tbody></table></div>
 </section>
 
 <h2>Onboarding</h2>
@@ -321,7 +334,8 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <div class="screen-head"><span class="id">S07</span><h3>Your plan is ready</h3></div>
 <ol>
   <li>Tiêu đề: <q>Your plan, Margaret</q></li>
-  <li>Thẻ plan: <q>5–10 min a day · 2 rest days a week</q> · <q>Starting level: Seated</q></li>
+  <li>Thẻ plan: <q>5–10 min a day · 2 rest days a week</q> · <q>Starting level: Seated</q> · dòng nhỏ <q>Walks, chair moves and gentle stretches, in turn.</q></li>
+  <li>Hàng tuần mẫu, bảy ô nhỏ có icon và chữ một từ: <q>Walk</q> · <q>Stretch</q> · <q>Walk</q> · <q>Chair</q> · <q>Walk</q> · <q>Rest</q> · <q>Rest</q>. Người dùng chưa chọn được ngày nghỉ ở đây (chọn ở S20). Bản miễn phí: hàng này ẩn.</li>
   <li>Dòng nhắc lại giới hạn đã chọn, dạng chip xám: <q>Easy on knees</q> · <q>No floor moves</q></li>
   <li>Khối <q>Why this will work for you</q> với 2–3 dòng nối với S03. Ví dụ: <q>Videos went too fast? Here a calm voice sets the pace, and you can pause anytime.</q></li>
   <li>Hành trình đầu tiên: bản đồ mini <q>Your first journey: Central Park to Brooklyn Bridge</q> · dòng nhỏ <q>Every walk in the app moves you along.</q></li>
@@ -343,13 +357,13 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
     <q>Today · Full access, no charge</q> → <q>Day 12 · We'll remind you</q> → <q>Oct 11 · Billed [yearly price] unless you cancel</q></li>
   <li>Ba thẻ gói, <q>Yearly</q> chọn sẵn và có trial: <q>Yearly · [yearly price] · [per month equivalent]</q> · <q>Monthly · [monthly price]</q> · <q>One payment · [lifetime price] · Yours to keep, no renewals</q>. Không có gói tuần. Thẻ trả một lần nằm cuối, không chọn sẵn, không nhãn "Best value".</li>
   <li>Khi chọn <q>Monthly</q> hoặc <q>One payment</q>: dòng thời gian trial ẩn, nút chính đổi thành <q>Continue</q>, dòng dưới ghi rõ số tiền trừ hôm nay.</li>
-  <li>Danh sách ngắn những gì có trong gói: <q>All walking levels and weekly plans</q> · <q>All chair and balance moves</q> · <q>4 more journeys, and a new one every month</q></li>
+  <li>Danh sách ngắn những gì có trong gói: <q>All walking levels and weekly plans</q> · <q>All chair, balance and stretch sessions</q> · <q>4 more journeys, and a new one every month</q></li>
   <li>Dòng: <q>Cancel anytime in Settings. Deleting the app doesn't cancel.</q></li>
   <li>Nút chính <q>Start free trial</q></li>
   <li>Link bên dưới: <q>Maybe later</q> · và hàng cuối <q>Restore</q> · <q>Terms</q> · <q>Privacy</q></li>
 </ol>
 <div class="note"><b>Cấm:</b> đồng hồ đếm ngược, giá gạch ngang, ảnh trước/sau, chữ nhỏ giấu giá. Số tiền là chữ giữ chỗ, lấy từ App Store Connect khi code. Vẽ thêm màn nhỏ trước hộp thoại thanh toán của Apple: <q>Next, Apple will ask you to confirm. You won't be charged today.</q></div>
-<p class="meta">Bản miễn phí sau "Maybe later": mỗi ngày một bài đi bộ kèm 1–2 động tác ghế luân phiên, streak, hành trình New York, chặng đầu của mọi hành trình khác, nút This hurts, chế độ ngoài trời.</p>
+<p class="meta">Bản miễn phí sau "Maybe later": mỗi ngày một bài đi bộ kèm 1–2 động tác ghế luân phiên và hạ nhiệt giãn cơ ngắn, streak, hành trình New York, chặng đầu của mọi hành trình khác, nút This hurts, chế độ ngoài trời. Không có tuần mẫu và buổi giãn cơ đầy đủ.</p>
 </div>
 
 <h2>Buổi tập</h2>
@@ -376,10 +390,20 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   <li>Tiêu đề: <q>Steady walk · 10 min</q> · phụ theo check-in: <q>Picked for an "Okay" day.</q></li>
   <li>Câu hỏi mới ngay dưới tiêu đề: <q>Where are you walking today?</q> · ba ô lớn có icon: <q>Indoors</q> (chọn sẵn) · <q>Outdoors</q> · <q>Walking pad</q>. Nhớ lựa chọn lần trước.</li>
   <li>Khi chọn <q>Indoors</q>: bộ chọn cấp <q>Seated</q> · <q>In place</q>. Ô được gợi ý có nhãn <q>Suggested</q>. Khi chọn <q>Outdoors</q> hoặc <q>Walking pad</q>: ẩn bộ chọn cấp.</li>
-  <li>Danh sách bài theo thứ tự, mỗi dòng có thumbnail tranh, tên và thời lượng: <q>Warm-up march · 2 min</q> · <q>Interval walk · 5 min</q> · <q>Sit-to-stand · 10 reps</q> · <q>Heel raises · 40 sec</q> · <q>Cool-down · 2 min</q></li>
+  <li>Danh sách bài theo thứ tự, mỗi dòng có thumbnail tranh, tên và thời lượng: <q>Warm-up march · 2 min</q> · <q>Interval walk · 5 min</q> · <q>Sit-to-stand · 10 reps</q> · <q>Heel raises · 40 sec</q> · <q>Cool-down stretch · 2 min</q></li>
   <li>Hàng <q>Swap</q> ở mỗi động tác để đổi bài khác cùng nhóm.</li>
   <li>Nút chính <q>Start now</q> · nút phụ <q>Remind me later</q></li>
 </ol>
+<h4>Biến thể ngày giãn cơ (trả phí)</h4>
+<ul>
+  <li>Tiêu đề: <q>Gentle stretch · 8 min</q> · phụ: <q>Seated, with a chair to hold on to.</q></li>
+  <li>Ẩn câu hỏi <q>Where are you walking today?</q> và bộ chọn cấp. Thay bằng hai ô: <q>Seated</q> (chọn sẵn) · <q>Standing, holding the chair</q>.</li>
+  <li>Danh sách 6–8 tư thế, mỗi dòng thumbnail từ clip, tên và thời gian giữ: <q>Neck and shoulders · 20 sec each side</q> · <q>Upper back · 20 sec</q> · <q>Hips · 20 sec each side</q> · <q>Back of thighs · 20 sec each side</q> · <q>Calves · 20 sec each side</q> · <q>Ankles · 20 sec</q>.</li>
+</ul>
+<h4>Biến thể ngày động tác ghế (trả phí)</h4>
+<ul>
+  <li>Tiêu đề: <q>Chair moves · 9 min</q> · danh sách 4–6 bài từ nhóm 6 động tác, xen <q>Rest · 20 sec</q>, kết bằng <q>Cool-down stretch · 2 min</q>.</li>
+</ul>
 <h4>Biến thể Outdoors</h4>
 <ul>
   <li>Danh sách chỉ còn phần đi bộ: <q>Warm-up stroll · 2 min</q> · <q>Interval walk · 6 min</q> · <q>Cool-down · 2 min</q>.</li>
@@ -462,6 +486,29 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </ul>
 </div>
 
+<div class="screen" id="s12b">
+<div class="screen-head"><span class="id">S12b</span><h3>Stretch player</h3></div>
+<div class="tags"><span class="tag">Mới 28/09/2026 · buổi giãn cơ và phần hạ nhiệt</span><span class="tag p">Trụ 1</span><span class="tag p">Trụ 2</span></div>
+<p>Cùng bố cục với S12, khác ở chỗ không đếm lần: mỗi tư thế là <b>vào tư thế, giữ, ra tư thế</b>. Video chạy pha vào tư thế rồi dừng ở khung giữ; giọng nhắc thở.</p>
+<ol>
+  <li>Một phần ba trên: video ngang 16:9 như S12, dừng ở khung giữ trong lúc đếm. Dùng <q>Back of thighs</q> (ngồi, duỗi một chân, nghiêng nhẹ) làm mẫu trong mockup. Nút <q>Full screen</q> như S12.</li>
+  <li>Tên tư thế 26pt: <q>Back of thighs</q> · phụ: <q>For easier bending and walking</q></li>
+  <li>Đồng hồ giữ 64pt đếm ngược: <q>0:20</q> · dưới đồng hồ nhãn bên: <q>Left side</q>. Không có nút +1.</li>
+  <li>Vòng thở nhỏ cạnh đồng hồ: chấm phình ra 4 giây, xẹp 4 giây, kèm phụ đề <q>Breathe in… and out.</q> Tắt khi bật Reduce Motion, chỉ còn chữ.</li>
+  <li>Hai gợi ý có dấu tick: <q>A gentle pull, never pain</q> · <q>Keep breathing, no bouncing</q></li>
+  <li>Một nút viên thuốc: <q>Easier version</q> (giảm tầm, hoặc giữ ngắn hơn). Không có Harder version.</li>
+  <li>Hàng điều khiển: <q>Back</q> · Pause tròn lớn · <q>Skip</q> · hàng dưới cố định: <q>Break</q> · <q>This hurts</q>.</li>
+</ol>
+<h4>Trạng thái cần vẽ</h4>
+<ul>
+  <li><b>Đổi bên:</b> nền nháy nhẹ, phụ đề <q>And the other side.</q>, nhãn đổi thành <q>Right side</q>; video chạy pha ra rồi vào tư thế bên kia.</li>
+  <li><b>Hạ nhiệt sau đi bộ:</b> tiêu đề nhỏ trên video <q>Cool-down · 2 of 3</q>; chỉ 2–3 tư thế ngồi; không có màn nghỉ giữa tư thế.</li>
+  <li><b>Bản đứng vịn ghế:</b> trước khi vào, màn chen <q>Stand behind your chair. Hold on with both hands.</q> · nút <q>Ready</q> (dùng lại màn của S12).</li>
+  <li><b>Toàn màn hình, màn hình khoá, Reduce Motion:</b> như S12.</li>
+</ul>
+<div class="note"><b>Không</b> ghi "relieves pain", "fixes posture", "arthritis" hay tên bệnh. Người chọn <q>Joint replacement</q>, <q>Shoulders</q>, <q>I get dizzy easily</q> ở S06 chỉ thấy tư thế huấn luyện viên đã duyệt cho giới hạn đó.</div>
+</div>
+
 <div class="screen" id="s13">
 <div class="screen-head"><span class="id">S13</span><h3>This hurts</h3></div>
 <div class="tags"><span class="tag p">Trụ 2</span><span class="tag">Màn đầy đủ, không phải sheet</span></div>
@@ -498,9 +545,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <ol>
   <li>Hiệu ứng lá và hoa rơi nhẹ 2 giây. Tắt khi bật Reduce Motion.</li>
   <li>Tiêu đề 32pt: <q>You did it, Margaret!</q></li>
-  <li>Ba ô số: <q>12 min</q> · <q>1,450 steps</q> · <q>13 active days</q></li>
+  <li>Ba ô số: <q>12 min</q> · <q>+0.6 mi</q> (quãng đường hành trình của buổi này) · <q>13 active days</q>. Buổi ngồi không có bước chân, nên ô giữa luôn là quãng đường hành trình; chỉ buổi Outdoors đổi sang dặm thật (xem biến thể).</li>
   <li>Dòng so với chính mình, chỉ khi có dữ liệu: <q>2 more sit-to-stands than last week.</q></li>
-  <li>Thanh hành trình: <q>+0.6 mi · 1.2 mi to Brooklyn Bridge</q></li>
+  <li>Thanh hành trình: <q>1.2 mi to Brooklyn Bridge</q></li>
   <li>Nếu tới chặng mới: thẻ bưu thiếp lật ra <q>New postcard: Bethesda Fountain</q> · nút <q>Open</q></li>
   <li>Câu hỏi: <q>How did that feel?</q> · <q>Too easy</q> · <q>Just right</q> · <q>Too hard</q> → xác nhận <q>Got it. We'll adjust tomorrow.</q></li>
   <li>Nút chính <q>Done</q> · nút phụ <q>Share with family</q></li>
@@ -510,7 +557,8 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   <li><b>First Walk:</b> tiêu đề <q>That's your first walk!</q> · phụ <q>Five minutes. You showed up, and that's the hardest part.</q> · bưu thiếp đầu tiên <q>Central Park Zoo</q>.</li>
   <li><b>Lên cấp</b> mỗi 7 ngày hoạt động: huy hiệu cây lớn ở giữa, <q>You reached Sprout</q>. Thang cấp: Seed, Sprout, Sapling, Tree.</li>
   <li><b>Xin đánh giá app:</b> chỉ sau khi xong hành trình New York hoặc 7 ngày hoạt động, dùng hộp thoại đánh giá của Apple, tối đa một lần mỗi cột mốc. Không xin ở buổi đầu.</li>
-  <li><b>Ảnh chia sẻ:</b> thẻ vuông có tranh địa danh và <q>Margaret walked 1,450 steps today</q>.</li>
+  <li><b>Ảnh chia sẻ:</b> thẻ vuông có tranh địa danh và <q>Margaret walked 12 minutes today, on her way to Brooklyn Bridge</q>. Outdoors: <q>Margaret walked 0.9 miles today</q>. Không ghi bước chân, không ghi tình trạng sức khoẻ.</li>
+  <li><b>Ngày giãn cơ:</b> tiêu đề <q>Nice and easy, Margaret.</q>; ô giữa vẫn là quãng đường hành trình (phút giãn cơ tính vào hành trình); không có dòng so sánh số lần.</li>
   <li><b>Outdoors:</b> tiêu đề <q>Lovely walk, Margaret!</q>. Ba ô số thành <q>12 min</q> · <q>0.9 mi</q> · <q>13 active days</q>. Nếu có GPS: bản đồ tuyến nhỏ, đường nét màu secondary, không có tên đường hay số nhà trong ảnh chia sẻ. Thẻ mới trước nút Done: <q>Your chair moves for today · 4 min</q> · nút <q>Do them now</q> · link <q>Later</q>.</li>
 </ul>
 </div>
@@ -520,7 +568,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <div class="tags"><span class="tag">Chỉ lần đầu, sau S15. Không xin quyền trước buổi tập đầu.</span></div>
 <ol>
   <li>Tiêu đề: <q>Two quick things</q></li>
-  <li>Thẻ 1: <q>Count your steps automatically</q> · <q>We read steps from Apple Health to move you along your journey. Your data stays on this phone.</q> · nút <q>Connect Apple Health</q></li>
+  <li>Thẻ 1: <q>See your everyday steps</q> · <q>We read your steps from Apple Health to show your all-day activity in Progress, and to measure outdoor walks. Your journey moves with the minutes you spend here. Your data stays on this phone.</q> · nút <q>Connect Apple Health</q></li>
   <li>Thẻ 2: <q>A gentle reminder after your morning coffee</q> (theo mốc đã chọn) · <q>One message a day at most. Never on days you've already walked or rest days.</q> · nút <q>Allow reminders</q></li>
   <li>Link <q>Not now</q> cho cả màn.</li>
 </ol>
@@ -534,10 +582,10 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <ol>
   <li>Hàng trên: <q>Good morning, Margaret</q> · góc phải <q>13 active days</q> với icon lá.</li>
   <li>Check-in, chỉ hiện khi chưa tập hôm nay: <q>How do your joints feel today?</q> · ba nút lớn <q>Achy</q> · <q>Okay</q> · <q>Great</q>. Achy dẫn tới Gentle, Okay tới Steady, Great tới Strong.</li>
-  <li>Thẻ bài hôm nay, lớn nhất màn: tên bài, thời lượng, cấp, tranh nhỏ. Nút chính <q>Start</q>.</li>
+  <li>Thẻ bài hôm nay, lớn nhất màn: tên bài, thời lượng, cấp, tranh nhỏ. Nút chính <q>Start</q>. Ba mẫu theo tuần: <q>Steady walk · 10 min · Seated</q> · <q>Chair moves · 9 min</q> · <q>Gentle stretch · 8 min</q>. Ngày giãn cơ, check-in vẫn hiện nhưng chỉ đổi thời gian giữ.</li>
   <li>Thẻ hành trình mini: bản đồ nhỏ, <q>1.8 of 5 mi to Brooklyn Bridge</q>.</li>
-  <li>Thẻ tuần: bảy chấm cho bảy ngày, ngày nghỉ hợp lệ có ký hiệu riêng. <q>4 active days this week · 2 rest days are part of the plan</q></li>
-  <li>Mục <q>Extras</q> tối đa 3 thẻ nhỏ: <q>Commercial break walk · 3 min</q> · <q>Morning stretch · 4 min</q> · <q>Balance · 5 min</q></li>
+  <li>Thẻ tuần: bảy ô cho bảy ngày, mỗi ô có icon loại buổi (Walk / Chair / Stretch) và ngày nghỉ hợp lệ có ký hiệu riêng. <q>4 active days this week · 2 rest days are part of the plan</q>. Bản miễn phí: bảy chấm không icon.</li>
+  <li>Mục <q>Extras</q> tối đa 3 thẻ nhỏ: <q>Commercial break walk · 3 min</q> · <q>Morning stretch · 4 min</q> · <q>Balance · 5 min</q>. Extras không đổi loại buổi của ngày, chỉ cộng phút vào hành trình.</li>
 </ol>
 <h4>Bốn trạng thái cần vẽ</h4>
 <ul>
@@ -587,7 +635,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <div class="screen" id="s19">
 <div class="screen-head"><span class="id">S19</span><h3>Progress</h3></div>
 <ol>
-  <li>Cấp độ cây: minh hoạ cây ở cấp hiện tại, <q>Sprout · 6 days to Sapling</q></li>
+  <li>Cấp độ cây: minh hoạ cây ở cấp hiện tại, <q>Sprout · 1 day to Sapling</q> (khớp 13 ngày hoạt động ở S17 và mốc 7 ngày ở S15; nếu manh-skill-plan giãn mốc thì đổi số).</li>
   <li>Lịch tháng: ngày có tập tô secondary, ngày nghỉ hợp lệ có ký hiệu riêng, không có ô đỏ.</li>
   <li>Thẻ <q>Sit-to-stands in a session</q> với biểu đồ cột đơn giản theo tuần, và <q>Longest walk without a break</q>.</li>
   <li>Khối <q>Everyday wins</q>: danh sách tự tick <q>Got up from the sofa without using my hands</q> · <q>Carried the groceries in one trip</q> · <q>Walked the whole store</q></li>
@@ -603,6 +651,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <ol>
   <li><b>Subscription</b> đặt trên cùng: <q>Free trial · ends Oct 11, then [yearly price] a year</q>. Người mua một lần thấy <q>Lifetime access · no renewals</q> và không có link huỷ · link <q>How to cancel</q> dẫn tới S21.</li>
   <li><b>Your body:</b> <q>Easy on: Knees · No floor moves</q> · <q>Edit</q></li>
+  <li><b>Your week:</b> <q>Rest days: Saturday, Sunday</q> · <q>Change</q> (chọn 2 ngày trong danh sách, không kéo thả). Bản miễn phí: ẩn.</li>
   <li><b>Workout:</b> <q>Voice</q> bật/tắt · <q>Voice louder than music</q> · <q>Music</q> chọn <q>Feel-good 70s and 80s</q> (mặc định, nhạc miễn bản quyền theo phong cách, cần test) · <q>Calm piano</q> · <q>Country</q> · <q>Off</q> · <q>Captions</q> bật mặc định</li>
   <li><b>Notifications:</b> <q>Walk reminder · After morning coffee, 8:30 AM</q> · <q>Change</q> · <q>How often</q>: <q>Daily</q> / <q>Just on quiet days</q> · công tắc riêng <q>Journey milestones</q>, <q>Weekly recap</q>, <q>New journeys</q> (tắt mặc định, dòng phụ <q>Occasional news about new routes.</q>)</li>
   <li><b>Display:</b> <q>Text size</q> với nút <q>A−</q> / <q>A+</q>, không slider · <q>Reduce motion</q></li>
@@ -676,23 +725,25 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <thead><tr><th>Nhóm</th><th>Frame</th><th>Bản thêm</th></tr></thead>
 <tbody>
 <tr><td>Onboarding</td><td>S01, P1, S02, S03, S04, P2, S05a, S05b, S05c hai màn, P3, S06, S07, S08 và màn trước hộp thoại Apple</td><td>S08 bản chữ XXL</td></tr>
-<tr><td>Buổi tập</td><td>S09, S10 (Indoors và Outdoors), S10b hai màn, S11, S12, S13, S14, S15, S16</td><td>S11: chuyển pha, paused, end, dark, iPad ngang · S12: trước bài đứng, nghỉ, dark · S15: First Walk, lên cấp, ảnh chia sẻ, chữ XXL · Outdoors: S11, S14, S15 có và không có GPS</td></tr>
+<tr><td>Buổi tập</td><td>S09, S10 (Indoors, Outdoors, ngày giãn cơ, ngày động tác ghế), S10b hai màn, S11, S12, S12b, S13, S14, S15, S16</td><td>S11: chuyển pha, paused, end, dark, iPad ngang · S12: trước bài đứng, nghỉ, dark · S12b: đổi bên, hạ nhiệt sau đi bộ · S15: First Walk, lên cấp, ảnh chia sẻ, ngày giãn cơ, chữ XXL · Outdoors: S11, S14, S15 có và không có GPS</td></tr>
 <tr><td>Hằng ngày</td><td>S17, S18 và postcard detail, All journeys, Where to next?, thẻ mời ở chặng khoá, S19, S20, S21</td><td>S17: 4 trạng thái, dark, chữ XXL</td></tr>
 <tr><td>Khác</td><td>4 thông báo màn khoá (một có hai nút), thẻ "fewer reminders", 1 thẻ cảnh báo đau</td><td></td></tr>
-<tr><td>Minh hoạ</td><td>Bảng nhân vật chính mới và 3 nhân vật phụ, 6 động tác × 2–3 khung, 30 bưu thiếp và 5 bản đồ vẽ tay (5 hành trình), tranh Welcome, Break, thang cây 4 cấp. Ngoài trời: lối đi công viên, ghế đá, bộ chuẩn bị ở cửa ra vào</td><td>Cảnh tối cho dark mode của S11</td></tr>
+<tr><td>Minh hoạ</td><td>Bảng nhân vật chính mới và 3 nhân vật phụ, 30 bưu thiếp và 5 bản đồ vẽ tay (5 hành trình), tranh Welcome, Break, thang cây 4 cấp. Ngoài trời: lối đi công viên, ghế đá, bộ chuẩn bị ở cửa ra vào. Động tác ghế và giãn cơ không vẽ: dùng clip và ảnh khung tĩnh lấy từ clip (docs/content-plan.md mục V)</td><td>Cảnh tối cho dark mode của S11</td></tr>
 </tbody></table></div>
-<h4>Sáu động tác MVP</h4>
+<h4>Sáu động tác MVP (clip đã có 28/09/2026, chờ huấn luyện viên duyệt: <code>assets/video/</code>)</h4>
 <div class="tbl"><table>
-<thead><tr><th>Động tác</th><th>Đếm</th><th>Clip (một lần làm, lặp lại) và 2 ảnh khung tĩnh</th></tr></thead>
+<thead><tr><th>Động tác</th><th>Đếm</th><th>Clip lặp liền (cả hai bên trong một clip, không lật gương) và 2 ảnh khung tĩnh</th></tr></thead>
 <tbody>
-<tr><td>Sit-to-stand</td><td>Đếm lần, có Counted for you</td><td>Ngồi · nghiêng người "nose over toes" · đứng thẳng</td></tr>
-<tr><td>Seated knee lift</td><td>Tính giờ</td><td>Ngồi thẳng tay giữ mép ghế · nhấc gối phải · đổi bên</td></tr>
-<tr><td>Seated leg extension</td><td>Tính giờ</td><td>Ngồi · duỗi thẳng chân, bàn chân gập</td></tr>
-<tr><td>Heel and toe raises</td><td>Tính giờ</td><td>Nhón gót · nhấc mũi chân, bản ngồi và bản đứng vịn ghế</td></tr>
-<tr><td>Wall push-up</td><td>Tính giờ</td><td>Đứng cách tường một sải tay · gập khuỷu nghiêng vào tường</td></tr>
-<tr><td>Chair-hold single-leg stand</td><td>Tính giờ</td><td>Đứng sau ghế hai tay vịn · nhấc một chân thấp</td></tr>
+<tr><td>Sit-to-stand</td><td>Đếm lần, có Counted for you</td><td>Chính diện: ngồi · nghiêng người "nose over toes" · đứng thẳng · ngồi xuống</td></tr>
+<tr><td>Seated knee lift</td><td>Tính giờ</td><td>Chính diện: ngồi thẳng tay giữ mép ghế · nhấc gối một bên rồi bên kia</td></tr>
+<tr><td>Seated leg extension</td><td>Tính giờ</td><td>Nghiêng: ngồi · duỗi thẳng chân gần máy, giữ, hạ · rồi chân xa</td></tr>
+<tr><td>Heel and toe raises</td><td>Tính giờ</td><td>Nghiêng: 2 lần nhón gót rồi 2 lần nhấc mũi chân trong một clip; bản đứng vịn ghế là clip riêng (V4-3, chưa làm)</td></tr>
+<tr><td>Wall push-up</td><td>Tính giờ</td><td>Nghiêng, cảnh tường: gập khuỷu nghiêng vào tường · đẩy về</td></tr>
+<tr><td>Chair-hold single-leg stand</td><td>Tính giờ</td><td>Nghiêng: đứng sau ghế hai tay vịn · nhấc chân gần, giữ, hạ · rồi chân xa</td></tr>
 </tbody></table></div>
-<p class="meta">Chưa vẽ ở lượt này: Fitness Check (phase 2), hành trình thứ 2, widget, chó đồng hành và video (phase 3).</p>
+<h4>Giãn cơ nhẹ MVP (6–8 tư thế, clip chưa làm; kịch bản A10 viết trước)</h4>
+<p>Cùng khung máy và HLV với 6 clip trên. Bản ngồi: cổ–vai, lưng trên, hông (ngồi vắt cổ chân lên gối), đùi sau (duỗi một chân, nghiêng nhẹ), cổ chân (xoay). Bản đứng vịn ghế: bắp chân, đùi sau. Mỗi clip: vào tư thế 2–3 giây, app dừng ở khung giữ 15–20 giây, ra tư thế. Danh sách cuối do huấn luyện viên chốt theo giới hạn cơ thể ở S06.</p>
+<p class="meta">Chưa vẽ ở lượt này: Fitness Check (phase 2), tai chi chậm (phase 2), widget và Live Activity (phase 2), chó đồng hành và màn chọn nhân vật (phase 3).</p>
 </section>
 </main>
 </div>

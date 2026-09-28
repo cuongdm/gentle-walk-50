@@ -1,6 +1,6 @@
 # App context — Gentle Walk 50+ (tên làm việc)
 
-_Updated: 28/09/2026 (thêm giãn cơ) · by: manh-skill-idea · Brief: docs/idea/gentle-walk-voice.md · Spec màn hình: docs/design/gentle-walk-screen-spec.html · Kế hoạch nội dung: docs/content-plan.md_
+_Updated: 28/09/2026 (thêm giãn cơ, rà soát tài liệu) · by: manh-skill-idea · Brief: docs/idea/gentle-walk-voice.md · Spec màn hình: docs/design/gentle-walk-screen-spec.html · Kế hoạch nội dung: docs/content-plan.md_
 
 ## Identity
 - App name (store): chưa chốt, cần kiểm tra trademark · Bundle ID (iOS): chưa có · Package (Android): chưa có
@@ -55,6 +55,8 @@ _Updated: 28/09/2026 (thêm giãn cơ) · by: manh-skill-idea · Brief: docs/ide
 - Banned: lazy, fat, burn, blast, crush, no excuses, transformation, skinny, anti-aging, senior, elderly, rehab, therapy, guaranteed, melt, shred, tone up, before/after; tên bài kiểu "SHRED"; tuyên bố y khoa hoặc giảm nguy cơ ngã.
 - Nên dùng: gentle, steady, stronger, steadier, at your pace, comfortable, your time, on your feet, keep up with.
 - Giọng HLV không gọi tên người dùng; luôn nói bản dễ trước.
+- Giãn cơ: chỉ nói cảm giác ("a gentle pull", "breathe into it"), không hứa hết đau, sửa tư thế hay chữa khớp; luôn "stretch to a gentle pull, never to pain", không nhún, không nín thở.
+- Từ vựng cố định trong app: loại buổi = Walk · Chair moves · Stretch · Balance (Extras) · cấp đi bộ = Seated · In place · Walking pad · Outdoors · cường độ theo check-in = Gentle (Achy) · Steady (Okay) · Strong (Great). Không đặt tên khác cho cùng một thứ.
 - Thông báo: tối đa một mỗi ngày; không ghi tình trạng sức khoẻ trên màn khoá; không lặp câu trong 14 ngày; không bao giờ "mất chuỗi"; tổng kết tuần chỉ so với chính mình.
 - Emoji: không trong copy store · Dấu: ASCII thường.
 
@@ -79,6 +81,9 @@ _Updated: 28/09/2026 (thêm giãn cơ) · by: manh-skill-idea · Brief: docs/ide
 - Video AI người thật sai kỹ thuật hoặc lệch HLV giữa các clip → làm 2 động tác trước, huấn luyện viên duyệt; không watermark, kiểm tra điều khoản thương mại; không đặt tên hay chứng chỉ cho HLV AI.
 - Thông báo mất tác dụng sau khoảng 4 tuần (HeartSteps) → kho câu xoay vòng, đổi loại theo giai đoạn, giảm dần khi đã thành thói quen.
 - Chưa có cách đo hiệu quả thông báo khi không có backend → chốt ở manh-skill-plan.
+- Giọng ElevenLabs hiện tạo bằng gói Free (phi thương mại, phải ghi nguồn) → chỉ dùng cho prototype; nâng gói có giấy phép thương mại và tạo lại trước khi đóng gói (verify trên trang giá ElevenLabs).
+- Thang cây 4 cấp, mỗi 7 ngày hoạt động → hết thang sau 3 tuần, trước mốc giữ chân 4 tuần → chốt mốc ở manh-skill-plan.
+- Tranh mẫu phong cách nằm ở dự án khác (Idea-Fitness/docs/ai-test/) → chép vào docs/design/reference/ để repo tự đủ.
 
 ## Decisions log (append-only)
 - 27/09/2026 — GO "gentle-walk-voice" (docs/idea/gentle-walk-voice.md): giữ khác biệt của PawSteps, bỏ thư viện video và mascot chó.
@@ -91,3 +96,4 @@ _Updated: 28/09/2026 (thêm giãn cơ) · by: manh-skill-idea · Brief: docs/ide
 - 28/09/2026 — Tách kế hoạch nội dung ra docs/content-plan.md; app-context chỉ trỏ tới, không gộp.
 - 28/09/2026 — Video + audio: GO clip ngắn không tiếng, người thật do AI tạo, cho 6 động tác ghế; audio vẫn là lõi; bố cục kiểu YouTube, có Full screen (docs/idea/gentle-walk-voice.md §11).
 - 28/09/2026 — Phương pháp tập thêm: GO giãn cơ nhẹ vào MVP (gộp chair yoga); tai chi chậm phase 2 sau test giọng; NO-GO wall pilates, somatic, bài lazy/trên giường; bài mới phải dẫn được bằng giọng (docs/idea/gentle-walk-voice.md dòng 24–29).
+- 28/09/2026 — Rà soát tài liệu (docs/reviews/2026-09-28-tai-lieu.md): đồng bộ giãn cơ vào content-plan và spec màn hình; sửa các chỗ lệch (bước chân trong buổi ngồi, HealthKit không kéo hành trình, số ngày lên cấp, số ảnh khung); thêm tuần mẫu và từ vựng cố định. Không có quyết định sản phẩm mới; các câu hỏi mở ghi ở brief §12.

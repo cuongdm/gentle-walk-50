@@ -11,7 +11,7 @@ App đi bộ trong nhà và động tác ghế cho phụ nữ Mỹ 50–64 mới
 - **Aha:** trong 5 phút đầu, ngồi nhấc gối theo giọng, không nhìn điện thoại. Xong thấy bưu thiếp đầu tiên: Central Park Zoo.
 
 ## 3. Kết luận: **GO** — lý do duy nhất
-Chưa có app **audio-first + seated-first + minh bạch tiền** cho phụ nữ 50–64: đối thủ trả phí là video bán bằng quiz funnel bị người dùng gọi là scam (§4 dòng 3–4), đối thủ audio ngủ đông (dòng 7), đối thủ miễn phí chỉ mở cho 65+ qua bảo hiểm (dòng 6). Ba trụ reviewer thấy trong 2 phút, xây bằng kịch bản giọng và tranh tĩnh, không cần video.
+Chưa có app **audio-first + seated-first + minh bạch tiền** cho phụ nữ 50–64: đối thủ trả phí là video bán bằng quiz funnel bị người dùng gọi là scam (§4 dòng 3–4), đối thủ audio ngủ đông (dòng 7), đối thủ miễn phí chỉ mở cho 65+ qua bảo hiểm (dòng 6). Ba trụ reviewer thấy trong 2 phút, xây bằng kịch bản giọng và tranh tĩnh, không cần video. (Từ 28/09/2026 có thêm clip ngắn cho động tác ghế và giãn cơ làm lớp hình, xem §7 và §11; bỏ clip đi thì ba trụ vẫn đứng.)
 
 ## 4. Bảng bằng chứng
 | # | Nhận định | Nguồn | Ngày xem | Tin cậy | Ảnh hưởng |
@@ -78,7 +78,7 @@ Giảm rủi ro: màn đầu và buổi tập đầu cho thấy giọng dẫn, b
 ## 8. Mô hình giá (chữ)
 - **Gói:** tháng · năm (chọn sẵn, trial 14 ngày, nhắc ngày 12) · trả một lần dùng mãi (vị trí thứ ba, không chọn sẵn). Không gói tuần. Phí store 15%.
 - **Miễn phí:** mỗi ngày một bài đi bộ kèm 1–2 động tác ghế luân phiên, streak, hành trình New York, chặng đầu của mọi hành trình khác, This hurts, chế độ ngoài trời.
-- **Trả phí:** đủ cấp và chương trình tuần, thư viện động tác đầy đủ, 4 hành trình còn lại và tuyến mới hằng tháng, lịch sử chi tiết.
+- **Trả phí:** đủ cấp và chương trình tuần (xoay vòng đi bộ · động tác ghế · giãn cơ), thư viện động tác đầy đủ, các buổi giãn cơ đầy đủ (bản miễn phí chỉ có phần hạ nhiệt ngắn sau đi bộ), 4 hành trình còn lại và tuyến mới hằng tháng, lịch sử chi tiết.
 - **Mời nâng cấp ở 3 chỗ:** onboarding · màn hoàn thành New York (thẻ, không popup) · bấm vào nội dung khoá.
 - **LTV:** chưa có dữ liệu; đo theo cohort sau 90 ngày. Break-even CPA = LTV × (1 − phí store), chỉ để tham khảo nếu sau này chạy quảng cáo. Không ghi số tiền ở đâu.
 
@@ -97,7 +97,7 @@ Giảm rủi ro: màn đầu và buổi tập đầu cho thấy giọng dẫn, b
 - **Subscription (3.1.2):** paywall đủ thông tin, Terms/Privacy, Restore. **Không tài khoản, không backend.**
 - **Thông báo (4.5.4):** không bắt buộc để app chạy; không ghi tình trạng sức khoẻ trên màn khoá; thông báo quảng cáo cần tự bật. Local notification có giới hạn số đang chờ → lên lịch từng đợt ngắn.
 - **Video AI:** dùng gói không có watermark hiển thị, kiểm tra điều khoản thương mại của công cụ, không tự xoá watermark; không đặt tên hay chứng chỉ cho HLV AI (2.3, 1.1.6); huấn luyện viên duyệt từng clip.
-- **Bản quyền:** nhạc nền chỉ dùng nhạc miễn bản quyền; tranh không có logo hay thương hiệu; giọng TTS hoặc clone cần giấy phép thương mại.
+- **Bản quyền:** nhạc nền chỉ dùng nhạc miễn bản quyền; tranh không có logo hay thương hiệu; giọng TTS hoặc clone cần giấy phép thương mại. Giọng ElevenLabs hiện tạo bằng gói Free: gói này chỉ cho dùng phi thương mại và phải ghi nguồn, nên các file giọng hiện có chỉ dùng cho prototype; trước khi đóng gói vào app phải nâng lên gói có giấy phép thương mại và tạo lại (verify trên trang giá ElevenLabs).
 - **Android:** để sau, tính như sản phẩm thứ hai.
 
 ## 11. Phiên bản nhỏ nhất có thể ship
@@ -107,14 +107,25 @@ Giảm rủi ro: màn đầu và buổi tập đầu cho thấy giọng dẫn, b
 4. **5 hành trình** tính theo phút tập, 30 bưu thiếp, màn "Where to next?" (vòng lặp).
 5. **Check-in sáng** → bài gợi ý; câu hỏi sau buổi để chỉnh bài; **thông báo theo mốc sinh hoạt**, có "Rest today", giảm dần khi đã thành thói quen (vòng lặp).
 6. **Chế độ đi ngoài trời:** màn chuẩn bị, GPS tuỳ chọn, kịch bản an toàn, nhắc làm động tác ghế ở nhà.
+7. **Buổi giãn cơ nhẹ (từ 28/09/2026):** loại buổi riêng 5–10 phút và phần hạ nhiệt 1–2 phút sau đi bộ; bản ngồi trên ghế (gộp chair yoga) và bản đứng vịn ghế; dẫn bằng giọng, clip ngắn cùng khung máy V1; giữ 15–20 giây mỗi tư thế, thở chậm, không nhún; phút tập tính vào hành trình. Không hứa "hết đau" hay "sửa tư thế" (1.4.1).
+
+**Tuần mẫu (chương trình trả phí, 5 ngày hoạt động + 2 ngày nghỉ hợp lệ, xoay vòng để không lặp một chuỗi sau 28 ngày):**
+| Ngày | Buổi | Thời lượng |
+|---|---|---|
+| Thứ hai | Đi bộ (nhanh–chậm) + 1 động tác ghế | 8–12 phút |
+| Thứ ba | Giãn cơ nhẹ | 5–10 phút |
+| Thứ tư | Đi bộ + 2 động tác ghế | 10–12 phút |
+| Thứ năm | Động tác ghế và thăng bằng (4–6 bài) | 8–10 phút |
+| Thứ sáu | Đi bộ (dài hơn một chút) + hạ nhiệt giãn cơ | 10–15 phút |
+| Thứ bảy, chủ nhật | Một ngày nghỉ, một ngày tuỳ chọn Extras (đi bộ ngắn, giãn cơ buổi sáng, thăng bằng) | 0–5 phút |
+Người dùng chọn ngày nghỉ; check-in Achy / Okay / Great đổi cường độ trong ngày, không đổi loại buổi. Bản miễn phí không có tuần mẫu: mỗi ngày một bài đi bộ kèm 1–2 động tác ghế luân phiên và hạ nhiệt ngắn.
 
 **Nội dung cần sản xuất (ước tính từ spec):**
 - Giọng: thư viện khoảng 450–550 câu ngắn, app ghép khi chạy. Nữ 58–65 tuổi, trầm ấm, khoảng 130 từ/phút, không gọi tên người dùng. TTS cho prototype, nghe thử với nhóm test rồi chọn thu người thật, TTS hay clone có đồng ý. Huấn luyện viên duyệt kịch bản động tác.
 - Tranh: khoảng 65–75 tranh, khoảng 30 bắt buộc trước ra mắt (động tác, New York, 3 cách để điện thoại, cảnh player); bưu thiếp tuyến trả phí giao theo đợt. Trước khi tạo hàng loạt: bảng nhân vật, hướng dẫn phong cách, báo giá credit.
 - **Nhân vật chính:** trông 55–58 tuổi, da trắng, dáng đầy đặn (cỡ 14–16), tóc muối tiêu, đeo kính, áo sage cố định. **3 nhân vật phụ** (gốc Latinh, da đen, gốc Á) cho cảnh không dạy động tác. Không có màn chọn avatar; đo sở thích bằng test prototype và A/B screenshot.
 - Nhạc: miễn bản quyền, phong cách 70–80 (thế hệ X), cần test.
-
-7. **Buổi giãn cơ nhẹ (từ 28/09/2026):** loại buổi riêng 5–10 phút và phần hạ nhiệt sau đi bộ; bản ngồi trên ghế (gộp chair yoga) và bản đứng vịn ghế; dẫn bằng giọng, clip ngắn cùng khung máy V1; phút tập tính vào hành trình. Tuần xoay vòng: đi bộ · động tác ghế · giãn cơ, để không lặp một chuỗi sau 28 ngày.
+- Video: 6 clip chính động tác ghế đã có (28/09/2026, chờ huấn luyện viên duyệt); còn 6–8 clip giãn cơ, bản dễ/khó, ảnh khung tĩnh. Chi tiết ở docs/content-plan.md mục V.
 
 **Thứ tự phase:** 0 test prototype (giọng + tranh so với giọng + video, nhân vật, tuyến muốn đi) → 1 MVP ở trên → 2 tai chi chậm (tai chi đi bộ, tai chi ngồi; test giọng dẫn trước), Fitness Check, widget, Live Activity, cảnh báo nắng nóng theo thời tiết → 3 chó đồng hành, màn chọn nhân vật nếu dữ liệu ủng hộ, Android.
 
@@ -128,6 +139,8 @@ Giảm rủi ro: màn đầu và buổi tập đầu cho thấy giọng dẫn, b
 - Đo hiệu quả thông báo (mở rồi tập trong 2 giờ, tỷ lệ tắt) khi không có backend: dùng analytics tôn trọng quyền riêng tư hay không đo? Chốt ở manh-skill-plan.
 - 50–64 có chịu trả subscription khi 65+ có app miễn phí? Lifetime có làm giảm gói năm? Đo sau ra mắt.
 - Tên app và trademark.
+- Thang cây Seed → Sprout → Sapling → Tree lên cấp mỗi 7 ngày hoạt động thì hết thang sau 3 tuần, trong khi mục tiêu giữ chân là 4 tuần trở lên. Giữ 4 cấp nhưng giãn mốc (ví dụ 7 · 21 · 42 ngày), hay thêm cấp? Chốt ở manh-skill-plan.
+- Ai duyệt kịch bản giãn cơ (huấn luyện viên hay chuyên gia vật lý trị liệu)? Giãn cơ cho người thay khớp cần lọc bài theo giới hạn cơ thể ở S06.
 
 ## 13. Decisions log
 - 27/09/2026 — GO "gentle-walk-voice": giữ khác biệt của PawSteps, bỏ thư viện video và mascot chó.

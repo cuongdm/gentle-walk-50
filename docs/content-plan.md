@@ -1,5 +1,5 @@
 # Kế hoạch nội dung — Gentle Walk 50+ (MVP)
-_Cập nhật: 28/09/2026 (thêm video động tác) · Số lượng là ước tính từ spec, chưa phải số đo · Không ghi số tiền_
+_Cập nhật: 28/09/2026 (thêm video động tác, giãn cơ; rà soát) · Số lượng là ước tính từ spec, chưa phải số đo · Không ghi số tiền_
 
 ## Tham chiếu
 - **[app-context.md](../app-context.md)**: người dùng mục tiêu, ba trụ, giá bằng chữ, **Tone & copy rules** (giọng văn, từ cấm, từ nên dùng, quy tắc thông báo), ràng buộc (offline, không tài khoản). Kế hoạch này không lặp lại các quy tắc đó; mọi nội dung phải theo app-context.
@@ -10,9 +10,9 @@ _Cập nhật: 28/09/2026 (thêm video động tác) · Số lượng là ước
 ## 1. Tổng quan
 | Nhóm | Số lượng ước tính | Bắt buộc trước ra mắt | Người duyệt |
 |---|---|---|---|
-| A. Kịch bản giọng | 450–550 câu | có | huấn luyện viên có chứng chỉ, người biên tập tiếng Anh Mỹ |
+| A. Kịch bản giọng | 490–600 câu (có A10 giãn cơ) | có | huấn luyện viên có chứng chỉ, người biên tập tiếng Anh Mỹ |
 | B. Âm thanh | giọng + 3 chuông + 9–15 bản nhạc | có | chủ app, nhóm test |
-| V. Video động tác | 17 job Flow (V1-1 … V6-3, mỗi job ≤ 10 giây) + 26 ảnh khung | 6 clip chính | huấn luyện viên (từng clip), chủ app |
+| V. Video động tác | 17 job Flow động tác ghế (V1-1 … V6-3, mỗi job ≤ 10 giây) + 27 ảnh khung · **6 clip chính đã xong 28/09/2026** · thêm 6–8 clip giãn cơ (V2b) | 6 clip chính + 6–8 clip giãn cơ | huấn luyện viên (từng clip), chủ app |
 | C. Minh hoạ | 50–60 tranh | khoảng 15 | chủ app |
 | D. Chữ trong app | khoảng 400 mục | có | người biên tập tiếng Anh Mỹ |
 | E. Nội dung hằng tháng | 1 gói hành trình/tháng | sau ra mắt | như C và D |
@@ -31,8 +31,9 @@ Giọng: nữ 58–65 tuổi, trầm ấm, khoảng 130 từ/phút, giọng Mỹ
 | A7. Break, This hurts, an toàn | ~20 | "Sit down, sip some water…", "Let's take care of that" |
 | A8. Tới địa danh | 30–60 | 1–2 câu cho mỗi bưu thiếp của 5 hành trình |
 | A9. Chuyển bài, check-in, welcome back | ~30 | theo Achy / Okay / Great |
+| A10. Giãn cơ nhẹ (mới 28/09/2026) | ~40–50 | 6–8 tư thế × (giới thiệu, vào tư thế, nhắc thở, bản dễ, đổi bên, ra tư thế); phần hạ nhiệt 1–2 phút sau đi bộ dùng 2–3 tư thế ngồi; "a gentle pull, never pain", không nhún, không nín thở; không hứa hết đau · viết cùng file với clip V2b |
 
-**Việc cần làm:** viết A1 trước → TTS prototype → nghe thử với nhóm test → viết phần còn lại → huấn luyện viên duyệt A2–A4, A7 → chọn cách làm giọng (thu người thật, TTS hay clone có đồng ý) → sản xuất → chuẩn hoá độ to → xuất phụ đề từ chính kịch bản.
+**Việc cần làm:** viết A1 trước (xong, bản nháp 1) → TTS prototype → nghe thử với nhóm test → viết A10 cùng kịch bản clip giãn cơ → viết phần còn lại → huấn luyện viên duyệt A2–A4, A7, A10 → chọn cách làm giọng (thu người thật, TTS hay clone có đồng ý; giọng ElevenLabs gói Free chỉ dùng cho prototype) → sản xuất → chuẩn hoá độ to → xuất phụ đề từ chính kịch bản.
 
 ## 3. B. Âm thanh
 | Mục | Số lượng | Yêu cầu |
@@ -47,13 +48,13 @@ Giọng vẫn là lõi: clip chỉ minh hoạ, không mang thông tin mà giọn
 | Mục | Số lượng | Yêu cầu |
 |---|---|---|
 | V1. Ảnh tham chiếu HLV | 3–4 góc | dùng cho mọi clip để giữ cùng một người |
-| V2. Clip chính cho 6 động tác (kịch bản: [scripts/V-exercise-clips.md](scripts/V-exercise-clips.md); **V1-1 … V6-1 xong 28/09/2026 (cùng khung máy, 720p + 1080p, giọng ElevenLabs): assets/video/**) | 7 (heel và toe tách 2 clip) | 16:9 ngang, 4–6 giây, đúng một lần làm, lặp liền mạch, một góc máy cố định (mặc định chính diện, đối xứng), không cắt cảnh, không chữ in trong hình, không âm thanh, không watermark hiển thị |
-| V2b. Clip giãn cơ nhẹ (từ 28/09/2026) | 6–8 | cùng khung máy V1 (ảnh khung lấy từ video V1, xem skill §5f); bản ngồi trên ghế và đứng vịn ghế: cổ–vai, lưng trên, hông, đùi sau, bắp chân, cổ chân; mỗi clip một động tác, giữ 15–20 giây; kịch bản giọng viết trước, huấn luyện viên duyệt |
+| V2. Clip chính cho 6 động tác (kịch bản: [scripts/V-exercise-clips.md](scripts/V-exercise-clips.md); **V1-1 … V6-1 xong 28/09/2026 (cùng khung máy, 720p + 1080p, giọng ElevenLabs): assets/video/**, chờ huấn luyện viên duyệt) | 6 (heel và toe gộp một clip V4-1) | 16:9 ngang, 2.5–9 giây một vòng, lặp liền mạch, một góc máy cố định (V1–V2 chính diện, V3–V6 nghiêng thuần), cùng cỡ người và phòng ở mọi clip, không cắt cảnh, không chữ in trong hình, không âm thanh, không watermark hiển thị; động tác luân phiên chứa cả hai bên trong một clip, không lật gương |
+| V2b. Clip giãn cơ nhẹ (từ 28/09/2026) | 6–8 | cùng khung máy V1 (ảnh khung lấy từ video V1, xem skill §5f); bản ngồi trên ghế và đứng vịn ghế: cổ–vai, lưng trên, hông, đùi sau, bắp chân, cổ chân; mỗi clip một động tác, vào tư thế 2–3 giây rồi app dừng ở khung giữ 15–20 giây; **kịch bản giọng A10 viết trước (chưa có), báo giá credit, huấn luyện viên duyệt** |
 | V3. Bản dễ và bản khó | 6–12 | ví dụ Sit-to-stand dùng tay đẩy / không dùng tay; heel raise ngồi / đứng vịn ghế |
 | V4. Ảnh khung tĩnh lấy từ clip | 2 mỗi clip | tư thế đầu và cuối; dùng cho Reduce Motion, thumbnail, lỗi video, VoiceOver |
 
-**Lỗi của clip thử 28/09/2026 cần tránh:** chữ prompt in vào hình · dấu ✦ watermark · cảnh cận và rộng làm động tác khác nhau · chân chéo ra ngoài thay vì thẳng phía trước · HLV trông khoảng 75 tuổi · có cắt cảnh và track âm thanh.
-**Việc cần làm:** V1 → làm 2 động tác (Sit-to-stand, Seated leg extension) → huấn luyện viên duyệt → sửa prompt → 4 động tác còn lại → V3 → V4. Kiểm tra điều khoản thương mại của công cụ tạo video; không tự xoá watermark. **Báo giá credit trước mỗi đợt.**
+**Lỗi của clip thử 28/09/2026 cần tránh:** chữ prompt in vào hình · dấu ✦ watermark · cảnh cận và rộng làm động tác khác nhau · chân chéo ra ngoài thay vì thẳng phía trước · HLV trông khoảng 75 tuổi · có cắt cảnh và track âm thanh. Bài học đầy đủ và quy trình 7 bước: [video-skill-notes.md](video-skill-notes.md).
+**Tình trạng và việc cần làm:** V1 nhân vật GWCoach và 6 clip chính V2 đã có → huấn luyện viên duyệt 6 clip (đặc biệt V1 tay chạm ghế khi ngồi, V6 chân nhấc cao hơn kịch bản) → viết A10 và kịch bản V2b → báo giá credit → tạo V2b → V3 bản dễ/khó → V4 ảnh khung tĩnh. Dấu ✦ vẫn có trên gói Pro: chốt gói không watermark hoặc công cụ khác trước khi sản xuất hàng loạt; không tự xoá watermark. **Báo giá credit trước mỗi đợt.**
 
 ## 5. C. Minh hoạ (màu nước)
 Nhân vật minh hoạ: nhân vật chính + 3 nhân vật phụ, mô tả ở spec mục "Brief cho designer". Phong cách: gouache/màu nước, texture giấy. Động tác ghế dùng video (mục V), không vẽ.
@@ -82,7 +83,7 @@ Nhân vật minh hoạ: nhân vật chính + 3 nhân vật phụ, mô tả ở s
 | D2. Màn thấu hiểu theo rào cản | 6 biến thể | theo 6 lựa chọn ở S03 |
 | D3. "Why this will work for you" | 6 biến thể | nối với S03 |
 | D4. Paywall và màn trước hộp thoại Apple | 2 màn | ngày và số tiền là biến; không ghi số trong tài liệu |
-| D5. Hướng dẫn động tác | 6 × (3 gợi ý + bản dễ + bản khó) | huấn luyện viên duyệt |
+| D5. Hướng dẫn động tác và giãn cơ | 6 × (3 gợi ý + bản dễ + bản khó) + 6–8 tư thế giãn cơ × (2 gợi ý + bản dễ) | huấn luyện viên duyệt; giãn cơ không có bản khó, chỉ giữ lâu hơn |
 | D6. Mô tả hành trình | 5 | ghi "A gentle version of the route" |
 | D7. Mặt sau bưu thiếp | 30 × (2–3 câu + 1 câu HLV) | Camino viết như chuyến đi văn hoá, không tôn giáo |
 | D8. Kho câu thông báo | ~70 | xem bảng dưới |
@@ -108,13 +109,13 @@ Mỗi hành trình mới: 6 bưu thiếp + 1 bản đồ (C) · 6 mặt sau bưu
 ## 8. Thứ tự sản xuất
 | Bước | Việc | Cần cho |
 |---|---|---|
-| 1 | V1 ảnh tham chiếu HLV · C1 bảng nhân vật · C2 hướng dẫn phong cách | mọi clip và tranh |
-| 2 | V2 cho 2 động tác + C7 một bưu thiếp New York; huấn luyện viên duyệt | chốt phong cách, prototype |
-| 3 | A1 kịch bản First Walk + TTS | test prototype |
-| 4 | Test prototype 6–8 người: giọng + tranh so với giọng + video, bố cục YouTube và Full screen, nhân vật, tuyến muốn đi | quyết định giọng, HLV, nhân vật |
-| 5 | A2–A9 đầy đủ, D1–D11, huấn luyện viên duyệt | code MVP |
-| 6 | Sản xuất giọng, B2–B3, phụ đề | code MVP |
-| 7 | V2 4 động tác còn lại, V3, V4 · C4–C10, C12–C13, phần còn lại của C7 | ra mắt |
+| 1 | V1 ảnh tham chiếu HLV (xong: GWCoach) · C1 bảng nhân vật · C2 hướng dẫn phong cách | mọi clip và tranh |
+| 2 | V2 6 clip chính (xong, chờ duyệt) + C7 một bưu thiếp New York; huấn luyện viên duyệt | chốt phong cách, prototype |
+| 3 | A1 kịch bản First Walk (xong, nháp 1) + TTS · A10 + kịch bản V2b giãn cơ, tạo 2 clip giãn cơ mẫu | test prototype |
+| 4 | Test prototype 6–8 người: giọng + tranh so với giọng + video, bố cục YouTube và Full screen, nhân vật, tuyến muốn đi, buổi giãn cơ có dễ theo bằng giọng không | quyết định giọng, HLV, nhân vật |
+| 5 | A2–A10 đầy đủ, D1–D11, huấn luyện viên duyệt | code MVP |
+| 6 | Sản xuất giọng (gói có giấy phép thương mại), B2–B3, phụ đề | code MVP |
+| 7 | V2b còn lại, V3, V4 · C4–C10, C12–C13, phần còn lại của C7 | ra mắt |
 | 8 | C11 và nội dung 4 hành trình trả phí | ra mắt, giao theo đợt |
 
 ## 9. Tiêu chí xong cho mỗi mục
@@ -126,3 +127,6 @@ Mỗi hành trình mới: 6 bưu thiếp + 1 bản đồ (C) · 6 mặt sau bưu
 - Công cụ tạo video nào cho phép dùng thương mại không watermark, và giữ được cùng một HLV qua 12–18 clip?
 - Có thuê người biên tập tiếng Anh Mỹ bản địa không?
 - Quy ước tên file và cấu trúc thư mục asset: chốt ở manh-skill-plan.
+- Giãn cơ cho người thay khớp, đau vai, chóng mặt: tư thế nào phải ẩn theo giới hạn ở S06? Huấn luyện viên trả lời khi duyệt A10.
+- Nguồn nhạc miễn bản quyền cụ thể (thư viện, giấy phép cho app trả phí) chưa chọn.
+- Kế hoạch test prototype (bước 4) chưa có tài liệu: ai, kịch bản buổi test, tiêu chí đạt. Viết trước khi tuyển người test.

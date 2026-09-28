@@ -2,6 +2,8 @@
 _28/09/2026 (danh sách job Flow; sửa bối cảnh tối giản, khung hình đủ người, góc máy) · Theo [app-context.md](../../app-context.md) và [content-plan.md](../content-plan.md) mục V và A4 · Prompt tiếng Anh, ghi chú tiếng Việt_
 
 ## 1. Quy tắc chung cho mọi clip
+> **Bản hiện hành (28/09/2026):** kết quả và cách làm đã chạy được ở **mục 5·0** và [video-skill-notes.md](../video-skill-notes.md) §5e, §5f. Ba quy tắc dưới đây đã bị thay: (1) "chỉ tạo pha lên + app phát ngược" → tạo **vòng khép kín** từ tư thế cao nhất, clip chứa cả pha xuống thật; (2) "lật gương cho bên còn lại" → **cả hai bên trong một clip**, không lật (cửa sổ và ánh sáng đổi bên); (3) "ảnh khung tạo riêng cho từng động tác" → **mọi ảnh khung sửa từ khung hình thật của video V1** để cùng cỡ người và phòng. Bảng job 3b và bảng thời lượng 3c vì thế chỉ còn đúng về số job, tư thế và lời giọng; mốc dựng thật ở 5·0. Giữ nguyên phần cũ làm bài học.
+
 - **Chỉ tạo pha "lên"** (từ tư thế đầu tới tư thế cuối), dài 2–3 giây. App phát **xuôi rồi ngược** thành vòng lặp 4–6 giây. Giữ tư thế (hold) do app dừng ở khung cuối, không nằm trong clip.
 - **Luôn tạo 2 ảnh khung trước** (K1 tư thế đầu, K2 tư thế cuối) bằng cùng ảnh tham chiếu HLV, rồi cho AI tạo video **giữa K1 và K2**. Thử nghiệm PawSteps cho thấy chỉ có khung đầu thì AI tự phóng đại hoặc đổi động tác; slide mẫu 28/09/2026 cũng mắc lỗi này (Sit-to-stand không đứng lên, tay tự chắp).
 - **Lật gương cho bên còn lại** (chân trái/phải) thay vì tạo thêm clip. Điều kiện: HLV không đeo nhẫn, đồng hồ, không có chi tiết lệch (ngôi tóc giữa), phông không có chữ hay vật lệch.
