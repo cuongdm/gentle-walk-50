@@ -139,8 +139,9 @@ Người dùng chọn ngày nghỉ; check-in Achy / Okay / Great đổi cường
 - Đo hiệu quả thông báo (mở rồi tập trong 2 giờ, tỷ lệ tắt) khi không có backend: dùng analytics tôn trọng quyền riêng tư hay không đo? Chốt ở manh-skill-plan.
 - 50–64 có chịu trả subscription khi 65+ có app miễn phí? Lifetime có làm giảm gói năm? Đo sau ra mắt.
 - Tên app và trademark.
-- Thang cây Seed → Sprout → Sapling → Tree lên cấp mỗi 7 ngày hoạt động thì hết thang sau 3 tuần, trong khi mục tiêu giữ chân là 4 tuần trở lên. Giữ 4 cấp nhưng giãn mốc (ví dụ 7 · 21 · 42 ngày), hay thêm cấp? Chốt ở manh-skill-plan.
-- Ai duyệt kịch bản giãn cơ (huấn luyện viên hay chuyên gia vật lý trị liệu)? Giãn cơ cho người thay khớp cần lọc bài theo giới hạn cơ thể ở S06.
+- Thang cây Seed → Sprout → Sapling → Tree lên cấp mỗi 7 ngày hoạt động thì hết thang sau 3 tuần, trong khi mục tiêu giữ chân là 4 tuần trở lên. **Đề xuất 28/09/2026: giữ 4 cấp, mốc 7 · 21 · 42 ngày hoạt động, sau Tree thêm vòng năm mỗi 42 ngày** (docs/todo.md #1, chờ OK).
+- Ai duyệt kịch bản giãn cơ? **Đề xuất: một huấn luyện viên có chứng chỉ chuyên người lớn tuổi, duyệt theo đợt, đầu ra là bảng tư thế × giới hạn S06** (docs/todo.md #2, chờ OK).
+- Kế hoạch test prototype: đã viết docs/research/prototype-test-plan.md (chờ OK). Nguồn nhạc: đề xuất giấy phép theo bài loại cho app hoặc đặt nhạc sĩ mua đứt (docs/todo.md #4, chờ OK).
 
 ## 13. Decisions log
 - 27/09/2026 — GO "gentle-walk-voice": giữ khác biệt của PawSteps, bỏ thư viện video và mascot chó.

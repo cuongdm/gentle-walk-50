@@ -13,6 +13,8 @@ App iPhone dẫn đi bộ trong nhà, động tác ghế và giãn cơ nhẹ b�
 | [docs/scripts/V-exercise-clips.md](docs/scripts/V-exercise-clips.md) | Kịch bản 6 clip động tác ghế, lời giọng A4, kết quả clip (mục 5·0) |
 | [docs/video-skill-notes.md](docs/video-skill-notes.md) | Quy trình làm clip trên Google Flow, QA, dựng, bài học |
 | [docs/reviews/](docs/reviews/) | Báo cáo rà soát theo ngày |
+| [docs/todo.md](docs/todo.md) | Việc cần làm và các đề xuất đang chờ chủ app chốt |
+| [docs/research/prototype-test-plan.md](docs/research/prototype-test-plan.md) | Kế hoạch test prototype với 6–8 người |
 
 ## Tài sản
 - `assets/video/V1-1 … V6-1/`: clip lặp trong app (`*_loop.mp4`), video xem thử có giọng và phụ đề (`*_preview.mp4`), bản gốc Flow, cấu hình `preview.json`; bản 1080p trong thư mục `1080/`.
@@ -20,4 +22,4 @@ App iPhone dẫn đi bộ trong nhà, động tác ghế và giãn cơ nhẹ b�
 - `tools/video/`: script dựng clip lặp, video xem thử, đo QA (cần ffmpeg và Pillow; giọng cần key ElevenLabs ở `~/.config/elevenlabs/api_key`, không nằm trong repo).
 
 ## Bước tiếp theo
-Xem "Việc cần làm" trong [docs/content-plan.md](docs/content-plan.md) và báo cáo rà soát mới nhất trong `docs/reviews/`.
+Xem [docs/todo.md](docs/todo.md), rồi "Việc cần làm" trong [docs/content-plan.md](docs/content-plan.md) và báo cáo rà soát mới nhất trong `docs/reviews/`.
