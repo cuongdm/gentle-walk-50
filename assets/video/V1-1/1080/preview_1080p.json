@@ -1,0 +1,88 @@
+{
+  "name": "V1-1_1080p",
+  "loop": "assets/video/V1-1/1080/V1-1_loop_1080p.mp4",
+  "cycle": 7.625,
+  "intro": 14.8,
+  "reps": 3,
+  "outro": 2.0,
+  "voice": {
+    "engine": "elevenlabs",
+    "name": "Bella (premade)",
+    "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+    "model": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.6,
+      "similarity_boost": 0.75,
+      "style": 0.15,
+      "speed": 0.92
+    },
+    "cache": "assets/voice/cache"
+  },
+  "caption": {
+    "mode": "dynamic",
+    "align": "right",
+    "right": 1255,
+    "y_center": 300,
+    "max_width": 430,
+    "max_words": 4
+  },
+  "cues": [
+    {
+      "text": "Sit-to-stand. It helps with getting up from any chair.",
+      "at": "intro",
+      "offset": 0.5,
+      "caption": "Sit-to-stand"
+    },
+    {
+      "text": "Scoot to the front of your chair. Feet flat, about hip-width apart.",
+      "at": "intro",
+      "offset": 4.3,
+      "caption": "Scoot forward\nFeet flat"
+    },
+    {
+      "text": "If you need help, put your hands on the chair and push. That's a great way to start.",
+      "at": "intro",
+      "offset": 9.1,
+      "caption": "Need help?\nPush the chair"
+    },
+    {
+      "text": "Lean forward, nose over toes\u2026 and stand up.",
+      "at": "rep1",
+      "offset": 0.2,
+      "caption": "Lean forward\nStand up"
+    },
+    {
+      "text": "Now sit back down, slowly. Reach back for the chair with your hips.",
+      "at": "rep1",
+      "offset": 3.9,
+      "caption": "Sit down\nslowly"
+    },
+    {
+      "text": "Two.",
+      "at": "rep2",
+      "offset": 1.35,
+      "caption": "Two"
+    },
+    {
+      "text": "Take a breath whenever you need one.",
+      "at": "rep2",
+      "offset": 3.9,
+      "caption": "Breathe"
+    },
+    {
+      "text": "Three.",
+      "at": "rep3",
+      "offset": 1.0,
+      "caption": "Three"
+    },
+    {
+      "text": "Lovely. That's your last one.",
+      "at": "rep3",
+      "offset": 4.2,
+      "caption": "Lovely\nLast one"
+    }
+  ],
+  "crf": 17,
+  "preset": "slow",
+  "audio_bitrate": "192k"
+}

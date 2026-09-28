@@ -1,0 +1,72 @@
+{
+  "name": "V2-1_1080p",
+  "loop": "assets/video/V2-1/1080/V2-1_loop_1080p.mp4",
+  "cycle": 2.458333,
+  "intro": 12.8,
+  "reps": 8,
+  "outro": 2.2,
+  "voice": {
+    "engine": "elevenlabs",
+    "name": "Bella (premade)",
+    "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+    "model": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.6,
+      "similarity_boost": 0.75,
+      "style": 0.15,
+      "speed": 0.92
+    },
+    "cache": "assets/voice/cache"
+  },
+  "caption": {
+    "mode": "dynamic",
+    "align": "right",
+    "right": 1255,
+    "y_center": 300,
+    "max_width": 430,
+    "max_words": 4
+  },
+  "cues": [
+    {
+      "text": "Seated knee lifts. The same move you use for every step.",
+      "at": "intro",
+      "offset": 0.5,
+      "caption": "Knee lifts"
+    },
+    {
+      "text": "Hold the sides of your seat lightly. Sit tall.",
+      "at": "intro",
+      "offset": 4.6,
+      "caption": "Hold seat\nSit tall"
+    },
+    {
+      "text": "Start small. Just lift your heel, then set it down.",
+      "at": "intro",
+      "offset": 8.4,
+      "caption": "Start small\nLift a heel"
+    },
+    {
+      "text": "If that feels fine, lift your whole knee a little. Then switch sides.",
+      "at": "rep1",
+      "offset": 0.0
+    },
+    {
+      "text": "Keep your back tall. No need to lean back.",
+      "at": "rep1",
+      "offset": 4.9
+    },
+    {
+      "text": "Nice and steady. One side, then the other.",
+      "at": "rep4",
+      "offset": 2.4
+    },
+    {
+      "text": "Lovely. Let your feet rest.",
+      "at": "rep8",
+      "offset": 0.3
+    }
+  ],
+  "crf": 17,
+  "preset": "slow",
+  "audio_bitrate": "192k"
+}

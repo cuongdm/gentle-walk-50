@@ -1,0 +1,69 @@
+{
+  "name": "V3-1_1080p",
+  "loop": "assets/video/V3-1/1080/V3-1_loop_1080p.mp4",
+  "cycle": 8.916667,
+  "intro": 13.6,
+  "reps": 3,
+  "outro": 2.0,
+  "voice": {
+    "engine": "elevenlabs",
+    "name": "Bella (premade)",
+    "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+    "model": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.6,
+      "similarity_boost": 0.75,
+      "style": 0.15,
+      "speed": 0.92
+    },
+    "cache": "assets/voice/cache"
+  },
+  "caption": {
+    "mode": "dynamic",
+    "align": "right",
+    "right": 1255,
+    "y_center": 300,
+    "max_width": 430,
+    "max_words": 4
+  },
+  "cues": [
+    {
+      "text": "Seated leg extensions. The move you use for climbing stairs.",
+      "at": "intro",
+      "offset": 0.5
+    },
+    {
+      "text": "Sit tall and hold the sides of your seat.",
+      "at": "intro",
+      "offset": 4.6
+    },
+    {
+      "text": "Start with a small lift. Straighten your leg just halfway.",
+      "at": "intro",
+      "offset": 8.2
+    },
+    {
+      "text": "If that's comfortable, straighten it all the way, toes to the ceiling.",
+      "at": "rep1",
+      "offset": 0.1
+    },
+    {
+      "text": "Keep your leg pointing straight ahead\u2026 and lower it slowly.",
+      "at": "rep1",
+      "offset": 4.8
+    },
+    {
+      "text": "Want more? Hold it up for a count of three.",
+      "at": "rep2",
+      "offset": 0.4
+    },
+    {
+      "text": "If your knee complains, make the lift smaller. That still counts.",
+      "at": "rep3",
+      "offset": 0.4
+    }
+  ],
+  "crf": 17,
+  "preset": "slow",
+  "audio_bitrate": "192k"
+}

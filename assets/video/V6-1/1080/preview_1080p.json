@@ -1,0 +1,69 @@
+{
+  "name": "V6-1_1080p",
+  "loop": "assets/video/V6-1/1080/V6-1_loop_1080p.mp4",
+  "cycle": 8.291667,
+  "intro": 9.0,
+  "reps": 3,
+  "outro": 2.0,
+  "voice": {
+    "engine": "elevenlabs",
+    "name": "Bella (premade)",
+    "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+    "model": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.6,
+      "similarity_boost": 0.75,
+      "style": 0.15,
+      "speed": 0.92
+    },
+    "cache": "assets/voice/cache"
+  },
+  "caption": {
+    "mode": "dynamic",
+    "align": "right",
+    "right": 1255,
+    "y_center": 300,
+    "max_width": 430,
+    "max_words": 4
+  },
+  "cues": [
+    {
+      "text": "Balance time. Stand behind your chair and hold on with both hands.",
+      "at": "intro",
+      "offset": 0.5
+    },
+    {
+      "text": "Start easy. Lift just your heel, toes stay down.",
+      "at": "intro",
+      "offset": 5.0
+    },
+    {
+      "text": "If you feel steady, lift your foot a little off the floor.",
+      "at": "rep1",
+      "offset": 0.0
+    },
+    {
+      "text": "Look at one spot in front of you. It helps.",
+      "at": "rep1",
+      "offset": 4.0
+    },
+    {
+      "text": "Hold\u2026 you're doing great\u2026 and set it down.",
+      "at": "rep2",
+      "offset": 4.0
+    },
+    {
+      "text": "If you wobble, that's normal. Hold the chair a little tighter.",
+      "at": "rep3",
+      "offset": 0.2
+    },
+    {
+      "text": "Want more? Try holding on with just one hand.",
+      "at": "rep3",
+      "offset": 4.4
+    }
+  ],
+  "crf": 17,
+  "preset": "slow",
+  "audio_bitrate": "192k"
+}
