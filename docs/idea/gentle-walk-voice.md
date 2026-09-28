@@ -140,8 +140,9 @@ Người dùng chọn ngày nghỉ; check-in Achy / Okay / Great đổi cường
 - 50–64 có chịu trả subscription khi 65+ có app miễn phí? Lifetime có làm giảm gói năm? Đo sau ra mắt.
 - Tên app và trademark.
 - Thang cây Seed → Sprout → Sapling → Tree lên cấp mỗi 7 ngày hoạt động thì hết thang sau 3 tuần, trong khi mục tiêu giữ chân là 4 tuần trở lên. **Đề xuất 28/09/2026: giữ 4 cấp, mốc 7 · 21 · 42 ngày hoạt động, sau Tree thêm vòng năm mỗi 42 ngày** (docs/todo.md #1, chờ OK).
-- Ai duyệt kịch bản giãn cơ? **Đề xuất: một huấn luyện viên có chứng chỉ chuyên người lớn tuổi, duyệt theo đợt, đầu ra là bảng tư thế × giới hạn S06** (docs/todo.md #2, chờ OK).
-- Kế hoạch test prototype: đã viết docs/research/prototype-test-plan.md (chờ OK). Nguồn nhạc: đề xuất giấy phép theo bài loại cho app hoặc đặt nhạc sĩ mua đứt (docs/todo.md #4, chờ OK).
+- ~~Ai duyệt kịch bản giãn cơ?~~ Chốt 28/09/2026: không thuê người duyệt; bài lấy từ nguồn công khai có uy tín (NIA Go4Life, NHS, ACSM) và ghi nguồn từng tư thế trong A10 (docs/todo.md #2).
+- ~~Nguồn nhạc?~~ Chốt 28/09/2026: tạo bằng AI trên gói trả phí có quyền thương mại (docs/todo.md #4).
+- Kế hoạch test prototype: đã viết docs/research/prototype-test-plan.md (chờ OK).
 
 ## 13. Decisions log
 - 27/09/2026 — GO "gentle-walk-voice": giữ khác biệt của PawSteps, bỏ thư viện video và mascot chó.

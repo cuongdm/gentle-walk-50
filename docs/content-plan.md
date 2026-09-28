@@ -40,7 +40,7 @@ Giọng: nữ 58–65 tuổi, trầm ấm, khoảng 130 từ/phút, giọng Mỹ
 |---|---|---|
 | B1. File giọng | theo A | AAC, đóng gói sẵn, độ to đều |
 | B2. Chuông | 3 | đổi pha (âm trầm 500–800 Hz, hai nốt) · đếm một lần · hoàn thành buổi |
-| B3. Nhạc nền | 3 phong cách × 3–5 bản lặp | "Feel-good 70s and 80s" (mặc định), Calm piano, Country; **chỉ nhạc miễn bản quyền**, tự nhỏ khi HLV nói |
+| B3. Nhạc nền | 3 phong cách × 3–5 bản lặp | "Feel-good 70s and 80s" (mặc định), Calm piano, Country; **tạo bằng AI trên gói trả phí có quyền thương mại** (chốt 28/09/2026, docs/todo.md #4), không lời, tự nhỏ khi HLV nói |
 
 ## 4. V. Video động tác (người thật do AI tạo, không tiếng)
 Giọng vẫn là lõi: clip chỉ minh hoạ, không mang thông tin mà giọng không nói. Người trong clip là HLV có giọng dẫn: trông 58–62 tuổi, tóc muối tiêu, dáng đầy đặn, đeo kính, áo sage cố định (spec mục "Brief cho designer"). Không đặt tên hay chứng chỉ cho HLV AI.
@@ -49,7 +49,7 @@ Giọng vẫn là lõi: clip chỉ minh hoạ, không mang thông tin mà giọn
 |---|---|---|
 | V1. Ảnh tham chiếu HLV | 3–4 góc | dùng cho mọi clip để giữ cùng một người |
 | V2. Clip chính cho 6 động tác (kịch bản: [scripts/V-exercise-clips.md](scripts/V-exercise-clips.md); **V1-1 … V6-1 xong 28/09/2026 (cùng khung máy, 720p + 1080p, giọng ElevenLabs): assets/video/**, chờ huấn luyện viên duyệt) | 6 (heel và toe gộp một clip V4-1) | 16:9 ngang, 2.5–9 giây một vòng, lặp liền mạch, một góc máy cố định (V1–V2 chính diện, V3–V6 nghiêng thuần), cùng cỡ người và phòng ở mọi clip, không cắt cảnh, không chữ in trong hình, không âm thanh, không watermark hiển thị; động tác luân phiên chứa cả hai bên trong một clip, không lật gương |
-| V2b. Clip giãn cơ nhẹ (từ 28/09/2026) | 6–8 | cùng khung máy V1 (ảnh khung lấy từ video V1, xem skill §5f); bản ngồi trên ghế và đứng vịn ghế: cổ–vai, lưng trên, hông, đùi sau, bắp chân, cổ chân; mỗi clip một động tác, vào tư thế 2–3 giây rồi app dừng ở khung giữ 15–20 giây; **kịch bản giọng A10 viết trước (chưa có), báo giá credit, huấn luyện viên duyệt** |
+| V2b. Clip giãn cơ nhẹ (từ 28/09/2026) | 6–8 | cùng khung máy V1 (ảnh khung lấy từ video V1, xem skill §5f); bản ngồi trên ghế và đứng vịn ghế: cổ–vai, lưng trên, hông, đùi sau, bắp chân, cổ chân; mỗi clip một động tác, vào tư thế 2–3 giây rồi app dừng ở khung giữ 15–20 giây; **kịch bản giọng A10 viết trước (chưa có), mỗi tư thế ghi nguồn công khai (NIA Go4Life, NHS; docs/todo.md #2), báo giá credit** |
 | V3. Bản dễ và bản khó | 6–12 | ví dụ Sit-to-stand dùng tay đẩy / không dùng tay; heel raise ngồi / đứng vịn ghế |
 | V4. Ảnh khung tĩnh lấy từ clip | 2 mỗi clip | tư thế đầu và cuối; dùng cho Reduce Motion, thumbnail, lỗi video, VoiceOver |
 
@@ -127,6 +127,6 @@ Mỗi hành trình mới: 6 bưu thiếp + 1 bản đồ (C) · 6 mặt sau bưu
 - Công cụ tạo video nào cho phép dùng thương mại không watermark, và giữ được cùng một HLV qua 12–18 clip?
 - Có thuê người biên tập tiếng Anh Mỹ bản địa không?
 - Quy ước tên file và cấu trúc thư mục asset: chốt ở manh-skill-plan.
-- Giãn cơ cho người thay khớp, đau vai, chóng mặt: tư thế nào phải ẩn theo giới hạn ở S06? Huấn luyện viên trả lời khi duyệt A10.
-- Nguồn nhạc miễn bản quyền cụ thể (thư viện, giấy phép cho app trả phí) chưa chọn.
-- Kế hoạch test prototype (bước 4) chưa có tài liệu: ai, kịch bản buổi test, tiêu chí đạt. Viết trước khi tuyển người test.
+- Giãn cơ cho người thay khớp, đau vai, chóng mặt: tư thế nào phải ẩn theo giới hạn ở S06? Chốt 28/09/2026: tự lọc theo chống chỉ định trong nguồn công khai (NIA, NHS), ghi vào A10; không thuê người duyệt (docs/todo.md #2).
+- Nhạc: chốt 28/09/2026, tạo bằng AI trên gói trả phí (docs/todo.md #4).
+- Kế hoạch test prototype: đã viết docs/research/prototype-test-plan.md, chờ OK.
