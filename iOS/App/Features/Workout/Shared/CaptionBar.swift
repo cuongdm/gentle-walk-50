@@ -1,11 +1,17 @@
 import SwiftUI
 
 /// Caption strip (task 3.11): the exact spoken line on a dark translucent band, body size, up to
-/// three lines. Input is only the text, so the bar redraws only when the line changes.
+/// three lines. Input is only the text, so the bar redraws only when the line changes. Hidden when
+/// Captions is off in Me (review I8).
 struct CaptionBar: View {
     let caption: String?
+    @AppStorage("captionsOn") private var captionsOn = true
 
     var body: some View {
+        if captionsOn { band }
+    }
+
+    private var band: some View {
         Text(verbatim: caption ?? " ")
             .typeRole(.body)
             .foregroundStyle(.white)

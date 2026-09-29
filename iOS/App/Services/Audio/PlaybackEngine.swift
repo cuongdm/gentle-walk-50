@@ -36,12 +36,16 @@ import GentleWalkCore
     private var voiceTrackID: CMPersistentTrackID?
     private var musicTrackID: CMPersistentTrackID?
     private var musicOn = true
+    /// Music volume under the coach's voice ("Voice louder than music" in Me).
+    private let duckedVolume: Float
 
-    init(voiceURLs: [String: URL], bellURL: URL, doneBellURL: URL?, musicURL: URL?) {
+    init(voiceURLs: [String: URL], bellURL: URL, doneBellURL: URL?, musicURL: URL?,
+         duckedVolume: Float = SessionAudioComposer.duckedVolume) {
         self.voiceURLs = voiceURLs
         self.bellURL = bellURL
         self.doneBellURL = doneBellURL
         self.musicURL = musicURL
+        self.duckedVolume = duckedVolume
         player.automaticallyWaitsToMinimizeStalling = false
         let token = player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 4), queue: .main) { [weak self] time in
             MainActor.assumeIsolated { self?.onTime?(time.seconds) }
@@ -55,7 +59,7 @@ import GentleWalkCore
         let length = timeline.isOpenEnded ? timeline.total + Self.openEndedPadding : timeline.total
         let (composition, mix) = try await SessionAudioComposer.compose(
             timeline: timeline, voiceURL: voiceURLs, bellURL: bellURL, doneBellURL: doneBellURL,
-            musicURL: musicURL, length: length)
+            musicURL: musicURL, length: length, duckedVolume: duckedVolume)
         let item = AVPlayerItem(asset: composition)
         musicParameters = mix.inputParameters
         let tracks = composition.tracks(withMediaType: .audio)

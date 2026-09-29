@@ -28,6 +28,9 @@ enum StoreError: Error { case productUnavailable, unverified }
     @ObservationIgnored private let purchaser: Purchaser
     @ObservationIgnored private weak var trialReminders: TrialReminderScheduling?
     @ObservationIgnored private var updates: Task<Void, Never>?
+    /// Called after a `Transaction.updates` event was applied (refund, Ask to Buy, renewal), so
+    /// the screens built from the entitlement are rebuilt.
+    @ObservationIgnored var onUpdate: (() -> Void)?
 
     /// - Parameters:
     ///   - sync: `AppStore.sync()` in the app; tests pass a no-op (it asks for an Apple ID).
@@ -49,6 +52,7 @@ enum StoreError: Error { case productUnavailable, unverified }
             for await update in Transaction.updates {
                 if case .verified(let transaction) = update { await transaction.finish() }
                 await self?.refresh()
+                self?.onUpdate?()
             }
         }
     }

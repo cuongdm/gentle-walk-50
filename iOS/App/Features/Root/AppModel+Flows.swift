@@ -11,7 +11,8 @@ extension AppModel {
     func finishOnboarding() {
         _ = try? onboarding.finish(into: container.mainContext, now: now())
         reload()
-        cover = .paywall(.onboarding)
+        // Already Pro (reinstall, or Restore on Welcome): straight to the First Walk (review I2).
+        if isPro { afterPaywall(.onboarding) } else { cover = .paywall(.onboarding) }
     }
 
     /// Opens the plans if the paywall policy allows it for this trigger.
@@ -27,7 +28,15 @@ extension AppModel {
     }
 
     func purchase(_ option: PlanOption, trigger: PaywallTrigger) async {
-        guard (try? await store.purchase(option.id)) == .purchased else { return }
+        let outcome: PurchaseOutcome
+        do {
+            outcome = try await store.purchase(option.id)
+        } catch {
+            storeNotice = .failed
+            return
+        }
+        if outcome == .pending { storeNotice = .pending }
+        guard outcome == .purchased else { return }
         reload()
         await notifications.reschedule()
         if option.kind == .lifetime, store.activeRenewingProductID != nil {
@@ -37,9 +46,19 @@ extension AppModel {
         }
     }
 
-    func restorePurchases() async {
-        try? await store.restore()
+    /// Restore, with a plain answer; from a paywall that is no longer needed, it moves on (I10).
+    func restorePurchases(from trigger: PaywallTrigger? = nil) async {
+        do {
+            try await store.restore()
+        } catch {
+            reload()
+            storeNotice = .failed
+            return
+        }
         reload()
+        guard isPro else { storeNotice = .nothingToRestore; return }
+        storeNotice = .restored
+        if let trigger, case .paywall? = cover { afterPaywall(trigger) }
     }
 
     private func afterPaywall(_ trigger: PaywallTrigger) {
@@ -105,12 +124,23 @@ extension AppModel {
         default: .walk
         }
         // Music is always in the program so the Music button can bring it back; the Me switch sets the start.
-        guard let engine = media.makeEngine(musicURL: music.url(for: kind)) else { cover = nil; return }
+        // "Voice louder than music" (on by default): music dips further while the coach speaks.
+        let voiceLouder = defaults.object(forKey: "voiceLouder") as? Bool ?? true
+        guard let engine = media.makeEngine(musicURL: music.url(for: kind),
+                                            duckedVolume: voiceLouder ? SessionAudioComposer.duckedVolume : 0.6)
+        else { cover = nil; return }
         let session = WorkoutSessionModel(request: request, content: content, engine: engine, completion: completion,
                                           painRecorder: painRecorder, now: now)
         if request.place == .outdoors { attachOutdoor(to: session) }
         if request.day.main == .chair || request.day.chairMoves > 0 { attachMotion(to: session) }
-        try? await session.load(timeline: media.timeline)
+        do {
+            try await session.load(timeline: media.timeline)
+        } catch {
+            // The audio could not be built: back to where she was, with a plain word (review I7).
+            cover = nil
+            storeNotice = .sessionFailed
+            return
+        }
         if defaults.bool(forKey: "musicOff") { session.player.setMusicOn(false) }
         let context: AudioContext = request.place == .outdoors && AVAudioSession.sharedInstance().isOtherAudioPlaying
             ? .overUserAudio : .guided
@@ -203,7 +233,11 @@ extension AppModel {
     }
 
     func eraseAllData() {
+        // In-memory settings first (their setters write defaults), then everything is removed.
+        textSize = TextSizeOverride(step: 0)
+        notificationSettings = NotificationSettings()
         try? DataEraser(context: container.mainContext, defaults: defaults, notifications: notifications).eraseAll()
+        favourites = FavouriteSessions(defaults: defaults)
         onboarding = OnboardingFlow()
         cover = nil
         tab = .today
@@ -227,7 +261,13 @@ extension AppModel {
 // MARK: Deep links from notifications (task 6.12)
 
 extension AppModel: DeepLinkTarget {
+    /// "Start walk" on a reminder. Never while a session is getting ready or running: that would
+    /// throw it away unsaved (review I5).
     func openTodaySession() {
+        switch cover {
+        case .preparing?, .workout?: return
+        default: break
+        }
         tab = .today
         if let today, let request = today.request { preview(request, checkIn: today.checkedIn) }
     }

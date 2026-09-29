@@ -68,6 +68,21 @@ import GentleWalkCore
         #expect(service.hasFix)
         #expect(service.route.count == 161)
     }
+
+    /// Review I6: the next walk (steps only) must not reuse this walk's miles and route.
+    @Test func endingAWalkForgetsItsRoute() {
+        let manager = FakeLocationManager()
+        let service = LocationService(manager: manager, background: FakeBackgroundActivity())
+        let start = Date(timeIntervalSince1970: 1_790_000_000)
+        service.startWalk(at: start)
+        manager.send(RoutePoint(latitude: 40.7, longitude: -73.97, horizontalAccuracy: 5, timestamp: start))
+        manager.send(RoutePoint(latitude: 40.701, longitude: -73.97, horizontalAccuracy: 5, timestamp: start.addingTimeInterval(20)))
+        #expect(service.hasFix)
+        service.endWalk()
+        #expect(!service.hasFix)
+        #expect(service.miles == 0)
+        #expect(service.route.isEmpty)
+    }
 }
 
 @MainActor final class FakePedometer: PedometerProviding {

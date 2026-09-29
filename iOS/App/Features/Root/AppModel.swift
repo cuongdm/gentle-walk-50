@@ -24,6 +24,12 @@ import GentleWalkCore
     var cover: AppCover?
     var tab: AppTab = .today
     var todayPath: [TodayRoute] = []
+    /// Shown as an alert after a purchase or Restore (review I10).
+    var storeNotice: StoreNotice?
+    var showsStoreNotice: Bool {
+        get { storeNotice != nil }
+        set { if !newValue { storeNotice = nil } }
+    }
     var journeyPath: [JourneyRoute] = []
     private(set) var today: TodayModel?
     private(set) var journey = JourneySnapshot.empty
@@ -47,10 +53,10 @@ import GentleWalkCore
         return (try? JSONDecoder().decode(File.self, from: data).wins) ?? []
     }()
     /// Hearted sessions of "All sessions" (milestone 10).
-    @ObservationIgnored private(set) lazy var favourites = FavouriteSessions(defaults: defaults)
+    @ObservationIgnored lazy var favourites = FavouriteSessions(defaults: defaults)
     /// Clock, injectable for screenshots.
     @ObservationIgnored var now: () -> Date = Date.init
-    @ObservationIgnored var calendar: Calendar = .current
+    @ObservationIgnored var calendar: Calendar = .autoupdatingCurrent
 
     @ObservationIgnored private(set) lazy var completion = SessionCompletionService(
         context: container.mainContext, content: content, entitlement: { [unowned self] in self.entitlement },
@@ -102,15 +108,32 @@ import GentleWalkCore
 
     /// Launch: StoreKit listener and products, data, notifications. No permission is asked here.
     func launch() async {
+        // Her data and plan first, so a returning user never sees Welcome while products load and a
+        // subscriber offline is not treated as free (review I3); products (prices) come after.
+        reload()
+        store.onUpdate = { [weak self] in self?.reload() }
         store.startListening()
+        await store.refresh()
+        reload()
         try? await store.loadProducts()
         reload()
         await notifications.reschedule()
     }
 
+    /// The day Today was built for; a new day (midnight, time zone change) rebuilds it (review I4).
+    private(set) var loadedDay: Date?
+
+    /// Back in the foreground, or the calendar day changed: rebuild the screens for today.
+    func sceneBecameActive() {
+        guard loadedDay != calendar.startOfDay(for: now()) else { return }
+        reload()
+        Task { await notifications.reschedule() }
+    }
+
     // MARK: Reading the store
 
     func reload() {
+        loadedDay = calendar.startOfDay(for: now())
         let context = container.mainContext
         profile = (try? context.fetch(FetchDescriptor<UserProfile>()))?.first { $0.onboardingCompleted }.map(ProfileSnapshot.init)
         let records = (try? context.fetch(FetchDescriptor<WorkoutRecord>(sortBy: [SortDescriptor(\.date)]))) ?? []

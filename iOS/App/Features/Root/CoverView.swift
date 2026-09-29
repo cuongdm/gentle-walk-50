@@ -81,7 +81,7 @@ struct PaywallContainer: View {
                 }, onBack: { self.confirming = nil })
             } else if let model, !model.options.isEmpty {
                 PaywallView(model: model, onPurchase: { confirming = $0 },
-                            onRestore: { Task { await app.restorePurchases() } },
+                            onRestore: { Task { await app.restorePurchases(from: trigger) } },
                             onMaybeLater: { app.paywallMaybeLater(trigger) })
             } else {
                 VStack(spacing: 18) {

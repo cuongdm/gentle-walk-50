@@ -38,8 +38,9 @@ struct SessionMedia {
         return SessionMedia(timeline: timeline, voiceURLs: urls, missingLines: missing)
     }
 
-    @MainActor func makeEngine(musicURL: URL?) -> AVPlaybackEngine? {
+    @MainActor func makeEngine(musicURL: URL?, duckedVolume: Float = SessionAudioComposer.duckedVolume) -> AVPlaybackEngine? {
         guard let bell = Self.phaseBellURL else { return nil }
-        return AVPlaybackEngine(voiceURLs: voiceURLs, bellURL: bell, doneBellURL: Self.doneBellURL, musicURL: musicURL)
+        return AVPlaybackEngine(voiceURLs: voiceURLs, bellURL: bell, doneBellURL: Self.doneBellURL, musicURL: musicURL,
+                                duckedVolume: duckedVolume)
     }
 }

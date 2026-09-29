@@ -108,4 +108,16 @@ import GentleWalkCore
         let journey = try #require(try context.fetch(FetchDescriptor<JourneyState>()).first { $0.isCurrent })
         #expect(abs(journey.miles - 3) < 0.0001)
     }
+
+    @Test func upgradingUnlocksTheStopsWalkedPastWhileFree() async throws {
+        let context = container.mainContext
+        // Walked 3 miles of Smoky on the free plan (capped at the first stop), then bought Pro.
+        context.insert(JourneyState(journeyID: "jr.smoky", miles: 3, isCurrent: true, startedAt: day(20)))
+        context.insert(PostcardUnlock(journeyID: "jr.smoky", stopID: "pc.smoky.1", unlockedAt: day(21)))
+        try context.save()
+        let (pro, _, _, _) = try service(entitlement: .subscribed)
+        let result = try await pro.complete(summary(minutes: 6, on: day(28)))  // 3.3 miles
+        #expect(result.unlockedStops.map(\.id) == ["pc.smoky.2"])
+        #expect(result.nextStop?.id == "pc.smoky.3")
+    }
 }

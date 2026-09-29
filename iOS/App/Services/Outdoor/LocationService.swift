@@ -64,11 +64,17 @@ import GentleWalkCore
         manager.startUpdatingLocation()
     }
 
+    /// The session has read the route and miles before this runs; forget them so a later walk
+    /// counted by steps never reuses them (review I6).
     func endWalk() {
         manager.stopUpdatingLocation()
         manager.allowsBackgroundLocationUpdates = false
         token?.invalidate()
         token = nil
+        accumulator = RouteDistanceAccumulator()
+        route = []
+        miles = 0
+        hasFix = false
     }
 
     private func receive(_ point: RoutePoint) {

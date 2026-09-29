@@ -120,8 +120,11 @@ struct CompletionResult: Equatable, Sendable {
         let reachable = limit.map { _ in max(to, miles > 0 ? 1e-6 : 0) } ?? to
         let step = JourneyProgress.advance(journey: journey, from: from, to: reachable)
 
+        // Every stop reached and not yet opened, not only the ones crossed in this session: miles
+        // walked on the free plan past a locked stop open it once she upgrades.
         let already = Set(try context.fetch(FetchDescriptor<PostcardUnlock>()).filter { $0.journeyID == journey.id }.map(\.stopID))
-        let unlocked = journey.stops.filter { step.unlocked.contains($0.id) && !already.contains($0.id) }
+        let reached = JourneyProgress.reached(journey, at: reachable)
+        let unlocked = journey.stops.filter { reached.contains($0.id) && !already.contains($0.id) }
         for stop in unlocked {
             context.insert(PostcardUnlock(journeyID: journey.id, stopID: stop.id, unlockedAt: date))
         }

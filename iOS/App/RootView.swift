@@ -43,6 +43,7 @@ struct RootView: View {
 
 struct AppRootView: View {
     @Bindable var app: AppModel
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         Group {
@@ -56,8 +57,17 @@ struct AppRootView: View {
         .fullScreenCover(item: $app.cover) { cover in
             CoverView(app: app, cover: cover)
                 .textSizeOverride(app.textSize)
+                .storeNoticeAlert(app)
         }
         .textSizeOverride(app.textSize)
+        .storeNoticeAlert(app)
+        // A new day while the app sat in the background, or at midnight: rebuild Today (review I4).
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { app.sceneBecameActive() }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged).receive(on: RunLoop.main)) { _ in
+            app.sceneBecameActive()
+        }
     }
 }
 

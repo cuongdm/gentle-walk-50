@@ -59,6 +59,21 @@ import GentleWalkCore
         #expect(!mix.inputParameters.isEmpty)
     }
 
+    /// Review I8: "Voice louder than music" off dips the music less while the coach speaks.
+    @Test func musicDipFollowsTheSetting() async throws {
+        let (_, mix) = try await SessionAudioComposer.compose(
+            timeline: timeline, voiceURL: voices, bellURL: TestFixtures.url("bell-1s", "m4a"),
+            musicURL: TestFixtures.url("music-10s", "m4a"), duckedVolume: 0.6)
+        let parameters = try #require(mix.inputParameters.first)
+        let cue = try #require(timeline.voice.first { voices[$0.lineID] != nil })
+        var start: Float = 0, end: Float = 0
+        var range = CMTimeRange()
+        let found = parameters.getVolumeRamp(for: SessionAudioComposer.time(cue.start + 0.01), startVolume: &start,
+                                             endVolume: &end, timeRange: &range)
+        #expect(found)
+        #expect(start == 0.6)
+    }
+
     @Test func musicFillsTheRequestedLengthForAnOpenEndedWalk() async throws {
         let (composition, _) = try await SessionAudioComposer.compose(
             timeline: timeline, voiceURL: voices, bellURL: TestFixtures.url("bell-1s", "m4a"),

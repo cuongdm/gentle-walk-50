@@ -17,7 +17,7 @@ enum SessionAudioComposer {
     ///   - doneBellURL: the completion bell; the phase bell is used when nil.
     ///   - length: how long music plays; defaults to the timeline total (open-ended walks pass more).
     static func compose(timeline: SessionTimeline, voiceURL: [String: URL], bellURL: URL, doneBellURL: URL? = nil,
-                        musicURL: URL?, length: Double? = nil) async throws -> (AVMutableComposition, AVAudioMix) {
+                        musicURL: URL?, length: Double? = nil, duckedVolume: Float = duckedVolume) async throws -> (AVMutableComposition, AVAudioMix) {
         let total = time(length ?? timeline.total)
         let composition = AVMutableComposition()
 

@@ -21,7 +21,7 @@ import UserNotifications
         PhonePlacement.defaultsKey, PhonePlacement.seenKey, WorkoutPreviewModel.placeKey, TextSizeOverride.defaultsKey,
         HealthService.askedKey, "paywallDismissedAt", "restTodayDate", "notificationSettings", "outdoorLocationChoice",
         "outdoorPrepSeen", "healthCardDismissed", "musicOff", "voiceLouder", "captionsOn", "reviewPromptMilestones", "lastSchedule",
-        FavouriteSessions.defaultsKey,
+        FavouriteSessions.defaultsKey, "permissionsShown", "fewerRemindersAnswered", "lastTrialEnds",
     ]
 }
 
