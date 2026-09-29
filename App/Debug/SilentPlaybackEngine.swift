@@ -11,6 +11,7 @@ import GentleWalkCore
     func pause() {}
     func seek(to seconds: Double) {}
     func setVoiceOn(_ on: Bool) {}
+    func setMusicOn(_ on: Bool) {}
 }
 
 @MainActor final class DiscardingPainRecorder: PainReportRecording {

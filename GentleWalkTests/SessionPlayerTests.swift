@@ -17,6 +17,8 @@ import GentleWalkCore
     func seek(to seconds: Double) { seeks.append(seconds) }
     private(set) var voiceOn = true
     func setVoiceOn(_ on: Bool) { voiceOn = on }
+    private(set) var musicOn = true
+    func setMusicOn(_ on: Bool) { musicOn = on }
     func advance(to seconds: Double) { onTime?(seconds) }
 }
 

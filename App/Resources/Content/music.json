@@ -1,4 +1,27 @@
 {
   "schemaVersion": 1,
-  "tracks": []
+  "note": "Test tracks (Lyria 3.5) for the prototype; replace with licensed music before release.",
+  "tracks": [
+    {
+      "id": "music.walk",
+      "style": "feelGood",
+      "kind": "walk",
+      "file": "music-walk.m4a",
+      "source": "lyria-3.5_1-walk.mp3"
+    },
+    {
+      "id": "music.chair",
+      "style": "feelGood",
+      "kind": "chair",
+      "file": "music-chair.m4a",
+      "source": "lyria-3.5_2-seated.mp3"
+    },
+    {
+      "id": "music.stretch",
+      "style": "feelGood",
+      "kind": "stretch",
+      "file": "music-stretch.m4a",
+      "source": "lyria-3.5_3-stretch.mp3"
+    }
+  ]
 }

@@ -88,13 +88,19 @@ extension AppModel {
     private func prepareAndPlay(_ request: WorkoutRequest) async {
         guard let plan = try? request.plan(content: content) else { cover = nil; return }
         let media = await SessionMedia.prepare(plan: plan, content: content, voiceSource: voiceSource)
-        let musicURL = music.defaultStyle?.files.first.flatMap { Bundle.main.url(forResource: $0, withExtension: nil) }
-        guard let engine = media.makeEngine(musicURL: defaults.bool(forKey: "musicOff") ? nil : musicURL) else { cover = nil; return }
+        let kind: MusicKind = switch request.day.main {
+        case .chair: .chair
+        case .stretch: .stretch
+        default: .walk
+        }
+        // Music is always in the program so the Music button can bring it back; the Me switch sets the start.
+        guard let engine = media.makeEngine(musicURL: music.url(for: kind)) else { cover = nil; return }
         let session = WorkoutSessionModel(request: request, content: content, engine: engine, completion: completion,
                                           painRecorder: painRecorder, now: now)
         if request.place == .outdoors { attachOutdoor(to: session) }
         if request.day.main == .chair || request.day.chairMoves > 0 { attachMotion(to: session) }
         try? await session.load(timeline: media.timeline)
+        if defaults.bool(forKey: "musicOff") { session.player.setMusicOn(false) }
         let context: AudioContext = request.place == .outdoors && AVAudioSession.sharedInstance().isOtherAudioPlaying
             ? .overUserAudio : .guided
         try? AudioSessionConfigurator.apply(context)

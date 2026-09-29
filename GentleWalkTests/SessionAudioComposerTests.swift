@@ -40,6 +40,25 @@ import GentleWalkCore
         #expect(abs(composition.duration.seconds - lastSound) < 0.05)
     }
 
+    /// The shipped assets together: recorded voice lines, the placeholder bells and the walk music.
+    @Test func bundledAssetsBuildAFullFirstWalk() async throws {
+        let content = TestFixtures.content
+        let timeline = TestFixtures.firstWalkTimeline()
+        var voices: [String: URL] = [:]
+        for line in content.voiceLines {
+            if let file = line.file, let url = Bundle.main.url(forResource: (file as NSString).deletingPathExtension, withExtension: "m4a") {
+                voices[line.id] = url
+            }
+        }
+        let music = try #require(try MusicLibrary.load(bundle: .main).url(for: .walk))
+        let bell = try #require(SessionMedia.phaseBellURL)
+        let (composition, mix) = try await SessionAudioComposer.compose(
+            timeline: timeline, voiceURL: voices, bellURL: bell, doneBellURL: SessionMedia.doneBellURL, musicURL: music)
+        #expect(composition.tracks(withMediaType: .audio).count == 3)
+        #expect(abs(composition.duration.seconds - timeline.total) < 0.05)
+        #expect(!mix.inputParameters.isEmpty)
+    }
+
     @Test func musicFillsTheRequestedLengthForAnOpenEndedWalk() async throws {
         let (composition, _) = try await SessionAudioComposer.compose(
             timeline: timeline, voiceURL: voices, bellURL: TestFixtures.url("bell-1s", "m4a"),

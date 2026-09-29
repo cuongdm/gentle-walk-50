@@ -6,6 +6,7 @@ struct WorkoutSafetyBar: View {
     var showsVoice = true
     var isVoiceOn = true
     var showsMusic = false
+    var isMusicOn = true
     var musicTitle: LocalizedStringResource = "Music"
     var onVoice: () -> Void = {}
     var onMusic: () -> Void = {}
@@ -20,7 +21,9 @@ struct WorkoutSafetyBar: View {
                     .accessibilityValue(isVoiceOn ? Text("On") : Text("Off"))
             }
             if showsMusic {
-                BarButton(title: musicTitle, symbol: "music.note", fill: Palette.surface, text: Palette.text, action: onMusic)
+                BarButton(title: musicTitle, symbol: isMusicOn ? "music.note" : "speaker.slash", fill: Palette.surface,
+                          text: Palette.text, action: onMusic)
+                    .accessibilityValue(isMusicOn ? Text("On") : Text("Off"))
             }
             BarButton(title: "Break", symbol: "cup.and.saucer.fill", fill: Palette.sky, text: Palette.onLightFill, action: onBreak)
             BarButton(title: "This hurts", symbol: "hand.raised.fill", fill: Palette.dangerSoft, text: Palette.onStrongFill, action: onHurts)

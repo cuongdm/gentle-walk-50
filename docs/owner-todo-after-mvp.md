@@ -23,7 +23,7 @@ Cài bản DEBUG từ Xcode lên iPhone (cần Team ID đúng, xem mục 3).
 - [ ] **Chuông:** `App/Resources/Media/Sounds/bell-phase.m4a`, `bell-done.m4a` là âm sine tạo bằng ffmpeg.
 - [ ] **Tranh minh hoạ:** mọi tranh đang là khung màu + biểu tượng hệ thống (Welcome, player đi bộ, Break, bưu thiếp, bản đồ, cây).
 - [ ] **App icon — chặn nộp store:** icon tạm vẽ từ SF Symbol. Giấy phép SF Symbols không cho dùng trong icon app. Cần icon thiết kế riêng.
-- [ ] **Nhạc:** `music.json` rỗng → nút Music ẩn, Settings ghi "Coming soon".
+- [ ] **Nhạc:** đã đưa 3 bài thử Lyria 3.5 vào app (đi bộ, động tác ghế, giãn cơ). Cần xác nhận giấy phép dùng thương mại, hoặc thay nhạc khác: đặt file `<tên>-walk.mp3`, `-seated.mp3`, `-stretch.mp3` vào một thư mục trong `assets/music/` rồi chạy `python3 tools/music/build_music.py --source <thư mục>`. Tên phong cách đang tạm là "Feel-good 70s and 80s"; nghe thử rồi báo tôi tên đúng.
 - Kiểm tất cả bằng cổng release (đang RED đúng như dự kiến):
   ```bash
   TEST_RUNNER_RELEASE_CHECK=1 xcodebuild test -project GentleWalk.xcodeproj -scheme GentleWalk -destination 'platform=iOS Simulator,name=iPhone 17' -only-testing:GentleWalkTests/ReleaseContentTests
@@ -50,6 +50,7 @@ Cài bản DEBUG từ Xcode lên iPhone (cần Team ID đúng, xem mục 3).
 - Extras: "Commercial break walk" dài 5 phút (spec ghi 3 phút, nhưng buổi đi bộ ngắn nhất là 5 phút).
 - Cuối danh sách hành trình ghi "Coming next: Route 66" (hàng chờ trong content-plan).
 - Thẻ sau buổi ngoài trời "Your chair moves for today · 4 min" là số cố định.
+- Nhạc luôn có trong chương trình âm thanh; nút Music trong buổi đi bộ tắt/bật ngay, Me → Music đặt trạng thái lúc bắt đầu. Mỗi loại buổi có bài riêng.
 - Paywall ở cỡ chữ thường: nút, điều khoản, Restore · Terms · Privacy ghim dưới đáy (thấy ngay trên iPhone SE); cỡ chữ rất lớn thì cuộn cùng trang.
 
 ## 5. Môi trường

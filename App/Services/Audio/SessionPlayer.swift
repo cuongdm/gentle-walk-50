@@ -101,6 +101,12 @@ enum PlaybackState: Equatable, Sendable { case idle, ready, playing, paused(Paus
     }
 
     private(set) var isVoiceOn = true
+    private(set) var isMusicOn = true
+
+    func setMusicOn(_ on: Bool) {
+        isMusicOn = on
+        engine.setMusicOn(on)
+    }
 
     func setVoiceOn(_ on: Bool) {
         isVoiceOn = on

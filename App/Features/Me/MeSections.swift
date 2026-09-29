@@ -122,21 +122,28 @@ struct WorkoutAudioSection: View {
     let musicStyles: [MusicStyle]
     @AppStorage("voiceLouder") private var voiceLouder = true
     @AppStorage("captionsOn") private var captionsOn = true
+    @AppStorage("musicOff") private var musicOff = false
 
     var body: some View {
         SettingsCard(title: "Workout") {
             Toggle("Voice louder than music", isOn: $voiceLouder).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
             Toggle("Captions", isOn: $captionsOn).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
-            HStack {
-                Text("Music").typeRole(.body)
-                Spacer()
-                if let style = musicStyles.first {
-                    Text(verbatim: style.name).typeRole(.body)
-                } else {
+            if let style = musicStyles.first {
+                Toggle(isOn: Binding(get: { !musicOff }, set: { musicOff = !$0 })) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Music").typeRole(.body)
+                        Text(verbatim: style.name).typeRole(.caption)
+                    }
+                }
+                .frame(minHeight: Metrics.minTouchTarget)
+            } else {
+                HStack {
+                    Text("Music").typeRole(.body)
+                    Spacer()
                     Text("Coming soon").typeRole(.body)
                 }
+                .frame(minHeight: Metrics.minTouchTarget)
             }
-            .frame(minHeight: Metrics.minTouchTarget)
         }
         .tint(Palette.secondary)
     }

@@ -83,8 +83,9 @@ struct WalkPlayerView: View {
     }
 
     private var safetyBar: some View {
-        WorkoutSafetyBar(isVoiceOn: model.player.isVoiceOn, showsMusic: showsMusic,
+        WorkoutSafetyBar(isVoiceOn: model.player.isVoiceOn, showsMusic: showsMusic, isMusicOn: model.player.isMusicOn,
                          onVoice: { model.player.setVoiceOn(!model.player.isVoiceOn) },
+                         onMusic: { model.player.setMusicOn(!model.player.isMusicOn) },
                          onBreak: session.takeBreak, onHurts: session.openHurts)
     }
 }

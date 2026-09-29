@@ -20,7 +20,7 @@ import UserNotifications
     static let all: [String] = [
         PhonePlacement.defaultsKey, PhonePlacement.seenKey, WorkoutPreviewModel.placeKey, TextSizeOverride.defaultsKey,
         HealthService.askedKey, "paywallDismissedAt", "restTodayDate", "notificationSettings", "outdoorLocationChoice",
-        "outdoorPrepSeen", "healthCardDismissed", "reviewPromptMilestones", "lastSchedule",
+        "outdoorPrepSeen", "healthCardDismissed", "musicOff", "voiceLouder", "captionsOn", "reviewPromptMilestones", "lastSchedule",
     ]
 }
 

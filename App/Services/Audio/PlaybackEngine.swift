@@ -12,6 +12,8 @@ import GentleWalkCore
     func seek(to seconds: Double)
     /// Voice button: mutes or restores the coach; bells and music keep playing.
     func setVoiceOn(_ on: Bool)
+    /// Music button: mutes or restores the music track (voice and bells keep playing).
+    func setMusicOn(_ on: Bool)
 }
 
 /// The real engine: one composition per timeline (`SessionAudioComposer`), played by one `AVPlayer`.
@@ -32,6 +34,8 @@ import GentleWalkCore
     private var voiceOn = true
     private var musicParameters: [AVAudioMixInputParameters] = []
     private var voiceTrackID: CMPersistentTrackID?
+    private var musicTrackID: CMPersistentTrackID?
+    private var musicOn = true
 
     init(voiceURLs: [String: URL], bellURL: URL, doneBellURL: URL?, musicURL: URL?) {
         self.voiceURLs = voiceURLs
@@ -54,7 +58,9 @@ import GentleWalkCore
             musicURL: musicURL, length: length)
         let item = AVPlayerItem(asset: composition)
         musicParameters = mix.inputParameters
-        voiceTrackID = composition.tracks(withMediaType: .audio).first?.trackID
+        let tracks = composition.tracks(withMediaType: .audio)
+        voiceTrackID = tracks.first?.trackID
+        musicTrackID = tracks.count > 2 ? tracks[2].trackID : nil
         item.audioMix = currentMix()
         if let endObserver { NotificationCenter.default.removeObserver(endObserver) }
         endObserver = NotificationCenter.default.addObserver(forName: AVPlayerItem.didPlayToEndTimeNotification, object: item,
@@ -73,10 +79,21 @@ import GentleWalkCore
         player.currentItem?.audioMix = currentMix()
     }
 
-    /// Music ducking from the composer plus the voice on/off switch.
+    func setMusicOn(_ on: Bool) {
+        musicOn = on
+        player.currentItem?.audioMix = currentMix()
+    }
+
+    /// Music ducking from the composer plus the voice and music switches.
     private func currentMix() -> AVAudioMix {
         let mix = AVMutableAudioMix()
         var parameters = musicParameters
+        if !musicOn, let musicTrackID {
+            let silent = AVMutableAudioMixInputParameters()
+            silent.trackID = musicTrackID
+            silent.setVolume(0, at: .zero)
+            parameters = [silent]
+        }
         if let voiceTrackID {
             let voice = AVMutableAudioMixInputParameters()
             voice.trackID = voiceTrackID
