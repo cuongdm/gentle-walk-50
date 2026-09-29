@@ -19,8 +19,9 @@ import GentleWalkCore
         }
     }
 
-    @Test func treeNamesFollowTheLevels() {
-        #expect(TreeLevel.allCases.map(Art.treeName) == ["tree-seed", "tree-sprout", "tree-sapling", "tree-tree"])
+    @Test(arguments: TreeLevel.allCases)
+    func everyTreeLevelIsPainted(_ level: TreeLevel) {
+        #expect(UIImage(named: Art.treeName(level: level)) != nil, "missing \(Art.treeName(level: level))")
     }
 
     @Test func postcardNamesFallBackToTheirJourneyCover() {

@@ -89,7 +89,9 @@ struct WeekStrip: View {
                         Text(verbatim: day.date.formatted(.dateTime.weekday(.narrow)))
                             .typeRole(.caption).foregroundStyle(Palette.text)
                         Image(systemName: symbol(for: day))
-                            .foregroundStyle(day.mark == .active ? Palette.onStrongFill : Palette.text)
+                            // Free plan: a small muted dot for days still open (the spec shows no session kind).
+                            .font(isPlainDot(day) ? .system(size: 8) : nil)
+                            .foregroundStyle(day.mark == .active ? Palette.onStrongFill : isPlainDot(day) ? Palette.textMuted : Palette.text)
                             .frame(width: 36, height: 36)
                             .background(day.mark == .active ? Palette.secondary : Palette.surface, in: .circle)
                             .overlay { Circle().strokeBorder(Palette.textMuted.opacity(0.3)) }
@@ -103,6 +105,8 @@ struct WeekStrip: View {
         }
         .cardStyle()
     }
+
+    private func isPlainDot(_ day: TodayDay) -> Bool { !isPro && day.mark == .open }
 
     private func symbol(for day: TodayDay) -> String {
         if day.mark == .rest { return "moon.zzz" }

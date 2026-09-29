@@ -23,7 +23,8 @@
      "cells": ["postcard-pc-pch-1", "postcard-pc-pch-2", "postcard-pc-pch-3", "postcard-pc-pch-4", "postcard-pc-pch-5", "postcard-pc-pch-6"]},
     {"source": "assets/art/sheet-11-extras.png", "grid": [2, 1], "mode": "figure", "modes": ["figure", "scene"], "bleed": 0.0, "maxSide": 1000,
      "cells": ["walker-behind-chair", "scene-park-bench"]},
-    {"source": "assets/art/sheet-12-tree.png", "grid": [4, 1], "mode": "figure", "bleed": 0.0, "maxSide": 700,
+    {"source": "assets/art/sheet-12-tree.png", "grid": [4, 1], "mode": "figure", "bleed": 0.0, "maxSide": 700, "trim": false,
+     "insets": {"tree-seed": [0.06, 0.12, 0.06, 0.2], "tree-sprout": [0.08, 0.12, 0.08, 0.2], "tree-sapling": [0.08, 0.12, 0.08, 0.2], "tree-tree": [0.0, 0.12, 0.02, 0.2]},
      "cells": ["tree-seed", "tree-sprout", "tree-sapling", "tree-tree"]}
   ]
 }

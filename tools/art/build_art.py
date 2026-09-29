@@ -177,7 +177,11 @@ def main():
                 l, t, r_, b = sheet["insets"][name]
                 cell = cell.crop((round(cell.width * l), round(cell.height * t),
                                   round(cell.width * (1 - r_)), round(cell.height * (1 - b))))
-            cut = trim(cell) if mode == "figure" else strip_edges(cell)
+            # "trim": false keeps the whole cell, so a series (the tree stages) keeps one scale and ground line.
+            if mode != "figure":
+                cut = strip_edges(cell)
+            else:
+                cut = trim(cell) if sheet.get("trim", True) else cell
             size = write_imageset(name, cut, sheet.get("maxSide", 1200), transparent=mode == "figure")
             print(f"{name}: {size[0]}x{size[1]}")
     return 0

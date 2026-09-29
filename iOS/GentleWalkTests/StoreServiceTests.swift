@@ -32,6 +32,19 @@ import GentleWalkCore
         return store
     }
 
+    /// The StoreKit test session applies expiry, refunds and renewal changes asynchronously (slower
+    /// on the iOS 27 runtime); in the app the `Transaction.updates` listener refreshes when they land.
+    /// Re-read until the expected state shows up, for at most `timeout`.
+    func refresh(_ store: StoreService, timeout: Duration = .seconds(5), until done: () -> Bool) async throws {
+        let clock = ContinuousClock()
+        let deadline = clock.now + timeout
+        await store.refresh()
+        while !done(), clock.now < deadline {
+            try await Task.sleep(for: .milliseconds(200))
+            await store.refresh()
+        }
+    }
+
     @Test func purchaseYearlyStartsTrial() async throws {
         let store = try await store()
         #expect(store.products.count == 3)
@@ -52,7 +65,11 @@ import GentleWalkCore
         _ = try await store.purchase(ProductID.monthly)
         #expect(store.entitlement == .subscribed)
         try session.expireSubscription(productIdentifier: ProductID.monthly)
-        await store.refresh()
+        try await refresh(store) { store.entitlement == .free }
+        for await r in Transaction.currentEntitlements { if case .verified(let t) = r { print("DIAG current", t.id, t.productID, t.expirationDate as Any, t.revocationDate as Any, Date.now) } }
+        for await r in Transaction.all { if case .verified(let t) = r { print("DIAG all", t.id, t.productID, t.purchaseDate, t.expirationDate as Any) } }
+        for t in session.allTransactions() { print("DIAG session", t.identifier, t.productIdentifier, t.expirationDate as Any, t.autoRenewingEnabled) }
+        print("DIAG entitlement", store.entitlement)
         #expect(store.entitlement == .free)
     }
 
@@ -62,7 +79,7 @@ import GentleWalkCore
         #expect(store.entitlement == .lifetime)
         let transaction = try #require(session.allTransactions().first { $0.productIdentifier == ProductID.lifetime })
         try session.refundTransaction(identifier: transaction.identifier)
-        await store.refresh()
+        try await refresh(store) { store.entitlement == .free }
         #expect(store.entitlement == .free)
     }
 
@@ -116,7 +133,7 @@ import GentleWalkCore
         let transaction = try #require(session.allTransactions().first { $0.productIdentifier == ProductID.yearly })
         try session.disableAutoRenewForTransaction(identifier: transaction.identifier)
         let cancelsBefore = reminders.cancels
-        await store.refresh()
+        try await refresh(store) { store.activeRenewingProductID == nil }
         #expect(reminders.cancels > cancelsBefore)
     }
 }

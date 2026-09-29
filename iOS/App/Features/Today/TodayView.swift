@@ -53,8 +53,8 @@ struct TodayActions {
     var onFewerReminders: (Bool) -> Void
 }
 
-/// "Good morning, Margaret" over a big painting of the coach at home, with the active-days ring
-/// (filling towards the next tree level) on a badge in its corner.
+/// "Good morning, Margaret" with the active-days ring (filling towards the next tree level) beside
+/// it, then a big painting of the coach at home.
 struct TodayHero: View {
     let greeting: String
     let activeDays: Int
@@ -62,11 +62,18 @@ struct TodayHero: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(verbatim: greeting).typeRole(.screenTitle).foregroundStyle(Palette.text)
-                .accessibilityAddTraits(.isHeader)
+            // The badge sits beside the greeting, never on the painting (it would cover her face).
+            ViewThatFits(in: .horizontal) {
+                HStack(alignment: .center, spacing: 12) { title; Spacer(minLength: 0); badge }
+                VStack(alignment: .leading, spacing: 10) { title; badge }
+            }
             ArtImage(art: .sceneLivingRoom, height: 190)
-                .overlay(alignment: .topTrailing) { badge.padding(12) }
         }
+    }
+
+    private var title: some View {
+        Text(verbatim: greeting).typeRole(.screenTitle).foregroundStyle(Palette.text)
+            .accessibilityAddTraits(.isHeader)
     }
 
     private var badge: some View {
