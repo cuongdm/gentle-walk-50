@@ -1,66 +1,78 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "CFBundleDisplayName": {
-      "comment": "App name under the home screen icon. Working name until the store name is chosen (backlog M11).",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gentle Walk"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "comment" : "App name under the home screen icon. Working name until the store name is chosen (backlog M11).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gentle Walk"
           }
         }
       }
     },
-    "NSHealthShareUsageDescription": {
-      "comment": "Apple Health read permission (S16). Steps only feed the Progress card; the journey runs on active minutes.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gentle Walk reads your step count to show your everyday activity in Progress."
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "GentleWalk"
           }
         }
       }
     },
-    "NSHealthUpdateUsageDescription": {
-      "comment": "Apple Health write permission (S16).",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gentle Walk saves your walks and exercise sessions to Apple Health."
+    "NSHealthShareUsageDescription" : {
+      "comment" : "Apple Health read permission (S16). Steps only feed the Progress card; the journey runs on active minutes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gentle Walk reads your step count to show your everyday activity in Progress."
           }
         }
       }
     },
-    "NSMotionUsageDescription": {
-      "comment": "Motion permission, asked when the user picks \"Held to my chest\" or walks outdoors without location.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gentle Walk uses motion to count your sit-to-stands while your phone is held to your chest, and to measure outdoor walks without location."
+    "NSHealthUpdateUsageDescription" : {
+      "comment" : "Apple Health write permission (S16).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gentle Walk saves your walks and exercise sessions to Apple Health."
           }
         }
       }
     },
-    "NSLocationWhenInUseUsageDescription": {
-      "comment": "Location permission, asked only in Outdoor prep (S10b).",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gentle Walk uses your location only during outdoor walks to measure distance and draw your route. It stays on this phone."
+    "NSLocationWhenInUseUsageDescription" : {
+      "comment" : "Location permission, asked only in Outdoor prep (S10b).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gentle Walk uses your location only during outdoor walks to measure distance and draw your route. It stays on this phone."
+          }
+        }
+      }
+    },
+    "NSMotionUsageDescription" : {
+      "comment" : "Motion permission, asked when the user picks \"Held to my chest\" or walks outdoors without location.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gentle Walk uses motion to count your sit-to-stands while your phone is held to your chest, and to measure outdoor walks without location."
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

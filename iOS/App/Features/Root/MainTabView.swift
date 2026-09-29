@@ -79,7 +79,8 @@ struct JourneyTab: View {
             JourneyView(snapshot: app.journey,
                         onAllJourneys: { app.journeyPath.append(.allJourneys) },
                         onPostcard: { app.journeyPath.append(.postcard(journeyID: app.journey.journeyID, stopID: $0.id)) },
-                        onSeePlans: { app.offerPlans(.lockedContent) })
+                        onSeePlans: { app.offerPlans(.lockedContent) },
+                        onWalkNow: { app.openTodaySession() })
         }
     }
 }

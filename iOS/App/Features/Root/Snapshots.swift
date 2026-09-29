@@ -15,6 +15,25 @@ struct JourneySnapshot: Equatable {
     var milesToNext: Double
     /// Free user on a paid route who reached its first postcard (S18 "Keep going to …").
     var isLockedAhead: Bool
+    /// When each postcard was opened, for "Reached Sep 28" on the route list.
+    var openedOn: [String: Date] = [:]
+    /// Free plan on a paid route: stops past this mile are locked (nil when nothing is locked).
+    var limitMile: Double?
+
+    /// How a stop reads on the map and the route list (Journey redesign, 29/09/2026).
+    enum StopStatus: Equatable {
+        case reached(on: Date?)
+        case next(milesToGo: Double)
+        case ahead
+        case locked
+    }
+
+    func status(of stop: Journey.Stop) -> StopStatus {
+        if unlocked.contains(stop.id) { return .reached(on: openedOn[stop.id]) }
+        if let limitMile, stop.mile > limitMile + 1e-9 { return .locked }
+        if stop.id == nextStop?.id { return .next(milesToGo: milesToNext) }
+        return .ahead
+    }
 
     static let empty = JourneySnapshot(journeyID: "jr.ny", journey: nil, totalMiles: 0, routeMiles: 0, unlocked: [],
                                        completedJourneys: [], nextStop: nil, milesToNext: 0, isLockedAhead: false)
@@ -23,10 +42,12 @@ struct JourneySnapshot: Equatable {
     static let oneSessionMiles = 0.5
 
     init(journeyID: String, journey: Journey?, totalMiles: Double, routeMiles: Double, unlocked: Set<String>,
-         completedJourneys: Set<String>, nextStop: Journey.Stop?, milesToNext: Double, isLockedAhead: Bool) {
+         completedJourneys: Set<String>, nextStop: Journey.Stop?, milesToNext: Double, isLockedAhead: Bool,
+         openedOn: [String: Date] = [:], limitMile: Double? = nil) {
         self.journeyID = journeyID; self.journey = journey; self.totalMiles = totalMiles; self.routeMiles = routeMiles
         self.unlocked = unlocked; self.completedJourneys = completedJourneys; self.nextStop = nextStop
         self.milesToNext = milesToNext; self.isLockedAhead = isLockedAhead
+        self.openedOn = openedOn; self.limitMile = limitMile
     }
 
     init(states: [JourneyState], unlocks: [PostcardUnlock], content: ContentBundle, entitlement: Entitlement) {
@@ -34,7 +55,9 @@ struct JourneySnapshot: Equatable {
         let id = current?.journeyID ?? "jr.ny"
         let found = content.journeys.first { $0.id == id }
         let total = current?.miles ?? 0
-        let opened = Set(unlocks.filter { $0.journeyID == id }.map(\.stopID))
+        let mine = unlocks.filter { $0.journeyID == id }
+        let opened = Set(mine.map(\.stopID))
+        openedOn = Dictionary(mine.map { ($0.stopID, $0.unlockedAt) }, uniquingKeysWith: min)
         journeyID = id
         journey = found
         totalMiles = total
@@ -45,6 +68,7 @@ struct JourneySnapshot: Equatable {
             return
         }
         let limit = JourneyAccess.limitMile(for: found, entitlement: entitlement)
+        limitMile = limit
         let shown = JourneyAccess.routeMiles(total: total, limit: limit)
         // Next stop: the first postcard not opened yet (a locked route's first stop is already open).
         let next = found.stops.first { !opened.contains($0.id) }
