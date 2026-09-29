@@ -9,34 +9,48 @@
         {
           "id": "pc.ny.zoo",
           "name": "Central Park Zoo",
-          "mile": 0.0
+          "mile": 0.0,
+          "back": "Tucked inside Central Park, the zoo is a favorite stop for families and first walks alike.",
+          "coachLine": "Your very first stop. Here's to many more."
         },
         {
           "id": "pc.ny.bethesda",
           "name": "Bethesda Fountain",
-          "mile": 1.0
+          "mile": 1.0,
+          "back": "The fountain sits by the lake in the middle of the park, with a wide terrace for resting and people-watching.",
+          "coachLine": "A lovely place to catch your breath."
         },
         {
           "id": "pc.ny.times",
           "name": "Times Square",
-          "mile": 2.2
+          "mile": 2.2,
+          "back": "Bright screens, busy sidewalks and theaters all around. It's one of the most famous crossroads in the world.",
+          "coachLine": "Look how far those minutes have carried you."
         },
         {
           "id": "pc.ny.bryant",
           "name": "Bryant Park",
-          "mile": 2.8
+          "mile": 2.8,
+          "back": "A leafy park in Midtown, with a lawn, green chairs and a quiet library next door.",
+          "coachLine": "A calm spot in the middle of it all."
         },
         {
           "id": "pc.ny.union",
           "name": "Union Square",
-          "mile": 3.9
+          "mile": 3.9,
+          "back": "A lively square with a farmers market on many days of the week.",
+          "coachLine": "Almost at the river. Keep going."
         },
         {
           "id": "pc.ny.bridge",
           "name": "Brooklyn Bridge",
-          "mile": 5.0
+          "mile": 5.0,
+          "back": "The bridge crosses the East River to Brooklyn, with a wide walkway above the traffic.",
+          "coachLine": "You walked all of New York. I'm so proud of you."
         }
-      ]
+      ],
+      "subtitle": "Central Park to Brooklyn Bridge",
+      "summary": "From the zoo in Central Park, through Times Square, all the way to the Brooklyn Bridge. About 2–3 weeks."
     },
     {
       "id": "jr.smoky",
@@ -73,7 +87,8 @@
           "name": "Linn Cove Viaduct",
           "mile": 12.0
         }
-      ]
+      ],
+      "summary": "Quiet valleys, waterfalls and mountain views, from Cades Cove to the Linn Cove Viaduct. About 4–6 weeks."
     },
     {
       "id": "jr.camino",
@@ -110,7 +125,9 @@
           "name": "Obradoiro Square",
           "mile": 12.0
         }
-      ]
+      ],
+      "subtitle": "the last 100 km",
+      "summary": "Stone villages and green hills of Galicia, from Sarria to the great square in Santiago. About 4–6 weeks."
     },
     {
       "id": "jr.ne",
@@ -147,7 +164,9 @@
           "name": "Nauset Light",
           "mile": 12.0
         }
-      ]
+      ],
+      "subtitle": "Maine to Cape Cod",
+      "summary": "Rocky coastline and white lighthouses, from Portland Head Light to Nauset Light. About 4–6 weeks."
     },
     {
       "id": "jr.pch",
@@ -184,7 +203,9 @@
           "name": "Hearst Castle",
           "mile": 12.0
         }
-      ]
+      ],
+      "subtitle": "Big Sur",
+      "summary": "Cliffs, beaches and ocean views, from Carmel-by-the-Sea past Bixby Bridge. About 4–6 weeks."
     }
   ]
 }

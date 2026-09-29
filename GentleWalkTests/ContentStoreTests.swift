@@ -17,4 +17,17 @@ import GentleWalkCore
         let warnings = issues.filter { $0.code == .missingVoiceFile }.count
         print("content warnings (missing voice files): \(warnings)")
     }
+
+    @Test func everyMoveVideoIsBundled() throws {
+        let bundle = try ContentStore.load(bundle: .main)
+        let moves = bundle.exercises.filter { $0.kind == .move }
+        #expect(moves.count == 6)
+        for move in moves {
+            let file = try #require(move.videoFile, "\(move.id) has no video")
+            let name = (file as NSString).deletingPathExtension
+            #expect(Bundle.main.url(forResource: name, withExtension: "mp4") != nil, "\(file) not in bundle")
+        }
+        // Stretches have no clip yet: nil is allowed.
+        #expect(bundle.exercises.filter { $0.kind == .stretch }.allSatisfy { $0.videoFile == nil })
+    }
 }

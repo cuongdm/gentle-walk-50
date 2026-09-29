@@ -4,6 +4,6 @@ import Testing
 /// Keeps the test target non-empty until the first real app tests land (task 1.5).
 @Suite struct AppSmokeTests {
     @Test @MainActor func rootViewBuilds() {
-        _ = RootView().body
+        _ = RootView(notificationDelegate: NotificationDelegate()).body
     }
 }

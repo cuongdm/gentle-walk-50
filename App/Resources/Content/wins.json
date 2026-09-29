@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "wins": [
+    {
+      "id": "win.1",
+      "text": "Got up from the sofa without using my hands",
+      "hiddenFor": []
+    },
+    {
+      "id": "win.2",
+      "text": "Carried the groceries in one trip",
+      "hiddenFor": []
+    },
+    {
+      "id": "win.3",
+      "text": "Walked the whole store",
+      "hiddenFor": []
+    },
+    {
+      "id": "win.4",
+      "text": "Climbed the stairs without stopping",
+      "hiddenFor": []
+    },
+    {
+      "id": "win.5",
+      "text": "Played on the floor with the grandkids",
+      "hiddenFor": [
+        "noFloor"
+      ]
+    },
+    {
+      "id": "win.6",
+      "text": "Reached the top shelf without a stool",
+      "hiddenFor": []
+    },
+    {
+      "id": "win.7",
+      "text": "Walked to the mailbox and back, easily",
+      "hiddenFor": []
+    },
+    {
+      "id": "win.8",
+      "text": "Stood through a whole concert or ball game",
+      "hiddenFor": []
+    }
+  ]
+}

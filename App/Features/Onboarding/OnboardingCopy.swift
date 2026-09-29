@@ -1,0 +1,137 @@
+import Foundation
+import GentleWalkCore
+
+/// Onboarding words from the spec (S01–S07) and docs/scripts/D-min-texts.md (D2, D3).
+enum OnboardingCopy {
+    static func title(_ goal: Goal) -> LocalizedStringResource {
+        switch goal {
+        case .lessPain: "Move with less pain"
+        case .steadier: "Feel steadier on my feet"
+        case .loseWeight: "Lose some weight"
+        case .moreEnergy: "Have more energy"
+        case .chairs: "Get up from chairs more easily"
+        case .grandkids: "Keep up with the grandkids"
+        }
+    }
+
+    static func symbol(_ goal: Goal) -> String {
+        switch goal {
+        case .lessPain: "heart"
+        case .steadier: "figure.stand"
+        case .loseWeight: "figure.walk"
+        case .moreEnergy: "sun.max"
+        case .chairs: "chair"
+        case .grandkids: "figure.2.and.child.holdinghands"
+        }
+    }
+
+    static func title(_ barrier: Barrier) -> LocalizedStringResource {
+        switch barrier {
+        case .joints: "My joints hurt"
+        case .tooFast: "Videos go too fast"
+        case .busy: "I'm busy looking after others"
+        case .bored: "I got bored after a few weeks"
+        case .charged: "I was charged when I didn't expect it"
+        case .notSure: "I'm not sure where to start"
+        }
+    }
+
+    /// D2: S04 title and two lines by the first barrier picked.
+    static func understanding(_ barrier: Barrier) -> (title: LocalizedStringResource, body: LocalizedStringResource) {
+        switch barrier {
+        case .joints: ("Sore knees don't mean you can't move.",
+                       "Every move here starts seated. If something hurts, one tap swaps it for an easier one.")
+        case .tooFast: ("You set the pace here.",
+                        "A calm voice guides each step, and you can pause anytime. No one is racing you.")
+        case .busy: ("You look after everyone. This is for you.",
+                     "Five minutes is enough to start. Pick a moment in your day, and we'll keep it there.")
+        case .bored: ("Something new every week.",
+                      "Walks, chair moves and gentle stretches take turns, and every minute takes you somewhere new.")
+        case .charged: ("No surprises with money.",
+                        "We'll always show the exact date before you're billed. Canceling takes one tap.")
+        case .notSure: ("You don't need a plan. We'll bring one.",
+                        "Tell us a little about you, and we'll start you somewhere comfortable.")
+        }
+    }
+
+    /// D3: "Why this will work for you" lines.
+    static func why(_ key: WhyKey) -> LocalizedStringResource {
+        switch key {
+        case .barrier(.joints): "Everything starts seated, and moves are filtered for your joints."
+        case .barrier(.tooFast): "Videos went too fast? Here a calm voice sets the pace, and you can pause anytime."
+        case .barrier(.busy): "Sessions are 5 to 10 minutes, at the moment of the day you choose."
+        case .barrier(.bored): "Your week mixes walks, chair moves and stretches, and your journey keeps moving."
+        case .barrier(.charged): "You'll see your billing date today, get a reminder before it, and can cancel in one tap."
+        case .barrier(.notSure): "We start you at the right level and adjust after every session."
+        case .pocket: "You can do it with your phone in your pocket. Just follow the voice."
+        }
+    }
+
+    static func title(_ answer: ActivityAnswer) -> LocalizedStringResource {
+        switch answer {
+        case .mostlySit: "I mostly sit"
+        case .shortWalks: "Short walks sometimes"
+        case .walkMostDays: "I walk most days"
+        case .exerciseRegularly: "I exercise regularly"
+        }
+    }
+
+    static func title(_ answer: StairsAnswer) -> LocalizedStringResource {
+        switch answer {
+        case .outOfBreath: "Too out of breath to talk"
+        case .littleTired: "A little tired, but I can talk"
+        case .fine: "Fine"
+        case .severalFlights: "I can do several flights"
+        }
+    }
+
+    static func title(_ answer: ChairAnswer) -> LocalizedStringResource {
+        switch answer {
+        case .notPossible: "Not possible right now"
+        case .hard: "Hard, but I can"
+        case .easy: "Easy"
+        }
+    }
+
+    /// S06 chip labels.
+    static func chip(_ limit: BodyLimit) -> LocalizedStringResource {
+        switch limit {
+        case .knees: "Knees"
+        case .hips: "Hips"
+        case .lowerBack: "Lower back"
+        case .shoulders: "Shoulders"
+        case .noFloor: "I can't get down on the floor"
+        case .standingIsHard: "Standing for long is hard"
+        case .dizzy: "I get dizzy easily"
+        case .jointReplacement: "Joint replacement"
+        case .noJumping: "No jumping"
+        }
+    }
+
+    /// S07 and S20 grey chips: "Easy on knees", "No floor moves".
+    static func summary(_ limit: BodyLimit) -> LocalizedStringResource {
+        switch limit {
+        case .knees: "Easy on knees"
+        case .hips: "Easy on hips"
+        case .lowerBack: "Easy on lower back"
+        case .shoulders: "Easy on shoulders"
+        case .noFloor: "No floor moves"
+        case .standingIsHard: "Short standing"
+        case .dizzy: "Steady, no quick turns"
+        case .jointReplacement: "Joint replacement"
+        case .noJumping: "No jumping"
+        }
+    }
+
+    static let limitOrder: [BodyLimit] = [.knees, .hips, .lowerBack, .shoulders, .noFloor, .standingIsHard, .dizzy,
+                                         .jointReplacement, .noJumping]
+
+    static func title(_ moment: DailyMoment) -> LocalizedStringResource {
+        switch moment {
+        case .coffee: "After my morning coffee"
+        case .lunch: "After lunch"
+        case .tv: "During evening TV"
+        case .custom: "Pick a time"
+        }
+    }
+}

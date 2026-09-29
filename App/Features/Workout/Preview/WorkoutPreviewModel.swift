@@ -1,0 +1,155 @@
+import Foundation
+import Observation
+import GentleWalkCore
+
+/// One line of the S10 list: "Warm-up march · 2 min", "Sit-to-stand · 10 reps".
+struct PreviewRow: Identifiable, Equatable {
+    var id: String
+    var title: String
+    var detail: String
+    var symbol: String
+    /// Chair moves can be swapped for another move of the same group.
+    var swappableExerciseID: String?
+}
+
+/// S10 Workout preview (task 4.2): place, level, the list of parts, and the request to start.
+@Observable @MainActor final class WorkoutPreviewModel {
+    let day: PlannedDay
+    let intensity: Intensity
+    let checkIn: CheckIn?
+    let suggestedLevel: WalkLevel
+    var place: WorkoutPlace { didSet { defaults.set(place.rawValue, forKey: Self.placeKey) } }
+    var level: WalkLevel
+    /// Stretch day: "Standing, holding the chair" instead of seated.
+    var standingStretch = false
+    private(set) var swaps: [String: String] = [:]
+
+    @ObservationIgnored private let content: ContentBundle
+    @ObservationIgnored private let limits: Set<BodyLimit>
+    @ObservationIgnored private let rotationIndex: Int
+    @ObservationIgnored private let minutesDelta: Int
+    @ObservationIgnored private let defaults: UserDefaults
+    static let placeKey = "lastWorkoutPlace"
+
+    init(day: PlannedDay, intensity: Intensity, checkIn: CheckIn?, suggestedLevel: WalkLevel, limits: Set<BodyLimit>,
+         rotationIndex: Int, minutesDelta: Int = 0, content: ContentBundle, defaults: UserDefaults = .standard) {
+        self.day = day
+        self.intensity = intensity
+        self.checkIn = checkIn
+        self.suggestedLevel = suggestedLevel
+        self.limits = limits
+        self.rotationIndex = rotationIndex
+        self.minutesDelta = minutesDelta
+        self.content = content
+        self.defaults = defaults
+        place = defaults.string(forKey: Self.placeKey).flatMap(WorkoutPlace.init) ?? .indoors
+        level = suggestedLevel == .pad ? .seated : suggestedLevel
+    }
+
+    var isWalkDay: Bool { day.main == .walk || day.main == .longWalk }
+    var showsPlaceQuestion: Bool { isWalkDay }
+    var showsLevelSelector: Bool { isWalkDay && place == .indoors }
+
+    var request: WorkoutRequest {
+        var walkDay = day
+        if place == .outdoors { walkDay = PlannedDay(main: day.main, chairMoves: 0, cooldown: false) }
+        let chosen: WalkLevel = place == .pad ? .pad : (day.main == .stretch ? (standingStretch ? .inPlace : .seated) : level)
+        var request = WorkoutRequest(day: walkDay, level: chosen, intensity: intensity, place: isWalkDay ? place : .indoors,
+                                     limits: limits.union(day.main == .stretch && !standingStretch ? [.standingIsHard] : []),
+                                     rotationIndex: rotationIndex, minutesDelta: minutesDelta)
+        request.swaps = swaps
+        return request
+    }
+
+    private var plan: SessionPlan? { try? request.plan(content: content) }
+
+    var minutes: Int { Int(((Double(plan?.totalSeconds ?? 0)) / 60).rounded()) }
+
+    var title: String {
+        switch day.main {
+        case .chair: String(localized: "Chair moves · \(minutes) min")
+        case .stretch: String(localized: "Gentle stretch · \(minutes) min")
+        default:
+            switch intensity {
+            case .gentle: String(localized: "Gentle walk · \(minutes) min")
+            case .steady: String(localized: "Steady walk · \(minutes) min")
+            case .strong: String(localized: "Strong walk · \(minutes) min")
+            }
+        }
+    }
+
+    var subtitle: String? {
+        if day.main == .stretch {
+            return standingStretch ? String(localized: "Standing, holding the chair.") : String(localized: "Seated, with a chair to hold on to.")
+        }
+        switch checkIn {
+        case .achy: return String(localized: "Picked for an “Achy” day.")
+        case .okay: return String(localized: "Picked for an “Okay” day.")
+        case .great: return String(localized: "Picked for a “Great” day.")
+        case nil: return nil
+        }
+    }
+
+    var rows: [PreviewRow] {
+        guard let plan else { return [] }
+        var rows: [PreviewRow] = []
+        let exercises = Dictionary(content.exercises.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        for block in plan.blocks {
+            switch block.kind {
+            case .walk:
+                let warm = block.segments.filter { $0.kind == .intro || $0.kind == .warmup }.reduce(0) { $0 + $1.seconds }
+                let intervals = block.segments.filter { $0.kind == .brisk || $0.kind == .easy }.reduce(0) { $0 + $1.seconds }
+                let cool = block.segments.filter { $0.kind == .cooldown }.reduce(0) { $0 + $1.seconds }
+                let outdoors = place == .outdoors
+                rows.append(PreviewRow(id: "warm", title: outdoors ? String(localized: "Warm-up stroll") : String(localized: "Warm-up march"),
+                                       detail: Self.minutesText(warm), symbol: "figure.walk"))
+                rows.append(PreviewRow(id: "intervals", title: String(localized: "Interval walk"),
+                                       detail: Self.minutesText(intervals), symbol: "figure.walk.motion"))
+                rows.append(PreviewRow(id: "cool", title: String(localized: "Cool-down walk"), detail: Self.minutesText(cool),
+                                       symbol: "figure.cooldown"))
+            case .chair:
+                for segment in block.segments {
+                    guard let id = segment.exerciseID, let exercise = exercises[id] else { continue }
+                    let detail = exercise.counting == .reps
+                        ? String(localized: "\(ChairPlayerModel.repTarget) reps") : Self.secondsText(segment.seconds)
+                    rows.append(PreviewRow(id: "move-\(id)", title: exercise.name, detail: detail, symbol: "chair.fill",
+                                           swappableExerciseID: id))
+                }
+            case .stretch:
+                let hold = plan.holdSeconds ?? 20
+                for segment in block.segments {
+                    guard let id = segment.exerciseID, let exercise = exercises[id] else { continue }
+                    let bilateral = segment.cues.contains { $0.line.hasPrefix("a10.switch") }
+                    rows.append(PreviewRow(id: "pose-\(id)", title: exercise.name,
+                                           detail: bilateral ? String(localized: "\(hold) sec each side") : String(localized: "\(hold) sec"),
+                                           symbol: "figure.flexibility"))
+                }
+            case .cooldown:
+                rows.append(PreviewRow(id: "cooldown", title: String(localized: "Cool-down stretch"),
+                                       detail: Self.minutesText(block.seconds), symbol: "figure.cooldown"))
+            }
+        }
+        return rows
+    }
+
+    /// Swap a chair move for the next allowed move not already in the session.
+    func swap(_ exerciseID: String) {
+        guard let plan else { return }
+        let used = Set(plan.exerciseIDs)
+        let moves = BodyLimitFilter.allowed(content.exercises, limits: limits).filter { $0.kind == .move }.map(\.id)
+        guard let start = moves.firstIndex(of: exerciseID) else { return }
+        let candidates = (moves[(start + 1)...] + moves[..<start]).filter { !used.contains($0) }
+        guard let replacement = candidates.first else { return }
+        let original = swaps.first { $0.value == exerciseID }?.key ?? exerciseID
+        swaps[original] = replacement
+    }
+
+    static func minutesText(_ seconds: Int) -> String {
+        let minutes = max(1, Int((Double(seconds) / 60).rounded()))
+        return String(localized: "\(minutes) min")
+    }
+
+    static func secondsText(_ seconds: Int) -> String {
+        seconds % 60 == 0 ? String(localized: "\(seconds / 60) min") : String(localized: "\(seconds) sec")
+    }
+}

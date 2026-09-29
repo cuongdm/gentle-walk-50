@@ -1,36 +1,82 @@
 import SwiftUI
 
-/// Top-level view. Replaced by the onboarding / tab flow in tasks 4.13 and 6.1.
+/// Top-level view: onboarding until a profile exists, then the four tabs; covers on top.
 struct RootView: View {
+    let notificationDelegate: NotificationDelegate
+
     #if DEBUG
     /// Screenshot state from `-ScreenshotMode <state>`; nil in normal runs.
     private let captureState = CaptureHook.state(from: ProcessInfo.processInfo.arguments)
     #endif
 
+    @State private var app: AppModel?
+
     var body: some View {
         #if DEBUG
-        if captureState == .tokens {
-            TokenGalleryView()
+        if let captureState {
+            CaptureRouter(state: captureState)
         } else {
-            PlaceholderHome()
+            appBody
         }
         #else
-        PlaceholderHome()
+        appBody
         #endif
     }
-}
 
-/// Stand-in home until the real flow exists.
-private struct PlaceholderHome: View {
-    var body: some View {
-        Text("Gentle Walk")
-            .typeRole(.screenTitle)
-            .foregroundStyle(Palette.text)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Palette.bg)
+    @ViewBuilder private var appBody: some View {
+        Group {
+            if let app {
+                AppRootView(app: app)
+            } else {
+                Palette.bg.ignoresSafeArea()
+            }
+        }
+        .task {
+            guard app == nil else { return }
+            let model = AppModel.live()
+            app = model
+            notificationDelegate.attach(model)
+            await model.launch()
+        }
     }
 }
 
-#Preview {
-    RootView()
+struct AppRootView: View {
+    @Bindable var app: AppModel
+
+    var body: some View {
+        Group {
+            if app.onboardingDone {
+                MainTabView(app: app)
+            } else {
+                OnboardingView(flow: app.onboarding, onRestore: { Task { await app.restorePurchases() } },
+                               onFinished: app.finishOnboarding)
+            }
+        }
+        .fullScreenCover(item: $app.cover) { cover in
+            CoverView(app: app, cover: cover)
+                .textSizeOverride(app.textSize)
+        }
+        .textSizeOverride(app.textSize)
+    }
 }
+
+#if DEBUG
+/// Routes a capture state to the screen that draws it.
+struct CaptureRouter: View {
+    let state: CaptureState
+
+    var body: some View {
+        switch state {
+        case .tokens:
+            TokenGalleryView()
+        default:
+            if AppCaptureScene.handles(state) {
+                AppCaptureScene(state: state)
+            } else {
+                WorkoutCaptureScene(state: state, content: AppContent.bundle)
+            }
+        }
+    }
+}
+#endif

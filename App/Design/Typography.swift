@@ -19,6 +19,12 @@ enum TypeRole: CaseIterable {
     case phaseLabel
     /// Player clock and counters: 80 pt, tabular figures.
     case timer
+    /// Phase change card: the new phase name, 52 pt bold.
+    case transition
+    /// Big numbers on Complete and counters: 40 pt bold.
+    case stat
+    /// Player clock on iPad and in landscape, where it takes half the screen: 160 pt.
+    case wallClock
 
     var size: CGFloat {
         switch self {
@@ -29,14 +35,17 @@ enum TypeRole: CaseIterable {
         case .caption: 15
         case .phaseLabel: 34
         case .timer: 80
+        case .transition: 52
+        case .stat: 40
+        case .wallClock: 160
         }
     }
 
     var weight: Font.Weight {
         switch self {
-        case .screenTitle, .phaseLabel: .bold
+        case .screenTitle, .phaseLabel, .transition, .stat: .bold
         case .cardTitle, .button: .semibold
-        case .body, .caption, .timer: .regular
+        case .body, .caption, .timer, .wallClock: .regular
         }
     }
 
@@ -47,7 +56,7 @@ enum TypeRole: CaseIterable {
         case .cardTitle: .title2
         case .body, .button: .body
         case .caption: .subheadline
-        case .phaseLabel, .timer: .largeTitle
+        case .phaseLabel, .timer, .transition, .stat, .wallClock: .largeTitle
         }
     }
 }
@@ -66,7 +75,7 @@ private struct TypeRoleModifier: ViewModifier {
         content
             .font(.system(size: size, weight: role.weight, design: .rounded))
             .monospacedDigit()
-            .tracking(role == .phaseLabel ? 1.5 : 0)
+            .tracking(role == .phaseLabel || role == .transition ? 1.5 : 0)
     }
 }
 

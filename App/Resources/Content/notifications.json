@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "phrases": [
+    {
+      "id": "nt.remind.1",
+      "kind": "reminder",
+      "text": "Ready for a few easy minutes? Seated counts too."
+    },
+    {
+      "id": "nt.remind.2",
+      "kind": "reminder",
+      "text": "Your walk is ready whenever you are."
+    },
+    {
+      "id": "nt.remind.3",
+      "kind": "reminder",
+      "text": "A short walk today? Five minutes is enough."
+    },
+    {
+      "id": "nt.remind.4",
+      "kind": "reminder",
+      "text": "Time for your walk. Take it at your pace."
+    },
+    {
+      "id": "nt.remind.5",
+      "kind": "reminder",
+      "text": "Your chair is right there. Want to start?"
+    },
+    {
+      "id": "nt.remind.6",
+      "kind": "reminder",
+      "text": "A few minutes for you, before the day gets busy."
+    },
+    {
+      "id": "nt.remind.7",
+      "kind": "reminder",
+      "text": "Let's get your feet moving. Just a little."
+    },
+    {
+      "id": "nt.remind.8",
+      "kind": "reminder",
+      "text": "Your journey is waiting for today's steps."
+    },
+    {
+      "id": "nt.remind.9",
+      "kind": "reminder",
+      "text": "Got a few minutes? Your walk is set up."
+    },
+    {
+      "id": "nt.remind.10",
+      "kind": "reminder",
+      "text": "Today's session is a short one. Ready?"
+    },
+    {
+      "id": "nt.remind.11",
+      "kind": "reminder",
+      "text": "A calm voice and a few easy minutes. Shall we?"
+    },
+    {
+      "id": "nt.remind.12",
+      "kind": "reminder",
+      "text": "Feel like moving a little? Your plan is ready."
+    },
+    {
+      "id": "nt.remind.13",
+      "kind": "reminder",
+      "text": "Your time. Your pace. Your walk."
+    },
+    {
+      "id": "nt.remind.14",
+      "kind": "reminder",
+      "text": "Just press start. The voice will do the rest."
+    },
+    {
+      "id": "nt.day2.1",
+      "kind": "dayTwo",
+      "text": "Yesterday was your first walk. Today's is just as short."
+    },
+    {
+      "id": "nt.day2.2",
+      "kind": "dayTwo",
+      "text": "Day two. Same easy pace as yesterday."
+    },
+    {
+      "id": "nt.day2.3",
+      "kind": "dayTwo",
+      "text": "Nice start yesterday. Ready for another few minutes?"
+    },
+    {
+      "id": "nt.near.1",
+      "kind": "landmark",
+      "text": "You're one walk away from {stop}."
+    },
+    {
+      "id": "nt.week.up",
+      "kind": "weeklyRecap",
+      "text": "{n} active days this week. That's more than last week."
+    },
+    {
+      "id": "nt.week.same",
+      "kind": "weeklyRecap",
+      "text": "{n} active days this week, same as last week. Nice and steady."
+    },
+    {
+      "id": "nt.week.less",
+      "kind": "weeklyRecap",
+      "text": "{n} active days this week. A new week starts tomorrow."
+    },
+    {
+      "id": "nt.back.3",
+      "kind": "comeback",
+      "text": "Your journey is right where you left it. Want an easy 5 minutes?"
+    },
+    {
+      "id": "nt.back.10",
+      "kind": "comeback",
+      "text": "Whenever you're ready, a gentle restart is waiting."
+    },
+    {
+      "id": "nt.trial",
+      "kind": "trialEnd",
+      "text": "Your free trial ends on {date}. You'll be billed {price} unless you cancel. Manage it in Settings."
+    },
+    {
+      "id": "nt.newjourney",
+      "kind": "newJourney",
+      "text": "A new journey is ready: {journey}."
+    },
+    {
+      "id": "card.fewer",
+      "kind": "card",
+      "text": "You're doing this on your own now. Want fewer reminders?"
+    }
+  ]
+}

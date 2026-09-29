@@ -39,8 +39,8 @@ targets:
         # Colour roles are read by name through Palette; generated symbols would clash with Color.primary.
         ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS: NO
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: primary
-        # No app icon yet (icon art is a release task); set to AppIcon when the icon set lands.
-        ASSETCATALOG_COMPILER_APPICON_NAME: ""
+        # Placeholder icon from scripts/make_placeholder_icon.swift until the designed icon arrives.
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
       configs:
         Release:
           # Screenshot persona and debug-only resources never ship (capture hook is #if DEBUG).

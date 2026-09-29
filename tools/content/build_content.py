@@ -180,7 +180,10 @@ JOURNEYS = [
 ]
 
 
-def journeys():
+def journeys(d_texts):
+    """Stops and miles from JOURNEYS; subtitle and summary from D6; postcard backs from D7."""
+    d6 = {c[0]: c for c in table_rows(d_texts, "jr.")}
+    d7 = {c[0]: c for c in table_rows(d_texts, "pc.")}
     out = []
     for jid, title, free, length, stops in JOURNEYS:
         if isinstance(stops[0], tuple):
@@ -189,8 +192,54 @@ def journeys():
             key = jid.split(".")[1]
             items = [{"id": "pc.%s.%d" % (key, i + 1), "name": n, "mile": round(length * i / 5, 2)}
                      for i, n in enumerate(stops)]
-        out.append({"id": jid, "title": title, "isFree": free, "stops": items})
+        for item in items:
+            if item["id"] in d7:
+                item["back"] = d7[item["id"]][1]
+                item["coachLine"] = d7[item["id"]][2]
+        entry = {"id": jid, "title": title, "isFree": free, "stops": items}
+        if jid in d6:
+            name = d6[jid][1]
+            if "·" in name:
+                entry["subtitle"] = name.split("·", 1)[1].strip()
+            entry["summary"] = d6[jid][2]
+        out.append(entry)
     return out
+
+
+NOTIFICATION_KIND = [("nt.remind.", "reminder"), ("nt.day2.", "dayTwo"), ("nt.week.", "weeklyRecap"),
+                     ("nt.back.", "comeback"), ("nt.trial", "trialEnd"), ("nt.newjourney", "newJourney"),
+                     ("card.fewer", "card")]
+PLACEHOLDERS = [("[stop name]", "{stop}"), ("[n]", "{n}"), ("[date]", "{date}"), ("[price]", "{price}"),
+                ("[journey name]", "{journey}")]
+
+
+def notifications(d_texts):
+    """D8 phrase bank. Lock-screen text: no health words, no "streak" (checked by copy_lint and tests)."""
+    out = []
+    for raw in d_texts.read_text(encoding="utf-8").splitlines():
+        if not raw.startswith("|"):
+            continue
+        c = cells(raw.strip().strip("|"))
+        if len(c) < 3 or not (c[1].startswith("nt.") or c[1].startswith("card.")):
+            continue
+        pid, text = c[1], c[2]
+        if pid.startswith("nt.near"):  # template row: one line per stop name
+            out.append({"id": "nt.near.1", "kind": "landmark", "text": "You're one walk away from {stop}."})
+            continue
+        kind = next(k for prefix, k in NOTIFICATION_KIND if pid.startswith(prefix))
+        for a, b in PLACEHOLDERS:
+            text = text.replace(a, b)
+        out.append({"id": pid, "kind": kind, "text": text})
+    return out
+
+
+def everyday_wins(d_texts):
+    """D9: one line per win; "Played on the floor" is hidden for "I can't get down on the floor"."""
+    lines = [l for l in d_texts.read_text(encoding="utf-8").splitlines()]
+    start = next(i for i, l in enumerate(lines) if l.startswith("## D9"))
+    items = [t.strip() for t in lines[start + 1].split("·")]
+    return [{"id": "win.%d" % (i + 1), "text": t, "hiddenFor": ["noFloor"] if "floor" in t.lower() else []}
+            for i, t in enumerate(items)]
 
 
 # ---------------------------------------------------------------- sessions
@@ -372,7 +421,9 @@ def build():
         "voice-lines.json": {"schemaVersion": SCHEMA_VERSION, "voiceLines": voice},
         "exercises.json": {"schemaVersion": SCHEMA_VERSION,
                            "exercises": moves(SCRIPTS / "D-min-texts.md") + stretches(SCRIPTS / "A10-stretch.md")},
-        "journeys.json": {"schemaVersion": SCHEMA_VERSION, "journeys": journeys()},
+        "journeys.json": {"schemaVersion": SCHEMA_VERSION, "journeys": journeys(SCRIPTS / "D-min-texts.md")},
+        "notifications.json": {"schemaVersion": SCHEMA_VERSION, "phrases": notifications(SCRIPTS / "D-min-texts.md")},
+        "wins.json": {"schemaVersion": SCHEMA_VERSION, "wins": everyday_wins(SCRIPTS / "D-min-texts.md")},
         "sessions.json": {"schemaVersion": SCHEMA_VERSION, "sessions": sessions},
     }
 

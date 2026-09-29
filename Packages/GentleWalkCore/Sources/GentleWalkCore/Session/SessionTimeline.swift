@@ -34,6 +34,8 @@ public struct SessionTimeline: Equatable, Sendable {
 
     public struct Phase: Equatable, Sendable {
         public var kind: SessionTemplate.Segment.Kind
+        /// Which part of the day this phase belongs to: picks the player screen (walk, chair, stretch).
+        public var block: SessionPlan.Block.Kind
         public var exerciseID: String?
         public var start: Double
         public var end: Double
@@ -50,17 +52,22 @@ public struct SessionTimeline: Equatable, Sendable {
     /// Lines that edits insert (A7 safety lines, A3 walk home), resolved when the timeline is built.
     var editLines: [String: VoiceCue] = [:]
 
+    /// An empty timeline (nothing loaded yet).
+    public init() {}
+
     /// A bell plays this long before the line it introduces (A1: "chuông trước câu 1 giây").
     public static let bellLead = 1.0
     /// Speaking rate used when a line has no recording yet (DEBUG speech fallback).
     public static let estimatedWordsPerSecond = 2.5
     /// Segments that change walking pace get a phase bell.
     static let pacedKinds: Set<SessionTemplate.Segment.Kind> = [.warmup, .brisk, .easy, .cooldown]
-    static let editLineIDs = ["a7.hurt.easier", "a7.hurt.skip", "a3.home.1"]
+    /// Lines an edit can insert; audio for them is prepared with the session.
+    public static let editLineIDs = ["a7.hurt.easier", "a7.hurt.skip", "a3.home.1"]
 
     public static func make(plan: SessionPlan, voice lines: [VoiceLine]) -> SessionTimeline {
         let book = Dictionary(lines.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         let segments = plan.segments
+        let blockOf = plan.blocks.flatMap { block in block.segments.map { _ in block.kind } }
         let lastCue = segments.indices.last { !segments[$0].cues.isEmpty }.map { ($0, segments[$0].cues.count - 1) }
 
         var timeline = SessionTimeline()
@@ -68,7 +75,8 @@ public struct SessionTimeline: Equatable, Sendable {
         var t = 0.0
         for (i, segment) in segments.enumerated() {
             let end = t + Double(segment.seconds)
-            timeline.phases.append(Phase(kind: segment.kind, exerciseID: segment.exerciseID, start: t, end: end, isEasier: false))
+            timeline.phases.append(Phase(kind: segment.kind, block: blockOf[i], exerciseID: segment.exerciseID,
+                                         start: t, end: end, isEasier: false))
             let bellHere = i > 0 && pacedKinds.contains(segment.kind)
             if bellHere { timeline.bells.append(Bell(at: t, kind: .phase)) }
             for (j, cue) in segment.cues.enumerated() {

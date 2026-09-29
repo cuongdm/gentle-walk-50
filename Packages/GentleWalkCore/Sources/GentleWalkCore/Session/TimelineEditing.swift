@@ -50,7 +50,7 @@ public enum TimelineEditing {
                 done.end = time
                 result.phases.append(done)
             }
-            result.phases.append(.init(kind: .easy, exerciseID: nil, start: time, end: .infinity, isEasier: false))
+            result.phases.append(.init(kind: .easy, block: .walk, exerciseID: nil, start: time, end: .infinity, isEasier: false))
             result.voice.removeAll { $0.start >= time }
             result.bells.removeAll { $0.at >= time }
             result.total = time
