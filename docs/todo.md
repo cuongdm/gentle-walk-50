@@ -29,5 +29,8 @@ Sang manh-skill-plan với asset hiện có (6 clip, A1, giọng prototype). Nh�
 - [ ] Viết Privacy Policy và Terms (cần cho HealthKit và subscription) trước khi nộp; URL ghi vào app-context.
 - [ ] Cân nhắc Git LFS nếu thêm nhiều clip 1080p (repo hiện khoảng 109 MB).
 
-## Sau khi 1–4 chốt và huấn luyện viên duyệt xong
-- [ ] Gọi `manh-skill-plan`: hằng số phút → dặm, mốc thang cây, quy ước tên file asset, cách đo thông báo không backend, launch argument cho screenshot.
+## Kế hoạch code (đã duyệt 29/09/2026)
+- [x] ~~Gọi `manh-skill-plan`~~ → `docs/plans/2026-09-29-mvp.md`: 113 task / 9 milestone, duyệt toàn bộ. Đã chốt: 0,05 dặm mỗi phút tập, hook `-ScreenshotMode`, không đo hiệu quả thông báo trong v1.
+- [ ] Gọi `manh-skill-code` trên Mac (cần Xcode 27, `brew install xcodegen`), bắt đầu Task 1.1.
+- [ ] Trả lời 4 STOP AND ASK khi tới task: Team ID (1.1), mốc thang cây (2.5, mặc định 7 · 21 · 42), EULA Apple hay Terms riêng (5.10), hosting trang pháp lý (9.1, mặc định GitHub Pages).
+- [ ] Chuẩn bị iPhone thật cho 3.5 (chạy khi khoá màn hình), 8.6 (tuyến ngoài trời), 8.8–8.9 (ghi dữ liệu và thử tự đếm).

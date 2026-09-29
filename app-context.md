@@ -67,7 +67,8 @@ _Updated: 28/09/2026 (thêm giãn cơ, rà soát tài liệu) · by: manh-skill-
 - Đầu năm (tháng 1): mục tiêu năm mới · Mùa xuân: bắt đầu đi ngoài trời · Mùa hè: nhắc nắng nóng, đi sớm · Mùa thu (tháng 9–10): tuyến Smoky Mountains và hải đăng New England đẹp nhất · Mother's Day (tháng 5): ảnh chia sẻ với gia đình.
 
 ## Engineering hooks for capture
-- Chưa có. manh-skill-plan quyết định launch argument cho screenshot, deep link và accessibility identifier.
+- Launch argument duy nhất: `-ScreenshotMode <state>` (chỉ bản DEBUG), nạp `App/Debug/Fixtures/en-US.json`; danh sách trạng thái ở docs/plans/2026-09-29-mvp.md mục Localization plan.
+- Bundle ID `com.kmd.gentlewalk`; sản phẩm `com.kmd.gentlewalk.pro.yearly` (trial 2 tuần), `.pro.monthly`, `.pro.lifetime`. iOS 18+, iPhone + iPad, dự án tạo bằng XcodeGen.
 - Thông báo local, lên lịch trên máy theo từng đợt ngắn: nhắc tập theo mốc sinh hoạt (có nút Start walk / Rest today), ngày 2, gần địa danh, tổng kết tuần, quay lại ngày 3 và 10, hết trial ngày 12, tin tuyến mới (tắt mặc định). Giảm dần khi người dùng tự tập 5 ngày liền trước giờ nhắc.
 - Quyền dự kiến: Motion & Fitness · HealthKit (đọc bước, ghi workout và tuyến) · thông báo sau buổi đầu · vị trí "When In Use" chỉ khi đi ngoài trời · background audio; background location chỉ trong buổi ngoài trời.
 - Ràng buộc: không tài khoản, không backend, không quảng cáo; offline; dữ liệu sức khoẻ không lên iCloud.
@@ -99,3 +100,4 @@ _Updated: 28/09/2026 (thêm giãn cơ, rà soát tài liệu) · by: manh-skill-
 - 28/09/2026 — Rà soát tài liệu (docs/reviews/2026-09-28-tai-lieu.md): đồng bộ giãn cơ vào content-plan và spec màn hình; sửa các chỗ lệch (bước chân trong buổi ngồi, HealthKit không kéo hành trình, số ngày lên cấp, số ảnh khung); thêm tuần mẫu và từ vựng cố định. Không có quyết định sản phẩm mới; các câu hỏi mở ghi ở brief §12.
 - 28/09/2026 — Việc cần làm tập trung ở docs/todo.md. Đề xuất chờ chủ app OK: thang cây 7 · 21 · 42 ngày; huấn luyện viên chứng chỉ người lớn tuổi duyệt theo đợt; kế hoạch test prototype docs/research/prototype-test-plan.md; nhạc mua giấy phép theo bài cho app hoặc đặt làm mua đứt. ElevenLabs nâng gói thương mại sau, trước khi đóng gói giọng.
 - 28/09/2026 — Chủ app chốt: (a) không thuê người duyệt giãn cơ, bài lấy từ nguồn công khai có uy tín (NIA Go4Life, NHS, ACSM) và ghi nguồn từng tư thế; (b) nhạc nền tạo bằng AI trên gói trả phí có quyền thương mại (Suno/Udio), không cần ghi nguồn; (c) code trước, asset bổ sung sau. Thang cây và kế hoạch test prototype vẫn theo đề xuất mặc định (docs/todo.md #1, #3).
+- 29/09/2026 — plan approved: docs/plans/2026-09-29-mvp.md (113 tasks / 9 milestones; unticked: none) — by manh-skill-plan. Phạm vi: iOS 18, XcodeGen, bundle com.kmd.gentlewalk, toàn bộ MVP gồm ngoài trời có GPS và tự đếm; không đo hiệu quả thông báo trong v1.
