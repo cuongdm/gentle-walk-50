@@ -96,6 +96,10 @@ struct MonthCalendar: View {
                         let rest = restDays.contains(Weekday(of: day, in: calendar))
                         Text(verbatim: "\(calendar.component(.day, from: day))")
                             .typeRole(.caption)
+                            // Seven columns: at the largest sizes the number shrinks a little
+                            // rather than breaking over two lines (review I12).
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
                             .foregroundStyle(active ? Palette.onStrongFill : Palette.text)
                             .frame(maxWidth: .infinity, minHeight: 36)
                             .background(active ? Palette.secondary : .clear, in: .circle)

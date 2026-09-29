@@ -6,6 +6,7 @@ import SwiftUI
 struct CaptionBar: View {
     let caption: String?
     @AppStorage("captionsOn") private var captionsOn = true
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         if captionsOn { band }
@@ -15,7 +16,7 @@ struct CaptionBar: View {
         Text(verbatim: caption ?? " ")
             .typeRole(.body)
             .foregroundStyle(.white)
-            .lineLimit(3)
+            .lineLimit(typeSize.isAccessibilitySize ? nil : 3)
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity, minHeight: 60)
             .padding(.horizontal, 16)

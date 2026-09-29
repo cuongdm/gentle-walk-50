@@ -13,8 +13,24 @@ struct WorkoutSafetyBar: View {
     let onBreak: () -> Void
     let onHurts: () -> Void
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
-        HStack(spacing: Metrics.touchSpacing) {
+        // Accessibility sizes: two rows of two, so no word is ever cut ("This hurts" above all).
+        if typeSize.isAccessibilitySize {
+            Grid(horizontalSpacing: Metrics.touchSpacing, verticalSpacing: Metrics.touchSpacing) {
+                GridRow { settingButtons }
+                GridRow { safetyButtons }
+            }
+        } else {
+            HStack(spacing: Metrics.touchSpacing) {
+                settingButtons
+                safetyButtons
+            }
+        }
+    }
+
+    @ViewBuilder private var settingButtons: some View {
             if showsVoice {
                 BarButton(title: "Voice", symbol: isVoiceOn ? "speaker.wave.2.fill" : "speaker.slash.fill",
                           fill: Palette.surface, text: Palette.text, action: onVoice)
@@ -25,9 +41,11 @@ struct WorkoutSafetyBar: View {
                           text: Palette.text, action: onMusic)
                     .accessibilityValue(isMusicOn ? Text("On") : Text("Off"))
             }
-            BarButton(title: "Break", symbol: "cup.and.saucer.fill", fill: Palette.sky, text: Palette.onLightFill, action: onBreak)
-            BarButton(title: "This hurts", symbol: "hand.raised.fill", fill: Palette.dangerSoft, text: Palette.onStrongFill, action: onHurts)
-        }
+    }
+
+    @ViewBuilder private var safetyButtons: some View {
+        BarButton(title: "Break", symbol: "cup.and.saucer.fill", fill: Palette.sky, text: Palette.onLightFill, action: onBreak)
+        BarButton(title: "This hurts", symbol: "hand.raised.fill", fill: Palette.dangerSoft, text: Palette.onStrongFill, action: onHurts)
     }
 }
 
@@ -42,7 +60,7 @@ private struct BarButton: View {
         Button(action: action) {
             VStack(spacing: 4) {
                 Image(systemName: symbol).accessibilityHidden(true)
-                Text(title).lineLimit(2).minimumScaleFactor(0.8)
+                Text(title).lineLimit(3).fixedSize(horizontal: false, vertical: true)
             }
             .typeRole(.caption)
             .fontWeight(.semibold)

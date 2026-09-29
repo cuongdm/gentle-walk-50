@@ -8,6 +8,10 @@ struct OnboardingView: View {
     let onRestore: () -> Void
     let onFinished: () -> Void
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+    /// "See my options" stays in view on the long plan screen (not at accessibility sizes).
+    private var pinsPlanButton: Bool { flow.step == .plan && !typeSize.isAccessibilitySize }
+
     var body: some View {
         VStack(spacing: 0) {
             if flow.step != .welcome {
@@ -22,6 +26,7 @@ struct OnboardingView: View {
             }
             .scrollBounceBehavior(.basedOnSize)
         }
+        .pinnedActions(pinsPlanButton) { ContinueButton(title: "See my options", action: flow.next) }
         .screenBackground()
         .onChange(of: flow.step) { _, step in if step == .paywall { onFinished() } }
     }
@@ -40,7 +45,7 @@ struct OnboardingView: View {
         case .chair: ChairStrengthView(flow: flow)
         case .part3: PartIntroView(part: 3, title: "Your body", onContinue: flow.next)
         case .body: BodyLimitsView(flow: flow)
-        case .plan, .paywall: PlanReadyView(flow: flow)
+        case .plan, .paywall: PlanReadyView(flow: flow, showsContinue: !pinsPlanButton)
         }
     }
 }

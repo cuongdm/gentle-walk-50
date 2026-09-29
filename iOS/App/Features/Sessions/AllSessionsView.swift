@@ -27,21 +27,40 @@ struct AllSessionsView: View {
     }
 }
 
-/// A group title and its cards.
+/// A group title and its sessions: a sideways row of tiles, or stacked cards at accessibility
+/// text sizes (a tile would be too narrow for the words).
 struct SessionSection: View {
     let title: LocalizedStringResource
     let items: [AllSessionsModel.Item]
     let model: AllSessionsModel
     let onOpen: (AllSessionsModel.Item) -> Void
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title).typeRole(.cardTitle).foregroundStyle(Palette.text).accessibilityAddTraits(.isHeader)
-            ForEach(items) { item in
-                SessionCard(title: item.title, detail: item.detail, art: item.art, isLocked: item.isLocked,
-                            favourite: .init(isOn: model.isFavourite(item.id), toggle: { model.toggleFavourite(item.id) })) {
-                    onOpen(item)
+            if typeSize.isAccessibilitySize {
+                ForEach(items) { item in
+                    SessionCard(title: item.title, detail: item.detail, art: item.art, isLocked: item.isLocked,
+                                favourite: .init(isOn: model.isFavourite(item.id), toggle: { model.toggleFavourite(item.id) })) {
+                        onOpen(item)
+                    }
                 }
+            } else {
+                ScrollView(.horizontal) {
+                    HStack(alignment: .top, spacing: 12) {
+                        ForEach(items) { item in
+                            SessionTile(title: item.title, detail: item.detail, art: item.art, isLocked: item.isLocked,
+                                        isFavourite: model.isFavourite(item.id),
+                                        onToggleFavourite: { model.toggleFavourite(item.id) }) { onOpen(item) }
+                        }
+                    }
+                    .padding(.horizontal, Metrics.screenMargin)
+                }
+                .scrollIndicators(.hidden)
+                // Rows run to the screen edges; the text above keeps the page margin.
+                .padding(.horizontal, -Metrics.screenMargin)
             }
         }
     }

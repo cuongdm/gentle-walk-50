@@ -32,6 +32,7 @@ Cài bản DEBUG từ Xcode lên iPhone (cần Team ID đúng, xem mục 3).
 ## 3. Quyết định và thông tin chờ chủ app
 - [x] **Team ID** `55V8Y3PCLY` trong `iOS/Config/Local.xcconfig`: chủ app xác nhận đúng (29/09).
 - [x] **Email hỗ trợ:** `cuongdm@live.com` (29/09). Đã thêm nút Contact us ở Me → Help và điền vào `site/privacy.html`.
+- [ ] **iCloud Backup (review I18, hoãn 29/09):** dữ liệu trong app (báo đau, giới hạn cơ thể, buổi tập) vẫn nằm trong bản sao lưu iCloud của máy. Trước khi nộp: hoặc loại khỏi backup, hoặc sửa câu "does not back them up to iCloud" trong `site/privacy.html` và luật trong CLAUDE.md.
 - [ ] **Trang Privacy:** tạm bỏ qua (29/09). App vẫn mở bản Privacy trong app. Trước khi nộp store vẫn cần điền ngày, đăng lên hosting và gửi tôi URL (App Store Connect bắt buộc có Privacy Policy URL).
 - [x] **Terms:** dùng EULA chuẩn của Apple, chủ app đồng ý (29/09).
 - [ ] **App Store Connect:** làm theo `docs/release/1.0/checklist.md` (3 IAP, age rating, App Privacy, review notes).

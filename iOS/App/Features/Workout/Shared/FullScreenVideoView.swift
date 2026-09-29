@@ -18,6 +18,11 @@ struct FullScreenVideoView: View {
     @State private var hideTask: Task<Void, Never>?
     @Environment(\.verticalSizeClass) private var verticalSizeClass
 
+    @Environment(\.accessibilityVoiceOverEnabled) private var voiceOver
+    @Environment(\.accessibilitySwitchControlEnabled) private var switchControl
+    /// VoiceOver and Switch Control users cannot find a hidden control: it never hides for them (review I13).
+    private var keepsControls: Bool { voiceOver || switchControl }
+
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -25,6 +30,11 @@ struct FullScreenVideoView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .contentShape(.rect)
                 .onTapGesture { showControls() }
+                .accessibilityElement()
+                .accessibilityLabel(Text("Exercise video"))
+                .accessibilityHint(Text("Shows the playback buttons"))
+                .accessibilityAddTraits(.isButton)
+                .accessibilityAction { showControls() }
             VStack {
                 HStack(alignment: .top) {
                     Button(action: onExit) {
@@ -44,7 +54,7 @@ struct FullScreenVideoView: View {
                         .background(Palette.surface.opacity(0.92), in: .rect(cornerRadius: 16))
                 }
                 Spacer()
-                if controlsVisible {
+                if controlsVisible || keepsControls {
                     PlayerControlRow(isPaused: isPaused, onBack: onBack, onPause: onPause, onSkip: onSkip)
                         .padding(8)
                         .background(Palette.surface.opacity(0.92), in: .rect(cornerRadius: 20))
@@ -79,6 +89,7 @@ struct FullScreenVideoView: View {
 
     private func scheduleHide() {
         hideTask?.cancel()
+        guard !keepsControls else { return }
         hideTask = Task { @MainActor in
             try? await Task.sleep(for: .seconds(5))
             guard !Task.isCancelled else { return }

@@ -18,6 +18,9 @@ struct SpecialCard: View {
                 Text("We moved you back to \(Text(level.title)) for now.").typeRole(.body)
             case .connectHealth:
                 Text("Count your steps automatically").typeRole(.cardTitle)
+                // Apple's sheet keeps Allow greyed out until a switch is on: say so before it opens.
+                Text("Next, Apple asks what to share: tap “Turn On All”, then “Allow”. Or tap “Don’t Allow” to skip.")
+                    .typeRole(.caption).foregroundStyle(Palette.textMuted)
                 HStack(spacing: Metrics.touchSpacing) {
                     Button("Connect", action: actions.onConnectHealth).buttonStyle(PillButtonStyle(isSelected: true))
                     Button("Not now", action: actions.onDismissCard).buttonStyle(.textLink)

@@ -1,10 +1,12 @@
 import SwiftUI
 import GentleWalkCore
 
-/// S07 "Your plan is ready": plan card, sample week, limits, why it will work, first journey,
-/// Day 1, when to start and the daily moment. No fake "Creating your plan 98%".
+/// S07 "Your plan is ready": one plan card (length, sample week, limits, Day 1), why it will work
+/// with the first journey, when to start and the daily moment. No fake "Creating your plan 98%".
+/// Kept to about one screen: the Continue button is pinned by the container (review I16).
 struct PlanReadyView: View {
     @Bindable var flow: OnboardingFlow
+    var showsContinue = true
 
     var body: some View {
         let profile = flow.profile
@@ -14,31 +16,33 @@ struct PlanReadyView: View {
             } else {
                 ScreenHeader(title: "Your plan")
             }
-            PlanCard(startLevel: profile.startLevel)
-            SampleWeekRow()
-            if !flow.answers.limits.isEmpty {
-                LimitChips(limits: flow.answers.limits)
-            }
+            PlanCard(startLevel: profile.startLevel, limits: flow.answers.limits)
             WhyThisWorks(keys: profile.whyKeys)
-            FirstJourneyMini()
-            DayOneCard()
             StartTimePicker(choice: $flow.startChoice)
             DailyMomentPicker(moment: flow.moment, minutes: flow.reminderMinutes,
                               onChoose: flow.chooseMoment, onAdjust: flow.adjustTime(byMinutes:))
-            ContinueButton(title: "See my options", action: flow.next)
+            if showsContinue {
+                ContinueButton(title: "See my options", action: flow.next)
+            }
         }
     }
 }
 
+/// Length, rest days and level, the sample week, her limits and Day 1, in one card.
 struct PlanCard: View {
     let startLevel: WalkLevel
+    let limits: Set<BodyLimit>
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 10) {
             Text("5–10 min a day").typeRole(.cardTitle)
-            Text("2 rest days a week").typeRole(.body)
-            Text("Starting level: \(Text(startLevel.title))").typeRole(.body)
-            Text("Walks, chair moves and gentle stretches, in turn.").typeRole(.caption).foregroundStyle(Palette.textMuted)
+            Text("2 rest days a week · starting \(Text(startLevel.title).bold())").typeRole(.body)
+            SampleWeekRow()
+            if !limits.isEmpty {
+                LimitChips(limits: limits)
+            }
+            Divider()
+            Text("Day 1: first walk · 5 min · seated").typeRole(.body).fontWeight(.semibold)
         }
         .foregroundStyle(Palette.text)
         .cardStyle()
@@ -104,36 +108,23 @@ struct WhyThisWorks: View {
                 }
                 .foregroundStyle(Palette.text)
             }
+            FirstJourneyMini()
         }
         .cardStyle()
     }
 }
 
+/// The first journey, as the last line of "Why this will work".
 struct FirstJourneyMini: View {
     var body: some View {
-        HStack(spacing: 14) {
-            ArtImage(name: Art.coverName(journeyID: "jr.ny"), height: 72, fallbackSymbol: "map").frame(width: 96)
+        HStack(spacing: 12) {
+            ArtImage(name: Art.coverName(journeyID: "jr.ny"), height: 56, fallbackSymbol: "map").frame(width: 72)
             VStack(alignment: .leading, spacing: 2) {
                 Text("Your first journey: Central Park to Brooklyn Bridge").typeRole(.body).fontWeight(.semibold)
                 Text("Every walk in the app moves you along.").typeRole(.caption).foregroundStyle(Palette.textMuted)
             }
             .foregroundStyle(Palette.text)
         }
-        .cardStyle()
-    }
-}
-
-struct DayOneCard: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Your Day 1").typeRole(.caption).foregroundStyle(Palette.textMuted)
-            Text("First walk · 5 min · seated").typeRole(.cardTitle)
-            Text("Warm-up march · 2 min").typeRole(.body)
-            Text("Easy intervals · 2 min").typeRole(.body)
-            Text("Cool-down · 1 min").typeRole(.body)
-        }
-        .foregroundStyle(Palette.text)
-        .cardStyle()
     }
 }
 

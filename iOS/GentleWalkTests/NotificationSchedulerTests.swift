@@ -24,16 +24,16 @@ import GentleWalkCore
     let calendar = { var c = Calendar(identifier: .gregorian); c.timeZone = TimeZone(identifier: "America/New_York")!; return c }()
     var now: Date { calendar.date(from: DateComponents(year: 2026, month: 9, day: 27, hour: 7))! }
 
-    func scheduler(_ center: FakeNotificationCenter) throws -> NotificationScheduler {
+    func scheduler(_ center: FakeNotificationCenter, workouts: [Date] = []) throws -> NotificationScheduler {
         let bank = try PhraseBank.load(bundle: .main)
         let calendar = calendar
         let input = PlannerInput(calendar: calendar, restDays: [.saturday, .sunday], reminderMinutes: 510, frequency: .daily,
-                                 workouts: [], trialReminder: nil, landmark: nil, settings: NotificationSettings(), newJourneyName: nil)
+                                 workouts: workouts, trialReminder: nil, landmark: nil, settings: NotificationSettings(), newJourneyName: nil)
         return NotificationScheduler(center: center, bank: bank, context: container.mainContext,
                                      input: { input }, now: { [now] in now })
     }
 
-    @Test func replacesOldPendingWithAWeekOfNotifications() async throws {
+    @Test func replacesOldPendingWithSixteenDaysOfNotifications() async throws {
         let center = FakeNotificationCenter()
         center.pending = [UNNotificationRequest(identifier: "gw.old", content: UNMutableNotificationContent(), trigger: nil),
                           UNNotificationRequest(identifier: "other.app.thing", content: UNMutableNotificationContent(), trigger: nil)]
@@ -41,7 +41,7 @@ import GentleWalkCore
         await scheduler.reschedule()
         #expect(center.removedIDs == ["gw.old"])
         let ours = center.pending.filter { $0.identifier.hasPrefix("gw.") }
-        #expect(ours.count == 5)
+        #expect(ours.count == 11)  // weekdays in the next 16 days, rest days quiet
         #expect(ours.count <= 64)
         #expect(center.pending.contains { $0.identifier == "other.app.thing" })
         #expect(ours.allSatisfy { !$0.content.body.isEmpty && $0.content.categoryIdentifier == NotificationCategory.reminder })
@@ -52,16 +52,34 @@ import GentleWalkCore
         let scheduler = try scheduler(center)
         await scheduler.reschedule()
         await scheduler.reschedule()
-        #expect(center.pending.filter { $0.identifier.hasPrefix("gw.") }.count == 5)
+        #expect(center.pending.filter { $0.identifier.hasPrefix("gw.") }.count == 11)
         let history = try container.mainContext.fetch(FetchDescriptor<NotificationHistory>())
-        #expect(history.count == 5)
+        #expect(history.count == 11)
+    }
+
+    /// Review I9: after a last walk on Friday 25/09 the second comeback (10 planned days later,
+    /// Friday 09/10) is already booked; she will not open the app to book it.
+    @Test func theSecondComebackIsBookedAheadOfTime() async throws {
+        let center = FakeNotificationCenter()
+        let lastWalk = calendar.date(from: DateComponents(year: 2026, month: 9, day: 25, hour: 9))!
+        let scheduler = try scheduler(center, workouts: [lastWalk])
+        await scheduler.reschedule()
+        let comebackDays = center.pending.filter { $0.identifier.hasPrefix("gw.comeback.") }.compactMap {
+            ($0.trigger as? UNCalendarNotificationTrigger)?.dateComponents.day
+        }
+        #expect(comebackDays == [30, 9])
     }
 
     @Test func consecutiveRemindersUseDifferentWords() async throws {
         let center = FakeNotificationCenter()
         try await scheduler(center).reschedule()
-        let bodies = center.pending.map(\.content.body)
-        #expect(Set(bodies).count == bodies.count)
+        // The same words come back only after 14 days (PhraseRotation), even over 16 days booked.
+        let fireTimes = Dictionary(grouping: center.pending, by: \.content.body).mapValues { requests in
+            requests.compactMap { Double($0.identifier.split(separator: ".").last ?? "") }.sorted()
+        }
+        for times in fireTimes.values where times.count > 1 {
+            #expect(zip(times, times.dropFirst()).allSatisfy { $1 - $0 >= 14 * 86_400 })
+        }
     }
 
     @Test func reminderCategoryHasStartWalkAndRestToday() async throws {

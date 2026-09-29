@@ -42,11 +42,13 @@ struct PhraseBank: Equatable, Sendable {
 }
 
 /// Turns the core plan into scheduled local notifications (task 7.9): clears this app's pending
-/// ones, adds at most seven days (far under the 64 limit), picks words that have not been used in
-/// 14 days, and keeps a history for that rule. Runs on launch, after a session and on settings changes.
+/// ones, adds the next 16 days (at most one a day, far under the 64 limit), picks words that have
+/// not been used in 14 days, and keeps a history for that rule. Runs on launch, after a session
+/// and on settings changes. 16 days reach the second comeback (10 planned days after the last
+/// walk) and the day-12 trial reminder, for someone who does not open the app (review I9).
 @MainActor final class NotificationScheduler: NotificationRescheduling, TrialReminderScheduling, PendingNotificationClearing {
     static let identifierPrefix = "gw."
-    static let horizonDays = 7
+    static let horizonDays = 16
 
     private let center: NotificationCenterProtocol
     private let bank: PhraseBank

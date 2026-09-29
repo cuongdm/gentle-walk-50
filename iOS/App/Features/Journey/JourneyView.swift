@@ -147,16 +147,21 @@ struct PostcardRow: View {
                         Button { if open { onOpen(stop) } } label: {
                             VStack(spacing: 6) {
                                 ArtImage(name: Art.postcardName(stopID: stop.id), fallbackName: Art.coverName(stopID: stop.id), height: 96)
-                                    .saturation(open ? 1 : 0)
-                                    .overlay { if !open { LockBadge() } }
+                                    // Not reached yet: still in colour, just softer, so it tempts
+                                    // rather than greys out; a small lock in the corner.
+                                    .saturation(open ? 1 : 0.7)
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
+                                            .fill(Palette.artPaper.opacity(open ? 0 : 0.28))
+                                    }
+                                    .overlay(alignment: .bottomTrailing) { if !open { LockBadge().padding(6) } }
                                     .frame(width: 128)
-                                    .opacity(open ? 1 : 0.8)
                                 Text(verbatim: stop.name).typeRole(.caption).foregroundStyle(Palette.text)
                                     .multilineTextAlignment(.center).frame(width: 128)
                             }
                         }
                         .buttonStyle(.plain)
-                        .disabled(!open)
+                        // No `.disabled`: it would grey out the whole card; a tap on a locked one does nothing.
                         .accessibilityLabel(open ? Text("Postcard: \(stop.name)") : Text("\(stop.name), not reached yet"))
                     }
                 }
@@ -193,13 +198,14 @@ struct LockedStopCard: View {
 }
 
 /// Lock over a postcard that is not reached yet (the painting shows in grey underneath).
+/// A small, light lock on a postcard she has not reached yet.
 struct LockBadge: View {
     var body: some View {
         Image(systemName: "lock.fill")
-            .font(.title3)
-            .foregroundStyle(Palette.onStrongFill)
-            .padding(10)
-            .background(Palette.text.opacity(0.55), in: .circle)
+            .font(.caption.weight(.semibold))
+            .foregroundStyle(Palette.text.opacity(0.75))
+            .padding(7)
+            .background(Palette.surface.opacity(0.7), in: .circle)
             .accessibilityHidden(true)
     }
 }

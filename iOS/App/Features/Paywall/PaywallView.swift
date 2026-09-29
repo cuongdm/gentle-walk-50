@@ -185,7 +185,7 @@ struct IncludedList: View {
         VStack(alignment: .leading, spacing: 8) {
             line("All walking levels and weekly plans")
             line("All chair, balance and stretch sessions")
-            line("4 more journeys, and a new one every month")
+            line("4 more journeys, with more coming")
         }
     }
 

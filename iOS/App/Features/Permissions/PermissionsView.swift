@@ -13,7 +13,7 @@ struct PermissionsView: View {
                 ScreenHeader(title: "Two quick things")
                 PermissionCard(
                     title: String(localized: "See your everyday steps"),
-                    detail: String(localized: "We read your steps from Apple Health to show your all-day activity in Progress. Your journey moves with the minutes you spend here. Your data stays on this phone."),
+                    detail: String(localized: "We read your steps from Apple Health to show your all-day activity in Progress. Your journey moves with the minutes you spend here. Your data stays on this phone.\n\nNext, Apple asks what to share: tap “Turn On All”, then “Allow”. Or tap “Don’t Allow” to skip."),
                     button: "Connect Apple Health", isGranted: model.healthConnected) {
                         Task { await model.connectHealth() }
                     }

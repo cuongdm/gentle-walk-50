@@ -51,6 +51,13 @@ struct WalkPlayerView: View {
                 ViewThatFits(in: .vertical) {
                     portrait(showsScene: true)
                     portrait(showsScene: false)
+                    // Largest text sizes: the words scroll so nothing is cut, while Pause, Break and
+                    // This hurts stay on screen (review I11).
+                    VStack(spacing: 10) {
+                        ScrollView { portraitText(showsScene: false) }
+                        PauseButton(isPaused: isPaused, action: session.togglePause)
+                        safetyBar
+                    }
                 }
                 .padding(.horizontal, Metrics.screenMargin)
                 .padding(.bottom, 8)
@@ -69,6 +76,15 @@ struct WalkPlayerView: View {
     /// The picture takes whatever height is left (110–260 pt); too little room drops it.
     private func portrait(showsScene: Bool) -> some View {
         VStack(spacing: 14) {
+            portraitText(showsScene: showsScene)
+            PauseButton(isPaused: isPaused, action: session.togglePause)
+            safetyBar
+        }
+    }
+
+    /// Everything above the controls: top bar, picture, phase, clock, next and caption.
+    private func portraitText(showsScene: Bool) -> some View {
+        VStack(spacing: 14) {
             WalkTopBar(status: model.statusLine, locationOn: session.locationOn?() ?? false, onEnd: session.askToEnd)
             if showsScene {
                 WalkScene(level: model.level, isOutdoors: isOutdoors, height: 260, minHeight: 110)
@@ -78,8 +94,6 @@ struct WalkPlayerView: View {
             if !showsScene { Spacer(minLength: 0) }
             CaptionBar(caption: model.captionText)
             if !isOutdoors { LevelLine(level: model.level) }
-            PauseButton(isPaused: isPaused, action: session.togglePause)
-            safetyBar
         }
     }
 
@@ -162,6 +176,8 @@ struct PhaseBlock: View {
         VStack(spacing: 6) {
             Text(verbatim: label)
                 .typeRole(.phaseLabel)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
                 .foregroundStyle(Palette.onLightFill)
                 .padding(.horizontal, 18)
                 .padding(.vertical, 6)

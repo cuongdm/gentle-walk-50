@@ -77,8 +77,8 @@ struct TodayActions {
     var onFewerReminders: (Bool) -> Void
 }
 
-/// "Good morning, Margaret" with the active-days ring (filling towards the next tree level) beside
-/// it, then a big painting of the coach at home.
+/// "Good morning, Margaret", then the coach at home with the active-days tab on the picture's
+/// right edge, halfway down (her middle, never her face).
 struct TodayHero: View {
     let greeting: String
     let activeDays: Int
@@ -86,37 +86,59 @@ struct TodayHero: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            // The badge sits beside the greeting, never on the painting (it would cover her face).
-            ViewThatFits(in: .horizontal) {
-                HStack(alignment: .center, spacing: 12) { title; Spacer(minLength: 0); badge }
-                VStack(alignment: .leading, spacing: 10) { title; badge }
-            }
+            Text(verbatim: greeting).typeRole(.screenTitle).foregroundStyle(Palette.text)
+                .accessibilityAddTraits(.isHeader)
             // About a fifth of the screen, 190 pt at most, so Start stays in view on an iPhone SE.
             ArtImage.flexible(.sceneLivingRoom, minHeight: 120, maxHeight: 190, fallbackSymbol: "figure.walk")
                 .containerRelativeFrame(.vertical, alignment: .top) { height, _ in min(190, max(120, height * 0.22)) }
+                .overlay(alignment: .trailing) {
+                    ActiveDaysTab(count: activeDays, progress: progress).padding(.trailing, 10)
+                }
         }
     }
+}
 
-    private var title: some View {
-        Text(verbatim: greeting).typeRole(.screenTitle).foregroundStyle(Palette.text)
-            .accessibilityAddTraits(.isHeader)
-    }
+/// The active-days ring as a tab: folded it shows an arrow and the number; a tap slides out
+/// "active days", and it folds back by itself after a few seconds (owner request 29/09/2026).
+struct ActiveDaysTab: View {
+    let count: Int
+    let progress: Double
 
-    private var badge: some View {
-        HStack(spacing: 10) {
-            ActiveDaysRing(count: activeDays, progress: progress)
-            Text(verbatim: Plural.activeDaysLabel(activeDays))
-                .typeRole(.body).fontWeight(.semibold)
-                .foregroundStyle(Palette.text)
-                .fixedSize()
+    @State private var isOpen = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        Button {
+            withAnimation(reduceMotion ? nil : .spring(duration: 0.35)) { isOpen.toggle() }
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: isOpen ? "chevron.right" : "chevron.left")
+                    .font(.body.weight(.semibold))
+                    .foregroundStyle(Palette.textMuted)
+                ActiveDaysRing(count: count, progress: progress)
+                if isOpen {
+                    Text(verbatim: Plural.activeDaysLabel(count))
+                        .typeRole(.body).fontWeight(.semibold)
+                        .foregroundStyle(Palette.text)
+                        .fixedSize()
+                        .transition(.opacity.combined(with: .move(edge: .trailing)))
+                }
+            }
+            .padding(.vertical, 6)
+            .padding(.leading, 10)
+            .padding(.trailing, isOpen ? 14 : 6)
+            .background(Palette.surface, in: .capsule)
+            .shadow(color: Palette.onLightFill.opacity(0.15), radius: 6, y: 2)
+            .contentShape(.capsule)
         }
-        .padding(.vertical, 8)
-        .padding(.leading, 8)
-        .padding(.trailing, 14)
-        .background(Palette.surface, in: .capsule)
-        .shadow(color: .black.opacity(0.12), radius: 6, y: 2)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text(verbatim: Plural.activeDays(activeDays)))
+        .buttonStyle(.plain)
+        .accessibilityLabel(Text(verbatim: Plural.activeDays(count)))
+        // Folds back by itself a few seconds after opening.
+        .task(id: isOpen) {
+            guard isOpen else { return }
+            try? await Task.sleep(for: .seconds(3.5))
+            withAnimation(reduceMotion ? nil : .spring(duration: 0.35)) { isOpen = false }
+        }
     }
 }
 

@@ -9,14 +9,22 @@ struct WorkoutPreviewView: View {
     let onRemindLater: () -> Void
     var onClose: () -> Void = {}
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+    /// Start stays in view at the bottom; at accessibility sizes it sits at the end of the list.
+    private var pinsActions: Bool { !typeSize.isAccessibilitySize }
+    /// The choices carry their own paintings; only a day without choices (chair moves) gets one on top.
+    private var showsHero: Bool { !model.showsPlaceQuestion && model.day.main != .stretch }
+
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 18) {
                 HStack {
                     Spacer()
                     Button("Close", action: onClose).buttonStyle(.smallTextLink)
                 }
-                ArtImage(art: heroArt, height: 170)
+                if showsHero {
+                    ArtImage(art: heroArt, height: 140)
+                }
                 ScreenHeaderText(title: model.title, subtitle: model.subtitle)
                 if model.showsPlaceQuestion {
                     PlaceSelector(place: $model.place)
@@ -33,12 +41,19 @@ struct WorkoutPreviewView: View {
                         .typeRole(.body)
                         .foregroundStyle(Palette.text)
                 }
-                Button("Start now") { onStart(model.request) }.buttonStyle(.primaryAction)
-                Button("Remind me later", action: onRemindLater).buttonStyle(.secondaryAction)
+                if !pinsActions { actions }
             }
             .padding(Metrics.screenMargin)
+            .frame(maxWidth: 700)
+            .frame(maxWidth: .infinity)
         }
+        .pinnedActions(pinsActions) { actions }
         .screenBackground()
+    }
+
+    @ViewBuilder private var actions: some View {
+        Button("Start now") { onStart(model.request) }.buttonStyle(.primaryAction)
+        Button("Remind me later", action: onRemindLater).buttonStyle(.smallTextLink)
     }
 
     /// The coach in the place and kind of session picked, so the picture follows the choices.
@@ -56,6 +71,21 @@ struct WorkoutPreviewView: View {
     }
 }
 
+/// Two or three choices side by side as picture tiles; stacked cards at accessibility text sizes.
+struct ChoiceRow<Tiles: View, Cards: View>: View {
+    @ViewBuilder let tiles: () -> Tiles
+    @ViewBuilder let cards: () -> Cards
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    var body: some View {
+        if typeSize.isAccessibilitySize {
+            VStack(spacing: Metrics.touchSpacing) { cards() }
+        } else {
+            HStack(alignment: .top, spacing: 10) { tiles() }
+        }
+    }
+}
+
 /// "Where are you walking today?" · Indoors · Outdoors · Walking pad, each with its painting.
 struct PlaceSelector: View {
     @Binding var place: WorkoutPlace
@@ -63,12 +93,15 @@ struct PlaceSelector: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Where are you walking today?").typeRole(.cardTitle).foregroundStyle(Palette.text)
-            PictureChoiceCard(art: .sceneLivingRoom, title: "Indoors", subtitle: "Walk in place at home",
-                              isSelected: place == .indoors) { place = .indoors }
-            PictureChoiceCard(art: .sceneOutdoors, title: "Outdoors", subtitle: "Optional, on a walk outside",
-                              isSelected: place == .outdoors) { place = .outdoors }
-            PictureChoiceCard(art: .sceneWalkingPad, title: "Walking pad",
-                              isSelected: place == .pad) { place = .pad }
+            ChoiceRow {
+                PictureTile(art: .sceneLivingRoom, title: "Indoors", isSelected: place == .indoors) { place = .indoors }
+                PictureTile(art: .sceneOutdoors, title: "Outdoors", isSelected: place == .outdoors) { place = .outdoors }
+                PictureTile(art: .sceneWalkingPad, title: "Walking pad", isSelected: place == .pad) { place = .pad }
+            } cards: {
+                PictureChoiceCard(art: .sceneLivingRoom, title: "Indoors", isSelected: place == .indoors) { place = .indoors }
+                PictureChoiceCard(art: .sceneOutdoors, title: "Outdoors", isSelected: place == .outdoors) { place = .outdoors }
+                PictureChoiceCard(art: .sceneWalkingPad, title: "Walking pad", isSelected: place == .pad) { place = .pad }
+            }
         }
     }
 }
@@ -79,13 +112,21 @@ struct LevelSelector: View {
     let suggested: WalkLevel
 
     var body: some View {
-        VStack(spacing: Metrics.touchSpacing) {
-            option(.seated, art: .walkerSeatedMarch)
-            option(.inPlace, art: .walkerMarch)
+        ChoiceRow {
+            tile(.seated, art: .walkerSeatedMarch)
+            tile(.inPlace, art: .walkerMarch)
+        } cards: {
+            card(.seated, art: .walkerSeatedMarch)
+            card(.inPlace, art: .walkerMarch)
         }
     }
 
-    private func option(_ value: WalkLevel, art: Art) -> some View {
+    private func tile(_ value: WalkLevel, art: Art) -> some View {
+        PictureTile(art: art, title: value.title, subtitle: value == suggested ? "Suggested" : nil,
+                    isSelected: level == value) { level = value }
+    }
+
+    private func card(_ value: WalkLevel, art: Art) -> some View {
         PictureChoiceCard(art: art, title: value.title, subtitle: value == suggested ? "Suggested" : nil,
                           isSelected: level == value) { level = value }
     }
@@ -96,7 +137,10 @@ struct StretchVariantSelector: View {
     @Binding var standing: Bool
 
     var body: some View {
-        VStack(spacing: Metrics.touchSpacing) {
+        ChoiceRow {
+            PictureTile(art: .walkerRest, title: "Seated", isSelected: !standing) { standing = false }
+            PictureTile(art: .walkerBehindChair, title: "Standing, holding the chair", isSelected: standing) { standing = true }
+        } cards: {
             PictureChoiceCard(art: .walkerRest, title: "Seated", isSelected: !standing) { standing = false }
             PictureChoiceCard(art: .walkerBehindChair, title: "Standing, holding the chair", isSelected: standing) { standing = true }
         }

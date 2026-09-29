@@ -2,7 +2,7 @@ import SwiftUI
 import GentleWalkCore
 
 /// All journeys (and "Where to next?" when the current one is done): five cards with Done,
-/// In progress, Start or First stop free, then "A new journey every month".
+/// In progress, Start or First stop free, then "More journeys coming" (no monthly promise, review M19).
 struct JourneyListView: View {
     let journeys: [Journey]
     let snapshot: JourneySnapshot
@@ -19,7 +19,7 @@ struct JourneyListView: View {
                     JourneyCard(journey: journey, status: status(of: journey), onChoose: { onChoose(journey) })
                 }
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("A new journey every month").typeRole(.cardTitle)
+                    Text("More journeys coming").typeRole(.cardTitle)
                     Text("Coming next: Route 66").typeRole(.body)
                 }
                 .foregroundStyle(Palette.text)
