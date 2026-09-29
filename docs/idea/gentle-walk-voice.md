@@ -68,7 +68,7 @@ Giảm rủi ro: màn đầu và buổi tập đầu cho thấy giọng dẫn, b
 ## 7. Trụ khác biệt
 1. **Không cần nhìn màn hình:** giọng dẫn từng pha, chuông trầm, phụ đề; điện thoại trong túi hoặc trên bàn đều chạy. Đúng · phiên đầu · reviewer thấy, không login.
 2. **Mọi bài có bản ngồi:** giới hạn cơ thể lọc bài; "This hurts" và "Break" trên mọi player. Đúng · phiên đầu · không login.
-3. **Minh bạch tiền:** ngày và số tiền ở paywall, nhắc trước khi hết trial, Settings; mở thẳng trang huỷ của Apple; không countdown, không giá gạch. Đúng · phiên đầu · reviewer thấy.
+3. **Minh bạch tiền:** ngày và số tiền ở paywall, nhắc trước khi hết trial (thông báo ngày 12 **và** thẻ trên Today từ ngày 10, để người từ chối quyền thông báo vẫn thấy), Settings; mở thẳng trang huỷ của Apple; không countdown, không giá gạch. Đúng · phiên đầu · reviewer thấy.
 - *Bồi thêm, không lên listing:* hành trình địa danh; tự đếm ngồi–đứng khi điện thoại áp ngực (mặc định tính giờ, luôn có đếm tay); chế độ đi ngoài trời.
 - ~~Điện thoại tự đếm làm trụ chính~~: dễ đếm sai, người đi trước không giữ được người dùng bằng nó (§4 dòng 8).
 - ~~Fitness Check~~: phải 4 tuần mới thấy. Phase 2.
@@ -76,8 +76,8 @@ Giảm rủi ro: màn đầu và buổi tập đầu cho thấy giọng dẫn, b
 - Video động tác (từ 28/09/2026) là lớp hình, không phải trụ: bỏ video đi thì bài vẫn làm được bằng giọng.
 
 ## 8. Mô hình giá (chữ)
-- **Gói:** tháng · năm (chọn sẵn, trial 14 ngày, nhắc ngày 12) · trả một lần dùng mãi (vị trí thứ ba, không chọn sẵn). Không gói tuần. Phí store 15%.
-- **Miễn phí:** mỗi ngày một bài đi bộ kèm 1–2 động tác ghế luân phiên, streak, hành trình New York, chặng đầu của mọi hành trình khác, This hurts, chế độ ngoài trời.
+- **Gói:** tháng · năm (chọn sẵn, trial 14 ngày, nhắc ngày 12) · trả một lần dùng mãi (vị trí thứ ba, không chọn sẵn; người đang có gói tự gia hạn được cảnh báo gói cũ vẫn gia hạn tới khi huỷ, mua xong dẫn tới hướng dẫn huỷ). Không gói tuần. Phí store 15%.
+- **Miễn phí:** mỗi ngày một bài đi bộ kèm 1–2 động tác ghế luân phiên, ngày hoạt động (không có streak), 2 ngày nghỉ mặc định Thứ bảy + Chủ nhật (không đổi được), hành trình New York, chặng đầu của mọi hành trình khác, This hurts, chế độ ngoài trời.
 - **Trả phí:** đủ cấp và chương trình tuần (xoay vòng đi bộ · động tác ghế · giãn cơ), thư viện động tác đầy đủ, các buổi giãn cơ đầy đủ (bản miễn phí chỉ có phần hạ nhiệt ngắn sau đi bộ), 4 hành trình còn lại và tuyến mới hằng tháng, lịch sử chi tiết.
 - **Mời nâng cấp ở 3 chỗ:** onboarding · màn hoàn thành New York (thẻ, không popup) · bấm vào nội dung khoá.
 - **LTV:** chưa có dữ liệu; đo theo cohort sau 90 ngày. Break-even CPA = LTV × (1 − phí store), chỉ để tham khảo nếu sau này chạy quảng cáo. Không ghi số tiền ở đâu.
@@ -118,7 +118,7 @@ Giảm rủi ro: màn đầu và buổi tập đầu cho thấy giọng dẫn, b
 | Thứ năm | Động tác ghế và thăng bằng (4–6 bài) | 8–10 phút |
 | Thứ sáu | Đi bộ (dài hơn một chút) + hạ nhiệt giãn cơ | 10–15 phút |
 | Thứ bảy, chủ nhật | Một ngày nghỉ, một ngày tuỳ chọn Extras (đi bộ ngắn, giãn cơ buổi sáng, thăng bằng) | 0–5 phút |
-Người dùng chọn ngày nghỉ; check-in Achy / Okay / Great đổi cường độ trong ngày, không đổi loại buổi. Bản miễn phí không có tuần mẫu: mỗi ngày một bài đi bộ kèm 1–2 động tác ghế luân phiên và hạ nhiệt ngắn.
+Người dùng chọn ngày nghỉ; check-in Achy / Okay / Great đổi cường độ trong ngày, không đổi loại buổi. Bản miễn phí không có tuần mẫu: mỗi ngày một bài đi bộ kèm 1–2 động tác ghế luân phiên và hạ nhiệt ngắn; 2 ngày nghỉ mặc định Thứ bảy + Chủ nhật, không đổi được (lý do: khớp tuần mẫu Pro và tổng kết chủ nhật; nhóm mục tiêu bận việc nhà cuối tuần, không nhắc vào ngày nghỉ để tránh cảm giác tội lỗi, §4 dòng 21).
 
 **Nội dung cần sản xuất (ước tính từ spec):**
 - Giọng: thư viện khoảng 450–550 câu ngắn, app ghép khi chạy. Nữ 58–65 tuổi, trầm ấm, khoảng 130 từ/phút, không gọi tên người dùng. TTS cho prototype, nghe thử với nhóm test rồi chọn thu người thật, TTS hay clone có đồng ý. Huấn luyện viên duyệt kịch bản động tác.
@@ -127,10 +127,10 @@ Người dùng chọn ngày nghỉ; check-in Achy / Okay / Great đổi cường
 - Nhạc: miễn bản quyền, phong cách 70–80 (thế hệ X), cần test.
 - Video: 6 clip chính động tác ghế đã có (28/09/2026, chờ huấn luyện viên duyệt); còn 6–8 clip giãn cơ, bản dễ/khó, ảnh khung tĩnh. Chi tiết ở docs/content-plan.md mục V.
 
-**Thứ tự phase:** 0 test prototype (giọng + tranh so với giọng + video, nhân vật, tuyến muốn đi) → 1 MVP ở trên → 2 tai chi chậm (tai chi đi bộ, tai chi ngồi; test giọng dẫn trước), Fitness Check, widget, Live Activity, cảnh báo nắng nóng theo thời tiết → 3 chó đồng hành, màn chọn nhân vật nếu dữ liệu ủng hộ, Android.
+**Thứ tự phase (chốt 29/09/2026):** 1 code MVP ở trên với asset tạm → 0 test prototype 6–8 người trên bản build (giọng + tranh so với giọng + video, nhân vật, tuyến muốn đi, giãn cơ theo giọng) → sửa UI theo kết quả → sản xuất asset thật (giọng gói thương mại, nhạc, clip giãn cơ, tranh) → nộp → 2 tai chi chậm (tai chi đi bộ, tai chi ngồi; test giọng dẫn trước), Fitness Check, widget, Live Activity, cảnh báo nắng nóng theo thời tiết → 3 chó đồng hành, màn chọn nhân vật nếu dữ liệu ủng hộ, Android.
 
 ## 12. Câu hỏi mở
-- Chỉ giọng + tranh tĩnh có đủ cho người quen video Leslie Sansone không? → test 6–8 phụ nữ 55–75.
+- Chỉ giọng + tranh tĩnh có đủ cho người quen video Leslie Sansone không? → test 6–8 phụ nữ 50–64 (tối đa 2 người 65–68), sau khi code hết MVP.
 - Giọng: thu người thật, TTS hay clone? Nghe thử với nhóm test.
 - CMPedometer có đếm được đi tại chỗ không? Rung có chạy khi khoá màn hình không? Đo trên máy thật.
 - Nhân vật hiện tại hay nhân vật đề xuất giống người dùng hơn? Muốn đi đâu sau New York? Có dùng tai nghe khi đi ngoài trời không? Hỏi trong test.

@@ -1,5 +1,5 @@
 # Kế hoạch test prototype — Gentle Walk 50+ (một trang)
-_28/09/2026 · Bước 4 trong docs/content-plan.md §8 · Mục tiêu: trả lời 4 câu hỏi mở ở docs/idea/gentle-walk-voice.md §12 trước khi viết phần còn lại của kịch bản và code MVP._
+_28/09/2026, sửa 29/09/2026 · Bước 4 trong docs/content-plan.md §8 · **Thời điểm (chốt 29/09/2026): sau khi code hết MVP với asset tạm, trước khi sản xuất asset thật**; mẫu thử M1–M3 chạy trên bản build TestFlight thay vì file rời khi có. Mục tiêu: trả lời 4 câu hỏi mở ở docs/idea/gentle-walk-voice.md §12._
 
 ## Câu hỏi cần trả lời
 1. Chỉ **giọng + tranh tĩnh** có đủ cho người quen xem video không, hay cần clip?
@@ -8,7 +8,7 @@ _28/09/2026 · Bước 4 trong docs/content-plan.md §8 · Mục tiêu: trả l�
 4. **Nhân vật** trông giống họ không; muốn đi hành trình nào sau New York; có dùng tai nghe khi đi ngoài trời không?
 
 ## Người tham gia
-- 6–8 phụ nữ Mỹ **55–70 tuổi**, tự nhận là mới hoặc đã bỏ tập lâu, có đau gối/hông/lưng hoặc thừa cân; không tuyển người tập gym hay chạy bộ. Ưu tiên 2–3 người đang hoặc từng dùng WalkFit, LazyFit, Walk at Home, Leslie Sansone trên YouTube.
+- 6–8 phụ nữ Mỹ **50–64 tuổi** (đúng nhóm mục tiêu; cho phép tối đa 2 người 65–68 để so sánh), tự nhận là mới hoặc đã bỏ tập lâu, có đau gối/hông/lưng hoặc thừa cân; không tuyển người tập gym hay chạy bộ. Ưu tiên 2–3 người đang hoặc từng dùng WalkFit, LazyFit, Walk at Home, Leslie Sansone trên YouTube.
 - Tuyển qua UserInterviews.com hoặc Respondent (lọc tuổi, giới, bang), dự phòng nhóm Facebook đi bộ cho phụ nữ 50+. Thù lao theo mức thường của nền tảng; không ghi số trong tài liệu.
 - Không thu dữ liệu sức khoẻ ngoài câu tự kể; có đồng ý ghi hình; xoá bản ghi sau 90 ngày.
 

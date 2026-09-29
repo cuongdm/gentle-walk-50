@@ -44,9 +44,9 @@ _Updated: 28/09/2026 (thêm giãn cơ, rà soát tài liệu) · by: manh-skill-
 
 ## Price model (words only)
 - Model: subscription tháng và năm, cộng trả một lần dùng mãi. Không gói tuần.
-- Free: mỗi ngày một bài đi bộ kèm 1–2 động tác ghế luân phiên, streak, hành trình New York, chặng đầu mọi hành trình khác, This hurts, chế độ ngoài trời.
+- Free: mỗi ngày một bài đi bộ kèm 1–2 động tác ghế luân phiên, ngày hoạt động (không có streak, không bao giờ "mất chuỗi"), 2 ngày nghỉ mặc định Thứ bảy + Chủ nhật (không đổi được; đổi ngày nghỉ là tính năng Pro), hành trình New York, chặng đầu mọi hành trình khác, This hurts, chế độ ngoài trời.
 - Paid: đủ cấp và chương trình tuần, thư viện động tác đầy đủ, các buổi giãn cơ đầy đủ (bản miễn phí có phần hạ nhiệt ngắn), 4 hành trình còn lại và tuyến mới hằng tháng, lịch sử chi tiết.
-- Trial: 14 ngày trên gói năm (chọn sẵn), nhắc ngày 12; kiểm tra điều kiện bằng StoreKit 2. Trả một lần ở vị trí thứ ba, không chọn sẵn.
+- Trial: 14 ngày trên gói năm (chọn sẵn), nhắc ngày 12 bằng thông báo **và** thẻ trên Today từ ngày 10 tới khi hết trial (không cần quyền thông báo); kiểm tra điều kiện bằng StoreKit 2. Trả một lần ở vị trí thứ ba, không chọn sẵn; người đang có gói tự gia hạn mua trả một lần được cảnh báo trước và dẫn tới hướng dẫn huỷ gói ngay sau khi mua.
 - Mời nâng cấp: onboarding · hoàn thành New York · bấm nội dung khoá. Không hiện mỗi lần mở app.
 - Store fee assumption: 15%.
 
@@ -101,3 +101,6 @@ _Updated: 28/09/2026 (thêm giãn cơ, rà soát tài liệu) · by: manh-skill-
 - 28/09/2026 — Việc cần làm tập trung ở docs/todo.md. Đề xuất chờ chủ app OK: thang cây 7 · 21 · 42 ngày; huấn luyện viên chứng chỉ người lớn tuổi duyệt theo đợt; kế hoạch test prototype docs/research/prototype-test-plan.md; nhạc mua giấy phép theo bài cho app hoặc đặt làm mua đứt. ElevenLabs nâng gói thương mại sau, trước khi đóng gói giọng.
 - 28/09/2026 — Chủ app chốt: (a) không thuê người duyệt giãn cơ, bài lấy từ nguồn công khai có uy tín (NIA Go4Life, NHS, ACSM) và ghi nguồn từng tư thế; (b) nhạc nền tạo bằng AI trên gói trả phí có quyền thương mại (Suno/Udio), không cần ghi nguồn; (c) code trước, asset bổ sung sau. Thang cây và kế hoạch test prototype vẫn theo đề xuất mặc định (docs/todo.md #1, #3).
 - 29/09/2026 — plan approved: docs/plans/2026-09-29-mvp.md (113 tasks / 9 milestones; unticked: none) — by manh-skill-plan. Phạm vi: iOS 18, XcodeGen, bundle com.kmd.gentlewalk, toàn bộ MVP gồm ngoài trời có GPS và tự đếm; không đo hiệu quả thông báo trong v1.
+- 29/09/2026 — Nhạc nền: sau tra cứu docs/research/audio-api-options.md, đề xuất Eleven Music trên cùng tài khoản ElevenLabs trả phí (thay Suno/Udio ở dòng 28/09); phương án rẻ hơn là Gemini API Lyria 3 Pro. Chủ app chốt khi mua gói.
+- 29/09/2026 — Rà soát tài liệu + kế hoạch (docs/reviews/2026-09-29-tai-lieu-ke-hoach.md): 0 Critical, 7 Important chờ chốt (nhắc hết trial không cần quyền, lifetime khi còn gói, ngày nghỉ bản miễn phí, kịch bản A2–A9, thứ tự test prototype, chốt công cụ video trước clip giãn cơ, tuổi người test), 11 Minor (5 đã sửa). Cổng sang code: qua có concerns.
+- 29/09/2026 — Chủ app chốt sau review: (I1) nhắc hết trial thêm thẻ trên Today từ ngày 10, không cần quyền thông báo; (I2) mua trả một lần khi còn gói tự gia hạn: cảnh báo trước trên thẻ, sau khi mua dẫn tới S21; (I3, theo đề xuất) bản miễn phí có 2 ngày nghỉ mặc định Thứ bảy + Chủ nhật, không đổi được; (I5) code hết MVP rồi mới test prototype, trước khi sản xuất asset thật; (I4, I6, I7 theo đề xuất) viết kịch bản A2/A5/A7/A9/A10 tối thiểu trước milestone 4, chốt công cụ video trước clip giãn cơ, người test 50–64 tuổi.

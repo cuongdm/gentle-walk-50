@@ -9,7 +9,8 @@ _Cập nhật 28/09/2026. Mỗi việc có người làm, đầu ra và trạng 
 | 3 | Kế hoạch test prototype | Đã viết một trang: [research/prototype-test-plan.md](research/prototype-test-plan.md). 6–8 phụ nữ Mỹ 55–70, 40 phút mỗi người qua video call, 3 mẫu thử (giọng + tranh, giọng + video, giãn cơ theo giọng), tiêu chí đạt ghi sẵn. | Chờ OK kế hoạch, chưa tuyển |
 | 4 | Nhạc nền | **Chốt 28/09/2026: nhạc tạo bằng AI trên gói trả phí.** Đề xuất sau tra cứu: **Eleven Music trên cùng tài khoản ElevenLabs với giọng** (API chính thức, dữ liệu có giấy phép, thương mại từ Starter); không dùng "Suno API" qua bên trung gian. Chi tiết và giá: [research/audio-api-options.md](research/audio-api-options.md). Phương án cũ (Suno Pro/Premier trên web hoặc Udio gói trả phí: gói trả phí có quyền thương mại, không cần ghi nguồn; chỉ dùng bài tải về khi đang ở gói trả phí; lưu bằng chứng gói và ngày tạo cho từng bài; [điều khoản Suno](https://help.suno.com/en/categories/550145-rights-ownership), verify lại lúc tạo). 3 phong cách × 3–5 bản lặp 2–3 phút, không lời, không giai điệu giống bài có bản quyền. **Làm sau khi code**, player dùng file tạm trước. | Chốt; làm ở giai đoạn asset |
 
-## Nguyên tắc chốt 28/09/2026: code trước, asset bổ sung sau
+## Nguyên tắc chốt 28/09/2026, làm rõ 29/09/2026: code trước, test prototype trên bản build, rồi asset thật
+Thứ tự: code hết MVP với asset tạm → test prototype 6–8 người (docs/research/prototype-test-plan.md) → sửa UI theo kết quả → sản xuất asset thật → nộp. Chữ kịch bản (A2–A10) không phải asset: cần trước milestone 4 (mục I4 dưới).
 Sang manh-skill-plan với asset hiện có (6 clip, A1, giọng prototype). Nhạc AI, giọng gói thương mại, clip giãn cơ, tranh bưu thiếp làm song song hoặc sau khi code chạy; app dùng placeholder tới lúc đó.
 
 ## Trước khi đóng gói giọng vào app
@@ -28,6 +29,18 @@ Sang manh-skill-plan với asset hiện có (6 clip, A1, giọng prototype). Nh�
 - [ ] Kiểm tra trademark tên app; chọn tên store.
 - [ ] Viết Privacy Policy và Terms (cần cho HealthKit và subscription) trước khi nộp; URL ghi vào app-context.
 - [ ] Cân nhắc Git LFS nếu thêm nhiều clip 1080p (repo hiện khoảng 109 MB).
+
+## Backlog từ review 29/09/2026 (docs/reviews/2026-09-29-tai-lieu-ke-hoach.md)
+Plan đã duyệt nên không sửa thầm; các mục dưới đưa vào task tương ứng khi bắt đầu task đó.
+- [ ] **M5** Task 9.1 thêm Support URL và email liên hệ (ASC bắt buộc; S20 "Contact us"); ghi vào app-context Identity.
+- [ ] **M8** Task 5.9 thêm biến thể `paywall-not-eligible`: tiêu đề "Everything in Gentle Walk Pro", nút "Continue"; sửa spec S08.
+- [ ] **M9** Task 3.5 thêm bước: bấm Break khi màn hình khoá, chờ 3 phút, Resume từ màn khoá (Now Playing 3.7) — app không phát âm thanh có thể bị treo.
+- [ ] **M10** Dựng file A1 5 phút cho mẫu thử M1 bằng `tools/video/build_preview.py` (giọng Bella, cảnh tĩnh S11) — cần cho test prototype.
+- [ ] **M11** Task 1.8 ghi chú `CFBundleDisplayName` "Gentle Walk" là tên tạm, đổi khi chốt tên store.
+- [x] ~~**I1–I3, I5** chờ chốt~~ Chốt 29/09/2026 (app-context decisions log); đã ghi vào brief, spec, plan (dòng "Bổ sung 29/09" ở task 2.4, 2.7, 2.13, 5.8, 5.9, 6.2, 6.4, 6.9, 7.1), test plan.
+- [ ] **I4** Viết A2 tối thiểu (khoảng 60 câu, tái dùng 26 câu "Dùng lại" của A1), A5 số đếm, A7 an toàn, A9 check-in, A10 giãn cơ — **trước milestone 4**; nạp vào voice-lines.json (plan 1.5 nạp thêm khi có).
+- [ ] **I6** Chốt công cụ video (Flow Ultra hay khác) **trước** khi tạo clip giãn cơ; 6 clip hiện có sẽ tạo lại; báo giá credit cả phần tạo lại.
+- [x] ~~**I7**~~ Test plan đổi tuổi người tham gia thành 50–64 (+ tối đa 2 người 65–68).
 
 ## Kế hoạch code (đã duyệt 29/09/2026)
 - [x] ~~Gọi `manh-skill-plan`~~ → `docs/plans/2026-09-29-mvp.md`: 113 task / 9 milestone, duyệt toàn bộ. Đã chốt: 0,05 dặm mỗi phút tập, hook `-ScreenshotMode`, không đo hiệu quả thông báo trong v1.

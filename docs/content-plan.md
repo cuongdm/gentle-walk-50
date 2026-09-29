@@ -111,7 +111,7 @@ Mỗi hành trình mới: 6 bưu thiếp + 1 bản đồ (C) · 6 mặt sau bưu
 |---|---|---|
 | 1 | V1 ảnh tham chiếu HLV (xong: GWCoach) · C1 bảng nhân vật · C2 hướng dẫn phong cách | mọi clip và tranh |
 | 2 | V2 6 clip chính (xong, chờ duyệt) + C7 một bưu thiếp New York; huấn luyện viên duyệt | chốt phong cách, prototype |
-| 3 | A1 kịch bản First Walk (xong, nháp 1) + TTS · A10 + kịch bản V2b giãn cơ, tạo 2 clip giãn cơ mẫu | test prototype |
+| 3 | **Chốt công cụ video không watermark, có quyền thương mại** (Google AI Ultra hay công cụ khác, verify) — trước khi tạo thêm clip nào; 6 clip hiện có là bản dựng thử, sẽ tạo lại · A1 + TTS (dựng file 5 phút bằng build_preview) · A10 + kịch bản V2b · **A2 tối thiểu khoảng 60 câu, A5, A7, A9** (chữ cần cho timeline và test, trước milestone 4 của plan) | code MVP, test prototype |
 | 4 | Test prototype 6–8 người: giọng + tranh so với giọng + video, bố cục YouTube và Full screen, nhân vật, tuyến muốn đi, buổi giãn cơ có dễ theo bằng giọng không | quyết định giọng, HLV, nhân vật |
 | 5 | A2–A10 đầy đủ, D1–D11, huấn luyện viên duyệt | code MVP |
 | 6 | Sản xuất giọng (gói có giấy phép thương mại), B2–B3, phụ đề | code MVP |

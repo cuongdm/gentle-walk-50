@@ -1,6 +1,6 @@
 # Gentle Walk 50+ (tên làm việc)
 
-App iPhone dẫn đi bộ trong nhà, động tác ghế và giãn cơ nhẹ bằng giọng cho phụ nữ Mỹ 50–64 mới tập. Chưa có code; repo đang ở giai đoạn ý tưởng và nội dung (stage 1 của pipeline manh-skill).
+App iPhone dẫn đi bộ trong nhà, động tác ghế và giãn cơ nhẹ bằng giọng cho phụ nữ Mỹ 50–64 mới tập. Chưa có code. Ý tưởng đã GO (stage 1) và kế hoạch MVP đã duyệt 29/09/2026 (stage 2); bước tiếp theo là `manh-skill-code` từ Task 1.1 sau khi chủ app chốt các điểm mở trong báo cáo review mới nhất.
 
 ## Đọc theo thứ tự
 | File | Là gì |
@@ -12,7 +12,9 @@ App iPhone dẫn đi bộ trong nhà, động tác ghế và giãn cơ nhẹ b�
 | [docs/scripts/A1-first-walk.md](docs/scripts/A1-first-walk.md) | Kịch bản First Walk 5 phút (nháp 1) |
 | [docs/scripts/V-exercise-clips.md](docs/scripts/V-exercise-clips.md) | Kịch bản 6 clip động tác ghế, lời giọng A4, kết quả clip (mục 5·0) |
 | [docs/video-skill-notes.md](docs/video-skill-notes.md) | Quy trình làm clip trên Google Flow, QA, dựng, bài học |
-| [docs/reviews/](docs/reviews/) | Báo cáo rà soát theo ngày |
+| [docs/plans/2026-09-29-mvp.md](docs/plans/2026-09-29-mvp.md) | Kế hoạch MVP đã duyệt: kiến trúc, bảng tuân thủ, 113 task / 9 milestone, kế hoạch ngôn ngữ và test |
+| [docs/research/audio-api-options.md](docs/research/audio-api-options.md) | Giọng và nhạc AI: nền tảng, giấy phép, chi phí |
+| [docs/reviews/](docs/reviews/) | Báo cáo rà soát theo ngày (mới nhất: 2026-09-29-tai-lieu-ke-hoach.md) |
 | [docs/todo.md](docs/todo.md) | Việc cần làm và các đề xuất đang chờ chủ app chốt |
 | [docs/research/prototype-test-plan.md](docs/research/prototype-test-plan.md) | Kế hoạch test prototype với 6–8 người |
 
@@ -23,3 +25,6 @@ App iPhone dẫn đi bộ trong nhà, động tác ghế và giãn cơ nhẹ b�
 
 ## Bước tiếp theo
 Xem [docs/todo.md](docs/todo.md), rồi "Việc cần làm" trong [docs/content-plan.md](docs/content-plan.md) và báo cáo rà soát mới nhất trong `docs/reviews/`.
+
+## Cấu trúc tài liệu
+Dự án dùng cấu trúc của pipeline manh-skill (`app-context.md` · `docs/idea/` · `docs/plans/` · `docs/reviews/`) thay cho bộ 7 file `docs/*.md` ghi trong `CascadeProjects/CLAUDE.md`. Ánh xạ: tổng quan và PDR → brief + app-context · kiến trúc và code standards → `docs/plans/2026-09-29-mvp.md` mục Decisions và `CLAUDE.md` · roadmap → brief §11 "Thứ tự phase" và `docs/todo.md` · deployment → `docs/release/` (tạo ở stage release).
