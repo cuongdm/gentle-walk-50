@@ -83,7 +83,7 @@ _Updated: 28/09/2026 (thêm giãn cơ, rà soát tài liệu) · by: manh-skill-
 - Thông báo mất tác dụng sau khoảng 4 tuần (HeartSteps) → kho câu xoay vòng, đổi loại theo giai đoạn, giảm dần khi đã thành thói quen.
 - Chưa có cách đo hiệu quả thông báo khi không có backend → chốt ở manh-skill-plan.
 - Giọng ElevenLabs hiện tạo bằng gói Free (phi thương mại, phải ghi nguồn) → chỉ dùng cho prototype; nâng gói có giấy phép thương mại và tạo lại trước khi đóng gói (verify trên trang giá ElevenLabs).
-- Thang cây 4 cấp, mỗi 7 ngày hoạt động → hết thang sau 3 tuần, trước mốc giữ chân 4 tuần → chốt mốc ở manh-skill-plan.
+- Thang cây: mốc 7 · 21 · 42 ngày hoạt động (chốt 29/09/2026), là hằng trong core để đổi sau.
 - Tranh mẫu phong cách nằm ở dự án khác (Idea-Fitness/docs/ai-test/) → chép vào docs/design/reference/ để repo tự đủ.
 
 ## Decisions log (append-only)
@@ -104,3 +104,4 @@ _Updated: 28/09/2026 (thêm giãn cơ, rà soát tài liệu) · by: manh-skill-
 - 29/09/2026 — Nhạc nền: sau tra cứu docs/research/audio-api-options.md, đề xuất Eleven Music trên cùng tài khoản ElevenLabs trả phí (thay Suno/Udio ở dòng 28/09); phương án rẻ hơn là Gemini API Lyria 3 Pro. Chủ app chốt khi mua gói.
 - 29/09/2026 — Rà soát tài liệu + kế hoạch (docs/reviews/2026-09-29-tai-lieu-ke-hoach.md): 0 Critical, 7 Important chờ chốt (nhắc hết trial không cần quyền, lifetime khi còn gói, ngày nghỉ bản miễn phí, kịch bản A2–A9, thứ tự test prototype, chốt công cụ video trước clip giãn cơ, tuổi người test), 11 Minor (5 đã sửa). Cổng sang code: qua có concerns.
 - 29/09/2026 — Chủ app chốt sau review: (I1) nhắc hết trial thêm thẻ trên Today từ ngày 10, không cần quyền thông báo; (I2) mua trả một lần khi còn gói tự gia hạn: cảnh báo trước trên thẻ, sau khi mua dẫn tới S21; (I3, theo đề xuất) bản miễn phí có 2 ngày nghỉ mặc định Thứ bảy + Chủ nhật, không đổi được; (I5) code hết MVP rồi mới test prototype, trước khi sản xuất asset thật; (I4, I6, I7 theo đề xuất) viết kịch bản A2/A5/A7/A9/A10 tối thiểu trước milestone 4, chốt công cụ video trước clip giãn cơ, người test 50–64 tuổi.
+- 29/09/2026 — Chủ app chốt: (M2) thang cây 7 · 21 · 42 ngày hoạt động, sau Tree thêm vòng năm mỗi 42 ngày, đổi sau nếu cần; (I6) tạm dùng Google Flow gói Pro hiện tại cho clip giãn cơ, nâng gói không watermark sau; mọi clip vẫn phải tạo lại hoặc xuất lại không watermark trước khi nộp (plan 9.2).

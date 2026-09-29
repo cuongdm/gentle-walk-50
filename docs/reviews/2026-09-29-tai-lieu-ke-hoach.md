@@ -1,6 +1,6 @@
 # Review tài liệu, nghiên cứu và kế hoạch MVP — 29/09/2026
 
-_Trạng thái: DONE_WITH_CONCERNS (I4, I6 là việc còn mở trong todo; M2 chờ mốc cây) · Cổng sang code: qua (Critical mở: 0) · Stage: manh-skill-review, chạy trên tài liệu trước khi có code_
+_Trạng thái: DONE_WITH_CONCERNS (I4 kịch bản A2–A10 còn phải viết; I6 chấp nhận rủi ro tạo lại clip) · Cổng sang code: qua (Critical mở: 0) · Stage: manh-skill-review, chạy trên tài liệu trước khi có code_
 
 ## 1. Phạm vi & baseline
 - Phạm vi: toàn bộ repo tại commit `e360fd3` (29/09/2026): app-context.md · docs/idea/gentle-walk-voice.md · docs/design/gentle-walk-screen-spec.html · docs/content-plan.md · docs/plans/2026-09-29-mvp.md · docs/todo.md · docs/research/* · docs/scripts/* · docs/video-skill-notes.md · docs/reviews/2026-09-28-tai-lieu.md · README.md · CLAUDE.md · tools/video/* · assets/ · iOS.
@@ -117,9 +117,9 @@ M11 [Plan] [Minor] plan 1.8 — `CFBundleDisplayName` = "Gentle Walk" trong khi 
 | I3 | chủ app giao chọn theo văn hoá → chốt 2 ngày nghỉ cố định T7+CN cho free (lý do ở brief §11) → app-context, brief, spec S07, plan 2.4/2.7/7.1 | 1 | Pass — ghi |
 | I4 | thêm todo: viết A2/A5/A7/A9/A10 trước milestone 4; content-plan §8 bước 3 | — | mở (việc) |
 | I5 | chủ app chốt: code hết MVP rồi test → brief §11, todo, test plan | 1 | Pass — ghi |
-| I6 | content-plan §8 bước 3 đưa "chốt công cụ video" lên đầu; todo | 4 | mở (quyết định gói) |
+| I6 | chủ app chốt: tạm dùng Flow Pro, nâng gói sau; ghi hệ quả tạo lại clip trước khi nộp vào todo, content-plan, app-context | 4 | chấp nhận (rủi ro ghi rõ) |
 | I7 | test plan: 50–64 (+2 người 65–68); brief §12 | — | Pass — ghi |
-| M2 | chờ mốc thang cây (todo #1) | — | mở |
+| M2 | chủ app chốt 7 · 21 · 42 → spec S15/S19, từ vựng, brief §12, app-context, plan 2.5 | 2 | Pass — ghi |
 
 ## 7. Decisions log
-29/09/2026 · review tài liệu + kế hoạch MVP · Critical 0 · Important 7 (chốt và ghi 5 / còn việc 2: I4 kịch bản, I6 công cụ video) · Minor 11 (sửa 5, backlog 5, chờ 1) · cổng sang code: qua có concerns · tiếp: gọi `manh-skill-code` từ Task 1.1; viết A2/A5/A7/A9/A10 trước milestone 4.
+29/09/2026 · review tài liệu + kế hoạch MVP · Critical 0 · Important 7 (chốt và ghi 6 / còn việc 1: I4 kịch bản) · Minor 11 (sửa 6, backlog 5) · cổng sang code: qua có concerns · tiếp: gọi `manh-skill-code` từ Task 1.1; viết A2/A5/A7/A9/A10 trước milestone 4.
