@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "exercises": [
+    {
+      "id": "mv.sit-to-stand", "kind": "move",
+      "name": "Sit-to-stand", "purpose": "For getting up from chairs",
+      "tips": ["Feet flat, hip-width apart", "Lean forward, nose over toes", "Use your hands on the chair if you need to"],
+      "easier": "Push up with your hands on the chair",
+      "harder": "Arms crossed, sit down on a slow count of three",
+      "videoFile": "V1-1.mp4", "counting": "reps", "standing": true,
+      "hiddenFor": [], "easierFor": ["knees"]
+    },
+    {
+      "id": "st.thigh", "kind": "stretch",
+      "name": "Back of the thigh", "purpose": "For easier bending and walking",
+      "tips": ["Heel down, toes up", "Lean forward from the hips, back long"],
+      "easier": "Keep the knee a little bent, lean only a little",
+      "counting": "hold", "standing": false,
+      "hiddenFor": ["jointReplacement"], "easierFor": ["lowerBack", "knees"],
+      "source": "NHS-LPT"
+    }
+  ],
+  "journeys": [
+    {
+      "id": "jr.ny", "title": "New York City", "isFree": true,
+      "stops": [
+        {"id": "pc.ny.zoo", "name": "Central Park Zoo", "mile": 0.0},
+        {"id": "pc.ny.bethesda", "name": "Bethesda Fountain", "mile": 1.0},
+        {"id": "pc.ny.times", "name": "Times Square", "mile": 2.2},
+        {"id": "pc.ny.bryant", "name": "Bryant Park", "mile": 2.8},
+        {"id": "pc.ny.union", "name": "Union Square", "mile": 3.9},
+        {"id": "pc.ny.bridge", "name": "Brooklyn Bridge", "mile": 5.0}
+      ]
+    }
+  ],
+  "voiceLines": [
+    {"id": "a1.04", "text": "Let's begin with heel taps. Lift your heels, then set them down."},
+    {"id": "a2.brisk.seated.1", "text": "A little quicker now. March your feet, and let your arms join in.", "file": "a2.brisk.seated.1.m4a", "duration": 4.2,
+     "words": [{"word": "A", "start": 0.0, "end": 0.1}, {"word": "little", "start": 0.1, "end": 0.4}]},
+    {"id": "a10.thigh.move", "text": "Rest your hands on your other leg, and lean forward from your hips, keeping your back long."}
+  ],
+  "sessions": [
+    {
+      "id": "ses.walk.seated.gentle", "kind": "walk",
+      "segments": [
+        {"kind": "warmup", "seconds": 120, "cues": [{"at": 0, "line": "a1.04"}]},
+        {"kind": "brisk", "seconds": 30, "cues": [{"at": 0, "line": "a2.brisk.seated.1"}]},
+        {"kind": "stretch", "seconds": 60, "exerciseID": "st.thigh", "cues": [{"at": 5, "line": "a10.thigh.move"}]}
+      ]
+    }
+  ]
+}

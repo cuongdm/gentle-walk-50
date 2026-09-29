@@ -11,7 +11,7 @@ _29/09/2026 · Theo [app-context.md](../../app-context.md) (Tone & copy rules, m
 | NHS-LPT | Leicestershire Partnership NHS Trust, [Seated stretching and strengthening exercises (ed. 5)](https://www.leicspart.nhs.uk/wp-content/uploads/2022/07/134-Falls-service-stretching-and-strengthening-exercises-edition-5.pdf): leg stretch (duỗi một chân, gót chạm sàn, mũi chân hướng lên, nghiêng tới), trunk stretch (bản dễ: tay để bên người), trunk twist (đầu thẳng hàng với thân); "nếu đau khớp hoặc cơ, chỉnh tư thế rồi thử lại, còn đau thì dừng" | đùi sau, nghiêng người khi ngồi, xoay thân, luật đau |
 | NHS-HIP | NHS, [Recovering from a hip replacement](https://www.nhs.uk/tests-and-treatments/hip-replacement/recovering-from-a-hip-replacement/): không gập hông quá 90 độ, không vắt chân, không cúi chạm bàn chân hoặc cổ chân | luật ẩn cho "Joint replacement" |
 
-**Thời gian giữ trong app:** Gentle (Achy) 10 giây · Steady (Okay) 20 giây · Strong (Great) 30 giây, mỗi bên 2 lần. Nằm trong khoảng 10–30 giây của NIA-CALF; NHS dùng 2–10 giây với nhiều lần lặp, app chọn giữ lâu hơn ít lần hơn để giọng dẫn được. Không nhún, thở đều (NIA-3T).
+**Thời gian giữ trong app:** Gentle (Achy) 10 giây · Steady (Okay) 20 giây · Strong (Great) 30 giây, **mỗi bên một lần** (sửa 29/09/2026: hai lần mỗi bên làm buổi Steady dài khoảng 13 phút, vượt khung 5–10 phút). Nằm trong khoảng 10–30 giây của NIA-CALF; NHS dùng 2–10 giây với nhiều lần lặp, app chọn giữ lâu hơn ít lần hơn để giọng dẫn được. Không nhún, thở đều (NIA-3T).
 
 **Đã bỏ so với spec 28/09/2026:** tư thế "Hips" (ngồi vắt cổ chân lên gối) — không có nguồn đã xác minh, và NHS-HIP cấm vắt chân sau thay khớp háng. Thay bằng "Side stretch" khi ngồi (NHS-LPT).
 
@@ -35,13 +35,13 @@ Mã tư thế dùng cho `exercises.json` (`kind: stretch`), clip V2b và voice l
 **Luật "Joint replacement":** ẩn st.thigh (gập hông quá 90 độ, NHS-HIP); không có tư thế vắt chân hay cúi chạm bàn chân ở đâu cả. Bản dễ st.ankle giữ gót chạm sàn nên không cần cúi.
 **Luật "I get dizzy easily":** cổ quay và nghiêng nửa tầm, chậm, mắt mở (lựa chọn thận trọng của app, không phải từ nguồn; ghi rõ để người đọc biết).
 
-## 3. Thời lượng buổi (khớp S10 biến thể ngày giãn cơ, task 2.8)
-| Cường độ | Giữ mỗi bên | Số tư thế | Tổng ước tính |
+## 3. Thời lượng buổi (khớp S10 biến thể ngày giãn cơ, task 2.8; số đo từ sessions.json do tools/content/build_content.py sinh)
+| Cường độ | Giữ mỗi bên | Số tư thế | Tổng |
 |---|---|---|---|
-| Gentle (Achy) | 10 giây × 2 | 7 | khoảng 5 phút |
-| Steady (Okay) | 20 giây × 2 (st.chest: 20 × 2) | 7 | khoảng 8 phút |
-| Strong (Great) | 30 giây × 2 | 7 | khoảng 10 phút |
-Một tư thế hai bên (Steady): giới thiệu 6 s · vào tư thế 5 s · giữ 20 s (một câu thở ở giữa) · đổi bên 4 s · giữ 20 s · ra tư thế 4 s ≈ 60 s. Lần lặp thứ hai dùng câu ngắn "Once more" thay cho giới thiệu.
+| Gentle (Achy) | 10 giây × 1 | 7 | khoảng 5,5 phút |
+| Steady (Okay) | 20 giây × 1 | 7 | 7,9 phút (bản ngồi) · 8,0 phút (bản đứng) |
+| Strong (Great) | 30 giây × 1 | 7 | khoảng 10 phút |
+Một tư thế hai bên (Steady): giới thiệu 5 s · dựng tư thế 7 s · "Let's start on the left" + vào tư thế 8 s · giữ 20 s (một câu thở ở giữa) · đổi bên 4 s · giữ 20 s · ra tư thế 4 s = 68 s. Hạ nhiệt sau đi bộ: bỏ câu dựng tư thế, giữ 15 giây, tổng 2,4 phút. `a10.again` dành cho bản đầy đủ sau này.
 
 ## 4. Câu thoại
 Giọng như A1: nữ 58–65, trầm ấm, khoảng 130 từ/phút, không gọi tên, bản dễ trước. Chỉ nói cảm giác ("a gentle pull", "breathe into it"), không hứa hết đau, sửa tư thế hay chữa khớp. Không từ cấm. Phụ đề = đúng chữ. "…" = nghỉ khoảng 2 giây.

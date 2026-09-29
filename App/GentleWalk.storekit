@@ -1,0 +1,87 @@
+{
+  "identifier" : "6A0B2C11-7E0D-4C3B-9D8E-0F4A1B2C3D01",
+  "nonRenewingSubscriptions" : [ ],
+  "products" : [
+    {
+      "displayPrice" : "79.99",
+      "familyShareable" : false,
+      "internalID" : "6A0B2C11-0003-4000-8000-000000000003",
+      "localizations" : [
+        {
+          "description" : "All walks, chair moves, stretches and journeys, yours to keep.",
+          "displayName" : "Gentle Walk Pro, one payment",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.kmd.gentlewalk.pro.lifetime",
+      "referenceName" : "Pro Lifetime (test price)",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [ ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "6A0B2C11-0100-4000-8000-000000000100",
+      "localizations" : [ ],
+      "name" : "Gentle Walk Pro",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [ ],
+          "codeOffers" : [ ],
+          "displayPrice" : "39.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6A0B2C11-0001-4000-8000-000000000001",
+          "introductoryOffer" : {
+            "internalID" : "6A0B2C11-0011-4000-8000-000000000011",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P2W"
+          },
+          "localizations" : [
+            {
+              "description" : "All walks, chair moves, stretches and journeys.",
+              "displayName" : "Gentle Walk Pro, yearly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.kmd.gentlewalk.pro.yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Pro Yearly (test price)",
+          "subscriptionGroupID" : "6A0B2C11-0100-4000-8000-000000000100",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [ ]
+        },
+        {
+          "adHocOffers" : [ ],
+          "codeOffers" : [ ],
+          "displayPrice" : "7.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6A0B2C11-0002-4000-8000-000000000002",
+          "localizations" : [
+            {
+              "description" : "All walks, chair moves, stretches and journeys.",
+              "displayName" : "Gentle Walk Pro, monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.kmd.gentlewalk.pro.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Pro Monthly (test price)",
+          "subscriptionGroupID" : "6A0B2C11-0100-4000-8000-000000000100",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [ ]
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

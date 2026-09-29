@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "journeys": [
+    {
+      "id": "jr.ny",
+      "title": "New York City",
+      "isFree": true,
+      "stops": [
+        {
+          "id": "pc.ny.zoo",
+          "name": "Central Park Zoo",
+          "mile": 0.0
+        },
+        {
+          "id": "pc.ny.bethesda",
+          "name": "Bethesda Fountain",
+          "mile": 1.0
+        },
+        {
+          "id": "pc.ny.times",
+          "name": "Times Square",
+          "mile": 2.2
+        },
+        {
+          "id": "pc.ny.bryant",
+          "name": "Bryant Park",
+          "mile": 2.8
+        },
+        {
+          "id": "pc.ny.union",
+          "name": "Union Square",
+          "mile": 3.9
+        },
+        {
+          "id": "pc.ny.bridge",
+          "name": "Brooklyn Bridge",
+          "mile": 5.0
+        }
+      ]
+    },
+    {
+      "id": "jr.smoky",
+      "title": "Smoky Mountains and the Blue Ridge Parkway",
+      "isFree": false,
+      "stops": [
+        {
+          "id": "pc.smoky.1",
+          "name": "Cades Cove",
+          "mile": 0.0
+        },
+        {
+          "id": "pc.smoky.2",
+          "name": "Laurel Falls",
+          "mile": 2.4
+        },
+        {
+          "id": "pc.smoky.3",
+          "name": "Clingmans Dome",
+          "mile": 4.8
+        },
+        {
+          "id": "pc.smoky.4",
+          "name": "Mingus Mill",
+          "mile": 7.2
+        },
+        {
+          "id": "pc.smoky.5",
+          "name": "Mabry Mill",
+          "mile": 9.6
+        },
+        {
+          "id": "pc.smoky.6",
+          "name": "Linn Cove Viaduct",
+          "mile": 12.0
+        }
+      ]
+    },
+    {
+      "id": "jr.camino",
+      "title": "The Camino de Santiago",
+      "isFree": false,
+      "stops": [
+        {
+          "id": "pc.camino.1",
+          "name": "Sarria",
+          "mile": 0.0
+        },
+        {
+          "id": "pc.camino.2",
+          "name": "Portomarín",
+          "mile": 2.4
+        },
+        {
+          "id": "pc.camino.3",
+          "name": "Palas de Rei",
+          "mile": 4.8
+        },
+        {
+          "id": "pc.camino.4",
+          "name": "Melide",
+          "mile": 7.2
+        },
+        {
+          "id": "pc.camino.5",
+          "name": "O Pedrouzo",
+          "mile": 9.6
+        },
+        {
+          "id": "pc.camino.6",
+          "name": "Obradoiro Square",
+          "mile": 12.0
+        }
+      ]
+    },
+    {
+      "id": "jr.ne",
+      "title": "New England lighthouses",
+      "isFree": false,
+      "stops": [
+        {
+          "id": "pc.ne.1",
+          "name": "Portland Head Light",
+          "mile": 0.0
+        },
+        {
+          "id": "pc.ne.2",
+          "name": "Nubble Light",
+          "mile": 2.4
+        },
+        {
+          "id": "pc.ne.3",
+          "name": "Portsmouth Harbor",
+          "mile": 4.8
+        },
+        {
+          "id": "pc.ne.4",
+          "name": "Rockport",
+          "mile": 7.2
+        },
+        {
+          "id": "pc.ne.5",
+          "name": "Plymouth",
+          "mile": 9.6
+        },
+        {
+          "id": "pc.ne.6",
+          "name": "Nauset Light",
+          "mile": 12.0
+        }
+      ]
+    },
+    {
+      "id": "jr.pch",
+      "title": "Pacific Coast Highway",
+      "isFree": false,
+      "stops": [
+        {
+          "id": "pc.pch.1",
+          "name": "Carmel-by-the-Sea",
+          "mile": 0.0
+        },
+        {
+          "id": "pc.pch.2",
+          "name": "Point Lobos",
+          "mile": 2.4
+        },
+        {
+          "id": "pc.pch.3",
+          "name": "Bixby Bridge",
+          "mile": 4.8
+        },
+        {
+          "id": "pc.pch.4",
+          "name": "Pfeiffer Beach",
+          "mile": 7.2
+        },
+        {
+          "id": "pc.pch.5",
+          "name": "McWay Falls",
+          "mile": 9.6
+        },
+        {
+          "id": "pc.pch.6",
+          "name": "Hearst Castle",
+          "mile": 12.0
+        }
+      ]
+    }
+  ]
+}

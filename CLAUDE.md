@@ -14,6 +14,7 @@ App iPhone/iPad dẫn đi bộ trong nhà, động tác ghế và giãn cơ bằ
 - `ForEach` / `List` identity: a stable stored id (`Identifiable`); never indices, `\.self` on structs, or ids minted in `body`; rows unary.
 - Navigation: `TabView` (Today, Journey, Progress, Me), one `NavigationStack` per tab + one `navigationDestination(for:)` per type; onboarding, players and paywall via `fullScreenCover(item:)`; `sheet(item:)` for optional data.
 - No hard-coded screen widths: never `UIScreen.main`; use layout containers, `ViewThatFits`, text styles. Body text ≥ 17 pt, touch targets ≥ 56 pt, contrast ≥ 4.5:1 (design spec).
+- Design tokens only: colours from `Palette` (App/Design/Tokens.swift, asset colour sets with dark variants), fonts via `.typeRole(_:)` (Dynamic Type), buttons via `.buttonStyle(.primaryAction / .secondaryAction / .dangerAction)`, spacing from `Metrics`. Every new text-on-fill pair goes into `Palette.textPairs` so `DesignTokenTests` checks 4.5:1 in light and dark. Preview gallery: `-ScreenshotMode tokens`.
 - Data: SwiftData with `VersionedSchema` + `SchemaMigrationPlan`; never delete an old schema version; `cloudKitDatabase: .none` (health data never goes to iCloud).
 - Workout audio is one `AVMutableComposition` played by one `AVPlayer` (voice, bells, music + audio mix ducking). Never play silent audio to keep the app alive (2.5.4).
 - Content (exercises, journeys, voice lines, notification phrases) is bundled JSON in `App/Resources/Content/`; check it with `ContentValidator`.
@@ -36,6 +37,6 @@ App iPhone/iPad dẫn đi bộ trong nhà, động tác ghế và giãn cơ bằ
 - Tests: Swift Testing; `@Suite(.serialized)` for suites sharing a store, UserDefaults or a `SKTestSession`; in-memory `ModelContainer` per test; `App/GentleWalk.storekit` for StoreKit tests; dates, time zones and calendars injected.
 
 ## Git
-- Commits carry the owner's own identity as already used in this repo (`Cuong`); never an AI identity.
+- Commits carry the owner's own identity as already used in this repo (`Cuong`, repo-local email set with `git config user.email`); never an AI identity.
 - No AI attribution anywhere: no `Co-Authored-By`, no "Generated with …" in commits, PRs, tags or release notes.
 - Commit only when asked; suggest a commit point with a ready message instead. Never push, tag or release without an explicit yes.

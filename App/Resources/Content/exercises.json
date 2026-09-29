@@ -1,0 +1,277 @@
+{
+  "schemaVersion": 1,
+  "exercises": [
+    {
+      "id": "mv.sit-to-stand",
+      "kind": "move",
+      "name": "Sit-to-stand",
+      "purpose": "For getting up from chairs",
+      "tips": [
+        "Feet flat, hip-width apart",
+        "Lean forward, nose over toes",
+        "Use your hands on the chair if you need to"
+      ],
+      "easier": "Push up with your hands on the chair",
+      "harder": "Arms crossed, sit down on a slow count of three",
+      "videoFile": "V1-1.mp4",
+      "counting": "reps",
+      "standing": true,
+      "hiddenFor": [],
+      "easierFor": [
+        "knees"
+      ]
+    },
+    {
+      "id": "mv.knee-lift",
+      "kind": "move",
+      "name": "Seated knee lift",
+      "purpose": "For every step you take",
+      "tips": [
+        "Hold the sides of your seat",
+        "Sit tall, don't lean back",
+        "Lift, then set down softly"
+      ],
+      "easier": "Just lift your heel, toes stay down",
+      "harder": "Lift a little higher and swing the opposite arm",
+      "videoFile": "V2-1.mp4",
+      "counting": "timed",
+      "standing": false,
+      "hiddenFor": [],
+      "easierFor": [
+        "hips"
+      ]
+    },
+    {
+      "id": "mv.leg-ext",
+      "kind": "move",
+      "name": "Seated leg extension",
+      "purpose": "For climbing stairs",
+      "tips": [
+        "Hold the sides of your seat",
+        "Leg points straight ahead",
+        "Lower it slowly"
+      ],
+      "easier": "Straighten your leg only halfway",
+      "harder": "Hold it up for a count of three",
+      "videoFile": "V3-1.mp4",
+      "counting": "timed",
+      "standing": false,
+      "hiddenFor": [],
+      "easierFor": [
+        "knees"
+      ]
+    },
+    {
+      "id": "mv.heel-toe",
+      "kind": "move",
+      "name": "Heel and toe raises",
+      "purpose": "For reaching a high shelf",
+      "tips": [
+        "Feet flat to start",
+        "Lift heels, then lower",
+        "Now lift toes, heels stay down"
+      ],
+      "easier": "Heels only, small lifts",
+      "harder": "Stand behind your chair and rise onto your toes",
+      "videoFile": "V4-1.mp4",
+      "counting": "timed",
+      "standing": false,
+      "hiddenFor": [],
+      "easierFor": []
+    },
+    {
+      "id": "mv.wall-push",
+      "kind": "move",
+      "name": "Wall push-up",
+      "purpose": "For pushing doors and lifting bags",
+      "tips": [
+        "Hands flat at shoulder height",
+        "Body straight, like a plank",
+        "Heels stay on the floor"
+      ],
+      "easier": "Stand closer, bend your elbows just a bit",
+      "harder": "Step your feet back a little",
+      "videoFile": "V5-1.mp4",
+      "counting": "timed",
+      "standing": true,
+      "hiddenFor": [
+        "standingIsHard"
+      ],
+      "easierFor": [
+        "shoulders"
+      ]
+    },
+    {
+      "id": "mv.single-leg",
+      "kind": "move",
+      "name": "Single-leg stand",
+      "purpose": "For steadier balance",
+      "tips": [
+        "Hold the chair with both hands",
+        "Look at one spot ahead",
+        "Lift your foot just a little"
+      ],
+      "easier": "Lift only your heel, toes stay down",
+      "harder": "Hold on with just one hand",
+      "videoFile": "V6-1.mp4",
+      "counting": "timed",
+      "standing": true,
+      "hiddenFor": [],
+      "easierFor": [
+        "dizzy"
+      ]
+    },
+    {
+      "id": "st.neck-turn",
+      "kind": "stretch",
+      "name": "Neck turn",
+      "purpose": "For looking over your shoulder",
+      "tips": [
+        "Chin level, shoulders down",
+        "Only as far as is comfortable"
+      ],
+      "easier": "Turn halfway, eyes open, move slowly",
+      "counting": "hold",
+      "standing": false,
+      "hiddenFor": [],
+      "easierFor": [
+        "dizzy",
+        "shoulders"
+      ],
+      "source": "NHS-SIT"
+    },
+    {
+      "id": "st.neck-tilt",
+      "kind": "stretch",
+      "name": "Side of the neck",
+      "purpose": "For a looser neck",
+      "tips": [
+        "Hand on the opposite shoulder",
+        "Ear toward shoulder, no pulling"
+      ],
+      "easier": "Tilt a little, skip the hand on the shoulder",
+      "counting": "hold",
+      "standing": false,
+      "hiddenFor": [],
+      "easierFor": [
+        "dizzy",
+        "shoulders"
+      ],
+      "source": "NHS-FLEX"
+    },
+    {
+      "id": "st.chest",
+      "kind": "stretch",
+      "name": "Chest and shoulders",
+      "purpose": "For sitting tall",
+      "tips": [
+        "Shoulders back and down",
+        "Chest forward and up, gently"
+      ],
+      "easier": "Hands resting on your hips instead of arms out",
+      "counting": "hold",
+      "standing": false,
+      "hiddenFor": [],
+      "easierFor": [
+        "shoulders"
+      ],
+      "source": "NHS-SIT"
+    },
+    {
+      "id": "st.twist",
+      "kind": "stretch",
+      "name": "Upper back twist",
+      "purpose": "For turning to reach for things",
+      "tips": [
+        "Arms crossed, hands on shoulders",
+        "Turn from the chest, hips stay still"
+      ],
+      "easier": "Turn a small way, head in line with your body",
+      "counting": "hold",
+      "standing": false,
+      "hiddenFor": [],
+      "easierFor": [
+        "lowerBack"
+      ],
+      "source": "NHS-SIT"
+    },
+    {
+      "id": "st.side",
+      "kind": "stretch",
+      "name": "Side stretch",
+      "purpose": "For reaching up and across",
+      "tips": [
+        "Sit tall, feet flat",
+        "Reach up and over, or slide your hand down"
+      ],
+      "easier": "Arm by your side, lean a little",
+      "counting": "hold",
+      "standing": false,
+      "hiddenFor": [],
+      "easierFor": [
+        "lowerBack",
+        "shoulders"
+      ],
+      "source": "NHS-LPT"
+    },
+    {
+      "id": "st.thigh",
+      "kind": "stretch",
+      "name": "Back of the thigh",
+      "purpose": "For easier bending and walking",
+      "tips": [
+        "Heel down, toes up",
+        "Lean forward from the hips, back long"
+      ],
+      "easier": "Keep the knee a little bent, lean only a little",
+      "counting": "hold",
+      "standing": false,
+      "hiddenFor": [
+        "jointReplacement"
+      ],
+      "easierFor": [
+        "lowerBack",
+        "knees"
+      ],
+      "source": "NHS-LPT"
+    },
+    {
+      "id": "st.ankle",
+      "kind": "stretch",
+      "name": "Ankle circles and points",
+      "purpose": "For steadier steps",
+      "tips": [
+        "Hold the side of the seat",
+        "Point your toes away, then back"
+      ],
+      "easier": "Keep your heel on the floor, just lift and lower your toes",
+      "counting": "hold",
+      "standing": false,
+      "hiddenFor": [],
+      "easierFor": [
+        "knees"
+      ],
+      "source": "NHS-SIT"
+    },
+    {
+      "id": "st.calf",
+      "kind": "stretch",
+      "name": "Calf stretch",
+      "purpose": "For comfortable walking",
+      "tips": [
+        "Both feet flat, back heel down",
+        "Hold the chair the whole time"
+      ],
+      "easier": "Shorter step back, back knee a little bent",
+      "counting": "hold",
+      "standing": true,
+      "hiddenFor": [
+        "standingIsHard"
+      ],
+      "easierFor": [
+        "knees"
+      ],
+      "source": "NHS-FLEX"
+    }
+  ]
+}

@@ -1,0 +1,4090 @@
+{
+  "schemaVersion": 1,
+  "sessions": [
+    {
+      "id": "ses.firstWalk",
+      "kind": "firstWalk",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 27,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.01"
+            },
+            {
+              "at": 9,
+              "line": "a1.02"
+            },
+            {
+              "at": 17,
+              "line": "a1.03"
+            }
+          ]
+        },
+        {
+          "kind": "warmup",
+          "seconds": 93,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.04"
+            },
+            {
+              "at": 10,
+              "line": "a1.05"
+            },
+            {
+              "at": 21,
+              "line": "a1.06"
+            },
+            {
+              "at": 31,
+              "line": "a1.07"
+            },
+            {
+              "at": 43,
+              "line": "a1.08"
+            },
+            {
+              "at": 53,
+              "line": "a1.09"
+            },
+            {
+              "at": 65,
+              "line": "a1.10"
+            },
+            {
+              "at": 75,
+              "line": "a1.11"
+            },
+            {
+              "at": 85,
+              "line": "a1.12"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.13"
+            },
+            {
+              "at": 10,
+              "line": "a1.14"
+            },
+            {
+              "at": 20,
+              "line": "a1.15"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.16"
+            },
+            {
+              "at": 10,
+              "line": "a1.17"
+            },
+            {
+              "at": 20,
+              "line": "a1.18"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.19"
+            },
+            {
+              "at": 10,
+              "line": "a1.20"
+            },
+            {
+              "at": 20,
+              "line": "a1.21"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.22"
+            },
+            {
+              "at": 10,
+              "line": "a1.23"
+            },
+            {
+              "at": 22,
+              "line": "a1.24"
+            }
+          ]
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.25"
+            },
+            {
+              "at": 10,
+              "line": "a1.26"
+            },
+            {
+              "at": 22,
+              "line": "a1.27"
+            },
+            {
+              "at": 34,
+              "line": "a1.28"
+            },
+            {
+              "at": 44,
+              "line": "a1.29"
+            },
+            {
+              "at": 54,
+              "line": "a1.30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.walk.seated.gentle",
+      "kind": "walk",
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.open.1"
+            },
+            {
+              "at": 8,
+              "line": "a2.setup.seated.1"
+            },
+            {
+              "at": 20,
+              "line": "a1.04"
+            },
+            {
+              "at": 31,
+              "line": "a1.05"
+            },
+            {
+              "at": 42,
+              "line": "a1.06"
+            },
+            {
+              "at": 53,
+              "line": "a1.07"
+            },
+            {
+              "at": 64,
+              "line": "a1.08"
+            },
+            {
+              "at": 75,
+              "line": "a1.09"
+            },
+            {
+              "at": 86,
+              "line": "a1.10"
+            },
+            {
+              "at": 97,
+              "line": "a1.11"
+            },
+            {
+              "at": 112,
+              "line": "a1.12"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.seated.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.14"
+            },
+            {
+              "at": 20,
+              "line": "a1.15"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.16"
+            },
+            {
+              "at": 10,
+              "line": "a1.17"
+            },
+            {
+              "at": 22,
+              "line": "a1.18"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.last"
+            },
+            {
+              "at": 10,
+              "line": "a1.20"
+            },
+            {
+              "at": 20,
+              "line": "a1.15"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.22"
+            },
+            {
+              "at": 10,
+              "line": "a1.23"
+            }
+          ]
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.cool.seated.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.26"
+            },
+            {
+              "at": 22,
+              "line": "a1.27"
+            },
+            {
+              "at": 34,
+              "line": "a1.28"
+            },
+            {
+              "at": 52,
+              "line": "a2.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.walk.seated.steady",
+      "kind": "walk",
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.open.1"
+            },
+            {
+              "at": 8,
+              "line": "a2.setup.seated.1"
+            },
+            {
+              "at": 20,
+              "line": "a1.04"
+            },
+            {
+              "at": 31,
+              "line": "a1.05"
+            },
+            {
+              "at": 42,
+              "line": "a1.06"
+            },
+            {
+              "at": 53,
+              "line": "a1.07"
+            },
+            {
+              "at": 64,
+              "line": "a1.08"
+            },
+            {
+              "at": 75,
+              "line": "a1.09"
+            },
+            {
+              "at": 86,
+              "line": "a1.10"
+            },
+            {
+              "at": 97,
+              "line": "a1.11"
+            },
+            {
+              "at": 112,
+              "line": "a1.12"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.seated.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.14"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.16"
+            },
+            {
+              "at": 10,
+              "line": "a1.17"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            },
+            {
+              "at": 52,
+              "line": "a2.round.1"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.last"
+            },
+            {
+              "at": 10,
+              "line": "a1.20"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.22"
+            },
+            {
+              "at": 10,
+              "line": "a1.23"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            }
+          ]
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.cool.seated.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.26"
+            },
+            {
+              "at": 22,
+              "line": "a1.27"
+            },
+            {
+              "at": 34,
+              "line": "a1.28"
+            },
+            {
+              "at": 60,
+              "line": "a2.cool.mid.1"
+            },
+            {
+              "at": 112,
+              "line": "a2.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.walk.seated.strong",
+      "kind": "walk",
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.open.1"
+            },
+            {
+              "at": 8,
+              "line": "a2.setup.seated.1"
+            },
+            {
+              "at": 20,
+              "line": "a1.04"
+            },
+            {
+              "at": 31,
+              "line": "a1.05"
+            },
+            {
+              "at": 42,
+              "line": "a1.06"
+            },
+            {
+              "at": 53,
+              "line": "a1.07"
+            },
+            {
+              "at": 64,
+              "line": "a1.08"
+            },
+            {
+              "at": 75,
+              "line": "a1.09"
+            },
+            {
+              "at": 86,
+              "line": "a1.10"
+            },
+            {
+              "at": 97,
+              "line": "a1.11"
+            },
+            {
+              "at": 112,
+              "line": "a1.12"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.seated.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.14"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.16"
+            },
+            {
+              "at": 10,
+              "line": "a1.17"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            },
+            {
+              "at": 52,
+              "line": "a2.round.1"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.19"
+            },
+            {
+              "at": 10,
+              "line": "a1.20"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.22"
+            },
+            {
+              "at": 10,
+              "line": "a1.23"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            },
+            {
+              "at": 52,
+              "line": "a2.round.1"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.last"
+            },
+            {
+              "at": 10,
+              "line": "a1.20"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.22"
+            },
+            {
+              "at": 10,
+              "line": "a1.23"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            }
+          ]
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.cool.seated.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.26"
+            },
+            {
+              "at": 22,
+              "line": "a1.27"
+            },
+            {
+              "at": 34,
+              "line": "a1.28"
+            },
+            {
+              "at": 60,
+              "line": "a2.cool.mid.1"
+            },
+            {
+              "at": 112,
+              "line": "a2.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.walk.inplace.gentle",
+      "kind": "walk",
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.open.1"
+            },
+            {
+              "at": 8,
+              "line": "a2.setup.inplace.1"
+            },
+            {
+              "at": 20,
+              "line": "a1.04"
+            },
+            {
+              "at": 31,
+              "line": "a1.05"
+            },
+            {
+              "at": 42,
+              "line": "a1.06"
+            },
+            {
+              "at": 53,
+              "line": "a1.07"
+            },
+            {
+              "at": 64,
+              "line": "a2.warm.1"
+            },
+            {
+              "at": 75,
+              "line": "a1.09"
+            },
+            {
+              "at": 86,
+              "line": "a1.10"
+            },
+            {
+              "at": 97,
+              "line": "a1.11"
+            },
+            {
+              "at": 112,
+              "line": "a1.12"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.inplace.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.14"
+            },
+            {
+              "at": 20,
+              "line": "a1.15"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.16"
+            },
+            {
+              "at": 10,
+              "line": "a1.17"
+            },
+            {
+              "at": 22,
+              "line": "a1.18"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.last"
+            },
+            {
+              "at": 10,
+              "line": "a1.20"
+            },
+            {
+              "at": 20,
+              "line": "a1.15"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.22"
+            },
+            {
+              "at": 10,
+              "line": "a1.23"
+            }
+          ]
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.cool.inplace.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.26"
+            },
+            {
+              "at": 22,
+              "line": "a1.27"
+            },
+            {
+              "at": 34,
+              "line": "a1.28"
+            },
+            {
+              "at": 52,
+              "line": "a2.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.walk.inplace.steady",
+      "kind": "walk",
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.open.1"
+            },
+            {
+              "at": 8,
+              "line": "a2.setup.inplace.1"
+            },
+            {
+              "at": 20,
+              "line": "a1.04"
+            },
+            {
+              "at": 31,
+              "line": "a1.05"
+            },
+            {
+              "at": 42,
+              "line": "a1.06"
+            },
+            {
+              "at": 53,
+              "line": "a1.07"
+            },
+            {
+              "at": 64,
+              "line": "a2.warm.1"
+            },
+            {
+              "at": 75,
+              "line": "a1.09"
+            },
+            {
+              "at": 86,
+              "line": "a1.10"
+            },
+            {
+              "at": 97,
+              "line": "a1.11"
+            },
+            {
+              "at": 112,
+              "line": "a1.12"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.inplace.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.14"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.16"
+            },
+            {
+              "at": 10,
+              "line": "a1.17"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            },
+            {
+              "at": 52,
+              "line": "a2.round.1"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.last"
+            },
+            {
+              "at": 10,
+              "line": "a1.20"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.22"
+            },
+            {
+              "at": 10,
+              "line": "a1.23"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            }
+          ]
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.cool.inplace.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.26"
+            },
+            {
+              "at": 22,
+              "line": "a1.27"
+            },
+            {
+              "at": 34,
+              "line": "a1.28"
+            },
+            {
+              "at": 60,
+              "line": "a2.cool.mid.1"
+            },
+            {
+              "at": 112,
+              "line": "a2.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.walk.inplace.strong",
+      "kind": "walk",
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.open.1"
+            },
+            {
+              "at": 8,
+              "line": "a2.setup.inplace.1"
+            },
+            {
+              "at": 20,
+              "line": "a1.04"
+            },
+            {
+              "at": 31,
+              "line": "a1.05"
+            },
+            {
+              "at": 42,
+              "line": "a1.06"
+            },
+            {
+              "at": 53,
+              "line": "a1.07"
+            },
+            {
+              "at": 64,
+              "line": "a2.warm.1"
+            },
+            {
+              "at": 75,
+              "line": "a1.09"
+            },
+            {
+              "at": 86,
+              "line": "a1.10"
+            },
+            {
+              "at": 97,
+              "line": "a1.11"
+            },
+            {
+              "at": 112,
+              "line": "a1.12"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.inplace.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.14"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.16"
+            },
+            {
+              "at": 10,
+              "line": "a1.17"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            },
+            {
+              "at": 52,
+              "line": "a2.round.1"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.19"
+            },
+            {
+              "at": 10,
+              "line": "a1.20"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.22"
+            },
+            {
+              "at": 10,
+              "line": "a1.23"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            },
+            {
+              "at": 52,
+              "line": "a2.round.1"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.last"
+            },
+            {
+              "at": 10,
+              "line": "a1.20"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.22"
+            },
+            {
+              "at": 10,
+              "line": "a1.23"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            }
+          ]
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.cool.inplace.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.26"
+            },
+            {
+              "at": 22,
+              "line": "a1.27"
+            },
+            {
+              "at": 34,
+              "line": "a1.28"
+            },
+            {
+              "at": 60,
+              "line": "a2.cool.mid.1"
+            },
+            {
+              "at": 112,
+              "line": "a2.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.walk.pad.gentle",
+      "kind": "walk",
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.open.1"
+            },
+            {
+              "at": 8,
+              "line": "a2.setup.pad.1"
+            },
+            {
+              "at": 20,
+              "line": "a1.04"
+            },
+            {
+              "at": 31,
+              "line": "a1.05"
+            },
+            {
+              "at": 42,
+              "line": "a1.06"
+            },
+            {
+              "at": 53,
+              "line": "a1.07"
+            },
+            {
+              "at": 64,
+              "line": "a2.warm.1"
+            },
+            {
+              "at": 75,
+              "line": "a1.09"
+            },
+            {
+              "at": 86,
+              "line": "a1.10"
+            },
+            {
+              "at": 97,
+              "line": "a1.11"
+            },
+            {
+              "at": 112,
+              "line": "a1.12"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.pad.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.14"
+            },
+            {
+              "at": 20,
+              "line": "a1.15"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.16"
+            },
+            {
+              "at": 10,
+              "line": "a1.17"
+            },
+            {
+              "at": 22,
+              "line": "a1.18"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.last"
+            },
+            {
+              "at": 10,
+              "line": "a1.20"
+            },
+            {
+              "at": 20,
+              "line": "a1.15"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.22"
+            },
+            {
+              "at": 10,
+              "line": "a1.23"
+            }
+          ]
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.cool.pad.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.26"
+            },
+            {
+              "at": 22,
+              "line": "a1.27"
+            },
+            {
+              "at": 34,
+              "line": "a1.28"
+            },
+            {
+              "at": 40,
+              "line": "a2.cool.pad.2"
+            },
+            {
+              "at": 52,
+              "line": "a2.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.walk.pad.steady",
+      "kind": "walk",
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.open.1"
+            },
+            {
+              "at": 8,
+              "line": "a2.setup.pad.1"
+            },
+            {
+              "at": 20,
+              "line": "a1.04"
+            },
+            {
+              "at": 31,
+              "line": "a1.05"
+            },
+            {
+              "at": 42,
+              "line": "a1.06"
+            },
+            {
+              "at": 53,
+              "line": "a1.07"
+            },
+            {
+              "at": 64,
+              "line": "a2.warm.1"
+            },
+            {
+              "at": 75,
+              "line": "a1.09"
+            },
+            {
+              "at": 86,
+              "line": "a1.10"
+            },
+            {
+              "at": 97,
+              "line": "a1.11"
+            },
+            {
+              "at": 112,
+              "line": "a1.12"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.pad.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.14"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.16"
+            },
+            {
+              "at": 10,
+              "line": "a1.17"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            },
+            {
+              "at": 52,
+              "line": "a2.round.1"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.last"
+            },
+            {
+              "at": 10,
+              "line": "a1.20"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.22"
+            },
+            {
+              "at": 10,
+              "line": "a1.23"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            }
+          ]
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.cool.pad.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.26"
+            },
+            {
+              "at": 22,
+              "line": "a1.27"
+            },
+            {
+              "at": 34,
+              "line": "a1.28"
+            },
+            {
+              "at": 60,
+              "line": "a2.cool.mid.1"
+            },
+            {
+              "at": 100,
+              "line": "a2.cool.pad.2"
+            },
+            {
+              "at": 112,
+              "line": "a2.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.walk.pad.strong",
+      "kind": "walk",
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.open.1"
+            },
+            {
+              "at": 8,
+              "line": "a2.setup.pad.1"
+            },
+            {
+              "at": 20,
+              "line": "a1.04"
+            },
+            {
+              "at": 31,
+              "line": "a1.05"
+            },
+            {
+              "at": 42,
+              "line": "a1.06"
+            },
+            {
+              "at": 53,
+              "line": "a1.07"
+            },
+            {
+              "at": 64,
+              "line": "a2.warm.1"
+            },
+            {
+              "at": 75,
+              "line": "a1.09"
+            },
+            {
+              "at": 86,
+              "line": "a1.10"
+            },
+            {
+              "at": 97,
+              "line": "a1.11"
+            },
+            {
+              "at": 112,
+              "line": "a1.12"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.pad.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.14"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.16"
+            },
+            {
+              "at": 10,
+              "line": "a1.17"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            },
+            {
+              "at": 52,
+              "line": "a2.round.1"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.19"
+            },
+            {
+              "at": 10,
+              "line": "a1.20"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.22"
+            },
+            {
+              "at": 10,
+              "line": "a1.23"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            },
+            {
+              "at": 52,
+              "line": "a2.round.1"
+            }
+          ]
+        },
+        {
+          "kind": "brisk",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.brisk.last"
+            },
+            {
+              "at": 10,
+              "line": "a1.20"
+            },
+            {
+              "at": 30,
+              "line": "a2.brisk.mid.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.10s"
+            }
+          ]
+        },
+        {
+          "kind": "easy",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a1.22"
+            },
+            {
+              "at": 10,
+              "line": "a1.23"
+            },
+            {
+              "at": 30,
+              "line": "a2.easy.mid.1"
+            }
+          ]
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 120,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a2.cool.pad.1"
+            },
+            {
+              "at": 10,
+              "line": "a1.26"
+            },
+            {
+              "at": 22,
+              "line": "a1.27"
+            },
+            {
+              "at": 34,
+              "line": "a1.28"
+            },
+            {
+              "at": 60,
+              "line": "a2.cool.mid.1"
+            },
+            {
+              "at": 100,
+              "line": "a2.cool.pad.2"
+            },
+            {
+              "at": 112,
+              "line": "a2.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.chair.default",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 8,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a9.chair.open"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 90,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v1.1"
+            },
+            {
+              "at": 10,
+              "line": "a4.v1.2"
+            },
+            {
+              "at": 20,
+              "line": "a4.v1.3"
+            },
+            {
+              "at": 30,
+              "line": "a4.v1.4"
+            },
+            {
+              "at": 40,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 50,
+              "line": "a4.v1.6"
+            },
+            {
+              "at": 60,
+              "line": "a4.v1.7"
+            },
+            {
+              "at": 70,
+              "line": "a4.v1.8"
+            }
+          ],
+          "exerciseID": "mv.sit-to-stand"
+        },
+        {
+          "kind": "rest",
+          "seconds": 20,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a5.rest20"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v2.1"
+            },
+            {
+              "at": 7,
+              "line": "a4.v2.2"
+            },
+            {
+              "at": 14,
+              "line": "a4.v2.3"
+            },
+            {
+              "at": 21,
+              "line": "a4.v2.4"
+            },
+            {
+              "at": 28,
+              "line": "a4.v2.5"
+            },
+            {
+              "at": 35,
+              "line": "a4.v2.6"
+            },
+            {
+              "at": 42,
+              "line": "a4.v2.7"
+            }
+          ],
+          "exerciseID": "mv.knee-lift"
+        },
+        {
+          "kind": "rest",
+          "seconds": 20,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a5.rest20"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v4.1"
+            },
+            {
+              "at": 8,
+              "line": "a4.v4.2"
+            },
+            {
+              "at": 16,
+              "line": "a4.v4.3"
+            },
+            {
+              "at": 24,
+              "line": "a4.v4.4"
+            },
+            {
+              "at": 32,
+              "line": "a4.v4.5"
+            },
+            {
+              "at": 40,
+              "line": "a4.v4.6"
+            }
+          ],
+          "exerciseID": "mv.heel-toe"
+        },
+        {
+          "kind": "rest",
+          "seconds": 20,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a5.rest20"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v3.1"
+            },
+            {
+              "at": 7,
+              "line": "a4.v3.2"
+            },
+            {
+              "at": 14,
+              "line": "a4.v3.3"
+            },
+            {
+              "at": 21,
+              "line": "a4.v3.4"
+            },
+            {
+              "at": 28,
+              "line": "a4.v3.5"
+            },
+            {
+              "at": 35,
+              "line": "a4.v3.6"
+            },
+            {
+              "at": 42,
+              "line": "a4.v3.7"
+            }
+          ],
+          "exerciseID": "mv.leg-ext"
+        },
+        {
+          "kind": "outro",
+          "seconds": 8,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a9.chair.close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.moves",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 90,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v1.1"
+            },
+            {
+              "at": 10,
+              "line": "a4.v1.2"
+            },
+            {
+              "at": 20,
+              "line": "a4.v1.3"
+            },
+            {
+              "at": 30,
+              "line": "a4.v1.4"
+            },
+            {
+              "at": 40,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 50,
+              "line": "a4.v1.6"
+            },
+            {
+              "at": 60,
+              "line": "a4.v1.7"
+            },
+            {
+              "at": 70,
+              "line": "a4.v1.8"
+            }
+          ],
+          "exerciseID": "mv.sit-to-stand"
+        },
+        {
+          "kind": "move",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v2.1"
+            },
+            {
+              "at": 7,
+              "line": "a4.v2.2"
+            },
+            {
+              "at": 14,
+              "line": "a4.v2.3"
+            },
+            {
+              "at": 21,
+              "line": "a4.v2.4"
+            },
+            {
+              "at": 28,
+              "line": "a4.v2.5"
+            },
+            {
+              "at": 35,
+              "line": "a4.v2.6"
+            },
+            {
+              "at": 42,
+              "line": "a4.v2.7"
+            }
+          ],
+          "exerciseID": "mv.knee-lift"
+        },
+        {
+          "kind": "move",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v3.1"
+            },
+            {
+              "at": 7,
+              "line": "a4.v3.2"
+            },
+            {
+              "at": 14,
+              "line": "a4.v3.3"
+            },
+            {
+              "at": 21,
+              "line": "a4.v3.4"
+            },
+            {
+              "at": 28,
+              "line": "a4.v3.5"
+            },
+            {
+              "at": 35,
+              "line": "a4.v3.6"
+            },
+            {
+              "at": 42,
+              "line": "a4.v3.7"
+            }
+          ],
+          "exerciseID": "mv.leg-ext"
+        },
+        {
+          "kind": "move",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v4.1"
+            },
+            {
+              "at": 8,
+              "line": "a4.v4.2"
+            },
+            {
+              "at": 16,
+              "line": "a4.v4.3"
+            },
+            {
+              "at": 24,
+              "line": "a4.v4.4"
+            },
+            {
+              "at": 32,
+              "line": "a4.v4.5"
+            },
+            {
+              "at": 40,
+              "line": "a4.v4.6"
+            }
+          ],
+          "exerciseID": "mv.heel-toe"
+        },
+        {
+          "kind": "move",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v5.1"
+            },
+            {
+              "at": 8,
+              "line": "a4.v5.2"
+            },
+            {
+              "at": 16,
+              "line": "a4.v5.3"
+            },
+            {
+              "at": 24,
+              "line": "a4.v5.4"
+            },
+            {
+              "at": 32,
+              "line": "a4.v5.5"
+            },
+            {
+              "at": 40,
+              "line": "a4.v5.6"
+            }
+          ],
+          "exerciseID": "mv.wall-push"
+        },
+        {
+          "kind": "move",
+          "seconds": 60,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v6.1"
+            },
+            {
+              "at": 7,
+              "line": "a4.v6.2"
+            },
+            {
+              "at": 14,
+              "line": "a4.v6.3"
+            },
+            {
+              "at": 21,
+              "line": "a4.v6.4"
+            },
+            {
+              "at": 28,
+              "line": "a4.v6.5"
+            },
+            {
+              "at": 35,
+              "line": "a4.v6.6"
+            },
+            {
+              "at": 42,
+              "line": "a4.v6.7"
+            }
+          ],
+          "exerciseID": "mv.single-leg"
+        }
+      ]
+    },
+    {
+      "id": "ses.stretch.seated.gentle",
+      "kind": "stretch",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 12,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.open.1"
+            },
+            {
+              "at": 6,
+              "line": "a10.open.2"
+            }
+          ]
+        },
+        {
+          "kind": "stretch",
+          "seconds": 48,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.neck-turn.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.neck-turn.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.neck-turn.move"
+            },
+            {
+              "at": 25,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 30,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 44,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.neck-turn"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 48,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.neck-tilt.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.neck-tilt.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.neck-tilt.move"
+            },
+            {
+              "at": 25,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 30,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 44,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.neck-tilt"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 32,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.chest.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.chest.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.chest.move"
+            },
+            {
+              "at": 23,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 28,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.chest"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 48,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.twist.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.twist.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.twist.move"
+            },
+            {
+              "at": 25,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 30,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 44,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.twist"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 48,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.side.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.side.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.side.move"
+            },
+            {
+              "at": 25,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 30,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 44,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.side"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 48,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.thigh.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.thigh.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.thigh.move"
+            },
+            {
+              "at": 25,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 30,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 44,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.thigh"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 48,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.ankle.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.ankle.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.ankle.move"
+            },
+            {
+              "at": 25,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 30,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 44,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.ankle"
+        },
+        {
+          "kind": "outro",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.stretch.seated.steady",
+      "kind": "stretch",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 12,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.open.1"
+            },
+            {
+              "at": 6,
+              "line": "a10.open.2"
+            }
+          ]
+        },
+        {
+          "kind": "stretch",
+          "seconds": 68,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.neck-turn.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.neck-turn.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.neck-turn.move"
+            },
+            {
+              "at": 30,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 40,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 54,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 64,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.neck-turn"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 68,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.neck-tilt.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.neck-tilt.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.neck-tilt.move"
+            },
+            {
+              "at": 30,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 40,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 54,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 64,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.neck-tilt"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 42,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.chest.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.chest.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.chest.move"
+            },
+            {
+              "at": 28,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 38,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.chest"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 68,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.twist.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.twist.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.twist.move"
+            },
+            {
+              "at": 30,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 40,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 54,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 64,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.twist"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 68,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.side.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.side.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.side.move"
+            },
+            {
+              "at": 30,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 40,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 54,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 64,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.side"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 68,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.thigh.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.thigh.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.thigh.move"
+            },
+            {
+              "at": 30,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 40,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 54,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 64,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.thigh"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 68,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.ankle.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.ankle.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.ankle.move"
+            },
+            {
+              "at": 30,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 40,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 54,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 64,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.ankle"
+        },
+        {
+          "kind": "outro",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.stretch.seated.strong",
+      "kind": "stretch",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 12,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.open.1"
+            },
+            {
+              "at": 6,
+              "line": "a10.open.2"
+            }
+          ]
+        },
+        {
+          "kind": "stretch",
+          "seconds": 88,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.neck-turn.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.neck-turn.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.neck-turn.move"
+            },
+            {
+              "at": 35,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 50,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 69,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 84,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.neck-turn"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 88,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.neck-tilt.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.neck-tilt.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.neck-tilt.move"
+            },
+            {
+              "at": 35,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 50,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 69,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 84,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.neck-tilt"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 52,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.chest.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.chest.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.chest.move"
+            },
+            {
+              "at": 33,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 48,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.chest"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 88,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.twist.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.twist.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.twist.move"
+            },
+            {
+              "at": 35,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 50,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 69,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 84,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.twist"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 88,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.side.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.side.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.side.move"
+            },
+            {
+              "at": 35,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 50,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 69,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 84,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.side"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 88,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.thigh.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.thigh.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.thigh.move"
+            },
+            {
+              "at": 35,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 50,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 69,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 84,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.thigh"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 88,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.ankle.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.ankle.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.ankle.move"
+            },
+            {
+              "at": 35,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 50,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 69,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 84,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.ankle"
+        },
+        {
+          "kind": "outro",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.stretch.standing.gentle",
+      "kind": "stretch",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 12,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.open.1"
+            },
+            {
+              "at": 6,
+              "line": "a10.open.2"
+            }
+          ]
+        },
+        {
+          "kind": "stretch",
+          "seconds": 48,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.neck-turn.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.neck-turn.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.neck-turn.move"
+            },
+            {
+              "at": 25,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 30,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 44,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.neck-turn"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 48,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.neck-tilt.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.neck-tilt.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.neck-tilt.move"
+            },
+            {
+              "at": 25,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 30,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 44,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.neck-tilt"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 32,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.chest.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.chest.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.chest.move"
+            },
+            {
+              "at": 23,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 28,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.chest"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 48,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.twist.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.twist.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.twist.move"
+            },
+            {
+              "at": 25,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 30,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 44,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.twist"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 48,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.thigh.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.thigh.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.thigh.move"
+            },
+            {
+              "at": 25,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 30,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 44,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.thigh"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 48,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.ankle.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.ankle.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.ankle.move"
+            },
+            {
+              "at": 25,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 30,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 44,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.ankle"
+        },
+        {
+          "kind": "rest",
+          "seconds": 8,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a7.stand"
+            }
+          ]
+        },
+        {
+          "kind": "stretch",
+          "seconds": 48,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.calf.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.calf.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.calf.move"
+            },
+            {
+              "at": 25,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 30,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 44,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.calf"
+        },
+        {
+          "kind": "outro",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.stretch.standing.steady",
+      "kind": "stretch",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 12,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.open.1"
+            },
+            {
+              "at": 6,
+              "line": "a10.open.2"
+            }
+          ]
+        },
+        {
+          "kind": "stretch",
+          "seconds": 68,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.neck-turn.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.neck-turn.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.neck-turn.move"
+            },
+            {
+              "at": 30,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 40,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 54,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 64,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.neck-turn"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 68,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.neck-tilt.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.neck-tilt.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.neck-tilt.move"
+            },
+            {
+              "at": 30,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 40,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 54,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 64,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.neck-tilt"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 42,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.chest.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.chest.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.chest.move"
+            },
+            {
+              "at": 28,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 38,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.chest"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 68,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.twist.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.twist.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.twist.move"
+            },
+            {
+              "at": 30,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 40,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 54,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 64,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.twist"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 68,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.thigh.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.thigh.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.thigh.move"
+            },
+            {
+              "at": 30,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 40,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 54,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 64,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.thigh"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 68,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.ankle.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.ankle.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.ankle.move"
+            },
+            {
+              "at": 30,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 40,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 54,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 64,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.ankle"
+        },
+        {
+          "kind": "rest",
+          "seconds": 8,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a7.stand"
+            }
+          ]
+        },
+        {
+          "kind": "stretch",
+          "seconds": 68,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.calf.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.calf.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.calf.move"
+            },
+            {
+              "at": 30,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 40,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 54,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 64,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.calf"
+        },
+        {
+          "kind": "outro",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.stretch.standing.strong",
+      "kind": "stretch",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 12,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.open.1"
+            },
+            {
+              "at": 6,
+              "line": "a10.open.2"
+            }
+          ]
+        },
+        {
+          "kind": "stretch",
+          "seconds": 88,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.neck-turn.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.neck-turn.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.neck-turn.move"
+            },
+            {
+              "at": 35,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 50,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 69,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 84,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.neck-turn"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 88,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.neck-tilt.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.neck-tilt.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.neck-tilt.move"
+            },
+            {
+              "at": 35,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 50,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 69,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 84,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.neck-tilt"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 52,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.chest.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.chest.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.chest.move"
+            },
+            {
+              "at": 33,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 48,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.chest"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 88,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.twist.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.twist.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.twist.move"
+            },
+            {
+              "at": 35,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 50,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 69,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 84,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.twist"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 88,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.thigh.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.thigh.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.thigh.move"
+            },
+            {
+              "at": 35,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 50,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 69,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 84,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.thigh"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 88,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.ankle.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.ankle.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.ankle.move"
+            },
+            {
+              "at": 35,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 50,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 69,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 84,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.ankle"
+        },
+        {
+          "kind": "rest",
+          "seconds": 8,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a7.stand"
+            }
+          ]
+        },
+        {
+          "kind": "stretch",
+          "seconds": 88,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.calf.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.calf.setup"
+            },
+            {
+              "at": 12,
+              "line": "a10.left"
+            },
+            {
+              "at": 14,
+              "line": "a10.calf.move"
+            },
+            {
+              "at": 35,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 50,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 69,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 84,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.calf"
+        },
+        {
+          "kind": "outro",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.close.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.cooldown",
+      "kind": "cooldown",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 6,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.cool.open"
+            }
+          ]
+        },
+        {
+          "kind": "stretch",
+          "seconds": 51,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.neck-turn.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.left"
+            },
+            {
+              "at": 7,
+              "line": "a10.neck-turn.move"
+            },
+            {
+              "at": 20,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 28,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 47,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.neck-turn"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 51,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.thigh.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.left"
+            },
+            {
+              "at": 7,
+              "line": "a10.thigh.move"
+            },
+            {
+              "at": 20,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 28,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 39,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 47,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.thigh"
+        },
+        {
+          "kind": "stretch",
+          "seconds": 30,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.chest.intro"
+            },
+            {
+              "at": 5,
+              "line": "a10.chest.move"
+            },
+            {
+              "at": 18,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 26,
+              "line": "a10.release.1"
+            }
+          ],
+          "exerciseID": "st.chest"
+        },
+        {
+          "kind": "outro",
+          "seconds": 8,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.cool.close"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
