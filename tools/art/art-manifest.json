@@ -1,0 +1,29 @@
+{
+  "note": "Sheets drawn with ChatGPT (thread 'Gental Walk', character B = the exercise-clip coach, gouache style). Empty string = cell not used.",
+  "sheets": [
+    {"source": "assets/art/sheet-01-poses.png", "grid": [3, 2], "mode": "figure", "bleeds": [0.05, 0.05, 0.05, 0.05, 0.0, 0.0], "insets": {"walker-celebrate": [0.14, 0, 0, 0]}, "maxSide": 900,
+     "cells": ["walker-wave", "walker-march", "walker-seated-march", "walker-calf-stretch", "walker-celebrate", "walker-rest"]},
+    {"source": "assets/art/sheet-02-scenes.png", "grid": [2, 2], "mode": "scene", "maxSide": 1200,
+     "cells": ["scene-living-room", "scene-walking-pad", "scene-outdoors", "scene-break"]},
+    {"source": "assets/art/sheet-03-phone.png", "grid": [2, 2], "mode": "figure", "bleed": 0.03, "maxSide": 900,
+     "cells": ["phone-pocket", "phone-chest", "phone-table", "walker-stand"]},
+    {"source": "assets/art/sheet-04-moments.png", "grid": [2, 2], "mode": "scene", "maxSide": 1200,
+     "cells": ["moment-friends", "moment-plan-notebook", "moment-ready-door", "map-park"]},
+    {"source": "assets/art/sheet-05-covers.png", "grid": [3, 2], "mode": "scene", "maxSide": 1000,
+     "cells": ["cover-jr-ny", "cover-jr-smoky", "cover-jr-camino", "cover-jr-ne", "cover-jr-pch", "cover-next"]},
+    {"source": "assets/art/sheet-06-postcards-ny.png", "grid": [3, 2], "mode": "scene", "maxSide": 1000,
+     "cells": ["postcard-pc-ny-zoo", "postcard-pc-ny-bethesda", "postcard-pc-ny-times", "postcard-pc-ny-bryant", "postcard-pc-ny-union", "postcard-pc-ny-bridge"]},
+    {"source": "assets/art/sheet-07-postcards-smoky.png", "grid": [3, 2], "mode": "scene", "maxSide": 1000,
+     "cells": ["postcard-pc-smoky-1", "postcard-pc-smoky-2", "postcard-pc-smoky-3", "postcard-pc-smoky-4", "postcard-pc-smoky-5", "postcard-pc-smoky-6"]},
+    {"source": "assets/art/sheet-08-postcards-camino.png", "grid": [3, 2], "mode": "scene", "maxSide": 1000,
+     "cells": ["postcard-pc-camino-1", "postcard-pc-camino-2", "postcard-pc-camino-3", "postcard-pc-camino-4", "postcard-pc-camino-5", "postcard-pc-camino-6"]},
+    {"source": "assets/art/sheet-09-postcards-ne.png", "grid": [3, 2], "mode": "scene", "maxSide": 1000,
+     "cells": ["postcard-pc-ne-1", "postcard-pc-ne-2", "postcard-pc-ne-3", "postcard-pc-ne-4", "postcard-pc-ne-5", "postcard-pc-ne-6"]},
+    {"source": "assets/art/sheet-10-postcards-pch.png", "grid": [3, 2], "mode": "scene", "maxSide": 1000,
+     "cells": ["postcard-pc-pch-1", "postcard-pc-pch-2", "postcard-pc-pch-3", "postcard-pc-pch-4", "postcard-pc-pch-5", "postcard-pc-pch-6"]},
+    {"source": "assets/art/sheet-11-extras.png", "grid": [2, 1], "mode": "figure", "modes": ["figure", "scene"], "bleed": 0.0, "maxSide": 1000,
+     "cells": ["walker-behind-chair", "scene-park-bench"]},
+    {"source": "assets/art/sheet-12-tree.png", "grid": [4, 1], "mode": "figure", "bleed": 0.0, "maxSide": 700,
+     "cells": ["tree-seed", "tree-sprout", "tree-sapling", "tree-tree"]}
+  ]
+}

@@ -4,10 +4,10 @@
 The Markdown scripts are the single source of truth for every spoken line and every exercise;
 this tool turns them into the four files the app loads (plan task 1.5):
 
-    App/Resources/Content/voice-lines.json   every coach line (A1, A2, A3, A4, A5-A10)
-    App/Resources/Content/exercises.json     6 chair moves (D5) + 8 stretch poses (A10 §2)
-    App/Resources/Content/journeys.json      5 journeys x 6 postcards
-    App/Resources/Content/sessions.json      First Walk, 9 walk templates, chair day, move library, 6 stretch days, cool-down
+    iOS/App/Resources/Content/voice-lines.json   every coach line (A1, A2, A3, A4, A5-A10)
+    iOS/App/Resources/Content/exercises.json     6 chair moves (D5) + 8 stretch poses (A10 §2)
+    iOS/App/Resources/Content/journeys.json      5 journeys x 6 postcards
+    iOS/App/Resources/Content/sessions.json      First Walk, 9 walk templates, chair day, move library, 6 stretch days, cool-down
 
 Usage:  python3 tools/content/build_content.py [--check]
         --check  build in memory and compare with the files on disk; exit 1 if they differ.
@@ -21,7 +21,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = ROOT / "docs" / "scripts"
-OUT = ROOT / "App" / "Resources" / "Content"
+OUT = ROOT / "iOS" / "App" / "Resources" / "Content"
 SCHEMA_VERSION = 1  # keep equal to CoreInfo.contentSchemaVersion
 
 ID_ROW = re.compile(r"^\|\s*(a\d+(?:\.[\w\-]+)+)\s*\|(.*)\|\s*$")

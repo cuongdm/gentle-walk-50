@@ -20,17 +20,17 @@ Cài bản DEBUG từ Xcode lên iPhone (cần Team ID đúng, xem mục 3).
 ## 2. Tài nguyên còn là bản tạm (`docs/release/1.0/asset-checklist.md`)
 - [ ] **Giọng:** 40/247 câu có file, gói ElevenLabs Free (chỉ dùng prototype). Cần gói thương mại cho đủ 247 câu. Bản DEBUG tự đọc câu thiếu bằng giọng hệ thống; bản nộp store bị chặn nếu còn thiếu.
 - [ ] **Clip giãn cơ V7-1 … V7-7:** chưa có, player hiện ảnh giữ chỗ.
-- [ ] **Chuông:** `App/Resources/Media/Sounds/bell-phase.m4a`, `bell-done.m4a` là âm sine tạo bằng ffmpeg.
-- [ ] **Tranh minh hoạ:** mọi tranh đang là khung màu + biểu tượng hệ thống (Welcome, player đi bộ, Break, bưu thiếp, bản đồ, cây).
+- [ ] **Chuông:** `iOS/App/Resources/Media/Sounds/bell-phase.m4a`, `bell-done.m4a` là âm sine tạo bằng ffmpeg.
+- [ ] **Tranh minh hoạ:** đã có bộ tranh gouache (nhân vật B = HLV trong clip) vẽ bằng ChatGPT: tư thế, cảnh phòng khách, đặt điện thoại, khoảnh khắc onboarding, 5 bìa hành trình và bưu thiếp. Anh duyệt từng tranh. Muốn thay tranh nào: vẽ lại trong thread "Gental Walk" (đính kèm `assets/art/sheet-01-poses.png` làm mẫu nhân vật), lưu đè file tờ trong `assets/art/`, chạy `python3 tools/art/build_art.py`. Kiểm lại điều khoản dùng thương mại ảnh tạo bằng ChatGPT trước khi nộp.
 - [ ] **App icon — chặn nộp store:** icon tạm vẽ từ SF Symbol. Giấy phép SF Symbols không cho dùng trong icon app. Cần icon thiết kế riêng.
 - [ ] **Nhạc:** đã đưa 3 bài thử Lyria 3.5 vào app (đi bộ, động tác ghế, giãn cơ). Cần xác nhận giấy phép dùng thương mại, hoặc thay nhạc khác: đặt file `<tên>-walk.mp3`, `-seated.mp3`, `-stretch.mp3` vào một thư mục trong `assets/music/` rồi chạy `python3 tools/music/build_music.py --source <thư mục>`. Tên phong cách đang tạm là "Feel-good 70s and 80s"; nghe thử rồi báo tôi tên đúng.
 - Kiểm tất cả bằng cổng release (đang RED đúng như dự kiến):
   ```bash
-  TEST_RUNNER_RELEASE_CHECK=1 xcodebuild test -project GentleWalk.xcodeproj -scheme GentleWalk -destination 'platform=iOS Simulator,name=iPhone 17' -only-testing:GentleWalkTests/ReleaseContentTests
+  TEST_RUNNER_RELEASE_CHECK=1 xcodebuild test -project iOS/GentleWalk.xcodeproj -scheme GentleWalk -destination 'platform=iOS Simulator,name=iPhone 17' -only-testing:GentleWalkTests/ReleaseContentTests
   ```
 
 ## 3. Quyết định và thông tin chờ chủ app
-- [x] **Team ID** `55V8Y3PCLY` trong `Config/Local.xcconfig`: chủ app xác nhận đúng (29/09).
+- [x] **Team ID** `55V8Y3PCLY` trong `iOS/Config/Local.xcconfig`: chủ app xác nhận đúng (29/09).
 - [x] **Email hỗ trợ:** `cuongdm@live.com` (29/09). Đã thêm nút Contact us ở Me → Help và điền vào `site/privacy.html`.
 - [ ] **Trang Privacy:** tạm bỏ qua (29/09). App vẫn mở bản Privacy trong app. Trước khi nộp store vẫn cần điền ngày, đăng lên hosting và gửi tôi URL (App Store Connect bắt buộc có Privacy Policy URL).
 - [x] **Terms:** dùng EULA chuẩn của Apple, chủ app đồng ý (29/09).

@@ -6,8 +6,8 @@ Rules (app-context.md "Tone & copy rules", App Review 1.4.1 and 2.3.10):
   - medical claims: cure, treat, prevent falls, reduce … risk, arthritis;
   - other platforms: Android, Google Play, APK.
 
-Scans App/*.xcstrings (every localized value, or the key when the source text lives in the key)
-and App/Resources/Content/*.json (every string except ids, file names and enum values).
+Scans iOS/App/*.xcstrings (every localized value, or the key when the source text lives in the key)
+and iOS/App/Resources/Content/*.json (every string except ids, file names and enum values).
 
 Usage:  python3 tools/lint/copy_lint.py [paths ...]      → prints findings, then "N findings"; exit 1 if N > 0
 Python 3.9, standard library only.
@@ -19,7 +19,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 APP_CONTEXT = ROOT / "app-context.md"
-DEFAULT_PATHS = sorted((ROOT / "App").glob("*.xcstrings")) + sorted((ROOT / "App" / "Resources" / "Content").glob("*.json"))
+IOS_APP = ROOT / "iOS" / "App"
+DEFAULT_PATHS = sorted(IOS_APP.glob("*.xcstrings")) + sorted((IOS_APP / "Resources" / "Content").glob("*.json"))
 
 MEDICAL = [
     r"\bcure[sd]?\b",

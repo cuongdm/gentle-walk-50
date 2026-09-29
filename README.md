@@ -1,6 +1,21 @@
 # Gentle Walk 50+ (tên làm việc)
 
-App iPhone dẫn đi bộ trong nhà, động tác ghế và giãn cơ nhẹ bằng giọng cho phụ nữ Mỹ 50–64 mới tập. Chưa có code. Ý tưởng đã GO (stage 1) và kế hoạch MVP đã duyệt 29/09/2026 (stage 2); bước tiếp theo là `manh-skill-code` từ Task 1.1 sau khi chủ app chốt các điểm mở trong báo cáo review mới nhất.
+App iPhone dẫn đi bộ trong nhà, động tác ghế và giãn cơ nhẹ bằng giọng cho phụ nữ Mỹ 50–64 mới tập. Đã code xong MVP iOS (113 task, 29/09/2026); việc chủ app còn làm ở [docs/owner-todo-after-mvp.md](docs/owner-todo-after-mvp.md).
+
+## Cấu trúc thư mục
+| Thư mục | Là gì |
+|---|---|
+| `iOS/` | Toàn bộ project iOS: `App/` (code + tài nguyên), `GentleWalkTests/`, `Packages/GentleWalkCore/` (logic sản phẩm, `swift test`), `Config/`, `project.yml` (XcodeGen), `scripts/` (chụp màn, icon tạm, kiểm String Catalog) |
+| `Android/` | Để dành cho bản Android |
+| `docs/`, `app-context.md` | Tài liệu dùng chung: sản phẩm, spec, kế hoạch, kịch bản, review, phát hành |
+| `assets/` | Nguồn gốc dùng chung: tờ tranh (`art/`), nhạc (`music/`), clip (`video/`), giọng (`voice/`) |
+| `tools/` | Công cụ dùng chung: build nội dung, cắt tranh, chuyển nhạc, gắn giọng, lint câu chữ; hiện ghi vào `iOS/App/…` |
+| `site/` | Trang Privacy |
+
+Mở project iOS:
+```bash
+cd iOS && xcodegen generate && open GentleWalk.xcodeproj
+```
 
 ## Đọc theo thứ tự
 | File | Là gì |

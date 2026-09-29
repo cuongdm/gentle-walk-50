@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Attach recorded voice files to App/Resources/Content/voice-lines.json (plan task 1.6).
+"""Attach recorded voice files to iOS/App/Resources/Content/voice-lines.json (plan task 1.6).
 
 For every voice line whose text matches a cached ElevenLabs render (assets/voice/cache/<hash>.mp3 +
 <hash>.json with character alignment), this tool:
-  - converts the mp3 to AAC  App/Resources/Media/Voice/<line id>.m4a
+  - converts the mp3 to AAC  iOS/App/Resources/Media/Voice/<line id>.m4a
   - writes  file, duration (seconds) and words [{word, start, end}]  into the voice line entry.
 
 Lines without a match keep no `file` field; the app then uses the DEBUG speech fallback (task 3.3)
@@ -20,8 +20,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CACHE = ROOT / "assets" / "voice" / "cache"
-DEFAULT_LINES = ROOT / "App" / "Resources" / "Content" / "voice-lines.json"
-DEFAULT_MEDIA = ROOT / "App" / "Resources" / "Media" / "Voice"
+DEFAULT_LINES = ROOT / "iOS" / "App" / "Resources" / "Content" / "voice-lines.json"
+DEFAULT_MEDIA = ROOT / "iOS" / "App" / "Resources" / "Media" / "Voice"
 
 
 def words_from_alignment(alignment):

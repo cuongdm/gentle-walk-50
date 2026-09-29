@@ -2,7 +2,7 @@
 _29/09/2026. Mọi màn chụp bằng hook `-ScreenshotMode <state>` (dữ liệu mẫu Margaret, `App/Debug/Fixtures/en-US.json`). Lệnh:_
 
 ```bash
-scripts/capture_states.sh docs/release/1.0/shots "iPhone 17 Pro Max" walk-player chair-player paywall-eligible today journey complete stretch-player progress
+iOS/scripts/capture_states.sh docs/release/1.0/shots "iPhone 17 Pro Max" walk-player chair-player paywall-eligible today journey complete stretch-player progress
 ```
 
 ## Thứ tự (iPhone 6.9" và iPad 13")
@@ -22,4 +22,4 @@ scripts/capture_states.sh docs/release/1.0/shots "iPhone 17 Pro Max" walk-player
 - Khung, chữ quảng cáo và mockup: skill `appstore-mockup` sau khi có tranh và giọng thật.
 
 ## Đã chạy thử (29/09/2026, iPhone 17, bản DEBUG)
-Tất cả 80 trạng thái trong plan chụp được bằng `scripts/capture_states.sh` (ảnh lưu ngoài repo, không commit).
+Tất cả 80 trạng thái trong plan chụp được bằng `iOS/scripts/capture_states.sh` (ảnh lưu ngoài repo, không commit).

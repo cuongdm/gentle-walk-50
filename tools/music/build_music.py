@@ -3,7 +3,7 @@
 
 Source files are named  <anything>-<kind>.mp3  where kind is walk, seated (chair moves) or stretch,
 e.g. assets/music/test/lyria-3.5_1-walk.mp3. Each is loudness-normalised to -20 LUFS (background
-level; the coach's voice ducks it further) and written to App/Resources/Media/Music/music-<kind>.m4a.
+level; the coach's voice ducks it further) and written to iOS/App/Resources/Media/Music/music-<kind>.m4a.
 
 Usage:  python3 tools/music/build_music.py [--source DIR] [--style ID] [--note TEXT]
 Python 3.9, standard library + ffmpeg on PATH.
@@ -30,7 +30,7 @@ def convert(src, dst):
 
 
 def build(source, style, note):
-    out = ROOT / "App" / "Resources" / "Media" / "Music"
+    out = ROOT / "iOS" / "App" / "Resources" / "Media" / "Music"
     tracks = []
     for src in sorted(Path(source).glob("*.mp3")):
         kind = kind_of(src)
@@ -40,7 +40,7 @@ def build(source, style, note):
         convert(src, out / name)
         tracks.append({"id": "music.%s" % kind, "style": style, "kind": kind, "file": name, "source": src.name})
     doc = {"schemaVersion": 1, "note": note, "tracks": tracks}
-    (ROOT / "App" / "Resources" / "Content" / "music.json").write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8")
+    (ROOT / "iOS" / "App" / "Resources" / "Content" / "music.json").write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8")
     return tracks
 
 
