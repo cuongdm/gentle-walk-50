@@ -210,6 +210,7 @@ struct HelpSection: View {
     var body: some View {
         SettingsCard(title: "Help") {
             Button("Restore purchase", action: onRestore).buttonStyle(.textLink)
+            Link("Contact us", destination: LegalLinks.contactUs).buttonStyle(.textLink)
             Link("Terms", destination: LegalLinks.termsOfUse).buttonStyle(.textLink)
             Button("Privacy", action: onPrivacy).buttonStyle(.textLink)
             Text("Gentle Walk is for general fitness. It isn't medical advice.").typeRole(.caption)

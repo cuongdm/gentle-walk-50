@@ -106,4 +106,6 @@ struct PlanOption: Identifiable, Equatable, Sendable {
 /// otherwise (task 5.10 default). Privacy: shown in the app; the web copy comes with task 9.1.
 enum LegalLinks {
     static let termsOfUse = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
+    static let supportEmail = "cuongdm@live.com"
+    static let contactUs = URL(string: "mailto:\(supportEmail)")!
 }

@@ -30,10 +30,10 @@ Cài bản DEBUG từ Xcode lên iPhone (cần Team ID đúng, xem mục 3).
   ```
 
 ## 3. Quyết định và thông tin chờ chủ app
-- [ ] **Team ID** `55V8Y3PCLY` trong `Config/Local.xcconfig` (lấy từ chứng chỉ Distribution trên máy): xác nhận đúng team.
-- [ ] **Email hỗ trợ:** trang Privacy có chỗ `[support email]`; app chưa có nút Contact us vì chưa có địa chỉ.
-- [ ] **Trang Privacy:** điền ngày, email trong `site/privacy.html`, đăng lên hosting (mặc định GitHub Pages từ thư mục `site/`), rồi gửi tôi URL để gắn vào app và checklist.
-- [ ] **Terms:** đang dùng EULA chuẩn của Apple (mặc định của task 5.10). Nếu muốn Terms riêng, báo tôi.
+- [x] **Team ID** `55V8Y3PCLY` trong `Config/Local.xcconfig`: chủ app xác nhận đúng (29/09).
+- [x] **Email hỗ trợ:** `cuongdm@live.com` (29/09). Đã thêm nút Contact us ở Me → Help và điền vào `site/privacy.html`.
+- [ ] **Trang Privacy:** tạm bỏ qua (29/09). App vẫn mở bản Privacy trong app. Trước khi nộp store vẫn cần điền ngày, đăng lên hosting và gửi tôi URL (App Store Connect bắt buộc có Privacy Policy URL).
+- [x] **Terms:** dùng EULA chuẩn của Apple, chủ app đồng ý (29/09).
 - [ ] **App Store Connect:** làm theo `docs/release/1.0/checklist.md` (3 IAP, age rating, App Privacy, review notes).
 - [ ] **Tên app trên store** (backlog M11): đang dùng tên làm việc "Gentle Walk".
 
