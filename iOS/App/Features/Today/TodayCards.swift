@@ -136,10 +136,17 @@ struct ExtrasRow: View {
     let isPro: Bool
     let onStart: (WorkoutRequest) -> Void
     let onLocked: () -> Void
+    /// Opens "All sessions" (milestone 10), open to every plan.
+    var onSeeAll: () -> Void = {}
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Extras").typeRole(.cardTitle).foregroundStyle(Palette.text)
+            HStack(alignment: .firstTextBaseline) {
+                Text("Extras").typeRole(.cardTitle).foregroundStyle(Palette.text)
+                Spacer()
+                Button("See all", action: onSeeAll).buttonStyle(.smallTextLink)
+                    .accessibilityLabel(Text("See all sessions"))
+            }
             ForEach(extras) { extra in
                 Button { isPro ? onStart(extra.request) : onLocked() } label: {
                     HStack(spacing: 12) {

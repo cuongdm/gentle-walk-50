@@ -12,6 +12,8 @@ struct WorkoutView: View {
     var onReviewAsked: (ReviewMilestone) -> Void = { _ in }
     /// Outdoors: start today's chair moves from Complete.
     var onChairMoves: (() -> Void)?
+    /// Complete → "Do it again": closes this session (recording it), then starts the same one.
+    var onAgain: (() -> Void)?
     let onClose: (CompletionResult?) -> Void
 
     var body: some View {
@@ -56,7 +58,8 @@ struct WorkoutView: View {
                                          name: name, content: session.content),
                 onFeeling: session.recordFeeling, onDone: { onClose(result) }, route: session.route,
                 chairMovesMinutes: session.request.place == .outdoors && onChairMoves != nil ? 4 : nil,
-                onChairMoves: { onChairMoves?() })
+                onChairMoves: { onChairMoves?() },
+                onAgain: onAgain.map { again in { onClose(result); again() } })
             .reviewPrompt(reviewMilestone(result), onAsked: onReviewAsked)
         case .playing, .confirmEnd:
             player

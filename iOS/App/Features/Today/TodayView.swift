@@ -7,6 +7,10 @@ struct TodayView: View {
     let model: TodayModel
     let actions: TodayActions
 
+    @State private var showsSwap = false
+    /// Picked in the swap sheet; started once the sheet has gone, so two covers never overlap.
+    @State private var pendingSwap: WorkoutRequest?
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
@@ -22,7 +26,8 @@ struct TodayView: View {
                 }
                 TodaySessionCard(session: model.session, detail: model.sessionDetail, trialEnded: model.trialEnded,
                                  onStart: { if let request = model.request { actions.onStart(request) } },
-                                 onSeePlans: actions.onSeePlans)
+                                 onSeePlans: actions.onSeePlans,
+                                 onSomethingElse: model.swapOptions.isEmpty ? nil : { showsSwap = true })
                 if let card = model.specialCard {
                     SpecialCard(card: card, actions: actions)
                 }
@@ -30,7 +35,8 @@ struct TodayView: View {
                                 onOpen: actions.onOpenJourney)
                 WeekStrip(days: model.week, isPro: model.isPro, line: model.weekLine)
                 if !model.extras.isEmpty {
-                    ExtrasRow(extras: model.extras, isPro: model.isPro, onStart: actions.onStart, onLocked: actions.onSeePlans)
+                    ExtrasRow(extras: model.extras, isPro: model.isPro, onStart: actions.onStart, onLocked: actions.onSeePlans,
+                              onSeeAll: actions.onSeeAllSessions)
                 }
             }
             .padding(Metrics.screenMargin)
@@ -38,6 +44,23 @@ struct TodayView: View {
             .frame(maxWidth: .infinity)
         }
         .screenBackground()
+        .sheet(isPresented: $showsSwap, onDismiss: startPendingSwap) {
+            SwapSessionSheet(options: model.swapOptions) { option in
+                if option.isLocked {
+                    showsSwap = false
+                    actions.onSeePlans()
+                } else {
+                    pendingSwap = option.request
+                    showsSwap = false
+                }
+            }
+        }
+    }
+
+    private func startPendingSwap() {
+        guard let request = pendingSwap else { return }
+        pendingSwap = nil
+        actions.onStart(request)
     }
 }
 
@@ -48,6 +71,7 @@ struct TodayActions {
     var onSeePlans: () -> Void
     var onManagePlan: () -> Void
     var onOpenJourney: () -> Void
+    var onSeeAllSessions: () -> Void = {}
     var onConnectHealth: () -> Void
     var onDismissCard: () -> Void
     var onFewerReminders: (Bool) -> Void
@@ -67,7 +91,9 @@ struct TodayHero: View {
                 HStack(alignment: .center, spacing: 12) { title; Spacer(minLength: 0); badge }
                 VStack(alignment: .leading, spacing: 10) { title; badge }
             }
-            ArtImage(art: .sceneLivingRoom, height: 190)
+            // About a fifth of the screen, 190 pt at most, so Start stays in view on an iPhone SE.
+            ArtImage.flexible(.sceneLivingRoom, minHeight: 120, maxHeight: 190, fallbackSymbol: "figure.walk")
+                .containerRelativeFrame(.vertical, alignment: .top) { height, _ in min(190, max(120, height * 0.22)) }
         }
     }
 
@@ -161,6 +187,8 @@ struct TodaySessionCard: View {
     let trialEnded: Bool
     let onStart: () -> Void
     let onSeePlans: () -> Void
+    /// "Try something else" (milestone 10); nil when there is nothing to swap.
+    var onSomethingElse: (() -> Void)?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -185,6 +213,11 @@ struct TodaySessionCard: View {
             }
             if session.kind != .done && session.kind != .rest {
                 Button("Start", action: onStart).buttonStyle(.primaryAction)
+            }
+            if let onSomethingElse {
+                Button("Try something else", action: onSomethingElse)
+                    .buttonStyle(.smallTextLink)
+                    .frame(maxWidth: .infinity)
             }
         }
         .padding(20)

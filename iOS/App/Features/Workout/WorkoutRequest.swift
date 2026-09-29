@@ -16,10 +16,19 @@ struct WorkoutRequest: Identifiable, Equatable, Sendable {
     var minutesDelta = 0
     /// Chair moves swapped on the preview: original id → replacement id.
     var swaps: [String: String] = [:]
+    /// Picked from "All sessions" or "Try something else" (a `SessionCatalog` id); nil for the plan.
+    var presetID: String?
 
     static func firstWalk(limits: Set<BodyLimit>) -> WorkoutRequest {
         WorkoutRequest(day: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), level: .seated, intensity: .gentle,
                        place: .indoors, limits: limits, rotationIndex: 0, isFirstWalk: true)
+    }
+
+    /// "Do it again" on Complete: not after First Walk; a catalog session only if her plan opens it.
+    func canReplay(isPro: Bool) -> Bool {
+        guard !isFirstWalk else { return false }
+        guard let presetID, let preset = SessionCatalog.preset(id: presetID) else { return true }
+        return isPro || preset.isFree
     }
 
     /// Kind saved on the workout record.

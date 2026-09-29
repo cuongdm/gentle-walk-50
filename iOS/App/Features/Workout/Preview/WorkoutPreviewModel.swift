@@ -23,6 +23,8 @@ struct PreviewRow: Identifiable, Equatable {
     /// Stretch day: "Standing, holding the chair" instead of seated.
     var standingStretch = false
     private(set) var swaps: [String: String] = [:]
+    /// Picked from "All sessions" or "Try something else"; kept on the request it starts.
+    let presetID: String?
 
     @ObservationIgnored private let content: ContentBundle
     @ObservationIgnored private let limits: Set<BodyLimit>
@@ -32,7 +34,8 @@ struct PreviewRow: Identifiable, Equatable {
     static let placeKey = "lastWorkoutPlace"
 
     init(day: PlannedDay, intensity: Intensity, checkIn: CheckIn?, suggestedLevel: WalkLevel, limits: Set<BodyLimit>,
-         rotationIndex: Int, minutesDelta: Int = 0, content: ContentBundle, defaults: UserDefaults = .standard) {
+         rotationIndex: Int, minutesDelta: Int = 0, content: ContentBundle, defaults: UserDefaults = .standard,
+         presetID: String? = nil, standing: Bool = false) {
         self.day = day
         self.intensity = intensity
         self.checkIn = checkIn
@@ -44,6 +47,8 @@ struct PreviewRow: Identifiable, Equatable {
         self.defaults = defaults
         place = defaults.string(forKey: Self.placeKey).flatMap(WorkoutPlace.init) ?? .indoors
         level = suggestedLevel == .pad ? .seated : suggestedLevel
+        self.presetID = presetID
+        standingStretch = standing
     }
 
     var isWalkDay: Bool { day.main == .walk || day.main == .longWalk }
@@ -58,6 +63,7 @@ struct PreviewRow: Identifiable, Equatable {
                                      limits: limits.union(day.main == .stretch && !standingStretch ? [.standingIsHard] : []),
                                      rotationIndex: rotationIndex, minutesDelta: minutesDelta)
         request.swaps = swaps
+        request.presetID = presetID
         return request
     }
 

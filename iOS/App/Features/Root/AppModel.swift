@@ -23,6 +23,7 @@ import GentleWalkCore
     var onboarding = OnboardingFlow()
     var cover: AppCover?
     var tab: AppTab = .today
+    var todayPath: [TodayRoute] = []
     var journeyPath: [JourneyRoute] = []
     private(set) var today: TodayModel?
     private(set) var journey = JourneySnapshot.empty
@@ -45,6 +46,8 @@ import GentleWalkCore
               let data = try? Data(contentsOf: url) else { return [] }
         return (try? JSONDecoder().decode(File.self, from: data).wins) ?? []
     }()
+    /// Hearted sessions of "All sessions" (milestone 10).
+    @ObservationIgnored private(set) lazy var favourites = FavouriteSessions(defaults: defaults)
     /// Clock, injectable for screenshots.
     @ObservationIgnored var now: () -> Date = Date.init
     @ObservationIgnored var calendar: Calendar = .current
@@ -54,6 +57,12 @@ import GentleWalkCore
         health: health, notifications: notifications, calendar: calendar)
 
     var entitlement: Entitlement { entitlementOverride ?? store.entitlement }
+
+    /// "All sessions" for her plan and limits, moves rotating with her active days.
+    func makeAllSessions() -> AllSessionsModel {
+        AllSessionsModel(isPro: isPro, limits: profile?.limits ?? [], rotationIndex: today?.activeDays ?? 0,
+                         content: content, favourites: favourites)
+    }
     var isPro: Bool { entitlement.isPro }
     var onboardingDone: Bool { profile != nil }
 

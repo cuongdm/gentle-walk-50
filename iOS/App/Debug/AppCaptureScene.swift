@@ -11,7 +11,7 @@ struct AppCaptureScene: View {
     static func handles(_ state: CaptureState) -> Bool {
         let name = state.rawValue
         return ["onboarding", "paywall", "today", "journey", "journeys", "where-next", "postcard", "locked-stop", "progress",
-                "me", "cancel-guide", "permissions", "outdoor-prep", "outdoor-location-ask", "root"]
+                "me", "cancel-guide", "permissions", "outdoor-prep", "outdoor-location-ask", "root", "all-sessions"]
             .contains { name == $0 || name.hasPrefix($0 + "-") }
     }
 
@@ -56,6 +56,10 @@ struct AppCaptureScene: View {
             ScrollView { OutdoorLocationAskView(onUseLocation: {}, onStepsOnly: {}) }.screenBackground()
         case .postcard:
             if let stop = app.content.journeys.first?.stops[1] { PostcardDetailView(stop: stop) }
+        case .todaySwap:
+            SwapSessionSheet(options: app.today?.swapOptions ?? []) { _ in }
+        case .allSessions, .allSessionsFree:
+            NavigationStack { AllSessionsScreen(app: app) }
         case .journeys, .journeysFree:
             NavigationStack {
                 JourneyListView(journeys: app.content.journeys, snapshot: app.journey, isPro: app.isPro, onChoose: { _ in })
@@ -79,7 +83,7 @@ struct AppCaptureScene: View {
     private func makeApp() -> AppModel {
         let trialEnds = Date.now.addingTimeInterval(2 * 86_400)
         let entitlement: Entitlement = switch state {
-        case .todayFree, .journeysFree, .todayTrialEnded, .lockedStop: .free
+        case .todayFree, .journeysFree, .todayTrialEnded, .lockedStop, .allSessionsFree: .free
         case .todayTrialEnding: .trial(ends: trialEnds)
         case .me: .trial(ends: Date.now.addingTimeInterval(12 * 86_400))
         case .meLifetime, .meLifetimeAndSubscription: .lifetime
@@ -134,6 +138,9 @@ struct AppCaptureScene: View {
 
     private func prepare(_ app: AppModel) {
         switch state {
+        case .allSessions:
+            app.favourites.toggle("walk.long")
+            app.favourites.toggle("extra.balance")
         case .onboardingWelcome: app.onboarding.jump(to: .welcome)
         case .onboardingPart2: app.onboarding.jump(to: .part2)
         case .onboardingGoal:

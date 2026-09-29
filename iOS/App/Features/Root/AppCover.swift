@@ -30,6 +30,10 @@ enum AppCover: Identifiable {
 enum AppTab: Hashable { case today, journey, progress, me }
 
 /// Navigation routes inside the tabs (one `navigationDestination(for:)` per type).
+enum TodayRoute: Hashable {
+    case allSessions
+}
+
 enum JourneyRoute: Hashable {
     case allJourneys
     case postcard(journeyID: String, stopID: String)

@@ -13,6 +13,8 @@ struct CompleteView: View {
     /// Outdoors: today's chair moves are still waiting (minutes), with "Do them now".
     var chairMovesMinutes: Int?
     var onChairMoves: () -> Void = {}
+    /// "Do it again" (milestone 10); nil when this session cannot be replayed on her plan.
+    var onAgain: (() -> Void)?
 
     @State private var feeling: Feeling?
 
@@ -48,8 +50,15 @@ struct CompleteView: View {
                     }
                     Button("Done", action: onDone).buttonStyle(.primaryAction)
                     ShareCardButton(content: content)
+                    if let onAgain {
+                        Button("Do it again", action: onAgain)
+                            .buttonStyle(.smallTextLink)
+                            .frame(maxWidth: .infinity)
+                    }
                 }
                 .padding(Metrics.screenMargin)
+                .frame(maxWidth: 700)
+                .frame(maxWidth: .infinity)
             }
             FallingLeaves()
         }

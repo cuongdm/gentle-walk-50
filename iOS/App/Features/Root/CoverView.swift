@@ -37,6 +37,7 @@ struct CoverView: View {
                                                      level: .seated, intensity: session.request.intensity, place: .indoors,
                                                      limits: session.request.limits, rotationIndex: app.progress.activeDays))
                         } : nil,
+                        onAgain: session.request.canReplay(isPro: app.isPro) ? { app.again(session.request) } : nil,
                         onClose: app.workoutClosed)
         case .permissions:
             PermissionsView(model: PermissionsModel(health: app.health, notifications: SystemNotificationAuthorizer(),

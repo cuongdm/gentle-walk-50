@@ -8,13 +8,14 @@ struct CaptureHookTests {
     @Test func parsesScreenshotModeArgument() {
         #expect(CaptureHook.state(from: ["GentleWalk", "-ScreenshotMode", "paywall-eligible"]) == .paywallEligible)
         #expect(CaptureHook.state(from: ["GentleWalk", "-ScreenshotMode", "today-trial-ending"]) == .todayTrialEnding)
+        #expect(CaptureHook.state(from: ["GentleWalk", "-ScreenshotMode", "all-sessions-free"]) == .allSessionsFree)
         #expect(CaptureHook.state(from: ["GentleWalk", "-ScreenshotMode", "not-a-state"]) == nil)
         #expect(CaptureHook.state(from: ["GentleWalk", "-ScreenshotMode"]) == nil)
         #expect(CaptureHook.state(from: ["GentleWalk"]) == nil)
     }
 
     @Test func coversEveryPlannedState() {
-        #expect(CaptureState.allCases.count == 80)
+        #expect(CaptureState.allCases.count == 83)
     }
 
     @Test func seedsMargaretFixture() throws {

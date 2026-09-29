@@ -54,10 +54,21 @@ extension AppModel {
 
     /// Today's Start (and Extras): the preview first (S10).
     func preview(_ request: WorkoutRequest, checkIn: CheckIn?) {
+        // A picked stretch: the preview sets seated or standing itself, from her own limits.
+        let preset = request.presetID.flatMap(SessionCatalog.preset(id:))
+        let limits = preset?.main == .stretch ? (profile?.limits ?? request.limits.subtracting([.standingIsHard])) : request.limits
         let model = WorkoutPreviewModel(day: request.day, intensity: request.intensity, checkIn: checkIn,
-                                        suggestedLevel: request.level, limits: request.limits, rotationIndex: request.rotationIndex,
-                                        minutesDelta: request.minutesDelta, content: content, defaults: defaults)
+                                        suggestedLevel: request.level, limits: limits, rotationIndex: request.rotationIndex,
+                                        minutesDelta: request.minutesDelta, content: content, defaults: defaults,
+                                        presetID: request.presetID, standing: preset?.standing ?? false)
         cover = .preview(model)
+    }
+
+    /// Complete → "Do it again": the same session from its preview, as a new run.
+    func again(_ request: WorkoutRequest) {
+        var request = request
+        request.id = UUID()
+        preview(request, checkIn: today?.checkedIn)
     }
 
     /// Starts a session, showing phone placement or outdoor prep the first time.

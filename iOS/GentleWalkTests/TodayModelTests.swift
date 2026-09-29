@@ -50,6 +50,28 @@ import GentleWalkCore
         #expect(abs(model.treeProgress - 5.0 / 7.0) < 0.001)
     }
 
+    // MARK: Try something else (10.5)
+
+    @Test func walkDayOffersChairStretchAndFiveMinutes() {
+        let options = model(input()).swapOptions
+        #expect(options.map(\.id) == ["chair.gentle", "stretch.seated.gentle", SessionCatalog.justFiveMinutesID])
+        #expect(options.last?.title.hasPrefix("Just ") == true)
+        #expect(options.first?.title.hasPrefix("Gentle chair moves · ") == true)
+        #expect(options.allSatisfy { $0.request.limits.contains(.knees) && $0.request.presetID == $0.id })
+    }
+
+    @Test func noSwapOnARestDayOrOnceDone() {
+        #expect(model(input(now: at(26))).swapOptions.isEmpty)
+        let done = [22, 23, 24, 25, 28].map { TodayInput.Workout(date: at($0), feeling: .justRight, breakCount: 0, level: .seated) }
+        #expect(model(input(workouts: done)).swapOptions.isEmpty)
+    }
+
+    @Test func freePlanSwapsAreNeverLocked() {
+        let options = model(input(entitlement: .free)).swapOptions
+        #expect(!options.isEmpty)
+        #expect(options.allSatisfy { !$0.isLocked })
+    }
+
     @Test func endedTrialKeepsAFreeWalkAndOffersPlans() {
         let model = model(input(entitlement: .free, trialEnds: at(20)))
         #expect(model.session.title.hasPrefix("Free walk of the day"))

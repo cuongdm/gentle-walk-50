@@ -61,6 +61,15 @@ struct TodayExtra: Equatable, Identifiable {
     var request: WorkoutRequest
 }
 
+/// One choice of "Try something else" (milestone 10).
+struct TodaySwapOption: Equatable, Identifiable {
+    var id: String
+    var title: String
+    var art: Art
+    var request: WorkoutRequest
+    var isLocked: Bool
+}
+
 /// S17 Today (task 6.2). Works everything out once from `TodayInput`; only the check-in changes it.
 @Observable @MainActor final class TodayModel {
     private(set) var checkedIn: CheckIn?
@@ -181,6 +190,26 @@ struct TodayExtra: Equatable, Identifiable {
         if !input.healthConnected { return .connectHealth }
         if input.suggestFewerReminders { return .fewerReminders }
         return nil
+    }
+
+    /// "Try something else": the other kinds and five gentle minutes, built with her limits. It
+    /// replaces today's session (any finished session makes the day active). None once done or on
+    /// a rest day.
+    var swapOptions: [TodaySwapOption] {
+        switch session.kind {
+        case .done, .rest: return []
+        case .planned, .gentleRestart, .freeWalk: break
+        }
+        let planned: PlannedDay.Main = restart != nil ? .walk : (plannedDay.main ?? .walk)
+        return SessionCatalog.swapOptions(planned: planned).map { preset in
+            let request = preset.request(limits: input.limits, rotationIndex: activeDays)
+            let minutes = minutes(of: request)
+            let title = preset.id == SessionCatalog.justFiveMinutesID
+                ? String(localized: "Just \(minutes) minutes today")
+                : String(localized: "\(String(localized: preset.title)) · \(minutes) min")
+            return TodaySwapOption(id: preset.id, title: title, art: preset.art, request: request,
+                                   isLocked: !isPro && !preset.isFree)
+        }
     }
 
     var extras: [TodayExtra] {

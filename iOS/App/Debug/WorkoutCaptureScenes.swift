@@ -25,7 +25,8 @@ struct WorkoutCaptureScene: View {
             default:
                 if let session {
                     WorkoutView(session: session, name: "Margaret", showsMusic: true,
-                                onChairMoves: session.request.place == .outdoors ? {} : nil, onClose: { _ in })
+                                onChairMoves: session.request.place == .outdoors ? {} : nil,
+                                onAgain: session.request.canReplay(isPro: true) ? {} : nil, onClose: { _ in })
                         .environment(\.forceStillFrames, state == .chairPlayerReduceMotion)
                         .environment(\.startsFullScreen, state == .chairFullscreen)
                 } else {

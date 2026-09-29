@@ -7,9 +7,16 @@ struct MainTabView: View {
 
     var body: some View {
         TabView(selection: $app.tab) {
-            NavigationStack { TodayTab(app: app) }
-                .tabItem { Label("Today", systemImage: "sun.max.fill") }
-                .tag(AppTab.today)
+            NavigationStack(path: $app.todayPath) {
+                TodayTab(app: app)
+                    .navigationDestination(for: TodayRoute.self) { route in
+                        switch route {
+                        case .allSessions: AllSessionsScreen(app: app)
+                        }
+                    }
+            }
+            .tabItem { Label("Today", systemImage: "sun.max.fill") }
+            .tag(AppTab.today)
             NavigationStack(path: $app.journeyPath) {
                 JourneyTab(app: app)
                     .navigationDestination(for: JourneyRoute.self) { route in
@@ -50,6 +57,7 @@ struct TodayTab: View {
                 onSeePlans: { app.offerPlans(.lockedContent) },
                 onManagePlan: { app.tab = .me },
                 onOpenJourney: { app.tab = .journey },
+                onSeeAllSessions: { app.todayPath.append(.allSessions) },
                 onConnectHealth: { Task { _ = await app.health.requestAuthorization(); app.reload() } },
                 onDismissCard: app.dismissHealthCard,
                 onFewerReminders: app.answerFewerReminders))
