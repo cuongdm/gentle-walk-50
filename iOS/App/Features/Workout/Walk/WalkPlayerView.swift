@@ -129,7 +129,7 @@ struct WalkTopBar: View {
     }
 }
 
-/// Illustration by level (placeholder until the watercolour scenes exist).
+/// The filmed loop for her level when there is one, otherwise the painting for it.
 struct WalkScene: View {
     let level: WalkLevel
     var isOutdoors = false
@@ -137,7 +137,14 @@ struct WalkScene: View {
     var minHeight: CGFloat?
 
     var body: some View {
-        if let minHeight {
+        if let video = WalkVideo.fileName(for: level, isOutdoors: isOutdoors) {
+            // Same flexible frame as the painting (ViewThatFits measures the frame, not the player);
+            // the clip sits inside at 16:9, centred, with no card colour around it.
+            Color.clear
+                .frame(maxWidth: .infinity)
+                .frame(minHeight: minHeight ?? height, maxHeight: height)
+                .overlay { ExerciseVideo(fileName: video) }
+        } else if let minHeight {
             ArtImage.flexible(art, minHeight: minHeight, maxHeight: height, fallbackSymbol: symbol)
         } else {
             ArtImage(art: art, height: height, fallbackSymbol: symbol)

@@ -46,10 +46,12 @@ import Observation
         itemsByID = Dictionary(uniqueKeysWithValues: sections.flatMap(\.items).map { ($0.id, $0) })
     }
 
-    /// True when a move the session plays has a filmed clip.
+    /// True when a move the session plays, or its walk at her level, has a filmed clip.
     private static func hasVideo(_ request: WorkoutRequest, filmed: Set<String>, content: ContentBundle) -> Bool {
         guard let plan = try? request.plan(content: content) else { return false }
+        let walks = plan.blocks.contains { $0.kind == .walk }
         return plan.exerciseIDs.contains(where: filmed.contains)
+            || (walks && WalkVideo.fileName(for: request.level, isOutdoors: request.place == .outdoors) != nil)
     }
 
     /// Her hearted sessions, in the order she added them.
