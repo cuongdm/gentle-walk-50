@@ -43,7 +43,7 @@ struct SessionSection: View {
             if typeSize.isAccessibilitySize {
                 ForEach(items) { item in
                     SessionCard(title: item.title, detail: item.detail, art: item.art, isLocked: item.isLocked,
-                                favourite: .init(isOn: model.isFavourite(item.id), toggle: { model.toggleFavourite(item.id) })) {
+                                hasVideo: item.hasVideo, favourite: .init(isOn: model.isFavourite(item.id), toggle: { model.toggleFavourite(item.id) })) {
                         onOpen(item)
                     }
                 }
@@ -52,7 +52,7 @@ struct SessionSection: View {
                     HStack(alignment: .top, spacing: 12) {
                         ForEach(items) { item in
                             SessionTile(title: item.title, detail: item.detail, art: item.art, isLocked: item.isLocked,
-                                        isFavourite: model.isFavourite(item.id),
+                                        hasVideo: item.hasVideo, isFavourite: model.isFavourite(item.id),
                                         onToggleFavourite: { model.toggleFavourite(item.id) }) { onOpen(item) }
                         }
                     }

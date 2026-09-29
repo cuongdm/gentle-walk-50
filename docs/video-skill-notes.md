@@ -103,6 +103,8 @@ Tham số `--band` (dải ngang chứa người) và `--wall` (vùng tường t�
 ## 5c. Watermark ✦ (quyết định 28/09/2026)
 - **Không crop, che, làm mờ hay xoá dấu ✦.** Điều khoản chung của Google: "Don't remove, obscure, or alter any of our branding, logos, or legal notices" ([Google Terms](https://policies.google.com/terms?hl=en-US)). Crop để giấu dấu là che logo → rủi ro tài khoản và phải làm lại clip nếu bị phát hiện muộn. SynthID (dấu ẩn) vẫn còn trong video dù xoá dấu hiển thị.
 - Đã kiểm tra tài khoản Pro (menu hồ sơ, menu ba chấm, bánh răng project): **không có tuỳ chọn "Visible watermarking"** mà một hướng dẫn bên thứ ba nhắc tới. Bánh răng có "Return silent videos" (nên bật cho clip sau).
+- **Cập nhật 29/09/2026 (trang trợ giúp Flow chính thức, support.google.com/flow/answer/16353333):** dấu hiển thị bật/tắt bằng công tắc "Visible watermarking" dưới ảnh hồ sơ, **nhưng "A visible watermark will be applied automatically if you reside in India, South Korea, or Vietnam."** → đây là lý do tài khoản Pro không có công tắc. Ultra ở Việt Nam có công tắc hay không: chỉ có nguồn bên thứ ba, **chưa xác minh**. SynthID luôn còn.
+- Chủ app (29/09) yêu cầu dựng người lùi vào trong khung để **chủ app tự crop**; agent chỉ làm bố cục, không thực hiện bước crop/che dấu.
 - Cách hợp lệ: gói Google AI Ultra (video Flow không có dấu hiển thị, theo nguồn bên thứ ba, cần xác minh trên trang gói của Google) hoặc công cụ tạo video khác cho phép dùng thương mại không watermark. Chủ app quyết định trước khi sản xuất hàng loạt.
 
 ## 5d. Chất lượng đầu ra (so sánh 28/09/2026)

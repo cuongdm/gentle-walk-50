@@ -11,6 +11,8 @@ import Observation
         var detail: String
         var art: Art
         var isLocked: Bool
+        /// At least one move in it has a filmed clip; the rest are voice and pictures.
+        var hasVideo = false
         var request: WorkoutRequest
     }
 
@@ -26,20 +28,28 @@ import Observation
 
     init(isPro: Bool, limits: Set<BodyLimit>, rotationIndex: Int, content: ContentBundle, favourites: FavouriteSessions) {
         self.favourites = favourites
+        let filmed = Set(content.exercises.filter { $0.videoFile != nil }.map(\.id))
         let sections = SessionPreset.Group.allCases.map { group in
             let items = SessionCatalog.presets(in: group).compactMap { preset -> Item? in
                 // Standing stretches would turn seated anyway when standing is hard: show the seated ones only.
                 if preset.standing && limits.contains(.standingIsHard) { return nil }
                 let minutes = preset.minutes(content: content, limits: limits, rotationIndex: rotationIndex)
                 guard minutes > 0 else { return nil }
+                let request = preset.request(limits: limits, rotationIndex: rotationIndex)
                 return Item(id: preset.id, title: String(localized: preset.title), detail: String(localized: "\(minutes) min"),
                             art: preset.art, isLocked: !isPro && !preset.isFree,
-                            request: preset.request(limits: limits, rotationIndex: rotationIndex))
+                            hasVideo: Self.hasVideo(request, filmed: filmed, content: content), request: request)
             }
             return Section(group: group, items: items)
         }
         self.sections = sections.filter { !$0.items.isEmpty }
         itemsByID = Dictionary(uniqueKeysWithValues: sections.flatMap(\.items).map { ($0.id, $0) })
+    }
+
+    /// True when a move the session plays has a filmed clip.
+    private static func hasVideo(_ request: WorkoutRequest, filmed: Set<String>, content: ContentBundle) -> Bool {
+        guard let plan = try? request.plan(content: content) else { return false }
+        return plan.exerciseIDs.contains(where: filmed.contains)
     }
 
     /// Her hearted sessions, in the order she added them.

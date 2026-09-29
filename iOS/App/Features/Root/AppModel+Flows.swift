@@ -148,7 +148,8 @@ extension AppModel {
         session.player.nowPlaying = NowPlayingController(
             title: request.title, onPlay: { [weak session] in session?.player.resume() },
             onPause: { [weak session] in session?.player.pause(.user) })
-        session.play()
+        // "Get ready" 3-2-1 first, like a class starting: time to set the phone down.
+        session.startWithCountdown()
         cover = .workout(session)
     }
 

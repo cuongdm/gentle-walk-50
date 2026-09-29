@@ -29,6 +29,7 @@ enum CaptureState: String, CaseIterable, Sendable {
     case previewStretch = "preview-stretch"
     case previewChair = "preview-chair"
     case previewWalkingPad = "preview-walking-pad"
+    case countdown = "countdown"
     case walkPlayer = "walk-player"
     case walkTransition = "walk-transition"
     case walkPaused = "walk-paused"

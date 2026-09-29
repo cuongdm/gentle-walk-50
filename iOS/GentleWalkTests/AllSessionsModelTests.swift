@@ -27,6 +27,13 @@ import GentleWalkCore
         #expect(open == ["walk.gentle", "walk.steady", "walk.strong", "walk.long", "chair.gentle", "stretch.seated.gentle"])
     }
 
+    @Test func sessionsWithAFilmedMoveAreMarkedVideo() {
+        let items = model(isPro: true).sections.flatMap(\.items)
+        let video = items.filter(\.hasVideo).map(\.id)
+        // Chair moves are filmed (V1–V6); walks and stretches are voice only for now.
+        #expect(video == ["chair.gentle", "chair.steady", "chair.strong", "extra.balance"])
+    }
+
     @Test func favouritesComeFirstInTheOrderAdded() {
         let model = model(isPro: true)
         #expect(model.favouriteItems.isEmpty)

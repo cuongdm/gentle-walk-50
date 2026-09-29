@@ -35,6 +35,8 @@ struct WorkoutView: View {
         switch session.stage {
         case .preparing, .saving:
             ProgressView().controlSize(.large).frame(maxWidth: .infinity, maxHeight: .infinity).screenBackground()
+        case .countdown:
+            WorkoutCountdownView(title: session.request.title, onFinished: session.countdownFinished)
         case .standBehindChair:
             StandBehindChairView(onReady: session.confirmStanding)
         case .breakTime(let startedAt):

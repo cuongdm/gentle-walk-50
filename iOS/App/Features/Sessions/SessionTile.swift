@@ -7,6 +7,7 @@ struct SessionTile: View {
     let detail: String
     let art: Art
     let isLocked: Bool
+    var hasVideo = false
     let isFavourite: Bool
     let onToggleFavourite: () -> Void
     let action: () -> Void
@@ -18,6 +19,9 @@ struct SessionTile: View {
             Button(action: action) {
                 VStack(alignment: .leading, spacing: 6) {
                     ArtImage(art: art, height: 104)
+                        .overlay(alignment: .bottomLeading) {
+                            if hasVideo { VideoBadge().padding(6) }
+                        }
                     Text(verbatim: title).typeRole(.body).fontWeight(.semibold)
                         .lineLimit(2, reservesSpace: true)
                         .multilineTextAlignment(.leading)

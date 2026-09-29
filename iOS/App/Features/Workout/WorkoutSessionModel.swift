@@ -7,6 +7,8 @@ import GentleWalkCore
 @Observable @MainActor final class WorkoutSessionModel {
     enum Stage: Equatable {
         case preparing
+        /// "Get ready" 3-2-1 before the first word (nothing plays yet).
+        case countdown
         case playing
         case standBehindChair(exerciseID: String)
         case breakTime(startedAt: Date)
@@ -98,6 +100,16 @@ import GentleWalkCore
     }
 
     func play() { player.play() }
+
+    /// Shows the 3-2-1 first; `countdownFinished()` starts the session.
+    func startWithCountdown() { stage = .countdown }
+
+    /// End of the count, or "Start now". Only acts while the count shows.
+    func countdownFinished() {
+        guard stage == .countdown else { return }
+        stage = .playing
+        player.play()
+    }
 
     // MARK: Controls
 

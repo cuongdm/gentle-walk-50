@@ -93,6 +93,12 @@ struct WorkoutCaptureScene: View {
             }
             if state == .thisHurts { model.openHurts() }
             return model
+        case .countdown:
+            let model = WorkoutSessionModel(request: request(walk, intensity: .gentle), content: content,
+                                            engine: SilentPlaybackEngine(), completion: nil, prepareMedia: false)
+            try? await model.load()
+            model.startWithCountdown()
+            return model
         case .outdoorPlayer, .outdoorPlayerNoGps:
             let model = await make(request(walk, intensity: .steady, place: .outdoors))
             let gps = state == .outdoorPlayer

@@ -7,6 +7,7 @@ struct SessionCard: View {
     let detail: String?
     let art: Art
     let isLocked: Bool
+    var hasVideo = false
     var favourite: Favourite? = nil
     let action: () -> Void
 
@@ -32,7 +33,14 @@ struct SessionCard: View {
                         if let detail {
                             Text(verbatim: detail).typeRole(.caption).foregroundStyle(Palette.textMuted)
                         }
-                        if isLocked { ProBadge() }
+                        if hasVideo || isLocked {
+                            // Side by side, or stacked when the text is large.
+                            (typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 6))
+                                : AnyLayout(HStackLayout(spacing: 6))) {
+                                if hasVideo { VideoBadge() }
+                                if isLocked { ProBadge() }
+                            }
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(Palette.text)
