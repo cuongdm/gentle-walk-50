@@ -23,7 +23,7 @@ Giọng: nữ 58–65 tuổi, trầm ấm, khoảng 130 từ/phút, giọng Mỹ
 | Mục | Số câu | Ghi chú |
 |---|---|---|
 | A1. First Walk 5 phút | ~30 | ngồi, không thể thất bại, kết bằng bưu thiếp đầu · **bản nháp 1: [scripts/A1-first-walk.md](scripts/A1-first-walk.md)** |
-| A2. Dẫn đi bộ: Ngồi / Tại chỗ / Walking pad | ~150 | khởi động, nhanh, chậm, thả lỏng; 3–4 biến thể mỗi pha |
+| A2. Dẫn đi bộ: Ngồi / Tại chỗ / Walking pad | ~150 (tối thiểu 67) | khởi động, nhanh, chậm, thả lỏng; 3–4 biến thể mỗi pha · **bản tối thiểu: [scripts/A2-walk-min.md](scripts/A2-walk-min.md)** |
 | A3. Dẫn đi ngoài trời | 30–50 | câu an toàn ở pha nhanh ("watch for curbs"), "find somewhere to sit" |
 | A4. 6 động tác ghế và thăng bằng | ~45 | giới thiệu, tư thế, bản dễ, bản khó, kết thúc; "Stand behind your chair" trước bài đứng · **bản nháp 1 cùng file với clip: [scripts/V-exercise-clips.md](scripts/V-exercise-clips.md)** |
 | A5. Số đếm và đếm ngược | ~40 | 1–20, "3, 2, 1", "30 seconds left", "one minute left" |
@@ -31,9 +31,32 @@ Giọng: nữ 58–65 tuổi, trầm ấm, khoảng 130 từ/phút, giọng Mỹ
 | A7. Break, This hurts, an toàn | ~20 | "Sit down, sip some water…", "Let's take care of that" |
 | A8. Tới địa danh | 30–60 | 1–2 câu cho mỗi bưu thiếp của 5 hành trình |
 | A9. Chuyển bài, check-in, welcome back | ~30 | theo Achy / Okay / Great |
-| A10. Giãn cơ nhẹ (mới 28/09/2026) | ~40–50 | 6–8 tư thế × (giới thiệu, vào tư thế, nhắc thở, bản dễ, đổi bên, ra tư thế); phần hạ nhiệt 1–2 phút sau đi bộ dùng 2–3 tư thế ngồi; "a gentle pull, never pain", không nhún, không nín thở; không hứa hết đau · viết cùng file với clip V2b |
+| A10. Giãn cơ nhẹ (mới 28/09/2026) | 55 | 6–8 tư thế × (giới thiệu, vào tư thế, nhắc thở, bản dễ, đổi bên, ra tư thế); phần hạ nhiệt 1–2 phút sau đi bộ dùng 2–3 tư thế ngồi; "a gentle pull, never pain", không nhún, không nín thở; không hứa hết đau · viết cùng file với clip V2b · **bản nháp 1 có nguồn NHS/NIA: [scripts/A10-stretch.md](scripts/A10-stretch.md)** |
 
 **Việc cần làm:** viết A1 trước (xong, bản nháp 1) → TTS prototype → nghe thử với nhóm test → viết A10 cùng kịch bản clip giãn cơ → viết phần còn lại → huấn luyện viên duyệt A2–A4, A7, A10 → chọn cách làm giọng (thu người thật, TTS hay clone có đồng ý; giọng ElevenLabs gói Free chỉ dùng cho prototype) → sản xuất → chuẩn hoá độ to → xuất phụ đề từ chính kịch bản.
+
+### Bộ nội dung tối thiểu cho demo MVP (29/09/2026)
+Mục tiêu: mọi màn và mọi luồng trong plan có nội dung thật (chữ) để demo chạy trọn; âm thanh, clip và tranh dùng placeholder tới khi làm asset thật (sau test prototype). Mỗi mục có tối thiểu là được; bản đầy đủ viết sau.
+| Nhóm | Tối thiểu cho demo | Tình trạng | File |
+|---|---|---|---|
+| A1 First Walk | 30 câu | xong (nháp 1) | [A1-first-walk.md](scripts/A1-first-walk.md) |
+| A2 Dẫn đi bộ | 67 câu (41 mới + 26 dùng lại A1), 3 cấp × 3 cường độ | xong (nháp 1) | [A2-walk-min.md](scripts/A2-walk-min.md) |
+| A3 Ngoài trời | 12 câu | xong | [A-min-support.md](scripts/A-min-support.md) |
+| A4 Động tác ghế | 6 × 6–8 câu | có sẵn | [V-exercise-clips.md](scripts/V-exercise-clips.md) |
+| A5 Đếm | 22 câu | xong | A-min-support.md |
+| A6 Động viên | 10 câu | xong | A-min-support.md |
+| A7 An toàn | 12 câu | xong | A-min-support.md |
+| A8 Địa danh | 10 câu (New York 6 + chặng đầu 4 tuyến) | xong | A-min-support.md |
+| A9 Chuyển bài, check-in | 14 câu | xong | A-min-support.md |
+| A10 Giãn cơ | 55 câu, 8 tư thế có nguồn | xong (nháp 1) | [A10-stretch.md](scripts/A10-stretch.md) |
+| B1 Giọng | file tạm: bản DEBUG đọc bằng `AVSpeechSynthesizer` (plan 3.3); ElevenLabs gói thương mại sau | placeholder | — |
+| B2 Chuông | 3 file tạm tạo bằng ffmpeg (sine hai nốt) | làm ở task code | — |
+| B3 Nhạc | 0 (thư viện nhạc rỗng được, plan 3.12) | placeholder | — |
+| V Clip | 6 clip động tác có sẵn; giãn cơ dùng ảnh khung tạm (plan 4.8) | 6/13 | assets/video/ |
+| C Tranh | placeholder toàn bộ | placeholder | — |
+| D1, D4, D11 | theo spec | có sẵn | spec |
+| D2, D3, D5, D6, D7, D8, D9, D10 | 6 · 7 · 14 · 5 · 6 · 28 · 8 · 5 | xong (nháp 1) | [D-min-texts.md](scripts/D-min-texts.md) |
+Tổng câu giọng tối thiểu: khoảng 250 (A1 30 + A2 41 mới + A3–A9 80 + A4 khoảng 45 + A10 55). Đủ cho sessions.json và voice-lines.json của plan task 1.5.
 
 ## 3. B. Âm thanh
 | Mục | Số lượng | Yêu cầu |
@@ -49,7 +72,7 @@ Giọng vẫn là lõi: clip chỉ minh hoạ, không mang thông tin mà giọn
 |---|---|---|
 | V1. Ảnh tham chiếu HLV | 3–4 góc | dùng cho mọi clip để giữ cùng một người |
 | V2. Clip chính cho 6 động tác (kịch bản: [scripts/V-exercise-clips.md](scripts/V-exercise-clips.md); **V1-1 … V6-1 xong 28/09/2026 (cùng khung máy, 720p + 1080p, giọng ElevenLabs): assets/video/**, chờ huấn luyện viên duyệt) | 6 (heel và toe gộp một clip V4-1) | 16:9 ngang, 2.5–9 giây một vòng, lặp liền mạch, một góc máy cố định (V1–V2 chính diện, V3–V6 nghiêng thuần), cùng cỡ người và phòng ở mọi clip, không cắt cảnh, không chữ in trong hình, không âm thanh, không watermark hiển thị; động tác luân phiên chứa cả hai bên trong một clip, không lật gương |
-| V2b. Clip giãn cơ nhẹ (từ 28/09/2026) | 6–8 | cùng khung máy V1 (ảnh khung lấy từ video V1, xem skill §5f); bản ngồi trên ghế và đứng vịn ghế: cổ–vai, lưng trên, hông, đùi sau, bắp chân, cổ chân; mỗi clip một động tác, vào tư thế 2–3 giây rồi app dừng ở khung giữ 15–20 giây; **kịch bản giọng A10 viết trước (chưa có), mỗi tư thế ghi nguồn công khai (NIA Go4Life, NHS; docs/todo.md #2), báo giá credit** |
+| V2b. Clip giãn cơ nhẹ (từ 28/09/2026) | 6–8 | cùng khung máy V1 (ảnh khung lấy từ video V1, xem skill §5f); bản ngồi trên ghế và đứng vịn ghế: 7 tư thế ngồi + bắp chân đứng vịn ghế theo [A10](scripts/A10-stretch.md) (clip V7-1 … V7-7; bỏ tư thế hông vắt chân); mỗi clip một động tác, vào tư thế 2–3 giây rồi app dừng ở khung giữ 15–20 giây; **kịch bản A10 đã có (29/09/2026, nguồn từng tư thế), báo giá credit trước khi tạo** |
 | V3. Bản dễ và bản khó | 6–12 | ví dụ Sit-to-stand dùng tay đẩy / không dùng tay; heel raise ngồi / đứng vịn ghế |
 | V4. Ảnh khung tĩnh lấy từ clip | 2 mỗi clip | tư thế đầu và cuối; dùng cho Reduce Motion, thumbnail, lỗi video, VoiceOver |
 

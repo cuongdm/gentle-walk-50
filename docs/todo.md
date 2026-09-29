@@ -19,7 +19,7 @@ Sang manh-skill-plan với asset hiện có (6 clip, A1, giọng prototype). Nh�
 
 ## Video
 - [ ] Huấn luyện viên duyệt 6 clip V1-1 … V6-1 (V1 tay chạm ghế khi ngồi, V6 chân nhấc cao hơn kịch bản 2 inch).
-- [ ] Viết A10 + kịch bản clip giãn cơ `docs/scripts/S-stretch-clips.md` theo mẫu V-exercise-clips, mỗi tư thế ghi nguồn (mục 2 ở trên); báo giá credit; tạo 2 clip mẫu trước.
+- [x] ~~Viết A10 + kịch bản clip giãn cơ~~ Xong 29/09/2026: `docs/scripts/A10-stretch.md` (mục 6 là danh sách clip V7-1 … V7-7). Còn: báo giá credit, tạo 2 clip mẫu trước.
 - [ ] Tạo nhạc AI 9–15 bản trên gói trả phí (mục 4 ở trên), chuẩn hoá độ to, kiểm tra lặp liền.
 - [x] ~~Chốt gói Flow không watermark~~ Chốt 29/09/2026: tạm dùng Flow Pro hiện tại cho clip giãn cơ, nâng gói sau. Hệ quả: trước khi nộp phải tạo lại hoặc xuất lại toàn bộ clip trên gói không watermark (plan 9.2); giữ nguyên prompt, ảnh khung và mốc cắt để làm lại nhanh; không tự xoá dấu ✦.
 - [ ] V3 bản dễ/khó, V4 ảnh khung tĩnh cho Reduce Motion và VoiceOver.
@@ -38,7 +38,7 @@ Plan đã duyệt nên không sửa thầm; các mục dưới đưa vào task t
 - [ ] **M10** Dựng file A1 5 phút cho mẫu thử M1 bằng `tools/video/build_preview.py` (giọng Bella, cảnh tĩnh S11) — cần cho test prototype.
 - [ ] **M11** Task 1.8 ghi chú `CFBundleDisplayName` "Gentle Walk" là tên tạm, đổi khi chốt tên store.
 - [x] ~~**I1–I3, I5** chờ chốt~~ Chốt 29/09/2026 (app-context decisions log); đã ghi vào brief, spec, plan (dòng "Bổ sung 29/09" ở task 2.4, 2.7, 2.13, 5.8, 5.9, 6.2, 6.4, 6.9, 7.1), test plan.
-- [ ] **I4** Viết A2 tối thiểu (khoảng 60 câu, tái dùng 26 câu "Dùng lại" của A1), A5 số đếm, A7 an toàn, A9 check-in, A10 giãn cơ — **trước milestone 4**; nạp vào voice-lines.json (plan 1.5 nạp thêm khi có).
+- [x] ~~**I4**~~ Xong 29/09/2026 (nháp 1): A10 (55 câu, nguồn NHS/NIA), A2 tối thiểu (67 câu), A3/A5–A9 (80 câu), D2–D10. Bảng "Bộ nội dung tối thiểu cho demo MVP" ở content-plan §2. Chờ chủ app đọc duyệt.
 - [x] ~~**I6**~~ Chốt 29/09/2026: dùng Flow Pro hiện tại; báo giá credit khi tạo clip giãn cơ, và ước thêm một lần tạo lại toàn bộ (6 + 6–8 clip) khi nâng gói.
 - [x] ~~**I7**~~ Test plan đổi tuổi người tham gia thành 50–64 (+ tối đa 2 người 65–68).
 
