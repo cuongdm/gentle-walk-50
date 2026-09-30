@@ -6,6 +6,7 @@ import GentleWalkCore
 struct ChairPlayerView: View {
     let model: ChairPlayerModel
     @State private var fullScreen = false
+    @State private var showsSound = false
 
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     @Environment(\.startsFullScreen) private var startsFullScreen
@@ -17,6 +18,7 @@ struct ChairPlayerView: View {
             if fullScreen || verticalSizeClass == .compact {
                 FullScreenVideoView(
                     fileName: model.exercise?.videoFile, title: model.exercise?.name,
+                    moveProgress: model.moveProgress, next: model.followingName,
                     counter: model.countsReps ? model.repsText : model.timerText,
                     caption: model.player.caption?.text, isPaused: isPaused,
                     onExit: exitFullScreen, onBack: model.back, onPause: model.session.togglePause,
@@ -31,6 +33,9 @@ struct ChairPlayerView: View {
             }
         }
         .leavesFullScreenWhenUpright($fullScreen)
+        .sheet(isPresented: $showsSound) {
+            SoundSheet(showsMusic: true) { model.player.setLevels(voice: $0.voice, music: $0.music) }
+        }
         .onAppear { if startsFullScreen { enterFullScreen() } }
     }
 
@@ -52,6 +57,10 @@ struct ChairPlayerView: View {
                 if let position = model.blockPosition {
                     Text(verbatim: position).typeRole(.caption).foregroundStyle(Palette.text)
                 }
+                SoundButton { showsSound = true }
+            }
+            if let progress = model.moveProgress {
+                MoveProgressHeader(progress: progress, next: model.followingName)
             }
             ExerciseVideo(fileName: model.exercise?.videoFile)
                 .overlay(alignment: .topTrailing) { VideoCornerButton.expand(enterFullScreen).padding(4) }
@@ -249,17 +258,10 @@ struct RestBetweenMoves: View {
             Text(verbatim: timer).typeRole(.timer).lineLimit(1).minimumScaleFactor(0.5)
                 .foregroundStyle(Palette.text).contentTransition(.numericText())
             if let next {
-                // Clip beside the name; the name goes under the clip when the text is large.
-                ViewThatFits(in: .horizontal) {
-                    HStack(spacing: 14) {
-                        ExerciseVideo(fileName: next.videoFile).frame(width: 120)
-                        NextUpName(name: next.name).fixedSize(horizontal: true, vertical: false)
-                        Spacer(minLength: 0)
-                    }
-                    VStack(alignment: .leading, spacing: 10) {
-                        ExerciseVideo(fileName: next.videoFile).frame(maxWidth: 240)
-                        NextUpName(name: next.name)
-                    }
+                // A large look at the next move, like a class's "get ready" (competitor idea 1).
+                VStack(alignment: .leading, spacing: 10) {
+                    NextUpName(name: next.name)
+                    ExerciseVideo(fileName: next.videoFile).frame(maxWidth: 420)
                 }
                 .cardStyle()
             }

@@ -31,6 +31,18 @@ import GentleWalkCore
         return upcoming?.exerciseID.flatMap { session.exercisesByID[$0] }
     }
 
+    /// Where she is among this block's moves (segmented bar).
+    var moveProgress: SessionTimeline.MoveProgress? { player.timeline.moveProgress(at: player.currentTime) }
+
+    /// The move after the one on screen ("Next: Seated knee lift"); nil on the last.
+    var followingName: String? {
+        guard let progress = moveProgress else { return nil }
+        let moves = player.timeline.phases.filter { $0.block == phase?.block && $0.exerciseID != nil }
+        let after = progress.index + 1
+        guard moves.indices.contains(after), let id = moves[after].exerciseID else { return nil }
+        return session.exercisesByID[id]?.name
+    }
+
     var usesEasier: Bool {
         guard let exercise else { return false }
         return phase?.isEasier == true || session.easierExerciseIDs.contains(exercise.id)

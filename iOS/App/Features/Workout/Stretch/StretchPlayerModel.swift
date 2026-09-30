@@ -24,6 +24,16 @@ import GentleWalkCore
     }
 
     var isCooldown: Bool { phase?.block == .cooldown }
+
+    var moveProgress: SessionTimeline.MoveProgress? { player.timeline.moveProgress(at: player.currentTime) }
+
+    /// The pose after the one on screen; nil on the last.
+    var followingName: String? {
+        guard let progress = moveProgress else { return nil }
+        let poses = player.timeline.phases.filter { $0.block == phase?.block && $0.exerciseID != nil }
+        guard poses.indices.contains(progress.index + 1), let id = poses[progress.index + 1].exerciseID else { return nil }
+        return session.exercisesByID[id]?.name
+    }
     var usesEasier: Bool { phase?.isEasier == true || (pose.map { session.easierExerciseIDs.contains($0.id) } ?? false) }
 
     /// "Cool-down · 2 of 3" after a walk.

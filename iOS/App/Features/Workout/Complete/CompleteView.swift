@@ -25,6 +25,8 @@ struct CompleteView: View {
                     CompleteHero(title: content.title, subtitle: content.subtitle, level: content.reachedLevel)
                     CompleteStats(minutes: content.minutes, milesText: content.milesText, milesLabel: content.milesLabel,
                                   activeDays: content.activeDays)
+                    TreeMilestoneLine(activeDays: content.activeDays)
+                        .cardStyle()
                     if route.count > 1 {
                         RouteMapView(route: route)
                     }

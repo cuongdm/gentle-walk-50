@@ -14,6 +14,12 @@ import GentleWalkCore
     func setVoiceOn(_ on: Bool)
     /// Music button: mutes or restores the music track (voice and bells keep playing).
     func setMusicOn(_ on: Bool)
+    /// Sound sheet: coach voice and music volumes, 0...1 (applied live).
+    func setLevels(voice: Float, music: Float)
+}
+
+extension PlaybackEngine {
+    func setLevels(voice: Float, music: Float) {}
 }
 
 /// The real engine: one composition per timeline (`SessionAudioComposer`), played by one `AVPlayer`.
@@ -38,6 +44,11 @@ import GentleWalkCore
     private var musicOn = true
     /// Music volume under the coach's voice ("Voice louder than music" in Me).
     private let duckedVolume: Float
+    /// Sound sheet levels, 0...1.
+    private var voiceLevel: Float = 1
+    private var musicLevel: Float = 1
+    /// When the coach speaks: the music dips in these windows.
+    private var speechWindows: [(start: Double, end: Double)] = []
 
     init(voiceURLs: [String: URL], bellURL: URL, doneBellURL: URL?, musicURL: URL?,
          duckedVolume: Float = SessionAudioComposer.duckedVolume) {
@@ -62,6 +73,7 @@ import GentleWalkCore
             musicURL: musicURL, length: length, duckedVolume: duckedVolume)
         let item = AVPlayerItem(asset: composition)
         musicParameters = mix.inputParameters
+        speechWindows = timeline.voice.filter { voiceURLs[$0.lineID] != nil }.map { ($0.start, $0.end) }
         let tracks = composition.tracks(withMediaType: .audio)
         voiceTrackID = tracks.first?.trackID
         musicTrackID = tracks.count > 2 ? tracks[2].trackID : nil
@@ -88,20 +100,33 @@ import GentleWalkCore
         player.currentItem?.audioMix = currentMix()
     }
 
-    /// Music ducking from the composer plus the voice and music switches.
+    func setLevels(voice: Float, music: Float) {
+        voiceLevel = voice
+        musicLevel = music
+        player.currentItem?.audioMix = currentMix()
+    }
+
+    /// Music ducking under the voice at the chosen music level, plus the voice and music switches.
     private func currentMix() -> AVAudioMix {
         let mix = AVMutableAudioMix()
-        var parameters = musicParameters
-        if !musicOn, let musicTrackID {
-            let silent = AVMutableAudioMixInputParameters()
-            silent.trackID = musicTrackID
-            silent.setVolume(0, at: .zero)
-            parameters = [silent]
+        var parameters: [AVAudioMixInputParameters] = []
+        if let musicTrackID {
+            let music = AVMutableAudioMixInputParameters()
+            music.trackID = musicTrackID
+            let level = musicOn ? musicLevel : 0
+            music.setVolume(level, at: .zero)
+            for window in speechWindows where level > 0 {
+                music.setVolume(level * duckedVolume, at: SessionAudioComposer.time(window.start))
+                music.setVolume(level, at: SessionAudioComposer.time(window.end))
+            }
+            parameters.append(music)
+        } else {
+            parameters = musicParameters
         }
         if let voiceTrackID {
             let voice = AVMutableAudioMixInputParameters()
             voice.trackID = voiceTrackID
-            voice.setVolume(voiceOn ? 1 : 0, at: .zero)
+            voice.setVolume(voiceOn ? voiceLevel : 0, at: .zero)
             parameters.append(voice)
         }
         mix.inputParameters = parameters

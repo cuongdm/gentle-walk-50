@@ -86,6 +86,8 @@ enum CaptureState: String, CaseIterable, Sendable {
     case meNotifications = "me-notifications"
     case meDeleteConfirm = "me-delete-confirm"
     case cancelGuide = "cancel-guide"
+    case soundSheet = "sound-sheet"
+    case watchOnTV = "watch-on-tv"
     case outdoorPrep = "outdoor-prep"
     case outdoorLocationAsk = "outdoor-location-ask"
     case outdoorPlayer = "outdoor-player"

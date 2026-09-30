@@ -1,4 +1,5 @@
 import SwiftUI
+import GentleWalkCore
 
 /// Full-screen video (task 4.7, laid out again 30/09/2026). Phone on its side: the clip fills the
 /// height on the left, where the coach stands, and one panel over the clip's empty wall on the
@@ -8,6 +9,9 @@ struct FullScreenVideoView: View {
     let fileName: String?
     /// Part or move above the counter ("BRISK WALK", "Sit-to-stand").
     var title: String? = nil
+    /// Chair and stretch: one segment per move, and the next move's name.
+    var moveProgress: SessionTimeline.MoveProgress? = nil
+    var next: String? = nil
     let counter: String
     /// Share of this part done, as a bar under the counter.
     var progress: Double? = nil
@@ -22,6 +26,8 @@ struct FullScreenVideoView: View {
     let onBreak: () -> Void
     let onHurts: () -> Void
 
+    @State private var showsTV = false
+
     var body: some View {
         GeometryReader { proxy in
             if proxy.size.width > proxy.size.height {
@@ -31,13 +37,22 @@ struct FullScreenVideoView: View {
             }
         }
         .background(Color.black.ignoresSafeArea())
+        .sheet(isPresented: $showsTV) { WatchOnTVSheet() }
+    }
+
+    /// Exit and "Watch on your TV" in the clip's corner.
+    private var cornerButtons: some View {
+        HStack(spacing: 4) {
+            VideoCornerButton.exit(onExit)
+            VideoCornerButton(symbol: "tv", label: "Watch on your TV") { showsTV = true }
+        }
     }
 
     private var sideBySide: some View {
         ZStack(alignment: .trailing) {
             ExerciseVideo(fileName: fileName)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                .overlay(alignment: .topLeading) { VideoCornerButton.exit(onExit).padding(6) }
+                .overlay(alignment: .topLeading) { cornerButtons.padding(6) }
             panel(scrolls: true)
                 .frame(width: 330)
         }
@@ -47,7 +62,7 @@ struct FullScreenVideoView: View {
     private var stacked: some View {
         VStack(spacing: 16) {
             HStack {
-                VideoCornerButton.exit(onExit)
+                cornerButtons
                 Spacer()
             }
             ExerciseVideo(fileName: fileName)
@@ -80,6 +95,7 @@ struct FullScreenVideoView: View {
     /// Part, counter (with Pause beside it on walks), progress and the spoken line.
     private var readout: some View {
         VStack(alignment: .leading, spacing: 8) {
+            if let moveProgress { MoveProgressHeader(progress: moveProgress, next: next) }
             HStack(alignment: .center) {
                 VStack(alignment: .leading, spacing: 2) {
                     if let title {

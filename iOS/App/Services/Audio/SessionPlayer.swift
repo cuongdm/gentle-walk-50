@@ -113,6 +113,11 @@ enum PlaybackState: Equatable, Sendable { case idle, ready, playing, paused(Paus
         engine.setVoiceOn(on)
     }
 
+    /// Coach voice and music volumes from the Sound sheet.
+    func setLevels(voice: Double, music: Double) {
+        engine.setLevels(voice: Float(voice), music: Float(music))
+    }
+
     /// Back / Skip controls: jumps to a moment in the program.
     func seek(to seconds: Double) {
         engine.seek(to: seconds)

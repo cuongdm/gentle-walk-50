@@ -31,3 +31,25 @@ public enum TreeLevel: Int, CaseIterable, Comparable, Sendable {
         return (activeDays - treeAt) / ringEvery
     }
 }
+
+public extension TreeLevel {
+    /// "5 of 7 active days to Sprout": the stretch from the last level (or ring) to the next one.
+    struct Milestone: Equatable, Sendable {
+        public var done: Int
+        public var total: Int
+        /// The level ahead; nil once the tree is grown (the goal is then the next year ring).
+        public var next: TreeLevel?
+    }
+
+    static func milestone(activeDays: Int) -> Milestone? {
+        let days = max(0, activeDays)
+        let starts = [0] + thresholds
+        if let index = thresholds.firstIndex(where: { days < $0 }) {
+            let from = starts[index]
+            return Milestone(done: days - from, total: thresholds[index] - from, next: TreeLevel(rawValue: index + 1))
+        }
+        let treeAt = thresholds.last ?? 0
+        let from = treeAt + ringEvery * rings(activeDays: days)
+        return Milestone(done: days - from, total: ringEvery, next: nil)
+    }
+}

@@ -116,7 +116,10 @@ extension AppModel {
     var usesLocationOutdoors: Bool { defaults.string(forKey: "outdoorLocationChoice") == "location" }
 
     private func prepareAndPlay(_ request: WorkoutRequest) async {
-        guard let plan = try? request.plan(content: content) else { cover = nil; return }
+        guard var plan = try? request.plan(content: content) else { cover = nil; return }
+        let levels = AudioLevels.saved(in: defaults)
+        // "Move introductions" off: each chair move starts with its instructions, not its name.
+        if !levels.moveIntroductions { plan = plan.withoutMoveIntroductions() }
         let media = await SessionMedia.prepare(plan: plan, content: content, voiceSource: voiceSource)
         let kind: MusicKind = switch request.day.main {
         case .chair: .chair
@@ -142,6 +145,7 @@ extension AppModel {
             return
         }
         if defaults.bool(forKey: "musicOff") { session.player.setMusicOn(false) }
+        session.player.setLevels(voice: levels.voice, music: levels.music)
         let context: AudioContext = request.place == .outdoors && AVAudioSession.sharedInstance().isOtherAudioPlaying
             ? .overUserAudio : .guided
         try? AudioSessionConfigurator.apply(context)

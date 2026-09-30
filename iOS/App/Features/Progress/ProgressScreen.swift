@@ -18,7 +18,7 @@ struct ProgressScreen: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 ScreenHeader(title: "Progress")
-                TreeCard(level: snapshot.tree, daysToNext: snapshot.daysToNext, rings: snapshot.rings)
+                TreeCard(level: snapshot.tree, activeDays: snapshot.activeDays, rings: snapshot.rings)
                 MonthCalendar(activeDates: snapshot.activeDates, restDays: snapshot.restDays, calendar: calendar, now: now)
                 SitToStandChart(bars: snapshot.sitToStand)
                 if let minutes = snapshot.longestWalkMinutes {
@@ -47,32 +47,26 @@ struct StepsSummary: Equatable {
     var lastWeek: Double
 }
 
-/// "Sprout · 8 days to Sapling"; after Tree, the next year ring.
+/// The tree and "6 of 14 active days to Sapling"; after Tree, the rings and the next one.
 struct TreeCard: View {
     let level: TreeLevel
-    let daysToNext: Int
+    let activeDays: Int
     let rings: Int
 
     var body: some View {
         HStack(spacing: 16) {
             ArtImage(name: Art.treeName(level: level), height: 140, fallbackSymbol: level.symbol)
                 .frame(width: 120)
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text(level.title).typeRole(.cardTitle)
-                Text(verbatim: line).typeRole(.body)
+                if rings > 0 {
+                    Text("^[\(rings) year ring](inflect: true)").typeRole(.caption).foregroundStyle(Palette.textMuted)
+                }
+                TreeMilestoneLine(activeDays: activeDays)
             }
             .foregroundStyle(Palette.text)
         }
         .cardStyle()
-    }
-
-    private var line: String {
-        let next = TreeLevel(rawValue: level.rawValue + 1)
-        if let next {
-            return String(localized: "\(daysToNext) days to \(String(localized: next.title))")
-        }
-        return rings == 0 ? String(localized: "\(daysToNext) days to your first ring")
-            : String(localized: "\(rings) rings · \(daysToNext) days to the next")
     }
 }
 

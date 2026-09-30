@@ -71,3 +71,19 @@ public struct SessionPlan: Equatable, Sendable {
         return trimmed
     }
 }
+
+public extension SessionPlan {
+    /// The same plan without each chair move's opening line (its name and what it is for), for
+    /// people who know the moves ("Move introductions" off in Me). Timing does not change.
+    func withoutMoveIntroductions() -> SessionPlan {
+        var plan = self
+        for b in plan.blocks.indices {
+            for s in plan.blocks[b].segments.indices where plan.blocks[b].segments[s].kind == .move {
+                let cues = plan.blocks[b].segments[s].cues
+                // Only the opening line at the start, and never the move's only line.
+                if cues.count > 1, cues.first?.at == 0 { plan.blocks[b].segments[s].cues = Array(cues.dropFirst()) }
+            }
+        }
+        return plan
+    }
+}

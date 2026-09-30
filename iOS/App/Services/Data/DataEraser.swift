@@ -22,6 +22,7 @@ import UserNotifications
         HealthService.askedKey, "paywallDismissedAt", "restTodayDate", "notificationSettings", "outdoorLocationChoice",
         "outdoorPrepSeen", "healthCardDismissed", "musicOff", "voiceLouder", "captionsOn", "reviewPromptMilestones", "lastSchedule",
         FavouriteSessions.defaultsKey, "permissionsShown", "fewerRemindersAnswered", "lastTrialEnds",
+        AudioLevels.voiceKey, AudioLevels.musicKey, AudioLevels.introsKey,
     ]
 }
 

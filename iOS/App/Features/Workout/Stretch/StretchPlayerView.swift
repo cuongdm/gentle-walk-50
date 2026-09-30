@@ -6,6 +6,7 @@ import GentleWalkCore
 struct StretchPlayerView: View {
     let model: StretchPlayerModel
     @State private var fullScreen = false
+    @State private var showsSound = false
 
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     private var isPaused: Bool { if case .paused = model.player.state { true } else { false } }
@@ -14,7 +15,8 @@ struct StretchPlayerView: View {
         Group {
             if fullScreen || verticalSizeClass == .compact {
                 FullScreenVideoView(
-                    fileName: model.pose?.videoFile, title: model.pose?.name, counter: model.holdText,
+                    fileName: model.pose?.videoFile, title: model.pose?.name,
+                    moveProgress: model.moveProgress, next: model.followingName, counter: model.holdText,
                     caption: model.player.caption?.text, isPaused: isPaused,
                     onExit: exitFullScreen, onBack: model.back, onPause: model.session.togglePause,
                     onSkip: { Task { await model.skip() } }, onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
@@ -23,6 +25,9 @@ struct StretchPlayerView: View {
             }
         }
         .leavesFullScreenWhenUpright($fullScreen)
+        .sheet(isPresented: $showsSound) {
+            SoundSheet(showsMusic: true) { model.player.setLevels(voice: $0.voice, music: $0.music) }
+        }
     }
 
     private func enterFullScreen() {
@@ -43,6 +48,10 @@ struct StretchPlayerView: View {
                 if let position = model.cooldownPosition {
                     Text(verbatim: position).typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)
                 }
+                SoundButton { showsSound = true }
+            }
+            if let progress = model.moveProgress {
+                MoveProgressHeader(progress: progress, next: model.followingName)
             }
             ExerciseVideo(fileName: model.pose?.videoFile, isHolding: model.isHolding)
                 .overlay(alignment: .topTrailing) { VideoCornerButton.expand(enterFullScreen).padding(4) }

@@ -19,6 +19,8 @@ import GentleWalkCore
     func setVoiceOn(_ on: Bool) { voiceOn = on }
     private(set) var musicOn = true
     func setMusicOn(_ on: Bool) { musicOn = on }
+    private(set) var levels: [Float] = []
+    func setLevels(voice: Float, music: Float) { levels = [voice, music] }
     func advance(to seconds: Double) { onTime?(seconds) }
 }
 

@@ -151,6 +151,7 @@ struct WorkoutAudioSection: View {
 
     var body: some View {
         SettingsCard(title: "Workout") {
+            SoundControls(showsMusic: !musicStyles.isEmpty && !musicOff)
             Toggle("Voice louder than music", isOn: $voiceLouder).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
             Toggle("Captions", isOn: $captionsOn).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
             if let style = musicStyles.first {
@@ -232,13 +233,22 @@ struct HelpSection: View {
     let onRestore: () -> Void
     let onPrivacy: () -> Void
 
+    /// A list of rows (icon, words, chevron) with hairlines between them, instead of four
+    /// underlined links with large gaps (owner, 30/09/2026).
     var body: some View {
         SettingsCard(title: "Help") {
-            Button("Restore purchase", action: onRestore).buttonStyle(.textLink)
-            Link("Contact us", destination: LegalLinks.contactUs).buttonStyle(.textLink)
-            Link("Terms", destination: LegalLinks.termsOfUse).buttonStyle(.textLink)
-            Button("Privacy", action: onPrivacy).buttonStyle(.textLink)
-            Text("Gentle Walk is for general fitness. It isn't medical advice.").typeRole(.caption)
+            VStack(spacing: 0) {
+                SettingsRow(title: "Restore purchase", symbol: "arrow.clockwise", action: onRestore)
+                Divider()
+                SettingsLinkRow(title: "Contact us", symbol: "envelope", url: LegalLinks.contactUs)
+                Divider()
+                SettingsLinkRow(title: "Terms of Use", symbol: "doc.text", url: LegalLinks.termsOfUse)
+                Divider()
+                SettingsRow(title: "Privacy", symbol: "hand.raised", action: onPrivacy)
+            }
+            Text("Gentle Walk is for general fitness. It isn't medical advice.")
+                .typeRole(.caption).foregroundStyle(Palette.textMuted)
+                .padding(.top, 4)
         }
     }
 }
@@ -293,5 +303,58 @@ struct BodyLimitsEditor: View {
             .padding(Metrics.screenMargin)
         }
         .screenBackground()
+    }
+}
+
+/// One settings row: an icon in a soft circle, the words, and a chevron; the whole row is the target.
+struct SettingsRow: View {
+    let title: LocalizedStringResource
+    let symbol: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) { SettingsRowLabel(title: title, symbol: symbol, trailing: "chevron.right") }
+            .buttonStyle(.plain)
+    }
+}
+
+/// The same row opening a web page (arrow out instead of a chevron).
+struct SettingsLinkRow: View {
+    let title: LocalizedStringResource
+    let symbol: String
+    let url: URL
+
+    var body: some View {
+        Link(destination: url) { SettingsRowLabel(title: title, symbol: symbol, trailing: "arrow.up.right") }
+            .buttonStyle(.plain)
+    }
+}
+
+private struct SettingsRowLabel: View {
+    let title: LocalizedStringResource
+    let symbol: String
+    let trailing: String
+
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    var body: some View {
+        HStack(spacing: 14) {
+            if !typeSize.isAccessibilitySize {
+                Image(systemName: symbol)
+                    .typeRole(.body)
+                    .foregroundStyle(Palette.secondary)
+                    .frame(width: 36, height: 36)
+                    .background(Palette.secondary.opacity(0.12), in: .circle)
+                    .accessibilityHidden(true)
+            }
+            Text(title).typeRole(.body).foregroundStyle(Palette.text)
+            Spacer(minLength: 8)
+            Image(systemName: trailing)
+                .typeRole(.caption).fontWeight(.semibold)
+                .foregroundStyle(Palette.textMuted)
+                .accessibilityHidden(true)
+        }
+        .frame(minHeight: Metrics.minTouchTarget)
+        .contentShape(.rect)
     }
 }

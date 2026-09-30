@@ -115,3 +115,28 @@ public struct SessionTimeline: Equatable, Sendable {
         }
     }
 }
+
+public extension SessionTimeline {
+    /// Where she is among the moves of the current chair or stretch block, for the segmented bar.
+    struct MoveProgress: Equatable, Sendable {
+        public var count: Int
+        /// The move in progress, or the next one during a rest.
+        public var index: Int
+        /// 0...1 through the move at `index`.
+        public var fraction: Double
+    }
+
+    func moveProgress(at time: Double) -> MoveProgress? {
+        guard let current = phases.last(where: { $0.start <= time }) ?? phases.first else { return nil }
+        let moves = phases.filter { $0.block == current.block && $0.exerciseID != nil }
+        guard !moves.isEmpty else { return nil }
+        // The move under way, or the first one still ahead (rest, intro).
+        if let index = moves.firstIndex(where: { $0.start <= time && time < $0.end }) {
+            let move = moves[index]
+            let length = max(move.end - move.start, 0.001)
+            return MoveProgress(count: moves.count, index: index, fraction: min(1, max(0, (time - move.start) / length)))
+        }
+        let index = moves.firstIndex { $0.start > time } ?? moves.count
+        return MoveProgress(count: moves.count, index: index, fraction: 0)
+    }
+}

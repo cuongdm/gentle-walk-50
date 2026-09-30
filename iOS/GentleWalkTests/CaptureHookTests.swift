@@ -16,7 +16,7 @@ struct CaptureHookTests {
     }
 
     @Test func coversEveryPlannedState() {
-        #expect(CaptureState.allCases.count == 85)
+        #expect(CaptureState.allCases.count == 87)
     }
 
     @Test func seedsMargaretFixture() throws {

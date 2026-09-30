@@ -11,7 +11,7 @@ struct AppCaptureScene: View {
     static func handles(_ state: CaptureState) -> Bool {
         let name = state.rawValue
         return ["onboarding", "paywall", "today", "journey", "journeys", "where-next", "postcard", "locked-stop", "progress",
-                "me", "cancel-guide", "permissions", "outdoor-prep", "outdoor-location-ask", "root", "all-sessions"]
+                "me", "cancel-guide", "sound-sheet", "watch-on-tv", "permissions", "outdoor-prep", "outdoor-location-ask", "root", "all-sessions"]
             .contains { name == $0 || name.hasPrefix($0 + "-") }
     }
 
@@ -43,6 +43,10 @@ struct AppCaptureScene: View {
             PermissionsView(model: PermissionsModel(health: nil, notifications: nil, healthConnected: state == .permissionsGranted,
                                                     remindersAllowed: state == .permissionsGranted),
                             reminderTitle: CoverView.reminderTitle(.coffee), onDone: {})
+        case .soundSheet:
+            SoundSheet(showsMusic: true) { _ in }
+        case .watchOnTV:
+            WatchOnTVSheet()
         case .cancelGuide:
             CancelGuideView(accessUntil: Date.now.addingTimeInterval(12 * 86_400).formatted(.dateTime.month(.abbreviated).day()),
                             onBack: {})

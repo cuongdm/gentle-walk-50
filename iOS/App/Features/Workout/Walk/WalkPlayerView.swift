@@ -10,6 +10,7 @@ struct WalkPlayerView: View {
     let session: WorkoutSessionModel
     var showsMusic = false
     @State private var fullScreen = false
+    @State private var showsSound = false
 
     @Environment(\.startsFullScreen) private var startsFullScreen
     @Environment(\.horizontalSizeClass) private var sizeClass
@@ -49,6 +50,9 @@ struct WalkPlayerView: View {
         }
         .animation(.easeInOut(duration: 0.25), value: session.transition)
         .leavesFullScreenWhenUpright($fullScreen)
+        .sheet(isPresented: $showsSound) {
+            SoundSheet(showsMusic: showsMusic) { session.player.setLevels(voice: $0.voice, music: $0.music) }
+        }
         .onAppear { if startsFullScreen { enterFullScreen() } }
     }
 
@@ -92,7 +96,8 @@ struct WalkPlayerView: View {
             if isWide {
                 HStack(alignment: .top, spacing: 24) {
                     VStack(spacing: 16) {
-                        WalkTopBar(status: model.statusLine, locationOn: session.locationOn?() ?? false, onEnd: session.askToEnd)
+                        WalkTopBar(status: model.statusLine, locationOn: session.locationOn?() ?? false, onEnd: session.askToEnd,
+                                   onSound: { showsSound = true })
                         Spacer(minLength: 0)
                         PhaseBlock(label: model.phaseLabel, tone: model.tone, clock: model.clock, distance: distanceText, isLarge: true)
                         NextUpRow(next: model.nextLine, progress: model.phaseProgress, tone: model.tone)
@@ -142,7 +147,8 @@ struct WalkPlayerView: View {
     /// Everything above the controls: top bar, picture, phase, clock, next and the spoken line.
     private func portraitText(showsScene: Bool) -> some View {
         VStack(spacing: 14) {
-            WalkTopBar(status: model.statusLine, locationOn: session.locationOn?() ?? false, onEnd: session.askToEnd)
+            WalkTopBar(status: model.statusLine, locationOn: session.locationOn?() ?? false, onEnd: session.askToEnd,
+                                   onSound: { showsSound = true })
             if showsScene {
                 WalkScene(level: model.level, isOutdoors: isOutdoors, height: sceneHeight, minHeight: 0,
                           onFullScreen: expandAction)
@@ -214,6 +220,7 @@ struct WalkTopBar: View {
     let status: String
     var locationOn = false
     let onEnd: () -> Void
+    var onSound: (() -> Void)? = nil
 
     var body: some View {
         HStack {
@@ -229,6 +236,7 @@ struct WalkTopBar: View {
                 .typeRole(.caption)
                 .foregroundStyle(Palette.text)
                 .multilineTextAlignment(.trailing)
+            if let onSound { SoundButton(action: onSound) }
         }
     }
 }
