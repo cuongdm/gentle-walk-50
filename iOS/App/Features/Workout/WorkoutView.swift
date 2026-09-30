@@ -63,6 +63,8 @@ struct WorkoutView: View {
                 onChairMoves: { onChairMoves?() },
                 onAgain: onAgain.map { again in { onClose(result); again() } })
             .reviewPrompt(reviewMilestone(result), onAsked: onReviewAsked)
+        case .notSaved:
+            NotSavedView { onClose(nil) }
         case .playing, .confirmEnd:
             player
         }
@@ -82,5 +84,29 @@ struct WorkoutView: View {
     private var endBinding: Binding<Bool> {
         // Both alert buttons change the stage themselves; dismissal alone changes nothing.
         Binding(get: { session.stage == .confirmEnd }, set: { _ in })
+    }
+}
+
+/// Ended in under a minute: no celebration and nothing saved, said kindly (owner 30/09/2026).
+struct NotSavedView: View {
+    let onClose: () -> Void
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Spacer()
+            ArtImage(art: .walkerWave, height: 180).frame(maxWidth: 220).accessibilityHidden(true)
+            VStack(spacing: 8) {
+                Text("No problem.").typeRole(.screenTitle).foregroundStyle(Palette.text)
+                    .accessibilityAddTraits(.isHeader)
+                Text("Nothing was saved. Come back whenever you like.")
+                    .typeRole(.body).foregroundStyle(Palette.text)
+                    .multilineTextAlignment(.center)
+            }
+            Spacer()
+            Button("Close", action: onClose).buttonStyle(.primaryAction)
+        }
+        .padding(Metrics.screenMargin)
+        .readableColumn()
+        .screenBackground()
     }
 }

@@ -93,6 +93,10 @@ struct WorkoutCaptureScene: View {
             }
             if state == .thisHurts { model.openHurts() }
             return model
+        case .notSaved:
+            let model = await make(request(PlannedDay(main: .walk, chairMoves: 0, cooldown: false)))
+            model.stage(.notSaved)
+            return model
         case .countdown:
             let model = WorkoutSessionModel(request: request(walk, intensity: .gentle), content: content,
                                             engine: SilentPlaybackEngine(), completion: nil, prepareMedia: false)

@@ -16,6 +16,8 @@ import GentleWalkCore
         case confirmEnd
         case saving
         case complete(CompletionResult)
+        /// Ended in under a minute: nothing saved (owner 30/09/2026).
+        case notSaved
     }
 
     let request: WorkoutRequest
@@ -140,8 +142,8 @@ import GentleWalkCore
         case .continueSession:
             stage = .playing
             player.resume()
-        case .endSession:
-            await finish()
+        case .endSession(let counts):
+            await finish(counts: counts)
         }
     }
 
@@ -171,13 +173,24 @@ import GentleWalkCore
     @ObservationIgnored var forceCountedForYou = false
 
     /// Ends the session (End, Finish here for today, Stop for today, or the program finished).
-    func finish() async {
+    /// Sessions shorter than this are not saved when she ends them herself.
+    static let minimumSeconds = 60
+
+    /// - Parameter counts: true when the session must be saved however short (stopping for pain).
+    func finish(counts: Bool = false) async {
         guard stage != .saving, !isComplete else { return }
         player.end()
         stage = .saving
         motion?.stop()
         let total = player.timeline.isOpenEnded ? player.currentTime : player.timeline.total
         secondsDone = Int(min(player.currentTime, total).rounded())
+        if !counts, secondsDone < Self.minimumSeconds {
+            // Nothing to save: stop the outdoor services and say so kindly.
+            route = []
+            onEnded?()
+            stage = .notSaved
+            return
+        }
         let outdoorMiles = request.place == .outdoors ? outdoorDistance?() : nil
         route = routeProvider?() ?? []
         onEnded?()

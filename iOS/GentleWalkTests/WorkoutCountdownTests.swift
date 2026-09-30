@@ -25,6 +25,35 @@ import GentleWalkCore
         #expect(session.player.state == .playing)
     }
 
+    /// Owner 30/09/2026: ended in under a minute, nothing is saved and nobody is congratulated.
+    @Test func endingInUnderAMinuteSavesNothing() async throws {
+        let session = try await loadedSession()
+        session.startWithCountdown()
+        session.countdownFinished()
+        session.player.tick(30)
+        await session.finish()
+        #expect(session.stage == .notSaved)
+    }
+
+    @Test func aMinuteOrMoreCounts() async throws {
+        let session = try await loadedSession()
+        session.startWithCountdown()
+        session.countdownFinished()
+        session.player.tick(75)
+        await session.finish()
+        #expect(session.isComplete)
+    }
+
+    /// Stopping because something hurts always counts ("Today still counts").
+    @Test func stoppingForPainCountsEvenWhenShort() async throws {
+        let session = try await loadedSession()
+        session.startWithCountdown()
+        session.countdownFinished()
+        session.player.tick(20)
+        await session.closeHurts(.endSession(counts: true))
+        #expect(session.isComplete)
+    }
+
     @Test func aLateTickAfterTheStartChangesNothing() async throws {
         let session = try await loadedSession()
         session.startWithCountdown()
