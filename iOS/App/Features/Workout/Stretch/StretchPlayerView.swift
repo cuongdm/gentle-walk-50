@@ -57,16 +57,18 @@ struct StretchPlayerView: View {
                     MoveTips(tips: model.pose?.tips ?? [], note: model.usesEasier ? model.pose?.easier : nil)
                     VersionPills(usesEasier: model.usesEasier, hasHarder: false,
                                  onEasier: { Task { await model.chooseEasier() } })
-                    CaptionBar(caption: model.player.caption?.text)
                 }
             }
             .scrollBounceBehavior(.basedOnSize)
+            // The spoken line stays in view above the controls, as plain text (review U3).
+            CaptionBar(caption: model.player.caption?.text, style: .plain(.center))
             PlayerControlRow(isPaused: isPaused, onBack: model.back, onPause: model.session.togglePause,
                              onSkip: { Task { await model.skip() } })
             WorkoutSafetyBar(showsVoice: false, onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
         }
         .padding(.horizontal, Metrics.screenMargin)
         .padding(.bottom, 8)
+        .readableColumn()
         .screenBackground()
     }
 }

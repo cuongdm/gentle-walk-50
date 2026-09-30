@@ -26,6 +26,7 @@ struct JourneyListView: View {
                 .cardStyle()
             }
             .padding(Metrics.screenMargin)
+            .readableColumn()
         }
         .screenBackground()
     }
@@ -125,6 +126,7 @@ struct PostcardDetailView: View {
                 Button("Close") { dismiss() }.buttonStyle(.textLink).frame(maxWidth: .infinity)
             }
             .padding(Metrics.screenMargin)
+            .readableColumn()
         }
         .screenBackground()
     }

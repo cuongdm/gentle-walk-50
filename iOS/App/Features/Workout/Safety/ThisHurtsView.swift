@@ -26,6 +26,7 @@ struct ThisHurtsView: View {
                     .foregroundStyle(Palette.text)
             }
             .padding(Metrics.screenMargin)
+            .readableColumn()
         }
         .screenBackground()
     }
@@ -60,7 +61,7 @@ struct FlowLayout: Layout {
         for row in arrange(proposal: ProposedViewSize(width: bounds.width, height: nil), subviews: subviews) {
             var x = bounds.minX
             for index in row.items {
-                let size = subviews[index].sizeThatFits(.unspecified)
+                let size = fit(subviews[index], maxWidth: bounds.width)
                 subviews[index].place(at: CGPoint(x: x, y: bounds.minY + row.y), proposal: ProposedViewSize(size))
                 x += size.width + spacing
             }
@@ -69,11 +70,19 @@ struct FlowLayout: Layout {
 
     private struct Row { var items: [Int] = []; var y: CGFloat = 0; var width: CGFloat = 0; var height: CGFloat = 0 }
 
+    /// A chip wider than the row (large text) wraps inside the row instead of running off the
+    /// screen (review U2).
+    private func fit(_ subview: LayoutSubview, maxWidth: CGFloat) -> CGSize {
+        let ideal = subview.sizeThatFits(.unspecified)
+        guard ideal.width > maxWidth else { return ideal }
+        return subview.sizeThatFits(ProposedViewSize(width: maxWidth, height: nil))
+    }
+
     private func arrange(proposal: ProposedViewSize, subviews: Subviews) -> [Row] {
         let maxWidth = proposal.width ?? .infinity
         var rows: [Row] = [Row()]
         for (index, subview) in subviews.enumerated() {
-            let size = subview.sizeThatFits(.unspecified)
+            let size = fit(subview, maxWidth: maxWidth)
             if !rows[rows.count - 1].items.isEmpty, rows[rows.count - 1].width + spacing + size.width > maxWidth {
                 let y = rows[rows.count - 1].y + rows[rows.count - 1].height + spacing
                 rows.append(Row(y: y))

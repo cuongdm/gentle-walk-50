@@ -12,6 +12,7 @@ struct OutdoorPrepView: View {
 
     var body: some View {
         ScrollView {
+            Group {
             if step == 1 {
                 BeforeYouGo(ticked: $ticked) {
                     if asksLocation { step = 2 } else { onDone(nil) }
@@ -22,6 +23,8 @@ struct OutdoorPrepView: View {
                     onDone(true)
                 }, onStepsOnly: { onDone(false) })
             }
+            }
+            .readableColumn()
         }
         .screenBackground()
     }

@@ -18,14 +18,10 @@ struct WorkoutPreviewView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
-                HStack {
-                    Spacer()
-                    Button("Close", action: onClose).buttonStyle(.smallTextLink)
-                }
+                ClosableHeader(title: model.title, subtitle: model.subtitle, onClose: onClose)
                 if showsHero {
                     ArtImage(art: heroArt, height: 140)
                 }
-                ScreenHeaderText(title: model.title, subtitle: model.subtitle)
                 if model.showsPlaceQuestion {
                     PlaceSelector(place: $model.place)
                 }
@@ -152,21 +148,22 @@ struct SegmentList: View {
     let rows: [PreviewRow]
     let onSwap: (String) -> Void
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
         VStack(spacing: 0) {
             ForEach(rows) { row in
                 HStack(spacing: 12) {
-                    IconChip(symbol: row.symbol)
+                    // At accessibility sizes: no icon, and Swap under the name, so no word breaks.
+                    if !typeSize.isAccessibilitySize { IconChip(symbol: row.symbol) }
                     VStack(alignment: .leading, spacing: 0) {
                         Text(verbatim: row.title).typeRole(.body).fontWeight(.semibold)
                         Text(verbatim: row.detail).typeRole(.caption).foregroundStyle(Palette.textMuted)
+                        if typeSize.isAccessibilitySize { swap(row) }
                     }
                     .foregroundStyle(Palette.text)
                     Spacer(minLength: 0)
-                    if let id = row.swappableExerciseID {
-                        Button("Swap") { onSwap(id) }.buttonStyle(.smallTextLink)
-                            .accessibilityLabel(Text("Swap \(row.title)"))
-                    }
+                    if !typeSize.isAccessibilitySize { swap(row) }
                 }
                 .padding(.vertical, 8)
                 .accessibilityElement(children: .combine)
@@ -174,5 +171,12 @@ struct SegmentList: View {
             }
         }
         .cardStyle(padding: 12)
+    }
+
+    @ViewBuilder private func swap(_ row: PreviewRow) -> some View {
+        if let id = row.swappableExerciseID {
+            Button("Swap") { onSwap(id) }.buttonStyle(.smallTextLink)
+                .accessibilityLabel(Text("Swap \(row.title)"))
+        }
     }
 }

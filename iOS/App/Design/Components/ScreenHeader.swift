@@ -37,3 +37,17 @@ struct ScreenHeaderText: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
+
+/// A sheet's title with Close on the same line, instead of Close alone on a row above (review U9).
+struct ClosableHeader: View {
+    let title: String
+    var subtitle: String? = nil
+    let onClose: () -> Void
+
+    var body: some View {
+        HStack(alignment: .firstTextBaseline, spacing: 12) {
+            ScreenHeaderText(title: title, subtitle: subtitle)
+            Button("Close", action: onClose).buttonStyle(.smallTextLink).fixedSize()
+        }
+    }
+}

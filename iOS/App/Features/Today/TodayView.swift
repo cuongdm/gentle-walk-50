@@ -222,7 +222,8 @@ struct TodaySessionCard: View {
                 .foregroundStyle(session.kind == .done ? Palette.onStrongFill : Palette.text)
                 Spacer(minLength: 0)
                 Image(systemName: symbol)
-                    .font(.system(size: 36))
+                    .typeRole(.stat)
+                    .fontWeight(.regular)
                     .foregroundStyle(session.kind == .done ? Palette.onStrongFill : Palette.secondary)
                     .accessibilityHidden(true)
             }

@@ -91,9 +91,12 @@ private struct TimelineStep: View {
         HStack(alignment: .top, spacing: 14) {
             VStack(spacing: 0) {
                 Image(systemName: symbol)
-                    .font(.system(size: 18, weight: .semibold))
+                    .typeRole(.body)
+                    .fontWeight(.semibold)
                     .foregroundStyle(Palette.onStrongFill)
                     .frame(width: 40, height: 40)
+                    // The icon sits in a fixed 40 pt disc: it grows with the text only so far.
+                    .dynamicTypeSize(...DynamicTypeSize.xxLarge)
                     .background(Palette.secondary, in: .circle)
                 if !isLast { Rectangle().fill(Palette.secondary.opacity(0.4)).frame(width: 3, height: 22) }
             }
@@ -116,9 +119,12 @@ private struct TimelineStepText: View {
     var body: some View {
         HStack(alignment: .top, spacing: 14) {
             Image(systemName: symbol)
-                .font(.system(size: 18, weight: .semibold))
+                .typeRole(.body)
+                    .fontWeight(.semibold)
                 .foregroundStyle(Palette.onStrongFill)
                 .frame(width: 40, height: 40)
+                    // The icon sits in a fixed 40 pt disc: it grows with the text only so far.
+                    .dynamicTypeSize(...DynamicTypeSize.xxLarge)
                 .background(Palette.secondary, in: .circle)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 0) {

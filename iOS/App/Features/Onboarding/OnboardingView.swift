@@ -11,6 +11,11 @@ struct OnboardingView: View {
     @Environment(\.dynamicTypeSize) private var typeSize
     /// "See my options" stays in view on the long plan screen (not at accessibility sizes).
     private var pinsPlanButton: Bool { flow.step == .plan && !typeSize.isAccessibilitySize }
+    /// Short steps (a picture and a line) keep Continue at the bottom like the question steps,
+    /// instead of right under the text with half the screen empty (review U5).
+    private var pinsContinue: Bool {
+        [.part1, .understanding, .part2, .part3].contains(flow.step) && !typeSize.isAccessibilitySize
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -26,7 +31,13 @@ struct OnboardingView: View {
             }
             .scrollBounceBehavior(.basedOnSize)
         }
-        .pinnedActions(pinsPlanButton) { ContinueButton(title: "See my options", action: flow.next) }
+        .pinnedActions(pinsPlanButton || pinsContinue) {
+            if pinsPlanButton {
+                ContinueButton(title: "See my options", action: flow.next)
+            } else {
+                ContinueButton(action: flow.next)
+            }
+        }
         .screenBackground()
         .onChange(of: flow.step) { _, step in if step == .paywall { onFinished() } }
     }
@@ -34,16 +45,17 @@ struct OnboardingView: View {
     @ViewBuilder private var screen: some View {
         switch flow.step {
         case .welcome: WelcomeView(onBegin: flow.next, onRestore: onRestore)
-        case .part1: PartIntroView(part: 1, title: "Your goal", onContinue: flow.next)
+        case .part1: PartIntroView(part: 1, title: "Your goal", showsContinue: !pinsContinue, onContinue: flow.next)
         case .goal: GoalView(flow: flow)
         case .barriers: BarriersView(flow: flow)
-        case .understanding: UnderstandingView(barrier: flow.profile.understandingKey, onContinue: flow.next)
-        case .part2: PartIntroView(part: 2, title: "About you", onContinue: flow.next)
+        case .understanding: UnderstandingView(barrier: flow.profile.understandingKey, showsContinue: !pinsContinue,
+                                               onContinue: flow.next)
+        case .part2: PartIntroView(part: 2, title: "About you", showsContinue: !pinsContinue, onContinue: flow.next)
         case .name: NameView(flow: flow)
         case .activity: ActivityLevelView(flow: flow)
         case .stairs: StairsView(flow: flow)
         case .chair: ChairStrengthView(flow: flow)
-        case .part3: PartIntroView(part: 3, title: "Your body", onContinue: flow.next)
+        case .part3: PartIntroView(part: 3, title: "Your body", showsContinue: !pinsContinue, onContinue: flow.next)
         case .body: BodyLimitsView(flow: flow)
         case .plan, .paywall: PlanReadyView(flow: flow, showsContinue: !pinsPlanButton)
         }

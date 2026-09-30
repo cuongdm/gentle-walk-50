@@ -21,6 +21,8 @@ struct BreakView: View {
                 let seconds = max(0, Int(context.date.timeIntervalSince(startedAt)))
                 Text(verbatim: Duration.seconds(seconds).formatted(.time(pattern: .minuteSecond)))
                     .typeRole(.timer)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
                     .foregroundStyle(Palette.text)
                     .contentTransition(.numericText())
                     .accessibilityLabel(Text("Break time \(Duration.seconds(seconds).formatted(.units(allowed: [.minutes, .seconds])))"))
@@ -33,6 +35,8 @@ struct BreakView: View {
             Button("Finish here for today", action: onFinish).buttonStyle(.textLink)
         }
         .padding(Metrics.screenMargin)
+        .scrollsWhenCrowded()
+        .readableColumn()
         .background(Palette.sky.opacity(0.22).ignoresSafeArea())
         .background(Palette.bg.ignoresSafeArea())
     }

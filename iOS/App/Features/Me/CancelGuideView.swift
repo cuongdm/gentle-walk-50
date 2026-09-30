@@ -24,6 +24,7 @@ struct CancelGuideView: View {
                 Button("Back", action: onBack).buttonStyle(.textLink).frame(maxWidth: .infinity)
             }
             .padding(Metrics.screenMargin)
+            .readableColumn()
         }
         .screenBackground()
         .manageSubscriptionsSheet(isPresented: $showsManage)

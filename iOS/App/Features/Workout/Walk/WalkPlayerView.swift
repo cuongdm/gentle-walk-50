@@ -52,6 +52,13 @@ struct WalkPlayerView: View {
         .onAppear { if startsFullScreen { enterFullScreen() } }
     }
 
+    /// Tallest the picture may grow in the upright layout: a clip is bounded by its 16:9 width;
+    /// a painting (no clip, or outdoors) takes the room that would otherwise stay empty (review U11).
+    private var sceneHeight: CGFloat {
+        if sizeClass == .regular { return 394 }
+        return video == nil ? 320 : 232
+    }
+
     /// The expand button shows only on a clip.
     private var expandAction: (() -> Void)? {
         guard video != nil else { return nil }
@@ -106,11 +113,10 @@ struct WalkPlayerView: View {
                 }
                 .padding(Metrics.screenMargin)
             } else {
-                // Small phones (iPhone SE) and large text: drop the picture first, never the
-                // controls, the clock or the safety buttons.
+                // The picture shrinks first (and hides when too small); the largest text sizes
+                // scroll the words, never the controls, the clock or the safety buttons.
                 ViewThatFits(in: .vertical) {
                     portrait(showsScene: true)
-                    portrait(showsScene: false)
                     // Largest text sizes: the words scroll so nothing is cut, while the controls
                     // stay on screen (review I11).
                     VStack(spacing: 10) {
@@ -125,7 +131,7 @@ struct WalkPlayerView: View {
         }
     }
 
-    /// The picture takes the room it needs first (up to 232 pt, 394 on iPad); too little room drops it.
+    /// The picture takes the room it needs first (see `sceneHeight`); too little room drops it.
     private func portrait(showsScene: Bool) -> some View {
         VStack(spacing: 14) {
             portraitText(showsScene: showsScene)
@@ -138,7 +144,7 @@ struct WalkPlayerView: View {
         VStack(spacing: 14) {
             WalkTopBar(status: model.statusLine, locationOn: session.locationOn?() ?? false, onEnd: session.askToEnd)
             if showsScene {
-                WalkScene(level: model.level, isOutdoors: isOutdoors, height: sizeClass == .regular ? 394 : 232, minHeight: 110,
+                WalkScene(level: model.level, isOutdoors: isOutdoors, height: sceneHeight, minHeight: 0,
                           onFullScreen: expandAction)
                     .layoutPriority(1)
             }
@@ -227,30 +233,40 @@ struct WalkTopBar: View {
     }
 }
 
-/// The filmed loop for her level when there is one, otherwise the painting for it.
+/// The filmed loop for her level when there is one, otherwise the painting for it. It takes the
+/// room left between the top bar and the clock, up to `height`, and hides itself below a useful
+/// size, so a small phone never gets a sliver or an empty gap (review U7, U11).
 struct WalkScene: View {
     let level: WalkLevel
     var isOutdoors = false
     var height: CGFloat = 150
+    /// Upright phone: grows into the free room (nil = always `height`, the side column).
     var minHeight: CGFloat?
     /// Shows the full-screen button on the clip.
     var onFullScreen: (() -> Void)?
 
+    private static let smallest: CGFloat = 80
+
     var body: some View {
-        if let video = WalkVideo.fileName(for: level, isOutdoors: isOutdoors) {
-            // Same flexible frame as the painting (ViewThatFits measures the frame, not the player);
-            // the clip sits at its top at 16:9, with no card colour around it.
-            Color.clear
-                .frame(maxWidth: .infinity)
-                .frame(minHeight: minHeight ?? height, maxHeight: height)
-                .overlay(alignment: .top) {
-                    ExerciseVideo(fileName: video)
-                        .overlay(alignment: .topTrailing) {
-                            if let onFullScreen { VideoCornerButton.expand(onFullScreen).padding(4) }
-                        }
+        Color.clear
+            .frame(maxWidth: .infinity)
+            .frame(minHeight: minHeight == nil ? height : 0, maxHeight: height)
+            .overlay(alignment: .top) {
+                GeometryReader { proxy in
+                    if proxy.size.height >= Self.smallest {
+                        picture(height: proxy.size.height)
+                            .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
+                    }
                 }
-        } else if let minHeight {
-            ArtImage.flexible(art, minHeight: minHeight, maxHeight: height, fallbackSymbol: symbol)
+            }
+    }
+
+    @ViewBuilder private func picture(height: CGFloat) -> some View {
+        if let video = WalkVideo.fileName(for: level, isOutdoors: isOutdoors) {
+            ExerciseVideo(fileName: video)
+                .overlay(alignment: .topTrailing) {
+                    if let onFullScreen { VideoCornerButton.expand(onFullScreen).padding(4) }
+                }
         } else {
             ArtImage(art: art, height: height, fallbackSymbol: symbol)
         }

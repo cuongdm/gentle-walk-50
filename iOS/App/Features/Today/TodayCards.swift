@@ -133,7 +133,8 @@ struct WeekStrip: View {
     }
 }
 
-/// Up to three short extras; Pro ones carry the Pro badge for free users.
+/// Up to three short extras; Pro ones carry the Pro badge for free users. A line says what they
+/// are (review U12: owners asked), and each shows its painting and Video mark like All sessions.
 struct ExtrasRow: View {
     let extras: [TodayExtra]
     let isPro: Bool
@@ -150,18 +151,13 @@ struct ExtrasRow: View {
                 Button("See all", action: onSeeAll).buttonStyle(.smallTextLink)
                     .accessibilityLabel(Text("See all sessions"))
             }
+            Text("Short sessions for any moment. They add to your journey and don't replace today's walk.")
+                .typeRole(.caption).foregroundStyle(Palette.textMuted)
             ForEach(extras) { extra in
-                Button { isPro ? onStart(extra.request) : onLocked() } label: {
-                    HStack(spacing: 12) {
-                        Image(systemName: extra.symbol).foregroundStyle(Palette.secondary).accessibilityHidden(true)
-                        Text(verbatim: extra.title).typeRole(.body).foregroundStyle(Palette.text)
-                        Spacer(minLength: 0)
-                        if !isPro { ProBadge() }
-                    }
-                    .frame(minHeight: Metrics.minTouchTarget)
-                    .cardStyle(padding: 12)
+                SessionCard(title: extra.title, detail: String(localized: "\(extra.minutes) min"), art: extra.art,
+                            isLocked: !isPro, hasVideo: extra.hasVideo) {
+                    isPro ? onStart(extra.request) : onLocked()
                 }
-                .buttonStyle(.plain)
             }
         }
     }

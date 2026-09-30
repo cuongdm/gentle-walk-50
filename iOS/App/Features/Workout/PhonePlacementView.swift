@@ -72,6 +72,7 @@ struct PhonePlacementView: View {
                 .buttonStyle(.primaryAction)
             }
             .padding(Metrics.screenMargin)
+            .readableColumn()
         }
         .screenBackground()
     }

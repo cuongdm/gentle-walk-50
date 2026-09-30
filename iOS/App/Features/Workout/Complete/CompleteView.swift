@@ -22,11 +22,7 @@ struct CompleteView: View {
         ZStack(alignment: .top) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    if let level = content.reachedLevel {
-                        LevelUpBadge(level: level)
-                    }
-                    ArtImage(art: .walkerCelebrate, height: 200)
-                    ScreenHeaderText(title: content.title, subtitle: content.subtitle)
+                    CompleteHero(title: content.title, subtitle: content.subtitle, level: content.reachedLevel)
                     CompleteStats(minutes: content.minutes, milesText: content.milesText, milesLabel: content.milesLabel,
                                   activeDays: content.activeDays)
                     if route.count > 1 {
@@ -124,7 +120,7 @@ struct NewPostcardCard: View {
     var body: some View {
         Button(action: onOpen) {
             VStack(alignment: .leading, spacing: 10) {
-                ArtImage(name: Art.postcardName(stopID: stop.id), fallbackName: Art.coverName(stopID: stop.id), height: 170)
+                ArtImage(name: Art.postcardName(stopID: stop.id), fallbackName: Art.coverName(stopID: stop.id), height: 150)
                 HStack(alignment: .firstTextBaseline) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("New postcard").typeRole(.caption).foregroundStyle(Palette.textMuted)
@@ -174,21 +170,41 @@ struct FeelingQuestion: View {
     }
 }
 
-/// Tree level reached: big badge in the middle, "You reached Sprout".
-struct LevelUpBadge: View {
-    let level: TreeLevel
+/// The coach cheering beside the title, so the numbers, the feeling question and Done are in view
+/// without scrolling (review U4). A new tree level replaces her with the level's badge and line.
+/// Stacked at accessibility text sizes.
+struct CompleteHero: View {
+    let title: String
+    let subtitle: String?
+    let level: TreeLevel?
+
+    @Environment(\.dynamicTypeSize) private var typeSize
+    @ScaledMetric(relativeTo: .title) private var badgeSize: CGFloat = 76
 
     var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: level.symbol)
-                .font(.system(size: 64, weight: .regular))
-                .foregroundStyle(Palette.secondary)
-                .frame(width: 120, height: 120)
-                .background(Palette.secondary.opacity(0.15), in: .circle)
-                .accessibilityHidden(true)
-            Text("You reached \(Text(level.title))").typeRole(.cardTitle).foregroundStyle(Palette.text)
+        let layout = typeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12))
+            : AnyLayout(HStackLayout(alignment: .center, spacing: 16))
+        layout {
+            if let level {
+                Image(systemName: level.symbol)
+                    .font(.system(size: badgeSize * 0.5))
+                    .foregroundStyle(Palette.secondary)
+                    .frame(width: badgeSize, height: badgeSize)
+                    .background(Palette.secondary.opacity(0.15), in: .circle)
+                    .accessibilityHidden(true)
+            } else {
+                ArtImage(art: .walkerCelebrate, height: 132).frame(width: 110)
+            }
+            VStack(alignment: .leading, spacing: 4) {
+                if let level {
+                    Text("You reached \(Text(level.title))").typeRole(.body).fontWeight(.semibold)
+                        .foregroundStyle(Palette.secondary)
+                }
+                ScreenHeaderText(title: title, subtitle: subtitle)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .frame(maxWidth: .infinity)
     }
 }
 

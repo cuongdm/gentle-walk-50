@@ -44,6 +44,7 @@ private struct WelcomeLine: View {
 struct PartIntroView: View {
     let part: Int
     let title: LocalizedStringResource
+    var showsContinue = true
     let onContinue: () -> Void
 
     var body: some View {
@@ -55,7 +56,7 @@ struct PartIntroView: View {
                 .foregroundStyle(Palette.text)
                 .accessibilityAddTraits(.isHeader)
             Text("A few quick questions. About a minute.").typeRole(.body).foregroundStyle(Palette.text)
-            ContinueButton(action: onContinue)
+            if showsContinue { ContinueButton(action: onContinue) }
         }
     }
 }

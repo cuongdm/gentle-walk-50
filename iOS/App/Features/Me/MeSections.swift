@@ -3,18 +3,41 @@ import GentleWalkCore
 
 // Sections of S20 Me (task 6.9). Each is its own view with narrow inputs.
 
-/// A titled settings card.
+/// A titled settings card. Its one link ("Edit", "Change", "How to cancel") sits on the title's
+/// line, which saves a row per card (review U8); it drops below the title when the text is large.
 struct SettingsCard<Content: View>: View {
     let title: LocalizedStringResource
+    var actionTitle: LocalizedStringResource? = nil
+    var action: (() -> Void)? = nil
     @ViewBuilder let content: Content
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(title).typeRole(.cardTitle).accessibilityAddTraits(.isHeader)
+            ViewThatFits(in: .horizontal) {
+                HStack(alignment: .firstTextBaseline) {
+                    heading
+                    Spacer(minLength: 12)
+                    link
+                }
+                VStack(alignment: .leading, spacing: 4) {
+                    heading
+                    link
+                }
+            }
             content
         }
         .foregroundStyle(Palette.text)
         .cardStyle()
+    }
+
+    private var heading: some View {
+        Text(title).typeRole(.cardTitle).accessibilityAddTraits(.isHeader)
+    }
+
+    @ViewBuilder private var link: some View {
+        if let actionTitle, let action {
+            Button(actionTitle, action: action).buttonStyle(.textLink).fixedSize()
+        }
     }
 }
 
@@ -27,8 +50,16 @@ struct SubscriptionSection: View {
     let onSeePlans: () -> Void
     let onHowToCancel: () -> Void
 
+    /// Trial and subscription show "How to cancel" beside the title.
+    private var cancels: Bool {
+        switch entitlement {
+        case .trial, .subscribed: true
+        default: false
+        }
+    }
+
     var body: some View {
-        SettingsCard(title: "Subscription") {
+        SettingsCard(title: "Subscription", actionTitle: cancels ? "How to cancel" : nil, action: onHowToCancel) {
             switch entitlement {
             case .trial(let ends):
                 let date = ends.formatted(.dateTime.month(.abbreviated).day())
@@ -37,14 +68,12 @@ struct SubscriptionSection: View {
                 } else {
                     Text("Free trial · ends \(date)").typeRole(.body)
                 }
-                Button("How to cancel", action: onHowToCancel).buttonStyle(.textLink)
             case .subscribed:
                 if let renewalDate {
                     Text("Gentle Walk Pro · renews \(renewalDate.formatted(.dateTime.month(.abbreviated).day()))").typeRole(.body)
                 } else {
                     Text("Gentle Walk Pro").typeRole(.body)
                 }
-                Button("How to cancel", action: onHowToCancel).buttonStyle(.textLink)
             case .lifetime:
                 Text("Lifetime access · no renewals").typeRole(.body)
                 if renewingProductID != nil {
@@ -66,13 +95,12 @@ struct BodySection: View {
     let onEdit: () -> Void
 
     var body: some View {
-        SettingsCard(title: "Your body") {
+        SettingsCard(title: "Your body", actionTitle: "Edit", action: onEdit) {
             if limits.isEmpty {
                 Text("Nothing to go easy on").typeRole(.body)
             } else {
                 LimitChips(limits: limits)
             }
-            Button("Edit", action: onEdit).buttonStyle(.textLink)
         }
     }
 }
@@ -87,7 +115,10 @@ struct WeekSection: View {
     private let order: [Weekday] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
 
     var body: some View {
-        SettingsCard(title: "Your week") {
+        SettingsCard(title: "Your week", actionTitle: editing ? nil : "Change", action: {
+            draft = restDays
+            editing = true
+        }) {
             Text("Rest days: \(names(restDays))").typeRole(.body)
             if editing {
                 ForEach(order, id: \.self) { day in
@@ -100,12 +131,6 @@ struct WeekSection: View {
                     editing = false
                 }
                 .buttonStyle(.primaryAction)
-            } else {
-                Button("Change") {
-                    draft = restDays
-                    editing = true
-                }
-                .buttonStyle(.textLink)
             }
         }
     }

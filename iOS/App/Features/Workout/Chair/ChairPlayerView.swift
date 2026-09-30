@@ -68,28 +68,30 @@ struct ChairPlayerView: View {
                     VersionPills(usesEasier: model.usesEasier, showsHarder: model.showsHarder,
                                  hasHarder: model.exercise?.harder != nil,
                                  onEasier: { Task { await model.chooseEasier() } }, onHarder: model.chooseHarder)
-                    CaptionBar(caption: model.player.caption?.text)
                 }
             }
             .scrollBounceBehavior(.basedOnSize)
+            // The spoken line stays in view above the controls, as plain text (review U3).
+            CaptionBar(caption: model.player.caption?.text, style: .plain(.center))
             PlayerControlRow(isPaused: isPaused, onBack: model.back, onPause: model.session.togglePause,
                              onSkip: { Task { await model.skip() } })
             WorkoutSafetyBar(showsVoice: false, onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
         }
         .padding(.horizontal, Metrics.screenMargin)
         .padding(.bottom, 8)
+        .readableColumn()
         .screenBackground()
     }
 }
 
-/// Move name (26 pt) and its everyday purpose.
+/// Move name (screen title, scales with the text size) and its everyday purpose.
 struct MoveHeader: View {
     let exercise: Exercise?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(verbatim: exercise?.name ?? "")
-                .font(.system(size: 26, weight: .bold, design: .rounded))
+                .typeRole(.screenTitle)
                 .foregroundStyle(Palette.text)
                 .accessibilityAddTraits(.isHeader)
             Text(verbatim: exercise?.purpose ?? "").typeRole(.body).foregroundStyle(Palette.text)
@@ -228,29 +230,53 @@ struct RestBetweenMoves: View {
     let onHurts: () -> Void
 
     var body: some View {
+        // Break and This hurts stay on screen; only the part above them scrolls when crowded.
+        VStack(spacing: 18) {
+            restInfo.scrollsWhenCrowded()
+            WorkoutSafetyBar(showsVoice: false, onBreak: onBreak, onHurts: onHurts)
+        }
+        .padding(.horizontal, Metrics.screenMargin)
+        .padding(.bottom, 8)
+        .readableColumn()
+        .background(Palette.sky.opacity(0.2).ignoresSafeArea())
+        .background(Palette.bg.ignoresSafeArea())
+    }
+
+    private var restInfo: some View {
         VStack(spacing: 18) {
             Spacer()
             Text("Rest").typeRole(.phaseLabel).foregroundStyle(Palette.text)
-            Text(verbatim: timer).typeRole(.timer).foregroundStyle(Palette.text).contentTransition(.numericText())
+            Text(verbatim: timer).typeRole(.timer).lineLimit(1).minimumScaleFactor(0.5)
+                .foregroundStyle(Palette.text).contentTransition(.numericText())
             if let next {
-                HStack(spacing: 14) {
-                    ExerciseVideo(fileName: next.videoFile).frame(width: 120)
-                    VStack(alignment: .leading) {
-                        Text("Next up").typeRole(.caption).foregroundStyle(Palette.textMuted)
-                        Text(verbatim: next.name).typeRole(.cardTitle).foregroundStyle(Palette.text)
+                // Clip beside the name; the name goes under the clip when the text is large.
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: 14) {
+                        ExerciseVideo(fileName: next.videoFile).frame(width: 120)
+                        NextUpName(name: next.name).fixedSize(horizontal: true, vertical: false)
+                        Spacer(minLength: 0)
                     }
-                    Spacer(minLength: 0)
+                    VStack(alignment: .leading, spacing: 10) {
+                        ExerciseVideo(fileName: next.videoFile).frame(maxWidth: 240)
+                        NextUpName(name: next.name)
+                    }
                 }
                 .cardStyle()
             }
             Button("Skip rest", action: onSkipRest).buttonStyle(.textLink)
             Spacer()
-            WorkoutSafetyBar(showsVoice: false, onBreak: onBreak, onHurts: onHurts)
         }
-        .padding(.horizontal, Metrics.screenMargin)
-        .padding(.bottom, 8)
-        .background(Palette.sky.opacity(0.2).ignoresSafeArea())
-        .background(Palette.bg.ignoresSafeArea())
+    }
+}
+
+private struct NextUpName: View {
+    let name: String
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Next up").typeRole(.caption).foregroundStyle(Palette.textMuted)
+            Text(verbatim: name).typeRole(.cardTitle).foregroundStyle(Palette.text)
+        }
     }
 }
 
@@ -271,6 +297,8 @@ struct StandBehindChairView: View {
             Button("Ready", action: onReady).buttonStyle(.primaryAction)
         }
         .padding(Metrics.screenMargin)
+        .scrollsWhenCrowded()
+        .readableColumn()
         .screenBackground()
     }
 }

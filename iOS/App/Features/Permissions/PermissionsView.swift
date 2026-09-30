@@ -28,6 +28,7 @@ struct PermissionsView: View {
                     .frame(maxWidth: .infinity)
             }
             .padding(Metrics.screenMargin)
+            .readableColumn()
         }
         .screenBackground()
     }

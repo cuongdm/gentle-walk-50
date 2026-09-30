@@ -21,7 +21,7 @@ for item in "$@"; do
   [[ "$variant" == "dark" ]] && xcrun simctl ui "$device" appearance dark
   [[ "$variant" == "xxl" ]] && xcrun simctl ui "$device" content_size accessibility-extra-extra-extra-large
   xcrun simctl launch --terminate-running-process "$device" com.kmd.gentlewalk -ScreenshotMode "$state" -AppleLanguages "(en)" -AppleLocale en_US >/dev/null
-  sleep 5
+  sleep 8
   name="$state"; [[ -n "$variant" ]] && name="$state-$variant"
   xcrun simctl io "$device" screenshot "$out/$name.png" >/dev/null 2>&1 && echo "$out/$name.png"
 done

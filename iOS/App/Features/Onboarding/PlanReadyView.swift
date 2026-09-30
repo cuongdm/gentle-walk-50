@@ -57,16 +57,22 @@ struct SampleWeekRow: View {
         ("Walk", "figure.walk"), ("Rest", "moon.zzz"), ("Rest", "moon.zzz"),
     ]
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            HStack(spacing: 6) {
+            // Seven tiles do not fit across at accessibility sizes: they wrap into rows (review U2).
+            let layout = typeSize.isAccessibilitySize ? AnyLayout(FlowLayout(spacing: 6)) : AnyLayout(HStackLayout(spacing: 6))
+            layout {
                 ForEach(0..<7, id: \.self) { index in
                     VStack(spacing: 4) {
                         Image(systemName: days[index].1).accessibilityHidden(true)
-                        Text(days[index].0).typeRole(.caption).lineLimit(1).minimumScaleFactor(0.7)
+                        Text(days[index].0).typeRole(.caption).lineLimit(1)
+                            .minimumScaleFactor(typeSize.isAccessibilitySize ? 1 : 0.7)
                     }
                     .foregroundStyle(Palette.text)
-                    .frame(maxWidth: .infinity, minHeight: 56)
+                    .padding(.horizontal, typeSize.isAccessibilitySize ? 12 : 0)
+                    .frame(maxWidth: typeSize.isAccessibilitySize ? nil : .infinity, minHeight: 56)
                     .background(Palette.surface, in: .rect(cornerRadius: 12))
                 }
             }

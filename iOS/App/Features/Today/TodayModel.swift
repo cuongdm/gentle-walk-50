@@ -57,7 +57,9 @@ struct TodayDay: Equatable, Identifiable {
 struct TodayExtra: Equatable, Identifiable {
     var id: String
     var title: String
-    var symbol: String
+    var minutes: Int
+    var art: Art
+    var hasVideo: Bool
     var request: WorkoutRequest
 }
 
@@ -212,19 +214,16 @@ struct TodaySwapOption: Equatable, Identifiable {
         }
     }
 
+    /// The "Short extras" of All sessions (same recipes, paintings and Video marks), so Today and
+    /// All sessions never disagree (review U12).
     var extras: [TodayExtra] {
-        let walk = WorkoutRequest(day: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), level: .seated, intensity: .gentle,
-                                  place: .indoors, limits: input.limits, rotationIndex: activeDays + 1)
-        let stretch = WorkoutRequest(day: PlannedDay(main: .stretch, chairMoves: 0, cooldown: false), level: .seated,
-                                     intensity: .gentle, place: .indoors, limits: input.limits.union([.standingIsHard]),
-                                     rotationIndex: activeDays + 1)
-        let balance = WorkoutRequest(day: PlannedDay(main: .chair, chairMoves: 0, cooldown: false), level: .seated,
-                                     intensity: .gentle, place: .indoors, limits: input.limits, rotationIndex: 5)
-        return [
-            TodayExtra(id: "walk", title: String(localized: "Commercial break walk · \(minutes(of: walk)) min"), symbol: "tv", request: walk),
-            TodayExtra(id: "stretch", title: String(localized: "Morning stretch · \(minutes(of: stretch)) min"), symbol: "sun.max", request: stretch),
-            TodayExtra(id: "balance", title: String(localized: "Balance · \(minutes(of: balance)) min"), symbol: "figure.stand", request: balance),
-        ]
+        let filmed = SessionVideo.filmed(in: content)
+        return SessionCatalog.presets(in: .extras).map { preset in
+            let request = preset.request(limits: input.limits, rotationIndex: activeDays + 1)
+            return TodayExtra(id: preset.id, title: String(localized: preset.title), minutes: minutes(of: request),
+                              art: preset.art, hasVideo: SessionVideo.has(request, filmed: filmed, content: content),
+                              request: request)
+        }
     }
 
     var week: [TodayDay] {

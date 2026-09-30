@@ -28,7 +28,7 @@ import Observation
 
     init(isPro: Bool, limits: Set<BodyLimit>, rotationIndex: Int, content: ContentBundle, favourites: FavouriteSessions) {
         self.favourites = favourites
-        let filmed = Set(content.exercises.filter { $0.videoFile != nil }.map(\.id))
+        let filmed = SessionVideo.filmed(in: content)
         let sections = SessionPreset.Group.allCases.map { group in
             let items = SessionCatalog.presets(in: group).compactMap { preset -> Item? in
                 // Standing stretches would turn seated anyway when standing is hard: show the seated ones only.
@@ -38,20 +38,12 @@ import Observation
                 let request = preset.request(limits: limits, rotationIndex: rotationIndex)
                 return Item(id: preset.id, title: String(localized: preset.title), detail: String(localized: "\(minutes) min"),
                             art: preset.art, isLocked: !isPro && !preset.isFree,
-                            hasVideo: Self.hasVideo(request, filmed: filmed, content: content), request: request)
+                            hasVideo: SessionVideo.has(request, filmed: filmed, content: content), request: request)
             }
             return Section(group: group, items: items)
         }
         self.sections = sections.filter { !$0.items.isEmpty }
         itemsByID = Dictionary(uniqueKeysWithValues: sections.flatMap(\.items).map { ($0.id, $0) })
-    }
-
-    /// True when a move the session plays, or its walk at her level, has a filmed clip.
-    private static func hasVideo(_ request: WorkoutRequest, filmed: Set<String>, content: ContentBundle) -> Bool {
-        guard let plan = try? request.plan(content: content) else { return false }
-        let walks = plan.blocks.contains { $0.kind == .walk }
-        return plan.exerciseIDs.contains(where: filmed.contains)
-            || (walks && WalkVideo.fileName(for: request.level, isOutdoors: request.place == .outdoors) != nil)
     }
 
     /// Her hearted sessions, in the order she added them.
@@ -60,4 +52,18 @@ import Observation
     func isFavourite(_ id: String) -> Bool { favourites.contains(id) }
 
     func toggleFavourite(_ id: String) { favourites.toggle(id) }
+}
+
+/// Whether a session shows a filmed coach: a move it plays has a clip, or its walk at her level does.
+enum SessionVideo {
+    static func filmed(in content: ContentBundle) -> Set<String> {
+        Set(content.exercises.filter { $0.videoFile != nil }.map(\.id))
+    }
+
+    static func has(_ request: WorkoutRequest, filmed: Set<String>, content: ContentBundle) -> Bool {
+        guard let plan = try? request.plan(content: content) else { return false }
+        let walks = plan.blocks.contains { $0.kind == .walk }
+        return plan.exerciseIDs.contains(where: filmed.contains)
+            || (walks && WalkVideo.fileName(for: request.level, isOutdoors: request.place == .outdoors) != nil)
+    }
 }

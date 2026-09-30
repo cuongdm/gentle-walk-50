@@ -85,6 +85,8 @@ enum Palette {
 /// Layout numbers from the screen spec (buttons, touch targets, margins, cards).
 enum Metrics {
     static let screenMargin: CGFloat = 20
+    /// Widest column of text and buttons on iPad (review U1).
+    static let readableWidth: CGFloat = 700
     static let buttonHeight: CGFloat = 60
     static let buttonRadius: CGFloat = 18
     static let secondaryBorder: CGFloat = 2

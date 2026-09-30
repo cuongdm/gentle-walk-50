@@ -9,6 +9,21 @@ extension View {
             .background(Palette.surface, in: .rect(cornerRadius: Metrics.cardRadius, style: .continuous))
     }
 
+    /// iPad and landscape: content in a centred column no wider than a comfortable reading line
+    /// (review U1, 30/09/2026); on phones it changes nothing.
+    func readableColumn(_ width: CGFloat = Metrics.readableWidth) -> some View {
+        frame(maxWidth: width).frame(maxWidth: .infinity)
+    }
+
+    /// A fixed screen that scrolls only when its content does not fit (large text, small phones),
+    /// so nothing is cut off with "…" (review U2).
+    func scrollsWhenCrowded() -> some View {
+        ViewThatFits(in: .vertical) {
+            self
+            ScrollView { self }.scrollBounceBehavior(.basedOnSize)
+        }
+    }
+
     /// Standard screen body: bg colour, 20 pt side margins.
     func screenBackground() -> some View {
         self.background(Palette.bg.ignoresSafeArea())

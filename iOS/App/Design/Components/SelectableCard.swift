@@ -11,10 +11,13 @@ struct SelectableCard: View {
     let isSelected: Bool
     let action: () -> Void
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: 14) {
-                if let symbol {
+                // The icon is decoration: at accessibility sizes the words need the width (review U2).
+                if let symbol, !typeSize.isAccessibilitySize {
                     IconChip(symbol: symbol, tint: tint)
                 }
                 VStack(alignment: .leading, spacing: 2) {

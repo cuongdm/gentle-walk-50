@@ -37,6 +37,7 @@ struct BarriersView: View {
 /// S04 "You're not alone": no question, the title follows the first barrier picked.
 struct UnderstandingView: View {
     let barrier: Barrier
+    var showsContinue = true
     let onContinue: () -> Void
 
     var body: some View {
@@ -46,7 +47,7 @@ struct UnderstandingView: View {
                 .padding(.top, 16)
             ScreenHeader(title: copy.title)
             Text(copy.body).typeRole(.body).foregroundStyle(Palette.text)
-            ContinueButton(action: onContinue)
+            if showsContinue { ContinueButton(action: onContinue) }
         }
     }
 }
