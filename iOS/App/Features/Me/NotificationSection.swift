@@ -68,7 +68,8 @@ struct ReminderTimeEditor: View {
             VStack(alignment: .leading, spacing: 16) {
                 DailyMomentPicker(moment: moment, minutes: minutes,
                                   onChoose: { moment = $0; minutes = $0.suggestedMinutes },
-                                  onAdjust: { minutes = min(23 * 60 + 45, max(0, minutes + $0)) })
+                                  onStep: { minutes = ReminderTime.step(minutes, by: $0) },
+                                  onSet: { minutes = $0 })
                 Button("Save") {
                     onSave(moment, minutes)
                     dismiss()

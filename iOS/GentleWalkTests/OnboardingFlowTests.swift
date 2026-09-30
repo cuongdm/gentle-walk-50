@@ -53,6 +53,23 @@ import GentleWalkCore
         #expect(flow.step == .welcome)
     }
 
+    /// Owner 30/09/2026: typed times keep their minutes; + and − go to the next :00, :15, :30, :45.
+    @Test func reminderStepsSnapToQuarterHours() {
+        #expect(ReminderTime.step(8 * 60 + 30, by: 1) == 8 * 60 + 45)
+        #expect(ReminderTime.step(8 * 60 + 37, by: 1) == 8 * 60 + 45)
+        #expect(ReminderTime.step(8 * 60 + 37, by: -1) == 8 * 60 + 30)
+        #expect(ReminderTime.step(8 * 60 + 45, by: 1) == 9 * 60)
+        #expect(ReminderTime.step(9 * 60, by: -1) == 8 * 60 + 45)
+        #expect(ReminderTime.step(23 * 60 + 50, by: 1) == 23 * 60 + 50)
+        #expect(ReminderTime.step(5, by: -1) == 0)
+
+        let flow = OnboardingFlow()
+        flow.setTime(minutes: 7 * 60 + 52)
+        #expect(flow.reminderMinutes == 7 * 60 + 52)
+        flow.stepTime(by: 1)
+        #expect(flow.reminderMinutes == 8 * 60)
+    }
+
     @Test func goalsAreLimitedToTwo() {
         let flow = OnboardingFlow()
         flow.toggleGoal(.lessPain)

@@ -20,7 +20,7 @@ struct PlanReadyView: View {
             PlanCard(startLevel: profile.startLevel, limits: flow.answers.limits)
             WhyThisWorks(keys: profile.whyKeys)
             DailyMomentPicker(moment: flow.moment, minutes: flow.reminderMinutes,
-                              onChoose: flow.chooseMoment, onAdjust: flow.adjustTime(byMinutes:))
+                              onChoose: flow.chooseMoment, onStep: flow.stepTime(by:), onSet: flow.setTime(minutes:))
             if showsContinue {
                 ContinueButton(title: "See my options", action: flow.next)
             }
@@ -137,12 +137,14 @@ struct FirstJourneyMini: View {
     }
 }
 
-/// "What's a good moment for your daily walk?" with a time changed by − / + (no slider).
+/// "What's a good moment for your daily walk?" The time can be typed (tap it), while − / + go to the
+/// next quarter hour (owner 30/09/2026).
 struct DailyMomentPicker: View {
     let moment: DailyMoment
     let minutes: Int
     let onChoose: (DailyMoment) -> Void
-    let onAdjust: (Int) -> Void
+    let onStep: (Int) -> Void
+    let onSet: (Int) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -152,16 +154,28 @@ struct DailyMomentPicker: View {
             }
             Text("One gentle reminder a day, at:").typeRole(.caption).foregroundStyle(Palette.textMuted)
             HStack(spacing: 16) {
-                StepButton(symbol: "minus", label: "15 minutes earlier") { onAdjust(-15) }
-                Text(verbatim: Self.time(minutes))
-                    .typeRole(.cardTitle)
-                    .foregroundStyle(Palette.text)
-                    .frame(maxWidth: .infinity)
-                    .accessibilityLabel(Text("Reminder time \(Self.time(minutes))"))
-                StepButton(symbol: "plus", label: "15 minutes later") { onAdjust(15) }
+                StepButton(symbol: "minus", label: "Earlier") { onStep(-1) }
+                DatePicker(selection: timeBinding, displayedComponents: .hourAndMinute) {
+                    Text("Reminder time")
+                }
+                .labelsHidden()
+                .datePickerStyle(.compact)
+                .scaleEffect(1.2)
+                .frame(maxWidth: .infinity)
+                StepButton(symbol: "plus", label: "Later") { onStep(1) }
             }
             .cardStyle(padding: 10)
         }
+    }
+
+    /// Minutes after midnight as a time of today, for the picker.
+    private var timeBinding: Binding<Date> {
+        Binding(
+            get: { Calendar.current.startOfDay(for: .now).addingTimeInterval(TimeInterval(minutes * 60)) },
+            set: { date in
+                let parts = Calendar.current.dateComponents([.hour, .minute], from: date)
+                onSet((parts.hour ?? 0) * 60 + (parts.minute ?? 0))
+            })
     }
 
     static func time(_ minutes: Int) -> String {

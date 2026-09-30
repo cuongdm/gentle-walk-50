@@ -24,8 +24,12 @@ extension View {
         }
     }
 
-    /// Standard screen body: bg colour, 20 pt side margins.
+    /// Standard screen body: bg colour, 20 pt side margins. The status bar keeps a band of the
+    /// background colour, so text scrolling up never runs under the clock (real iPhone, 30/09/2026).
     func screenBackground() -> some View {
         self.background(Palette.bg.ignoresSafeArea())
+            .overlay(alignment: .top) {
+                Palette.bg.frame(height: 0).ignoresSafeArea(edges: .top).allowsHitTesting(false)
+            }
     }
 }

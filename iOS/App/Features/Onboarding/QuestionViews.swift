@@ -82,6 +82,12 @@ struct NameView: View {
             .buttonStyle(.textLink)
             .frame(maxWidth: .infinity)
         }
+        // The keyboard is up at once, ready for her name (owner 30/09/2026); a short wait lets the
+        // step's slide-in finish first.
+        .task {
+            try? await Task.sleep(for: .milliseconds(450))
+            focused = true
+        }
     }
 }
 

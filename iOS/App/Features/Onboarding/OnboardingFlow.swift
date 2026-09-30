@@ -116,9 +116,16 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
     }
 
     /// − / + buttons: 15-minute steps, kept within the day.
-    func adjustTime(byMinutes delta: Int) {
-        reminderMinutes = min(23 * 60 + 45, max(0, reminderMinutes + delta))
+    /// + / −: the next quarter hour up or down.
+    func stepTime(by direction: Int) {
+        reminderMinutes = ReminderTime.step(reminderMinutes, by: direction)
     }
+
+    /// A time typed in: kept to the minute.
+    func setTime(minutes: Int) {
+        reminderMinutes = min(ReminderTime.lastMinute, max(0, minutes))
+    }
+
 
     /// Saves the answers as the one `UserProfile` (free tier rest days: Saturday and Sunday).
     @discardableResult
@@ -146,5 +153,20 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
              .chair where answers.chair == nil: String(localized: "Pick one to continue.")
         default: nil
         }
+    }
+}
+
+/// Reminder time steps (owner 30/09/2026): typed times keep their minutes, while + and − move to
+/// the next :00, :15, :30 or :45, within the day.
+enum ReminderTime {
+    static let lastMinute = 23 * 60 + 59
+
+    static func step(_ minutes: Int, by direction: Int) -> Int {
+        if direction > 0 {
+            let next = (minutes / 15 + 1) * 15
+            return next > lastMinute ? minutes : next
+        }
+        let previous = minutes % 15 == 0 ? minutes - 15 : (minutes / 15) * 15
+        return max(0, previous)
     }
 }
