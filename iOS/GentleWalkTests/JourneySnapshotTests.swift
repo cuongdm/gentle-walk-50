@@ -19,6 +19,21 @@ import GentleWalkCore
         #expect(snapshot.status(of: ny.stops[3]) == .ahead)
     }
 
+    /// First leg free: on the way to the second stop nothing is locked yet; past it the rest is Pro.
+    @Test func aFreeRouteLocksOnlyAfterTheFirstLeg() {
+        let state = JourneyState(journeyID: smoky.id, miles: 1, isCurrent: true, startedAt: day)
+        let first = PostcardUnlock(journeyID: smoky.id, stopID: smoky.stops[0].id, unlockedAt: day)
+        let onTheWay = JourneySnapshot(states: [state], unlocks: [first], content: TestFixtures.content, entitlement: .free)
+        #expect(!onTheWay.isLockedAhead)
+        #expect(onTheWay.status(of: smoky.stops[1]) == .next(milesToGo: smoky.stops[1].mile - 1))
+
+        state.miles = 3
+        let second = PostcardUnlock(journeyID: smoky.id, stopID: smoky.stops[1].id, unlockedAt: day)
+        let walked = JourneySnapshot(states: [state], unlocks: [first, second], content: TestFixtures.content, entitlement: .free)
+        #expect(walked.isLockedAhead)
+        #expect(walked.status(of: smoky.stops[2]) == .locked)
+    }
+
     @Test func aFreeRouteLocksEveryStopPastItsLimit() {
         let snapshot = JourneySnapshot(journeyID: smoky.id, journey: smoky, totalMiles: 3, routeMiles: 0,
                                        unlocked: ["pc.smoky.1"], completedJourneys: [], nextStop: smoky.stops[1],

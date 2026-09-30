@@ -10,14 +10,20 @@ struct ThisHurtsView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 ScreenHeader(title: "Let's take care of that.")
-                Text("Where does it hurt?").typeRole(.cardTitle).foregroundStyle(Palette.text)
+                Text("Where does it hurt? (optional)").typeRole(.cardTitle).foregroundStyle(Palette.text)
                 FlowChips(selection: $model.area)
-                Button("Show an easier version") { Task { onDone(await model.showEasier()) } }
-                    .buttonStyle(.primaryAction)
+                // On a walk there is no "move": the choices talk about the walk (clarity review D14).
+                Button(model.isWalk ? "Slow down to an easy walk" : "Show an easier version") {
+                    Task { onDone(await model.showEasier()) }
+                }
+                .buttonStyle(.primaryAction)
                 VStack(spacing: 4) {
-                    Button("Skip this move") { Task { onDone(await model.skipMove()) } }
+                    Button(model.isWalk ? "Skip this part" : "Skip this move") { Task { onDone(await model.skipMove()) } }
                         .buttonStyle(.textLink)
                     Button("Stop for today") { onDone(model.stopForToday()) }
+                        .buttonStyle(.textLink)
+                    // A mistaken tap: back to the session, nothing is recorded.
+                    Button("I'm okay, go back") { onDone(model.goBack()) }
                         .buttonStyle(.textLink)
                 }
                 .frame(maxWidth: .infinity)

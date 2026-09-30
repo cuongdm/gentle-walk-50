@@ -42,7 +42,8 @@ extension SessionPreset {
 
     var art: Art {
         switch id {
-        case "walk.gentle", "chair.gentle": .walkerSeatedMarch
+        case "walk.gentle": .walkerSeatedMarch
+        case "chair.gentle": .walkerBehindChair
         case "walk.steady": .sceneLivingRoom
         case "walk.strong": .walkerMarch
         case "walk.long": .sceneWalkingPad

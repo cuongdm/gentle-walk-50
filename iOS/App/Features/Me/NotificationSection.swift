@@ -18,13 +18,13 @@ struct NotificationSection: View {
                 }
             }
             .frame(minHeight: Metrics.minTouchTarget)
-            Button("Change") { changingTime = true }.buttonStyle(.textLink)
+            Button("Change time") { changingTime = true }.buttonStyle(.textLink)
             Text("How often").typeRole(.body).fontWeight(.semibold)
             HStack(spacing: Metrics.touchSpacing) {
                 frequencyButton(.daily, "Daily", current: profile.frequency)
-                frequencyButton(.quietDays, "Just on quiet days", current: profile.frequency)
+                frequencyButton(.quietDays, "Only if I haven't moved", current: profile.frequency)
             }
-            Toggle("Journey milestones", isOn: binding(\.journeyMilestones)).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
+            Toggle("When I reach a new postcard", isOn: binding(\.journeyMilestones)).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
             Toggle("Weekly recap", isOn: binding(\.weeklyRecap)).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
             Toggle(isOn: binding(\.newJourneys)) {
                 VStack(alignment: .leading, spacing: 2) {

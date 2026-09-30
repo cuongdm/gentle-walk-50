@@ -25,12 +25,6 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
     }
 }
 
-/// S07 "When would you like to start?"
-enum StartChoice: String, CaseIterable, Identifiable, Sendable {
-    case now, tomorrow, pickTime
-    var id: String { rawValue }
-}
-
 /// Onboarding state (task 5.1): step order, answers, validation hints and saving the profile.
 @Observable @MainActor final class OnboardingFlow {
     private(set) var step: OnboardingStep = .welcome
@@ -39,7 +33,6 @@ enum StartChoice: String, CaseIterable, Identifiable, Sendable {
     }
     var nameText = ""
     private(set) var moment: DailyMoment = .coffee
-    var startChoice: StartChoice = .now
     private(set) var reminderMinutes = DailyMoment.coffee.suggestedMinutes
     private(set) var hint: String?
     private(set) var noLimitsChosen = false
@@ -83,11 +76,17 @@ enum StartChoice: String, CaseIterable, Identifiable, Sendable {
         self.step = step
     }
 
+    /// A third goal was tapped: "You can pick 2. Tap one to change it."
+    private(set) var showsGoalLimit = false
+
     func toggleGoal(_ goal: Goal) {
+        showsGoalLimit = false
         if let index = answers.goals.firstIndex(of: goal) {
             answers.goals.remove(at: index)
         } else if answers.goals.count < Self.maxGoals {
             answers.goals.append(goal)
+        } else {
+            showsGoalLimit = true
         }
     }
 

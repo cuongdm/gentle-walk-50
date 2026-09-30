@@ -17,6 +17,8 @@ struct PaywallLegalFooter: View {
                 .foregroundStyle(Palette.text)
                 .multilineTextAlignment(.center)
             Button("Maybe later", action: onMaybeLater).buttonStyle(.textLink)
+            Text("Or keep the free plan: a walk each weekday and the New York journey.")
+                .typeRole(.caption).foregroundStyle(Palette.textMuted).multilineTextAlignment(.center)
             HStack(spacing: 8) {
                 Button("Restore", action: onRestore).buttonStyle(.smallTextLink)
                 Text(verbatim: "·").foregroundStyle(Palette.textMuted).accessibilityHidden(true)

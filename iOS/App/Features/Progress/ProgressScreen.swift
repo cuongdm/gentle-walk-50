@@ -3,7 +3,8 @@ import SwiftUI
 import GentleWalkCore
 
 /// S19 Progress: tree level, month calendar (no red days), sit-to-stands by week, longest walk,
-/// Everyday wins, all-day steps from Apple Health, Fitness Check teaser. No weight, no calories.
+/// Everyday wins, all-day steps from Apple Health. No weight, no calories. The "Coming soon"
+/// Fitness Check card was removed until it exists (clarity review D42).
 struct ProgressScreen: View {
     let snapshot: ProgressSnapshot
     let wins: [EverydayWinItem]
@@ -26,7 +27,6 @@ struct ProgressScreen: View {
                 }
                 EverydayWinsList(wins: wins, checked: snapshot.checkedWins, onToggle: onToggleWin)
                 AllDayStepsCard(steps: steps, connected: healthConnected, onConnect: onConnectHealth)
-                FitnessCheckTeaser()
             }
             .padding(Metrics.screenMargin)
             .frame(maxWidth: 700)
@@ -63,6 +63,8 @@ struct TreeCard: View {
                     Text("^[\(rings) year ring](inflect: true)").typeRole(.caption).foregroundStyle(Palette.textMuted)
                 }
                 TreeMilestoneLine(activeDays: activeDays)
+                // What an active day is (clarity review D18).
+                Text("An active day is any day you finish a session.").typeRole(.caption).foregroundStyle(Palette.textMuted)
             }
             .foregroundStyle(Palette.text)
         }
@@ -107,6 +109,12 @@ struct MonthCalendar: View {
                     }
                 }
             }
+            // What the marks mean (clarity review D41).
+            HStack(spacing: 16) {
+                Label { Text("Active day") } icon: { Circle().fill(Palette.secondary).frame(width: 12, height: 12) }
+                Label { Text("Rest day") } icon: { Image(systemName: "moon.fill").foregroundStyle(Palette.textMuted) }
+            }
+            .typeRole(.caption).foregroundStyle(Palette.text)
         }
         .cardStyle()
     }
@@ -127,14 +135,19 @@ struct SitToStandChart: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Sit-to-stands in a session").typeRole(.cardTitle).foregroundStyle(Palette.text)
-            Chart(bars) { bar in
-                BarMark(x: .value("Week", bar.weekStart, unit: .weekOfYear), y: .value("Sit-to-stands", bar.best))
-                    .foregroundStyle(Palette.secondary)
-                    .cornerRadius(6)
+            Text("Most sit-to-stands in one session, by week").typeRole(.cardTitle).foregroundStyle(Palette.text)
+            if bars.allSatisfy({ $0.best == 0 }) {
+                // Empty chart looked broken (clarity review D42).
+                Text("Do a chair session to see this grow.").typeRole(.body).foregroundStyle(Palette.textMuted)
+            } else {
+                Chart(bars) { bar in
+                    BarMark(x: .value("Week", bar.weekStart, unit: .weekOfYear), y: .value("Sit-to-stands", bar.best))
+                        .foregroundStyle(Palette.secondary)
+                        .cornerRadius(6)
+                }
+                .frame(height: 160)
+                .chartXAxis { AxisMarks(values: .stride(by: .weekOfYear)) { _ in AxisValueLabel(format: .dateTime.month(.abbreviated).day()) } }
             }
-            .frame(height: 160)
-            .chartXAxis { AxisMarks(values: .stride(by: .weekOfYear)) { _ in AxisValueLabel(format: .dateTime.month(.abbreviated).day()) } }
         }
         .cardStyle()
     }
@@ -161,7 +174,10 @@ struct EverydayWinsList: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Everyday wins").typeRole(.cardTitle).foregroundStyle(Palette.text)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Everyday wins").typeRole(.cardTitle).foregroundStyle(Palette.text)
+                Text("Tick the ones you can do now.").typeRole(.caption).foregroundStyle(Palette.textMuted)
+            }
             ForEach(wins) { win in
                 Button { onToggle(win.id) } label: {
                     HStack(spacing: 12) {
@@ -194,25 +210,12 @@ struct AllDayStepsCard: View {
                 Text("\(Int(steps.thisWeek).formatted()) a day this week").typeRole(.body).fontWeight(.semibold)
                 Text("Last week: \(Int(steps.lastWeek).formatted()) a day").typeRole(.body)
             } else {
-                Text("Connect Apple Health to see your everyday steps. Your journey moves with the minutes you spend here.")
+                Text("Connect Apple Health to see your everyday steps. Your journey doesn't need Health: it moves with your minutes here.")
                     .typeRole(.body)
                 Button("Connect Apple Health", action: onConnect).buttonStyle(.secondaryAction)
             }
         }
         .foregroundStyle(Palette.text)
         .cardStyle()
-    }
-}
-
-struct FitnessCheckTeaser: View {
-    var body: some View {
-        HStack {
-            Text("Fitness Check").typeRole(.cardTitle)
-            Spacer()
-            Text("Coming soon").typeRole(.caption)
-        }
-        .foregroundStyle(Palette.text)
-        .cardStyle()
-        .opacity(0.7)
     }
 }

@@ -22,6 +22,7 @@ enum PhaseTone: Equatable, Sendable { case ready, easy, brisk }
         case .brisk: String(localized: "BRISK WALK")
         case .cooldown: String(localized: "COOL-DOWN")
         case .intro: String(localized: "GET READY")
+        case .warmup: String(localized: "WARM-UP")
         default: String(localized: "EASY WALK")
         }
     }
@@ -42,12 +43,12 @@ enum PhaseTone: Equatable, Sendable { case ready, easy, brisk }
         let left = Self.minutes(max(0, Int((player.timeline.total - player.currentTime).rounded(.up))))
         switch phaseKind {
         case .intro, .warmup:
-            return String(localized: "Warm-up · \(left) left")
+            return String(localized: "Warm-up · \(left) left in total")
         case .cooldown, .outro:
-            return String(localized: "Cool-down · \(left) left")
+            return String(localized: "Cool-down · \(left) left in total")
         default:
             let (round, rounds) = roundPosition
-            return String(localized: "Round \(round) of \(rounds) · \(left) left")
+            return String(localized: "Round \(round) of \(rounds) · \(left) left in total")
         }
     }
 

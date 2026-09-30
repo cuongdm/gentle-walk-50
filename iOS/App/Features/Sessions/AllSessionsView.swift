@@ -10,8 +10,12 @@ struct AllSessionsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                Text("All sessions").typeRole(.screenTitle).foregroundStyle(Palette.text)
-                    .accessibilityAddTraits(.isHeader)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("All sessions").typeRole(.screenTitle).foregroundStyle(Palette.text)
+                        .accessibilityAddTraits(.isHeader)
+                    // Whether a pick counts, and what "Pro" opens (clarity review D39).
+                    Text("Pick any session. It counts for today.").typeRole(.body).foregroundStyle(Palette.text)
+                }
                 if !model.favouriteItems.isEmpty {
                     SessionSection(title: "Your favourites", items: model.favouriteItems, model: model, onOpen: onOpen)
                 }

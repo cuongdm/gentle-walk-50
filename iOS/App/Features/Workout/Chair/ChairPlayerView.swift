@@ -73,10 +73,11 @@ struct ChairPlayerView: View {
                     } else {
                         MoveTimer(text: model.timerText)
                     }
-                    MoveTips(tips: model.exercise?.tips ?? [], note: model.versionNote)
+                    // Easier / Harder before the tips, so they are in view without scrolling (review D12).
                     VersionPills(usesEasier: model.usesEasier, showsHarder: model.showsHarder,
                                  hasHarder: model.exercise?.harder != nil,
                                  onEasier: { Task { await model.chooseEasier() } }, onHarder: model.chooseHarder)
+                    MoveTips(tips: model.exercise?.tips ?? [], note: model.versionNote)
                 }
             }
             .scrollBounceBehavior(.basedOnSize)
@@ -126,6 +127,9 @@ struct RepCounter: View {
                     .contentTransition(.numericText())
                 if countedForYou {
                     CountedForYouLabel(pulse: pulse)
+                } else {
+                    // Without the phone held to the chest, the count is hers (review D13).
+                    Text("Tap +1 each time you stand").typeRole(.caption).foregroundStyle(Palette.textMuted)
                 }
             }
             Spacer(minLength: 0)

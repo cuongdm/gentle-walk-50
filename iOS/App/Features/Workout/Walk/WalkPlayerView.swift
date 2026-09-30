@@ -20,7 +20,7 @@ struct WalkPlayerView: View {
     /// Outdoors: "0.6 mi" under the clock, from GPS or steps.
     private var distanceText: String? {
         guard isOutdoors, let miles = session.outdoorDistance?() else { return nil }
-        return CompleteContent.miles(miles)
+        return String(localized: "\(CompleteContent.miles(miles)) walked")
     }
     private var isPaused: Bool { if case .paused = model.player.state { true } else { false } }
     /// The filmed loop for her level, if there is one.
@@ -63,6 +63,9 @@ struct WalkPlayerView: View {
         return video == nil ? 320 : 232
     }
 
+    /// Indoors: "Seated" or "In place" under the part's name (the clip alone left it unclear).
+    private var levelNote: String? { isOutdoors ? nil : String(localized: model.level.title) }
+
     /// The expand button shows only on a clip.
     private var expandAction: (() -> Void)? {
         guard video != nil else { return nil }
@@ -99,7 +102,8 @@ struct WalkPlayerView: View {
                         WalkTopBar(status: model.statusLine, locationOn: session.locationOn?() ?? false, onEnd: session.askToEnd,
                                    onSound: { showsSound = true })
                         Spacer(minLength: 0)
-                        PhaseBlock(label: model.phaseLabel, tone: model.tone, clock: model.clock, distance: distanceText, isLarge: true)
+                        PhaseBlock(label: model.phaseLabel, levelNote: levelNote, tone: model.tone, clock: model.clock, distance: distanceText,
+                                   isLarge: true)
                         NextUpRow(next: model.nextLine, progress: model.phaseProgress, tone: model.tone)
                         CaptionBar(caption: model.captionText, style: .plain(.center))
                         Spacer(minLength: 0)
@@ -110,7 +114,6 @@ struct WalkPlayerView: View {
                             WalkScene(level: model.level, isOutdoors: isOutdoors, height: 270,
                                       onFullScreen: expandAction)
                         }
-                        if !isOutdoors, video == nil { LevelLine(level: model.level) }
                         Spacer(minLength: 0)
                         controls
                     }
@@ -154,12 +157,10 @@ struct WalkPlayerView: View {
                           onFullScreen: expandAction)
                     .layoutPriority(1)
             }
-            PhaseBlock(label: model.phaseLabel, tone: model.tone, clock: model.clock, distance: distanceText)
+            PhaseBlock(label: model.phaseLabel, levelNote: levelNote, tone: model.tone, clock: model.clock, distance: distanceText)
             NextUpRow(next: model.nextLine, progress: model.phaseProgress, tone: model.tone)
             CaptionBar(caption: model.captionText, style: .plain(.center))
             Spacer(minLength: 0)
-            // The clip already shows how she walks; the word is for the painting.
-            if !isOutdoors, video == nil { LevelLine(level: model.level) }
         }
     }
 
@@ -302,6 +303,8 @@ struct WalkScene: View {
 /// Phase name (34 pt, sun/sky chip) and the phase clock (the biggest number).
 struct PhaseBlock: View {
     let label: String
+    /// "Seated": a walk done in a chair says so under the label (clarity review D31).
+    var levelNote: String? = nil
     let tone: PhaseTone
     let clock: String
     var distance: String? = nil
@@ -319,7 +322,12 @@ struct PhaseBlock: View {
                 .padding(.vertical, 6)
                 .background(tone.fill, in: .capsule)
                 .accessibilityAddTraits(.isHeader)
+            if let levelNote {
+                Text(verbatim: levelNote).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
+            }
             PhaseClock(text: clock, isLarge: isLarge)
+            // The big clock is this part; the top line is the whole session (clarity review D11).
+            Text("left in this part").typeRole(.caption).foregroundStyle(Palette.textMuted)
             if let distance {
                 Text(verbatim: distance).typeRole(.cardTitle).foregroundStyle(Palette.text)
             }
@@ -376,18 +384,7 @@ struct PhaseProgressBar: View {
     }
 }
 
-/// "Seated · Change level" (hidden outdoors).
-struct LevelLine: View {
-    let level: WalkLevel
-
-    var body: some View {
-        Text(level.title)
-            .typeRole(.caption)
-            .foregroundStyle(Palette.textMuted)
-    }
-}
-
-/// Paused: dimmed background, "Paused", a big Resume and End workout.
+/// Paused: dimmed background, "Paused", a big Resume and End session.
 struct PausedOverlay: View {
     let onResume: () -> Void
     let onEnd: () -> Void
@@ -398,7 +395,7 @@ struct PausedOverlay: View {
             VStack(spacing: 20) {
                 Text("Paused").typeRole(.screenTitle).foregroundStyle(Palette.text)
                 Button("Resume", action: onResume).buttonStyle(.primaryAction)
-                Button("End workout", action: onEnd).buttonStyle(.textLink)
+                Button("End session", action: onEnd).buttonStyle(.textLink)
             }
             .padding(Metrics.screenMargin)
         }

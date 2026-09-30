@@ -56,11 +56,11 @@ struct CompleteContent: Equatable {
         let journey = content.journeys.first { $0.id == result.journeyID }
         if let journey, let last = journey.stops.last, last.mile > 0 {
             destination = last.name
-            let left = max(0, last.mile - result.routeMiles)
             journeyProgress = min(1, result.routeMiles / last.mile)
             journeyLine = result.journeyComplete
                 ? String(localized: "You made it to \(last.name)!")
-                : String(localized: "\(Self.miles(left)) to \(last.name)")
+                : JourneyText.progress(routeMiles: result.routeMiles, journey: journey,
+                                       limit: result.routeLimit)
         } else {
             journeyProgress = 0
         }
@@ -70,8 +70,8 @@ struct CompleteContent: Equatable {
         switch (name, variant) {
         case (let name?, .outdoors): shareLine = String(localized: "\(name) walked \(miles) today.")
         case (nil, .outdoors): shareLine = String(localized: "A \(miles) walk today.")
-        case (let name?, _): shareLine = String(localized: "\(name) walked \(minutesText) today, on the way to \(place).")
-        case (nil, _): shareLine = String(localized: "\(minutesText) of walking today, on the way to \(place).")
+        case (let name?, _): shareLine = String(localized: "\(name) moved for \(minutesText) today, on the way to \(place).")
+        case (nil, _): shareLine = String(localized: "\(minutesText) of moving today, on the way to \(place).")
         }
     }
 

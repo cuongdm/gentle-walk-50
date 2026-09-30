@@ -7,6 +7,8 @@ struct WorkoutPreviewView: View {
     @Bindable var model: WorkoutPreviewModel
     let onStart: (WorkoutRequest) -> Void
     let onRemindLater: () -> Void
+    /// When the reminder would come; nil hides the button (clarity review D10).
+    var remindAt: Date? = nil
     var onClose: () -> Void = {}
 
     @Environment(\.dynamicTypeSize) private var typeSize
@@ -33,7 +35,7 @@ struct WorkoutPreviewView: View {
                 }
                 SegmentList(rows: model.rows, onSwap: model.swap)
                 if model.place == .outdoors && model.isWalkDay {
-                    Text("Your chair moves will be waiting when you're home.")
+                    Text("After your walk, you can do your chair moves at home from All sessions.")
                         .typeRole(.body)
                         .foregroundStyle(Palette.text)
                 }
@@ -49,7 +51,10 @@ struct WorkoutPreviewView: View {
 
     @ViewBuilder private var actions: some View {
         Button("Start now") { onStart(model.request) }.buttonStyle(.primaryAction)
-        Button("Remind me later", action: onRemindLater).buttonStyle(.smallTextLink)
+        if let remindAt {
+            Button(String(localized: "Remind me at \(remindAt.formatted(date: .omitted, time: .shortened))"), action: onRemindLater)
+                .buttonStyle(.smallTextLink)
+        }
     }
 
     /// The coach in the place and kind of session picked, so the picture follows the choices.
@@ -102,29 +107,40 @@ struct PlaceSelector: View {
     }
 }
 
-/// Seated · In place, the suggested one labelled "Suggested".
+/// "How will you walk today?" · Seated (in a chair) · In place (standing, marching on the spot);
+/// the suggested one says so (clarity review D9: the tiles had no question and "In place" was jargon).
 struct LevelSelector: View {
     @Binding var level: WalkLevel
     let suggested: WalkLevel
 
     var body: some View {
-        ChoiceRow {
-            tile(.seated, art: .walkerSeatedMarch)
-            tile(.inPlace, art: .walkerMarch)
-        } cards: {
-            card(.seated, art: .walkerSeatedMarch)
-            card(.inPlace, art: .walkerMarch)
+        VStack(alignment: .leading, spacing: 10) {
+            Text("How will you walk today?").typeRole(.cardTitle).foregroundStyle(Palette.text)
+            ChoiceRow {
+                tile(.seated, art: .walkerSeatedMarch)
+                tile(.inPlace, art: .walkerMarch)
+            } cards: {
+                card(.seated, art: .walkerSeatedMarch)
+                card(.inPlace, art: .walkerMarch)
+            }
+        }
+    }
+
+    private func subtitle(_ value: WalkLevel) -> LocalizedStringResource {
+        switch (value, value == suggested) {
+        case (.seated, true): "In a chair · suggested for you"
+        case (.seated, false): "In a chair"
+        case (_, true): "Standing, on the spot · suggested for you"
+        default: "Standing, on the spot"
         }
     }
 
     private func tile(_ value: WalkLevel, art: Art) -> some View {
-        PictureTile(art: art, title: value.title, subtitle: value == suggested ? "Suggested" : nil,
-                    isSelected: level == value) { level = value }
+        PictureTile(art: art, title: value.title, subtitle: subtitle(value), isSelected: level == value) { level = value }
     }
 
     private func card(_ value: WalkLevel, art: Art) -> some View {
-        PictureChoiceCard(art: art, title: value.title, subtitle: value == suggested ? "Suggested" : nil,
-                          isSelected: level == value) { level = value }
+        PictureChoiceCard(art: art, title: value.title, subtitle: subtitle(value), isSelected: level == value) { level = value }
     }
 }
 

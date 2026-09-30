@@ -26,6 +26,8 @@ struct PaywallView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 ScreenHeader(title: model.title)
+                // What Pro adds comes first, then the dates and prices (clarity review D4).
+                IncludedList()
                 if model.showsTrial, let yearly = model.yearly {
                     TrialTimelineView(billingDate: model.billingDateText, price: yearly.price)
                 }
@@ -38,7 +40,6 @@ struct PaywallView: View {
                         }
                     }
                 }
-                IncludedList()
                 Text("Cancel anytime in Settings. Deleting the app doesn't cancel.")
                     .typeRole(.body)
                     .foregroundStyle(Palette.text)

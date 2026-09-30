@@ -32,6 +32,7 @@ import GentleWalkCore
     func removePending(ids: [String]) {}
     func add(_ request: UNNotificationRequest) async throws {}
     func setCategories(_ categories: Set<UNNotificationCategory>) {}
+    func isAllowed() async -> Bool { true }
 }
 
 @MainActor final class CaptureLocationManager: LocationManaging {

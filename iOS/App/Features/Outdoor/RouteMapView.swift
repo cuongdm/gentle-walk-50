@@ -33,6 +33,7 @@ struct ChairMovesWaitingCard: View {
                     Button("Do them now", action: onDoNow).buttonStyle(PillButtonStyle(isSelected: true))
                     Button("Later") { later = true }.buttonStyle(.textLink)
                 }
+                Text("You'll find them later in All sessions.").typeRole(.caption).foregroundStyle(Palette.textMuted)
             }
             .foregroundStyle(Palette.text)
             .cardStyle()

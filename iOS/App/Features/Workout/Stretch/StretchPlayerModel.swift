@@ -36,12 +36,13 @@ import GentleWalkCore
     }
     var usesEasier: Bool { phase?.isEasier == true || (pose.map { session.easierExerciseIDs.contains($0.id) } ?? false) }
 
-    /// "Cool-down · 2 of 3" after a walk.
+    /// "Stretch 2 of 6", or "Cool-down · 2 of 3" after a walk (clarity review D34).
     var cooldownPosition: String? {
-        guard isCooldown else { return nil }
-        let poses = player.timeline.phases.filter { $0.block == .cooldown && $0.exerciseID != nil }
+        let poses = player.timeline.phases.filter { $0.block == phase?.block && $0.exerciseID != nil }
+        guard !poses.isEmpty else { return nil }
         let index = poses.lastIndex { $0.start <= player.currentTime } ?? 0
-        return String(localized: "Cool-down · \(index + 1) of \(poses.count)")
+        return isCooldown ? String(localized: "Cool-down · \(index + 1) of \(poses.count)")
+            : String(localized: "Stretch \(index + 1) of \(poses.count)")
     }
 
     private var holdWindows: [(side: Side?, start: Double, end: Double)] {
@@ -65,7 +66,8 @@ import GentleWalkCore
     /// "0:20" counting down during a hold; the full hold before it starts.
     var holdText: String {
         let seconds = currentWindow.map { Int(($0.end - player.currentTime).rounded(.up)) } ?? session.holdSeconds
-        return Duration.seconds(max(0, seconds)).formatted(.time(pattern: .minuteSecond))
+        // Same "00:20" as the chair timer and the walk clock (clarity review D34).
+        return WalkPlayerModel.clock(max(0, seconds))
     }
 
     var side: Side? {

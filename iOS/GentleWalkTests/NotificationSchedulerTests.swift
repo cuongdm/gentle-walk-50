@@ -17,6 +17,8 @@ import GentleWalkCore
     }
     func add(_ request: UNNotificationRequest) async throws { pending.append(request) }
     func setCategories(_ categories: Set<UNNotificationCategory>) { self.categories = categories }
+    var allowed = true
+    func isAllowed() async -> Bool { allowed }
 }
 
 @MainActor @Suite(.serialized) struct NotificationSchedulerTests {
@@ -45,6 +47,18 @@ import GentleWalkCore
         #expect(ours.count <= 64)
         #expect(center.pending.contains { $0.identifier == "other.app.thing" })
         #expect(ours.allSatisfy { !$0.content.body.isEmpty && $0.content.categoryIdentifier == NotificationCategory.reminder })
+    }
+
+    /// "Remind me at 9:00 AM" only when a reminder can really come (clarity review D10).
+    @Test func remindLaterSaysWhenOrHides() async throws {
+        let center = FakeNotificationCenter()
+        let scheduler = try scheduler(center)
+        let fire = try #require(await scheduler.remindLaterTime())
+        #expect(calendar.component(.hour, from: fire) == 9)
+        center.allowed = false
+        #expect(await scheduler.remindLaterTime() == nil)
+        // Too late in the evening: no reminder, so no button.
+        #expect(await scheduler.remindLaterTime(after: 14 * 3_600) == nil)
     }
 
     @Test func reschedulingTwiceDoesNotDuplicate() async throws {

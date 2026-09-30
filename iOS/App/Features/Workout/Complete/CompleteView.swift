@@ -109,6 +109,8 @@ struct JourneyProgressBar: View {
             Text(verbatim: line).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
             ProgressView(value: progress).tint(Palette.secondary).scaleEffect(x: 1, y: 2, anchor: .center)
                 .accessibilityHidden(true)
+            // Why a chair session moves the journey (clarity review D16).
+            Text("Every minute you move adds miles to your journey.").typeRole(.caption).foregroundStyle(Palette.textMuted)
         }
         .cardStyle()
     }
@@ -200,8 +202,8 @@ struct CompleteHero: View {
             }
             VStack(alignment: .leading, spacing: 4) {
                 if let level {
-                    Text("You reached \(Text(level.title))").typeRole(.body).fontWeight(.semibold)
-                        .foregroundStyle(Palette.secondary)
+                    Text("You reached \(Text(level.title)). Your tree grows with every active day.").typeRole(.body)
+                        .fontWeight(.semibold).foregroundStyle(Palette.secondary)
                 }
                 ScreenHeaderText(title: title, subtitle: subtitle)
             }

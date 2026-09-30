@@ -9,8 +9,12 @@ import Testing
         #expect(JourneyAccess.limitMile(for: TestSupport.newYorkJourney, entitlement: .free) == nil)
     }
 
-    @Test func freeStopsAtTheFirstPostcardOfAPaidRoute() {
-        #expect(JourneyAccess.limitMile(for: TestSupport.paidJourney, entitlement: .free) == 0)
+    /// Owner decision 30/09/2026: "First leg free" is a real leg, start to the second stop.
+    @Test func freeWalksTheFirstLegOfAPaidRoute() {
+        let journey = TestSupport.paidJourney
+        #expect(journey.stops.count >= 2)
+        #expect(JourneyAccess.limitMile(for: journey, entitlement: .free) == journey.stops[1].mile)
+        #expect(JourneyAccess.freeLegEnd(of: journey)?.id == journey.stops[1].id)
     }
 
     @Test(arguments: pro)

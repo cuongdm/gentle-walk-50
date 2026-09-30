@@ -83,8 +83,8 @@ struct SubscriptionSection: View {
                     Button("Cancel it", action: onHowToCancel).buttonStyle(.textLink)
                 }
             case .free:
-                Text("Free plan: a walk every day, New York and the first stop of every journey.").typeRole(.body)
-                Button("See plans", action: onSeePlans).buttonStyle(.secondaryAction)
+                Text("Free plan: a walk each weekday, the New York journey, and the first leg of every other journey.").typeRole(.body)
+                Button("See Pro plans", action: onSeePlans).buttonStyle(.secondaryAction)
             }
         }
     }
@@ -150,10 +150,9 @@ struct WorkoutAudioSection: View {
     @AppStorage("musicOff") private var musicOff = false
 
     var body: some View {
-        SettingsCard(title: "Workout") {
-            SoundControls(showsMusic: !musicStyles.isEmpty && !musicOff)
-            Toggle("Voice louder than music", isOn: $voiceLouder).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
+        SettingsCard(title: "During a session") {
             Toggle("Captions", isOn: $captionsOn).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
+            SoundControls(showsMusic: !musicStyles.isEmpty && !musicOff)
             if let style = musicStyles.first {
                 Toggle(isOn: Binding(get: { !musicOff }, set: { musicOff = !$0 })) {
                     VStack(alignment: .leading, spacing: 2) {
@@ -162,6 +161,10 @@ struct WorkoutAudioSection: View {
                     }
                 }
                 .frame(minHeight: Metrics.minTouchTarget)
+                // Only with music there is something for the voice to be louder than (review D44).
+                if !musicOff {
+                    Toggle("Voice louder than music", isOn: $voiceLouder).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
+                }
             } else {
                 HStack {
                     Text("Music").typeRole(.body)
@@ -262,7 +265,7 @@ struct DeleteDataConfirmation: View {
         VStack(alignment: .leading, spacing: 18) {
             Spacer()
             ScreenHeader(title: "Delete all your data?")
-            Text("This removes your answers, workouts, journey progress and settings from this phone. It can't be undone.")
+            Text("This removes your answers, sessions, journey progress and settings from this phone. It can't be undone.")
                 .typeRole(.body)
             Text("Workouts already saved in Apple Health stay there. You can remove them in the Health app.").typeRole(.body)
             Text("Your subscription is not affected. Manage it in Settings.").typeRole(.body)

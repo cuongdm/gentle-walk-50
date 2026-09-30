@@ -57,9 +57,13 @@ import GentleWalkCore
         let flow = OnboardingFlow()
         flow.toggleGoal(.lessPain)
         flow.toggleGoal(.steadier)
+        #expect(!flow.showsGoalLimit)
         flow.toggleGoal(.moreEnergy)
         #expect(flow.answers.goals == [.lessPain, .steadier])
+        // A third tap says why nothing changed (clarity review D23).
+        #expect(flow.showsGoalLimit)
         flow.toggleGoal(.lessPain)
+        #expect(!flow.showsGoalLimit)
         #expect(flow.answers.goals == [.steadier])
     }
 

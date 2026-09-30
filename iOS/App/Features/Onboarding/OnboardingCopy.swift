@@ -51,7 +51,7 @@ enum OnboardingCopy {
     static func understanding(_ barrier: Barrier) -> (title: LocalizedStringResource, body: LocalizedStringResource) {
         switch barrier {
         case .joints: ("Sore knees don't mean you can't move.",
-                       "Every move here starts seated. If something hurts, one tap swaps it for an easier one.")
+                       "Every move has a seated version. If something hurts, one tap swaps it for an easier one.")
         case .tooFast: ("You set the pace here.",
                         "A calm voice guides each step, and you can pause anytime. No one is racing you.")
         case .busy: ("You look after everyone. This is for you.",
@@ -59,7 +59,7 @@ enum OnboardingCopy {
         case .bored: ("Something new every week.",
                       "Walks, chair moves and gentle stretches take turns, and every minute takes you somewhere new.")
         case .charged: ("No surprises with money.",
-                        "We'll always show the exact date before you're billed. Canceling takes one tap.")
+                        "We'll always show the exact date before you're billed, and remind you before it. You can cancel from Me in a few taps.")
         case .notSure: ("You don't need a plan. We'll bring one.",
                         "Tell us a little about you, and we'll start you somewhere comfortable.")
         }
@@ -72,7 +72,7 @@ enum OnboardingCopy {
         case .barrier(.tooFast): "Videos went too fast? Here a calm voice sets the pace, and you can pause anytime."
         case .barrier(.busy): "Sessions are 5 to 10 minutes, at the moment of the day you choose."
         case .barrier(.bored): "Your week mixes walks, chair moves and stretches, and your journey keeps moving."
-        case .barrier(.charged): "You'll see your billing date today, get a reminder before it, and can cancel in one tap."
+        case .barrier(.charged): "You'll see your billing date today, get a reminder before it, and can cancel anytime from Me."
         case .barrier(.notSure): "We start you at the right level and adjust after every session."
         case .pocket: "You can do it with your phone in your pocket. Just follow the voice."
         }
@@ -127,9 +127,9 @@ enum OnboardingCopy {
         case .lowerBack: "Easy on lower back"
         case .shoulders: "Easy on shoulders"
         case .noFloor: "No floor moves"
-        case .standingIsHard: "Short standing"
+        case .standingIsHard: "Short standing parts"
         case .dizzy: "Steady, no quick turns"
-        case .jointReplacement: "Joint replacement"
+        case .jointReplacement: "Gentle on replaced joints"
         case .noJumping: "No jumping"
         }
     }

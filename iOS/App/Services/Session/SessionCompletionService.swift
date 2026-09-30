@@ -39,8 +39,10 @@ struct CompletionResult: Equatable, Sendable {
     var nextStop: Journey.Stop?
     var milesToNext = 0.0
     var journeyComplete = false
-    /// Free user on a paid route who reached its first postcard.
+    /// Free user on a paid route who walked its free first leg.
     var isLockedAhead = false
+    /// Free user on a paid route: the last mile of the free leg.
+    var routeLimit: Double?
     var activeDays = 0
     /// Set when this session reached a new tree level.
     var reachedLevel: TreeLevel?
@@ -137,5 +139,6 @@ struct CompletionResult: Equatable, Sendable {
         result.milesToNext = step.milesToNext
         result.journeyComplete = step.isComplete
         result.isLockedAhead = limit != nil && step.next != nil && to >= (limit ?? 0)
+        result.routeLimit = limit
     }
 }

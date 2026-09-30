@@ -17,6 +17,8 @@ struct BreakView: View {
                          subtitle: isOutdoors
                             ? "Find somewhere to sit or lean, in the shade if you can. Sip some water and breathe slowly."
                             : "Sit down, sip some water, breathe slowly. Your progress is saved.")
+            // Counts up, so it is labelled: nobody should read it as time running out (review D35).
+            Text("Resting for").typeRole(.body).foregroundStyle(Palette.textMuted)
             TimelineView(.periodic(from: startedAt, by: 1)) { context in
                 let seconds = max(0, Int(context.date.timeIntervalSince(startedAt)))
                 Text(verbatim: Duration.seconds(seconds).formatted(.time(pattern: .minuteSecond)))
@@ -27,6 +29,7 @@ struct BreakView: View {
                     .contentTransition(.numericText())
                     .accessibilityLabel(Text("Break time \(Duration.seconds(seconds).formatted(.units(allowed: [.minutes, .seconds])))"))
             }
+            Text("Take as long as you need.").typeRole(.body).foregroundStyle(Palette.text)
             Spacer(minLength: 0)
             Button("I'm ready to continue", action: onContinue).buttonStyle(.primaryAction)
             if isOutdoors {

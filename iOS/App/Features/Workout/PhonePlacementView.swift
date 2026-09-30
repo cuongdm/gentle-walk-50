@@ -19,7 +19,7 @@ enum PhonePlacement: String, CaseIterable, Identifiable, Sendable {
     var subtitle: LocalizedStringResource {
         switch self {
         case .pocket: "Best for walking."
-        case .chest: "Great if you have no pockets."
+        case .chest: "Great if you have no pockets. We can count your stand-ups."
         case .table: "Just listen and follow along."
         }
     }
@@ -57,7 +57,7 @@ struct PhonePlacementView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                ScreenHeader(title: "Where will your phone be?")
+                ScreenHeader(title: "Where will your phone be?", subtitle: "So the voice knows how to guide you.")
                 ForEach(Array(PhonePlacement.allCases.enumerated()), id: \.element.id) { index, placement in
                     PlacementCard(placement: placement, isSelected: choice == placement,
                                   pictureLeads: index.isMultiple(of: 2)) { choice = placement }
@@ -77,7 +77,7 @@ struct PhonePlacementView: View {
     }
 
     private var gotIt: some View {
-        Button("Got it") {
+        Button("Continue") {
             UserDefaults.standard.set(choice.rawValue, forKey: PhonePlacement.defaultsKey)
             UserDefaults.standard.set(true, forKey: PhonePlacement.seenKey)
             onDone(choice)

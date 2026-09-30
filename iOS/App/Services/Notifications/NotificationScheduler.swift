@@ -9,6 +9,8 @@ import GentleWalkCore
     func removePending(ids: [String])
     func add(_ request: UNNotificationRequest) async throws
     func setCategories(_ categories: Set<UNNotificationCategory>)
+    /// Notifications are allowed (authorized or provisional).
+    func isAllowed() async -> Bool
 }
 
 @MainActor final class SystemNotificationCenter: NotificationCenterProtocol {
@@ -17,6 +19,10 @@ import GentleWalkCore
     func removePending(ids: [String]) { center.removePendingNotificationRequests(withIdentifiers: ids) }
     func add(_ request: UNNotificationRequest) async throws { try await center.add(request) }
     func setCategories(_ categories: Set<UNNotificationCategory>) { center.setNotificationCategories(categories) }
+    func isAllowed() async -> Bool {
+        let status = await center.notificationSettings().authorizationStatus
+        return status == .authorized || status == .provisional
+    }
 }
 
 /// One line from `notifications.json` (D8), with `{stop}`, `{n}`, `{date}`, `{price}`, `{journey}` slots.
@@ -106,6 +112,15 @@ struct PhraseBank: Equatable, Sendable {
             }
         }
         try? context.save()
+    }
+
+    /// When "Remind me later" would fire, or nil when it cannot (not allowed, or outside 8 AM–8 PM):
+    /// the preview then hides the button instead of promising a reminder that never comes.
+    func remindLaterTime(after interval: TimeInterval = 2 * 3_600) async -> Date? {
+        guard await center.isAllowed() else { return nil }
+        let fire = now().addingTimeInterval(interval)
+        let hour = (input()?.calendar ?? .current).component(.hour, from: fire)
+        return hour >= 8 && hour < 20 ? fire : nil
     }
 
     /// "Remind me later" on the preview: one reminder in two hours (inside 8 AM–8 PM), not repeated.

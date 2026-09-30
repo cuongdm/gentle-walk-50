@@ -51,6 +51,7 @@ struct TodayDay: Equatable, Identifiable {
     var date: Date
     var mark: ActivityCalendar.Mark
     var main: PlannedDay.Main?
+    var isToday = false
 }
 
 /// Extras (max 3): short sessions that add minutes to the journey without changing the day.
@@ -169,10 +170,33 @@ struct TodaySwapOption: Equatable, Identifiable {
 
     var sessionDetail: String? {
         switch session.kind {
-        case .done: String(localized: "Extras still add to your journey.")
+        case .done: String(localized: "Today counts as an active day.")
         case .rest: String(localized: "Rest days are part of the plan.")
-        default: String(localized: level.title)
+        default: levelLine
         }
+    }
+
+    var isSeatedWalk: Bool { (plannedDay.main == .walk || plannedDay.main == .longWalk) && level == .seated }
+
+    /// What the level means for today's kind of session (clarity review D6: "Seated walk" puzzled).
+    private var levelLine: String {
+        switch plannedDay.main {
+        case .chair: String(localized: "With your chair")
+        case .stretch: String(localized: "Gentle stretches")
+        default:
+            switch level {
+            case .seated: String(localized: "Seated · march in your chair")
+            case .inPlace: String(localized: "In place · march on the spot")
+            case .pad: String(localized: "On your walking pad")
+            }
+        }
+    }
+
+    /// Done for today, but the planned session is still there for anyone who wants it (owner
+    /// 30/09/2026: any session counts; the planned one stays open, no nagging).
+    var stillOpenRequest: WorkoutRequest? {
+        guard doneToday, !plannedDay.isRest else { return nil }
+        return request
     }
 
     var request: WorkoutRequest? {
@@ -207,7 +231,7 @@ struct TodaySwapOption: Equatable, Identifiable {
             let request = preset.request(limits: input.limits, rotationIndex: activeDays)
             let minutes = minutes(of: request)
             let title = preset.id == SessionCatalog.justFiveMinutesID
-                ? String(localized: "Just \(minutes) minutes today")
+                ? String(localized: "Just \(minutes) minutes: a gentle seated walk")
                 : String(localized: "\(String(localized: preset.title)) · \(minutes) min")
             return TodaySwapOption(id: preset.id, title: title, art: preset.art, request: request,
                                    isLocked: !isPro && !preset.isFree)
@@ -229,7 +253,8 @@ struct TodaySwapOption: Equatable, Identifiable {
     var week: [TodayDay] {
         let plan = WeeklyPlanner.week(restDays: restDays, entitlement: input.entitlement)
         return activity.week(containing: input.now).days.map { day in
-            TodayDay(date: day.date, mark: day.mark, main: plan[Weekday(of: day.date, in: input.calendar)]?.main)
+            TodayDay(date: day.date, mark: day.mark, main: plan[Weekday(of: day.date, in: input.calendar)]?.main,
+                     isToday: input.calendar.isDate(day.date, inSameDayAs: input.now))
         }
     }
 
@@ -243,14 +268,14 @@ struct TodaySwapOption: Equatable, Identifiable {
     var journeyID: String { input.journeyID }
 
     var journeyLine: String {
-        guard let journey, let last = journey.stops.last else { return "" }
+        guard let journey else { return "" }
         let limit = JourneyAccess.limitMile(for: journey, entitlement: input.entitlement)
         let miles = JourneyAccess.routeMiles(total: input.journeyMiles, limit: limit)
-        let done = miles.formatted(.number.precision(.fractionLength(0...1)))
-        let total = Measurement(value: last.mile, unit: UnitLength.miles)
-            .formatted(.measurement(width: .abbreviated, usage: .asProvided, numberFormatStyle: .number.precision(.fractionLength(0...1))))
-        return String(localized: "\(done) of \(total) to \(last.name)")
+        return JourneyText.progress(routeMiles: miles, journey: journey, limit: limit)
     }
+
+    /// "New York City": the card says which journey the miles belong to (clarity review D7).
+    var journeyTitle: String { journey?.title ?? "" }
 
     var journeyProgress: Double {
         guard let last = journey?.stops.last, last.mile > 0 else { return 0 }
@@ -273,5 +298,24 @@ struct TodaySwapOption: Equatable, Identifiable {
             case .strong: return String(localized: "Strong walk · \(minutes) min")
             }
         }
+    }
+}
+
+/// How journey progress reads everywhere (Today, Complete): "1.8 of 5 mi · 0.4 mi to Times Square";
+/// "You made it to Brooklyn Bridge!" at the end (clarity review D17).
+enum JourneyText {
+    static func progress(routeMiles: Double, journey: Journey, limit: Double?) -> String {
+        guard let last = journey.stops.last else { return "" }
+        if routeMiles >= last.mile - 1e-9 { return String(localized: "You made it to \(last.name)!") }
+        let done = routeMiles.formatted(.number.precision(.fractionLength(0...1)))
+        let total = CompleteContent.miles(last.mile, trimmed: true)
+        guard let next = journey.stops.first(where: { $0.mile > routeMiles + 1e-9 }) else {
+            return String(localized: "\(done) of \(total)")
+        }
+        // Past the free leg the next stop is Pro: say where she is instead.
+        if let limit, next.mile > limit + 1e-9 {
+            return String(localized: "\(done) of \(total) · free leg walked")
+        }
+        return String(localized: "\(done) of \(total) · \(CompleteContent.miles(next.mile - routeMiles)) to \(next.name)")
     }
 }

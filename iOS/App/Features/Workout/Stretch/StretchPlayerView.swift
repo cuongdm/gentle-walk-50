@@ -61,7 +61,14 @@ struct StretchPlayerView: View {
                     HStack(alignment: .center, spacing: 20) {
                         HoldTimer(text: model.holdText, side: model.sideText)
                         Spacer(minLength: 0)
-                        BreathingDot(isActive: model.isHolding && !isPaused)
+                        VStack(spacing: 4) {
+                            BreathingDot(isActive: model.isHolding && !isPaused)
+                            // The circle is a breathing guide, not a button (clarity review D33).
+                            Text("Breathe with the circle").typeRole(.caption).foregroundStyle(Palette.textMuted)
+                                .multilineTextAlignment(.center)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        .frame(maxWidth: 110)
                     }
                     MoveTips(tips: model.pose?.tips ?? [], note: model.usesEasier ? model.pose?.easier : nil)
                     VersionPills(usesEasier: model.usesEasier, hasHarder: false,
@@ -92,6 +99,8 @@ struct HoldTimer: View {
             Text(verbatim: text)
                 .typeRole(.timer)
                 .foregroundStyle(Palette.text)
+                .lineLimit(1)
+                .minimumScaleFactor(0.6)
                 .contentTransition(.numericText())
             if let side {
                 Text(verbatim: side).typeRole(.cardTitle).foregroundStyle(Palette.text)

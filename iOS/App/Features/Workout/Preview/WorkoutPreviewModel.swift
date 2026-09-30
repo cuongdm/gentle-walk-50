@@ -107,9 +107,11 @@ struct PreviewRow: Identifiable, Equatable {
                 let intervals = block.segments.filter { $0.kind == .brisk || $0.kind == .easy }.reduce(0) { $0 + $1.seconds }
                 let cool = block.segments.filter { $0.kind == .cooldown }.reduce(0) { $0 + $1.seconds }
                 let outdoors = place == .outdoors
-                rows.append(PreviewRow(id: "warm", title: outdoors ? String(localized: "Warm-up stroll") : String(localized: "Warm-up march"),
+                let warmTitle = outdoors ? String(localized: "Warm-up stroll")
+                    : place == .pad ? String(localized: "Warm-up walk") : String(localized: "Warm-up march")
+                rows.append(PreviewRow(id: "warm", title: warmTitle,
                                        detail: Self.minutesText(warm), symbol: "figure.walk"))
-                rows.append(PreviewRow(id: "intervals", title: String(localized: "Interval walk"),
+                rows.append(PreviewRow(id: "intervals", title: String(localized: "Easy and brisk rounds"),
                                        detail: Self.minutesText(intervals), symbol: "figure.walk.motion"))
                 rows.append(PreviewRow(id: "cool", title: String(localized: "Cool-down walk"), detail: Self.minutesText(cool),
                                        symbol: "figure.cooldown"))

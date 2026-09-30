@@ -98,12 +98,13 @@ import GentleWalkCore
         #expect(try context.fetch(FetchDescriptor<WorkoutRecord>()).first?.feeling == "tooHard")
     }
 
-    @Test func freeUserOnAPaidRouteStopsAtTheFirstPostcardButMilesCount() async throws {
+    /// "First leg free" (owner 30/09/2026): a free user walks to the second stop, then the route stops.
+    @Test func freeUserOnAPaidRouteWalksTheFirstLegButMilesCount() async throws {
         let (service, context, _, _) = try service(entitlement: .free)
         context.insert(JourneyState(journeyID: "jr.smoky", miles: 0, isCurrent: true, startedAt: day(20)))
         try context.save()
         let result = try await service.complete(summary(minutes: 60, on: day(28)))  // 3 miles
-        #expect(result.unlockedStops.map(\.id) == ["pc.smoky.1"])
+        #expect(result.unlockedStops.map(\.id) == ["pc.smoky.1", "pc.smoky.2"])
         #expect(result.isLockedAhead)
         let journey = try #require(try context.fetch(FetchDescriptor<JourneyState>()).first { $0.isCurrent })
         #expect(abs(journey.miles - 3) < 0.0001)

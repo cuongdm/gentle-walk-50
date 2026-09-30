@@ -22,13 +22,14 @@ struct JourneyProgressCard: View {
     static func number(_ value: Double) -> String { value.formatted(.number.precision(.fractionLength(0...1))) }
 }
 
-/// The next postcard, softly shown, how far it is, a bar from the last stop, and Walk now.
+/// The next postcard, softly shown, how far it is, a bar from the last stop, and "Start today's
+/// session" when one is waiting.
 struct NextStopCard: View {
     let stop: Journey.Stop
     let milesToGo: Double
     /// 0...1 from the previous stop to this one.
     let progress: Double
-    let onWalk: () -> Void
+    let onWalk: (() -> Void)?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -42,7 +43,9 @@ struct NextStopCard: View {
                 Spacer(minLength: 0)
             }
             PhaseProgressBar(progress: progress, tint: Palette.sun)
-            Button("Walk now", action: onWalk).buttonStyle(.secondaryAction)
+            if let onWalk {
+                Button("Start today's session", action: onWalk).buttonStyle(.secondaryAction)
+            }
         }
         .cardStyle()
     }
@@ -93,7 +96,17 @@ private struct RouteRow: View {
     let onOpen: () -> Void
 
     var body: some View {
-        Button(action: onOpen) {
+        // Only a reached stop opens its postcard: the others are still a reward to walk to (review D36).
+        if status.isReached {
+            Button(action: onOpen) { row }
+                .buttonStyle(.plain)
+                .accessibilityElement(children: .combine)
+        } else {
+            row.accessibilityElement(children: .combine)
+        }
+    }
+
+    private var row: some View {
             HStack(alignment: .center, spacing: 12) {
                 RouteLine(isFirst: isFirst, isLast: isLast, status: status, lineDone: lineDone)
                 PostcardThumb(stopID: stop.id, isSoft: !status.isReached, width: 64, height: 52)
@@ -110,9 +123,6 @@ private struct RouteRow: View {
             }
             .frame(minHeight: 72)
             .contentShape(.rect)
-        }
-        .buttonStyle(.plain)
-        .accessibilityElement(children: .combine)
     }
 
     private var detail: String {
@@ -120,7 +130,8 @@ private struct RouteRow: View {
         case .reached(let date?): String(localized: "Reached \(date.formatted(.dateTime.month(.abbreviated).day()))")
         case .reached(nil): String(localized: "Reached")
         case .next(let miles): String(localized: "\(CompleteContent.miles(miles)) to go")
-        case .ahead, .locked: stop.mile == 0 ? String(localized: "Start") : String(localized: "At \(CompleteContent.miles(stop.mile))")
+        case .ahead: stop.mile == 0 ? String(localized: "Start") : String(localized: "Reach it at \(CompleteContent.miles(stop.mile))")
+        case .locked: String(localized: "With Gentle Walk Pro · at \(CompleteContent.miles(stop.mile))")
         }
     }
 }

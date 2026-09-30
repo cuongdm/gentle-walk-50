@@ -25,14 +25,17 @@ struct TodayView: View {
                     CheckInRow(selected: model.checkedIn, onSelect: model.checkIn)
                 }
                 TodaySessionCard(session: model.session, detail: model.sessionDetail, trialEnded: model.trialEnded,
+                                 isSeated: model.isSeatedWalk,
                                  onStart: { if let request = model.request { actions.onStart(request) } },
                                  onSeePlans: actions.onSeePlans,
-                                 onSomethingElse: model.swapOptions.isEmpty ? nil : { showsSwap = true })
+                                 onSomethingElse: model.swapOptions.isEmpty ? nil : { showsSwap = true },
+                                 onStillOpen: model.stillOpenRequest.map { request in { actions.onStart(request) } },
+                                 onBrowse: actions.onSeeAllSessions)
                 if let card = model.specialCard {
                     SpecialCard(card: card, actions: actions)
                 }
-                JourneyMiniCard(line: model.journeyLine, progress: model.journeyProgress, journeyID: model.journeyID,
-                                onOpen: actions.onOpenJourney)
+                JourneyMiniCard(title: model.journeyTitle, line: model.journeyLine, progress: model.journeyProgress,
+                                journeyID: model.journeyID, onOpen: actions.onOpenJourney)
                 WeekStrip(days: model.week, isPro: model.isPro, line: model.weekLine)
                 if !model.extras.isEmpty {
                     ExtrasRow(extras: model.extras, isPro: model.isPro, onStart: actions.onStart, onLocked: actions.onSeePlans,
@@ -155,9 +158,16 @@ struct ActiveDaysRing: View {
                 .trim(from: 0, to: max(0.03, min(1, progress)))
                 .stroke(Palette.secondary, style: StrokeStyle(lineWidth: 7, lineCap: .round))
                 .rotationEffect(.degrees(-90))
-            Text(verbatim: "\(count)").typeRole(.cardTitle).fontWeight(.bold)
-                .foregroundStyle(Palette.text)
-                .minimumScaleFactor(0.6)
+            // "days" under the number, so the folded tab says what it counts (clarity review D5).
+            VStack(spacing: -2) {
+                Text(verbatim: "\(count)").typeRole(.cardTitle).fontWeight(.bold)
+                    .minimumScaleFactor(0.6)
+                Text("days").typeRole(.caption).minimumScaleFactor(0.6)
+                    .dynamicTypeSize(...DynamicTypeSize.large)
+            }
+            .foregroundStyle(Palette.text)
+            .lineLimit(1)
+            .padding(6)
         }
         .frame(width: size, height: size)
     }
@@ -170,7 +180,10 @@ struct CheckInRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("How do your joints feel today?").typeRole(.cardTitle).foregroundStyle(Palette.text)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("How do your joints feel today?").typeRole(.cardTitle).foregroundStyle(Palette.text)
+                Text("We'll set today's session to match.").typeRole(.caption).foregroundStyle(Palette.textMuted)
+            }
             ViewThatFits(in: .horizontal) {
                 HStack(spacing: Metrics.touchSpacing) { buttons }
                 VStack(spacing: Metrics.touchSpacing) { buttons }
@@ -207,10 +220,16 @@ struct TodaySessionCard: View {
     let session: TodaySession
     let detail: String?
     let trialEnded: Bool
+    /// A seated walk shows a seated figure, not a walking one (clarity review D6).
+    var isSeated = false
     let onStart: () -> Void
     let onSeePlans: () -> Void
     /// "Try something else" (milestone 10); nil when there is nothing to swap.
     var onSomethingElse: (() -> Void)?
+    /// Done for today: the planned session is still here if she'd like it.
+    var onStillOpen: (() -> Void)?
+    /// "Browse all sessions" (clarity review D39: All sessions was only at the foot of Today).
+    var onBrowse: (() -> Void)?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -231,16 +250,28 @@ struct TodaySessionCard: View {
                 HStack {
                     Text("Your trial has ended").typeRole(.body).foregroundStyle(Palette.text)
                     Spacer()
-                    Button("See plans", action: onSeePlans).buttonStyle(.smallTextLink)
+                    Button("See Pro plans", action: onSeePlans).buttonStyle(.smallTextLink)
                 }
             }
             if session.kind != .done && session.kind != .rest {
                 Button("Start", action: onStart).buttonStyle(.primaryAction)
             }
-            if let onSomethingElse {
-                Button("Try something else", action: onSomethingElse)
+            if let onStillOpen {
+                Button("Today's session is still here if you'd like it", action: onStillOpen)
                     .buttonStyle(.smallTextLink)
-                    .frame(maxWidth: .infinity)
+                    .foregroundStyle(Palette.onStrongFill)
+                    .multilineTextAlignment(.leading)
+            }
+            if onSomethingElse != nil || (onBrowse != nil && session.kind != .done) {
+                HStack {
+                    if let onSomethingElse {
+                        Button("Try something else", action: onSomethingElse).buttonStyle(.smallTextLink)
+                    }
+                    Spacer(minLength: 8)
+                    if let onBrowse, session.kind != .done {
+                        Button("Browse all sessions", action: onBrowse).buttonStyle(.smallTextLink)
+                    }
+                }
             }
         }
         .padding(20)
@@ -254,7 +285,7 @@ struct TodaySessionCard: View {
         case (.rest, _): "moon.zzz.fill"
         case (_, .chair): "chair.fill"
         case (_, .stretch): "figure.flexibility"
-        default: "figure.walk"
+        default: isSeated ? "figure.seated.side" : "figure.walk"
         }
     }
 }

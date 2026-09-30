@@ -23,9 +23,9 @@ struct WorkoutView: View {
                     Task { await session.finish() }
                 }
             }
-            .alert("End workout?", isPresented: endBinding) {
+            .alert("End this session?", isPresented: endBinding) {
                 Button("Keep going", role: .cancel, action: session.keepGoing)
-                Button("End") { Task { await session.finish() } }
+                Button("End session") { Task { await session.finish() } }
             } message: {
                 Text("Your progress so far is saved.")
             }

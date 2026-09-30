@@ -34,6 +34,31 @@ import GentleWalkCore
         #expect(player.currentPhase?.isEasier == true)
     }
 
+    /// A tap on This hurts by mistake: back to the session, nothing recorded (clarity review D14).
+    @Test func goingBackRecordsNothing() async throws {
+        let (player, engine, _) = try await chairPlayer()
+        let recorder = FakePainRecorder()
+        let model = ThisHurtsModel(player: player, recorder: recorder, now: { TestSupportDate.now })
+        player.pause(.hurts)
+        let outcome = model.goBack()
+        #expect(outcome == .continueSession)
+        #expect(recorder.reports.isEmpty)
+        #expect(engine.loaded.count == 1)
+        #expect(player.state == .playing)
+    }
+
+    @Test func onAWalkTheChoicesTalkAboutTheWalk() async throws {
+        let (player, _, _) = try await chairPlayer()
+        let model = ThisHurtsModel(player: player, recorder: FakePainRecorder(), now: { TestSupportDate.now })
+        #expect(!model.isWalk)
+        let engine = FakePlaybackEngine()
+        let walk = SessionPlayer(engine: engine, notificationCenter: .init())
+        try await walk.load(TestFixtures.firstWalkTimeline())
+        walk.play()
+        engine.advance(to: 60)
+        #expect(ThisHurtsModel(player: walk, recorder: FakePainRecorder(), now: { TestSupportDate.now }).isWalk)
+    }
+
     @Test func stopForTodayEndsTheSessionAndStillCounts() async throws {
         let (player, _, _) = try await chairPlayer()
         let recorder = FakePainRecorder()

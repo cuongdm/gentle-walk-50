@@ -20,7 +20,9 @@ struct OnboardingView: View {
     var body: some View {
         VStack(spacing: 0) {
             if flow.step != .welcome {
-                OnboardingProgressHeader(label: flow.progressLabel, onBack: flow.back)
+                // A part's intro screen already names the part in its title (review D22).
+                OnboardingProgressHeader(label: [.part1, .part2, .part3].contains(flow.step) ? nil : flow.progressLabel,
+                                         onBack: flow.back)
             }
             ScrollView {
                 screen

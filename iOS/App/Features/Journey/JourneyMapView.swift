@@ -142,7 +142,7 @@ struct WalkerMarker: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Text(verbatim: CompleteContent.miles(miles, trimmed: true))
+            Text(verbatim: String(localized: "You · \(CompleteContent.miles(miles, trimmed: true))"))
                 .typeRole(.caption).fontWeight(.bold)
                 .foregroundStyle(Palette.onLightFill)
                 .padding(.horizontal, 8)

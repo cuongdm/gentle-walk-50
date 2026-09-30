@@ -30,7 +30,6 @@ struct AppCaptureScene: View {
         case .onboardingPlanMoment:
             ScrollView {
                 VStack(alignment: .leading, spacing: 18) {
-                    StartTimePicker(choice: .constant(.now))
                     DailyMomentPicker(moment: .coffee, minutes: 510, onChoose: { _ in }, onAdjust: { _ in })
                     ContinueButton(title: "See my options", action: {})
                 }

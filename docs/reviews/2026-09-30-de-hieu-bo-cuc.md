@@ -103,3 +103,64 @@ Ba mối rối lớn nhất, gặp ở nhiều màn:
 - D8: Extras có tính là đã tập hôm nay không? Nếu có thì sửa chữ, nếu không thì sửa luật. Chủ app chọn.
 - D19: có nên cho người dùng miễn phí đi thật một đoạn trên tuyến trả phí (ví dụ tới điểm dừng thứ 2) cho khớp chữ "First stop free", hay đổi chữ?
 - D1: giữ hay bỏ "When would you like to start?"
+
+## Quyết định chủ app (30/09/2026)
+- **D8 — Extras tính là ngày có tập.** Giữ luật hiện tại (xong bài nào cũng "Done for today"); sửa chữ: "Short sessions for any moment. Each one counts as an active day." Thẻ Done có thêm link "Today's session is still here if you'd like it" (không nhắc, không ép). Tiêu đề mục đổi thành "Short extras" cho khớp All sessions.
+- **D19 — Chặng miễn phí thật.** Người dùng gói Free đi thật tới điểm dừng thứ 2 của tuyến trả phí (`JourneyAccess.freeLegEnd`), nhận bưu thiếp thứ 2, sau đó mới khoá. Nhãn "First leg free · to <điểm 2>". Đổi hành trình có hộp xác nhận "Start <tên>?" và nói tiến độ tuyến cũ được giữ (đúng: `JourneyState` lưu riêng từng tuyến).
+- **D1 — Bỏ "When would you like to start?"** (câu hỏi không có tác dụng; buổi đầu nối ngay sau onboarding).
+
+## Nhật ký sửa (30/09/2026 — "sửa hết")
+| ID | Đã sửa |
+|---|---|
+| D1 | Bỏ khối Right now/Tomorrow/Pick a time và `StartChoice`. |
+| D2 | Thẻ Plan hiện tuần thật của gói Free (chữ thứ M T W T F S S, 5 ngày đi, 2 ngày nghỉ) + "With Gentle Walk Pro, your week mixes walks, chair moves and stretches." |
+| D3 | Bỏ "one tap": "…remind you before it. You can cancel from Me in a few taps." / "…can cancel anytime from Me."; Cancel guide "Canceling takes a few taps". |
+| D4 | Paywall "Gentle Walk Pro: free for 14 days" (không trial: "Gentle Walk Pro"); 3 lợi ích lên đầu; dưới "Maybe later": "Or keep the free plan: a walk each weekday and the New York journey." |
+| D5 | Giữ thiết kế tab của chủ app (29/09); thêm chữ "days" dưới số trong vòng. Mốc cây đã có ở Progress/Complete. |
+| D6 | "We'll set today's session to match." dưới câu hỏi khớp; dòng mức "Seated · march in your chair" / "In place · march on the spot" / "With your chair" / "Gentle stretches"; biểu tượng người ngồi cho đi bộ ngồi. |
+| D7, D17 | Một mẫu cho mọi nơi `JourneyText.progress`: "1.8 of 5 mi · 0.4 mi to Times Square"; Today thêm "Your journey · New York City". Test `weekAndJourneyLines`. |
+| D8 | Xem quyết định ở trên. |
+| D9 | "How will you walk today?" + phụ đề "In a chair" / "Standing, on the spot", "· suggested for you". |
+| D10 | Nút "Remind me at 9:00 AM" (giờ thật), ẩn khi chưa bật thông báo hoặc ngoài 8:00–20:00 (`remindLaterTime`, test `remindLaterSaysWhenOrHides`). |
+| D11 | Số lớn có nhãn "left in this part"; dòng trên "… left in total"; phần khởi động là "WARM-UP". Test cập nhật. |
+| D12 | Easier/Harder đưa lên trước mẹo động tác. |
+| D13 | "Tap +1 each time you stand" (thay bằng "Counted for you" khi đếm tự động). |
+| D14 | "I'm okay, go back" (không ghi báo đau, test `goingBackRecordsNothing`); khi đi bộ: "Slow down to an easy walk" / "Skip this part"; "Where does it hurt? (optional)". |
+| D15 | Tiêu đề màn luôn xuống dòng (`fixedSize` trong `ScreenHeader(Text)`). |
+| D16 | Complete: "Every minute you move adds miles to your journey." dưới thanh hành trình; Journey: phụ đề "A shorter, gentle version of the real route. Every minute you move adds miles." |
+| D18 | "You reached Sprout. Your tree grows with every active day."; Progress: "An active day is any day you finish a session." |
+| D19 | Xem quyết định; thẻ khoá: "Next stop: …" + "You walked the free leg…"; nút "See Pro plans". Test Core `freeWalksTheFirstLegOfAPaidRoute`, app `aFreeRouteLocksOnlyAfterTheFirstLeg`, `freeUserOnAPaidRouteWalksTheFirstLegButMilesCount`. |
+| D20 | "Start today's session", ẩn khi ngày nghỉ hoặc đã tập xong. |
+| D21 | "One gentle reminder a day, at:" trên ô giờ. |
+| D22 | Mỗi phần một câu riêng; màn Part không còn nhãn trên đầu trùng tiêu đề. |
+| D23 | "What would you like from this?"; chọn cái thứ 3 hiện "You can pick 2. Tap one to change it." (test). |
+| D24 | "Noted. In a few weeks we'll ask again, so you can see how far you've come." |
+| D25 | "Every move has a seated version. …" |
+| D26 | "Gentle on replaced joints", "Short standing parts". |
+| D27 | Phụ đề "So the voice knows how to guide you."; Chest thêm "We can count your stand-ups."; nút "Continue". |
+| D28 | "Your journey doesn't need Health: it moves with your minutes here." |
+| D29 | "Easy and brisk rounds"; máy chạy bộ "Warm-up walk". |
+| D30 | "Skip the countdown". |
+| D31 | Có clip vẫn hiện mức ("Seated") dưới nhãn phần. |
+| D32 | "End session" / "End this session?" ở mọi chỗ (nút góc trên vẫn "End"). |
+| D33 | "Breathe with the circle" dưới chấm thở. |
+| D34 | "Stretch 1 of 7" cho mọi buổi giãn cơ; đồng hồ cùng định dạng "00:08". |
+| D35 | "Resting for" trên số + "Take as long as you need." |
+| D36 | Chia sẻ: "Margaret moved for 12 minutes today…"; bưu thiếp chưa tới không mở được, dòng "Reach it at 2.2 mi"; tuyến khoá "With Gentle Walk Pro · at …". |
+| D37 | "Just 5 minutes: a gentle seated walk"; tranh bài ghế nhẹ đổi thành HLV sau ghế (khác tranh đi bộ ngồi). |
+| D38 | Ô hôm nay ghi "Today" + viền đậm; tên thứ viết tắt; gói Free có dòng "Grey dots are days still open." |
+| D39 | Link "Browse all sessions" dưới thẻ hôm nay; All sessions: "Pick any session. It counts for today." |
+| D40 | Ghim trên bản đồ "You · 1.8 mi". |
+| D41 | Chú thích lịch "Active day · Rest day"; "Tick the ones you can do now." |
+| D42 | "Most sit-to-stands in one session, by week"; khi trống "Do a chair session to see this grow."; bỏ thẻ Fitness Check. |
+| D43 | "Free plan: a walk each weekday, the New York journey, and the first leg of every other journey." |
+| D44 | Mục "During a session": Captions đầu, âm lượng, "Voice louder than music" chỉ khi có nhạc. |
+| D45 | "Change time", "Only if I haven't moved", "When I reach a new postcard". (Nút Change time vẫn ở dòng riêng.) |
+| D46 | "Choose Gentle Walk". |
+| D47 | Preview ngoài trời: "After your walk, you can do your chair moves at home from All sessions."; Complete ngoài trời thêm "You'll find them later in All sessions." |
+| D48 | "0.6 mi walked". |
+| Thuật ngữ | "See Pro plans" thống nhất; "sessions" trong màn xoá dữ liệu. |
+| String Catalog | Catalog thiếu 425 chuỗi từ trước (chỉ có chuỗi thêm tay): đã thêm đủ từ `.stringsdata` (594 khoá), 26 khoá cũ đánh dấu stale. |
+
+**Kiểm:** Core 120/120; App 133 tests / 33 suites pass (1 known issue iOS 27); copy lint 0; ảnh iPhone 17 (24 màn) + cỡ AX5 (Today, This hurts) + giãn cơ sau sửa đồng hồ.
+**Còn mở:** I18 — `PaywallLegalFooter` vẫn ghi dữ liệu "not backed up to iCloud by the app" trong khi quyết định 29/09 là tạm chưa loại khỏi backup: phải sửa câu này hoặc loại dữ liệu trước khi nộp.

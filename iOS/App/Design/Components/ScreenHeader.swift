@@ -10,6 +10,7 @@ struct ScreenHeader: View {
             Text(title)
                 .typeRole(.screenTitle)
                 .foregroundStyle(Palette.text)
+                .fixedSize(horizontal: false, vertical: true)
                 .accessibilityAddTraits(.isHeader)
             if let subtitle {
                 Text(subtitle).typeRole(.body).foregroundStyle(Palette.text)
@@ -29,6 +30,7 @@ struct ScreenHeaderText: View {
             Text(verbatim: title)
                 .typeRole(.screenTitle)
                 .foregroundStyle(Palette.text)
+                .fixedSize(horizontal: false, vertical: true)
                 .accessibilityAddTraits(.isHeader)
             if let subtitle {
                 Text(verbatim: subtitle).typeRole(.body).foregroundStyle(Palette.text)

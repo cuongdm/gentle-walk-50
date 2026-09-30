@@ -117,7 +117,9 @@ import GentleWalkCore
     @Test func weekAndJourneyLines() {
         let model = model(input())
         #expect(model.weekLine == "0 active days this week · 2 rest days are part of the plan")
-        #expect(model.journeyLine == "1.8 of 5 mi to Brooklyn Bridge")
+        // One pattern everywhere (clarity review D17): walked of total, then the next stop.
+        #expect(model.journeyLine == "1.8 of 5 mi · 0.4 mi to Times Square")
+        #expect(model.journeyTitle == "New York City")
         #expect(model.week.count == 7)
     }
 }

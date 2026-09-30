@@ -8,7 +8,8 @@ struct JourneyView: View {
     let onAllJourneys: () -> Void
     let onPostcard: (Journey.Stop) -> Void
     let onSeePlans: () -> Void
-    var onWalkNow: () -> Void = {}
+    /// Start today's session; nil hides the button (rest day, or already done).
+    var onWalkNow: (() -> Void)? = nil
 
     var body: some View {
         ScrollView {
@@ -17,7 +18,7 @@ struct JourneyView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(verbatim: journey.title).typeRole(.screenTitle).foregroundStyle(Palette.text)
                             .accessibilityAddTraits(.isHeader)
-                        Text("A gentle version of the route").typeRole(.caption).foregroundStyle(Palette.textMuted)
+                        Text("A shorter, gentle version of the real route. Every minute you move adds miles.").typeRole(.caption).foregroundStyle(Palette.textMuted)
                     }
                     JourneyMap(snapshot: snapshot, journey: journey, onPostcard: onPostcard)
                     JourneyProgressCard(journey: journey, routeMiles: snapshot.routeMiles)
@@ -30,7 +31,7 @@ struct JourneyView: View {
                         RouteDoneCard()
                     }
                     RouteList(journey: journey, snapshot: snapshot, onPostcard: onPostcard)
-                    Text("Every minute you move in the app takes you further. Outdoor walks count their real distance.")
+                    Text("Outdoor walks count their real distance.")
                         .typeRole(.caption).foregroundStyle(Palette.textMuted)
                 }
             }
@@ -54,7 +55,7 @@ struct JourneyView: View {
     }
 }
 
-/// Free user at a locked stop: "Keep going to Laurel Falls" · See plans · Not now. Miles still count.
+/// Free user at the end of the free leg: "Next stop: Clingmans Dome" · See Pro plans · Not now.
 struct LockedStopCard: View {
     let stopName: String
     let onSeePlans: () -> Void
@@ -64,13 +65,13 @@ struct LockedStopCard: View {
         if !dismissed {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
-                    Text("Keep going to \(stopName)").typeRole(.cardTitle)
+                    Text("Next stop: \(stopName)").typeRole(.cardTitle)
                     Spacer()
                     ProBadge()
                 }
-                Text("Your miles keep counting. The rest of this route comes with Gentle Walk Pro.").typeRole(.body)
+                Text("You walked the free leg. The rest of this route comes with Gentle Walk Pro, and your miles keep counting.").typeRole(.body)
                 HStack(spacing: Metrics.touchSpacing) {
-                    Button("See plans", action: onSeePlans).buttonStyle(PillButtonStyle(isSelected: true))
+                    Button("See Pro plans", action: onSeePlans).buttonStyle(PillButtonStyle(isSelected: true))
                     Button("Not now") { dismissed = true }.buttonStyle(.textLink)
                 }
             }

@@ -59,7 +59,8 @@ struct PlanOption: Identifiable, Equatable, Sendable {
     var showsTrial: Bool { isEligibleForTrial && selected?.kind == .yearly }
 
     var title: LocalizedStringResource {
-        isEligibleForTrial ? "Try everything free for 14 days" : "Everything in Gentle Walk"
+        // Names Pro, so the "Pro" badges elsewhere connect to this screen (clarity review D4).
+        isEligibleForTrial ? "Gentle Walk Pro: free for 14 days" : "Gentle Walk Pro"
     }
 
     var buttonTitle: LocalizedStringResource { showsTrial ? "Start free trial" : "Continue" }

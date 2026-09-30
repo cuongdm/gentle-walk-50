@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// "Get ready" before the first word: the coach, the session's name and a calm 3, 2, 1, Go.
-/// Nothing plays yet, so she can put the phone down and find her spot; "Start now" skips it.
+/// Nothing plays yet, so she can put the phone down and find her spot; "Skip the countdown" skips it.
 struct WorkoutCountdownView: View {
     let title: String
     let onFinished: () -> Void
@@ -24,7 +24,7 @@ struct WorkoutCountdownView: View {
             }
             CountdownDial(count: count, reduceMotion: reduceMotion)
             Spacer(minLength: 0)
-            Button("Start now", action: finish).buttonStyle(.secondaryAction)
+            Button("Skip the countdown", action: finish).buttonStyle(.secondaryAction)
         }
         .padding(Metrics.screenMargin)
         .frame(maxWidth: 520)

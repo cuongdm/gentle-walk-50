@@ -2,7 +2,8 @@ import SwiftUI
 import GentleWalkCore
 
 /// All journeys (and "Where to next?" when the current one is done): five cards with Done,
-/// In progress, Start or First stop free, then "More journeys coming" (no monthly promise, review M19).
+/// In progress, Start or "First leg free", then "More journeys coming" (no monthly promise, review M19).
+/// Switching asks first and says the current journey's progress is kept (clarity review D19).
 struct JourneyListView: View {
     let journeys: [Journey]
     let snapshot: JourneySnapshot
@@ -10,13 +11,19 @@ struct JourneyListView: View {
     var isWhereToNext = false
     let onChoose: (Journey) -> Void
 
+    @State private var pending: Journey?
+
+    private var currentTitle: String? { journeys.first { $0.id == snapshot.journeyID }?.title }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Metrics.touchSpacing) {
                 ScreenHeader(title: isWhereToNext ? "Where to next?" : "All journeys",
                              subtitle: isWhereToNext ? "You finished a whole route. Pick your next one." : nil)
                 ForEach(journeys) { journey in
-                    JourneyCard(journey: journey, status: status(of: journey), onChoose: { onChoose(journey) })
+                    JourneyCard(journey: journey, status: status(of: journey), onChoose: {
+                        if journey.id == snapshot.journeyID || currentTitle == nil { onChoose(journey) } else { pending = journey }
+                    })
                 }
                 VStack(alignment: .leading, spacing: 4) {
                     Text("More journeys coming").typeRole(.cardTitle)
@@ -29,17 +36,30 @@ struct JourneyListView: View {
             .readableColumn()
         }
         .screenBackground()
+        .alert(Text(verbatim: pending.map { String(localized: "Start \($0.title)?") } ?? ""),
+               isPresented: Binding(get: { pending != nil }, set: { if !$0 { pending = nil } }), presenting: pending) { journey in
+            Button("Start") { onChoose(journey) }
+            Button("Not now", role: .cancel) {}
+        } message: { journey in
+            Text(verbatim: switchMessage(to: journey))
+        }
+    }
+
+    private func switchMessage(to journey: Journey) -> String {
+        let kept = currentTitle.map { String(localized: "Your \($0) progress stays saved, and you can come back any time.") } ?? ""
+        guard status(of: journey) == .firstLegFree, let end = JourneyAccess.freeLegEnd(of: journey) else { return kept }
+        return String(localized: "The first leg, to \(end.name), is free.") + " " + kept
     }
 
     private func status(of journey: Journey) -> JourneyCard.Status {
         if snapshot.completedJourneys.contains(journey.id) { return .done }
         if journey.id == snapshot.journeyID { return .inProgress }
-        return journey.isFree || isPro ? .start : .firstStopFree
+        return journey.isFree || isPro ? .start : .firstLegFree
     }
 }
 
 struct JourneyCard: View {
-    enum Status { case done, inProgress, start, firstStopFree }
+    enum Status { case done, inProgress, start, firstLegFree }
 
     let journey: Journey
     let status: Status
@@ -99,8 +119,13 @@ struct JourneyCard: View {
         case .done: Label("Done", systemImage: "checkmark.circle.fill").typeRole(.caption).foregroundStyle(Palette.secondary)
         case .inProgress: Text("In progress").typeRole(.caption).fontWeight(.semibold)
         case .start: Text("Start this journey").typeRole(.caption).fontWeight(.semibold)
-        case .firstStopFree:
-            HStack { Text("First stop free").typeRole(.caption); ProBadge() }
+        case .firstLegFree:
+            HStack {
+                if let end = JourneyAccess.freeLegEnd(of: journey) {
+                    Text("First leg free · to \(end.name)").typeRole(.caption).fontWeight(.semibold)
+                }
+                ProBadge()
+            }
         }
     }
 }

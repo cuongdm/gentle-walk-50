@@ -73,6 +73,15 @@ enum HurtOutcome: Equatable, Sendable {
         return .continueSession
     }
 
+    /// "I'm okay, go back": a mistaken tap, nothing is recorded.
+    func goBack() -> HurtOutcome {
+        player.resume()
+        return .continueSession
+    }
+
+    /// No move on screen: the choices speak about the walk ("Slow down to an easy walk").
+    var isWalk: Bool { player.currentPhase?.exerciseID == nil && player.currentPhase?.block == .walk }
+
     func stopForToday() -> HurtOutcome {
         record()
         player.end()

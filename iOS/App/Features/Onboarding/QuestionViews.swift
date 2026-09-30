@@ -1,16 +1,20 @@
 import SwiftUI
 import GentleWalkCore
 
-/// S02 "What would you like to feel?" — pick up to 2.
+/// S02 "What would you like from this?" — pick up to 2 (the answers are not all feelings, review D23).
 struct GoalView: View {
     let flow: OnboardingFlow
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
-            ScreenHeader(title: "What would you like to feel?", subtitle: "Pick up to 2.")
+            ScreenHeader(title: "What would you like from this?", subtitle: "Pick up to 2.")
             ForEach(Goal.allCases, id: \.rawValue) { goal in
                 SelectableCard(title: OnboardingCopy.title(goal), symbol: OnboardingCopy.symbol(goal),
                                tint: OnboardingCopy.tint(goal), isSelected: flow.answers.goals.contains(goal)) { flow.toggleGoal(goal) }
+            }
+            if flow.showsGoalLimit {
+                Label("You can pick 2. Tap one to change it.", systemImage: "info.circle")
+                    .typeRole(.body).foregroundStyle(Palette.text)
             }
             ContinueButton(hint: flow.hint, dimmed: flow.answers.goals.isEmpty, action: flow.next)
         }
@@ -134,13 +138,13 @@ struct ChairStrengthView: View {
     }
 }
 
-/// "Noted. We'll check back later so you can see the change." — no score, no comparison.
+/// "Noted. In a few weeks we'll ask again…" — no score, no comparison (review D24).
 private struct NotedLine: View {
     let isShown: Bool
 
     var body: some View {
         if isShown {
-            Label("Noted. We'll check back later so you can see the change.", systemImage: "checkmark.circle.fill")
+            Label("Noted. In a few weeks we'll ask again, so you can see how far you've come.", systemImage: "checkmark.circle.fill")
                 .typeRole(.body)
                 .foregroundStyle(Palette.text)
         }

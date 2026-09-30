@@ -54,8 +54,9 @@ extension BodyArea {
     }
 }
 
-/// "1.8 of 5 mi to Brooklyn Bridge" with a small map.
+/// "Your journey · New York City", then "1.8 of 5 mi · 0.4 mi to Times Square" (clarity review D7).
 struct JourneyMiniCard: View {
+    var title = ""
     let line: String
     let progress: Double
     var journeyID = "jr.ny"
@@ -65,7 +66,10 @@ struct JourneyMiniCard: View {
         Button(action: onOpen) {
             HStack(spacing: 14) {
                 ArtImage(name: Art.coverName(journeyID: journeyID), height: 72, fallbackSymbol: "map").frame(width: 96)
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: 6) {
+                    if !title.isEmpty {
+                        Text(verbatim: String(localized: "Your journey · \(title)")).typeRole(.caption).foregroundStyle(Palette.textMuted)
+                    }
                     Text(verbatim: line).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
                         .multilineTextAlignment(.leading)
                     ProgressView(value: progress).tint(Palette.secondary).accessibilityHidden(true)
@@ -89,15 +93,19 @@ struct WeekStrip: View {
             HStack(spacing: 6) {
                 ForEach(days) { day in
                     VStack(spacing: 4) {
-                        Text(verbatim: day.date.formatted(.dateTime.weekday(.narrow)))
-                            .typeRole(.caption).foregroundStyle(Palette.text)
+                        Text(verbatim: day.isToday ? String(localized: "Today") : day.date.formatted(.dateTime.weekday(.abbreviated)))
+                            .typeRole(.caption).fontWeight(day.isToday ? .bold : .regular).foregroundStyle(Palette.text)
+                            .lineLimit(1).minimumScaleFactor(0.7)
                         Image(systemName: symbol(for: day))
                             // Free plan: a small muted dot for days still open (the spec shows no session kind).
                             .font(isPlainDot(day) ? .system(size: 8) : nil)
                             .foregroundStyle(day.mark == .active ? Palette.onStrongFill : isPlainDot(day) ? Palette.textMuted : Palette.text)
                             .frame(width: 36, height: 36)
                             .background(day.mark == .active ? Palette.secondary : Palette.surface, in: .circle)
-                            .overlay { Circle().strokeBorder(Palette.textMuted.opacity(0.3)) }
+                            .overlay {
+                                Circle().strokeBorder(day.isToday ? Palette.primary : Palette.textMuted.opacity(0.3),
+                                                      lineWidth: day.isToday ? 2.5 : 1)
+                            }
                     }
                     .frame(maxWidth: .infinity)
                     .accessibilityElement(children: .ignore)
@@ -105,6 +113,9 @@ struct WeekStrip: View {
                 }
             }
             Text(verbatim: line).typeRole(.body).foregroundStyle(Palette.text)
+            if !isPro {
+                Text("Grey dots are days still open.").typeRole(.caption).foregroundStyle(Palette.textMuted)
+            }
         }
         .cardStyle()
     }
@@ -146,12 +157,12 @@ struct ExtrasRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .firstTextBaseline) {
-                Text("Extras").typeRole(.cardTitle).foregroundStyle(Palette.text)
+                Text("Short extras").typeRole(.cardTitle).foregroundStyle(Palette.text)
                 Spacer()
                 Button("See all", action: onSeeAll).buttonStyle(.smallTextLink)
                     .accessibilityLabel(Text("See all sessions"))
             }
-            Text("Short sessions for any moment. They add to your journey and don't replace today's walk.")
+            Text("Short sessions for any moment. Each one counts as an active day.")
                 .typeRole(.caption).foregroundStyle(Palette.textMuted)
             ForEach(extras) { extra in
                 SessionCard(title: extra.title, detail: String(localized: "\(extra.minutes) min"), art: extra.art,

@@ -13,10 +13,7 @@ struct CoverView: View {
         case .phonePlacement(let request):
             PhonePlacementView { _ in app.placementDone(request) }
         case .preview(let model):
-            WorkoutPreviewView(model: model, onStart: app.begin, onRemindLater: {
-                app.cover = nil
-                Task { await app.notifications.remindLater() }
-            }, onClose: { app.cover = nil })
+            PreviewCover(model: model, app: app)
         case .outdoorPrep(let request):
             OutdoorPrepView(asksLocation: app.defaults.string(forKey: "outdoorLocationChoice") == nil,
                             onRequestLocation: app.location.requestPermission,
@@ -102,5 +99,20 @@ struct PaywallContainer: View {
                                  isEligibleForTrial: app.store.isEligibleForTrial,
                                  activeRenewingProductID: app.store.activeRenewingProductID, now: app.now(), calendar: app.calendar)
         }
+    }
+}
+
+/// The preview with "Remind me at 11:40 AM", worked out when it opens (hidden when no reminder can come).
+private struct PreviewCover: View {
+    let model: WorkoutPreviewModel
+    let app: AppModel
+    @State private var remindAt: Date?
+
+    var body: some View {
+        WorkoutPreviewView(model: model, onStart: app.begin, onRemindLater: {
+            app.cover = nil
+            Task { await app.notifications.remindLater() }
+        }, remindAt: remindAt, onClose: { app.cover = nil })
+        .task { remindAt = await app.notifications.remindLaterTime() }
     }
 }

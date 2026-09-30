@@ -75,7 +75,8 @@ struct JourneySnapshot: Equatable {
         routeMiles = shown
         nextStop = next
         milesToNext = next.map { max(0, $0.mile - shown) } ?? 0
-        isLockedAhead = limit != nil && next != nil && !opened.isEmpty
+        // Locked once the free first leg is walked (owner 30/09/2026), not before.
+        isLockedAhead = limit.map { next != nil && shown >= $0 - 1e-9 } ?? false
     }
 
     var landmarkSoon: LandmarkSoon? {
