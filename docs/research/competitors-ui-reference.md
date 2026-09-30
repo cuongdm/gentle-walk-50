@@ -730,7 +730,39 @@ Từ trên xuống: ngọn lửa "4" "/Kcal Burned" · "How do you feel now?" ·
 - [L14] https://itunes.apple.com/lookup?id=1532006906&entity=software&country=us
 - [L15] Bên thứ ba, chưa kiểm chứng: https://screensdesign.com/apps/lazyfit-home-workout-planner/
 
-**Cách thu thập:** chỉ đọc. Funnel web **không bấm qua**: màn đầu ghi "By choosing your age and continuing you agree to our Terms of Use | Privacy Policy | Refund Policy", tức chọn tuổi là chấp nhận điều khoản → cần chủ app đồng ý. Danh sách câu hỏi dưới đây lấy từ chữ tiếng Anh nhúng trong mã trang khảo sát; câu hỏi và lựa chọn là chắc chắn, **thứ tự là suy luận**.
+**Cách thu thập:** đọc trang; funnel web **đã bấm qua** ngày 30/09/2026 với sự đồng ý của chủ app (chọn tuổi = chấp nhận Terms/Privacy/Refund), khung 375×812, trả lời trung tính cho một phụ nữ 55 tuổi; **dừng ở bước email**, không nhập gì. Thứ tự dưới đây là thứ tự thật [Web, clicked through].
+
+**Funnel web đã bấm qua (lazyfit.ai/survey) [Web, clicked through]** — 3 phần có thanh tiến độ trên cùng ("Know Your Goal" → "Know Your Body" → "Physical Fitness Evaluation"), nút ‹ quay lại, mỗi câu một màn, nút "Next" đen bo tròn ghim đáy (xám khi chưa chọn).
+
+| # | Màn | Chữ và lựa chọn (nguyên văn) | Ghi chú |
+|---|---|---|---|
+| 0 | Trang chủ | "LazyFit: Home Workout Planner" · "Get started" | nút hồng |
+| 1 | Tuổi (consent) | "LAZYFIT WORKOUT PLAN / BASED ON YOUR AGE / 1-minute quiz" · 4 thẻ ảnh: "Age: <25", "Age: 25~44", "Age: 45~65", "Age: >65" · "By choosing your age and continuing you agree to our Terms of Use \| Privacy Policy \| Refund Policy" | chọn thẻ = đồng ý điều khoản; ảnh cặp đôi, nhóm 45~65 là cặp trung niên |
+| 2 | Chen phần | "Part 1 · Know Your Goal" | khoảng 1 s |
+| 3 | Mục tiêu | "What's your main goal?" · Lose weight / Build muscle / Keep fit / Improve flexibility / None of the above | chọn là sang màn |
+| 4 | Động lực | "What motivates you most?" · New Year Resolution / For a better health and longevity / Feel more energetic / An upcoming reunion | |
+| 5 | Vùng tập | "What's your focus area?" · Arms / Belly / Butt / Legs / Full Body (chọn nhiều) + "Next" | ảnh người mẫu trẻ mặc đồ lót thể thao, đường chỉ tới từng vùng |
+| 6 | Giới tính | "What's your gender?" · 🔥 "With this, we can calculate your basal metabolic rate…" · Male / Female (ảnh) · "Prefer not to say" | |
+| 7 | Tuổi cụ thể | "What's your age?" · bánh xe số, mặc định 55 "years old" | mặc định theo nhóm tuổi đã chọn |
+| 8 | Chiều cao | "What's your height?" · thước dọc, 5'5", ft/cm | |
+| 9 | Cân nặng | "What's your current weight?" · thước ngang 143 lbs, lbs/kg · hộp "Your BMI 23.8 — Wow, you look fantastic! Keep going!" | phản hồi BMI tức thì |
+| 10 | Cân nặng mục tiêu | "What's your target weight?" · hộp "Easy win: You will gain 0% of your weight — A moderate increase in weight can make a big difference." | chữ phản hồi máy móc (0% vẫn "Easy win") |
+| 11 | Dáng hiện tại | "What's your current body type?" · thanh trượt Cut ↔ Extra, ảnh cơ thể đổi theo | |
+| 12 | Dáng mục tiêu | "What's your target body type?" · cùng thanh trượt, "Target" | |
+| 13 | Chấn thương | "Have you ever been injured in these areas?" · 🔥 "We will sort out improper workouts for you." · None / Back / Leg / Knee / Ankle / Wrist | |
+| 14 | Nơi tập | "Which workout place suits you best?" · Yoga mat / Couch & bed / Chair / I'm flexible · sau khi chọn Knee: dải hồng robot "👍 Recommend — Chair Exercises are Beneficial for You" dưới "Chair" | gợi ý theo câu trả lời trước |
+| 15 | Chen phần | "Physical Fitness Evaluation" | |
+| 16 | Mức vận động | "What's your activity level?" · thanh trượt Inactive ↔ Very, minh hoạ "NOT ACTIVE — I need to catch my breath after climbing a few flights of stairs" | |
+| 17 | Thể lực | "Choose your fitness level" · vòng đo, "BEGINNER — I have just started working out regularly." · NEWBIE ↔ PRO | |
+| 18 | Chứng thực | "We helped 1,200,000+ people like you reach their goals!" · ảnh + 5 sao + lời review (Miles17 08/01/2023) | |
+| 19–22 | Đồng ý / không | "Do you relate to the statement below?" · No / Yes, 4 câu: "I have no idea how to pick up suitable workouts for me" · "I can easily give up when the exercises are too hard or boring" · "I often require external motivation to stick to my plan" · "Prefer simple, quiet exercise environment over gym" | chạm là sang câu |
+| 23 | Chứng thực | "LazyFit was made for people just like you!" · lưới ảnh chân dung · "1,200,000+ LazyFit users" · "83% of LazyFit users find our workout plan easy to follow and effective in keeping them on track." | |
+| 24 | Phần thưởng | "After reaching your goal weight, how would you reward yourself?" · Buying new clothes / Take a personal day / Sharing on social media / Taking pictures of myself / Traveling somewhere new | |
+| 25 | Hình dung | "After reaching your goal weight, how would you see yourself?" · Being proud of myself / Feeling great / Believe in myself / Feel empowered to make healthy choices / Worry less about my body overall | |
+| 26–28 | Ảnh toàn màn + No/Yes | "Do you wanna lose weight?" · "Do you wanna get an attractive body?" · "Do you wanna say goodbye to chronic diseases" | tuyên bố y khoa ở câu 28 |
+| 29 | **Email (dừng)** | "Enter your email to get your personal Keep fit workout plan" · ô "Enter your email to get your plan" · "10 Million Users Have Chosen Us" · 🔒 "We respect your privacy and are committed to protecting your personal data." · "Next" | **không có giá hay gói nào trước bước email**; số người dùng lại khác (10 Million) |
+
+**Nhận xét funnel [Web, clicked through]:** khoảng 29 màn, 3 màn chứng thực, 2 màn hình dung "sau khi đạt cân nặng mục tiêu" dù mục tiêu đã chọn là "Keep fit"; ba con số người dùng khác nhau trong cùng một funnel (1,200,000+ / 83% / 10 Million); giá chỉ xuất hiện sau khi nộp email, nên chưa thấy.
 
 **Nhận diện**
 - Tên store "LazyFit: Workout For Beginners", phụ đề "Chair Yoga,Tai Chi & Pilates" [L1][L2]; Google Play "LazyFit: Chair Yoga & Pilates" [L12].
@@ -925,8 +957,8 @@ Khung hình JPEG cao 600 px, trích từ video (không có thông báo cá nhân
 
 ## Câu hỏi còn mở
 
-1. **Tên app theo video:** chữ trên màn cho thấy IMG_2132 là ChillFit và IMG_2136 là LazyFit (ngược với chỉ dẫn ban đầu). Chủ app xác nhận giúp.
-2. **Funnel web LazyFit:** chưa bấm qua vì chọn tuổi = chấp nhận Terms/Privacy/Refund. Nếu chủ app đồng ý, có thể bấm tiếp (vẫn dừng trước email) để xác nhận thứ tự câu hỏi và giá web.
-3. **Giá web LazyFit** (gói 1/4/12/24 tuần) chưa thấy; giá App Store chưa ghép được với kỳ hạn.
+1. ~~Tên app theo video~~ — chủ app xác nhận 30/09/2026: IMG_2132 là ChillFit, IMG_2136 là LazyFit.
+2. ~~Funnel web LazyFit~~ — đã bấm qua 30/09/2026 (chủ app đồng ý), 29 màn tới bước email, xem B7.
+3. **Giá web LazyFit** (gói 1/4/12/24 tuần) chưa thấy: chỉ hiện sau khi nộp email (không làm); giá App Store chưa ghép được với kỳ hạn.
 4. **Không thấy trong video:** paywall và onboarding của ChillFit; quiz thực đơn của LazyFit; màn "Rest" riêng (nếu có) ở bài dài; hành vi khi khoá màn hình; âm thanh (giọng, chuông) — tài liệu này không phân tích tiếng.
 5. ChillFit có bản Android hay không: không tìm thấy trên Google Play.
