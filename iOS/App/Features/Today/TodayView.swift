@@ -80,96 +80,62 @@ struct TodayActions {
     var onFewerReminders: (Bool) -> Void
 }
 
-/// "Good morning, Margaret", then the coach at home with the active-days tab on the picture's
-/// right edge, halfway down (her middle, never her face).
+/// "Good morning, Margaret", a small line with the tree ring and "13 active days · Sprout", then
+/// the coach at home, uncovered (owner 30/09/2026: the folding tab hid what the number meant, and
+/// always open it would cover the picture).
 struct TodayHero: View {
     let greeting: String
     let activeDays: Int
     let progress: Double
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text(verbatim: greeting).typeRole(.screenTitle).foregroundStyle(Palette.text)
-                .accessibilityAddTraits(.isHeader)
+        VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 6) {
+                Text(verbatim: greeting).typeRole(.screenTitle).foregroundStyle(Palette.text)
+                    .accessibilityAddTraits(.isHeader)
+                ActiveDaysLine(count: activeDays, progress: progress)
+            }
             // About a fifth of the screen, 190 pt at most, so Start stays in view on an iPhone SE.
             ArtImage.flexible(.sceneLivingRoom, minHeight: 120, maxHeight: 190, fallbackSymbol: "figure.walk")
                 .containerRelativeFrame(.vertical, alignment: .top) { height, _ in min(190, max(120, height * 0.22)) }
-                .overlay(alignment: .trailing) {
-                    ActiveDaysTab(count: activeDays, progress: progress).padding(.trailing, 10)
-                }
         }
     }
 }
 
-/// The active-days ring as a tab: folded it shows an arrow and the number; a tap slides out
-/// "active days", and it folds back by itself after a few seconds (owner request 29/09/2026).
-struct ActiveDaysTab: View {
+/// A small tree ring filling towards the next level, "13 active days", and the level's name.
+struct ActiveDaysLine: View {
     let count: Int
     let progress: Double
-
-    @State private var isOpen = false
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        Button {
-            withAnimation(reduceMotion ? nil : .spring(duration: 0.35)) { isOpen.toggle() }
-        } label: {
-            HStack(spacing: 8) {
-                Image(systemName: isOpen ? "chevron.right" : "chevron.left")
-                    .font(.body.weight(.semibold))
-                    .foregroundStyle(Palette.textMuted)
-                ActiveDaysRing(count: count, progress: progress)
-                if isOpen {
-                    Text(verbatim: Plural.activeDaysLabel(count))
-                        .typeRole(.body).fontWeight(.semibold)
-                        .foregroundStyle(Palette.text)
-                        .fixedSize()
-                        .transition(.opacity.combined(with: .move(edge: .trailing)))
-                }
-            }
-            .padding(.vertical, 6)
-            .padding(.leading, 10)
-            .padding(.trailing, isOpen ? 14 : 6)
-            .background(Palette.surface, in: .capsule)
-            .shadow(color: Palette.onLightFill.opacity(0.15), radius: 6, y: 2)
-            .contentShape(.capsule)
+        HStack(spacing: 10) {
+            ActiveDaysRing(progress: progress)
+            Text(verbatim: "\(Plural.activeDays(count)) · \(String(localized: TreeLevel.level(activeDays: count).title))")
+                .typeRole(.body).fontWeight(.semibold)
+                .foregroundStyle(Palette.text)
         }
-        .buttonStyle(.plain)
-        .accessibilityLabel(Text(verbatim: Plural.activeDays(count)))
-        // Folds back by itself a few seconds after opening.
-        .task(id: isOpen) {
-            guard isOpen else { return }
-            try? await Task.sleep(for: .seconds(3.5))
-            withAnimation(reduceMotion ? nil : .spring(duration: 0.35)) { isOpen = false }
-        }
+        .accessibilityElement(children: .combine)
     }
 }
 
-/// The number of active days inside a ring that fills towards the next tree level.
+/// The ring that fills towards the next tree level, with a leaf in the middle.
 struct ActiveDaysRing: View {
-    let count: Int
     let progress: Double
-    @ScaledMetric(relativeTo: .title) private var size: CGFloat = 56
+    @ScaledMetric(relativeTo: .body) private var size: CGFloat = 30
 
     var body: some View {
         ZStack {
-            Circle().stroke(Palette.secondary.opacity(0.2), lineWidth: 7)
+            Circle().stroke(Palette.secondary.opacity(0.2), lineWidth: 4)
             Circle()
                 .trim(from: 0, to: max(0.03, min(1, progress)))
-                .stroke(Palette.secondary, style: StrokeStyle(lineWidth: 7, lineCap: .round))
+                .stroke(Palette.secondary, style: StrokeStyle(lineWidth: 4, lineCap: .round))
                 .rotationEffect(.degrees(-90))
-            // "days" under the number, so the folded tab says what it counts (clarity review D5).
-            VStack(spacing: -2) {
-                Text(verbatim: "\(count)").typeRole(.cardTitle).fontWeight(.bold)
-                    .minimumScaleFactor(0.6)
-                Text("days").typeRole(.caption).minimumScaleFactor(0.6)
-                    .dynamicTypeSize(...DynamicTypeSize.large)
-            }
-            .foregroundStyle(Palette.text)
-            .lineLimit(1)
-            .padding(6)
+            Image(systemName: "leaf.fill")
+                .font(.system(size: size * 0.4))
+                .foregroundStyle(Palette.secondary)
         }
         .frame(width: size, height: size)
+        .accessibilityHidden(true)
     }
 }
 
