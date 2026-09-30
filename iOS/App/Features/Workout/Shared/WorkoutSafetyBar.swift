@@ -17,7 +17,7 @@ struct WorkoutSafetyBar: View {
 
     var body: some View {
         // Accessibility sizes: two rows of two, so no word is ever cut ("This hurts" above all).
-        if typeSize.isAccessibilitySize {
+        if typeSize.isAccessibilitySize, showsVoice || showsMusic {
             Grid(horizontalSpacing: Metrics.touchSpacing, verticalSpacing: Metrics.touchSpacing) {
                 GridRow { settingButtons }
                 GridRow { safetyButtons }

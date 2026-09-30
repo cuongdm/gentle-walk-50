@@ -2,16 +2,19 @@ import SwiftUI
 import GentleWalkCore
 
 /// S11 Walk player: readable from 1–2 m on a table. Phase label and clock are the biggest things;
-/// Break and This hurts are always on screen. iPad and landscape put controls on the right.
+/// Break and This hurts are always on screen. Laid out again 30/09/2026: the clip (or painting) on
+/// top, part and clock, the spoken line as plain text, then two control rows — Voice · Pause ·
+/// Music, and Break · This hurts. A phone on its side shows the clip full screen.
 struct WalkPlayerView: View {
     let model: WalkPlayerModel
     let session: WorkoutSessionModel
     var showsMusic = false
+    @State private var fullScreen = false
 
+    @Environment(\.startsFullScreen) private var startsFullScreen
     @Environment(\.horizontalSizeClass) private var sizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
 
-    private var isWide: Bool { sizeClass == .regular || verticalSizeClass == .compact }
     private var isOutdoors: Bool { session.request.place == .outdoors }
     /// Outdoors: "0.6 mi" under the clock, from GPS or steps.
     private var distanceText: String? {
@@ -19,8 +22,62 @@ struct WalkPlayerView: View {
         return CompleteContent.miles(miles)
     }
     private var isPaused: Bool { if case .paused = model.player.state { true } else { false } }
+    /// The filmed loop for her level, if there is one.
+    private var video: String? { WalkVideo.fileName(for: model.level, isOutdoors: isOutdoors) }
+    /// Phone on its side, or the expand button: the clip fills the screen.
+    private var showsFullScreen: Bool { video != nil && (fullScreen || verticalSizeClass == .compact) }
+    private var tint: Color { model.tone == .brisk ? Palette.sun : Palette.secondary }
 
     var body: some View {
+        ZStack {
+            if showsFullScreen {
+                FullScreenVideoView(
+                    fileName: video, title: model.phaseLabel, counter: model.clock, progress: model.phaseProgress,
+                    tint: tint, caption: model.captionText, isPaused: isPaused,
+                    onExit: exitFullScreen, onBack: nil, onPause: session.togglePause, onSkip: nil,
+                    onBreak: session.takeBreak, onHurts: session.openHurts)
+            } else {
+                columns
+            }
+            if model.player.state == .paused(.user), session.stage == .playing, !showsFullScreen {
+                PausedOverlay(onResume: session.togglePause, onEnd: session.askToEnd)
+            }
+            if let transition = session.transition {
+                PhaseTransitionCard(label: transition.label, tone: transition.tone)
+                    .transition(.opacity)
+            }
+        }
+        .animation(.easeInOut(duration: 0.25), value: session.transition)
+        .leavesFullScreenWhenUpright($fullScreen)
+        .onAppear { if startsFullScreen { enterFullScreen() } }
+    }
+
+    /// The expand button shows only on a clip.
+    private var expandAction: (() -> Void)? {
+        guard video != nil else { return nil }
+        return enterFullScreen
+    }
+
+    private func enterFullScreen() {
+        fullScreen = true
+        InterfaceOrientation.landscape()
+    }
+
+    private func exitFullScreen() {
+        fullScreen = false
+        InterfaceOrientation.portrait()
+    }
+
+    /// Side by side on a phone on its side and on iPad held wide; stacked otherwise (iPad upright
+    /// too, at a readable width).
+    private var columns: some View {
+        GeometryReader { proxy in
+            let isWide = verticalSizeClass == .compact || (sizeClass == .regular && proxy.size.width > proxy.size.height)
+            columns(isWide: isWide)
+        }
+    }
+
+    @ViewBuilder private func columns(isWide: Bool) -> some View {
         ZStack {
             Palette.bg.ignoresSafeArea()
             model.tone.wash.ignoresSafeArea()
@@ -32,17 +89,20 @@ struct WalkPlayerView: View {
                         Spacer(minLength: 0)
                         PhaseBlock(label: model.phaseLabel, tone: model.tone, clock: model.clock, distance: distanceText, isLarge: true)
                         NextUpRow(next: model.nextLine, progress: model.phaseProgress, tone: model.tone)
-                        CaptionBar(caption: model.captionText)
+                        CaptionBar(caption: model.captionText, style: .plain(.center))
                         Spacer(minLength: 0)
                     }
                     VStack(spacing: 20) {
-                        WalkScene(level: model.level, isOutdoors: isOutdoors, height: 220)
-                        if !isOutdoors { LevelLine(level: model.level) }
-                        PauseButton(isPaused: isPaused, action: session.togglePause)
+                        // A phone on its side has no room for the picture above the controls.
+                        if verticalSizeClass != .compact {
+                            WalkScene(level: model.level, isOutdoors: isOutdoors, height: 270,
+                                      onFullScreen: expandAction)
+                        }
+                        if !isOutdoors, video == nil { LevelLine(level: model.level) }
                         Spacer(minLength: 0)
-                        safetyBar
+                        controls
                     }
-                    .frame(maxWidth: 360)
+                    .frame(maxWidth: 480)
                 }
                 .padding(Metrics.screenMargin)
             } else {
@@ -51,57 +111,95 @@ struct WalkPlayerView: View {
                 ViewThatFits(in: .vertical) {
                     portrait(showsScene: true)
                     portrait(showsScene: false)
-                    // Largest text sizes: the words scroll so nothing is cut, while Pause, Break and
-                    // This hurts stay on screen (review I11).
+                    // Largest text sizes: the words scroll so nothing is cut, while the controls
+                    // stay on screen (review I11).
                     VStack(spacing: 10) {
                         ScrollView { portraitText(showsScene: false) }
-                        PauseButton(isPaused: isPaused, action: session.togglePause)
-                        safetyBar
+                        controls
                     }
                 }
                 .padding(.horizontal, Metrics.screenMargin)
                 .padding(.bottom, 8)
-            }
-            if model.player.state == .paused(.user), session.stage == .playing {
-                PausedOverlay(onResume: session.togglePause, onEnd: session.askToEnd)
-            }
-            if let transition = session.transition {
-                PhaseTransitionCard(label: transition.label, tone: transition.tone)
-                    .transition(.opacity)
+                .frame(maxWidth: 700)
             }
         }
-        .animation(.easeInOut(duration: 0.25), value: session.transition)
     }
 
-    /// The picture takes whatever height is left (110–260 pt); too little room drops it.
+    /// The picture takes the room it needs first (up to 232 pt, 394 on iPad); too little room drops it.
     private func portrait(showsScene: Bool) -> some View {
         VStack(spacing: 14) {
             portraitText(showsScene: showsScene)
-            PauseButton(isPaused: isPaused, action: session.togglePause)
-            safetyBar
+            controls
         }
     }
 
-    /// Everything above the controls: top bar, picture, phase, clock, next and caption.
+    /// Everything above the controls: top bar, picture, phase, clock, next and the spoken line.
     private func portraitText(showsScene: Bool) -> some View {
         VStack(spacing: 14) {
             WalkTopBar(status: model.statusLine, locationOn: session.locationOn?() ?? false, onEnd: session.askToEnd)
             if showsScene {
-                WalkScene(level: model.level, isOutdoors: isOutdoors, height: 260, minHeight: 110)
+                WalkScene(level: model.level, isOutdoors: isOutdoors, height: sizeClass == .regular ? 394 : 232, minHeight: 110,
+                          onFullScreen: expandAction)
+                    .layoutPriority(1)
             }
             PhaseBlock(label: model.phaseLabel, tone: model.tone, clock: model.clock, distance: distanceText)
             NextUpRow(next: model.nextLine, progress: model.phaseProgress, tone: model.tone)
-            if !showsScene { Spacer(minLength: 0) }
-            CaptionBar(caption: model.captionText)
-            if !isOutdoors { LevelLine(level: model.level) }
+            CaptionBar(caption: model.captionText, style: .plain(.center))
+            Spacer(minLength: 0)
+            // The clip already shows how she walks; the word is for the painting.
+            if !isOutdoors, video == nil { LevelLine(level: model.level) }
         }
     }
 
-    private var safetyBar: some View {
-        WorkoutSafetyBar(isVoiceOn: model.player.isVoiceOn, showsMusic: showsMusic, isMusicOn: model.player.isMusicOn,
-                         onVoice: { model.player.setVoiceOn(!model.player.isVoiceOn) },
-                         onMusic: { model.player.setMusicOn(!model.player.isMusicOn) },
-                         onBreak: session.takeBreak, onHurts: session.openHurts)
+    /// Playback on one row (Voice · Pause · Music), safety on the next (Break · This hurts).
+    private var controls: some View {
+        VStack(spacing: 12) {
+            HStack(alignment: .top) {
+                PlayerToggle(title: "Voice", symbol: model.player.isVoiceOn ? "speaker.wave.2.fill" : "speaker.slash.fill",
+                             isOn: model.player.isVoiceOn) { model.player.setVoiceOn(!model.player.isVoiceOn) }
+                Spacer(minLength: 8)
+                PauseButton(isPaused: isPaused, action: session.togglePause)
+                Spacer(minLength: 8)
+                if showsMusic {
+                    PlayerToggle(title: "Music", symbol: model.player.isMusicOn ? "music.note" : "speaker.slash",
+                                 isOn: model.player.isMusicOn) { model.player.setMusicOn(!model.player.isMusicOn) }
+                } else {
+                    // Keeps Pause in the middle.
+                    Color.clear.frame(width: PlayerToggle.width, height: 1).accessibilityHidden(true)
+                }
+            }
+            WorkoutSafetyBar(showsVoice: false, onBreak: session.takeBreak, onHurts: session.openHurts)
+        }
+    }
+}
+
+/// Voice or Music beside Pause: a round 56 pt button with its word under it.
+struct PlayerToggle: View {
+    static let width: CGFloat = 76
+
+    let title: LocalizedStringResource
+    let symbol: String
+    let isOn: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 4) {
+                Image(systemName: symbol)
+                    .typeRole(.body)
+                    .fontWeight(.semibold)
+                    .frame(width: Metrics.minTouchTarget, height: Metrics.minTouchTarget)
+                    .background(Palette.surface, in: .circle)
+                    .overlay { Circle().strokeBorder(Palette.textMuted.opacity(0.2)) }
+                    .accessibilityHidden(true)
+                Text(title).typeRole(.caption)
+            }
+            .foregroundStyle(Palette.text)
+            .frame(minWidth: Self.width)
+            .contentShape(.rect)
+        }
+        .buttonStyle(.plain)
+        .accessibilityValue(isOn ? Text("On") : Text("Off"))
     }
 }
 
@@ -135,15 +233,22 @@ struct WalkScene: View {
     var isOutdoors = false
     var height: CGFloat = 150
     var minHeight: CGFloat?
+    /// Shows the full-screen button on the clip.
+    var onFullScreen: (() -> Void)?
 
     var body: some View {
         if let video = WalkVideo.fileName(for: level, isOutdoors: isOutdoors) {
             // Same flexible frame as the painting (ViewThatFits measures the frame, not the player);
-            // the clip sits inside at 16:9, centred, with no card colour around it.
+            // the clip sits at its top at 16:9, with no card colour around it.
             Color.clear
                 .frame(maxWidth: .infinity)
                 .frame(minHeight: minHeight ?? height, maxHeight: height)
-                .overlay { ExerciseVideo(fileName: video) }
+                .overlay(alignment: .top) {
+                    ExerciseVideo(fileName: video)
+                        .overlay(alignment: .topTrailing) {
+                            if let onFullScreen { VideoCornerButton.expand(onFullScreen).padding(4) }
+                        }
+                }
         } else if let minHeight {
             ArtImage.flexible(art, minHeight: minHeight, maxHeight: height, fallbackSymbol: symbol)
         } else {

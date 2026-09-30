@@ -28,7 +28,7 @@ struct WorkoutCaptureScene: View {
                                 onChairMoves: session.request.place == .outdoors ? {} : nil,
                                 onAgain: session.request.canReplay(isPro: true) ? {} : nil, onClose: { _ in })
                         .environment(\.forceStillFrames, state == .chairPlayerReduceMotion)
-                        .environment(\.startsFullScreen, state == .chairFullscreen)
+                        .environment(\.startsFullScreen, state == .chairFullscreen || state == .walkFullscreen)
                 } else {
                     ProgressView()
                 }
@@ -78,7 +78,7 @@ struct WorkoutCaptureScene: View {
         let walk = PlannedDay(main: .walk, chairMoves: 0, cooldown: false)
         let chair = PlannedDay(main: .chair, chairMoves: 0, cooldown: true)
         switch state {
-        case .walkPlayer, .walkPlayerDark, .walkPlayerIpad, .walkTransition, .walkPaused, .walkEnd, .break, .breakOutdoor, .thisHurts:
+        case .walkPlayer, .walkPlayerDark, .walkPlayerIpad, .walkFullscreen, .walkTransition, .walkPaused, .walkEnd, .break, .breakOutdoor, .thisHurts:
             let place: WorkoutPlace = state == .breakOutdoor ? .outdoors : .indoors
             let model = await make(request(walk, intensity: .strong, place: place))
             // A moment in round 2 while the coach is speaking, so the caption shows.

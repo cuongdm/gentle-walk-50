@@ -36,6 +36,7 @@ enum CaptureState: String, CaseIterable, Sendable {
     case walkEnd = "walk-end"
     case walkPlayerDark = "walk-player-dark"
     case walkPlayerIpad = "walk-player-ipad"
+    case walkFullscreen = "walk-fullscreen"
     case chairPlayer = "chair-player"
     case chairTimed = "chair-timed"
     case chairStandBehind = "chair-stand-behind"

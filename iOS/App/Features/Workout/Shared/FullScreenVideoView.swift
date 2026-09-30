@@ -1,99 +1,104 @@
 import SwiftUI
 
-/// Full-screen landscape video (task 4.7). Exit and the counter stay; Break and This hurts never
-/// hide; Back · Pause · Skip hide after 5 seconds and come back with a tap. No double tap, no pinch.
+/// Full-screen video (task 4.7, laid out again 30/09/2026). Phone on its side: the clip fills the
+/// height on the left, where the coach stands, and one panel over the clip's empty wall on the
+/// right holds the rest: part and clock, caption, controls, Break and This hurts. Nothing covers
+/// her and nothing hides. Upright (iPad, or a phone that did not turn), the panel sits under the clip.
 struct FullScreenVideoView: View {
     let fileName: String?
+    /// Part or move above the counter ("BRISK WALK", "Sit-to-stand").
+    var title: String? = nil
     let counter: String
+    /// Share of this part done, as a bar under the counter.
+    var progress: Double? = nil
+    var tint: Color = Palette.secondary
     let caption: String?
     let isPaused: Bool
     let onExit: () -> Void
-    let onBack: () -> Void
+    /// Walks have no Back or Skip: only Pause shows, next to the clock.
+    let onBack: (() -> Void)?
     let onPause: () -> Void
-    let onSkip: () -> Void
+    let onSkip: (() -> Void)?
     let onBreak: () -> Void
     let onHurts: () -> Void
 
-    @State private var controlsVisible = true
-    @State private var hideTask: Task<Void, Never>?
-    @Environment(\.verticalSizeClass) private var verticalSizeClass
-
-    @Environment(\.accessibilityVoiceOverEnabled) private var voiceOver
-    @Environment(\.accessibilitySwitchControlEnabled) private var switchControl
-    /// VoiceOver and Switch Control users cannot find a hidden control: it never hides for them (review I13).
-    private var keepsControls: Bool { voiceOver || switchControl }
-
     var body: some View {
-        ZStack {
-            Color.black.ignoresSafeArea()
+        GeometryReader { proxy in
+            if proxy.size.width > proxy.size.height {
+                sideBySide
+            } else {
+                stacked
+            }
+        }
+        .background(Color.black.ignoresSafeArea())
+    }
+
+    private var sideBySide: some View {
+        ZStack(alignment: .trailing) {
             ExerciseVideo(fileName: fileName)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .contentShape(.rect)
-                .onTapGesture { showControls() }
-                .accessibilityElement()
-                .accessibilityLabel(Text("Exercise video"))
-                .accessibilityHint(Text("Shows the playback buttons"))
-                .accessibilityAddTraits(.isButton)
-                .accessibilityAction { showControls() }
-            VStack {
-                HStack(alignment: .top) {
-                    Button(action: onExit) {
-                        Label("Exit full screen", systemImage: "arrow.down.right.and.arrow.up.left")
-                            .typeRole(.body).fontWeight(.semibold)
-                            .foregroundStyle(Palette.text)
-                            .padding(.horizontal, 16)
-                            .frame(minHeight: Metrics.minTouchTarget)
-                            .background(Palette.surface.opacity(0.92), in: .capsule)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .overlay(alignment: .topLeading) { VideoCornerButton.exit(onExit).padding(6) }
+            panel(scrolls: true)
+                .frame(width: 330)
+        }
+        .padding(.vertical, 8)
+    }
+
+    private var stacked: some View {
+        VStack(spacing: 16) {
+            HStack {
+                VideoCornerButton.exit(onExit)
+                Spacer()
+            }
+            ExerciseVideo(fileName: fileName)
+            panel(scrolls: false)
+            Spacer(minLength: 0)
+        }
+        .padding(Metrics.screenMargin)
+    }
+
+    private var hasSkipping: Bool { onBack != nil && onSkip != nil }
+
+    /// On its side the panel is the screen's height, so the top part scrolls at large text sizes;
+    /// upright it is only as tall as its content.
+    private func panel(scrolls: Bool) -> some View {
+        VStack(spacing: 12) {
+            if scrolls {
+                ScrollView { readout }.scrollBounceBehavior(.basedOnSize)
+            } else {
+                readout
+            }
+            if let onBack, let onSkip {
+                PlayerControlRow(isPaused: isPaused, onBack: onBack, onPause: onPause, onSkip: onSkip)
+            }
+            WorkoutSafetyBar(showsVoice: false, onBreak: onBreak, onHurts: onHurts)
+        }
+        .padding(14)
+        .background(Palette.surface, in: .rect(cornerRadius: 24, style: .continuous))
+    }
+
+    /// Part, counter (with Pause beside it on walks), progress and the spoken line.
+    private var readout: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .center) {
+                VStack(alignment: .leading, spacing: 2) {
+                    if let title {
+                        Text(verbatim: title).typeRole(.caption).fontWeight(.bold)
+                            .foregroundStyle(Palette.textMuted)
+                            .accessibilityAddTraits(.isHeader)
                     }
-                    .buttonStyle(.plain)
-                    Spacer()
                     Text(verbatim: counter)
                         .typeRole(.stat)
                         .foregroundStyle(Palette.text)
-                        .padding(.horizontal, 16)
-                        .background(Palette.surface.opacity(0.92), in: .rect(cornerRadius: 16))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                        .contentTransition(.numericText())
                 }
-                Spacer()
-                if controlsVisible || keepsControls {
-                    PlayerControlRow(isPaused: isPaused, onBack: onBack, onPause: onPause, onSkip: onSkip)
-                        .padding(8)
-                        .background(Palette.surface.opacity(0.92), in: .rect(cornerRadius: 20))
-                        .frame(maxWidth: 420)
-                        .transition(.opacity)
-                }
-                if verticalSizeClass == .compact {
-                    // Landscape: caption along the bottom, Break and This hurts at the bottom right.
-                    HStack(alignment: .bottom, spacing: 16) {
-                        CaptionBar(caption: caption)
-                        WorkoutSafetyBar(showsVoice: false, onBreak: onBreak, onHurts: onHurts)
-                            .frame(width: 260)
-                    }
-                } else {
-                    VStack(spacing: 12) {
-                        CaptionBar(caption: caption)
-                        WorkoutSafetyBar(showsVoice: false, onBreak: onBreak, onHurts: onHurts)
-                    }
-                }
+                Spacer(minLength: 8)
+                if !hasSkipping { PauseButton(isPaused: isPaused, size: 64, action: onPause) }
             }
-            .padding(Metrics.screenMargin)
-        }
-        .animation(.easeInOut(duration: 0.25), value: controlsVisible)
-        .onAppear { scheduleHide() }
-        .onDisappear { hideTask?.cancel() }
-    }
-
-    private func showControls() {
-        controlsVisible = true
-        scheduleHide()
-    }
-
-    private func scheduleHide() {
-        hideTask?.cancel()
-        guard !keepsControls else { return }
-        hideTask = Task { @MainActor in
-            try? await Task.sleep(for: .seconds(5))
-            guard !Task.isCancelled else { return }
-            controlsVisible = false
+            if let progress { PhaseProgressBar(progress: progress, tint: tint) }
+            CaptionBar(caption: caption, style: .plain(.leading))
         }
     }
 }

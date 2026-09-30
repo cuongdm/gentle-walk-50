@@ -16,9 +16,10 @@ struct ChairPlayerView: View {
         Group {
             if fullScreen || verticalSizeClass == .compact {
                 FullScreenVideoView(
-                    fileName: model.exercise?.videoFile, counter: model.countsReps ? model.repsText : model.timerText,
+                    fileName: model.exercise?.videoFile, title: model.exercise?.name,
+                    counter: model.countsReps ? model.repsText : model.timerText,
                     caption: model.player.caption?.text, isPaused: isPaused,
-                    onExit: { fullScreen = false }, onBack: model.back, onPause: model.session.togglePause,
+                    onExit: exitFullScreen, onBack: model.back, onPause: model.session.togglePause,
                     onSkip: { Task { await model.skip() } },
                     onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
             } else if model.isRest {
@@ -29,7 +30,18 @@ struct ChairPlayerView: View {
                 portrait
             }
         }
-        .onAppear { if startsFullScreen { fullScreen = true } }
+        .leavesFullScreenWhenUpright($fullScreen)
+        .onAppear { if startsFullScreen { enterFullScreen() } }
+    }
+
+    private func enterFullScreen() {
+        fullScreen = true
+        InterfaceOrientation.landscape()
+    }
+
+    private func exitFullScreen() {
+        fullScreen = false
+        InterfaceOrientation.portrait()
     }
 
     private var portrait: some View {
@@ -41,13 +53,8 @@ struct ChairPlayerView: View {
                     Text(verbatim: position).typeRole(.caption).foregroundStyle(Palette.text)
                 }
             }
-            VStack(alignment: .trailing, spacing: 6) {
-                ExerciseVideo(fileName: model.exercise?.videoFile)
-                Button { fullScreen = true } label: {
-                    Label("Full screen", systemImage: "arrow.up.left.and.arrow.down.right")
-                }
-                .buttonStyle(.smallTextLink)
-            }
+            ExerciseVideo(fileName: model.exercise?.videoFile)
+                .overlay(alignment: .topTrailing) { VideoCornerButton.expand(enterFullScreen).padding(4) }
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
                     MoveHeader(exercise: model.exercise)
