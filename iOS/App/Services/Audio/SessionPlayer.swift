@@ -19,10 +19,6 @@ enum PauseReason: Equatable, Sendable {
 
 enum PlaybackState: Equatable, Sendable { case idle, ready, playing, paused(PauseReason), finished }
 
-/// Which way the last part change went: on to a later part (playing on, Skip) or back (Back).
-/// The exercise clip slides in from the matching side.
-enum MoveDirection: Equatable, Sendable { case forward, backward }
-
 /// Drives one session (task 3.4): the engine plays audio, this model turns the clock into the phase,
 /// caption and countdown the player screens show.
 @Observable @MainActor final class SessionPlayer {
@@ -34,7 +30,6 @@ enum MoveDirection: Equatable, Sendable { case forward, backward }
     private(set) var caption: CaptionTimeline.Caption?
     /// Whole seconds left in the current phase, for the big countdown.
     private(set) var remainingInPhase = 0
-    private(set) var moveDirection: MoveDirection = .forward
 
     /// Called on every phase change after the first (haptics, transition card).
     @ObservationIgnored var onPhaseChange: ((SessionTimeline.Phase) -> Void)?
@@ -94,45 +89,27 @@ enum MoveDirection: Equatable, Sendable { case forward, backward }
 
     /// This hurts / Skip / Walk home gently: rebuilds the program and continues from the same moment.
     /// The screen moves to the next part at once (the timeline edit is instant); the old sound stops
-    /// while the new program is built, then plays from the same moment. Two rebuilds never race (that
-    /// replayed audio): a Skip tapped during a rebuild is queued and folded into it, so three quick taps
-    /// skip three parts with one rebuild; other edits during a rebuild are ignored.
+    /// while the new program is built, then plays from the same moment. Taps during a rebuild are ignored
+    /// so two rebuilds never race (that replayed audio and skipped twice).
     func apply(_ edit: TimelineEdit) async throws {
-        guard !isEditing else {
-            if edit == .skip { queuedSkips += 1 }
-            return
-        }
+        guard !isEditing else { return }
         isEditing = true
-        defer { isEditing = false; queuedSkips = 0 }
+        defer { isEditing = false }
         let at = currentTime
         let wasPlaying = state == .playing
-        var edited = TimelineEditing.apply(edit, to: timeline, at: at)
-        show(edited, at: at)
+        let edited = TimelineEditing.apply(edit, to: timeline, at: at)
+        timeline = edited
+        captions = CaptionTimeline(timeline: edited)
+        tick(at)
         if wasPlaying { engine.pause() }
-        while true {
-            try await engine.load(edited)
-            guard queuedSkips > 0 else { break }
-            while queuedSkips > 0 {
-                queuedSkips -= 1
-                edited = TimelineEditing.apply(.skip, to: edited, at: at)
-            }
-            show(edited, at: at)
-        }
+        try await engine.load(edited)
         engine.seek(to: at)
         if wasPlaying && state == .playing { engine.play() }
         tick(at)
     }
 
-    private func show(_ edited: SessionTimeline, at time: Double) {
-        timeline = edited
-        captions = CaptionTimeline(timeline: edited)
-        tick(time)
-    }
-
     /// True while a Skip / This hurts rebuild is loading.
     private(set) var isEditing = false
-    /// Skips tapped while a rebuild was loading; applied before it plays.
-    @ObservationIgnored private var queuedSkips = 0
 
     private(set) var isVoiceOn = true
     private(set) var isMusicOn = true
@@ -171,7 +148,6 @@ enum MoveDirection: Equatable, Sendable { case forward, backward }
         let phase = timeline.phases.indices.contains(index) ? timeline.phases[index] : nil
         if index != phaseIndex || phase != currentPhase {
             let changed = index != phaseIndex
-            if changed { moveDirection = index > phaseIndex ? .forward : .backward }
             phaseIndex = index
             currentPhase = phase
             if changed, let phase {

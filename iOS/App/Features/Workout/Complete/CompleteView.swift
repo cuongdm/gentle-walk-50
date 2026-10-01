@@ -212,23 +212,13 @@ struct CompleteHero: View {
     }
 }
 
-/// Leaves drifting down for two seconds with a short happy chime; the chime alone with Reduce Motion.
+/// Leaves drifting down for two seconds; nothing with Reduce Motion.
 struct FallingLeaves: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var start = Date()
     @State private var visible = true
-    @State private var cheered = false
 
     var body: some View {
-        // A ZStack so the chime runs even when no leaves are drawn (Reduce Motion).
-        ZStack { leaves }.task {
-            guard !cheered else { return }
-            cheered = true
-            CueSounds.shared.cheer()
-        }
-    }
-
-    @ViewBuilder private var leaves: some View {
         if !reduceMotion && visible {
             TimelineView(.animation) { context in
                 let t = context.date.timeIntervalSince(start)

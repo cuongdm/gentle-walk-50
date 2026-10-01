@@ -9,9 +9,6 @@ public enum TimelineEdit: Equatable, Sendable {
 }
 
 public enum TimelineEditing {
-    /// Seconds after a spoken "We'll skip that one" during which another Skip stays silent.
-    static let skipLineGap = 6.0
-
     public static func apply(_ edit: TimelineEdit, to timeline: SessionTimeline, at time: Double) -> SessionTimeline {
         guard let index = timeline.phases.firstIndex(where: { $0.start <= time && time < $0.end }) else { return timeline }
         var result = timeline
@@ -44,14 +41,7 @@ public enum TimelineEditing {
             result.bells.removeAll { $0.at >= time && $0.at < phase.end }
             for k in result.bells.indices where result.bells[k].at >= phase.end { result.bells[k].at -= cut }
             result.total -= cut
-            // Quick Skip taps: "We'll skip that one" is said once. While it is still speaking (or just
-            // said) no second copy is queued behind it; the next part's lines wait for it to finish.
-            let recent = result.voice.contains { $0.lineID == "a7.hurt.skip" && $0.start <= time && time - $0.start < Self.skipLineGap }
-            if recent {
-                result.normalizeVoice(from: 0)
-            } else {
-                result.insertEditLine("a7.hurt.skip", at: time)
-            }
+            result.insertEditLine("a7.hurt.skip", at: time)
 
         case .walkHomeGently:
             result.phases = Array(timeline.phases[..<index])
