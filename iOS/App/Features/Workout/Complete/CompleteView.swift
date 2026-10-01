@@ -10,6 +10,8 @@ struct CompleteView: View {
     var onOpenPostcard: (Journey.Stop) -> Void = { _ in }
     /// Outdoors with GPS: the route map (not shared).
     var route: [RoutePoint] = []
+    /// The route also went to Apple Health: the app itself keeps only the distance (owner 01/10/2026).
+    var routeInHealth = false
     /// Outdoors: today's chair moves are still waiting (minutes), with "Do them now".
     var chairMovesMinutes: Int?
     var onChairMoves: () -> Void = {}
@@ -17,6 +19,11 @@ struct CompleteView: View {
     var onAgain: (() -> Void)?
 
     @State private var feeling: Feeling?
+    @Environment(\.dynamicTypeSize) private var typeSize
+    /// Done stays in view at the bottom: an outdoor Complete runs two screens, and Done was only at
+    /// the end (owner 01/10/2026). In the list at accessibility sizes, where a pinned bar would take
+    /// too much of the screen.
+    private var pinsDone: Bool { !typeSize.isAccessibilitySize }
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -28,7 +35,13 @@ struct CompleteView: View {
                     TreeMilestoneLine(activeDays: content.activeDays)
                         .cardStyle()
                     if route.count > 1 {
-                        RouteMapView(route: route)
+                        VStack(alignment: .leading, spacing: 6) {
+                            RouteMapView(route: route)
+                            if routeInHealth {
+                                Label("Your route is saved in Apple Health.", systemImage: "heart.text.square")
+                                    .typeRole(.caption).foregroundStyle(Palette.textMuted)
+                            }
+                        }
                     }
                     if let comparison = content.comparison {
                         Text(verbatim: comparison).typeRole(.body).foregroundStyle(Palette.text)
@@ -46,7 +59,9 @@ struct CompleteView: View {
                         feeling = value
                         onFeeling(value)
                     }
-                    Button("Done", action: onDone).buttonStyle(.primaryAction)
+                    if !pinsDone {
+                        Button("Done", action: onDone).buttonStyle(.primaryAction)
+                    }
                     ShareCardButton(content: content)
                     if let onAgain {
                         Button("Do it again", action: onAgain)
@@ -57,6 +72,9 @@ struct CompleteView: View {
                 .padding(Metrics.screenMargin)
                 .frame(maxWidth: 700)
                 .frame(maxWidth: .infinity)
+            }
+            .pinnedActions(pinsDone) {
+                Button("Done", action: onDone).buttonStyle(.primaryAction)
             }
             FallingLeaves()
         }

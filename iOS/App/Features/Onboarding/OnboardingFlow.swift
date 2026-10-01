@@ -3,10 +3,11 @@ import Observation
 import SwiftData
 import GentleWalkCore
 
-/// Onboarding screens in order (spec "Luồng màn hình"): S01, P1, S02, S03, S04, P2, S05a, S05b,
-/// S05c ×2, P3, S06, S07, then the paywall S08.
+/// Onboarding screens in order: S01, S02, S03, S04, S05a, S05b, S05c, S06, S07, then the paywall S08.
+/// Owner 01/10/2026: the three part intros (P1–P3) are gone (a picture and a part name, one more
+/// tap each), S04 leads into part 2 itself, and the stairs question went (nothing used the answer).
 enum OnboardingStep: Int, CaseIterable, Sendable {
-    case welcome, part1, goal, barriers, understanding, part2, name, activity, stairs, chair, part3, body, plan, paywall
+    case welcome, goal, barriers, understanding, name, activity, chair, body, plan, paywall
 }
 
 /// S07 "What's a good moment for your daily walk?" with its suggested time.
@@ -32,8 +33,10 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
         didSet { hint = nil }
     }
     var nameText = ""
-    private(set) var moment: DailyMoment = .coffee
-    private(set) var reminderMinutes = DailyMoment.coffee.suggestedMinutes
+    /// The reminder starts "after my morning coffee"; she picks the moment on S16, where the
+    /// reminder is asked for (owner 01/10/2026: Your plan was a screen and a half long).
+    let moment: DailyMoment = .coffee
+    let reminderMinutes = DailyMoment.coffee.suggestedMinutes
     private(set) var hint: String?
     private(set) var noLimitsChosen = false
 
@@ -42,9 +45,9 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
     /// "Part 2 of 3 · About you"; nil outside the three parts.
     var progressLabel: String? {
         switch step {
-        case .part1, .goal, .barriers, .understanding: String(localized: "Part 1 of 3 · Your goal")
-        case .part2, .name, .activity, .stairs, .chair: String(localized: "Part 2 of 3 · About you")
-        case .part3, .body: String(localized: "Part 3 of 3 · Your body")
+        case .goal, .barriers, .understanding: String(localized: "Part 1 of 3 · Your goal")
+        case .name, .activity, .chair: String(localized: "Part 2 of 3 · About you")
+        case .body: String(localized: "Part 3 of 3 · Your body")
         case .welcome, .plan, .paywall: nil
         }
     }
@@ -110,23 +113,6 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
         noLimitsChosen = true
     }
 
-    func chooseMoment(_ moment: DailyMoment) {
-        self.moment = moment
-        reminderMinutes = moment.suggestedMinutes
-    }
-
-    /// − / + buttons: 15-minute steps, kept within the day.
-    /// + / −: the next quarter hour up or down.
-    func stepTime(by direction: Int) {
-        reminderMinutes = ReminderTime.step(reminderMinutes, by: direction)
-    }
-
-    /// A time typed in: kept to the minute.
-    func setTime(minutes: Int) {
-        reminderMinutes = min(ReminderTime.lastMinute, max(0, minutes))
-    }
-
-
     /// Saves the answers as the one `UserProfile` (free tier rest days: Saturday and Sunday).
     @discardableResult
     func finish(into context: ModelContext, now: Date = .now) throws -> UserProfile {
@@ -149,7 +135,6 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
         switch step {
         case .goal where answers.goals.isEmpty: String(localized: "Pick at least one.")
         case .activity where answers.activity == nil,
-             .stairs where answers.stairs == nil,
              .chair where answers.chair == nil: String(localized: "Pick one to continue.")
         default: nil
         }

@@ -144,8 +144,10 @@ struct WeekStrip: View {
     }
 }
 
-/// Up to three short extras; Pro ones carry the Pro badge for free users. A line says what they
-/// are (review U12: owners asked), and each shows its painting and Video mark like All sessions.
+/// Up to three short extras as a row of small cards (owner 01/10/2026: three full-width cards at
+/// the foot made Today long); Pro ones carry the Pro badge for free users. A line says what they
+/// are (review U12), and each shows its painting and Video mark like All sessions. A list again at
+/// accessibility text sizes.
 struct ExtrasRow: View {
     let extras: [TodayExtra]
     let isPro: Bool
@@ -153,6 +155,8 @@ struct ExtrasRow: View {
     let onLocked: () -> Void
     /// Opens "All sessions" (milestone 10), open to every plan.
     var onSeeAll: () -> Void = {}
+
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -164,12 +168,81 @@ struct ExtrasRow: View {
             }
             Text("Short sessions for any moment. Each one counts as an active day.")
                 .typeRole(.caption).foregroundStyle(Palette.textMuted)
-            ForEach(extras) { extra in
-                SessionCard(title: extra.title, detail: String(localized: "\(extra.minutes) min"), art: extra.art,
-                            isLocked: !isPro, hasVideo: extra.hasVideo) {
-                    isPro ? onStart(extra.request) : onLocked()
+            if typeSize.isAccessibilitySize {
+                ForEach(extras) { extra in
+                    SessionCard(title: extra.title, detail: String(localized: "\(extra.minutes) min"), art: extra.art,
+                                isLocked: !isPro, hasVideo: extra.hasVideo) { open(extra) }
                 }
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .top, spacing: 10) {
+                        ForEach(extras) { extra in
+                            ExtraTile(extra: extra, isLocked: !isPro) { open(extra) }
+                        }
+                    }
+                    .scrollTargetLayout()
+                }
+                .scrollTargetBehavior(.viewAligned)
+                .scrollClipDisabled()
             }
         }
+    }
+
+    private func open(_ extra: TodayExtra) {
+        isPro ? onStart(extra.request) : onLocked()
+    }
+}
+
+/// One extra: painting, title, minutes and marks, about 150 pt wide so a third card peeks in on a
+/// small phone and says the row scrolls.
+struct ExtraTile: View {
+    let extra: TodayExtra
+    let isLocked: Bool
+    let action: () -> Void
+
+    @ScaledMetric(relativeTo: .body) private var width: CGFloat = 150
+
+    var body: some View {
+        Button(action: action) {
+            VStack(alignment: .leading, spacing: 6) {
+                // Round marks on the painting's corner: the word badges would cover the picture at 150 pt.
+                ArtImage(art: extra.art, height: 84)
+                    .overlay(alignment: .topTrailing) {
+                        HStack(spacing: 4) {
+                            if extra.hasVideo { mark("play.fill", fill: Palette.secondary, ink: Palette.onStrongFill) }
+                            if isLocked { mark("lock.fill", fill: Palette.sun, ink: Palette.onLightFill) }
+                        }
+                        .padding(6)
+                    }
+                Text(verbatim: extra.title).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(2, reservesSpace: true)
+                Text(verbatim: String(localized: "\(extra.minutes) min")).typeRole(.caption).foregroundStyle(Palette.textMuted)
+            }
+            .padding(8)
+            .frame(width: width, alignment: .leading)
+            .background(Palette.surface, in: .rect(cornerRadius: Metrics.cardRadius, style: .continuous))
+            .contentShape(.rect)
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: spoken))
+        .accessibilityAddTraits(.isButton)
+    }
+
+    private func mark(_ symbol: String, fill: Color, ink: Color) -> some View {
+        Image(systemName: symbol)
+            .font(.caption.weight(.bold))
+            .foregroundStyle(ink)
+            .frame(width: 26, height: 26)
+            .background(fill, in: .circle)
+    }
+
+    /// "Morning stretch, 9 min, with video, Pro, locked".
+    private var spoken: String {
+        var parts = [extra.title, String(localized: "\(extra.minutes) min")]
+        if extra.hasVideo { parts.append(String(localized: "With video")) }
+        if isLocked { parts.append(String(localized: "Pro, locked")) }
+        return parts.joined(separator: ", ")
     }
 }

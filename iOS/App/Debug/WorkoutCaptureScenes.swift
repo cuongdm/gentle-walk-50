@@ -24,7 +24,7 @@ struct WorkoutCaptureScene: View {
                 }
             default:
                 if let session {
-                    WorkoutView(session: session, name: "Margaret", showsMusic: true,
+                    WorkoutView(session: session, name: "Margaret", showsMusic: true, healthConnected: true,
                                 onChairMoves: session.request.place == .outdoors ? {} : nil,
                                 onAgain: session.request.canReplay(isPro: true) ? {} : nil, onClose: { _ in })
                         .environment(\.forceStillFrames, state == .chairPlayerReduceMotion)
@@ -102,6 +102,12 @@ struct WorkoutCaptureScene: View {
                                             engine: SilentPlaybackEngine(), completion: nil, prepareMedia: false)
             try? await model.load()
             model.startWithCountdown()
+            return model
+        case .readyFirstWalk:
+            let model = WorkoutSessionModel(request: request(PlannedDay(main: .walk, chairMoves: 0, cooldown: false), firstWalk: true),
+                                            content: content, engine: SilentPlaybackEngine(), completion: nil, prepareMedia: false)
+            try? await model.load()
+            model.startWithCountdown(showsReady: true)
             return model
         case .outdoorPlayer, .outdoorPlayerNoGps, .outdoorPlayerFinding:
             let model = await make(request(walk, intensity: .steady, place: .outdoors))

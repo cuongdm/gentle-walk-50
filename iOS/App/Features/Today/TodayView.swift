@@ -1,36 +1,37 @@
 import SwiftUI
 import GentleWalkCore
 
-/// S17 Today: greeting and active days, check-in, today's session (the biggest card), a special
-/// card when one applies, journey mini card, the week and Extras.
+/// S17 Today, in the order she uses it (owner 01/10/2026: the screen read as a flat list of equal
+/// blocks): greeting and active days, today's session with the check-in inside it (the one big
+/// card), notices, then the journey, the week and the short extras as a row.
 struct TodayView: View {
     let model: TodayModel
     let actions: TodayActions
 
     @State private var showsSwap = false
-    /// Picked in the swap sheet; started once the sheet has gone, so two covers never overlap.
-    @State private var pendingSwap: WorkoutRequest?
+    /// Picked in the swap sheet; acted on once the sheet has gone, so two covers never overlap.
+    @State private var pendingSwap: PendingSwap?
+
+    private enum PendingSwap { case start(WorkoutRequest), allSessions }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 TodayHero(greeting: model.greeting, activeDays: model.activeDays, progress: model.treeProgress)
-                if let ends = model.trialEndingDate {
-                    TrialEndingCard(date: ends, price: actions.yearlyPrice, onManage: actions.onManagePlan)
-                }
                 if let welcome = model.welcomeBack {
                     Text(verbatim: welcome).typeRole(.body).foregroundStyle(Palette.text)
                 }
-                if model.showsCheckIn {
-                    CheckInRow(selected: model.checkedIn, onSelect: model.checkIn)
-                }
                 TodaySessionCard(session: model.session, detail: model.sessionDetail, trialEnded: model.trialEnded,
                                  isSeated: model.isSeatedWalk,
+                                 checkIn: model.showsCheckIn && model.session.kind != .rest
+                                    ? .init(selected: model.checkedIn, onSelect: model.checkIn) : nil,
                                  onStart: { if let request = model.request { actions.onStart(request) } },
                                  onSeePlans: actions.onSeePlans,
-                                 onSomethingElse: model.swapOptions.isEmpty ? nil : { showsSwap = true },
-                                 onStillOpen: model.stillOpenRequest.map { request in { actions.onStart(request) } },
-                                 onBrowse: actions.onSeeAllSessions)
+                                 onPickAnother: model.swapOptions.isEmpty ? actions.onSeeAllSessions : { showsSwap = true },
+                                 onStillOpen: model.stillOpenRequest.map { request in { actions.onStart(request) } })
+                if let ends = model.trialEndingDate {
+                    TrialEndingCard(date: ends, price: actions.yearlyPrice, onManage: actions.onManagePlan)
+                }
                 if let card = model.specialCard {
                     SpecialCard(card: card, actions: actions)
                 }
@@ -47,23 +48,29 @@ struct TodayView: View {
             .frame(maxWidth: .infinity)
         }
         .screenBackground()
-        .sheet(isPresented: $showsSwap, onDismiss: startPendingSwap) {
-            SwapSessionSheet(options: model.swapOptions) { option in
+        .sheet(isPresented: $showsSwap, onDismiss: actOnPendingSwap) {
+            SwapSessionSheet(options: model.swapOptions, onPick: { option in
                 if option.isLocked {
                     showsSwap = false
                     actions.onSeePlans()
                 } else {
-                    pendingSwap = option.request
+                    pendingSwap = .start(option.request)
                     showsSwap = false
                 }
-            }
+            }, onSeeAll: {
+                pendingSwap = .allSessions
+                showsSwap = false
+            })
         }
     }
 
-    private func startPendingSwap() {
-        guard let request = pendingSwap else { return }
+    private func actOnPendingSwap() {
+        guard let pending = pendingSwap else { return }
         pendingSwap = nil
-        actions.onStart(request)
+        switch pending {
+        case .start(let request): actions.onStart(request)
+        case .allSessions: actions.onSeeAllSessions()
+        }
     }
 }
 
@@ -80,24 +87,19 @@ struct TodayActions {
     var onFewerReminders: (Bool) -> Void
 }
 
-/// "Good morning, Margaret", a small line with the tree ring and "13 active days · Sprout", then
-/// the coach at home, uncovered (owner 30/09/2026: the folding tab hid what the number meant, and
-/// always open it would cover the picture).
+/// "Good morning, Margaret" and a small line with the tree ring and "13 active days · Sprout". No
+/// picture: today's session is the first thing under it (owner 01/10/2026; the coach at home
+/// stays on Preview and Complete).
 struct TodayHero: View {
     let greeting: String
     let activeDays: Int
     let progress: Double
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            VStack(alignment: .leading, spacing: 6) {
-                Text(verbatim: greeting).typeRole(.screenTitle).foregroundStyle(Palette.text)
-                    .accessibilityAddTraits(.isHeader)
-                ActiveDaysLine(count: activeDays, progress: progress)
-            }
-            // About a fifth of the screen, 190 pt at most, so Start stays in view on an iPhone SE.
-            ArtImage.flexible(.sceneLivingRoom, minHeight: 120, maxHeight: 190, fallbackSymbol: "figure.walk")
-                .containerRelativeFrame(.vertical, alignment: .top) { height, _ in min(190, max(120, height * 0.22)) }
+        VStack(alignment: .leading, spacing: 6) {
+            Text(verbatim: greeting).typeRole(.screenTitle).foregroundStyle(Palette.text)
+                .accessibilityAddTraits(.isHeader)
+            ActiveDaysLine(count: activeDays, progress: progress)
         }
     }
 }
@@ -139,45 +141,33 @@ struct ActiveDaysRing: View {
     }
 }
 
-/// "How do your joints feel today?" · Achy · Okay · Great.
+/// "How do your joints feel today?" · Achy · Okay · Great, one line inside the session card, Okay
+/// chosen until she says otherwise (it is the session as planned). Her answer retitles the card.
 struct CheckInRow: View {
     let selected: CheckIn?
     let onSelect: (CheckIn) -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            VStack(alignment: .leading, spacing: 2) {
-                Text("How do your joints feel today?").typeRole(.cardTitle).foregroundStyle(Palette.text)
-                Text("We'll set today's session to match.").typeRole(.caption).foregroundStyle(Palette.textMuted)
-            }
+        VStack(alignment: .leading, spacing: 6) {
+            Text("How do your joints feel today?").typeRole(.caption).foregroundStyle(Palette.textMuted)
             ViewThatFits(in: .horizontal) {
-                HStack(spacing: Metrics.touchSpacing) { buttons }
-                VStack(spacing: Metrics.touchSpacing) { buttons }
+                HStack(spacing: 8) { buttons }
+                VStack(spacing: 8) { buttons }
             }
         }
     }
 
     @ViewBuilder private var buttons: some View {
-        option(.achy, "Achy", Palette.sky)
-        option(.okay, "Okay", Palette.surface)
-        option(.great, "Great", Palette.sun)
+        option(.achy, "Achy")
+        option(.okay, "Okay")
+        option(.great, "Great")
     }
 
-    private func option(_ value: CheckIn, _ title: LocalizedStringResource, _ fill: Color) -> some View {
-        Button { onSelect(value) } label: {
-            Text(title)
-                .typeRole(.body).fontWeight(.bold)
-                // Sky and sun stay light in dark mode (dark ink); the plain card follows the theme.
-                .foregroundStyle(value == .okay ? Palette.text : Palette.onLightFill)
-                .frame(maxWidth: .infinity, minHeight: 64)
-                .background(fill, in: .rect(cornerRadius: 16))
-                .overlay {
-                    RoundedRectangle(cornerRadius: 16)
-                        .strokeBorder(selected == value ? Palette.primary : Palette.textMuted.opacity(0.3), lineWidth: selected == value ? 3 : 1)
-                }
-        }
-        .buttonStyle(.plain)
-        .accessibilityAddTraits(selected == value ? .isSelected : [])
+    private func option(_ value: CheckIn, _ title: LocalizedStringResource) -> some View {
+        let isOn = (selected ?? .okay) == value
+        return Button { onSelect(value) } label: { Text(title) }
+            .buttonStyle(PillButtonStyle(isSelected: isOn, fills: true))
+            .accessibilityAddTraits(isOn ? .isSelected : [])
     }
 }
 
@@ -188,14 +178,20 @@ struct TodaySessionCard: View {
     let trialEnded: Bool
     /// A seated walk shows a seated figure, not a walking one (clarity review D6).
     var isSeated = false
+    /// The check-in, while today's session is still to do.
+    var checkIn: CheckInChoice?
     let onStart: () -> Void
     let onSeePlans: () -> Void
-    /// "Try something else" (milestone 10); nil when there is nothing to swap.
-    var onSomethingElse: (() -> Void)?
+    /// "Pick a different session": the swap sheet, or All sessions when there is nothing to swap
+    /// (one link for what were "Try something else" and "Browse all sessions", owner 01/10/2026).
+    var onPickAnother: (() -> Void)?
     /// Done for today: the planned session is still here if she'd like it.
     var onStillOpen: (() -> Void)?
-    /// "Browse all sessions" (clarity review D39: All sessions was only at the foot of Today).
-    var onBrowse: (() -> Void)?
+
+    struct CheckInChoice {
+        let selected: CheckIn?
+        let onSelect: (CheckIn) -> Void
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -219,6 +215,9 @@ struct TodaySessionCard: View {
                     Button("See Pro plans", action: onSeePlans).buttonStyle(.smallTextLink)
                 }
             }
+            if let checkIn {
+                CheckInRow(selected: checkIn.selected, onSelect: checkIn.onSelect)
+            }
             if session.kind != .done && session.kind != .rest {
                 Button("Start", action: onStart).buttonStyle(.primaryAction)
             }
@@ -228,16 +227,13 @@ struct TodaySessionCard: View {
                     .foregroundStyle(Palette.onStrongFill)
                     .multilineTextAlignment(.leading)
             }
-            if onSomethingElse != nil || (onBrowse != nil && session.kind != .done) {
-                HStack {
-                    if let onSomethingElse {
-                        Button("Try something else", action: onSomethingElse).buttonStyle(.smallTextLink)
-                    }
-                    Spacer(minLength: 8)
-                    if let onBrowse, session.kind != .done {
-                        Button("Browse all sessions", action: onBrowse).buttonStyle(.smallTextLink)
-                    }
-                }
+            if let onPickAnother, session.kind != .done {
+                Button("Pick a different session", action: onPickAnother)
+                    .buttonStyle(.smallTextLink)
+                    .frame(maxWidth: .infinity)
+                    // The 56 pt touch area keeps its size; only the empty space around the words shrinks.
+                    .padding(.vertical, -8)
+                    .padding(.bottom, -6)
             }
         }
         .padding(20)

@@ -14,15 +14,13 @@ struct OnboardingView: View {
     /// Short steps (a picture and a line) keep Continue at the bottom like the question steps,
     /// instead of right under the text with half the screen empty (review U5).
     private var pinsContinue: Bool {
-        [.part1, .understanding, .part2, .part3, .body].contains(flow.step) && !typeSize.isAccessibilitySize
+        [.understanding, .body].contains(flow.step) && !typeSize.isAccessibilitySize
     }
 
     var body: some View {
         VStack(spacing: 0) {
             if flow.step != .welcome {
-                // A part's intro screen already names the part in its title (review D22).
-                OnboardingProgressHeader(label: [.part1, .part2, .part3].contains(flow.step) ? nil : flow.progressLabel,
-                                         onBack: flow.back)
+                OnboardingProgressHeader(label: flow.progressLabel, onBack: flow.back)
             }
             ScrollView {
                 screen
@@ -50,17 +48,13 @@ struct OnboardingView: View {
     @ViewBuilder private var screen: some View {
         switch flow.step {
         case .welcome: WelcomeView(onBegin: flow.next, onRestore: onRestore)
-        case .part1: PartIntroView(part: 1, title: "Your goal", showsContinue: !pinsContinue, onContinue: flow.next)
         case .goal: GoalView(flow: flow)
         case .barriers: BarriersView(flow: flow)
         case .understanding: UnderstandingView(barrier: flow.profile.understandingKey, showsContinue: !pinsContinue,
                                                onContinue: flow.next)
-        case .part2: PartIntroView(part: 2, title: "About you", showsContinue: !pinsContinue, onContinue: flow.next)
         case .name: NameView(flow: flow)
         case .activity: ActivityLevelView(flow: flow)
-        case .stairs: StairsView(flow: flow)
         case .chair: ChairStrengthView(flow: flow)
-        case .part3: PartIntroView(part: 3, title: "Your body", showsContinue: !pinsContinue, onContinue: flow.next)
         case .body: BodyLimitsView(flow: flow, showsContinue: !pinsContinue)
         case .plan, .paywall: PlanReadyView(flow: flow, showsContinue: !pinsPlanButton)
         }

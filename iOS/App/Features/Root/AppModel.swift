@@ -31,10 +31,17 @@ import GentleWalkCore
         set { if !newValue { storeNotice = nil } }
     }
     var journeyPath: [JourneyRoute] = []
+    var progressPath: [ProgressRoute] = []
     private(set) var today: TodayModel?
     private(set) var journey = JourneySnapshot.empty
     private(set) var progress = ProgressSnapshot.empty
     var textSize: TextSizeOverride { didSet { textSize.save(to: defaults) } }
+    var appearance: AppearanceChoice {
+        didSet {
+            appearance.save(to: defaults)
+            appearance.apply()
+        }
+    }
     var notificationSettings: NotificationSettings {
         didSet {
             if let data = try? JSONEncoder().encode(notificationSettings) { defaults.set(data, forKey: "notificationSettings") }
@@ -87,6 +94,7 @@ import GentleWalkCore
         painRecorder = SwiftDataPainRecorder(context: container.mainContext)
         voiceSource = VoiceSource(lines: content.voiceLines)
         textSize = TextSizeOverride(defaults: defaults)
+        appearance = AppearanceChoice(defaults: defaults)
         notificationSettings = defaults.data(forKey: "notificationSettings")
             .flatMap { try? JSONDecoder().decode(NotificationSettings.self, from: $0) } ?? NotificationSettings()
         let bank = (try? PhraseBank.load(bundle: .main)) ?? PhraseBank(phrases: [])

@@ -35,7 +35,14 @@ struct MainTabView: View {
             }
             .tabItem { Label("Journey", systemImage: "map.fill") }
             .tag(AppTab.journey)
-            NavigationStack { ProgressTab(app: app) }
+            NavigationStack(path: $app.progressPath) {
+                ProgressTab(app: app)
+                    .navigationDestination(for: ProgressRoute.self) { route in
+                        switch route {
+                        case .sessions: SessionHistoryScreen(sessions: app.progress.sessions, calendar: app.calendar)
+                        }
+                    }
+            }
                 .tabItem { Label("Progress", systemImage: "chart.bar.fill") }
                 .tag(AppTab.progress)
             NavigationStack { MeView(app: app) }
@@ -53,7 +60,7 @@ struct TodayTab: View {
         if let today = app.today {
             TodayView(model: today, actions: TodayActions(
                 yearlyPrice: app.price(ProductID.yearly),
-                onStart: { request in app.preview(request, checkIn: today.checkedIn) },
+                onStart: { request in app.startFromToday(request, checkIn: today.checkedIn) },
                 onSeePlans: { app.offerPlans(.lockedContent) },
                 onManagePlan: { app.tab = .me },
                 onOpenJourney: { app.tab = .journey },
@@ -92,7 +99,8 @@ struct ProgressTab: View {
 
     var body: some View {
         ProgressScreen(snapshot: app.progress, wins: app.everydayWins, steps: steps, healthConnected: app.health.isConnected,
-                       calendar: app.calendar, now: app.now(), onToggleWin: app.toggleWin,
+                       calendar: app.calendar, now: app.now(), isPro: app.isPro, onToggleWin: app.toggleWin,
+                       onSeeAllSessions: { app.isPro ? app.progressPath.append(.sessions) : app.offerPlans(.lockedContent) },
                        onConnectHealth: { Task { _ = await app.health.requestAuthorization(); app.reload() } })
             .task {
                 if let result = await app.health.weeklySteps(now: app.now(), calendar: app.calendar) {

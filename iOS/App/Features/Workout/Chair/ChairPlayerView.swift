@@ -54,7 +54,7 @@ struct ChairPlayerView: View {
     private var portrait: some View {
         VStack(spacing: 10) {
             HStack {
-                Button("End", action: model.session.askToEnd).buttonStyle(.smallTextLink)
+                EndSessionButton(action: model.session.askToEnd)
                 Spacer()
                 if let position = model.blockPosition {
                     Text(verbatim: position).typeRole(.caption).foregroundStyle(Palette.text)

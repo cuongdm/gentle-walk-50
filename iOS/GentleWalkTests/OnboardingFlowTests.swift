@@ -15,7 +15,6 @@ import GentleWalkCore
             switch flow.step {
             case .goal: flow.toggleGoal(.steadier)
             case .activity: flow.answers.activity = .shortWalks
-            case .stairs: flow.answers.stairs = .littleTired
             case .chair: flow.answers.chair = .hard
             default: break
             }
@@ -25,10 +24,11 @@ import GentleWalkCore
         return seen
     }
 
+    /// Owner 01/10/2026: no part intros, no stairs question.
     @Test func screensComeInTheSpecOrder() {
         let flow = OnboardingFlow()
-        #expect(walkToEnd(flow) == [.welcome, .part1, .goal, .barriers, .understanding, .part2, .name, .activity,
-                                    .stairs, .chair, .part3, .body, .plan, .paywall])
+        #expect(walkToEnd(flow) == [.welcome, .goal, .barriers, .understanding, .name, .activity, .chair, .body,
+                                    .plan, .paywall])
     }
 
     @Test func progressLabelNamesThePartAndStep() {
@@ -62,12 +62,6 @@ import GentleWalkCore
         #expect(ReminderTime.step(9 * 60, by: -1) == 8 * 60 + 45)
         #expect(ReminderTime.step(23 * 60 + 50, by: 1) == 23 * 60 + 50)
         #expect(ReminderTime.step(5, by: -1) == 0)
-
-        let flow = OnboardingFlow()
-        flow.setTime(minutes: 7 * 60 + 52)
-        #expect(flow.reminderMinutes == 7 * 60 + 52)
-        flow.stepTime(by: 1)
-        #expect(flow.reminderMinutes == 8 * 60)
     }
 
     @Test func goalsAreLimitedToTwo() {
@@ -114,18 +108,18 @@ import GentleWalkCore
         flow.toggleBarrier(.joints)
         flow.nameText = " Margaret "
         flow.answers.activity = .walkMostDays
-        flow.answers.stairs = .fine
         flow.answers.chair = .easy
         flow.toggleLimit(.knees)
-        flow.chooseMoment(.lunch)
         let profile = try flow.finish(into: container.mainContext, now: Date(timeIntervalSince1970: 1_790_000_000))
         #expect(profile.name == "Margaret")
         #expect(profile.goals == ["steadier"])
         #expect(profile.barriers == ["charged", "joints"])
         #expect(profile.startLevel == "inplace")
         #expect(profile.bodyLimits == ["knees"])
-        #expect(profile.reminderMoment == "lunch")
-        #expect(profile.reminderMinutes == 13 * 60)
+        // The moment is picked on S16; onboarding saves "after my morning coffee", 8:30 AM.
+        #expect(profile.reminderMoment == "coffee")
+        #expect(profile.reminderMinutes == 8 * 60 + 30)
+        #expect(profile.stairsAnswer == "")
         #expect(profile.restDays == [7, 1])
         #expect(profile.onboardingCompleted)
         #expect(try container.mainContext.fetch(FetchDescriptor<UserProfile>()).count == 1)

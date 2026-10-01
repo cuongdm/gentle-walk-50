@@ -12,15 +12,21 @@ struct ProgressScreen: View {
     let healthConnected: Bool
     let calendar: Calendar
     let now: Date
+    var isPro = false
     let onToggleWin: (String) -> Void
+    var onSeeAllSessions: () -> Void = {}
     let onConnectHealth: () -> Void
+
+    @State private var selectedDay: SelectedDay?
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 ScreenHeader(title: "Progress")
                 TreeCard(level: snapshot.tree, activeDays: snapshot.activeDays, rings: snapshot.rings)
-                MonthCalendar(activeDates: snapshot.activeDates, restDays: snapshot.restDays, calendar: calendar, now: now)
+                MonthCalendar(activeDates: snapshot.activeDates, restDays: snapshot.restDays, calendar: calendar, now: now,
+                              onSelect: { selectedDay = SelectedDay(date: $0) })
+                RecentSessionsCard(sessions: snapshot.sessions, isPro: isPro, onSeeAll: onSeeAllSessions)
                 SitToStandChart(bars: snapshot.sitToStand)
                 if let minutes = snapshot.longestWalkMinutes {
                     LongestWalkCard(minutes: minutes)
@@ -33,6 +39,9 @@ struct ProgressScreen: View {
             .frame(maxWidth: .infinity)
         }
         .screenBackground()
+        .sheet(item: $selectedDay) { day in
+            DaySessionsSheet(day: day.date, sessions: SessionHistoryItem.on(day.date, in: snapshot.sessions, calendar: calendar))
+        }
     }
 }
 
@@ -72,12 +81,14 @@ struct TreeCard: View {
     }
 }
 
-/// This month: active days filled with secondary, planned rest days marked, never a red day.
+/// This month: active days filled with secondary, planned rest days marked, never a red day. An
+/// active day opens its sessions (owner 01/10/2026).
 struct MonthCalendar: View {
     let activeDates: Set<Date>
     let restDays: Set<Weekday>
     let calendar: Calendar
     let now: Date
+    var onSelect: (Date) -> Void = { _ in }
 
     var body: some View {
         let days = monthDays
@@ -90,33 +101,49 @@ struct MonthCalendar: View {
                     if let day {
                         let active = activeDates.contains(calendar.startOfDay(for: day))
                         let rest = restDays.contains(Weekday(of: day, in: calendar))
-                        Text(verbatim: "\(calendar.component(.day, from: day))")
-                            .typeRole(.caption)
-                            // Seven columns: at the largest sizes the number shrinks a little
-                            // rather than breaking over two lines (review I12).
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-                            .foregroundStyle(active ? Palette.onStrongFill : Palette.text)
-                            .frame(maxWidth: .infinity, minHeight: 36)
-                            .background(active ? Palette.secondary : .clear, in: .circle)
-                            .overlay(alignment: .bottom) {
-                                if rest && !active { Image(systemName: "moon.fill").font(.system(size: 8)).foregroundStyle(Palette.textMuted) }
-                            }
-                            .accessibilityLabel(Text(verbatim: day.formatted(date: .complete, time: .omitted)))
-                            .accessibilityValue(active ? Text("Active") : rest ? Text("Rest day") : Text(verbatim: ""))
+                        if active {
+                            Button { onSelect(day) } label: { dayCell(day, active: true, rest: rest) }
+                                .buttonStyle(.plain)
+                                .accessibilityHint(Text("Shows the sessions of that day"))
+                        } else {
+                            dayCell(day, active: false, rest: rest)
+                        }
                     } else {
                         Color.clear.frame(minHeight: 36)
                     }
                 }
             }
-            // What the marks mean (clarity review D41).
-            HStack(spacing: 16) {
-                Label { Text("Active day") } icon: { Circle().fill(Palette.secondary).frame(width: 12, height: 12) }
-                Label { Text("Rest day") } icon: { Image(systemName: "moon.fill").foregroundStyle(Palette.textMuted) }
-            }
-            .typeRole(.caption).foregroundStyle(Palette.text)
+            legend
         }
         .cardStyle()
+    }
+
+    private func dayCell(_ day: Date, active: Bool, rest: Bool) -> some View {
+        Text(verbatim: "\(calendar.component(.day, from: day))")
+            .typeRole(.caption)
+            // Seven columns: at the largest sizes the number shrinks a little
+            // rather than breaking over two lines (review I12).
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+            .foregroundStyle(active ? Palette.onStrongFill : Palette.text)
+            .frame(maxWidth: .infinity, minHeight: 40)
+            .background(active ? Palette.secondary : .clear, in: .circle)
+            .overlay(alignment: .bottom) {
+                if rest && !active { Image(systemName: "moon.fill").font(.system(size: 8)).foregroundStyle(Palette.textMuted) }
+            }
+            // The whole cell answers the tap, not just the circle (seven columns leave ~46 pt).
+            .contentShape(.rect)
+            .accessibilityLabel(Text(verbatim: day.formatted(date: .complete, time: .omitted)))
+            .accessibilityValue(active ? Text("Active") : rest ? Text("Rest day") : Text(verbatim: ""))
+    }
+
+    /// What the marks mean (clarity review D41).
+    private var legend: some View {
+        HStack(spacing: 16) {
+            Label { Text("Active day") } icon: { Circle().fill(Palette.secondary).frame(width: 12, height: 12) }
+            Label { Text("Rest day") } icon: { Image(systemName: "moon.fill").foregroundStyle(Palette.textMuted) }
+        }
+        .typeRole(.caption).foregroundStyle(Palette.text)
     }
 
     /// Leading blanks for the first weekday, then each day of the month.

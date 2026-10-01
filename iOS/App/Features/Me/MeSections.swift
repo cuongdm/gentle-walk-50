@@ -178,12 +178,25 @@ struct WorkoutAudioSection: View {
     }
 }
 
-/// Text size with A− / A+ (no slider).
+/// Appearance (Auto · Light · Dark) and text size with A− / A+ (no slider).
 struct DisplaySection: View {
     @Binding var textSize: TextSizeOverride
+    @Binding var appearance: AppearanceChoice
 
     var body: some View {
         SettingsCard(title: "Display") {
+            Text("Appearance").typeRole(.body)
+            HStack(spacing: 8) {
+                ForEach(AppearanceChoice.allCases) { choice in
+                    Button { appearance = choice } label: { Text(choice.title) }
+                        .buttonStyle(PillButtonStyle(isSelected: appearance == choice, fills: true))
+                        .accessibilityAddTraits(appearance == choice ? .isSelected : [])
+                }
+            }
+            if appearance == .auto {
+                Text("Auto follows your iPhone: light by day, dark at night if you've set it.")
+                    .typeRole(.caption).foregroundStyle(Palette.textMuted)
+            }
             HStack(spacing: Metrics.touchSpacing) {
                 Text("Text size").typeRole(.body)
                 Spacer()

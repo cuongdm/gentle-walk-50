@@ -32,9 +32,11 @@ import Testing
         for exercise in content.exercises where used.contains(exercise.id) && exercise.id != "wk.arms" {
             #expect(!exercise.namedVideos.isEmpty, "\(exercise.id)")
         }
-        // Batch B clips are named but not required yet.
+        // Every batch B clip is made (01/10/2026): the main clips are all required; the extras
+        // (easier, hold) stay optional.
         let required = content.exercises.flatMap(\.namedVideos).filter(\.required).map(\.file)
-        #expect(!required.contains("W2-5.mp4"))
+        #expect(content.exercises.allSatisfy { ($0.videoLater ?? []).isEmpty })
+        #expect(required.contains("W2-5.mp4"))
         #expect(required.contains("W1-2.mp4"))
         #expect(!required.contains("S5-hold.mp4"))
         #expect(content.exercises.filter { $0.kind == .stretch }.allSatisfy { $0.videoHold != nil })

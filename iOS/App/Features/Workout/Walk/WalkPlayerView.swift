@@ -237,8 +237,7 @@ struct WalkTopBar: View {
 
     var body: some View {
         HStack {
-            Button("End", action: onEnd)
-                .buttonStyle(.smallTextLink)
+            EndSessionButton(action: onEnd)
             if locationOn {
                 Label("Location on", systemImage: "location.fill")
                     .typeRole(.caption)

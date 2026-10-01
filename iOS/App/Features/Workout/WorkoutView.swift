@@ -7,6 +7,8 @@ struct WorkoutView: View {
     let session: WorkoutSessionModel
     let name: String?
     var showsMusic = false
+    /// Apple Health is connected, so an outdoor route is saved there.
+    var healthConnected = false
     /// Review milestone allowed for this result (task 6.11), and what to record once asked.
     var reviewMilestone: (CompletionResult) -> ReviewMilestone? = { _ in nil }
     var onReviewAsked: (ReviewMilestone) -> Void = { _ in }
@@ -39,6 +41,9 @@ struct WorkoutView: View {
         switch session.stage {
         case .preparing, .saving:
             ProgressView().controlSize(.large).frame(maxWidth: .infinity, maxHeight: .infinity).screenBackground()
+        case .ready:
+            WorkoutReadyView(request: session.request, minutes: session.request.minutes(content: session.content),
+                             onReady: session.readyConfirmed, onNotYet: { onClose(nil) })
         case .countdown:
             WorkoutCountdownView(title: session.request.title, onFinished: session.countdownFinished)
         case .standBehindChair:
@@ -63,6 +68,7 @@ struct WorkoutView: View {
                 content: CompleteContent(result: result, request: session.request, minutes: session.minutesDone,
                                          name: name, content: session.content),
                 onFeeling: session.recordFeeling, onDone: { onClose(result) }, route: session.route,
+                routeInHealth: healthConnected,
                 chairMovesMinutes: session.request.place == .outdoors && onChairMoves != nil
                     ? WorkoutRequest.chairMovesAfterOutdoor(limits: session.request.limits, rotationIndex: 0)
                         .minutes(content: session.content)

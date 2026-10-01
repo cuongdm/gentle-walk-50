@@ -102,14 +102,16 @@ struct ProgressSnapshot: Equatable {
     /// Longest walk with no Break, in minutes.
     var longestWalkMinutes: Int?
     var checkedWins: Set<String>
+    /// Every finished session, newest first (history, owner 01/10/2026).
+    var sessions: [SessionHistoryItem]
 
     static let empty = ProgressSnapshot(activeDays: 0, activeDates: [], restDays: [], sitToStand: [], longestWalkMinutes: nil,
                                         checkedWins: [])
 
     init(activeDays: Int, activeDates: Set<Date>, restDays: Set<Weekday>, sitToStand: [WeekBar], longestWalkMinutes: Int?,
-         checkedWins: Set<String>) {
+         checkedWins: Set<String>, sessions: [SessionHistoryItem] = []) {
         self.activeDays = activeDays; self.activeDates = activeDates; self.restDays = restDays; self.sitToStand = sitToStand
-        self.longestWalkMinutes = longestWalkMinutes; self.checkedWins = checkedWins
+        self.longestWalkMinutes = longestWalkMinutes; self.checkedWins = checkedWins; self.sessions = sessions
     }
 
     init(records: [WorkoutRecord], wins: [EverydayWin], restDays: Set<Weekday>, calendar: Calendar, now: Date) {
@@ -128,6 +130,7 @@ struct ProgressSnapshot: Equatable {
         let walks = records.filter { ($0.kind == "walk" || $0.kind == "firstWalk") && $0.breakCount == 0 }
         longestWalkMinutes = walks.map(\.activeSeconds).max().map { max(1, Int((Double($0) / 60).rounded())) }
         checkedWins = Set(wins.map(\.key))
+        sessions = SessionHistoryItem.list(records)
     }
 
     var tree: TreeLevel { TreeLevel.level(activeDays: activeDays) }

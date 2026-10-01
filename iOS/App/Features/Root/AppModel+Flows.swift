@@ -90,17 +90,22 @@ extension AppModel {
         preview(request, checkIn: today?.checkedIn)
     }
 
-    /// Starts a session, showing phone placement or outdoor prep the first time.
-    func begin(_ request: WorkoutRequest) {
+    /// Starts a session, showing phone placement or outdoor prep the first time. `showsReady`: an
+    /// "Up next" screen before the count, for sessions that did not come from their preview (the
+    /// First Walk, chair moves after an outdoor walk); the preview and outdoor prep already say it.
+    func begin(_ request: WorkoutRequest, showsReady: Bool = true) {
         if request.place != .outdoors, !defaults.bool(forKey: PhonePlacement.seenKey) {
             cover = .phonePlacement(request)
         } else if request.place == .outdoors, !defaults.bool(forKey: "outdoorPrepSeen") {
             cover = .outdoorPrep(request)
         } else {
             cover = .preparing(request)
-            Task { await prepareAndPlay(request) }
+            Task { await prepareAndPlay(request, showsReady: showsReady) }
         }
     }
+
+    /// Start now on the preview: she has just seen the session, so straight to the count.
+    func beginFromPreview(_ request: WorkoutRequest) { begin(request, showsReady: false) }
 
     func placementDone(_ request: WorkoutRequest) {
         defaults.set(true, forKey: PhonePlacement.seenKey)
@@ -110,12 +115,12 @@ extension AppModel {
     func outdoorPrepDone(_ request: WorkoutRequest, useLocation: Bool?) {
         defaults.set(true, forKey: "outdoorPrepSeen")
         if let useLocation { defaults.set(useLocation ? "location" : "steps", forKey: "outdoorLocationChoice") }
-        begin(request)
+        begin(request, showsReady: false)
     }
 
     var usesLocationOutdoors: Bool { defaults.string(forKey: "outdoorLocationChoice") == "location" }
 
-    private func prepareAndPlay(_ request: WorkoutRequest) async {
+    private func prepareAndPlay(_ request: WorkoutRequest, showsReady: Bool) async {
         guard var plan = try? request.plan(content: content) else { cover = nil; return }
         let levels = AudioLevels.saved(in: defaults)
         // "Move introductions" off: each chair move starts with its instructions, not its name.
@@ -153,7 +158,7 @@ extension AppModel {
             title: request.title, onPlay: { [weak session] in session?.player.resume() },
             onPause: { [weak session] in session?.player.pause(.user) })
         // "Get ready" 3-2-1 first, like a class starting: time to set the phone down.
-        session.startWithCountdown()
+        session.startWithCountdown(showsReady: showsReady)
         cover = .workout(session)
     }
 
@@ -241,6 +246,7 @@ extension AppModel {
     func eraseAllData() {
         // In-memory settings first (their setters write defaults), then everything is removed.
         textSize = TextSizeOverride(step: 0)
+        appearance = .auto
         notificationSettings = NotificationSettings()
         try? DataEraser(context: container.mainContext, defaults: defaults, notifications: notifications).eraseAll()
         favourites = FavouriteSessions(defaults: defaults)
@@ -275,7 +281,13 @@ extension AppModel: DeepLinkTarget {
         default: break
         }
         tab = .today
-        if let today, let request = today.request { preview(request, checkIn: today.checkedIn) }
+        if let today, let request = today.request { startFromToday(request, checkIn: today.checkedIn) }
+    }
+
+    /// Today's Start: the preview, except the First Walk, which has its own "Up next" (it is set,
+    /// with nothing to choose).
+    func startFromToday(_ request: WorkoutRequest, checkIn: CheckIn?) {
+        if request.isFirstWalk { begin(request) } else { preview(request, checkIn: checkIn) }
     }
 
     func markRestToday() {

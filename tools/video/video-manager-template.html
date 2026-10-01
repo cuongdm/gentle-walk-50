@@ -84,7 +84,7 @@ main{display:grid;grid-template-columns:minmax(300px,400px) 1fr;gap:16px;padding
 .card h3{margin:0 0 6px;font-size:12px;color:var(--ink-2);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:13.5px}
 .kv dt{color:var(--ink-2)} .kv dd{margin:0}
-ul.issues{margin:0;padding-left:18px} ul.issues li{margin:2px 0}
+ul.issues{margin:0;padding-left:18px} ul.issues li{margin:2px 0} ul.issues li.eye{color:var(--p4)}
 .metric{display:flex;justify-content:space-between;font-size:13px;padding:2px 0;border-bottom:1px dashed var(--line)}
 .metric:last-child{border:0}
 .metric .v.bad{color:var(--p1);font-weight:700} .metric .v.warn{color:var(--p2);font-weight:700}
@@ -225,7 +225,7 @@ function renderList(){
           ${hf&&!c.replaced?`<span class="tag hf">+ bản Higgsfield</span>`:""}
           ${c.joined?`<span class="tag warn">ghép 2 clip</span>`:""}
           ${c.res?`<span class="tag">${esc(c.res)}</span>`:""}
-          ${(c.quality_reasons||[]).filter(r=>r!=="Chưa có clip").map(r=>`<span class="tag ${c.quality==="poor"?"bad":"warn"}">${esc(r)}</span>`).join("")}
+          ${(c.quality_reasons||[]).filter(r=>r!=="Chưa có clip").map(r=>`<span class="tag ${r.startsWith("Đã duyệt bằng mắt")?"ok":c.quality==="poor"?"bad":"warn"}">${esc(r)}</span>`).join("")}
           `}${d&&d.status&&d.status!==DECISIONS[0]?`<span class="tag dec">${esc(d.status)}</span>`:""}</div></div>`;
       r.onclick = () => select(c.id, hfRow);
       list.appendChild(r);
@@ -288,7 +288,7 @@ function renderDetail(){
       </dl></div>
       <div class="card"><h3>Lỗi / ghi chú</h3>
         <div style="margin-bottom:6px"><span class="tag ${QUAL[c.quality].cls}">Chất lượng bản app: ${esc(QUAL[c.quality].t)}</span>${c.res?` <span class="tag">${esc(c.res)}</span>`:""}</div>
-        ${[...(c.quality_reasons||[]),...(c.issues||[])].length?`<ul class="issues">${[...(c.quality_reasons||[]),...(c.issues||[])].map(i=>`<li>${esc(i)}</li>`).join("")}</ul>`:`<div class="sub">Đúng động tác, hình sạch.</div>`}
+        ${[...(c.quality_reasons||[]),...(c.issues||[])].length?`<ul class="issues">${[...(c.quality_reasons||[]),...(c.issues||[])].map(i=>`<li${i.startsWith("Đã duyệt bằng mắt")?' class="eye"':''}>${esc(i)}</li>`).join("")}</ul>`:`<div class="sub">Đúng động tác, hình sạch.</div>`}
         ${fl.length?`<div class="tags" style="margin-top:6px">${fl.map(f=>`<span class="tag ${f[0]}">${esc(f[1])}</span>`).join("")}</div>`:""}
         ${c.note?`<p style="margin:8px 0 0;font-size:13.5px">${esc(c.note)}</p>`:""}</div>
       <div class="card"><h3>Đo bản đang xem</h3>${metricRows(vm)}</div>

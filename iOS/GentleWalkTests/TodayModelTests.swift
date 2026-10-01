@@ -43,6 +43,19 @@ import GentleWalkCore
         #expect(!model.extras.isEmpty && model.extras.count <= 3)
     }
 
+    /// "Not yet" on the First Walk's Up next: Today offers the First Walk, even on a rest day, with no
+    /// check-in (it is set: gentle, seated) — owner 01/10/2026.
+    @Test func noSessionYetOffersTheFirstWalk() {
+        for now in [at(28), at(26)] {
+            let model = model(input(now: now, workouts: []))
+            #expect(model.session.kind == .planned)
+            #expect(model.session.title.hasPrefix("Your first walk · "))
+            #expect(model.request?.isFirstWalk == true)
+            #expect(!model.showsCheckIn)
+            #expect(model.isSeatedWalk)
+        }
+    }
+
     @Test func treeRingFillsTowardsTheNextLevel() {
         let history = [22, 23, 24, 25, 28].map { TodayInput.Workout(date: at($0), feeling: .justRight, breakCount: 0, level: .seated) }
         let model = model(input(workouts: history))

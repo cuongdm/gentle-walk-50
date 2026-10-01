@@ -27,6 +27,7 @@ struct CoverView: View {
             .screenBackground()
         case .workout(let session):
             WorkoutView(session: session, name: app.profile?.name, showsMusic: app.music.showsMusicButton,
+                        healthConnected: app.health.isConnected,
                         reviewMilestone: app.reviewMilestone(for:), onReviewAsked: app.markReviewAsked,
                         onChairMoves: session.request.place == .outdoors ? {
                             app.workoutClosed(nil)
@@ -36,25 +37,10 @@ struct CoverView: View {
                         onAgain: session.request.canReplay(isPro: app.isPro) ? { app.again(session.request) } : nil,
                         onClose: app.workoutClosed)
         case .permissions:
-            PermissionsView(model: PermissionsModel(health: app.health, notifications: SystemNotificationAuthorizer(),
-                                                    healthConnected: app.health.isConnected),
-                            reminderTitle: Self.reminderTitle(app.profile?.reminderMoment ?? .coffee)) {
-                app.cover = nil
-                app.reload()
-                Task { await app.notifications.reschedule() }
-            }
+            PermissionsCover(app: app)
         case .cancelGuide(let afterLifetime):
             CancelGuideView(accessUntil: app.store.renewalDate?.formatted(.dateTime.month(.abbreviated).day()),
                             isAfterLifetimePurchase: afterLifetime, onBack: { app.cover = nil })
-        }
-    }
-
-    static func reminderTitle(_ moment: DailyMoment) -> String {
-        switch moment {
-        case .coffee: String(localized: "A gentle reminder after your morning coffee")
-        case .lunch: String(localized: "A gentle reminder after lunch")
-        case .tv: String(localized: "A gentle reminder during evening TV")
-        case .custom: String(localized: "A gentle reminder at the time you picked")
         }
     }
 }
@@ -108,10 +94,38 @@ private struct PreviewCover: View {
     @State private var remindAt: Date?
 
     var body: some View {
-        WorkoutPreviewView(model: model, onStart: app.begin, onRemindLater: {
+        WorkoutPreviewView(model: model, onStart: app.beginFromPreview, onRemindLater: {
             app.cover = nil
             Task { await app.notifications.remindLater() }
         }, remindAt: remindAt, onClose: { app.cover = nil })
         .task { remindAt = await app.notifications.remindLaterTime() }
+    }
+}
+
+/// S16 with its model kept while the reminder time changes (the profile update redraws the cover).
+private struct PermissionsCover: View {
+    let app: AppModel
+    @State private var model: PermissionsModel
+
+    init(app: AppModel) {
+        self.app = app
+        _model = State(initialValue: PermissionsModel(health: app.health, notifications: SystemNotificationAuthorizer(),
+                                                      healthConnected: app.health.isConnected))
+    }
+
+    var body: some View {
+        PermissionsView(model: model,
+                        moment: app.profile?.reminderMoment ?? .coffee,
+                        minutes: app.profile?.reminderMinutes ?? DailyMoment.coffee.suggestedMinutes,
+                        onReminderTime: { moment, minutes in
+                            app.updateProfile {
+                                $0.reminderMoment = moment.rawValue
+                                $0.reminderMinutes = minutes
+                            }
+                        }) {
+            app.cover = nil
+            app.reload()
+            Task { await app.notifications.reschedule() }
+        }
     }
 }

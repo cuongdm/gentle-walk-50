@@ -7,6 +7,10 @@ import GentleWalkCore
 @Observable @MainActor final class WorkoutSessionModel {
     enum Stage: Equatable {
         case preparing
+        /// "Up next": what the session is and what to have ready, until she taps "I'm ready".
+        /// Only when no preview came first (owner 01/10/2026: Continue on phone placement went
+        /// straight into the count).
+        case ready
         /// "Get ready" 3-2-1 before the first word (nothing plays yet).
         case countdown
         case playing
@@ -109,8 +113,14 @@ import GentleWalkCore
 
     func play() { player.play() }
 
-    /// Shows the 3-2-1 first; `countdownFinished()` starts the session.
-    func startWithCountdown() { stage = .countdown }
+    /// Shows "Up next" (when asked) and then the 3-2-1; `countdownFinished()` starts the session.
+    func startWithCountdown(showsReady: Bool = false) { stage = showsReady ? .ready : .countdown }
+
+    /// "I'm ready": on to the 3-2-1.
+    func readyConfirmed() {
+        guard stage == .ready else { return }
+        stage = .countdown
+    }
 
     /// End of the count, or "Start now". Only acts while the count shows.
     func countdownFinished() {

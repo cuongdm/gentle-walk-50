@@ -65,6 +65,8 @@ struct AppRootView: View {
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { app.sceneBecameActive() }
         }
+        // Light or Dark from Me → Display (Auto leaves the iPhone's setting).
+        .onAppear { app.appearance.apply() }
         .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged).receive(on: RunLoop.main)) { _ in
             app.sceneBecameActive()
         }

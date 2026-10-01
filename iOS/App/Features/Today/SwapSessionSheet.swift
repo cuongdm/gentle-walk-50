@@ -5,6 +5,8 @@ import SwiftUI
 struct SwapSessionSheet: View {
     let options: [TodaySwapOption]
     let onPick: (TodaySwapOption) -> Void
+    /// "See all sessions" at the foot: the full list, for anything not offered here.
+    var onSeeAll: (() -> Void)?
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -16,6 +18,11 @@ struct SwapSessionSheet: View {
                     SessionCard(title: option.title, detail: nil, art: option.art, isLocked: option.isLocked) {
                         onPick(option)
                     }
+                }
+                if let onSeeAll {
+                    Button("See all sessions", action: onSeeAll)
+                        .buttonStyle(.secondaryAction)
+                        .padding(.top, 4)
                 }
             }
             .padding(Metrics.screenMargin)

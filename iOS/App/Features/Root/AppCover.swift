@@ -34,6 +34,10 @@ enum TodayRoute: Hashable {
     case allSessions
 }
 
+enum ProgressRoute: Hashable {
+    case sessions
+}
+
 enum JourneyRoute: Hashable {
     case allJourneys
     case postcard(journeyID: String, stopID: String)

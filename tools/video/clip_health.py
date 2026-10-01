@@ -66,7 +66,9 @@ def measure(path):
         floor = f[fy0:, fx0:]
         if ref is None:
             ref = floor
-        else:
+        elif ref.std() >= 2:
+            # A plain corner (no floor grain, e.g. after an upscale smooths it) has no peak to lock on:
+            # phase correlation then returns a random shift of hundreds of px, so drift is not measured.
             drift.append(phase_shift(ref, floor))
     sharp, motion = np.array(sharp), np.array(motion)
     med = float(np.median(sharp))

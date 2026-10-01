@@ -39,33 +39,3 @@ private struct WelcomeLine: View {
         .accessibilityElement(children: .combine)
     }
 }
-
-/// P1–P3: small picture, the part name, one line, Continue. Never moves on by itself.
-struct PartIntroView: View {
-    let part: Int
-    let title: LocalizedStringResource
-    var showsContinue = true
-    let onContinue: () -> Void
-
-    /// One line per part, so "about a minute" is not said three times (review D22).
-    private var line: LocalizedStringResource {
-        switch part {
-        case 1: "Two quick questions about what you want."
-        case 2: "A few questions about your day."
-        default: "One last question about your body."
-        }
-    }
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            ArtImage(art: .momentPlanNotebook, height: 160, fallbackSymbol: "list.bullet.rectangle")
-                .padding(.top, 24)
-            Text("Part \(part) · \(Text(title))")
-                .typeRole(.screenTitle)
-                .foregroundStyle(Palette.text)
-                .accessibilityAddTraits(.isHeader)
-            Text(line).typeRole(.body).foregroundStyle(Palette.text)
-            if showsContinue { ContinueButton(action: onContinue) }
-        }
-    }
-}

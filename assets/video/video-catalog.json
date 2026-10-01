@@ -71,6 +71,21 @@
    "ai": "Flow (bản app) → upscale 1080p (Bytedance) · HEVC",
    "who": "MCP",
    "short": "Flow 1080p"
+  },
+  "seedance-up-1080": {
+   "ai": "Higgsfield · Seedance 2.5 (bản app) → upscale 1080p (Bytedance) · HEVC",
+   "who": "MCP",
+   "short": "Seedance 1080p"
+  },
+  "gemini-360-1080": {
+   "ai": "Higgsfield · Gemini Omni Flash 1.1 360p → cắt loop theo tư thế → upscale 1080p (Bytedance) · HEVC",
+   "who": "MCP, tài khoản Max",
+   "short": "Gemini 1080p"
+  },
+  "gemini-pose-1080": {
+   "ai": "Nano Banana 2 (ảnh tư thế đích) + Gemini Omni 1.1 360p (nghỉ → tư thế) → xuôi + ngược → upscale 1080p (Bytedance) · HEVC",
+   "who": "MCP, tài khoản Max",
+   "short": "Gemini + ảnh tư thế"
   }
  },
  "crop": {
@@ -94,14 +109,25 @@
    "cat": "walk",
    "angle": "Chính diện",
    "frame": "MF-01 F-SIT",
-   "src": "flow-old",
+   "src": "flow-up-1080",
    "tries": 2,
    "prio": 4,
    "hf_s": 5,
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Bản 2 Omni, ảnh khung tải từ máy.",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Bản 2 Omni, ảnh khung tải từ máy. · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên.",
    "form": "ok",
    "pattern": "alternate",
-   "loopfix": "2026-10-01"
+   "loopfix": "2026-10-01",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (W1-1)",
+     "file": "A/_replaced-2026-10-01/W1-1_720.mp4",
+     "src": "flow-old",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "W1-2",
@@ -110,13 +136,32 @@
    "cat": "walk",
    "angle": "Nghiêng",
    "frame": "MF-03c P-SIT",
-   "src": "flow-main",
+   "src": "gemini-360-1080",
    "tries": 2,
    "prio": 4,
    "hf_s": 5,
-   "note": "Lượt 1 chính diện khó thấy → quay nghiêng.",
+   "note": "Gemini 360p lượt 2: prompt 6 lần chậm, đếm chân gần/xa. Loop cắt thẳng 3,0 s (chân xa → chân gần, gót chạm, mũi hướng lên), lệch tư thế 0,42%. Upscale 1080p · HEVC; easy ×0,9 / quick ×1,1 (loop ×3 → lấy bản giữa).",
    "form": "ok",
-   "pattern": "profile"
+   "pattern": "alternate",
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (W1-2)",
+     "file": "A/_replaced-2026-10-01/W1-2_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Gemini Omni 1.1 · nguồn đã dùng",
+     "file": "A/HF-new/W1-2_360p_try2.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "verdict": "Nguồn của bản app"
+    }
+   ],
+   "replaced": "2026-10-01",
+   "hf_done": true
   },
   {
    "id": "W1-3",
@@ -125,14 +170,22 @@
    "cat": "walk",
    "angle": "Chính diện",
    "frame": "MF-01 F-SIT",
-   "src": "flow-rejoin-1080",
+   "src": "gemini-pose-1080",
    "tries": 4,
    "prio": 2,
    "joined": false,
    "hf_s": 5,
    "issues": [],
-   "note": "Ghép lại 2 lượt Flow ở khung khớp nhất (tools/video/rejoin_best.py): khung mờ 8,3% → 1,0% (bản chậm 1,8%, nhanh 1,1%). Upscale 1080p (0,2 credit) · HEVC. Lượt 1 hai chân cùng ra; lượt 2 chân phải đứng ngoài. Seedance 2.5 đổi chân đúng ngay lần đầu nhưng đứng dậy cuối clip (ảnh tham chiếu đứng) → làm lại với ảnh đầu/cuối ngồi.",
+   "note": "Ảnh tư thế (Nano Banana 2): mỗi bên 1 chân bước ngang 1 bàn chân. Mỗi chân 1 clip Gemini 360p 'nghỉ → bước ra', loop = ra + ngược lại (rev_loop.py, bắt đầu ở khung 12 vì Gemini xê dịch đầu/vai trong giây đứng yên) ×1,2 → 5,2 s; nối 0,83% · upscale 1080p · HEVC; easy/quick. Chân trái bước rộng/chéo hơn chân phải một chút.",
    "candidates": [
+    {
+     "label": "Bản cũ đã thay (W1-3)",
+     "file": "A/_replaced-2026-10-01/W1-3_flowrejoin.mp4",
+     "src": "flow-rejoin-1080",
+     "crop": "flow",
+     "verdict": "Nhoè nhẹ ở chỗ ghép (79%, 1% khung mờ)",
+     "old": true
+    },
     {
      "label": "Flow · bản cũ đã thay (W1-3-quick)",
      "file": "A/_replaced-2026-10-01/W1-3-quick_flow.mp4",
@@ -164,11 +217,28 @@
      "crop": "none",
      "verdict": "Không dùng — đứng dậy 2 s cuối",
      "credits": 56
+    },
+    {
+     "label": "Gemini 360p · nghỉ → bước ngang (chân trái ảnh)",
+     "file": "A/HF-new/pose/W1-3_L_half.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 4,
+     "verdict": "Đạt"
+    },
+    {
+     "label": "Gemini 360p · nghỉ → bước ngang (chân phải ảnh)",
+     "file": "A/HF-new/pose/W1-3_R_half.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 4,
+     "verdict": "Đạt"
     }
    ],
    "form": "ok",
    "replaced": "2026-10-01",
-   "pattern": "alternate"
+   "pattern": "alternate",
+   "hf_done": true
   },
   {
    "id": "W1-4",
@@ -177,14 +247,25 @@
    "cat": "walk",
    "angle": "Chính diện",
    "frame": "MF-01 F-SIT",
-   "src": "flow-main",
+   "src": "flow-up-1080",
    "tries": 2,
    "prio": 4,
    "hf_s": 5,
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Lượt 1 thấp như march → mốc \"đế giày ngang giữa ống chân kia\".",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Lượt 1 thấp như march → mốc \"đế giày ngang giữa ống chân kia\". · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên.",
    "form": "ok",
    "pattern": "alternate",
-   "loopfix": "2026-10-01"
+   "loopfix": "2026-10-01",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (W1-4)",
+     "file": "A/_replaced-2026-10-01/W1-4_720.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "W1-5",
@@ -193,13 +274,65 @@
    "cat": "walk",
    "angle": "Nghiêng",
    "frame": "MF-03c P-SIT",
-   "src": "flow-main",
+   "src": "gemini-pose-1080",
    "tries": 3,
    "prio": 4,
    "hf_s": 5,
-   "note": "Lượt nghiêng đầu ra heel dig → sửa prompt \"gót nhấc, mũi chạm\".",
+   "note": "Ảnh tư thế đích (Nano Banana 2): chạm mũi chân gần / chân xa. Mỗi chân 1 clip Gemini 360p 4 s 'nghỉ → chạm', lấy pha ra (pha hạ mũi lấy cách khung) + ngược lại, ×1,3 → 5,75 s; mối nối 0,17% / 0,82% · upscale 1080p · HEVC; easy/quick. Đúng toe tap (gót nhấc, mũi chạm) — kiểm bằng mắt.",
    "form": "ok",
-   "pattern": "profile"
+   "pattern": "profile",
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (W1-5)",
+     "file": "A/_replaced-2026-10-01/W1-5_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ — in đôi ở nối vòng lặp",
+     "old": true
+    },
+    {
+     "label": "Flow cắt lại 1080p · bản tạm (thay 01/10 chiều)",
+     "file": "A/_replaced-2026-10-01/W1-5_flowrecut.mp4",
+     "src": "flow-up-1080",
+     "crop": "flow",
+     "verdict": "3 lần chạm/vòng, chân gần đặt gót",
+     "old": true
+    },
+    {
+     "label": "Gemini 360p · try2a",
+     "file": "A/HF-new/W1-5_360p_try2a.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "verdict": "Loại — cả 2 chân heel dig (gót chạm, mũi hướng lên)"
+    },
+    {
+     "label": "Gemini 360p · try3a",
+     "file": "A/HF-new/W1-5_360p_try3a.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "verdict": "Loại — vẫn heel dig dù prompt mô tả 'gót nhấc, mũi chúi'"
+    },
+    {
+     "label": "Gemini 360p · nghỉ → chạm (chân gần)",
+     "file": "A/HF-new/pose/W1-5_near_half.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 4,
+     "verdict": "Đạt — gót nhấc, mũi chạm"
+    },
+    {
+     "label": "Gemini 360p · nghỉ → chạm (chân xa)",
+     "file": "A/HF-new/pose/W1-5_far_half.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 4,
+     "verdict": "Đạt"
+    }
+   ],
+   "replaced": "2026-10-01",
+   "logic_waive": {
+    "biên độ": "chân xa bị chân gần che ở góc nghiêng ngồi; xem bằng mắt hai lần chạm như nhau"
+   }
   },
   {
    "id": "W1-6",
@@ -208,14 +341,25 @@
    "cat": "walk",
    "angle": "Chính diện",
    "frame": "MF-01 F-SIT",
-   "src": "flow-main",
+   "src": "flow-up-1080",
    "tries": 2,
    "prio": 4,
    "hf_s": 5,
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Chu kỳ đầu cân (+10/−9 px).",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Chu kỳ đầu cân (+10/−9 px). · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên.",
    "form": "ok",
    "pattern": "symmetric",
-   "loopfix": "2026-10-01"
+   "loopfix": "2026-10-01",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (W1-6)",
+     "file": "A/_replaced-2026-10-01/W1-6_720.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "W2-1",
@@ -224,14 +368,25 @@
    "cat": "walk",
    "angle": "Chính diện",
    "frame": "MF-02 F-STAND",
-   "src": "flow-m3",
+   "src": "flow-up-1080",
    "tries": 1,
    "prio": 4,
    "hf_s": 5,
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. ≈78 bước/phút, chân nhấc thấp — hợp người mới tập.",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. ≈78 bước/phút, chân nhấc thấp — hợp người mới tập. · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên.",
    "form": "ok",
    "pattern": "alternate",
-   "loopfix": "2026-10-01"
+   "loopfix": "2026-10-01",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (W2-1)",
+     "file": "A/_replaced-2026-10-01/W2-1_720.mp4",
+     "src": "flow-m3",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "W2-2",
@@ -240,14 +395,25 @@
    "cat": "walk",
    "angle": "Chính diện",
    "frame": "MF-06 F-STAND-WIDE",
-   "src": "flow-main",
+   "src": "flow-up-1080",
    "tries": 1,
    "prio": 4,
    "hf_s": 5,
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Cũng dùng làm hình cho Balance \"Sideways walking\" (B2 đã bỏ).",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Cũng dùng làm hình cho Balance \"Sideways walking\" (B2 đã bỏ). · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên.",
    "form": "ok",
    "pattern": "alternate",
-   "loopfix": "2026-10-01"
+   "loopfix": "2026-10-01",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (W2-2)",
+     "file": "A/_replaced-2026-10-01/W2-2_720.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "W2-3",
@@ -256,14 +422,25 @@
    "cat": "walk",
    "angle": "Chính diện",
    "frame": "MF-02 F-STAND",
-   "src": "flow-main",
+   "src": "flow-up-1080",
    "tries": 1,
    "prio": 4,
    "hf_s": 5,
    "form": "ok",
    "pattern": "alternate",
    "loopfix": "2026-10-01",
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py."
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên.",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (W2-3)",
+     "file": "A/_replaced-2026-10-01/W2-3_720.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "W2-4",
@@ -272,7 +449,7 @@
    "cat": "walk",
    "angle": "Nghiêng",
    "frame": "MF-05c P-WALL",
-   "src": "flow-main",
+   "src": "gemini-360-1080",
    "tries": 1,
    "prio": 4,
    "hf_s": 5,
@@ -280,7 +457,27 @@
     "Bản easy/quick trôi 8 px sau retime — cần xem bằng mắt"
    ],
    "form": "ok",
-   "pattern": "profile"
+   "pattern": "alternate",
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (W2-4)",
+     "file": "A/_replaced-2026-10-01/W2-4_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Gemini Omni 1.1 · nguồn đã dùng",
+     "file": "A/HF-new/W2-4_360p_try1.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "verdict": "Nguồn của bản app"
+    }
+   ],
+   "replaced": "2026-10-01",
+   "hf_done": true,
+   "note": "Gemini 360p lượt 1: loop cắt thẳng 1,9 s (R→L, nhịp đi bộ), lệch tư thế 0,54%. Lượt 2 (6 lần chậm) bị lặp chân L. Upscale 1080p · HEVC; easy/quick."
   },
   {
    "id": "W2-5",
@@ -291,9 +488,37 @@
    "frame": "P-STAND (chưa có ảnh)",
    "prio": 3,
    "hf_s": 5,
-   "missing": true,
-   "note": "Như W2-4 nhưng mũi chân chạm trước, gối hơi gập, gót nhấc; ~0,7 s/lần.",
-   "pattern": "profile"
+   "note": "Ảnh tư thế đích (Nano Banana 2): chạm mũi chân gần / chân xa, gót nhấc. Mỗi chân 1 clip Gemini 360p 4 s 'nghỉ → chạm' (khung cuối = ảnh tư thế), loop = ra + ngược lại cho mỗi chân (mối nối 0,65% / 0,84%), ×1,3 → 4,25 s · upscale 1080p · HEVC; easy/quick. Đúng toe tap ở cả 2 chân (kiểm bằng mắt).",
+   "pattern": "profile",
+   "src": "gemini-pose-1080",
+   "form": "ok",
+   "candidates": [
+    {
+     "label": "Gemini 360p lượt 1 → loop (loại: heel dig)",
+     "file": "A/HF-new/rejected/W2-5.heel-dig.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "verdict": "Sai động tác — gót chạm sàn, mũi hướng lên"
+    },
+    {
+     "label": "Gemini 360p · nghỉ → chạm (chân gần)",
+     "file": "A/HF-new/pose/W2-5_near_half.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 4,
+     "verdict": "Đạt — gót nhấc, mũi chúi"
+    },
+    {
+     "label": "Gemini 360p · nghỉ → chạm (chân xa)",
+     "file": "A/HF-new/pose/W2-5_far_half.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 4,
+     "verdict": "Đạt"
+    }
+   ],
+   "replaced": "2026-10-01",
+   "hf_done": true
   },
   {
    "id": "W2-6",
@@ -304,9 +529,21 @@
    "frame": "MF-04c P-STAND-CHAIR",
    "prio": 3,
    "hf_s": 5,
-   "missing": true,
-   "note": "Đứng sau ghế, gập gối đưa gót ra sau, luân phiên.",
-   "pattern": "profile"
+   "note": "Gemini 720p: lấy đoạn 0–5 s (R→L sạch; sau 5 s lặp R) → loop cắt thẳng 3,9 s, lệch 0,73%. Chân xa nhấc thấp hơn (bị che). Upscale 1080p · HEVC; easy/quick.",
+   "pattern": "alternate",
+   "src": "gemini-1080",
+   "form": "ok",
+   "replaced": "2026-10-01",
+   "hf_done": true,
+   "candidates": [
+    {
+     "label": "Gemini Omni 1.1 · nguồn đã dùng",
+     "file": "A/HF-new/W2-6_720p_try1.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "verdict": "Nguồn của bản app"
+    }
+   ]
   },
   {
    "id": "W2-7",
@@ -317,9 +554,21 @@
    "frame": "MF-02 F-STAND",
    "prio": 3,
    "hf_s": 5,
-   "missing": true,
-   "note": "Chân rộng hơn hông, tay chống hông, dồn trọng tâm trái–phải.",
-   "pattern": "symmetric"
+   "note": "Gemini 720p: 2 chu kỳ trái–phải (hông ±17/+21 px), loop 8,5 s lệch 0,28%. Upscale 1080p · HEVC; easy/quick. Tay buông xuôi (prompt xin chống hông) — lời hướng dẫn trong app không nhắc tay nên vẫn đúng.",
+   "pattern": "symmetric",
+   "src": "gemini-1080",
+   "form": "ok",
+   "replaced": "2026-10-01",
+   "hf_done": true,
+   "candidates": [
+    {
+     "label": "Gemini Omni 1.1 · nguồn đã dùng",
+     "file": "A/HF-new/W2-7_720p_try1.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "verdict": "Nguồn của bản app"
+    }
+   ]
   },
   {
    "id": "V1-1",
@@ -328,16 +577,27 @@
    "cat": "chair",
    "angle": "Chính diện",
    "frame": "MF-01 F-SIT",
-   "src": "flow-main",
+   "src": "flow-up-1080",
    "tries": 1,
    "prio": 4,
    "hf_s": 8,
-   "note": "Crop lại --headroom 150 (đứng lên cao hơn khung ngồi).",
+   "note": "Crop lại --headroom 150 (đứng lên cao hơn khung ngồi). · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên.",
    "issues": [
     "Nhịp hơi không đều (rhythm 0,68) — xem bằng mắt"
    ],
    "form": "ok",
-   "pattern": "symmetric"
+   "pattern": "symmetric",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (V1-1)",
+     "file": "A/_replaced-2026-10-01/V1-1_720.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "V1-alt",
@@ -346,12 +606,24 @@
    "cat": "chair",
    "angle": "Chính diện",
    "frame": "MF-01 F-SIT",
-   "src": "flow-main",
+   "src": "flow-up-1080",
    "tries": 1,
    "prio": 4,
    "hf_s": 8,
    "form": "ok",
-   "pattern": "symmetric"
+   "pattern": "symmetric",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (V1-alt)",
+     "file": "A/_replaced-2026-10-01/V1-alt_720.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01",
+   "note": "Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên."
   },
   {
    "id": "V2-1",
@@ -360,11 +632,23 @@
    "cat": "chair",
    "angle": "Chính diện",
    "frame": "F-SIT",
-   "src": "flow-old",
+   "src": "flow-up-1080",
    "prio": 4,
    "hf_s": 5,
    "form": "ok",
-   "pattern": "alternate"
+   "pattern": "alternate",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (V2-1)",
+     "file": "A/_replaced-2026-10-01/V2-1_720.mp4",
+     "src": "flow-old",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01",
+   "note": "Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên."
   },
   {
    "id": "V3-1",
@@ -418,11 +702,23 @@
    "cat": "chair",
    "angle": "Nghiêng",
    "frame": "P-SIT",
-   "src": "flow-old",
+   "src": "flow-up-1080",
    "prio": 4,
    "hf_s": 6,
    "form": "ok",
-   "pattern": "symmetric"
+   "pattern": "symmetric",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (V4-1)",
+     "file": "A/_replaced-2026-10-01/V4-1_720.mp4",
+     "src": "flow-old",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01",
+   "note": "Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên."
   },
   {
    "id": "V4-alt",
@@ -431,14 +727,25 @@
    "cat": "chair",
    "angle": "Nghiêng",
    "frame": "MF-04c P-STAND-CHAIR",
-   "src": "flow-main",
+   "src": "flow-up-1080",
    "tries": 1,
    "prio": 4,
    "hf_s": 6,
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Dùng cho Balance heel/toe raises.",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Dùng cho Balance heel/toe raises. · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên.",
    "form": "ok",
    "pattern": "symmetric",
-   "loopfix": "2026-10-01"
+   "loopfix": "2026-10-01",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (V4-alt)",
+     "file": "A/_replaced-2026-10-01/V4-alt_720.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "V5-1",
@@ -447,14 +754,25 @@
    "cat": "chair",
    "angle": "Nghiêng",
    "frame": "MF-05c P-WALL-HANDS",
-   "src": "flow-m3",
+   "src": "flow-up-1080",
    "tries": 2,
    "prio": 4,
    "hf_s": 5,
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Lượt 1 người lệch phải (tâm 57%) → dời khung, lượt 2 tâm 40%.",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Lượt 1 người lệch phải (tâm 57%) → dời khung, lượt 2 tâm 40%. · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên.",
    "form": "ok",
    "pattern": "symmetric",
-   "loopfix": "2026-10-01"
+   "loopfix": "2026-10-01",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (V5-1)",
+     "file": "A/_replaced-2026-10-01/V5-1_720.mp4",
+     "src": "flow-m3",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "V6-1",
@@ -463,16 +781,24 @@
    "cat": "chair",
    "angle": "Chính diện",
    "frame": "MF-02b F-BEHIND",
-   "src": "flow-rejoin-1080",
+   "src": "gemini-360-1080",
    "tries": 2,
    "prio": 2,
-   "joined": false,
+   "joined": true,
    "hf_s": 10,
    "issues": [],
    "form": "ok",
    "replaced": "2026-10-01",
-   "note": "Ghép lại 2 lượt Flow ở khung khớp nhất (tools/video/rejoin_best.py): khung mờ 2,6% → 0,3%. Upscale 1080p (0,2 credit) · HEVC.",
+   "note": "Mỗi bên 1 clip Gemini 360p 6 s (start = end), ghép ở khung đứng yên khớp nhất (rejoin_best.py, chênh 1,06 / nối vòng 1,19) → upscale 1080p · HEVC. Hai bên cao gần bằng nhau (R 31% / L 45% chân; bên R khuất một phần sau mặt ghế). Các lượt nâng gối ra trước (L lượt 2, 3b, 4a, 4b) bị loại.",
    "candidates": [
+    {
+     "label": "Flow ghép lại 1080p · bản đã thay (V6-1)",
+     "file": "A/_replaced-2026-10-01/V6-1_flow-rejoin-1080.mp4",
+     "src": "flow-rejoin-1080",
+     "crop": "flow",
+     "verdict": "Bản trước khi thay (để so sánh) — chỉ thấy 1 bên nhấc rõ",
+     "old": true
+    },
     {
      "label": "Flow · bản cũ đã thay (V6-1)",
      "file": "A/_replaced-2026-10-01/V6-1_flow.mp4",
@@ -480,9 +806,26 @@
      "crop": "flow",
      "verdict": "Bản cũ trước khi thay (để so sánh)",
      "old": true
+    },
+    {
+     "label": "Gemini 360p · bên trái ảnh (lượt 3a)",
+     "file": "A/HF-new/V6-L_360p_try3a.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 6,
+     "verdict": "Đạt — gập cẳng chân ra sau, gót giữa bắp chân"
+    },
+    {
+     "label": "Gemini 360p · bên phải ảnh (lượt 2)",
+     "file": "A/HF-new/V6-R_360p_try2.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 6,
+     "verdict": "Đạt — đùi thẳng đứng, gót gập ra sau"
     }
    ],
-   "pattern": "sides"
+   "pattern": "sides",
+   "hf_done": true
   },
   {
    "id": "V8-1",
@@ -491,15 +834,23 @@
    "cat": "chair",
    "angle": "Chính diện",
    "frame": "MF-02b F-BEHIND",
-   "src": "seedance",
+   "src": "seedance-up-1080",
    "tries": 5,
    "prio": 2,
    "joined": false,
    "hf_s": 10,
    "hf_done": true,
    "issues": [],
-   "note": "Thay bằng bản Seedance 2.5 (2 bên liền 1 lượt), vòng lặp cắt thẳng 9,6 s. Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Không nhoè, chỉ upscale. Upscale 1080p (0,2 credit) · HEVC. Đã có bản Seedance 2.5 cả 2 bên trong 1 clip, đạt lượt 1 — chờ chủ app duyệt thay.",
+   "note": "Thay bằng bản Seedance 2.5 (2 bên liền 1 lượt), vòng lặp cắt thẳng 9,6 s. Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Không nhoè, chỉ upscale. Upscale 1080p (0,2 credit) · HEVC. Đã có bản Seedance 2.5 cả 2 bên trong 1 clip, đạt lượt 1 — chờ chủ app duyệt thay. · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên. · V8-1-easy 01/10 (bản dễ: nâng thấp, bàn chân vừa rời sàn): ảnh tư thế (phải ảnh: Nano Banana 2; trái ảnh: GPT Image 2.5 vì Nano Banana luôn nâng nhầm bên). Bên trái = clip 'hạ chân' đảo ngược (Gemini vọt cao khi nâng, hạ thì êm), bên phải = clip nâng không vọt (11%); ghép ở cặp khung nghỉ khớp nhất (0,70%) → 10 s · upscale 1080p · HEVC.",
    "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (V8-1)",
+     "file": "A/_replaced-2026-10-01/V8-1_720.mp4",
+     "src": "seedance",
+     "crop": "hf-frame",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
     {
      "label": "Flow · bản cũ đã thay (V8-1)",
      "file": "A/_replaced-2026-10-01/V8-1_flow.mp4",
@@ -536,7 +887,8 @@
    "form": "ok",
    "replaced": "2026-10-01",
    "pattern": "sides",
-   "loopfix": "2026-10-01"
+   "loopfix": "2026-10-01",
+   "upscaled": "2026-10-01"
   },
   {
    "id": "V9-1",
@@ -580,8 +932,7 @@
    "replaced": "2026-10-01",
    "note": "Đã thay 01/10: hết nhoè ghép, thân gần thẳng. Clip app: 1920×1080 HEVC, 10 s, 2 chân liền 1 clip. Lỗi bản Flow cũ: Thân nghiêng ra trước, chân cao hơn chuẩn; Nhoè chỗ ghép nặng (độ nét còn 36%); Máy trôi 4,5 px.",
    "hf_done": true,
-   "form": "minor",
-   "form_note": "thân hơi đổ trước chút",
+   "form": "ok",
    "pattern": "profile"
   },
   {
@@ -738,14 +1089,25 @@
    "cat": "chair",
    "angle": "Chính diện",
    "frame": "MF-01 F-SIT",
-   "src": "flow-main",
+   "src": "flow-up-1080",
    "tries": 1,
    "prio": 4,
    "hf_s": 8,
    "form": "ok",
    "pattern": "symmetric",
    "loopfix": "2026-10-01",
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py."
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên.",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (V12-1)",
+     "file": "A/_replaced-2026-10-01/V12-1_720.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "V13-1",
@@ -754,14 +1116,25 @@
    "cat": "chair",
    "angle": "Nghiêng",
    "frame": "MF-03c P-SIT",
-   "src": "flow-main",
+   "src": "flow-up-1080",
    "tries": 2,
    "prio": 4,
    "hf_s": 6,
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Chính diện khuỷu mở ngang vai → quay nghiêng.",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Chính diện khuỷu mở ngang vai → quay nghiêng. · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên.",
    "form": "ok",
    "pattern": "symmetric",
-   "loopfix": "2026-10-01"
+   "loopfix": "2026-10-01",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (V13-1)",
+     "file": "A/_replaced-2026-10-01/V13-1_720.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "S1",
@@ -875,14 +1248,25 @@
    "cat": "stretch",
    "angle": "Nghiêng",
    "frame": "MF-03c P-SIT",
-   "src": "flow-2",
+   "src": "flow-up-1080",
    "tries": 2,
    "prio": 4,
    "hf_s": 6,
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Lượt 1 ngửa cằm (lỗi an toàn) → lượt 2 đạt.",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Lượt 1 ngửa cằm (lỗi an toàn) → lượt 2 đạt. · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên. · S3-hold 01/10: đoạn cằm thu (khung 44–60) của chính clip, xuôi + ngược ×0,5 → 2,7 s (0 credit).",
    "form": "ok",
    "pattern": "symmetric",
-   "loopfix": "2026-10-01"
+   "loopfix": "2026-10-01",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (S3)",
+     "file": "A/_replaced-2026-10-01/S3_720.mp4",
+     "src": "flow-2",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "S4",
@@ -891,14 +1275,25 @@
    "cat": "stretch",
    "angle": "Chính diện",
    "frame": "MF-01 F-SIT",
-   "src": "flow-2",
+   "src": "flow-up-1080",
    "tries": 1,
    "prio": 4,
    "hf_s": 6,
    "form": "ok",
    "pattern": "symmetric",
    "loopfix": "2026-10-01",
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py."
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên. · S4-hold 01/10: đoạn vai hạ, thả lỏng (khung 86–102) của chính clip, xuôi + ngược ×0,5 → 2,7 s (0 credit).",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (S4)",
+     "file": "A/_replaced-2026-10-01/S4_720.mp4",
+     "src": "flow-2",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "S5",
@@ -907,14 +1302,43 @@
    "cat": "stretch",
    "angle": "Chính diện",
    "frame": "MF-01 F-SIT",
-   "src": "flow-m3",
+   "src": "gemini-pose-1080",
    "tries": 1,
    "prio": 4,
    "hf_s": 6,
-   "note": "Bàn tay hơi ngửa, cao hơn vai một chút.",
-   "form": "minor",
-   "form_note": "bàn tay hơi ngửa, cao hơn vai một chút",
-   "pattern": "hold"
+   "note": "Ảnh tư thế (Nano Banana 2): dang tay ngang vai, lòng bàn tay hướng trước, vai hạ. Gemini 360p 6 s 'nghỉ → dang → giữ thở'; S5 = xuôi + ngược (10,6 s, nối liền tuyệt đối); S5-hold = đoạn giữ xuôi + ngược (4,9 s) · upscale 1080p · HEVC.",
+   "form": "ok",
+   "form_note": null,
+   "pattern": "hold",
+   "candidates": [
+    {
+     "label": "Bản cũ đã thay (S5)",
+     "file": "A/_replaced-2026-10-01/S5_flow.mp4",
+     "src": "flow-up-1080",
+     "crop": "flow",
+     "verdict": "Bàn tay hơi ngửa, cao hơn vai",
+     "old": true
+    },
+    {
+     "label": "720p · bản cũ trước upscale (S5)",
+     "file": "A/_replaced-2026-10-01/S5_720.mp4",
+     "src": "flow-m3",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Gemini 360p · nghỉ → dang tay → giữ",
+     "file": "A/HF-new/pose/S5_half.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 6,
+     "verdict": "Đạt — tay ngang vai, lòng bàn tay hướng trước"
+    }
+   ],
+   "upscaled": "2026-10-01",
+   "replaced": "2026-10-01",
+   "hf_done": true
   },
   {
    "id": "S6",
@@ -923,12 +1347,24 @@
    "cat": "stretch",
    "angle": "Nghiêng",
    "frame": "MF-03c P-SIT",
-   "src": "flow-2",
+   "src": "flow-up-1080",
    "tries": 1,
    "prio": 4,
    "hf_s": 6,
    "form": "ok",
-   "pattern": "hold"
+   "pattern": "hold",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (S6)",
+     "file": "A/_replaced-2026-10-01/S6_720.mp4",
+     "src": "flow-2",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01",
+   "note": "Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên."
   },
   {
    "id": "S7",
@@ -1062,15 +1498,52 @@
    "cat": "stretch",
    "angle": "Nghiêng",
    "frame": "MF-03c P-SIT",
-   "src": "flow-2",
+   "src": "gemini-pose-1080",
    "tries": 1,
    "prio": 4,
    "hf_s": 6,
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Biến thể: duỗi thẳng chân rồi gập duỗi cổ chân, gối yên — chấp nhận.",
-   "form": "minor",
-   "form_note": "biến thể duỗi thẳng chân rồi gập duỗi cổ chân",
-   "pattern": "symmetric",
-   "loopfix": "2026-10-01"
+   "note": "Ảnh tư thế (Nano Banana 2): tay giữ mép ghế, chân gần nhấc khỏi sàn, gối gập — A mũi duỗi, B mũi kéo về. Gemini 360p 4 s A→B; loop = xuôi + ngược ×2 → 3,25 s/lần gập-duỗi · upscale 1080p · HEVC. Cẳng chân hơi đưa ra khi kéo mũi (lệch nhỏ). · S10-hold: đoạn mũi kéo về đã yên (khung 76–95 nguồn) xuôi + ngược ×0,6 → 2,6 s · upscale 1080p.",
+   "form": "ok",
+   "form_note": null,
+   "pattern": "hold",
+   "loopfix": "2026-10-01",
+   "candidates": [
+    {
+     "label": "Bản cũ đã thay (S10)",
+     "file": "A/_replaced-2026-10-01/S10_flow.mp4",
+     "src": "flow-up-1080",
+     "crop": "flow",
+     "verdict": "Duỗi thẳng chân rồi gập duỗi cổ chân (biến thể)",
+     "old": true
+    },
+    {
+     "label": "720p · bản cũ trước upscale (S10)",
+     "file": "A/_replaced-2026-10-01/S10_720.mp4",
+     "src": "flow-2",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Gemini 360p · mũi duỗi → kéo về (bản c, đã dùng)",
+     "file": "A/HF-new/pose/S10_pf_c.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 4,
+     "verdict": "Đạt — gối gập, chân dưới sàn đứng yên"
+    },
+    {
+     "label": "Gemini 360p · lượt 1",
+     "file": "A/HF-new/pose/S10_pf.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 3,
+     "verdict": "Loại — chân dưới sàn trượt"
+    }
+   ],
+   "upscaled": "2026-10-01",
+   "replaced": "2026-10-01",
+   "hf_done": true
   },
   {
    "id": "S11",
@@ -1115,14 +1588,25 @@
    "cat": "stretch",
    "angle": "Nghiêng",
    "frame": "MF-05c P-WALL",
-   "src": "flow-2",
+   "src": "flow-up-1080",
    "tries": 2,
    "prio": 4,
    "hf_s": 6,
-   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Tool crop dò nhầm ✦ trên tường sáng → --logo thủ công. Kích thước 1120×630.",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Tool crop dò nhầm ✦ trên tường sáng → --logo thủ công. Kích thước 1120×630. · Upscale 1080p 01/10 (Bytedance, 0,2 credit) · HEVC; khung hình giữ nguyên 1:1, cờ hard-cut giữ nguyên.",
    "form": "ok",
    "pattern": "hold",
-   "loopfix": "2026-10-01"
+   "loopfix": "2026-10-01",
+   "candidates": [
+    {
+     "label": "720p · bản cũ trước upscale (S12)",
+     "file": "A/_replaced-2026-10-01/S12_720.mp4",
+     "src": "flow-2",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "upscaled": "2026-10-01"
   },
   {
    "id": "B1",
@@ -1226,9 +1710,62 @@
    "frame": "P-WIDE",
    "prio": 3,
    "hf_s": 8,
-   "missing": true,
-   "note": "Đi gót chạm mũi. Di chuyển trong không gian là điểm yếu của Flow (B2 thất bại) → làm bằng Seedance.",
-   "pattern": "hold"
+   "note": "5 lượt tả bằng lời đều hỏng (bước thường). Cách làm được: ảnh tư thế gót chạm mũi (Nano Banana 2) → tách người (Background Remover) + nền trống (Nano Banana 2 vẽ lại vùng người) → dán người lên CÙNG nền ở 2 vị trí (cách 4 bàn chân) làm khung đầu/cuối → Gemini 360p 8 s đi 4 bước. Đo bằng tools/video/tandem_gap.py: khe lúc đặt chân 0,36 chân, 0% hở rộng (Seedance 94%, Kling 84%). Upscale 1080p · HEVC.",
+   "pattern": "hold",
+   "candidates": [
+    {
+     "label": "Gemini 360p · nền chung, 2 vị trí (bản e, đã dùng)",
+     "file": "A/HF-new/pose/B3_plate_e.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 8,
+     "verdict": "Đạt — lúc đặt chân khe 0,36 chân (~1 bàn chân), 0% hở rộng, sàn đứng yên"
+    },
+    {
+     "label": "Gemini 360p · nền chung (bản f)",
+     "file": "A/HF-new/pose/B3_plate_f.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 8,
+     "verdict": "21% lần đặt chân hở rộng"
+    },
+    {
+     "label": "Gemini 360p · nền phản chiếu (bản b)",
+     "file": "A/HF-new/pose/B3_pose_b.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 8,
+     "verdict": "Form tốt nhưng sàn đổi vân dần (nền khung đầu/cuối khác nhau)"
+    },
+    {
+     "label": "Gemini 360p lượt 3",
+     "file": "A/HF-new/B3_360p_try3.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "verdict": "Loại — bước tới rồi lùi, chỉ dịch 45 px"
+    },
+    {
+     "label": "Kling 3.0 std",
+     "file": "A/HF-new/B3_kling_try4.mp4",
+     "src": "kling30",
+     "crop": "hf-frame",
+     "verdict": "Loại — bước đi thường, khe ~0,6 chân"
+    },
+    {
+     "label": "Seedance 2.5 480p",
+     "file": "A/HF-new/B3_seedance_try5.mp4",
+     "src": "seedance",
+     "crop": "hf-frame",
+     "verdict": "Loại — bước đi thường, khe ~0,55 chân"
+    }
+   ],
+   "src": "gemini-pose-1080",
+   "form": "ok",
+   "replaced": "2026-10-01",
+   "hf_done": true,
+   "logic_waive": {
+    "nối vòng lặp nhảy tư thế": "bài đi tiến 4 bước: mỗi vòng bắt đầu lại từ bên trái (cắt cảnh), không nối liền được"
+   }
   }
  ]
 }

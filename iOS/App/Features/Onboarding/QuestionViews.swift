@@ -38,7 +38,8 @@ struct BarriersView: View {
     }
 }
 
-/// S04 "You're not alone": no question, the title follows the first barrier picked.
+/// S04 "You're not alone": no question, the title follows the first barrier picked. It also opens
+/// part 2 (the part intros went, owner 01/10/2026), so a last line says what comes next.
 struct UnderstandingView: View {
     let barrier: Barrier
     var showsContinue = true
@@ -51,6 +52,8 @@ struct UnderstandingView: View {
                 .padding(.top, 16)
             ScreenHeader(title: copy.title)
             Text(copy.body).typeRole(.body).foregroundStyle(Palette.text)
+            Text("Next, a few questions about your day.").typeRole(.body).foregroundStyle(Palette.textMuted)
+                .padding(.top, 4)
             if showsContinue { ContinueButton(action: onContinue) }
         }
     }
@@ -108,25 +111,7 @@ struct ActivityLevelView: View {
     }
 }
 
-/// S05c screen 1: one flight of stairs.
-struct StairsView: View {
-    @Bindable var flow: OnboardingFlow
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            ScreenHeader(title: "How do you feel after one flight of stairs?")
-            ForEach(StairsAnswer.allCases, id: \.rawValue) { answer in
-                SelectableCard(title: OnboardingCopy.title(answer), isSelected: flow.answers.stairs == answer) {
-                    flow.answers.stairs = answer
-                }
-            }
-            NotedLine(isShown: flow.answers.stairs != nil)
-            ContinueButton(hint: flow.hint, dimmed: flow.answers.stairs == nil, action: flow.next)
-        }
-    }
-}
-
-/// S05c screen 2: getting up from a chair without hands.
+/// S05c: getting up from a chair without hands.
 struct ChairStrengthView: View {
     @Bindable var flow: OnboardingFlow
 
@@ -144,13 +129,14 @@ struct ChairStrengthView: View {
     }
 }
 
-/// "Noted. In a few weeks we'll ask again…" — no score, no comparison (review D24).
+/// "Noted." — no score, no comparison (review D24). The "we'll ask again" promise went with the
+/// stairs question (owner 01/10/2026): there is no check-in to ask it again yet.
 private struct NotedLine: View {
     let isShown: Bool
 
     var body: some View {
         if isShown {
-            Label("Noted. In a few weeks we'll ask again, so you can see how far you've come.", systemImage: "checkmark.circle.fill")
+            Label("Noted. We'll start you somewhere comfortable.", systemImage: "checkmark.circle.fill")
                 .typeRole(.body)
                 .foregroundStyle(Palette.text)
         }

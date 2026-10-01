@@ -45,7 +45,7 @@ struct StretchPlayerView: View {
     private var portrait: some View {
         VStack(spacing: 10) {
             HStack {
-                Button("End", action: model.session.askToEnd).buttonStyle(.smallTextLink)
+                EndSessionButton(action: model.session.askToEnd)
                 Spacer()
                 if let position = model.cooldownPosition {
                     Text(verbatim: position).typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)

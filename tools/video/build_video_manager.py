@@ -95,7 +95,7 @@ def grade(c, m, lg=None):
     poor = wrong move or clear picture fault; fair = small deviation or light picture fault; good = clean."""
     if c.get("missing") or not m:
         return "none", ["Chưa có clip"]
-    poor, fair = [], []
+    poor, fair, notes = [], [], []
     if c.get("form") == "wrong":
         poor.append("Sai động tác / lỗi an toàn")
     elif c.get("form") == "minor":
@@ -106,12 +106,19 @@ def grade(c, m, lg=None):
         fair.append(f"Nhoè nhẹ (độ nét thấp nhất {round(m['dip'] * 100)}%, {m['blur_pct']}% khung mờ)")
     if m["stutter"] >= 3:
         poor.append(f"{m['stutter']} khung lặp (khựng)")
-    if c.get("cat") in ("walk", "chair") and m["rhythm"] is not None and m["rhythm"] > 0.7:  # holds/stretches: rhythm is noise
+    # rhythm: motion_logic checks it against the move's script; the raw motion-burst CV is only a fallback
+    if not lg and c.get("cat") in ("walk", "chair") and m["rhythm"] is not None and m["rhythm"] > 0.7:
         fair.append("Nhịp không đều")
     if m["drift"] > 4:
         fair.append(f"Máy trôi {m['drift']} px")
     if lg:
         logic_faults = [f for f in lg["faults"] if not f.startswith("in đôi")]
+        # catalog "logic_waive": {fault prefix: reason} — a detector limit checked by eye (e.g. the far leg hidden
+        # in a seated side view); the fault is shown as a note, not counted in the grade
+        waive = c.get("logic_waive", {})
+        waived = [f for f in logic_faults if any(f.startswith(k) for k in waive)]
+        logic_faults = [f for f in logic_faults if f not in waived]
+        notes = [f"Đã duyệt bằng mắt: {f} — {next(v for k, v in waive.items() if f.startswith(k))}" for f in waived]
         ghost = [g for g in lg["ghosts"] if g.get("kind") != "motion"]
         if logic_faults:
             poor += ["Logic: " + f for f in logic_faults]
@@ -120,10 +127,10 @@ def grade(c, m, lg=None):
             (poor if any(g["frames"] >= 5 or g["min"] < 0.50 for g in ghost) else fair).append(
                 "In đôi " + ", ".join(f"{where.get(g.get('kind'), '')} {g['start']}–{g['end']}s ({g['frames']} khung)" for g in ghost))
     if poor:
-        return "poor", poor + fair
+        return "poor", poor + fair + notes
     if fair:
-        return "fair", fair
-    return "good", []
+        return "fair", fair + notes
+    return "good", notes
 
 
 def build(health_on: bool):

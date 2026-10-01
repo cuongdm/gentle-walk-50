@@ -117,7 +117,11 @@ struct TodaySwapOption: Equatable, Identifiable {
         return Double(days - previous) / Double(next - previous)
     }
     var doneToday: Bool { activity.isActive(input.now) }
-    var showsCheckIn: Bool { !doneToday }
+    /// No session finished yet (she chose "Not yet" on the First Walk's "Up next"): today offers
+    /// the First Walk, whatever the day (owner 01/10/2026).
+    var isNew: Bool { input.workouts.isEmpty }
+    /// The First Walk is set (gentle, seated), so there is nothing to check in for.
+    var showsCheckIn: Bool { !doneToday && !isNew }
 
     var greeting: String {
         let hour = input.calendar.component(.hour, from: input.now)
@@ -159,6 +163,9 @@ struct TodaySwapOption: Equatable, Identifiable {
 
     var session: TodaySession {
         if doneToday { return TodaySession(kind: .done, title: String(localized: "Done for today")) }
+        if isNew, let request {
+            return TodaySession(kind: .planned, title: String(localized: "Your first walk · \(minutes(of: request)) min"), main: .walk)
+        }
         if case .gentleRestart(let minutes)? = restart {
             return TodaySession(kind: .gentleRestart, title: String(localized: "Gentle restart · \(minutes) min"))
         }
@@ -176,11 +183,12 @@ struct TodaySwapOption: Equatable, Identifiable {
         }
     }
 
-    var isSeatedWalk: Bool { (plannedDay.main == .walk || plannedDay.main == .longWalk) && level == .seated }
+    var isSeatedWalk: Bool { isNew || ((plannedDay.main == .walk || plannedDay.main == .longWalk) && level == .seated) }
 
     /// What the level means for today's kind of session (clarity review D6: "Seated walk" puzzled).
     private var levelLine: String {
-        switch plannedDay.main {
+        if isNew { return String(localized: "Seated · march in your chair") }
+        return switch plannedDay.main {
         case .chair: String(localized: "With your chair")
         case .stretch: String(localized: "Gentle stretches")
         default:
@@ -200,6 +208,7 @@ struct TodaySwapOption: Equatable, Identifiable {
     }
 
     var request: WorkoutRequest? {
+        if isNew { return .firstWalk(limits: input.limits) }
         if case .gentleRestart? = restart {
             return WorkoutRequest(day: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), level: .seated, intensity: .gentle,
                                   place: .indoors, limits: input.limits, rotationIndex: activeDays)

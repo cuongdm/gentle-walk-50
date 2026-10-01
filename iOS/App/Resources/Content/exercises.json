@@ -121,9 +121,6 @@
       "standing": false,
       "videoSeated": "W1-5.mp4",
       "videoFile": "W2-5.mp4",
-      "videoLater": [
-        "W2-5.mp4"
-      ],
       "easierFor": [
         "knees"
       ],
@@ -151,9 +148,6 @@
       "counting": "timed",
       "standing": false,
       "videoFile": "W2-6.mp4",
-      "videoLater": [
-        "W2-6.mp4"
-      ],
       "easierFor": [
         "jointReplacement"
       ],
@@ -182,9 +176,6 @@
       "standing": false,
       "videoSeated": "W1-6.mp4",
       "videoFile": "W2-7.mp4",
-      "videoLater": [
-        "W2-7.mp4"
-      ],
       "hiddenFor": [],
       "easierFor": [],
       "source": "S12, S31"
@@ -860,9 +851,6 @@
       "counting": "timed",
       "standing": true,
       "videoFile": "B3.mp4",
-      "videoLater": [
-        "B3.mp4"
-      ],
       "hiddenFor": [
         "standingIsHard"
       ],

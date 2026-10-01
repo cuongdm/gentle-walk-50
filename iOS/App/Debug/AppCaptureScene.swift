@@ -33,24 +33,15 @@ struct AppCaptureScene: View {
 
     @ViewBuilder private func scene(_ app: AppModel) -> some View {
         switch state {
-        case .onboardingWelcome, .onboardingPart2, .onboardingGoal, .onboardingBarriers, .onboardingUnderstandingJoints,
+        case .onboardingWelcome, .onboardingGoal, .onboardingBarriers, .onboardingUnderstandingJoints,
              .onboardingUnderstandingCharged, .onboardingName, .onboardingStrength, .onboardingBody, .onboardingPlan:
             OnboardingView(flow: app.onboarding, onRestore: {}, onFinished: {})
-        case .onboardingPlanMoment:
-            ScrollView {
-                VStack(alignment: .leading, spacing: 18) {
-                    DailyMomentPicker(moment: .coffee, minutes: 510, onChoose: { _ in }, onStep: { _ in }, onSet: { _ in })
-                    ContinueButton(title: "See my options", action: {})
-                }
-                .padding(Metrics.screenMargin)
-            }
-            .screenBackground()
         case .paywallEligible, .paywallMonthly, .paywallLifetime, .paywallNotEligible, .paywallLifetimeWhileSubscribed:
             PaywallView(model: paywallModel, onPurchase: { _ in }, onRestore: {}, onMaybeLater: {})
         case .permissions, .permissionsGranted:
             PermissionsView(model: PermissionsModel(health: nil, notifications: nil, healthConnected: state == .permissionsGranted,
                                                     remindersAllowed: state == .permissionsGranted),
-                            reminderTitle: CoverView.reminderTitle(.coffee), onDone: {})
+                            moment: .coffee, minutes: 510, onReminderTime: { _, _ in }, onDone: {})
         case .soundSheet:
             SoundSheet(showsMusic: true) { _ in }
         case .watchOnTV:
@@ -69,9 +60,17 @@ struct AppCaptureScene: View {
         case .postcard:
             if let stop = app.content.journeys.first?.stops[1] { PostcardDetailView(stop: stop) }
         case .todaySwap:
-            SwapSessionSheet(options: app.today?.swapOptions ?? []) { _ in }
+            SwapSessionSheet(options: app.today?.swapOptions ?? [], onPick: { _ in }, onSeeAll: {})
         case .allSessions, .allSessionsFree:
             NavigationStack { AllSessionsScreen(app: app) }
+        case .progressDay:
+            let day = app.progress.sessions.first?.date ?? .now
+            NavigationStack { ProgressTab(app: app) }
+                .sheet(isPresented: .constant(true)) {
+                    DaySessionsSheet(day: day, sessions: SessionHistoryItem.on(day, in: app.progress.sessions, calendar: app.calendar))
+                }
+        case .progressSessions:
+            NavigationStack { SessionHistoryScreen(sessions: app.progress.sessions, calendar: app.calendar) }
         case .journeys, .journeysFree:
             NavigationStack {
                 JourneyListView(journeys: app.content.journeys, snapshot: app.journey, isPro: app.isPro, onChoose: { _ in })
@@ -95,7 +94,7 @@ struct AppCaptureScene: View {
     private func makeApp() -> AppModel {
         let trialEnds = Date.now.addingTimeInterval(2 * 86_400)
         let entitlement: Entitlement = switch state {
-        case .todayFree, .journeysFree, .todayTrialEnded, .lockedStop, .allSessionsFree: .free
+        case .todayFree, .journeysFree, .todayTrialEnded, .lockedStop, .allSessionsFree, .progressFree: .free
         case .todayTrialEnding: .trial(ends: trialEnds)
         case .me: .trial(ends: Date.now.addingTimeInterval(12 * 86_400))
         case .meLifetime, .meLifetimeAndSubscription: .lifetime
@@ -123,6 +122,9 @@ struct AppCaptureScene: View {
             for day in 1...3 {
                 context.insert(PainReport(date: now.addingTimeInterval(-Double(day) * 86_400), area: BodyArea.knees.rawValue))
             }
+        case .todayNew:
+            // "Not yet" on the First Walk: no session finished.
+            ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).forEach(context.delete)
         case .todayWelcomeBack:
             let records = (try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []
             let cutoff = now.addingTimeInterval(-5 * 86_400)
@@ -135,11 +137,22 @@ struct AppCaptureScene: View {
             states.forEach { $0.isCurrent = false }
             context.insert(JourneyState(journeyID: "jr.smoky", miles: 1.4, isCurrent: true, startedAt: now))
             context.insert(PostcardUnlock(journeyID: "jr.smoky", stopID: "pc.smoky.1", unlockedAt: now))
-        case .progress:
-            let records = (try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []
+        case .progress, .progressFree, .progressDay, .progressSessions:
+            let records = ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).sorted { $0.date > $1.date }
+            let feelings: [Feeling?] = [.justRight, .justRight, .tooEasy, nil, .justRight, .tooHard]
             for (index, record) in records.enumerated() {
                 record.sitToStandCount = 5 + index / 3
                 if index % 4 == 0 { record.activeSeconds = 10 * 60 }
+                // A real mix for the history: walks, chair moves, a stretch and one outdoor walk.
+                record.kind = ["walk", "chair", "walk", "stretch", "walk", "chair"][index % 6]
+                record.feeling = feelings[index % feelings.count]?.rawValue
+                if index == 2 { record.place = "outdoors"; record.outdoorMiles = 0.9 }
+            }
+            // Two sessions on the latest day, so the day sheet shows more than one.
+            if let latest = records.first {
+                context.insert(WorkoutRecord(date: latest.date.addingTimeInterval(8 * 3_600), kind: "balance", level: "seated",
+                                             intensity: "steady", place: "indoors", activeSeconds: 5 * 60, journeyMiles: 0.25,
+                                             feeling: Feeling.justRight.rawValue))
             }
             context.insert(EverydayWin(key: "win.1", checkedAt: now))
             context.insert(EverydayWin(key: "win.3", checkedAt: now))
@@ -154,7 +167,6 @@ struct AppCaptureScene: View {
             app.favourites.toggle("walk.long")
             app.favourites.toggle("extra.balance")
         case .onboardingWelcome: app.onboarding.jump(to: .welcome)
-        case .onboardingPart2: app.onboarding.jump(to: .part2)
         case .onboardingGoal:
             app.onboarding.toggleGoal(.steadier)
             app.onboarding.jump(to: .goal)
@@ -187,7 +199,7 @@ struct AppCaptureScene: View {
             app.onboarding.jump(to: .plan)
         case .journey, .lockedStop: app.tab = .journey
         case .whereNext: app.tab = .journey
-        case .progress, .progressNoHealth: app.tab = .progress
+        case .progress, .progressNoHealth, .progressFree: app.tab = .progress
         case .me, .meLifetime, .meLifetimeAndSubscription: app.tab = .me
         default: app.tab = .today
         }

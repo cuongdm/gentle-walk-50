@@ -25,7 +25,8 @@ struct MeView: View {
                 }
                 WorkoutAudioSection(defaults: app.defaults, musicStyles: app.music.styles)
                 NotificationSection(app: app)
-                DisplaySection(textSize: Binding(get: { app.textSize }, set: { app.textSize = $0 }))
+                DisplaySection(textSize: Binding(get: { app.textSize }, set: { app.textSize = $0 }),
+                               appearance: Binding(get: { app.appearance }, set: { app.appearance = $0 }))
                 HealthSection(connected: app.health.isConnected, onConnect: { Task { _ = await app.health.requestAuthorization(); app.reload() } })
                 OutdoorSection(defaults: app.defaults)
                 HelpSection(onRestore: { Task { await app.restorePurchases() } }, onPrivacy: { showsPrivacy = true })

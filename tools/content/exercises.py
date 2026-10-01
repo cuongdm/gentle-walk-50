@@ -23,10 +23,10 @@ WALK = {
     "wk.heel-dig": ({"videoSeated": "W1-2.mp4", "videoFile": "W2-4.mp4"}, []),
     "wk.side-step": ({"videoSeated": "W1-3.mp4", "videoFile": "W2-2.mp4"}, []),
     "wk.knee-lift": ({"videoSeated": "W1-4.mp4", "videoFile": "W2-3.mp4"}, []),
-    "wk.toe-tap": ({"videoSeated": "W1-5.mp4", "videoFile": "W2-5.mp4"}, ["W2-5.mp4"]),
+    "wk.toe-tap": ({"videoSeated": "W1-5.mp4", "videoFile": "W2-5.mp4"}, []),
     # Seated heel to back has no clip (A2 question 4): the seated walk shows its picture.
-    "wk.heel-back": ({"videoFile": "W2-6.mp4"}, ["W2-6.mp4"]),
-    "wk.shift": ({"videoSeated": "W1-6.mp4", "videoFile": "W2-7.mp4"}, ["W2-7.mp4"]),
+    "wk.heel-back": ({"videoFile": "W2-6.mp4"}, []),
+    "wk.shift": ({"videoSeated": "W1-6.mp4", "videoFile": "W2-7.mp4"}, []),
     # Arms are layered on the march (plan §2.1): no clip of their own.
     "wk.arms": ({}, []),
 }
@@ -71,7 +71,7 @@ BALANCE = {
     "bl.tandem": ({"videoFile": "B1.mp4", "videoHold": "B1-hold.mp4"}, [], ["dizzy"], "S16 p.18"),
     # No sideways-walking clip (owner 30/09/2026 (a)): the side step clip illustrates it.
     "bl.side-walk": ({"videoFile": "W2-2.mp4"}, [], ["dizzy"], "S16 p.21, S13"),
-    "bl.heel-toe-walk": ({"videoFile": "B3.mp4"}, ["B3.mp4"], [], "S13, S9 p.66, S16 p.23"),
+    "bl.heel-toe-walk": ({"videoFile": "B3.mp4"}, [], [], "S13, S9 p.66, S16 p.23"),
 }
 
 

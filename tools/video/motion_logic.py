@@ -268,6 +268,16 @@ def analyse(path, pattern, thresh=None):
             if len(evs) % 2:
                 faults.append(f"số lần lẻ ({len(evs)}) — vòng lặp không chia đều hai chân")
         else:
+            if base == "sides":
+                # a short dip while one leg is held up (< 0.75 s below threshold: the foot passing behind the chair
+                # seat, or a wobble) is the same hold, not a new rep; lowering and lifting again takes longer
+                merged = []
+                for e in evs:
+                    if merged and e["side"] == merged[-1]["side"] and e["start"] - merged[-1]["end"] < 0.75:
+                        merged[-1] = {**merged[-1], "end": e["end"], "peak": max(e["peak"], merged[-1]["peak"])}
+                    else:
+                        merged.append(e)
+                evs = merged
             faults = [] if base == "hold" else check(evs, base, dur)
     # an event that runs through the loop seam (starts at 0 and ends at the last frame) is one event
     if len(evs) >= 2 and evs[0]["start"] <= 0.05 and evs[-1]["end"] >= dur - 0.05 and evs[0]["side"] == evs[-1]["side"]:
