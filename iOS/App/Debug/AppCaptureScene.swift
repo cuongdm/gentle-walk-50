@@ -17,7 +17,16 @@ struct AppCaptureScene: View {
 
     var body: some View {
         Group {
-            if let app { scene(app) } else { Palette.bg.ignoresSafeArea() }
+            if let app {
+                // The same cover presenter as AppRootView, so taps in a capture scene (a session card,
+                // Start, the paywall) open their screens instead of setting `app.cover` with nobody to show it.
+                scene(app)
+                    .fullScreenCover(item: Binding(get: { app.cover }, set: { app.cover = $0 })) { cover in
+                        CoverView(app: app, cover: cover)
+                    }
+            } else {
+                Palette.bg.ignoresSafeArea()
+            }
         }
         .task { app = makeApp() }
     }

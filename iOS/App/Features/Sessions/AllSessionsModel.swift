@@ -31,8 +31,11 @@ import Observation
         let filmed = SessionVideo.filmed(in: content)
         let sections = SessionPreset.Group.allCases.map { group in
             let items = SessionCatalog.presets(in: group).compactMap { preset -> Item? in
-                // Standing stretches would turn seated anyway when standing is hard: show the seated ones only.
-                if preset.standing && limits.contains(.standingIsHard) { return nil }
+                // Standing stretches would turn seated anyway when standing is hard: show the seated ones
+                // only. Balance is done standing throughout: left off too.
+                if (preset.standing || preset.variant == SessionBuilder.Variant.balance) && limits.contains(.standingIsHard) {
+                    return nil
+                }
                 let minutes = preset.minutes(content: content, limits: limits, rotationIndex: rotationIndex)
                 guard minutes > 0 else { return nil }
                 let request = preset.request(limits: limits, rotationIndex: rotationIndex)
@@ -54,16 +57,20 @@ import Observation
     func toggleFavourite(_ id: String) { favourites.toggle(id) }
 }
 
-/// Whether a session shows a filmed coach: a move it plays has a clip, or its walk at her level does.
+/// Whether a session shows a filmed coach: one of its moves has a clip in the app at her level.
 enum SessionVideo {
-    static func filmed(in content: ContentBundle) -> Set<String> {
-        Set(content.exercises.filter { $0.videoFile != nil }.map(\.id))
+    /// Exercises with a clip in the app bundle, at each walking level (walk moves differ by level).
+    static func filmed(in content: ContentBundle) -> [WalkLevel: Set<String>] {
+        Dictionary(uniqueKeysWithValues: WalkLevel.allCases.map { level in
+            (level, Set(content.exercises.filter {
+                ExerciseVideo.firstBundled($0.videoCandidates(level: level, pace: .easy)) != nil
+            }.map(\.id)))
+        })
     }
 
-    static func has(_ request: WorkoutRequest, filmed: Set<String>, content: ContentBundle) -> Bool {
-        guard let plan = try? request.plan(content: content) else { return false }
-        let walks = plan.blocks.contains { $0.kind == .walk }
-        return plan.exerciseIDs.contains(where: filmed.contains)
-            || (walks && WalkVideo.fileName(for: request.level, isOutdoors: request.place == .outdoors) != nil)
+    static func has(_ request: WorkoutRequest, filmed: [WalkLevel: Set<String>], content: ContentBundle) -> Bool {
+        guard request.place != .outdoors, let plan = try? request.plan(content: content) else { return false }
+        let level = request.place == .pad ? .pad : request.level
+        return plan.exerciseIDs.contains(where: (filmed[level] ?? []).contains)
     }
 }

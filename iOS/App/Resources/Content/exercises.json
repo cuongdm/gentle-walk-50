@@ -2,8 +2,221 @@
   "schemaVersion": 1,
   "exercises": [
     {
+      "id": "wk.march",
+      "name": "March",
+      "purpose": "For keeping up on family walks",
+      "tips": [
+        "Stand or sit tall, eyes ahead",
+        "Lift one foot, set it down softly",
+        "Arms swing, or hands rest on thighs"
+      ],
+      "easier": "Just lift your heels, toes stay down",
+      "harder": "Knees a little higher, arms press forward",
+      "kind": "walk",
+      "counting": "timed",
+      "standing": false,
+      "videoSeated": "W1-1.mp4",
+      "videoFile": "W2-1.mp4",
+      "easierFor": [
+        "jointReplacement"
+      ],
+      "hiddenFor": [],
+      "limitNotes": [
+        {
+          "limit": "jointReplacement",
+          "text": "Keep your knees well below your hips"
+        }
+      ],
+      "source": "S11, S15, S16"
+    },
+    {
+      "id": "wk.heel-dig",
+      "name": "Heel dig",
+      "purpose": "For stepping over doorsteps",
+      "tips": [
+        "Heel down in front, toes up",
+        "Bring the foot back, then switch",
+        "Upper body stays tall and still"
+      ],
+      "easier": "Slow it down, same small reach",
+      "harder": "Switch feet a little quicker",
+      "kind": "walk",
+      "counting": "timed",
+      "standing": false,
+      "videoSeated": "W1-2.mp4",
+      "videoFile": "W2-4.mp4",
+      "hiddenFor": [],
+      "easierFor": [],
+      "source": "S16 #5, S11"
+    },
+    {
+      "id": "wk.side-step",
+      "name": "Side step",
+      "purpose": "For moving around the kitchen",
+      "tips": [
+        "Step out to the side, then together",
+        "Knees soft, toes point forward",
+        "Hips stay level, eyes ahead"
+      ],
+      "easier": "Small steps, hands on your hips",
+      "harder": "Wider steps, arms open to the sides",
+      "kind": "walk",
+      "counting": "timed",
+      "standing": false,
+      "videoSeated": "W1-3.mp4",
+      "videoFile": "W2-2.mp4",
+      "easierFor": [
+        "dizzy"
+      ],
+      "hiddenFor": [],
+      "limitNotes": [
+        {
+          "limit": "dizzy",
+          "text": "Small steps, close to your chair"
+        }
+      ],
+      "source": "S13, S16 #10"
+    },
+    {
+      "id": "wk.knee-lift",
+      "name": "Knee lift",
+      "purpose": "For stepping into the car",
+      "tips": [
+        "Hold the chair or seat lightly",
+        "Knee no higher than your hip",
+        "Foot points forward, body tall"
+      ],
+      "easier": "Lift lower, hand on the chair",
+      "harder": "Touch the knee with the opposite hand",
+      "kind": "walk",
+      "counting": "timed",
+      "standing": false,
+      "videoSeated": "W1-4.mp4",
+      "videoFile": "W2-3.mp4",
+      "easierFor": [
+        "jointReplacement"
+      ],
+      "hiddenFor": [],
+      "limitNotes": [
+        {
+          "limit": "jointReplacement",
+          "text": "Knees stay clearly below your hips"
+        }
+      ],
+      "source": "S29, S28"
+    },
+    {
+      "id": "wk.toe-tap",
+      "name": "Toe tap forward",
+      "purpose": "For crossing the street",
+      "tips": [
+        "Tap your toes out in front",
+        "Knee stays a little bent",
+        "Stay tall, don't lean back"
+      ],
+      "easier": "Tap a little closer to you",
+      "harder": "A low kick, knee never locked",
+      "kind": "walk",
+      "counting": "timed",
+      "standing": false,
+      "videoSeated": "W1-5.mp4",
+      "videoFile": "W2-5.mp4",
+      "videoLater": [
+        "W2-5.mp4"
+      ],
+      "easierFor": [
+        "knees"
+      ],
+      "hiddenFor": [],
+      "limitNotes": [
+        {
+          "limit": "knees",
+          "text": "Tap only, no kicks"
+        }
+      ],
+      "source": "S7, S43b"
+    },
+    {
+      "id": "wk.heel-back",
+      "name": "Heel to back",
+      "purpose": "For walking up hills",
+      "tips": [
+        "Hold the chair, stand tall",
+        "Bring your heel back and up",
+        "Knee points down, don't lean forward"
+      ],
+      "easier": "Lift your heel only a little",
+      "harder": "Hands off the chair, if you feel steady",
+      "kind": "walk",
+      "counting": "timed",
+      "standing": false,
+      "videoFile": "W2-6.mp4",
+      "videoLater": [
+        "W2-6.mp4"
+      ],
+      "easierFor": [
+        "jointReplacement"
+      ],
+      "hiddenFor": [],
+      "limitNotes": [
+        {
+          "limit": "jointReplacement",
+          "text": "Bend only as far as feels comfortable"
+        }
+      ],
+      "source": "S16 #3, S9 p.58"
+    },
+    {
+      "id": "wk.shift",
+      "name": "Weight shift",
+      "purpose": "For standing steady in line",
+      "tips": [
+        "Feet a little wider than your hips",
+        "Shift your weight side to side",
+        "Knees stay over your toes"
+      ],
+      "easier": "Hold the chair as you shift",
+      "harder": "Let the other heel lift a little",
+      "kind": "walk",
+      "counting": "timed",
+      "standing": false,
+      "videoSeated": "W1-6.mp4",
+      "videoFile": "W2-7.mp4",
+      "videoLater": [
+        "W2-7.mp4"
+      ],
+      "hiddenFor": [],
+      "easierFor": [],
+      "source": "S12, S31"
+    },
+    {
+      "id": "wk.arms",
+      "name": "Arm swing / press",
+      "purpose": "For carrying the groceries in",
+      "tips": [
+        "Swing your arms, elbows soft",
+        "Or press forward at shoulder height",
+        "Shoulders stay down and relaxed"
+      ],
+      "easier": "Keep your hands below your shoulders",
+      "harder": "Press up and out at an angle",
+      "kind": "walk",
+      "counting": "timed",
+      "standing": false,
+      "easierFor": [
+        "shoulders"
+      ],
+      "hiddenFor": [],
+      "limitNotes": [
+        {
+          "limit": "shoulders",
+          "text": "Keep your hands below shoulder height"
+        }
+      ],
+      "source": "S16 p.29, S37"
+    },
+    {
       "id": "mv.sit-to-stand",
-      "kind": "move",
       "name": "Sit-to-stand",
       "purpose": "For getting up from chairs",
       "tips": [
@@ -13,17 +226,20 @@
       ],
       "easier": "Push up with your hands on the chair",
       "harder": "Arms crossed, sit down on a slow count of three",
-      "videoFile": "V1-1.mp4",
+      "kind": "move",
       "counting": "reps",
-      "standing": true,
-      "hiddenFor": [],
+      "standing": false,
+      "videoFile": "V1-1.mp4",
+      "videoEasy": "V1-alt.mp4",
       "easierFor": [
-        "knees"
-      ]
+        "knees",
+        "jointReplacement"
+      ],
+      "hiddenFor": [],
+      "source": "S18, S9 p.60"
     },
     {
       "id": "mv.knee-lift",
-      "kind": "move",
       "name": "Seated knee lift",
       "purpose": "For every step you take",
       "tips": [
@@ -33,17 +249,19 @@
       ],
       "easier": "Just lift your heel, toes stay down",
       "harder": "Lift a little higher and swing the opposite arm",
-      "videoFile": "V2-1.mp4",
+      "kind": "move",
       "counting": "timed",
       "standing": false,
-      "hiddenFor": [],
+      "videoFile": "V2-1.mp4",
       "easierFor": [
-        "hips"
-      ]
+        "hips",
+        "jointReplacement"
+      ],
+      "hiddenFor": [],
+      "source": "S11"
     },
     {
       "id": "mv.leg-ext",
-      "kind": "move",
       "name": "Seated leg extension",
       "purpose": "For climbing stairs",
       "tips": [
@@ -53,17 +271,18 @@
       ],
       "easier": "Straighten your leg only halfway",
       "harder": "Hold it up for a count of three",
-      "videoFile": "V3-1.mp4",
+      "kind": "move",
       "counting": "timed",
       "standing": false,
-      "hiddenFor": [],
+      "videoFile": "V3-1.mp4",
       "easierFor": [
         "knees"
-      ]
+      ],
+      "hiddenFor": [],
+      "source": "S9 p.59, S16 #1"
     },
     {
       "id": "mv.heel-toe",
-      "kind": "move",
       "name": "Heel and toe raises",
       "purpose": "For reaching a high shelf",
       "tips": [
@@ -73,15 +292,17 @@
       ],
       "easier": "Heels only, small lifts",
       "harder": "Stand behind your chair and rise onto your toes",
-      "videoFile": "V4-1.mp4",
+      "kind": "move",
       "counting": "timed",
       "standing": false,
+      "videoFile": "V4-1.mp4",
+      "videoAlt": "V4-alt.mp4",
       "hiddenFor": [],
-      "easierFor": []
+      "easierFor": [],
+      "source": "S9 p.62, S16 #4–5"
     },
     {
       "id": "mv.wall-push",
-      "kind": "move",
       "name": "Wall push-up",
       "purpose": "For pushing doors and lifting bags",
       "tips": [
@@ -91,19 +312,20 @@
       ],
       "easier": "Stand closer, bend your elbows just a bit",
       "harder": "Step your feet back a little",
-      "videoFile": "V5-1.mp4",
-      "counting": "timed",
+      "kind": "move",
+      "counting": "reps",
       "standing": true,
+      "videoFile": "V5-1.mp4",
       "hiddenFor": [
         "standingIsHard"
       ],
       "easierFor": [
         "shoulders"
-      ]
+      ],
+      "source": "S9 p.54, S12"
     },
     {
       "id": "mv.single-leg",
-      "kind": "move",
       "name": "Single-leg stand",
       "purpose": "For steadier balance",
       "tips": [
@@ -113,17 +335,185 @@
       ],
       "easier": "Lift only your heel, toes stay down",
       "harder": "Hold on with just one hand",
-      "videoFile": "V6-1.mp4",
+      "kind": "move",
       "counting": "timed",
       "standing": true,
-      "hiddenFor": [],
+      "videoFile": "V6-1.mp4",
+      "hiddenFor": [
+        "standingIsHard"
+      ],
       "easierFor": [
         "dizzy"
-      ]
+      ],
+      "source": "S9 p.65, S16 #9"
+    },
+    {
+      "id": "mv.side-leg",
+      "name": "Side leg raise",
+      "purpose": "For getting out of the car",
+      "tips": [
+        "Hold the chair back with both hands",
+        "Lift about a hand's height, toes forward",
+        "Stay tall, no leaning to the side"
+      ],
+      "easier": "A smaller lift, both hands on the chair",
+      "harder": "Hold on with just one hand",
+      "kind": "move",
+      "counting": "reps",
+      "standing": true,
+      "videoFile": "V8-1.mp4",
+      "videoEasy": "V8-1-easy.mp4",
+      "hiddenFor": [
+        "standingIsHard"
+      ],
+      "easierFor": [
+        "jointReplacement"
+      ],
+      "limitNotes": [
+        {
+          "limit": "jointReplacement",
+          "text": "A small lift, toes and knee face forward"
+        }
+      ],
+      "source": "S9 p.57, S16 #2"
+    },
+    {
+      "id": "mv.back-leg",
+      "name": "Back leg raise",
+      "purpose": "For stepping up onto curbs",
+      "tips": [
+        "Stand tall, hands on the chair",
+        "Leg moves straight back, toes down",
+        "Don't lean forward or arch your back"
+      ],
+      "easier": "A smaller lift, just off the floor",
+      "harder": "Pause at the top for a moment",
+      "kind": "move",
+      "counting": "reps",
+      "standing": true,
+      "videoFile": "V9-1.mp4",
+      "hiddenFor": [
+        "standingIsHard"
+      ],
+      "easierFor": [
+        "lowerBack"
+      ],
+      "limitNotes": [
+        {
+          "limit": "lowerBack",
+          "text": "A small lift, no arching your back"
+        }
+      ],
+      "source": "S9 p.56, S12"
+    },
+    {
+      "id": "mv.knee-curl",
+      "name": "Knee curl",
+      "purpose": "For stepping into the bathtub",
+      "tips": [
+        "Hands on the chair, stand tall",
+        "Bring your heel up behind you",
+        "Knee points down, thigh stays still"
+      ],
+      "easier": "Bend your knee only a little",
+      "harder": "Hands off the chair, if you feel steady",
+      "kind": "move",
+      "counting": "reps",
+      "standing": true,
+      "videoFile": "V10-1.mp4",
+      "hiddenFor": [
+        "standingIsHard"
+      ],
+      "easierFor": [
+        "jointReplacement",
+        "knees"
+      ],
+      "limitNotes": [
+        {
+          "limit": "jointReplacement",
+          "text": "Bend only as far as feels comfortable"
+        }
+      ],
+      "source": "S9 p.58, S16 #3"
+    },
+    {
+      "id": "mv.mini-squat",
+      "name": "Mini-squat",
+      "purpose": "For lowering into a chair",
+      "tips": [
+        "Both hands on the chair, feet hip-width",
+        "Sit back a little, heels stay down",
+        "Knees point forward, not past your toes"
+      ],
+      "easier": "Just a small bend at the knees",
+      "harder": "Lower on a slow count of three",
+      "kind": "move",
+      "counting": "reps",
+      "standing": true,
+      "videoFile": "V11-1.mp4",
+      "hiddenFor": [
+        "standingIsHard"
+      ],
+      "easierFor": [
+        "knees",
+        "jointReplacement"
+      ],
+      "limitNotes": [
+        {
+          "limit": "knees",
+          "text": "Halfway only, stop if your heels lift"
+        }
+      ],
+      "source": "S12, S16 #6, S31"
+    },
+    {
+      "id": "mv.arm-raise",
+      "name": "Arm raises",
+      "purpose": "For putting dishes away",
+      "tips": [
+        "Sit tall, feet flat",
+        "Raise your arms to shoulder height",
+        "Elbows soft, shoulders stay down"
+      ],
+      "easier": "Lift only partway, below your shoulders",
+      "harder": "Pause at the top, or reach overhead",
+      "kind": "move",
+      "counting": "reps",
+      "standing": false,
+      "videoFile": "V12-1.mp4",
+      "easierFor": [
+        "shoulders"
+      ],
+      "hiddenFor": [],
+      "limitNotes": [
+        {
+          "limit": "shoulders",
+          "text": "Only up to shoulder height"
+        }
+      ],
+      "source": "S9 p.48–50"
+    },
+    {
+      "id": "mv.row",
+      "name": "Seated row",
+      "purpose": "For pulling open heavy doors",
+      "tips": [
+        "Arms out in front, palms facing in",
+        "Pull your elbows back past your ribs",
+        "Squeeze your shoulder blades together"
+      ],
+      "easier": "Pull back only halfway",
+      "harder": "Hold the squeeze for a count of two",
+      "kind": "move",
+      "counting": "reps",
+      "standing": false,
+      "videoFile": "V13-1.mp4",
+      "hiddenFor": [],
+      "easierFor": [],
+      "source": "S9 p.53, S32"
     },
     {
       "id": "st.neck-turn",
-      "kind": "stretch",
       "name": "Neck turn",
       "purpose": "For looking over your shoulder",
       "tips": [
@@ -131,18 +521,20 @@
         "Only as far as is comfortable"
       ],
       "easier": "Turn halfway, eyes open, move slowly",
-      "counting": "hold",
+      "kind": "stretch",
+      "counting": "reps",
       "standing": false,
-      "hiddenFor": [],
+      "videoFile": "S1.mp4",
+      "videoHold": "S1-hold.mp4",
       "easierFor": [
         "dizzy",
         "shoulders"
       ],
-      "source": "NHS-SIT"
+      "hiddenFor": [],
+      "source": "S9 p.71, S14, S16 p.6"
     },
     {
       "id": "st.neck-tilt",
-      "kind": "stretch",
       "name": "Side of the neck",
       "purpose": "For a looser neck",
       "tips": [
@@ -150,18 +542,64 @@
         "Ear toward shoulder, no pulling"
       ],
       "easier": "Tilt a little, skip the hand on the shoulder",
+      "kind": "stretch",
       "counting": "hold",
       "standing": false,
-      "hiddenFor": [],
+      "videoFile": "S2.mp4",
+      "videoHold": "S2-hold.mp4",
       "easierFor": [
         "dizzy",
         "shoulders"
       ],
-      "source": "NHS-FLEX"
+      "hiddenFor": [],
+      "source": "S14"
+    },
+    {
+      "id": "st.chin-tuck",
+      "name": "Chin tuck",
+      "purpose": "For after reading or screen time",
+      "tips": [
+        "Glide your head straight back",
+        "Eyes level, don't look up"
+      ],
+      "easier": "A smaller glide, just a few times",
+      "kind": "stretch",
+      "counting": "reps",
+      "standing": false,
+      "videoFile": "S3.mp4",
+      "videoHold": "S3-hold.mp4",
+      "hiddenFor": [],
+      "easierFor": [],
+      "source": "S16 p.7"
+    },
+    {
+      "id": "st.shoulder-roll",
+      "name": "Shoulder rolls",
+      "purpose": "For shoulders after a busy day",
+      "tips": [
+        "Roll up, back, then down, slowly",
+        "Head still, hands on your thighs"
+      ],
+      "easier": "Make the circles smaller",
+      "kind": "stretch",
+      "counting": "reps",
+      "standing": false,
+      "videoFile": "S4.mp4",
+      "videoHold": "S4-hold.mp4",
+      "easierFor": [
+        "shoulders"
+      ],
+      "hiddenFor": [],
+      "limitNotes": [
+        {
+          "limit": "shoulders",
+          "text": "Make small, slow circles"
+        }
+      ],
+      "source": "đề xuất app (STD F4)"
     },
     {
       "id": "st.chest",
-      "kind": "stretch",
       "name": "Chest and shoulders",
       "purpose": "For sitting tall",
       "tips": [
@@ -169,17 +607,46 @@
         "Chest forward and up, gently"
       ],
       "easier": "Hands resting on your hips instead of arms out",
+      "kind": "stretch",
       "counting": "hold",
       "standing": false,
-      "hiddenFor": [],
+      "videoFile": "S5.mp4",
+      "videoHold": "S5-hold.mp4",
       "easierFor": [
         "shoulders"
       ],
-      "source": "NHS-SIT"
+      "hiddenFor": [],
+      "source": "S9 p.75, S11"
+    },
+    {
+      "id": "st.upper-back",
+      "name": "Upper back reach",
+      "purpose": "For reaching across the table",
+      "tips": [
+        "Arms forward, palms facing away",
+        "Reach forward, lower back stays tall"
+      ],
+      "easier": "Keep your hands a little lower",
+      "kind": "stretch",
+      "counting": "hold",
+      "standing": false,
+      "videoFile": "S6.mp4",
+      "videoHold": "S6-hold.mp4",
+      "easierFor": [
+        "lowerBack",
+        "shoulders"
+      ],
+      "hiddenFor": [],
+      "limitNotes": [
+        {
+          "limit": "lowerBack",
+          "text": "Back stays straight, just reach your arms"
+        }
+      ],
+      "source": "S9 p.78"
     },
     {
       "id": "st.twist",
-      "kind": "stretch",
       "name": "Upper back twist",
       "purpose": "For turning to reach for things",
       "tips": [
@@ -187,17 +654,19 @@
         "Turn from the chest, hips stay still"
       ],
       "easier": "Turn a small way, head in line with your body",
+      "kind": "stretch",
       "counting": "hold",
       "standing": false,
-      "hiddenFor": [],
+      "videoFile": "S7.mp4",
+      "videoHold": "S7-hold.mp4",
       "easierFor": [
         "lowerBack"
       ],
-      "source": "NHS-SIT"
+      "hiddenFor": [],
+      "source": "S11, S9 p.77"
     },
     {
       "id": "st.side",
-      "kind": "stretch",
       "name": "Side stretch",
       "purpose": "For reaching up and across",
       "tips": [
@@ -205,18 +674,20 @@
         "Reach up and over, or slide your hand down"
       ],
       "easier": "Arm by your side, lean a little",
+      "kind": "stretch",
       "counting": "hold",
       "standing": false,
-      "hiddenFor": [],
+      "videoFile": "S8.mp4",
+      "videoHold": "S8-hold.mp4",
       "easierFor": [
         "lowerBack",
         "shoulders"
       ],
-      "source": "NHS-LPT"
+      "hiddenFor": [],
+      "source": "S14, NHS-LPT"
     },
     {
       "id": "st.thigh",
-      "kind": "stretch",
       "name": "Back of the thigh",
       "purpose": "For easier bending and walking",
       "tips": [
@@ -224,8 +695,11 @@
         "Lean forward from the hips, back long"
       ],
       "easier": "Keep the knee a little bent, lean only a little",
+      "kind": "stretch",
       "counting": "hold",
       "standing": false,
+      "videoFile": "S9.mp4",
+      "videoHold": "S9-hold.mp4",
       "hiddenFor": [
         "jointReplacement"
       ],
@@ -233,11 +707,10 @@
         "lowerBack",
         "knees"
       ],
-      "source": "NHS-LPT"
+      "source": "S9 p.83, S31, S27, S32"
     },
     {
       "id": "st.ankle",
-      "kind": "stretch",
       "name": "Ankle circles and points",
       "purpose": "For steadier steps",
       "tips": [
@@ -245,17 +718,19 @@
         "Point your toes away, then back"
       ],
       "easier": "Keep your heel on the floor, just lift and lower your toes",
-      "counting": "hold",
+      "kind": "stretch",
+      "counting": "timed",
       "standing": false,
-      "hiddenFor": [],
+      "videoFile": "S10.mp4",
+      "videoHold": "S10-hold.mp4",
       "easierFor": [
         "knees"
       ],
-      "source": "NHS-SIT"
+      "hiddenFor": [],
+      "source": "S9 p.79, S11"
     },
     {
       "id": "st.calf",
-      "kind": "stretch",
       "name": "Calf stretch",
       "purpose": "For comfortable walking",
       "tips": [
@@ -263,15 +738,136 @@
         "Hold the chair the whole time"
       ],
       "easier": "Shorter step back, back knee a little bent",
+      "kind": "stretch",
       "counting": "hold",
       "standing": true,
+      "videoFile": "S11.mp4",
+      "videoHold": "S11-hold.mp4",
       "hiddenFor": [
         "standingIsHard"
       ],
       "easierFor": [
         "knees"
       ],
-      "source": "NHS-FLEX"
+      "source": "S9 p.88, S14"
+    },
+    {
+      "id": "st.overhead",
+      "name": "Overhead reach at the wall",
+      "purpose": "For reaching the top cupboard",
+      "tips": [
+        "Walk your hands up the wall",
+        "Heels down, don't arch your back"
+      ],
+      "easier": "Stop when your hands reach eye level",
+      "kind": "stretch",
+      "counting": "hold",
+      "standing": false,
+      "videoFile": "S12.mp4",
+      "videoHold": "S12-hold.mp4",
+      "easierFor": [
+        "shoulders",
+        "standingIsHard"
+      ],
+      "hiddenFor": [],
+      "limitNotes": [
+        {
+          "limit": "shoulders",
+          "text": "Reach only to eye level"
+        },
+        {
+          "limit": "standingIsHard",
+          "text": "Sit tall and reach up instead"
+        }
+      ],
+      "source": "S9 p.74"
+    },
+    {
+      "id": "bl.tandem",
+      "name": "Tandem stance",
+      "purpose": "For narrow aisles and hallways",
+      "tips": [
+        "Hold the chair the whole time",
+        "Front heel touches your back toes",
+        "Knees soft, eyes straight ahead"
+      ],
+      "easier": "Front foot a little to the side",
+      "harder": "Just your fingertips on the chair",
+      "kind": "balance",
+      "counting": "timed",
+      "standing": true,
+      "videoFile": "B1.mp4",
+      "videoHold": "B1-hold.mp4",
+      "hiddenFor": [
+        "standingIsHard"
+      ],
+      "easierFor": [
+        "dizzy"
+      ],
+      "limitNotes": [
+        {
+          "limit": "jointReplacement",
+          "text": "Feet stay in line, never crossing over"
+        },
+        {
+          "limit": "dizzy",
+          "text": "Both hands on the chair"
+        }
+      ],
+      "source": "S16 p.18"
+    },
+    {
+      "id": "bl.side-walk",
+      "name": "Sideways walking",
+      "purpose": "For getting through crowded rooms",
+      "tips": [
+        "Step to the side, feet together",
+        "Toes point forward, hips level",
+        "Stay near a counter or wall"
+      ],
+      "easier": "Smaller steps, one hand on the counter",
+      "harder": "Slightly bigger steps, same slow pace",
+      "kind": "balance",
+      "counting": "timed",
+      "standing": true,
+      "videoFile": "W2-2.mp4",
+      "hiddenFor": [
+        "standingIsHard"
+      ],
+      "easierFor": [
+        "dizzy"
+      ],
+      "limitNotes": [
+        {
+          "limit": "dizzy",
+          "text": "Small steps, one hand on the counter"
+        }
+      ],
+      "source": "S16 p.21, S13"
+    },
+    {
+      "id": "bl.heel-toe-walk",
+      "name": "Heel-to-toe walk",
+      "purpose": "For garden paths and trails",
+      "tips": [
+        "Fingertips on the wall beside you",
+        "Heel lands right in front of toes",
+        "Eyes ahead, one slow step at a time"
+      ],
+      "easier": "Leave a small gap between steps",
+      "harder": "A few more steps, same slow pace",
+      "kind": "balance",
+      "counting": "timed",
+      "standing": true,
+      "videoFile": "B3.mp4",
+      "videoLater": [
+        "B3.mp4"
+      ],
+      "hiddenFor": [
+        "standingIsHard"
+      ],
+      "easierFor": [],
+      "source": "S13, S9 p.66, S16 p.23"
     }
   ]
 }

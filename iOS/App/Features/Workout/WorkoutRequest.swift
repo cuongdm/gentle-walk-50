@@ -24,6 +24,18 @@ struct WorkoutRequest: Identifiable, Equatable, Sendable {
                        place: .indoors, limits: limits, rotationIndex: 0, isFirstWalk: true)
     }
 
+    /// Gentle chair moves started from Complete after an outdoor walk (all seated, about five minutes).
+    static func chairMovesAfterOutdoor(limits: Set<BodyLimit>, rotationIndex: Int) -> WorkoutRequest {
+        WorkoutRequest(day: PlannedDay(main: .chair, chairMoves: 0, cooldown: true), level: .seated, intensity: .gentle,
+                       place: .indoors, limits: limits, rotationIndex: rotationIndex)
+    }
+
+    /// Whole minutes the plan takes (at least one).
+    func minutes(content: ContentBundle) -> Int {
+        let seconds = (try? plan(content: content).totalSeconds) ?? 0
+        return max(1, Int((Double(seconds) / 60).rounded()))
+    }
+
     /// "Do it again" on Complete: not after First Walk; a catalog session only if her plan opens it.
     func canReplay(isPro: Bool) -> Bool {
         guard !isFirstWalk else { return false }
@@ -41,9 +53,15 @@ struct WorkoutRequest: Identifiable, Equatable, Sendable {
         }
     }
 
+    /// The template variant of a catalog session (Commercial break walk, Morning stretch, Balance).
+    var variant: String? { presetID.flatMap(SessionCatalog.preset(id:))?.variant }
+
     /// Session name for the lock screen and titles.
     var title: String {
         if isFirstWalk { return String(localized: "First walk") }
+        if let preset = presetID.flatMap(SessionCatalog.preset(id:)), preset.variant != nil {
+            return String(localized: preset.title)
+        }
         switch day.main {
         case .chair: return String(localized: "Chair moves")
         case .stretch: return String(localized: "Gentle stretch")
@@ -62,8 +80,9 @@ struct WorkoutRequest: Identifiable, Equatable, Sendable {
             return SessionPlan(template: template)
         }
         var plan = try SessionBuilder.build(kind: day, level: place == .pad ? .pad : level, intensity: intensity,
-                                            limits: limits, rotationIndex: rotationIndex, content: content)
-        if !swaps.isEmpty, let library = content.sessions.first(where: { $0.id == "ses.moves" }) {
+                                            limits: limits, rotationIndex: rotationIndex, content: content, variant: variant)
+        let libraryID = SessionBuilder.moveLibraryID(for: day.main == .chair ? intensity : .steady)
+        if !swaps.isEmpty, let library = content.sessions.first(where: { $0.id == libraryID }) {
             for b in plan.blocks.indices where plan.blocks[b].kind == .chair {
                 for s in plan.blocks[b].segments.indices {
                     guard let id = plan.blocks[b].segments[s].exerciseID, let replacement = swaps[id],

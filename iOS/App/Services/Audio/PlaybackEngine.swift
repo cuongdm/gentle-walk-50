@@ -59,7 +59,11 @@ extension PlaybackEngine {
         self.duckedVolume = duckedVolume
         player.automaticallyWaitsToMinimizeStalling = false
         let token = player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 4), queue: .main) { [weak self] time in
-            MainActor.assumeIsolated { self?.onTime?(time.seconds) }
+            MainActor.assumeIsolated {
+                // While a new item loads or seeks, its clock reads 0 or a stale time: don't move the screen.
+                guard let self, self.isReady, self.pendingSeek == nil, !self.isSeeking else { return }
+                self.onTime?(time.seconds)
+            }
         }
         let player = player
         nonisolated(unsafe) let unsafeToken = token
@@ -87,7 +91,41 @@ extension PlaybackEngine {
             nonisolated(unsafe) let observer = endObserver
             cleanup.add { NotificationCenter.default.removeObserver(observer) }
         }
+        isReady = false
+        readyObserver = item.observe(\.status, options: [.initial, .new]) { [weak self] item, _ in
+            guard item.status == .readyToPlay else { return }
+            Task { @MainActor in self?.itemBecameReady() }
+        }
         player.replaceCurrentItem(with: item)
+    }
+
+    /// A new item is not ready right after `replaceCurrentItem`: a seek sent then can be dropped and the
+    /// program would restart from 0 (heard as the coach repeating herself after Skip). Seek and play wait.
+    private var isReady = false
+    private var readyObserver: NSKeyValueObservation?
+    private var pendingSeek: Double?
+    private var pendingPlay = false
+    private var isSeeking = false
+
+    private func itemBecameReady() {
+        guard !isReady else { return }
+        isReady = true
+        if let seconds = pendingSeek {
+            pendingSeek = nil
+            isSeeking = true
+            player.seek(to: CMTime(seconds: seconds, preferredTimescale: 600), toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] _ in
+                Task { @MainActor in
+                    guard let self else { return }
+                    self.isSeeking = false
+                    guard self.pendingPlay else { return }
+                    self.pendingPlay = false
+                    self.player.play()
+                }
+            }
+        } else if pendingPlay {
+            pendingPlay = false
+            player.play()
+        }
     }
 
     func setVoiceOn(_ on: Bool) {
@@ -133,10 +171,18 @@ extension PlaybackEngine {
         return mix
     }
 
-    func play() { player.play() }
-    func pause() { player.pause() }
+    func play() {
+        guard isReady, pendingSeek == nil else { pendingPlay = true; return }
+        player.play()
+    }
+
+    func pause() {
+        pendingPlay = false
+        player.pause()
+    }
 
     func seek(to seconds: Double) {
+        guard isReady else { pendingSeek = seconds; return }
         player.seek(to: CMTime(seconds: seconds, preferredTimescale: 600), toleranceBefore: .zero, toleranceAfter: .zero)
     }
 }

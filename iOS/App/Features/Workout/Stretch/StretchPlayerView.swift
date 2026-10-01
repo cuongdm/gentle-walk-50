@@ -15,7 +15,7 @@ struct StretchPlayerView: View {
         Group {
             if fullScreen || verticalSizeClass == .compact {
                 FullScreenVideoView(
-                    fileName: model.pose?.videoFile, title: model.pose?.name,
+                    fileName: model.videoFile, title: model.pose?.name,
                     moveProgress: model.moveProgress, next: model.followingName, counter: model.holdText,
                     caption: model.player.caption?.text, isPaused: isPaused,
                     onExit: exitFullScreen, onBack: model.back, onPause: model.session.togglePause,
@@ -53,7 +53,7 @@ struct StretchPlayerView: View {
             if let progress = model.moveProgress {
                 MoveProgressHeader(progress: progress, next: model.followingName)
             }
-            ExerciseVideo(fileName: model.pose?.videoFile, isHolding: model.isHolding)
+            ExerciseVideo(fileName: model.videoFile, isHolding: model.isHolding && !model.playsHoldClip)
                 .overlay(alignment: .topTrailing) { VideoCornerButton.expand(enterFullScreen).padding(4) }
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
@@ -70,7 +70,7 @@ struct StretchPlayerView: View {
                         }
                         .frame(maxWidth: 110)
                     }
-                    MoveTips(tips: model.pose?.tips ?? [], note: model.usesEasier ? model.pose?.easier : nil)
+                    MoveTips(tips: model.pose?.tips ?? [], note: model.note)
                     VersionPills(usesEasier: model.usesEasier, hasHarder: false,
                                  onEasier: { Task { await model.chooseEasier() } })
                 }

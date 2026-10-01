@@ -7,9 +7,10 @@ extension SessionPreset {
     func request(limits: Set<BodyLimit>, rotationIndex: Int) -> WorkoutRequest {
         // Seated stretch: the poses filter treats "standing is hard" as the seated set.
         let limits = main == .stretch && !standing ? limits.union([.standingIsHard]) : limits
+        // A standing stretch is built at a standing level (the builder reads "standing" from it).
+        let level = main == .stretch && variant == nil ? (standing ? WalkLevel.inPlace : .seated) : level
         var request = WorkoutRequest(day: PlannedDay(main: main, chairMoves: 0, cooldown: false), level: level,
-                                     intensity: intensity, place: .indoors, limits: limits,
-                                     rotationIndex: fixedRotation ?? rotationIndex)
+                                     intensity: intensity, place: .indoors, limits: limits, rotationIndex: rotationIndex)
         request.presetID = id
         return request
     }

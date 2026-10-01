@@ -59,6 +59,25 @@ import GentleWalkCore
         #expect(ThisHurtsModel(player: walk, recorder: FakePainRecorder(), now: { TestSupportDate.now }).isWalk)
     }
 
+    /// A walking move (march, side step…) is still the walk: "easier" slows a quicker part to easy.
+    @Test func walkMovesKeepTheWalkChoices() async throws {
+        let content = TestFixtures.content
+        let plan = try SessionBuilder.build(kind: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), level: .inPlace,
+                                            intensity: .steady, limits: [], rotationIndex: 0, content: content)
+        let engine = FakePlaybackEngine()
+        let player = SessionPlayer(engine: engine, notificationCenter: .init())
+        try await player.load(SessionTimeline.make(plan: plan, voice: content.voiceLines))
+        player.play()
+        let brisk = try #require(player.timeline.phases.first { $0.kind == .brisk })
+        engine.advance(to: brisk.start + 5)
+        let recorder = FakePainRecorder()
+        let model = ThisHurtsModel(player: player, recorder: recorder, now: { TestSupportDate.now })
+        #expect(model.isWalk)
+        _ = await model.showEasier()
+        #expect(player.currentPhase?.kind == .easy)
+        #expect(recorder.reports.first?.exerciseID == "wk.march")
+    }
+
     @Test func stopForTodayEndsTheSessionAndStillCounts() async throws {
         let (player, _, _) = try await chairPlayer()
         let recorder = FakePainRecorder()

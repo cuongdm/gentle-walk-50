@@ -17,7 +17,7 @@ struct ChairPlayerView: View {
         Group {
             if fullScreen || verticalSizeClass == .compact {
                 FullScreenVideoView(
-                    fileName: model.exercise?.videoFile, title: model.exercise?.name,
+                    fileName: model.videoFile, title: model.exercise?.name,
                     moveProgress: model.moveProgress, next: model.followingName,
                     counter: model.countsReps ? model.repsText : model.timerText,
                     caption: model.player.caption?.text, isPaused: isPaused,
@@ -25,7 +25,7 @@ struct ChairPlayerView: View {
                     onSkip: { Task { await model.skip() } },
                     onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
             } else if model.isRest {
-                RestBetweenMoves(timer: model.timerText, next: model.nextExercise,
+                RestBetweenMoves(timer: model.timerText, next: model.nextExercise, nextVideo: model.nextVideoFile,
                                  onSkipRest: { Task { await model.skip() } },
                                  onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
             } else {
@@ -62,7 +62,7 @@ struct ChairPlayerView: View {
             if let progress = model.moveProgress {
                 MoveProgressHeader(progress: progress, next: model.followingName)
             }
-            ExerciseVideo(fileName: model.exercise?.videoFile)
+            ExerciseVideo(fileName: model.videoFile)
                 .overlay(alignment: .topTrailing) { VideoCornerButton.expand(enterFullScreen).padding(4) }
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
@@ -238,6 +238,8 @@ struct VersionPills: View {
 struct RestBetweenMoves: View {
     let timer: String
     let next: Exercise?
+    /// The next move's clip, if the app has it.
+    var nextVideo: String?
     let onSkipRest: () -> Void
     let onBreak: () -> Void
     let onHurts: () -> Void
@@ -265,7 +267,7 @@ struct RestBetweenMoves: View {
                 // A large look at the next move, like a class's "get ready" (competitor idea 1).
                 VStack(alignment: .leading, spacing: 10) {
                     NextUpName(name: next.name)
-                    ExerciseVideo(fileName: next.videoFile).frame(maxWidth: 420)
+                    ExerciseVideo(fileName: nextVideo).frame(maxWidth: 420)
                 }
                 .cardStyle()
             }

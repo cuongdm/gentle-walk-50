@@ -35,6 +35,81 @@ Giãn cơ: xem [A10](A10-stretch.md) §2 (2 gợi ý + bản dễ mỗi tư th�
 | mv.wall-push | Wall push-up · For pushing doors and lifting bags | Hands flat at shoulder height · Body straight, like a plank · Heels stay on the floor | Stand closer, bend your elbows just a bit | Step your feet back a little |
 | mv.single-leg | Single-leg stand · For steadier balance | Hold the chair with both hands · Look at one spot ahead · Lift your foot just a little | Lift only your heel, toes stay down | Hold on with just one hand |
 
+## D5 — bài mới 30/09/2026
+_Theo [kế hoạch nội dung 4 nhóm](../plans/2026-09-30-content-4-groups.md) §2.1–§2.4 (tên khớp đúng cột "Tên"), §4.2 dòng D5 · Tư thế và chống chỉ định: [STD](../research/2026-09-30-exercise-standards.md) §2–§5, §8.2 · Gợi ý khớp hình trong clip: [PROMPTS](P-production-prompts.md) §3–§6 · Chữ màn hình tiếng Anh Mỹ: gợi ý ≤ 8 từ, mục đích ≤ 6 từ, không dấu chấm cuối (như bảng trên). Mục đích nói việc đời thường, không hứa sức khoẻ; thăng bằng không hứa giảm ngã; không bao giờ nhắm mắt._
+
+D-min-texts trước ngày này **chưa có** chữ theo từng động tác đi bộ (chỉ có khung buổi ở A2) → thêm 8 dòng `wk.*`. Một dòng dùng cho cả Seated và In place (gợi ý viết để đúng cả hai: "Stand or sit tall", "Hold the chair or seat").
+
+### Walks (8)
+| Mã | Tên · mục đích | 3 gợi ý | Easier version | Harder version |
+|---|---|---|---|---|
+| wk.march | March · For keeping up on family walks | Stand or sit tall, eyes ahead · Lift one foot, set it down softly · Arms swing, or hands rest on thighs | Just lift your heels, toes stay down | Knees a little higher, arms press forward |
+| wk.heel-dig | Heel dig · For stepping over doorsteps | Heel down in front, toes up · Bring the foot back, then switch · Upper body stays tall and still | Slow it down, same small reach | Switch feet a little quicker |
+| wk.side-step | Side step · For moving around the kitchen | Step out to the side, then together · Knees soft, toes point forward · Hips stay level, eyes ahead | Small steps, hands on your hips | Wider steps, arms open to the sides |
+| wk.knee-lift | Knee lift · For stepping into the car | Hold the chair or seat lightly · Knee no higher than your hip · Foot points forward, body tall | Lift lower, hand on the chair | Touch the knee with the opposite hand |
+| wk.toe-tap | Toe tap forward · For crossing the street | Tap your toes out in front · Knee stays a little bent · Stay tall, don't lean back | Tap a little closer to you | A low kick, knee never locked |
+| wk.heel-back | Heel to back · For walking up hills | Hold the chair, stand tall · Bring your heel back and up · Knee points down, don't lean forward | Lift your heel only a little | Hands off the chair, if you feel steady |
+| wk.shift | Weight shift · For standing steady in line | Feet a little wider than your hips · Shift your weight side to side · Knees stay over your toes | Hold the chair as you shift | Let the other heel lift a little |
+| wk.arms | Arm swing / press · For carrying the groceries in | Swing your arms, elbows soft · Or press forward at shoulder height · Shoulders stay down and relaxed | Keep your hands below your shoulders | Press up and out at an angle |
+- `wk.toe-tap` bản dễ: plan §2.1 để "—" (toe tap đã là bản dễ của low kick) → app đề xuất "tap closer", chờ duyệt.
+- `wk.heel-back` bản ngồi (gót trượt về gầm ghế) chưa có clip; gợi ý viết theo bản đứng vịn ghế (W2-6, đợt B). `wk.arms` không có clip riêng (bồi thêm trên march).
+
+### Chair moves — 6 bài mới
+| Mã | Tên · mục đích | 3 gợi ý | Easier version | Harder version |
+|---|---|---|---|---|
+| mv.side-leg | Side leg raise · For getting out of the car | Hold the chair back with both hands · Lift about a hand's height, toes forward · Stay tall, no leaning to the side | A smaller lift, both hands on the chair | Hold on with just one hand |
+| mv.back-leg | Back leg raise · For stepping up onto curbs | Stand tall, hands on the chair · Leg moves straight back, toes down · Don't lean forward or arch your back | A smaller lift, just off the floor | Pause at the top for a moment |
+| mv.knee-curl | Knee curl · For stepping into the bathtub | Hands on the chair, stand tall · Bring your heel up behind you · Knee points down, thigh stays still | Bend your knee only a little | Hands off the chair, if you feel steady |
+| mv.mini-squat | Mini-squat · For lowering into a chair | Both hands on the chair, feet hip-width · Sit back a little, heels stay down · Knees point forward, not past your toes | Just a small bend at the knees | Lower on a slow count of three |
+| mv.arm-raise | Arm raises · For putting dishes away | Sit tall, feet flat · Raise your arms to shoulder height · Elbows soft, shoulders stay down | Lift only partway, below your shoulders | Pause at the top, or reach overhead |
+| mv.row | Seated row · For pulling open heavy doors | Arms out in front, palms facing in · Pull your elbows back past your ribs · Squeeze your shoulder blades together | Pull back only halfway | Hold the squeeze for a count of two |
+- Khớp clip: V8 (hai tay vịn, nhấc ~20 cm = "about a hand's height", mũi chân hướng trước, thân không nghiêng) · V9 (chân thẳng ra sau, mũi chân xuống, không ưỡn) · V10 (gót lên khoảng nửa, đùi thẳng đứng) · V11 (hai tay vịn, gối không qua mũi chân, gót phẳng) · V12 (trước rồi ngang, tới ngang vai) · V13 (tay duỗi trước, lòng bàn tay đối nhau, khuỷu qua sườn).
+- `mv.knee-curl` và `wk.heel-back` cùng chuyển động (STD C10 / walk #6), khác nhịp: một bài rep chậm, một bài nhịp đi bộ. Bản khó "Hands off the chair" theo plan ("không vịn"), kèm điều kiện "if you feel steady".
+
+### Stretches — 4 tư thế mới (2 gợi ý + bản dễ, không bản khó)
+| Mã | Tên · mục đích | 2 gợi ý | Easier version | Harder version |
+|---|---|---|---|---|
+| st.chin-tuck | Chin tuck · For after reading or screen time | Glide your head straight back · Eyes level, don't look up | A smaller glide, just a few times | — |
+| st.shoulder-roll | Shoulder rolls · For shoulders after a busy day | Roll up, back, then down, slowly · Head still, hands on your thighs | Make the circles smaller | — |
+| st.upper-back | Upper back reach · For reaching across the table | Arms forward, palms facing away · Reach forward, lower back stays tall | Keep your hands a little lower | — |
+| st.overhead | Overhead reach at the wall · For reaching the top cupboard | Walk your hands up the wall · Heels down, don't arch your back | Stop when your hands reach eye level | — |
+- 8 tư thế cũ giữ ở [A10](A10-stretch.md) §2 (chưa có dòng mục đích "For …"; nếu thẻ tư thế cần dòng này thì viết bổ sung sau).
+
+### Balance (Extras) — bài mới
+| Mã | Tên · mục đích | 3 gợi ý | Easier version | Harder version |
+|---|---|---|---|---|
+| bl.tandem | Tandem stance · For narrow aisles and hallways | Hold the chair the whole time · Front heel touches your back toes · Knees soft, eyes straight ahead | Front foot a little to the side | Just your fingertips on the chair |
+| bl.side-walk | Sideways walking · For getting through crowded rooms | Step to the side, feet together · Toes point forward, hips level · Stay near a counter or wall | Smaller steps, one hand on the counter | Slightly bigger steps, same slow pace |
+| bl.heel-toe-walk | Heel-to-toe walk · For garden paths and trails | Fingertips on the wall beside you · Heel lands right in front of toes · Eyes ahead, one slow step at a time | Leave a small gap between steps | A few more steps, same slow pace |
+- `bl.heel-toe-walk`: đợt B (clip B3), chỉ buổi Strong.
+- `bl.side-walk`: không có video riêng (chốt 30/09) → màn hiện clip **W2-2 side step**; gợi ý viết để khớp hình (bước sang – khép, tay chống hông, hông ngang), giọng A11 dẫn đi ngang 10 bước. Không có "không vịn" ở mọi bài thăng bằng.
+- **Dùng lại, không thêm dòng:** one-leg stand của buổi Balance **là cùng bài `mv.single-leg`** (STD C7 = Otago #9 = NIA Stand on One Foot, vịn ghế 2 tay → 1 tay) → dùng dòng `mv.single-leg` ở trên, không tạo `bl.one-leg`. Cũng dùng lại: sit-to-stand (`mv.sit-to-stand`), heel raises + toe raises đứng vịn (`mv.heel-toe`, hình bản khó "Stand behind your chair…"), weight shift (`wk.shift`).
+
+### Biến thể theo chip S06 (chữ trên màn khi người dùng chọn chip)
+Bảng D5 trên không có cột biến thể → bảng riêng. Nhãn chip đúng chữ S06 trong spec ("I get dizzy easily", "Standing for long is hard"); "Lower back" gồm cả "or bone thinning" (chốt #6). Chỉ ghi chỗ plan §2.1–§2.4 có biến thể; bài bị ẩn không cần chữ.
+| Mã | Chip | Text |
+|---|---|---|
+| wk.march | Joint replacement | Keep your knees well below your hips |
+| wk.side-step | I get dizzy easily | Small steps, close to your chair |
+| wk.knee-lift | Joint replacement | Knees stay clearly below your hips |
+| wk.toe-tap | Knees | Tap only, no kicks |
+| wk.heel-back | Joint replacement | Bend only as far as feels comfortable |
+| wk.arms | Shoulders | Keep your hands below shoulder height |
+| mv.side-leg | Joint replacement | A small lift, toes and knee face forward |
+| mv.back-leg | Lower back | A small lift, no arching your back |
+| mv.knee-curl | Joint replacement | Bend only as far as feels comfortable |
+| mv.mini-squat | Knees | Halfway only, stop if your heels lift |
+| mv.arm-raise | Shoulders | Only up to shoulder height |
+| st.shoulder-roll | Shoulders | Make small, slow circles |
+| st.upper-back | Lower back | Back stays straight, just reach your arms |
+| st.overhead | Shoulders | Reach only to eye level |
+| st.overhead | Standing for long is hard | Sit tall and reach up instead |
+| bl.tandem | Joint replacement | Feet stay in line, never crossing over |
+| bl.tandem | I get dizzy easily | Both hands on the chair |
+| bl.side-walk | I get dizzy easily | Small steps, one hand on the counter |
+- Plan ghi "Knee replacement" cho `wk.heel-back`, `mv.knee-curl`; S06 không có chip riêng → gắn vào "Joint replacement".
+- `bl.tandem` + Joint replacement: STD §5.1 chấp nhận vì chân đặt thẳng hàng, không bắt chéo; khó chịu → đổi sang side step.
+
 ## D6. Mô tả hành trình (5)
 | Mã | Tên | Mô tả (dưới tên, luôn kèm "A gentle version of the route") |
 |---|---|---|
@@ -109,7 +184,7 @@ Câu thứ hai dựa trên NHS-HIP (xem A10 §1); không nói "safe", "prevents"
 | D1, D4, D11 | theo spec | đã có |
 | D2 | 6 | |
 | D3 | 6 + 1 mặc định | |
-| D5 | 6 động tác + 8 tư thế (A10) | |
+| D5 | 6 động tác + 8 tư thế (A10) | 30/09: + 8 đi bộ, 6 ghế, 4 giãn cơ, 3 thăng bằng, 18 biến thể chip |
 | D6 | 5 | |
 | D7 | 6 (New York) | 4 tuyến trả phí: chỉ bưu thiếp đầu dùng câu A8, mặt sau viết sau |
 | D8 | 28 | 14 nhắc trung tính thay cho 42 |

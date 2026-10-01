@@ -10,3 +10,14 @@ GentleWalk.xcodeproj/
 iOS/Config/Local.xcconfig
 *.xcresult
 .build/
+tools/video/.venv/
+tools/video/models/
+*.pose.npz
+# Video production drafts (Flow/Higgsfield tries, replaced clips, crop checks): local only, too large for git
+assets/video/A/
+assets/video/M3/
+assets/video/_trash/
+assets/video/manager/
+assets/video/W1-1/v2/
+assets/video/**/*_nologo.mp4
+assets/video/**/*crop-check.png

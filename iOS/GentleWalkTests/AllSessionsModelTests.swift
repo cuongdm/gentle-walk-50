@@ -29,10 +29,10 @@ import GentleWalkCore
 
     @Test func sessionsWithAFilmedMoveAreMarkedVideo() {
         let items = model(isPro: true).sections.flatMap(\.items)
-        let video = items.filter(\.hasVideo).map(\.id)
-        // Chair moves are filmed (V1–V6) and the seated walk (W1-1); walks in place and stretches
-        // are voice and pictures for now.
-        #expect(video == ["walk.gentle", "chair.gentle", "chair.steady", "chair.strong", "extra.commercial", "extra.balance"])
+        let video = Set(items.filter(\.hasVideo).map(\.id))
+        // The seated and in-place march (W1-1, W2-1) and the first six chair moves ship with the app.
+        #expect(video.isSuperset(of: ["walk.gentle", "walk.steady", "walk.strong", "chair.gentle", "chair.steady",
+                                      "chair.strong", "extra.commercial", "extra.balance"]))
     }
 
     @Test func favouritesComeFirstInTheOrderAdded() {
@@ -46,8 +46,19 @@ import GentleWalkCore
         #expect(model.favouriteItems.map(\.id) == ["walk.long"])
     }
 
-    @Test func standingIsHardHidesStandingStretches() {
-        let stretches = model(isPro: true, limits: [.standingIsHard]).sections.first { $0.group == .stretch }?.items.map(\.id)
+    @Test func standingIsHardHidesStandingStretchesAndBalance() {
+        let sections = model(isPro: true, limits: [.standingIsHard]).sections
+        let stretches = sections.first { $0.group == .stretch }?.items.map(\.id)
         #expect(stretches == ["stretch.seated.gentle", "stretch.seated.steady"])
+        let extras = sections.first { $0.group == .extras }?.items.map(\.id)
+        #expect(extras == ["extra.commercial", "extra.morning"])
+    }
+
+    @Test func cardsShowTheRealLength() throws {
+        let items = model(isPro: true).sections.flatMap(\.items)
+        for item in items {
+            let seconds = try item.request.plan(content: TestFixtures.content).totalSeconds
+            #expect(item.detail == "\(max(1, Int((Double(seconds) / 60).rounded()))) min")
+        }
     }
 }

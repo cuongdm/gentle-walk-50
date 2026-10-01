@@ -23,8 +23,8 @@ struct WalkPlayerView: View {
         return String(localized: "\(CompleteContent.miles(miles)) walked")
     }
     private var isPaused: Bool { if case .paused = model.player.state { true } else { false } }
-    /// The filmed loop for her level, if there is one.
-    private var video: String? { WalkVideo.fileName(for: model.level, isOutdoors: isOutdoors) }
+    /// The filmed loop for this move at her level and pace, if the app has it.
+    private var video: String? { model.videoFile(isOutdoors: isOutdoors) }
     /// Phone on its side, or the expand button: the clip fills the screen.
     private var showsFullScreen: Bool { video != nil && (fullScreen || verticalSizeClass == .compact) }
     private var tint: Color { model.tone == .brisk ? Palette.sun : Palette.secondary }
@@ -63,8 +63,8 @@ struct WalkPlayerView: View {
         return video == nil ? 320 : 232
     }
 
-    /// Indoors: "Seated" or "In place" under the part's name (the clip alone left it unclear).
-    private var levelNote: String? { isOutdoors ? nil : String(localized: model.level.title) }
+    /// Indoors: "Seated · Heel dig" under the part's name (the clip alone left it unclear).
+    private var levelNote: String? { isOutdoors ? nil : model.levelNote }
 
     /// The expand button shows only on a clip.
     private var expandAction: (() -> Void)? {
@@ -111,7 +111,7 @@ struct WalkPlayerView: View {
                     VStack(spacing: 20) {
                         // A phone on its side has no room for the picture above the controls.
                         if verticalSizeClass != .compact {
-                            WalkScene(level: model.level, isOutdoors: isOutdoors, height: 270,
+                            WalkScene(level: model.level, video: video, isOutdoors: isOutdoors, height: 270,
                                       onFullScreen: expandAction)
                         }
                         Spacer(minLength: 0)
@@ -153,7 +153,7 @@ struct WalkPlayerView: View {
             WalkTopBar(status: model.statusLine, locationOn: session.locationOn?() ?? false, onEnd: session.askToEnd,
                                    onSound: { showsSound = true })
             if showsScene {
-                WalkScene(level: model.level, isOutdoors: isOutdoors, height: sceneHeight, minHeight: 0,
+                WalkScene(level: model.level, video: video, isOutdoors: isOutdoors, height: sceneHeight, minHeight: 0,
                           onFullScreen: expandAction)
                     .layoutPriority(1)
             }
@@ -242,11 +242,13 @@ struct WalkTopBar: View {
     }
 }
 
-/// The filmed loop for her level when there is one, otherwise the painting for it. It takes the
-/// room left between the top bar and the clock, up to `height`, and hides itself below a useful
+/// The filmed loop for the move when there is one, otherwise the painting for her level. It takes
+/// the room left between the top bar and the clock, up to `height`, and hides itself below a useful
 /// size, so a small phone never gets a sliver or an empty gap (review U7, U11).
 struct WalkScene: View {
     let level: WalkLevel
+    /// The clip to loop (from `WalkPlayerModel.videoFile`); nil shows the painting.
+    var video: String?
     var isOutdoors = false
     var height: CGFloat = 150
     /// Upright phone: grows into the free room (nil = always `height`, the side column).
@@ -271,7 +273,7 @@ struct WalkScene: View {
     }
 
     @ViewBuilder private func picture(height: CGFloat) -> some View {
-        if let video = WalkVideo.fileName(for: level, isOutdoors: isOutdoors) {
+        if let video {
             ExerciseVideo(fileName: video)
                 .overlay(alignment: .topTrailing) {
                     if let onFullScreen { VideoCornerButton.expand(onFullScreen).padding(4) }

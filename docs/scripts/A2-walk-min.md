@@ -1,4 +1,5 @@
 # A2 — Dẫn đi bộ, bản tối thiểu cho demo MVP · bản nháp 1
+> **30/09/2026:** bản đầy đủ ở [A2-walk.md](A2-walk.md); file này giữ để đối chiếu ID.
 _29/09/2026 · Theo [app-context.md](../../app-context.md) (Tone & copy rules) và [content-plan.md](../content-plan.md) mục A2 · Tái dùng 26 câu "Dùng lại" của [A1](A1-first-walk.md) · Chữ thoại tiếng Anh Mỹ, ghi chú tiếng Việt_
 
 ## 1. Phạm vi

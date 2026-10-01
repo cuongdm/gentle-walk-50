@@ -20,10 +20,43 @@ import GentleWalkCore
         #expect(standing.limits == [.knees])
     }
 
-    @Test func balanceAlwaysUsesTheSameMoves() {
+    @Test func extrasPlayTheirOwnTemplates() throws {
         let balance = SessionCatalog.preset(id: "extra.balance")!
-        #expect(balance.request(limits: [], rotationIndex: 11).rotationIndex == 5)
-        #expect(SessionCatalog.preset(id: "chair.gentle")!.request(limits: [], rotationIndex: 11).rotationIndex == 11)
+        let moves = try (0..<3).map { day in
+            try balance.request(limits: [], rotationIndex: day).plan(content: TestFixtures.content).exerciseIDs
+        }
+        #expect(moves.allSatisfy { $0 == moves[0] })
+        #expect(moves[0].contains("bl.tandem"))
+        #expect(balance.request(limits: [], rotationIndex: 0).variant == SessionBuilder.Variant.balance)
+        #expect(balance.request(limits: [], rotationIndex: 0).title == "Balance")
+        let morning = try SessionCatalog.preset(id: "extra.morning")!.request(limits: [], rotationIndex: 0).plan(content: TestFixtures.content)
+        #expect(morning.lineIDs.contains("a11.morning.open"))
+        let commercial = try SessionCatalog.preset(id: "extra.commercial")!.request(limits: [], rotationIndex: 0).plan(content: TestFixtures.content)
+        #expect(commercial.lineIDs.contains("a11.break.open.1"))
+    }
+
+    @Test func standingStretchIsBuiltStanding() throws {
+        let standing = try SessionCatalog.preset(id: "stretch.standing.gentle")!.request(limits: [], rotationIndex: 0)
+            .plan(content: TestFixtures.content)
+        #expect(standing.exerciseIDs.contains("st.calf"))
+        let seated = try SessionCatalog.preset(id: "stretch.seated.gentle")!.request(limits: [], rotationIndex: 0)
+            .plan(content: TestFixtures.content)
+        #expect(!seated.exerciseIDs.contains("st.calf"))
+    }
+
+    @Test func previewRowsAreUniqueAndBalanceKeepsItsMoves() {
+        for preset in SessionCatalog.all {
+            let model = WorkoutPreviewModel(day: PlannedDay(main: preset.main, chairMoves: 0, cooldown: false), intensity: preset.intensity,
+                                            checkIn: nil, suggestedLevel: preset.level, limits: [], rotationIndex: 0,
+                                            content: TestFixtures.content, presetID: preset.id, standing: preset.standing)
+            let ids = model.rows.map(\.id)
+            #expect(Set(ids).count == ids.count, "\(preset.id): \(ids)")
+            #expect(!ids.isEmpty)
+            if preset.variant == SessionBuilder.Variant.balance {
+                #expect(model.rows.allSatisfy { $0.swappableExerciseID == nil })
+                #expect(model.title.hasPrefix("Balance · "))
+            }
+        }
     }
 
     @Test func doItAgainFollowsThePlan() {

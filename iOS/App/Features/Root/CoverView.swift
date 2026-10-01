@@ -30,9 +30,8 @@ struct CoverView: View {
                         reviewMilestone: app.reviewMilestone(for:), onReviewAsked: app.markReviewAsked,
                         onChairMoves: session.request.place == .outdoors ? {
                             app.workoutClosed(nil)
-                            app.begin(WorkoutRequest(day: PlannedDay(main: .chair, chairMoves: 0, cooldown: true),
-                                                     level: .seated, intensity: session.request.intensity, place: .indoors,
-                                                     limits: session.request.limits, rotationIndex: app.progress.activeDays))
+                            app.begin(.chairMovesAfterOutdoor(limits: session.request.limits,
+                                                              rotationIndex: app.progress.activeDays))
                         } : nil,
                         onAgain: session.request.canReplay(isPro: app.isPro) ? { app.again(session.request) } : nil,
                         onClose: app.workoutClosed)

@@ -5,6 +5,10 @@ public enum ValidationMode: Sendable { case development, release }
 public struct ContentIssue: Equatable, Sendable {
     public enum Code: Sendable {
         case duplicateID, stopsNotIncreasing, wrongStopCount, missingExercise, missingVoiceLine, missingVoiceFile, noFreeJourney
+        /// A clip named in exercises.json is not in the app bundle.
+        case missingVideoFile
+        // Session rules of docs/research/2026-09-30-exercise-standards.md §7.
+        case briskBeforeWarmUp, briskWhileSeated, repsOutOfRange, holdTooLong, balanceWithoutHands, cooldownTooShort
     }
     public enum Severity: Sendable { case warning, error }
 
@@ -19,7 +23,10 @@ public enum ContentValidator {
     /// Every journey has exactly six postcards (spec S18).
     public static let stopsPerJourney = 6
 
-    public static func validate(_ bundle: ContentBundle, mode: ValidationMode) -> [ContentIssue] {
+    /// - Parameter bundledFiles: file names in the app bundle; when given, every clip the exercises
+    ///   name is looked up (a missing clip that must ship now is an error in release, else a warning).
+    public static func validate(_ bundle: ContentBundle, mode: ValidationMode,
+                                bundledFiles: Set<String>? = nil) -> [ContentIssue] {
         var issues: [ContentIssue] = []
         func error(_ code: ContentIssue.Code, _ detail: String) {
             issues.append(ContentIssue(code: code, severity: .error, detail: detail))
@@ -41,7 +48,7 @@ public enum ContentValidator {
                 error(.stopsNotIncreasing, "\(journey.id): \(previous.id) → \(next.id)")
             }
         }
-        if !bundle.journeys.contains(where: \.isFree) {
+        if !bundle.journeys.isEmpty, !bundle.journeys.contains(where: \.isFree) {
             error(.noFreeJourney, "no journey has isFree = true")
         }
 
@@ -65,6 +72,19 @@ public enum ContentValidator {
                 detail: line.id
             ))
         }
+
+        if let bundledFiles {
+            let used = Set(bundle.sessions.flatMap { $0.segments.compactMap(\.exerciseID) })
+            for exercise in bundle.exercises where used.contains(exercise.id) {
+                for (file, required) in exercise.namedVideos where !bundledFiles.contains(file) {
+                    issues.append(ContentIssue(code: .missingVideoFile,
+                                               severity: required && mode == .release ? .error : .warning,
+                                               detail: "\(exercise.id) → \(file)"))
+                }
+            }
+        }
+
+        issues += SessionRules.check(bundle).map { ContentIssue(code: $0.code, severity: .error, detail: $0.detail) }
         return issues
     }
 }

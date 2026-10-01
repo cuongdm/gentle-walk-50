@@ -33,7 +33,8 @@ public struct SessionPlan: Equatable, Sendable {
         for b in copy.blocks.indices where copy.blocks[b].kind == .walk {
             for s in copy.blocks[b].segments.indices where remaining > 0 {
                 let segment = copy.blocks[b].segments[s]
-                guard let keepHead = Self.trimStart[segment.kind] else { continue }
+                // Only the walking itself shrinks; a cool-down stretch keeps its holds.
+                guard let keepHead = Self.trimStart[segment.kind], !(segment.exerciseID?.hasPrefix("st.") ?? false) else { continue }
                 let cut = min(remaining, segment.seconds - Self.minimumPhaseSeconds)
                 guard cut > 0 else { continue }
                 copy.blocks[b].segments[s] = Self.trim(segment, by: cut, from: keepHead)
@@ -41,8 +42,8 @@ public struct SessionPlan: Equatable, Sendable {
             }
         }
         for b in copy.blocks.indices.reversed() where remaining > 0 && copy.blocks[b].kind != .walk {
-            while remaining > 0, let last = copy.blocks[b].segments.lastIndex(where: { $0.exerciseID != nil }),
-                  copy.blocks[b].segments.filter({ $0.exerciseID != nil }).count > 1 {
+            while remaining > 0, let last = copy.blocks[b].segments.lastIndex(where: \.isExercise),
+                  copy.blocks[b].segments.filter(\.isExercise).count > 1 {
                 remaining -= copy.blocks[b].segments[last].seconds
                 copy.blocks[b].segments.remove(at: last)
                 if last > 0, copy.blocks[b].segments[last - 1].kind == .rest {
@@ -56,8 +57,9 @@ public struct SessionPlan: Equatable, Sendable {
 
     /// Warm-up and cool-down keep at least a minute.
     static let minimumPhaseSeconds = 60
-    /// Where the removable window starts: after the opening and set-up lines.
-    static let trimStart: [Segment.Kind: Int] = [.warmup: 20, .cooldown: 22]
+    /// Where the removable window starts: after the opening, set-up and safety lines (A2 §3.3: the
+    /// "stop if…" lines end by about 0:45 of a 2:00 warm-up).
+    static let trimStart: [Segment.Kind: Int] = [.warmup: 45, .cooldown: 22]
 
     /// Removes `cut` seconds starting at `start`: cues inside the window go, later cues move earlier.
     static func trim(_ segment: Segment, by cut: Int, from start: Int) -> Segment {
@@ -72,7 +74,20 @@ public struct SessionPlan: Equatable, Sendable {
     }
 }
 
+public extension SessionTemplate.Segment {
+    /// A chair move or a stretch pose (not a warm-up march or a walking move): what the move bar counts.
+    var isExercise: Bool { exerciseID != nil && (kind == .move || kind == .stretch) }
+}
+
 public extension SessionPlan {
+    /// "a4.v1.1" (the six first moves) or "a4.side-leg.intro" (A4-chair-moves.md).
+    static func isMoveIntroduction(_ line: String) -> Bool {
+        guard line.hasPrefix("a4.") else { return false }
+        if line.hasSuffix(".intro") { return true }
+        let parts = line.split(separator: ".")
+        return parts.count == 3 && parts[1].hasPrefix("v") && parts[2] == "1"
+    }
+
     /// The same plan without each chair move's opening line (its name and what it is for), for
     /// people who know the moves ("Move introductions" off in Me). Timing does not change.
     func withoutMoveIntroductions() -> SessionPlan {
@@ -80,8 +95,11 @@ public extension SessionPlan {
         for b in plan.blocks.indices {
             for s in plan.blocks[b].segments.indices where plan.blocks[b].segments[s].kind == .move {
                 let cues = plan.blocks[b].segments[s].cues
-                // Only the opening line at the start, and never the move's only line.
-                if cues.count > 1, cues.first?.at == 0 { plan.blocks[b].segments[s].cues = Array(cues.dropFirst()) }
+                // Only a chair move's opening line (A4 intro) at the start, and never the move's only line.
+                // Balance keeps its openings: they say how to stand and where the hands go.
+                if cues.count > 1, let first = cues.first, first.at == 0, Self.isMoveIntroduction(first.line) {
+                    plan.blocks[b].segments[s].cues = Array(cues.dropFirst())
+                }
             }
         }
         return plan

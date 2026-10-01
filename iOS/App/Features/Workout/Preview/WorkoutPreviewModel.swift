@@ -72,7 +72,10 @@ struct PreviewRow: Identifiable, Equatable {
     var minutes: Int { Int(((Double(plan?.totalSeconds ?? 0)) / 60).rounded()) }
 
     var title: String {
-        switch day.main {
+        if let preset = presetID.flatMap(SessionCatalog.preset(id:)), preset.variant != nil {
+            return String(localized: "\(String(localized: preset.title)) · \(minutes) min")
+        }
+        return switch day.main {
         case .chair: String(localized: "Chair moves · \(minutes) min")
         case .stretch: String(localized: "Gentle stretch · \(minutes) min")
         default:
@@ -111,26 +114,39 @@ struct PreviewRow: Identifiable, Equatable {
                     : place == .pad ? String(localized: "Warm-up walk") : String(localized: "Warm-up march")
                 rows.append(PreviewRow(id: "warm", title: warmTitle,
                                        detail: Self.minutesText(warm), symbol: "figure.walk"))
-                rows.append(PreviewRow(id: "intervals", title: String(localized: "Easy and brisk rounds"),
+                let quicker = block.segments.contains { $0.kind == .brisk }
+                let movesTitle = !quicker ? String(localized: "Walking moves")
+                    : level == .seated && place == .indoors ? String(localized: "Easy and quicker rounds")
+                    : String(localized: "Easy and brisk rounds")
+                rows.append(PreviewRow(id: "intervals", title: movesTitle,
                                        detail: Self.minutesText(intervals), symbol: "figure.walk.motion"))
-                rows.append(PreviewRow(id: "cool", title: String(localized: "Cool-down walk"), detail: Self.minutesText(cool),
+                let stretches = block.segments.contains { $0.kind == .cooldown && $0.exerciseID?.hasPrefix("st.") == true }
+                rows.append(PreviewRow(id: "cool", title: stretches ? String(localized: "Cool-down and stretches")
+                                       : String(localized: "Cool-down walk"), detail: Self.minutesText(cool),
                                        symbol: "figure.cooldown"))
             case .chair:
-                for segment in block.segments {
+                let warm = block.segments.filter { $0.kind == .warmup }.reduce(0) { $0 + $1.seconds }
+                if warm > 0 {
+                    rows.append(PreviewRow(id: "chair-warm", title: String(localized: "Warm-up march"),
+                                           detail: Self.minutesText(warm), symbol: "figure.walk"))
+                }
+                // Catalog sessions with their own template (Balance) keep their moves.
+                let swappable = request.variant == nil
+                for (index, segment) in block.segments.enumerated() where segment.kind == .move {
                     guard let id = segment.exerciseID, let exercise = exercises[id] else { continue }
-                    let detail = exercise.counting == .reps
-                        ? String(localized: "\(ChairPlayerModel.repTarget) reps") : Self.secondsText(segment.seconds)
-                    rows.append(PreviewRow(id: "move-\(id)", title: exercise.name, detail: detail, symbol: "chair.fill",
-                                           swappableExerciseID: id))
+                    let detail = segment.reps.map { String(localized: "\($0) reps") } ?? Self.secondsText(segment.seconds)
+                    rows.append(PreviewRow(id: "move-\(index)-\(id)", title: exercise.name, detail: detail, symbol: "chair.fill",
+                                           swappableExerciseID: swappable && exercise.kind == .move ? id : nil))
                 }
             case .stretch:
-                let hold = plan.holdSeconds ?? 20
-                for segment in block.segments {
-                    guard let id = segment.exerciseID, let exercise = exercises[id] else { continue }
+                var seen = Set<String>()
+                for segment in block.segments where segment.isExercise {
+                    guard let id = segment.exerciseID, let exercise = exercises[id], seen.insert(id).inserted else { continue }
+                    let hold = segment.hold ?? plan.holdSeconds ?? 20
                     let bilateral = segment.cues.contains { $0.line.hasPrefix("a10.switch") }
-                    rows.append(PreviewRow(id: "pose-\(id)", title: exercise.name,
-                                           detail: bilateral ? String(localized: "\(hold) sec each side") : String(localized: "\(hold) sec"),
-                                           symbol: "figure.flexibility"))
+                    let detail = hold == 0 ? Self.secondsText(segment.seconds)
+                        : bilateral ? String(localized: "\(hold) sec each side") : String(localized: "\(hold) sec")
+                    rows.append(PreviewRow(id: "pose-\(id)", title: exercise.name, detail: detail, symbol: "figure.flexibility"))
                 }
             case .cooldown:
                 rows.append(PreviewRow(id: "cooldown", title: String(localized: "Cool-down stretch"),

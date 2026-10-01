@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kho video Gentle Walk</title>
+<style>
+:root{
+  --bg:#f6f5f1; --panel:#ffffff; --panel-2:#f0eee8; --ink:#1f2421; --ink-2:#5b625d; --line:#e2dfd6;
+  --accent:#3f6b55; --accent-ink:#ffffff;
+  --p1:#b3261e; --p1-bg:#fbe9e7; --p2:#9a5b00; --p2-bg:#fdf0dc; --p3:#1f5fa8; --p3-bg:#e4eefa; --p4:#2e6b3f; --p4-bg:#e3f1e6;
+  --flow:#5b4bb7; --flow-bg:#ece9fa; --hf:#0f766e; --hf-bg:#dcf3f0;
+  --radius:12px; --mono:ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141715; --panel:#1c201e; --panel-2:#252a27; --ink:#e8ebe9; --ink-2:#a3aba6; --line:#303632;
+  --accent:#7fb79a; --accent-ink:#0f1411;
+  --p1:#ff8a80; --p1-bg:#3a1f1d; --p2:#f4b860; --p2-bg:#3a2d17; --p3:#8ab8f0; --p3-bg:#1b2a3d; --p4:#8fd19e; --p4-bg:#1b3222;
+  --flow:#b3a8ff; --flow-bg:#2a2548; --hf:#6fd6c9; --hf-bg:#143532;
+}}
+:root[data-theme="dark"]{
+  --bg:#141715; --panel:#1c201e; --panel-2:#252a27; --ink:#e8ebe9; --ink-2:#a3aba6; --line:#303632;
+  --accent:#7fb79a; --accent-ink:#0f1411;
+  --p1:#ff8a80; --p1-bg:#3a1f1d; --p2:#f4b860; --p2-bg:#3a2d17; --p3:#8ab8f0; --p3-bg:#1b2a3d; --p4:#8fd19e; --p4-bg:#1b3222;
+  --flow:#b3a8ff; --flow-bg:#2a2548; --hf:#6fd6c9; --hf-bg:#143532;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+button{font:inherit;color:inherit}
+header{padding:18px 20px 10px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
+h1{font-size:22px;margin:0}
+.sub{color:var(--ink-2);font-size:13px}
+.summary{display:flex;flex-wrap:wrap;gap:8px}
+.sum{border-radius:10px;padding:8px 12px;min-width:150px;cursor:pointer;border:2px solid transparent}
+.sum b{display:block;font-size:14px}
+.sum span{font-size:12px;opacity:.9}
+.sum.on{border-color:currentColor}
+.p1{color:var(--p1);background:var(--p1-bg)} .p2{color:var(--p2);background:var(--p2-bg)}
+.p3{color:var(--p3);background:var(--p3-bg)} .p4{color:var(--p4);background:var(--p4-bg)} .hfc{color:var(--hf);background:var(--hf-bg)}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;padding:6px 20px 12px;align-items:center}
+.seg{display:flex;background:var(--panel-2);border-radius:10px;padding:3px;max-width:100%;overflow-x:auto}
+.seg button{border:0;background:none;padding:6px 12px;border-radius:8px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.seg button.on{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+input[type=search]{flex:1;min-width:160px;max-width:280px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.btn{border:1px solid var(--line);background:var(--panel);padding:7px 12px;border-radius:10px;cursor:pointer}
+.btn.danger{color:var(--p1);border-color:var(--p1)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+main{display:grid;grid-template-columns:minmax(300px,400px) 1fr;gap:16px;padding:0 20px 24px;align-items:start}
+.list{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);max-height:calc(100vh - 190px);overflow:auto;position:sticky;top:12px}
+.sec{position:sticky;top:0;z-index:1;padding:8px 12px;font-size:12px;font-weight:600;letter-spacing:.02em;border-bottom:1px solid var(--line)}
+.row{display:grid;grid-template-columns:96px 1fr;gap:10px;padding:8px 10px;border-bottom:1px solid var(--line);cursor:pointer;align-items:center}
+.row:hover{background:var(--panel-2)}
+.row.sel{background:var(--panel-2);box-shadow:inset 3px 0 0 var(--accent)}
+.row img,.row .ph{width:96px;height:54px;object-fit:cover;border-radius:6px;background:var(--panel-2);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ink-2)}
+.code{font-family:var(--mono);font-weight:700;font-size:15px}
+.name{font-size:13px;color:var(--ink-2)}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}
+.tag{font-size:11px;padding:1px 6px;border-radius:6px;background:var(--panel-2);color:var(--ink-2);white-space:nowrap}
+.tag.flow{background:var(--flow-bg);color:var(--flow)} .tag.hf{background:var(--hf-bg);color:var(--hf)}
+.tag.bad{background:var(--p1-bg);color:var(--p1)} .tag.warn{background:var(--p2-bg);color:var(--p2)} .tag.ok{background:var(--p4-bg);color:var(--p4)}
+.tag.dec{background:var(--accent);color:var(--accent-ink)}
+.detail{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;min-width:0}
+.dhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.dhead .code{font-size:26px}
+.dhead .title{font-size:17px}
+.players{display:grid;gap:10px}
+.players.two{grid-template-columns:1fr 1fr}
+.pl{min-width:0}
+.pl video{width:100%;aspect-ratio:16/9;background:#000;border-radius:10px;display:block}
+.pl .cap{font-size:12px;color:var(--ink-2);margin-top:4px}
+.missing{aspect-ratio:16/9;border:2px dashed var(--line);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--ink-2);padding:16px;text-align:center}
+.controls{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}
+.vgroups{display:grid;gap:8px;margin:8px 0 14px}
+.vg{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-width:0}
+.vgroups{min-width:0}
+.vg > span{font-size:12px;color:var(--ink-2);min-width:120px;flex:0 0 auto}
+@media (max-width:860px){.vg > span{flex-basis:100%}}
+.pill{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:4px 10px;font-size:12.5px;cursor:pointer;max-width:100%;text-align:left;white-space:normal;overflow-wrap:anywhere}
+.pill.on{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.pill.cmp{outline:2px dashed var(--hf);outline-offset:1px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.card{background:var(--panel-2);border-radius:10px;padding:10px 12px}
+.card h3{margin:0 0 6px;font-size:12px;color:var(--ink-2);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:13.5px}
+.kv dt{color:var(--ink-2)} .kv dd{margin:0}
+ul.issues{margin:0;padding-left:18px} ul.issues li{margin:2px 0}
+.metric{display:flex;justify-content:space-between;font-size:13px;padding:2px 0;border-bottom:1px dashed var(--line)}
+.metric:last-child{border:0}
+.metric .v.bad{color:var(--p1);font-weight:700} .metric .v.warn{color:var(--p2);font-weight:700}
+select,textarea{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 8px;width:100%}
+textarea{min-height:64px;resize:vertical}
+.path{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);word-break:break-all}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:10px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+.kbd{font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-radius:4px;padding:0 4px}
+@media (max-width:860px){
+  header,.toolbar{padding-left:16px;padding-right:16px}
+  main{grid-template-columns:1fr;padding:0 16px 20px}
+  .list{position:static;max-height:46vh}
+  .players.two{grid-template-columns:1fr}
+  .sum{min-width:0;flex:1 1 140px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Kho video — Gentle Walk 50+</h1>
+    <div class="sub" id="sub"></div>
+  </div>
+  <div class="summary" id="summary"></div>
+</header>
+<div class="toolbar">
+  <div class="seg" id="catSeg"></div>
+  <input type="search" id="q" placeholder="Tìm mã hoặc tên (vd. V9, neck)…">
+  <button class="btn" id="themeBtn" title="Đổi sáng/tối">◐</button>
+  <button class="btn" id="undoBtn" hidden>↶ Hoàn tác xoá</button>
+  <button class="btn primary" id="exportBtn">Copy ghi chú cho Claude</button>
+</div>
+<main>
+  <nav class="list" id="list" aria-label="Danh sách video"></nav>
+  <section class="detail" id="detail"></section>
+</main>
+<div class="toast" id="toast"></div>
+<script>
+const DATA = __DATA__;
+// Quality of the clip the app plays now (computed by build_video_manager.py: metrics + form check).
+const QUAL = {
+  poor:{t:"Thấp", s:"Sai động tác hoặc lỗi hình rõ — làm lại trước", cls:"p1"},
+  fair:{t:"Trung bình", s:"Lệch nhỏ hoặc lỗi hình nhẹ — sửa khi có thể", cls:"p2"},
+  good:{t:"Tốt", s:"Đúng động tác, hình sạch — giữ", cls:"p4"},
+  none:{t:"Chưa có", s:"Chưa có clip — tạo mới", cls:"p3"}
+};
+const QORDER = ["poor","fair","good","none"];
+const CAT = {walk:"Đi bộ", chair:"Ghế", stretch:"Giãn cơ", extras:"Thăng bằng"};
+const DECISIONS = ["Chưa xem","Duyệt — giữ","Làm lại (Higgsfield)","Thay bằng bản Higgsfield","Xem lại sau"];
+const CROP_TEXT = Object.assign({raw:"Chưa crop — còn ✦ ở góc phải dưới"}, DATA.crop);
+const RATE = DATA.hf_rate, TEST_CREDITS = 5 * RATE["360p"], RETRY = 1.5;
+const LS = "gw-video-manager";
+let store = {}; try { store = JSON.parse(localStorage.getItem(LS) || "{}"); } catch(e) {}
+const save = () => { try { localStorage.setItem(LS, JSON.stringify(store)); } catch(e) {} };
+store.dec = store.dec || {};
+let SERVER = null; // {trash:n} when opened through tools/video/video_manager_server.py
+let state = {prio: store.prio || "all", cat: store.cat || "all", q:"", sel: store.sel || null, v:0, cmp:null, rate:1};
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const credits = c => c.hf_done ? 0 : Math.round((c.hf_s * RATE["720p"] + TEST_CREDITS) * RETRY);
+const srcOf = k => DATA.sources[k] || {ai:"—", who:""};
+const repoPath = f => f.startsWith("../../") ? f.slice(6) : "assets/video/" + f;
+const hfOf = c => c.versions.filter(v=>v.kind==="candidate");
+const cropped = x => x.crop==="seedance-test";
+const sizeOf = x => x.m ? `${x.m.width}×${x.m.height}` : "";
+const cropTag = x => cropped(x) ? ["ok",`✂ Đã crop ${sizeOf(x)}`] : x.crop==="hf-frame" ? ["ok",`Không cần crop · ${sizeOf(x)}`] : ["warn",`Chưa crop · ${sizeOf(x)}`];
+const cropWord = x => cropped(x) ? "✂ đã crop" : x.crop==="hf-frame" ? "không cần crop" : "chưa crop";
+const inQ = (c,q) => c.quality===q && !c.dropped;
+const isHF = k => (k || "").startsWith("seedance");
+function toast(t){ const e=$("#toast"); e.textContent=t; e.classList.add("on"); setTimeout(()=>e.classList.remove("on"), Math.max(1600, t.length*45)); }
+function copy(t){ navigator.clipboard?.writeText(t).then(()=>toast("Đã copy"), ()=>prompt("Copy:", t)); }
+
+function flags(m){
+  if(!m) return [];
+  const f=[];
+  if(m.dip < .7) f.push(["bad",`Nhoè (độ nét còn ${Math.round(m.dip*100)}%)`]);
+  if(m.blur_pct > 5) f.push(["bad",`${m.blur_pct}% khung mờ`]);
+  if(m.stutter >= 3) f.push(["bad",`${m.stutter} khung lặp (khựng)`]);
+  if(m.drift > 4) f.push(["warn",`Máy trôi ${m.drift} px`]);
+  if(m.rhythm != null && m.rhythm > .65) f.push(["warn","Nhịp không đều?"]);
+  return f;
+}
+function visible(){
+  const q = state.q.trim().toLowerCase();
+  return DATA.clips.filter(c => (state.prio==="all" ? !c.dropped || hfOf(c).length : state.prio==="hf" ? hfOf(c).length : inQ(c,state.prio))
+    && (state.cat==="all" || c.cat===state.cat)
+    && (!q || c.id.toLowerCase().includes(q) || c.name.toLowerCase().includes(q) || c.group.toLowerCase().includes(q)));
+}
+function renderSummary(){
+  const all = DATA.clips;
+  $("#sub").textContent = `${all.filter(c=>!c.dropped).length} mã video trong app (+ ${all.filter(c=>c.dropped).length} bài đã bỏ) · cập nhật ${DATA.updated} · chất lượng = bản đang chạy trong app (đo nhoè, khựng, nhịp, máy trôi + kiểm tra động tác) · credit làm lại ước tính bằng ${esc(DATA.hf_rate.model)}: (độ dài × ${RATE["720p"]}/s ở 720p + thử 360p 5 s) × ${RETRY}`;
+  const box = $("#summary"); box.innerHTML = "";
+  const mk = (key, cls, title, sub) => {
+    const d = document.createElement("div"); d.className = `sum ${cls} ${state.prio===key?"on":""}`;
+    d.innerHTML = `<b>${title}</b><span>${sub}</span>`;
+    d.onclick = () => { state.prio = state.prio===key && key!=="all" ? "all" : key; store.prio=state.prio; save(); render(); };
+    box.appendChild(d);
+  };
+  const live = all.filter(c=>!c.dropped);
+  mk("all","", `Tất cả · ${live.length}`, `${live.filter(c=>!c.missing).length} có clip`);
+  const hv = all.flatMap(hfOf), spent = hv.reduce((a,x)=>a+(x.credits||0),0);
+  mk("hf","hfc", `Đã làm bằng Higgsfield · ${all.filter(c=>hfOf(c).length).length} clip`,
+     `${hv.length} bản · ${hv.filter(cropped).length} đã crop · ${hv.filter(x=>x.crop==="hf-frame").length} không cần crop · ${hv.filter(x=>!cropped(x)&&x.crop!=="hf-frame").length} chưa crop · đã tiêu ${spent} credit`);
+  for(const q of QORDER){
+    const cs = all.filter(c=>inQ(c,q)), cr = cs.reduce((a,c)=>a+credits(c),0);
+    mk(q, QUAL[q].cls, `${QUAL[q].t} · ${cs.length} clip`, q==="good" ? QUAL[q].s : `${QUAL[q].s} · ~${cr.toLocaleString("vi")} credit`);
+  }
+}
+function renderCats(){
+  const seg = $("#catSeg"); seg.innerHTML = "";
+  for(const [k,label] of [["all","Tất cả"],...Object.entries(CAT)]){
+    const b = document.createElement("button"); b.textContent = label; b.className = state.cat===k?"on":"";
+    b.onclick = () => { state.cat=k; store.cat=k; save(); render(); }; seg.appendChild(b);
+  }
+}
+function renderList(){
+  const list = $("#list"); list.innerHTML = "";
+  const vs = visible();
+  if(!vs.length){ list.innerHTML = `<div style="padding:16px;color:var(--ink-2)">Không có video khớp bộ lọc.</div>`; return; }
+  const secs = [{key:"hf", cls:"hfc", t:"Đã làm bằng Higgsfield — xem, duyệt (ghi rõ đã crop / chưa crop)", f:c=>hfOf(c).length}]
+    .concat(QORDER.map(q=>({key:q, cls:QUAL[q].cls, t:`${QUAL[q].t} — ${QUAL[q].s}`, f:c=>inQ(c,q)})));
+  for(const sec of secs){
+    if(state.prio!=="all" && state.prio!==sec.key) continue;
+    const cs = vs.filter(sec.f); if(!cs.length) continue;
+    const h = document.createElement("div"); h.className = "sec "+sec.cls; h.textContent = `${sec.t} (${cs.length})`; list.appendChild(h);
+    for(const c of cs){
+      const hfRow = sec.key==="hf";
+      const app = c.versions.find(v=>v.kind==="app"), hf = c.versions.some(v=>v.kind==="candidate");
+      const d = store.dec[c.id], fl = flags(app && app.m);
+      const r = document.createElement("div"); r.className = "row"+(state.sel===c.id?" sel":""); r.dataset.id = c.id; r.dataset.hf = hfRow ? "1" : "";
+      r.innerHTML = `${(c.thumb||c.thumb_hf)?`<img loading="lazy" src="${esc(c.thumb||c.thumb_hf)}" alt="">`:`<div class="ph">chưa có</div>`}
+        <div><div><span class="code">${esc(c.id)}</span> <span class="name">${esc(c.name)}</span></div>
+        <div class="tags">${hfRow ? hfOf(c).map(x=>`<span class="tag hf">${esc(x.label.split(" · ").slice(0,2).join(" "))}</span><span class="tag ${cropTag(x)[0]}">${esc(cropTag(x)[1])}</span>`).join("")
+            + (c.dropped?`<span class="tag bad">Bài đã bỏ</span>`:"") : `<span class="tag">${esc(CAT[c.cat])}</span>
+          ${(c.src||"").startsWith("flow")?`<span class="tag flow">Flow</span><span class="tag">✂ crop</span>`:c.src?`<span class="tag hf">${esc(srcOf(c.src).short||"Higgsfield")}</span><span class="tag ok">không cần crop</span>`:""}${c.replaced?`<span class="tag dec">Đã thay ${esc(c.replaced.slice(8,10)+"/"+c.replaced.slice(5,7))}</span>`:""}
+          ${hf&&!c.replaced?`<span class="tag hf">+ bản Higgsfield</span>`:""}
+          ${c.joined?`<span class="tag warn">ghép 2 clip</span>`:""}
+          ${c.res?`<span class="tag">${esc(c.res)}</span>`:""}
+          ${(c.quality_reasons||[]).filter(r=>r!=="Chưa có clip").map(r=>`<span class="tag ${c.quality==="poor"?"bad":"warn"}">${esc(r)}</span>`).join("")}
+          `}${d&&d.status&&d.status!==DECISIONS[0]?`<span class="tag dec">${esc(d.status)}</span>`:""}</div></div>`;
+      r.onclick = () => select(c.id, hfRow);
+      list.appendChild(r);
+    }
+  }
+}
+function select(id, hf){ state.sel=id; const c=DATA.clips.find(x=>x.id===id); state.v = hf ? Math.max(0, c.versions.findIndex(v=>v.kind==="candidate")) : 0; state.cmp=null; store.sel=id; save(); renderList(); renderDetail(); }
+function metricRows(m){
+  if(!m) return `<div class="sub">Chưa đo.</div>`;
+  const row=(k,v,cls="")=>`<div class="metric"><span>${k}</span><span class="v ${cls}">${v}</span></div>`;
+  return row("Kích thước", `${m.width}×${m.height} · ${m.fps} fps`)
+    + row("Độ dài", `${m.duration} s`)
+    + row("Độ nét vùng người", m.sharp)
+    + row("Độ nét thấp nhất / trung vị", m.dip, m.dip<.7?"bad":"")
+    + row("Khung mờ", `${m.blur_pct}%`, m.blur_pct>5?"bad":"")
+    + row("Khung lặp (khựng)", m.stutter, m.stutter>=3?"bad":"")
+    + row("Máy trôi", `${m.drift} px`, m.drift>4?"warn":"")
+    + row("Độ đều nhịp (CV)", m.rhythm ?? "—", m.rhythm>.65?"warn":"");
+}
+function renderDetail(){
+  const box = $("#detail");
+  const c = DATA.clips.find(x=>x.id===state.sel) || [...visible()].sort((a,b)=>QORDER.indexOf(a.quality)-QORDER.indexOf(b.quality))[0];
+  if(!c){ box.innerHTML = ""; return; }
+  state.sel = c.id;
+  const V = c.versions, v = V[state.v], cv = state.cmp!=null ? V[state.cmp] : null;
+  const dec = store.dec[c.id] || {status:DECISIONS[0], note:""};
+  const player = (x, id) => x ? `<div class="pl"><video id="${id}" src="${esc(x.file)}" muted loop playsinline autoplay controls preload="auto"></video>
+      <div class="cap"><b>${esc(x.label)}</b> · ${esc(srcOf(x.src).ai)} · ${esc(CROP_TEXT[x.crop]||"")}${x.kind==="candidate"?` · <b>${cropWord(x)}</b>${x.credits?` · ${x.credits} credit`:""}`:""}${x.verdict?` · <i>${esc(x.verdict)}</i>`:""}</div></div>` : "";
+  const groupPills = (kind, title) => {
+    const items = V.map((x,i)=>[x,i]).filter(([x])=>x.kind===kind); if(!items.length) return "";
+    return `<div class="vg"><span>${title}</span>${items.map(([x,i])=>`<button class="pill ${i===state.v?"on":""} ${i===state.cmp?"cmp":""}" data-i="${i}" title="${esc(x.label)} — Shift+click để so sánh">${esc(x.label.replace(/^App · |^Nguồn gốc \(trước crop\) · /,""))}${x.kind==="candidate"?` · ${cropWord(x)}`:""}</button>`).join("")}</div>`;
+  };
+  const vm = v && v.m, fl = flags(vm);
+  box.innerHTML = `
+    <div class="dhead"><div><span class="code">${esc(c.id)}</span> <span class="title">${esc(c.name)}</span>
+      <div class="tags">${c.dropped?`<span class="tag bad">Bài đã bỏ khỏi app</span>`:`<span class="tag ${QUAL[c.quality].cls}">Chất lượng: ${esc(QUAL[c.quality].t)}</span>`}${hfOf(c).length?`<span class="tag hf">Có bản Higgsfield</span>`:""}<span class="tag">${esc(c.group)}</span><span class="tag">${esc(c.angle)}</span></div></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn" id="copyId">Copy mã</button>${c.versions.length?`<button class="btn" id="copyPath">Copy đường dẫn file</button>`:""}</div></div>
+    ${V.length ? `<div class="players ${cv?"two":""}">${player(v,"vA")}${player(cv,"vB")}</div>
+      <div class="controls">
+        <button class="btn" id="play">⏯ Phát / dừng</button>
+        <button class="btn" id="back">◀ 1 khung</button><button class="btn" id="fwd">1 khung ▶</button>
+        ${delBtn(v)}
+        <div class="seg">${[0.25,0.5,1].map(r=>`<button class="${state.rate===r?"on":""}" data-rate="${r}">${r}×</button>`).join("")}</div>
+        ${cv?`<button class="btn" id="noCmp">Tắt so sánh</button>`
+          : V.some(x=>x.kind==="candidate") && v.kind!=="candidate" ? `<button class="btn" id="cmpHF">⇆ So sánh với bản Higgsfield</button>`
+          : `<span class="sub">Shift+click một bản khác để so sánh cạnh nhau</span>`}
+      </div>
+      <div class="vgroups">${groupPills("app","Trong app")}${groupPills("candidate","Ứng viên Higgsfield")}${groupPills("old","Bản cũ (đã thay)")}${groupPills("raw","Nguồn gốc Flow (có ✦)")}</div>`
+      : `<div class="missing"><b>Chưa có clip</b><span>${esc(c.note||"")}</span><span class="sub">Ảnh khung: ${esc(c.frame)} · dự kiến ${c.hf_s} s</span></div>`}
+    <div class="grid" style="margin-top:12px">
+      <div class="card"><h3>Nguồn gốc</h3><dl class="kv">
+        <dt>Mã</dt><dd><span class="code">${esc(c.id)}</span></dd>
+        <dt>AI tạo</dt><dd>${v?esc(srcOf(v.src).ai):"—"}</dd>
+        <dt>Tài khoản</dt><dd>${v?esc(srcOf(v.src).who):"—"}</dd>
+        <dt>Crop</dt><dd>${v?esc(CROP_TEXT[v.crop]||"—"):"—"}</dd>
+        <dt>Góc máy</dt><dd>${esc(c.angle)}</dd>
+        <dt>Ảnh khung</dt><dd>${esc(c.frame)}</dd>
+        <dt>Số lượt Flow</dt><dd>${c.tries ?? "—"}${c.joined?" · ghép 2 clip":""}</dd>
+        ${v?`<dt>File</dt><dd class="path">${esc(repoPath(v.file))}</dd>`:""}
+      </dl></div>
+      <div class="card"><h3>Lỗi / ghi chú</h3>
+        <div style="margin-bottom:6px"><span class="tag ${QUAL[c.quality].cls}">Chất lượng bản app: ${esc(QUAL[c.quality].t)}</span>${c.res?` <span class="tag">${esc(c.res)}</span>`:""}</div>
+        ${[...(c.quality_reasons||[]),...(c.issues||[])].length?`<ul class="issues">${[...(c.quality_reasons||[]),...(c.issues||[])].map(i=>`<li>${esc(i)}</li>`).join("")}</ul>`:`<div class="sub">Đúng động tác, hình sạch.</div>`}
+        ${fl.length?`<div class="tags" style="margin-top:6px">${fl.map(f=>`<span class="tag ${f[0]}">${esc(f[1])}</span>`).join("")}</div>`:""}
+        ${c.note?`<p style="margin:8px 0 0;font-size:13.5px">${esc(c.note)}</p>`:""}</div>
+      <div class="card"><h3>Đo bản đang xem</h3>${metricRows(vm)}</div>
+      <div class="card"><h3>Kế hoạch Higgsfield</h3><dl class="kv">
+        <dt>Model</dt><dd>Gemini Omni Flash 1.1 · thử 360p → 720p → upscale 1080p</dd>
+        <dt>Độ dài</dt><dd>${c.hf_s} s${c.joined?" (cả 2 bên trong 1 clip)":""}</dd>
+        <dt>Credit</dt><dd>${c.hf_done?"Đã làm — chờ duyệt":`~${credits(c)} (bản 720p ${c.hf_s*RATE["720p"]} + thử 360p ${TEST_CREDITS}, × ${RETRY})`}</dd>
+        <dt>Ảnh tham chiếu</dt><dd>Bản HF 1280×720 đúng khung app, không ✦ → không cần crop</dd></dl></div>
+      <div class="card"><h3>Quyết định của chủ app</h3>
+        <select id="decSel">${DECISIONS.map(d=>`<option ${d===dec.status?"selected":""}>${esc(d)}</option>`).join("")}</select>
+        <textarea id="decNote" placeholder="Ghi chú cho Claude (vd. chân hơi cao, làm lại góc nghiêng)…" style="margin-top:6px">${esc(dec.note)}</textarea>
+        <div class="sub" style="margin-top:4px">Lưu trong trình duyệt này. Bấm “Copy ghi chú cho Claude” để dán vào chat.</div></div>
+    </div>
+    <p class="sub" style="margin-top:12px">Phím tắt: <span class="kbd">J</span>/<span class="kbd">K</span> video sau/trước · <span class="kbd">Space</span> phát/dừng · <span class="kbd">←</span>/<span class="kbd">→</span> từng khung</p>`;
+  wire(c);
+}
+function delBtn(v){
+  if(v.kind==="app") return `<button class="btn" disabled title="Bản đang dùng trong app — không xoá; thay bằng bản khác">🗑 Xoá</button>`;
+  return `<button class="btn danger" id="delBtn" title="Chuyển vào assets/video/_trash (hoàn tác được)">🗑 Xoá bản này</button>`;
+}
+async function api(path, body){
+  const r = await fetch(path, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body||{})});
+  const j = await r.json(); if(!j.ok) throw new Error(j.error); return j;
+}
+async function del(v){
+  if(!SERVER){ toast("Muốn xoá: chạy python3 tools/video/video_manager_server.py rồi mở trang qua địa chỉ nó in ra"); return; }
+  if(!confirm(`Xoá bản này?\n\n${repoPath(v.file)}\n\nFile được chuyển vào assets/video/_trash (hoàn tác được).`)) return;
+  try { await api("/api/trash", {file:v.file}); store.flash = `Đã xoá ${v.file.split("/").pop()}`; save(); location.reload(); }
+  catch(e){ toast("Không xoá được: " + e.message); }
+}
+function vids(){ return [...document.querySelectorAll("#detail video")]; }
+function wire(c){
+  $("#copyId").onclick = () => copy(`${c.id} (${c.name})`);
+  const cp = $("#copyPath"); if(cp) cp.onclick = () => copy(repoPath(c.versions[state.v].file));
+  document.querySelectorAll("#detail .pill").forEach(b => b.onclick = e => {
+    const i = +b.dataset.i;
+    if(e.shiftKey){ state.cmp = (i===state.v || i===state.cmp) ? null : i; } else { state.v = i; if(state.cmp===i) state.cmp=null; }
+    renderDetail();
+  });
+  const db = $("#delBtn"); if(db) db.onclick = () => del(c.versions[state.v]);
+  const nc = $("#noCmp"); if(nc) nc.onclick = () => { state.cmp=null; renderDetail(); };
+  const ch = $("#cmpHF"); if(ch) ch.onclick = () => { state.cmp = c.versions.findIndex(x=>x.kind==="candidate"); renderDetail(); };
+  const pl = $("#play"); if(pl) pl.onclick = togglePlay;
+  const bk = $("#back"); if(bk) bk.onclick = () => step(-1);
+  const fw = $("#fwd"); if(fw) fw.onclick = () => step(1);
+  document.querySelectorAll("#detail [data-rate]").forEach(b => b.onclick = () => { state.rate=+b.dataset.rate; vids().forEach(v=>v.playbackRate=state.rate); renderRate(); });
+  vids().forEach(v => { v.playbackRate = state.rate; v.addEventListener("loadedmetadata", () => v.playbackRate = state.rate); });
+  const upd = () => { store.dec[c.id] = {status:$("#decSel").value, note:$("#decNote").value}; save(); };
+  $("#decSel").onchange = () => { upd(); renderList(); };
+  $("#decNote").oninput = upd;
+}
+function renderRate(){ document.querySelectorAll("#detail [data-rate]").forEach(b=>b.classList.toggle("on", +b.dataset.rate===state.rate)); }
+function togglePlay(){ const vs=vids(); if(!vs.length) return; const paused = vs[0].paused; vs.forEach(v=>{ if(paused){ v.currentTime = vs[0].currentTime; v.play(); } else v.pause(); }); }
+function step(n){ vids().forEach(v=>{ v.pause(); v.currentTime = Math.max(0, v.currentTime + n/24); }); }
+function exportNotes(){
+  const lines = DATA.clips.filter(c => { const d=store.dec[c.id]; return d && ((d.status && d.status!==DECISIONS[0]) || d.note); })
+    .map(c => { const d=store.dec[c.id]; return `- ${c.id} (${c.name}): ${d.status}${d.note?` — ${d.note}`:""}`; });
+  if(!lines.length){ toast("Chưa có quyết định nào"); return; }
+  copy(`Quyết định video (${new Date().toLocaleDateString("vi")}):\n` + lines.join("\n"));
+}
+function render(){ renderSummary(); renderCats(); renderList(); renderDetail(); }
+$("#q").oninput = e => { state.q = e.target.value; renderList(); };
+$("#exportBtn").onclick = exportNotes;
+$("#themeBtn").onclick = () => {
+  const r = document.documentElement, dark = r.dataset.theme ? r.dataset.theme==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme = dark ? "light" : "dark"; store.theme = r.dataset.theme; save();
+};
+if(store.theme) document.documentElement.dataset.theme = store.theme;
+document.addEventListener("keydown", e => {
+  if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+  const vs = visible(), i = vs.findIndex(c=>c.id===state.sel);
+  if(e.key==="j"||e.key==="J"){ if(i<vs.length-1) select(vs[i+1].id); }
+  else if(e.key==="k"||e.key==="K"){ if(i>0) select(vs[i-1].id); }
+  else if(e.key===" "){ e.preventDefault(); togglePlay(); }
+  else if(e.key==="ArrowRight") step(1);
+  else if(e.key==="ArrowLeft") step(-1);
+  else return;
+  const row = document.querySelector(`.row[data-id="${CSS.escape(state.sel)}"]`); row && row.scrollIntoView({block:"nearest"});
+});
+render();
+$("#undoBtn").onclick = async () => {
+  try { const j = await api("/api/restore"); store.flash = `Đã khôi phục ${j.from.split("/").pop()}`; save(); location.reload(); }
+  catch(e){ toast("Không hoàn tác được: " + e.message); }
+};
+if(store.flash){ setTimeout(()=>toast(store.flash), 300); delete store.flash; save(); }
+if(location.protocol.startsWith("http")) fetch("/api/ping").then(r=>r.ok?r.json():null).then(j=>{
+  if(!j || !j.ok) return; SERVER = j;
+  const u = $("#undoBtn"); u.hidden = !j.trash; u.textContent = `↶ Hoàn tác xoá (${j.trash})`;
+}).catch(()=>{});
+</script>
+</body>
+</html>

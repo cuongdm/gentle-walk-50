@@ -51,7 +51,7 @@ import GentleWalkCore
 
     static func activity(for kind: SessionTemplate.Kind) -> HKWorkoutActivityType {
         switch kind {
-        case .chair: .functionalStrengthTraining
+        case .chair, .balance: .functionalStrengthTraining
         case .stretch, .cooldown: .flexibility
         case .walk, .firstWalk: .walking
         }

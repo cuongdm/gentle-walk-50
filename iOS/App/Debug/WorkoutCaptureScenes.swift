@@ -112,38 +112,36 @@ struct WorkoutCaptureScene: View {
             return model
         case .chairPlayer, .chairPlayerDark, .chairFullscreen, .chairPlayerReduceMotion, .chairStandBehind, .chairTimed, .chairRest,
              .chairCounted:
-            let model = await make(request(chair, intensity: .gentle))
+            // Chair moves 7: three seated moves, sit-to-stand, then a move behind the chair.
+            let model = await make(request(chair, intensity: .steady))
             let phases = model.player.timeline.phases
             let moves = phases.filter { $0.kind == .move }
+            let sitToStand = moves.first { $0.exerciseID == "mv.sit-to-stand" } ?? moves[0]
             switch state {
             case .chairStandBehind:
-                model.player.tick(moves[0].start + 0.5)
+                let standing = moves.last ?? moves[0]
+                model.player.tick(standing.start + 0.5)
             case .chairTimed:
-                model.player.tick(moves[0].start + 0.5)
-                model.confirmStanding()
-                model.player.tick(moves[1].start + 20)
+                model.player.tick(moves[0].start + 20)
             case .chairRest:
-                model.player.tick(moves[0].start + 0.5)
-                model.confirmStanding()
                 if let rest = phases.first(where: { $0.kind == .rest }) { model.player.tick(rest.start + 6) }
             default:
-                model.player.tick(moves[0].start + 0.5)
-                model.confirmStanding()
-                model.player.tick(moves[0].start + 32)
-                for _ in 0..<6 { model.addRep() }
+                model.player.tick(sitToStand.start + 40)
+                for _ in 0..<4 { model.addRep() }
                 model.forceCountedForYou = state == .chairCounted
             }
             return model
         case .stretchPlayer, .stretchSwitchSide:
             let model = await make(request(PlannedDay(main: .stretch, chairMoves: 0, cooldown: false)))
-            let thigh = model.player.timeline.phases.first { $0.exerciseID == "st.neck-turn" }
-            let switchCue = model.player.timeline.voice.first { $0.lineID.hasPrefix("a10.switch") && $0.start > (thigh?.start ?? 0) }
+            let twist = model.player.timeline.phases.first { $0.exerciseID == "st.twist" }
+            let switchCue = model.player.timeline.voice.first { $0.lineID.hasPrefix("a10.switch") && $0.start > (twist?.start ?? 0) }
             let at = (switchCue?.start ?? 60) + (state == .stretchPlayer ? -8 : 12)
             model.player.tick(at)
             return model
         case .stretchCooldown:
-            let model = await make(request(PlannedDay(main: .walk, chairMoves: 0, cooldown: true)))
-            let poses = model.player.timeline.phases.filter { $0.block == .cooldown && $0.exerciseID != nil }
+            // A walk with a chair move ends with the cool-down stretch set.
+            let model = await make(request(PlannedDay(main: .walk, chairMoves: 1, cooldown: true)))
+            let poses = model.player.timeline.phases.filter { $0.block == .cooldown && $0.isExercise }
             if poses.count > 1 { model.player.tick(poses[1].start + 24) }
             return model
         case .complete, .completeXxl, .completeFirstWalk, .completeLevelUp, .completeStretch, .completeOutdoor:

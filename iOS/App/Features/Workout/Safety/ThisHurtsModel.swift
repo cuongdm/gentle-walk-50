@@ -57,10 +57,10 @@ enum HurtOutcome: Equatable, Sendable {
     /// Easier version of the current move; on a walk, the brisk part eases off to an easy walk.
     func showEasier() async -> HurtOutcome {
         record()
-        if let exercise = player.currentPhase?.exerciseID {
+        if isWalk {
+            if player.currentPhase?.kind == .brisk { try? await player.apply(.skip) }
+        } else if let exercise = player.currentPhase?.exerciseID {
             try? await player.apply(.easierVersion(exerciseID: exercise))
-        } else if player.currentPhase?.kind == .brisk {
-            try? await player.apply(.skip)
         }
         player.resume()
         return .continueSession
@@ -79,8 +79,8 @@ enum HurtOutcome: Equatable, Sendable {
         return .continueSession
     }
 
-    /// No move on screen: the choices speak about the walk ("Slow down to an easy walk").
-    var isWalk: Bool { player.currentPhase?.exerciseID == nil && player.currentPhase?.block == .walk }
+    /// A walk (its moves included): the choices speak about the walk ("Slow down to an easy walk").
+    var isWalk: Bool { player.currentPhase?.block == .walk }
 
     func stopForToday() -> HurtOutcome {
         record()

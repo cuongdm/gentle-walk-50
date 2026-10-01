@@ -16,8 +16,20 @@ public struct VoiceLine: Codable, Equatable, Identifiable, Sendable {
     public var file: String?
     public var duration: Double?
     public var words: [TimedWord]?
+    /// Walking levels the line is written for ("chỉ In place / Pad" in A2); nil = every level.
+    public var levels: [WalkLevel]?
+    /// Body limits for which the line is never spoken ("không Joint replacement").
+    public var hiddenFor: [BodyLimit]?
 
-    public init(id: String, text: String, file: String? = nil, duration: Double? = nil, words: [TimedWord]? = nil) {
+    public init(id: String, text: String, file: String? = nil, duration: Double? = nil, words: [TimedWord]? = nil,
+                levels: [WalkLevel]? = nil, hiddenFor: [BodyLimit]? = nil) {
         self.id = id; self.text = text; self.file = file; self.duration = duration; self.words = words
+        self.levels = levels; self.hiddenFor = hiddenFor
+    }
+
+    /// Whether the line fits a session at this level for someone with these limits.
+    public func fits(level: WalkLevel?, limits: Set<BodyLimit>) -> Bool {
+        if let levels, let level, !levels.contains(level) { return false }
+        return limits.isDisjoint(with: hiddenFor ?? [])
     }
 }

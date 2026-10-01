@@ -9,17 +9,43 @@ enum PhaseTone: Equatable, Sendable { case ready, easy, brisk }
 @Observable @MainActor final class WalkPlayerModel {
     let player: SessionPlayer
     let level: WalkLevel
+    @ObservationIgnored private let exercises: [String: Exercise]
 
-    init(player: SessionPlayer, level: WalkLevel) {
+    init(player: SessionPlayer, level: WalkLevel, exercises: [String: Exercise] = [:]) {
         self.player = player
         self.level = level
+        self.exercises = exercises
     }
 
     var phaseKind: SessionTemplate.Segment.Kind { player.currentPhase?.kind ?? .intro }
 
+    /// The move on screen: the part's own move (a walking move or a cool-down stretch), else the
+    /// march (First Walk has no moves of its own).
+    var move: Exercise? {
+        if let id = player.currentPhase?.exerciseID { return exercises[id] }
+        return [.warmup, .easy, .brisk, .cooldown].contains(phaseKind) ? exercises["wk.march"] : nil
+    }
+
+    /// The clip for this part, if the app has it: the move at her level and pace, or the cool-down
+    /// stretch. Outdoors she walks with the phone in her pocket: the painting shows.
+    func videoFile(isOutdoors: Bool) -> String? {
+        guard !isOutdoors, let move else { return nil }
+        if move.kind == .walk {
+            return WalkVideo.fileName(for: level, move: move, pace: phaseKind == .brisk ? .quicker : .easy)
+        }
+        return ExerciseVideo.firstBundled(move.videoCandidates(level: level))
+    }
+
+    /// "Seated · Heel dig" under the part's name; the level alone when there is no move.
+    var levelNote: String {
+        guard let move else { return String(localized: level.title) }
+        return String(localized: "\(String(localized: level.title)) · \(move.name)")
+    }
+
     var phaseLabel: String {
         switch phaseKind {
-        case .brisk: String(localized: "BRISK WALK")
+        // Seated is never called brisk (content plan decision 3): the quicker part is "QUICKER".
+        case .brisk: level == .seated ? String(localized: "QUICKER") : String(localized: "BRISK WALK")
         case .cooldown: String(localized: "COOL-DOWN")
         case .intro: String(localized: "GET READY")
         case .warmup: String(localized: "WARM-UP")
@@ -58,7 +84,7 @@ enum PhaseTone: Equatable, Sendable { case ready, easy, brisk }
         let next = player.phaseIndex + 1
         guard phases.indices.contains(next), phases[next].end.isFinite else { return nil }
         let length = Self.minutes(Int((phases[next].end - phases[next].start).rounded()))
-        return String(localized: "Next: \(Self.name(of: phases[next].kind)) · \(length)")
+        return String(localized: "Next: \(Self.name(of: phases[next].kind, level: level)) · \(length)")
     }
 
     var captionText: String? { player.caption?.text }
@@ -69,16 +95,25 @@ enum PhaseTone: Equatable, Sendable { case ready, easy, brisk }
         return min(1, max(0, (player.currentTime - phase.start) / (phase.end - phase.start)))
     }
 
+    /// Rounds are the move blocks (easy and quicker parts of one move); First Walk counts its brisk parts.
     private var roundPosition: (Int, Int) {
         let phases = player.timeline.phases
-        let brisks = phases.indices.filter { phases[$0].kind == .brisk }
-        let started = brisks.filter { $0 <= player.phaseIndex }.count
-        return (max(1, started), max(1, brisks.count))
+        var starts: [Int] = []
+        for index in phases.indices where [.easy, .brisk].contains(phases[index].kind) && phases[index].block == .walk {
+            let sameMove = index > 0 && [.easy, .brisk].contains(phases[index - 1].kind)
+                && phases[index - 1].exerciseID == phases[index].exerciseID && phases[index].exerciseID != nil
+            if !sameMove { starts.append(index) }
+        }
+        if phases.allSatisfy({ $0.exerciseID == nil }) {
+            starts = phases.indices.filter { phases[$0].kind == .brisk }
+        }
+        let started = starts.filter { $0 <= player.phaseIndex }.count
+        return (max(1, started), max(1, starts.count))
     }
 
-    static func name(of kind: SessionTemplate.Segment.Kind) -> String {
+    static func name(of kind: SessionTemplate.Segment.Kind, level: WalkLevel = .inPlace) -> String {
         switch kind {
-        case .brisk: String(localized: "brisk walk")
+        case .brisk: level == .seated ? String(localized: "quicker") : String(localized: "brisk walk")
         case .cooldown: String(localized: "cool-down")
         case .warmup: String(localized: "warm-up")
         default: String(localized: "easy walk")

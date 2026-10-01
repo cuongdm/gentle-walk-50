@@ -3,7 +3,7 @@ extension SessionPlan {
     public init(template: SessionTemplate) {
         let kind: Block.Kind = switch template.kind {
         case .firstWalk, .walk: .walk
-        case .chair: .chair
+        case .chair, .balance: .chair
         case .stretch: .stretch
         case .cooldown: .cooldown
         }
@@ -41,6 +41,12 @@ public struct SessionTimeline: Equatable, Sendable {
         public var end: Double
         /// The rest of this exercise uses the easier version (This hurts → Show an easier version).
         public var isEasier: Bool
+        /// Stretch: seconds of each hold; 0 = a repeated move without a hold.
+        public var hold: Int? = nil
+        /// Reps the coach counts in this move.
+        public var reps: Int? = nil
+        /// A chair move or stretch pose (counted on the move bar), not a warm-up or walking move.
+        public var isExercise: Bool { exerciseID != nil && (kind == .move || kind == .stretch) }
     }
 
     public var voice: [VoiceCue] = []
@@ -76,7 +82,7 @@ public struct SessionTimeline: Equatable, Sendable {
         for (i, segment) in segments.enumerated() {
             let end = t + Double(segment.seconds)
             timeline.phases.append(Phase(kind: segment.kind, block: blockOf[i], exerciseID: segment.exerciseID,
-                                         start: t, end: end, isEasier: false))
+                                         start: t, end: end, isEasier: false, hold: segment.hold, reps: segment.reps))
             let bellHere = i > 0 && pacedKinds.contains(segment.kind)
             if bellHere { timeline.bells.append(Bell(at: t, kind: .phase)) }
             for (j, cue) in segment.cues.enumerated() {
@@ -128,7 +134,7 @@ public extension SessionTimeline {
 
     func moveProgress(at time: Double) -> MoveProgress? {
         guard let current = phases.last(where: { $0.start <= time }) ?? phases.first else { return nil }
-        let moves = phases.filter { $0.block == current.block && $0.exerciseID != nil }
+        let moves = phases.filter { $0.block == current.block && $0.isExercise }
         guard !moves.isEmpty else { return nil }
         // The move under way, or the first one still ahead (rest, intro).
         if let index = moves.firstIndex(where: { $0.start <= time && time < $0.end }) {

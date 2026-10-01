@@ -84,14 +84,30 @@ enum SessionAudioComposer {
         }
 
         /// The audio track and its own time range (an AAC file's track can be shorter than the file).
-        /// Each file is loaded once per track and kept for the life of the writer.
+        /// Each file is loaded once for the life of the app (`AssetCache`), so a Skip or This hurts
+        /// rebuild does not reload every voice line.
         private mutating func load(_ url: URL) async throws -> (AVAssetTrack, CMTimeRange) {
             if let cached = sources[url] { return (cached.1, cached.2) }
+            let loaded = try await AssetCache.shared.load(url)
+            sources[url] = loaded
+            return (loaded.1, loaded.2)
+        }
+    }
+
+    /// Loaded audio files shared by every compose (the asset is kept so its track stays valid).
+    final class AssetCache: @unchecked Sendable {
+        static let shared = AssetCache()
+        private let lock = NSLock()
+        private var entries: [URL: (AVURLAsset, AVAssetTrack, CMTimeRange)] = [:]
+
+        func load(_ url: URL) async throws -> (AVURLAsset, AVAssetTrack, CMTimeRange) {
+            if let hit = lock.withLock({ entries[url] }) { return hit }
             let asset = AVURLAsset(url: url)
             guard let source = try await asset.loadTracks(withMediaType: .audio).first else { throw ComposeError.noTrack }
             let range = try await source.load(.timeRange)
-            sources[url] = (asset, source, range)
-            return (source, range)
+            let entry = (asset, source, range)
+            lock.withLock { entries[url] = entry }
+            return entry
         }
     }
 }

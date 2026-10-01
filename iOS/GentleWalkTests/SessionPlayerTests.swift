@@ -48,10 +48,10 @@ import GentleWalkCore
     @Test func clockDrivesPhaseCaptionAndRemainingTime() async throws {
         let (player, engine) = try await player()
         player.play()
-        engine.advance(to: 125)
+        engine.advance(to: 122.5)
         #expect(player.currentPhase?.kind == .brisk)
         #expect(player.caption?.lineID == "a1.13")
-        #expect(player.remainingInPhase == 25)
+        #expect(player.remainingInPhase == 28)
         #expect(player.phaseIndex == 2)
     }
 

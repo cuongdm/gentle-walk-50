@@ -88,17 +88,28 @@ enum PlaybackState: Equatable, Sendable { case idle, ready, playing, paused(Paus
     }
 
     /// This hurts / Skip / Walk home gently: rebuilds the program and continues from the same moment.
+    /// The screen moves to the next part at once (the timeline edit is instant); the old sound stops
+    /// while the new program is built, then plays from the same moment. Taps during a rebuild are ignored
+    /// so two rebuilds never race (that replayed audio and skipped twice).
     func apply(_ edit: TimelineEdit) async throws {
+        guard !isEditing else { return }
+        isEditing = true
+        defer { isEditing = false }
         let at = currentTime
         let wasPlaying = state == .playing
         let edited = TimelineEditing.apply(edit, to: timeline, at: at)
-        try await engine.load(edited)
         timeline = edited
         captions = CaptionTimeline(timeline: edited)
+        tick(at)
+        if wasPlaying { engine.pause() }
+        try await engine.load(edited)
         engine.seek(to: at)
-        if wasPlaying { engine.play() }
+        if wasPlaying && state == .playing { engine.play() }
         tick(at)
     }
+
+    /// True while a Skip / This hurts rebuild is loading.
+    private(set) var isEditing = false
 
     private(set) var isVoiceOn = true
     private(set) var isMusicOn = true

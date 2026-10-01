@@ -65,6 +65,8 @@ Tổng câu giọng tối thiểu: khoảng 250 (A1 30 + A2 41 mới + A3–A9 8
 | B2. Chuông | 3 | đổi pha (âm trầm 500–800 Hz, hai nốt) · đếm một lần · hoàn thành buổi |
 | B3. Nhạc nền | 3 phong cách × 3–5 bản lặp | "Feel-good 70s and 80s" (mặc định), Calm piano, Country; **tạo bằng AI trên gói trả phí có quyền thương mại** (chốt 28/09/2026, docs/todo.md #4), không lời, tự nhỏ khi HLV nói |
 
+> **30/09/2026:** kế hoạch mở rộng nội dung thật cho 4 nhóm bài (8 động tác đi bộ, 12 ghế, 12 giãn cơ, extras; 72 clip nguồn; giọng, nhạc, chuông) ở [plans/2026-09-30-content-4-groups.md](plans/2026-09-30-content-4-groups.md), prompt ở [scripts/P-production-prompts.md](scripts/P-production-prompts.md). Khi được duyệt, các mục A2/A4/A10, V và B dưới đây sẽ cập nhật theo.
+
 ## 4. V. Video động tác (người thật do AI tạo, không tiếng)
 Giọng vẫn là lõi: clip chỉ minh hoạ, không mang thông tin mà giọng không nói. Người trong clip là HLV có giọng dẫn: trông 58–62 tuổi, tóc muối tiêu, dáng đầy đặn, đeo kính, áo sage cố định (spec mục "Brief cho designer"). Không đặt tên hay chứng chỉ cho HLV AI.
 

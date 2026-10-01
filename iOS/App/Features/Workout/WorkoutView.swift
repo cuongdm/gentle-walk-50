@@ -18,6 +18,9 @@ struct WorkoutView: View {
 
     var body: some View {
         content
+            // Exercise clips move only while the coach plays: Pause, Break, a phone call or This hurts
+            // freeze the clip with her (they kept looping before).
+            .environment(\.videoPaused, session.player.state != .playing)
             .onChange(of: session.player.state) { _, state in
                 if state == .finished, !session.isComplete, session.stage == .playing {
                     Task { await session.finish() }
@@ -59,7 +62,10 @@ struct WorkoutView: View {
                 content: CompleteContent(result: result, request: session.request, minutes: session.minutesDone,
                                          name: name, content: session.content),
                 onFeeling: session.recordFeeling, onDone: { onClose(result) }, route: session.route,
-                chairMovesMinutes: session.request.place == .outdoors && onChairMoves != nil ? 4 : nil,
+                chairMovesMinutes: session.request.place == .outdoors && onChairMoves != nil
+                    ? WorkoutRequest.chairMovesAfterOutdoor(limits: session.request.limits, rotationIndex: 0)
+                        .minutes(content: session.content)
+                    : nil,
                 onChairMoves: { onChairMoves?() },
                 onAgain: onAgain.map { again in { onClose(result); again() } })
             .reviewPrompt(reviewMilestone(result), onAsked: onReviewAsked)

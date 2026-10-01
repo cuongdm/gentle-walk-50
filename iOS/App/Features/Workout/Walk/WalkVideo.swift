@@ -1,14 +1,17 @@
 import Foundation
 import GentleWalkCore
 
-/// Filmed walking loops, by level (indoors only; outdoors she walks with the phone in her pocket).
-/// A level shows its clip once the file is in the bundle; until then the walk keeps its painting.
+/// The filmed loop for the walk part on screen (content plan 30/09/2026 §3): the move's clip for her
+/// level, slowed for easy parts and quickened for quicker ones (`-easy` / `-quick`), else the move's
+/// level clip. A move without a clip, the walking pad and outdoors keep the painting.
 enum WalkVideo {
-    /// W1-1: seated march on the chair (Commercial break walk trial, 30/09/2026).
-    private static let files: [WalkLevel: String] = [.seated: "W1-1.mp4"]
+    static func fileName(for level: WalkLevel, move: Exercise?, pace: Exercise.Pace, isOutdoors: Bool = false) -> String? {
+        guard !isOutdoors, let move else { return nil }
+        return ExerciseVideo.firstBundled(move.videoCandidates(level: level, pace: pace))
+    }
 
-    static func fileName(for level: WalkLevel, isOutdoors: Bool = false) -> String? {
-        guard !isOutdoors, let file = files[level], ExerciseVideo.url(for: file) != nil else { return nil }
-        return file
+    /// Any clip for this walk's moves at her level (the "Video" badge in All sessions).
+    static func hasClip(for level: WalkLevel, moves: [Exercise], isOutdoors: Bool = false) -> Bool {
+        moves.contains { fileName(for: level, move: $0, pace: .easy, isOutdoors: isOutdoors) != nil }
     }
 }

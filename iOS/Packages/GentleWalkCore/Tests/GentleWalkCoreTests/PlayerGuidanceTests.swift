@@ -12,7 +12,7 @@ import Testing
 
     @Test func progressCountsTheMovesOfTheCurrentBlock() throws {
         let timeline = SessionTimeline.make(plan: try chairDay(), voice: content.voiceLines)
-        let moves = timeline.phases.filter { $0.exerciseID != nil }
+        let moves = timeline.phases.filter { $0.isExercise && $0.block == .chair }
         #expect(moves.count >= 3)
 
         // Halfway through the second move: one done, the second half full.
@@ -53,6 +53,17 @@ import Testing
         let walk = try SessionBuilder.build(kind: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), level: .seated,
                                             intensity: .gentle, limits: [], rotationIndex: 0, content: content)
         #expect(walk.withoutMoveIntroductions() == walk)
+    }
+
+    @Test func balanceKeepsItsOpeningsWhenIntroductionsAreOff() throws {
+        let balance = try SessionBuilder.build(kind: PlannedDay(main: .chair, chairMoves: 0, cooldown: false), level: .seated,
+                                               intensity: .gentle, limits: [], rotationIndex: 0, content: content,
+                                               variant: SessionBuilder.Variant.balance)
+        #expect(balance.withoutMoveIntroductions() == balance)
+        #expect(SessionPlan.isMoveIntroduction("a4.v1.1"))
+        #expect(SessionPlan.isMoveIntroduction("a4.side-leg.intro"))
+        #expect(!SessionPlan.isMoveIntroduction("a4.v1.2"))
+        #expect(!SessionPlan.isMoveIntroduction("a11.tandem.intro"))
     }
 
     @Test(arguments: [

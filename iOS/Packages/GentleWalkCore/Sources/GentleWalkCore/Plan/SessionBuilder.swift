@@ -1,52 +1,64 @@
-/// Builds a day's session from content templates (task 2.8): walk by level and intensity, chair
-/// moves rotated by day, stretch poses filtered by body limits, and the cool-down set.
+/// Builds a day's session from content templates (task 2.8; content plan 30/09/2026): walk by level
+/// and intensity, chair moves in frames with rotation, stretch days, the cool-down set and the extras.
+/// Body limits drop hidden exercises and swap in safer lines; voice variants rotate by day.
 public enum SessionBuilder {
     public struct MissingTemplate: Error, Equatable { public var id: String }
 
-    /// Chair moves in the order they rotate (library template `ses.moves`).
-    static let moveLibraryID = "ses.moves"
+    /// Template variants picked from "All sessions" (SessionPreset.variant).
+    public enum Variant {
+        public static let commercial = "commercial"
+        public static let balance = "balance"
+        public static let morning = "morning"
+    }
+
+    /// Chair move library for an intensity: one ready segment per move (`ses.moves.<intensity>`).
+    public static func moveLibraryID(for intensity: Intensity) -> String { "ses.moves.\(intensity.rawValue)" }
 
     public static func build(kind day: PlannedDay, level: WalkLevel, intensity: Intensity, limits: Set<BodyLimit>,
-                             rotationIndex: Int, content: ContentBundle) throws -> SessionPlan {
-        let allowed = BodyLimitFilter.allowed(content.exercises, limits: limits)
-        let allowedIDs = Set(allowed.map(\.id))
+                             rotationIndex: Int, content: ContentBundle, variant: String? = nil) throws -> SessionPlan {
+        let allowed = Set(BodyLimitFilter.allowed(content.exercises, limits: limits).map(\.id))
+        let context = Context(limits: limits, rotationIndex: rotationIndex, allowed: allowed, content: content,
+                              table: VoiceRotation.Table(lines: content.voiceLines))
         var plan = SessionPlan()
 
         switch day.main {
         case nil:
             return plan
         case .walk, .longWalk:
-            var walk = try template("ses.walk.\(level.rawValue).\(intensity.rawValue)", in: content).segments
-            if day.main == .longWalk { walk = addRound(to: walk, level: level) }
+            let pace = variant ?? (day.main == .longWalk && intensity != .gentle ? "long" : intensity.rawValue)
+            var walk = try context.segments(of: "ses.walk.\(level.rawValue).\(pace)")
+            let movesAfter = day.chairMoves > 0
+            // A cool-down stretch set follows the chair moves: the walk keeps only its slow walking.
+            if movesAfter && day.cooldown { walk.removeAll { $0.kind == .cooldown && $0.exerciseID?.hasPrefix("st.") == true } }
             plan.blocks.append(.init(kind: .walk, segments: walk))
-            if day.chairMoves > 0 {
-                let moves = try pickMoves(day.chairMoves, allowed: allowedIDs, rotationIndex: rotationIndex, content: content)
-                plan.blocks.append(.init(kind: .chair, segments: chairBlock(moves, open: "a9.to-chair", close: nil)))
-            }
-        case .chair:
-            let moves = try pickMoves(intensity.chairDayMoves, allowed: allowedIDs, rotationIndex: rotationIndex, content: content)
-            plan.blocks.append(.init(kind: .chair, segments: chairBlock(moves, open: "a9.chair.open", close: "a9.chair.close")))
-        case .stretch:
-            let standing = level != .seated && !limits.contains(.standingIsHard)
-            let id = "ses.stretch.\(standing ? "standing" : "seated").\(intensity.rawValue)"
-            plan.blocks.append(.init(kind: .stretch, segments: filterPoses(try template(id, in: content).segments, allowed: allowedIDs)))
-            plan.holdSeconds = intensity.stretchHoldSeconds
-        }
-
-        if day.cooldown {
-            let cooldown = filterPoses(try template("ses.cooldown", in: content).segments, allowed: allowedIDs)
-            plan.blocks.append(.init(kind: .cooldown, segments: cooldown))
-        }
-
-        let counts = VoiceRotation.variantCounts(in: content.voiceLines)
-        for b in plan.blocks.indices {
-            for s in plan.blocks[b].segments.indices {
-                plan.blocks[b].segments[s].cues = plan.blocks[b].segments[s].cues.map {
-                    SessionTemplate.Cue(at: $0.at, line: VoiceRotation.rotate($0.line, by: rotationIndex, counts: counts))
+            if movesAfter {
+                let moves = try ChairSessionPlanner.afterWalk(count: day.chairMoves, context: context)
+                plan.blocks.append(.init(kind: .chair, segments: moves))
+                if day.cooldown {
+                    let standing = level != .seated && !limits.contains(.standingIsHard)
+                    plan.blocks.append(.init(kind: .cooldown, segments: try context.segments(of: standing ? "ses.cooldown.stand" : "ses.cooldown")))
                 }
             }
+        case .chair:
+            if variant == Variant.balance {
+                plan.blocks.append(.init(kind: .chair, segments: try context.segments(of: "ses.balance.\(intensity.rawValue)")))
+            } else {
+                plan.blocks.append(.init(kind: .chair, segments: try ChairSessionPlanner.chairDay(intensity: intensity, context: context)))
+                plan.blocks.append(.init(kind: .cooldown, segments: try context.segments(of: "ses.chair.close")))
+            }
+        case .stretch:
+            if variant == Variant.morning {
+                plan.blocks.append(.init(kind: .stretch, segments: try context.segments(of: "ses.morning")))
+            } else {
+                let standing = level != .seated && !limits.contains(.standingIsHard)
+                let id = "ses.stretch.\(standing ? "standing" : "seated").\(intensity.rawValue)"
+                plan.blocks.append(.init(kind: .stretch, segments: try context.segments(of: id)))
+                plan.holdSeconds = intensity.stretchHoldSeconds
+            }
         }
-        plan.easierExerciseIDs = Set(allowed.filter { plan.exerciseIDs.contains($0.id) && BodyLimitFilter.startsEasier($0, limits: limits) }.map(\.id))
+
+        plan.easierExerciseIDs = Set(BodyLimitFilter.allowed(content.exercises, limits: limits)
+            .filter { plan.exerciseIDs.contains($0.id) && BodyLimitFilter.startsEasier($0, limits: limits) }.map(\.id))
         return plan
     }
 
@@ -55,49 +67,44 @@ public enum SessionBuilder {
         return template
     }
 
-    /// `count` allowed moves starting at the rotation index, so consecutive days differ.
-    static func pickMoves(_ count: Int, allowed: Set<String>, rotationIndex: Int, content: ContentBundle) throws -> [SessionTemplate.Segment] {
-        let library = try template(moveLibraryID, in: content).segments.filter { $0.exerciseID.map(allowed.contains) ?? false }
-        guard !library.isEmpty else { return [] }
-        return (0..<min(count, library.count)).map { library[(rotationIndex + $0) % library.count] }
-    }
+    /// What every template needs to become part of her session.
+    struct Context {
+        let limits: Set<BodyLimit>
+        let rotationIndex: Int
+        let allowed: Set<String>
+        let content: ContentBundle
+        let table: VoiceRotation.Table
 
-    /// Moves with a 20-second rest between them, framed by optional opening and closing lines.
-    static func chairBlock(_ moves: [SessionTemplate.Segment], open: String, close: String?) -> [SessionTemplate.Segment] {
-        var segments = [SessionTemplate.Segment(kind: .intro, seconds: 8, cues: [.init(at: 0, line: open)])]
-        for (index, move) in moves.enumerated() {
-            if index > 0 { segments.append(.init(kind: .rest, seconds: 20, cues: [.init(at: 0, line: "a5.rest20")])) }
-            segments.append(move)
+        /// A template's segments for her: limits applied, lines rotated for the day.
+        func segments(of id: String) throws -> [SessionTemplate.Segment] {
+            let template = try SessionBuilder.template(id, in: content)
+            return prepare(template.segments, level: template.level)
         }
-        if let close { segments.append(.init(kind: .outro, seconds: 8, cues: [.init(at: 0, line: close)])) }
-        return segments
-    }
 
-    /// Drops poses hidden by body limits, and the "stand up" pause before a dropped standing pose.
-    static func filterPoses(_ segments: [SessionTemplate.Segment], allowed: Set<String>) -> [SessionTemplate.Segment] {
-        var result: [SessionTemplate.Segment] = []
-        for segment in segments {
-            if let id = segment.exerciseID, !allowed.contains(id) {
-                if result.last?.kind == .rest { result.removeLast() }
-                continue
+        /// Drops segments her limits leave out (and a "stand up" pause before a dropped exercise),
+        /// then rotates and filters every cue.
+        func prepare(_ segments: [SessionTemplate.Segment], level: WalkLevel?) -> [SessionTemplate.Segment] {
+            var result: [SessionTemplate.Segment] = []
+            for segment in segments {
+                let hidden = segment.exerciseID.map { !allowed.contains($0) } ?? false
+                if hidden || !segment.applies(to: limits) {
+                    if hidden, result.last?.kind == .rest { result.removeLast() }
+                    continue
+                }
+                result.append(prepare(segment, level: level))
             }
-            result.append(segment)
+            return result
         }
-        return result
-    }
 
-    /// Long walk (Friday): one more brisk + easy round, copied from the round before the last, with
-    /// the "here we go again" opening instead of the first-round set-up line.
-    static func addRound(to walk: [SessionTemplate.Segment], level: WalkLevel) -> [SessionTemplate.Segment] {
-        let brisks = walk.indices.filter { walk[$0].kind == .brisk }
-        guard brisks.count >= 2, let source = brisks.dropLast().last, walk.indices.contains(source + 1) else { return walk }
-        var brisk = walk[source]
-        let easy = walk[source + 1]
-        brisk.cues = brisk.cues.map { cue in
-            cue.line.hasPrefix("a2.brisk.\(level.rawValue).") ? .init(at: cue.at, line: "a2.brisk.again.1") : cue
+        func prepare(_ segment: SessionTemplate.Segment, level: WalkLevel?) -> SessionTemplate.Segment {
+            var copy = segment
+            copy.cues = segment.cues.compactMap { cue in
+                guard cue.applies(to: limits) else { return nil }
+                let line = table.rotate(cue.line, by: rotationIndex, level: level, limits: limits)
+                if let known = table.lines[line], !known.fits(level: level, limits: limits) { return nil }
+                return SessionTemplate.Cue(at: cue.at, line: line)
+            }
+            return copy
         }
-        var result = walk
-        result.insert(contentsOf: [brisk, easy], at: brisks.last!)
-        return result
     }
 }

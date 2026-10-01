@@ -54,11 +54,15 @@ import Testing
         let walk = PlannedDay(main: .walk, chairMoves: 0, cooldown: false)
         let steady = try SessionBuilder.build(kind: walk, level: .seated, intensity: .steady, limits: [], rotationIndex: 0, content: content)
         let shorter = steady.shortened(byMinutes: 2)
-        #expect(shorter.totalSeconds == 360)
+        // Only the warm-up can lose time (the cool-down walk is already at its one-minute floor).
+        #expect(shorter.totalSeconds == steady.totalSeconds - 60)
+        // Its opening, set-up and safety lines stay.
+        #expect(Set(steady.blocks[0].segments[0].cues.filter { $0.at < 45 }.map(\.line))
+                .isSubset(of: Set(shorter.blocks[0].segments[0].cues.map(\.line))))
         #expect(shorter.segments.map(\.kind) == steady.segments.map(\.kind))
         #expect(shorter.segments.allSatisfy { seg in seg.cues.allSatisfy { $0.at < seg.seconds } })
 
         let gentle = try SessionBuilder.build(kind: walk, level: .seated, intensity: .gentle, limits: [], rotationIndex: 0, content: content)
-        #expect(gentle.shortened(byMinutes: 2).totalSeconds == 300)
+        #expect(gentle.shortened(byMinutes: 2).totalSeconds == gentle.totalSeconds)
     }
 }

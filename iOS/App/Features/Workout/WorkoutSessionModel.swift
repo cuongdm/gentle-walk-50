@@ -62,7 +62,9 @@ import GentleWalkCore
     @ObservationIgnored private let painRecorder: PainReportRecording?
     @ObservationIgnored private let completion: SessionCompletionService?
     @ObservationIgnored private let prepareMedia: Bool
-    @ObservationIgnored private var confirmedStanding: Set<String> = []
+    /// Parts of the session (chair moves, stretch) where she has confirmed standing behind the chair.
+    @ObservationIgnored private var confirmedStanding: Set<SessionPlan.Block.Kind> = []
+    @ObservationIgnored private var lastWalkKind: SessionTemplate.Segment.Kind?
     @ObservationIgnored private var transitionTask: Task<Void, Never>?
     @ObservationIgnored private let now: () -> Date
 
@@ -79,7 +81,8 @@ import GentleWalkCore
         self.now = now
         player = SessionPlayer(engine: engine)
         player.onPhaseChange = { [weak self] phase in self?.phaseChanged(to: phase) }
-        walkModel = WalkPlayerModel(player: player, level: request.level)
+        walkModel = WalkPlayerModel(player: player, level: request.level,
+                                    exercises: Dictionary(content.exercises.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first }))
         chairModel = ChairPlayerModel(session: self)
         stretchModel = StretchPlayerModel(session: self)
     }
@@ -158,8 +161,8 @@ import GentleWalkCore
     }
 
     func confirmStanding() {
-        guard case .standBehindChair(let id) = stage else { return }
-        confirmedStanding.insert(id)
+        guard case .standBehindChair = stage else { return }
+        confirmedStanding.insert(player.currentPhase?.block ?? .chair)
         stage = .playing
         player.resume()
     }
@@ -221,13 +224,16 @@ import GentleWalkCore
 
     private func phaseChanged(to phase: SessionTimeline.Phase) {
         if phase.exerciseID == "mv.sit-to-stand", phase.kind == .move { motion?.start() } else { motion?.stop() }
-        if phase.block == .walk, [.brisk, .easy, .cooldown].contains(phase.kind) {
+        // A new pace gets the signal and the card; a new move at the same pace has its bell and line.
+        if phase.block == .walk, [.brisk, .easy, .cooldown].contains(phase.kind), phase.kind != lastWalkKind {
             PhaseSignal.play()
             let model = WalkPlayerModel(player: player, level: request.level)
             showTransition(PhaseTransition(label: model.phaseLabel, tone: model.tone))
         }
+        if phase.block == .walk { lastWalkKind = phase.kind }
+        // Once she stands behind the chair in a part of the session, the next standing moves follow on.
         if let id = phase.exerciseID, let exercise = exercisesByID[id], exercise.standing,
-           !confirmedStanding.contains(id), phase.kind == .move || phase.kind == .stretch, !phase.isEasier {
+           !confirmedStanding.contains(phase.block), phase.kind == .move || phase.kind == .stretch, !phase.isEasier {
             player.pause(.getReady)
             stage = .standBehindChair(exerciseID: id)
         }

@@ -18,6 +18,10 @@ Sang manh-skill-plan với asset hiện có (6 clip, A1, giọng prototype). Nh�
 - [ ] Chốt cách làm giọng cuối (TTS, thu người thật hay clone có đồng ý) sau test prototype.
 
 ## Video
+- [x] ~~Duyệt kế hoạch nội dung 4 nhóm~~ Duyệt 30/09/2026: [plans/2026-09-30-content-4-groups.md](plans/2026-09-30-content-4-groups.md) §7 (8 chốt, 9 pending) + [scripts/P-production-prompts.md](scripts/P-production-prompts.md); dấu ✦ xử lý bằng `tools/video/crop_avoid_logo.py` (test 2 clip đạt). Chốt 30/09: #8b giữ 1688×950; #8c tạo lại V1 và V6 trong đợt A (guard `tools/video/crop_subject_check.py`), giữ V2–V5.
+- [ ] **M2 xong phần tạo 30/09** (master + 7 khung, 0 credit, guard PASS; `assets/video/frames/M2-frames-sheet.jpg`) → **chủ app duyệt ảnh** + OK tạo lại thêm V5 → M3: 5 clip mẫu (báo credit trước) + `tools/video/retime.py`.
+- [ ] **M3 xong phần tạo 30/09** (180 credit): V5 làm lại 2 lượt (lượt 2 sửa người lệch phải: khung MF-05c, tâm 40%; MF-04c cũng đã dời, dùng cho V9–V11/S11/B1), W2-1 (+easy/quick remap), V8 (làm lại sau lỗi chạm sàn, ghép 2 bên), S5, S5-hold (từ S5, 0 credit) đạt; B2 đi ngang dừng sau 4 lượt (bắt chéo chân) — kết quả `docs/scripts/P-production-prompts.md` §9, lưới `assets/video/M3/M3_review_grid.mp4`. **Chờ chủ app duyệt**; B2 chốt (a) 30/09: bỏ video đi ngang, dùng clip W2-2 side step (bắt buộc ở đợt A); sau đó tải 1080p cho clip đạt và sang M4/M5.
+- [ ] Code kèm theo (sau M3): nhãn "QUICKER" cho cấp Seated (String Catalog + spec S11); màn xác nhận tay vịn Walking pad; câu setup ghế có tay vịn cho Joint replacement; chip Lower back thêm "or bone thinning"; `WalkVideo` chọn file theo động tác + pha; `ContentValidator` 6 quy tắc STD §7.
 - [ ] Huấn luyện viên duyệt 6 clip V1-1 … V6-1 (V1 tay chạm ghế khi ngồi, V6 chân nhấc cao hơn kịch bản 2 inch).
 - [x] ~~Viết A10 + kịch bản clip giãn cơ~~ Xong 29/09/2026: `docs/scripts/A10-stretch.md` (mục 6 là danh sách clip V7-1 … V7-7). Còn: báo giá credit, tạo 2 clip mẫu trước.
 - [ ] Tạo nhạc AI 9–15 bản trên gói trả phí (mục 4 ở trên), chuẩn hoá độ to, kiểm tra lặp liền.

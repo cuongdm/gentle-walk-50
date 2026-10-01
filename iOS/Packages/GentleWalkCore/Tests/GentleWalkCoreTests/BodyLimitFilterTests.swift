@@ -10,14 +10,16 @@ import Testing
         #expect(ids.count == all.count - 1)
     }
 
-    @Test func standingIsHardHidesUnsupportedStandingButKeepsChairMoves() {
+    @Test func standingIsHardHidesStandingMovesButKeepsSitToStand() {
         let ids = BodyLimitFilter.allowed(all, limits: [.standingIsHard]).map(\.id)
-        #expect(!ids.contains("mv.wall-push"))
-        #expect(!ids.contains("st.calf"))
-        // Standing with the chair to hold stays.
+        // A4 §5.5: the wall push-up and every move standing behind the chair.
+        for hidden in ["mv.wall-push", "mv.single-leg", "mv.side-leg", "mv.back-leg", "mv.knee-curl", "mv.mini-squat",
+                       "st.calf", "bl.tandem", "bl.side-walk"] {
+            #expect(!ids.contains(hidden), "\(hidden)")
+        }
         #expect(ids.contains("mv.sit-to-stand"))
-        #expect(ids.contains("mv.single-leg"))
         #expect(ids.contains("mv.knee-lift"))
+        #expect(ids.contains("st.overhead"))  // done seated instead
     }
 
     @Test func noFloorChangesNothingBecauseThereAreNoFloorExercises() {

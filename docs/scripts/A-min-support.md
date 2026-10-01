@@ -114,3 +114,46 @@ Không logo, không tên thương hiệu; mô tả cảm giác nơi chốn, khô
 | A8 địa danh | 10 |
 | A9 chuyển bài | 14 |
 | **Cộng** | **80** |
+
+## Bổ sung 30/09/2026 (M4) — đếm tới 15, báo trước, walking pad, chóng mặt buổi sáng, câu dừng
+Theo [plan 4 nhóm](../plans/2026-09-30-content-4-groups.md) §4.2 và [STD](../research/2026-09-30-exercise-standards.md) §1.4, §2.5, §3.1, §5.2. Không đổi câu nào ở trên. Câu A4 từ nay ở [A4-chair-moves.md](A4-chair-moves.md) (thay V-exercise-clips.md). Đã có sẵn, không viết lại: `a5.10s` "Ten more seconds.", `a5.last` "Last one.", `a5.two-more` "Two more.", `a7.dizzy`.
+
+### A5 thêm (9)
+Đếm rep tới 15 cho bản Strong (plan §2.2 rep 6–12, STD §3.1 Strong 12–15). Câu báo trước có "then…" để người nghe biết sắp đổi gì (plan nguyên tắc 2).
+| ID | Khi nào | Câu thoại |
+|---|---|---|
+| a5.n.13 | đếm rep | Thirteen. |
+| a5.n.14 | đếm rep | Fourteen. |
+| a5.n.15 | đếm rep | Fifteen. |
+| a5.10s.change | còn 10 s, sắp đổi bài | Ten more seconds, then we change. |
+| a5.10s.rest | còn 10 s, sắp nghỉ | Ten more seconds, then a short rest. |
+| a5.one-more | còn 1 rep (biến thể của a5.last) | One more. |
+| a5.last-two | còn 2 rep (biến thể của a5.two-more) | Last two. |
+| a5.two-more.2 | còn 2 rep (biến thể) | Just two more. Keep breathing. |
+| a5.last.2 | rep cuối (biến thể) | And the last one. Nice and slow. |
+Câu ghi chú ở A5 "Đếm lần chỉ tới 12" nay là tới 15; số lớn hơn vẫn chỉ hiện trên màn.
+
+### A7 thêm (12)
+Walking pad theo STD §2.5 (quy tắc app, căn cứ [S39][S42]); chóng mặt buổi sáng theo STD §5.2 [S36]; câu dừng theo STD §1.4, nói "stop and rest", không chẩn đoán, không khuyên gì thêm ngoài hỏi bác sĩ khi lặp lại. Nhất quán với `a7.dizzy` ("stop and sit down") và `a7.hurt.*`.
+| ID | Khi nào | Câu thoại |
+|---|---|---|
+| a7.pad.start | buổi Walking pad, trước khi bật belt | Stand with your feet on the sides of your pad, then start the belt. |
+| a7.pad.slow | ngay sau khi bật | Start at the slowest speed. Build up a little at a time. |
+| a7.pad.rail | mở buổi pad | Hold the rail if your pad has one, or rest a hand on a sturdy table. |
+| a7.pad.clip | mở buổi pad, lần đầu | If your pad has a safety clip, clip it to your clothes. |
+| a7.pad.phone | mở buổi pad | Leave your phone on the table. Just follow the voice. |
+| a7.pad.off | trước khi bước xuống, kết buổi hoặc Break | Stop the belt first. Wait until it's still, then step off. |
+| a7.pad.dizzy | câu nhắc chung, buổi pad | Feeling dizzy? Stop the belt, hold on, then sit down. |
+| a7.morning.1 | Morning stretch, mở buổi | Sit tall for three breaths. If you feel dizzy, stay seated. |
+| a7.morning.2 | Morning stretch, trước sit-to-stand | Stand up slowly, then stay still for one breath before you move. |
+| a7.stop.1 | một lần mỗi buổi, đầu buổi hoặc khi tăng cường độ | If you feel sharp pain, chest pain, or dizziness, stop and rest. |
+| a7.stop.2 | ngay sau a7.stop.1 | If it keeps happening, talk to your doctor. |
+| a7.stop.breath | pha nhanh, Steady/Strong | If you can't catch your breath, slow down or stop. |
+`a7.pad.start` khác thứ tự của `a2.setup.pad.1` ("Step onto your walking pad and start it…"): STD §2.5 bật belt khi hai chân đứng hai bên. Chủ app chọn giữ câu nào (câu hỏi trong báo cáo M4).
+
+### Tổng bổ sung
+| Mục | Số câu mới |
+|---|---|
+| A5 | 9 |
+| A7 | 12 |
+| **Cộng** | **21** |

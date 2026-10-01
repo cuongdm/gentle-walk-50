@@ -1,0 +1,1234 @@
+{
+ "updated": "2026-10-01",
+ "notes": "Hand-edited catalog for assets/video/video-manager.html. Rebuild: python3 tools/video/build_video_manager.py. Quality (Tốt / Trung bình / Thấp / Chưa có) is computed from the app clip's metrics + 'form' (ok | minor | wrong). 'pattern' = expected action logic for tools/video/motion_logic.py (alternate | sides | symmetric | hold).",
+ "sources": {
+  "flow-main": {
+   "ai": "Flow · Omni 1.1 Flash 720p",
+   "who": "tài khoản chính, nhân vật @GWCoach",
+   "short": "Flow"
+  },
+  "flow-2": {
+   "ai": "Flow · Omni 1.1 Flash 720p",
+   "who": "tài khoản 2 (trananhquan), khung Start = End",
+   "short": "Flow"
+  },
+  "flow-old": {
+   "ai": "Flow · Omni 1.1 Flash (đợt đầu, nguồn 1080p Upscaled)",
+   "who": "tài khoản chính",
+   "short": "Flow"
+  },
+  "flow-m3": {
+   "ai": "Flow · Omni 1.1 Flash 720p (mốc 3)",
+   "who": "tài khoản chính",
+   "short": "Flow"
+  },
+  "seedance": {
+   "ai": "Higgsfield · Seedance 2.5",
+   "who": "web UI, tài khoản Max",
+   "short": "Seedance 2.5"
+  },
+  "seedance-mini": {
+   "ai": "Higgsfield · Seedance 2.0 Mini",
+   "who": "MCP, tài khoản Max",
+   "short": "Seedance Mini"
+  },
+  "gemini-omni-hf": {
+   "ai": "Higgsfield · Gemini Omni Flash 1.1",
+   "who": "MCP, tài khoản Max (không ✦)",
+   "short": "Gemini Omni"
+  },
+  "wan30prime": {
+   "ai": "Higgsfield · Wan 3.0 Prime (thinking)",
+   "who": "MCP, tài khoản Max",
+   "short": "Wan 3.0"
+  },
+  "kling30": {
+   "ai": "Higgsfield · Kling 3.0 std",
+   "who": "MCP, tài khoản Max",
+   "short": "Kling 3.0"
+  },
+  "gemini-1080": {
+   "ai": "Higgsfield · Gemini Omni Flash 1.1 720p → upscale 1080p (Bytedance) · HEVC",
+   "who": "MCP, tài khoản Max",
+   "short": "Gemini 1080p"
+  },
+  "flow-upscaled": {
+   "ai": "Flow (bản app) → upscale 1080p (Bytedance)",
+   "who": "MCP",
+   "short": "Flow 1080p"
+  },
+  "flow-rejoin": {
+   "ai": "Flow (2 lượt cũ) ghép lại tại khung khớp nhất",
+   "who": "máy local, 0 credit",
+   "short": "Flow ghép lại"
+  },
+  "flow-rejoin-1080": {
+   "ai": "Flow 2 lượt cũ, ghép lại ở khung khớp nhất → upscale 1080p (Bytedance) · HEVC",
+   "who": "local + MCP",
+   "short": "Flow ghép lại 1080p"
+  },
+  "flow-up-1080": {
+   "ai": "Flow (bản app) → upscale 1080p (Bytedance) · HEVC",
+   "who": "MCP",
+   "short": "Flow 1080p"
+  }
+ },
+ "crop": {
+  "flow": "Có — cắt bỏ ✦ bằng crop_avoid_logo.py + guard, khung app 1124×632",
+  "seedance-test": "Không có ✦. Bản thử cắt 1124×632 tại (0,27) cho khớp khung app; lần sau làm ảnh tham chiếu đúng khung → không cần cắt",
+  "none": "Không cần (không ✦)",
+  "hf-frame": "Không cần crop — ảnh tham chiếu HF đã đúng khung app (1280×720, người ~88% chiều cao), không ✦"
+ },
+ "hf_rate": {
+  "360p": 1,
+  "480p": 1,
+  "720p": 3,
+  "1080p": 4.5,
+  "model": "Gemini Omni Flash 1.1"
+ },
+ "clips": [
+  {
+   "id": "W1-1",
+   "name": "March",
+   "group": "Đi bộ ngồi",
+   "cat": "walk",
+   "angle": "Chính diện",
+   "frame": "MF-01 F-SIT",
+   "src": "flow-old",
+   "tries": 2,
+   "prio": 4,
+   "hf_s": 5,
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Bản 2 Omni, ảnh khung tải từ máy.",
+   "form": "ok",
+   "pattern": "alternate",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "W1-2",
+   "name": "Heel dig",
+   "group": "Đi bộ ngồi",
+   "cat": "walk",
+   "angle": "Nghiêng",
+   "frame": "MF-03c P-SIT",
+   "src": "flow-main",
+   "tries": 2,
+   "prio": 4,
+   "hf_s": 5,
+   "note": "Lượt 1 chính diện khó thấy → quay nghiêng.",
+   "form": "ok",
+   "pattern": "profile"
+  },
+  {
+   "id": "W1-3",
+   "name": "Side step",
+   "group": "Đi bộ ngồi",
+   "cat": "walk",
+   "angle": "Chính diện",
+   "frame": "MF-01 F-SIT",
+   "src": "flow-rejoin-1080",
+   "tries": 4,
+   "prio": 2,
+   "joined": false,
+   "hf_s": 5,
+   "issues": [],
+   "note": "Ghép lại 2 lượt Flow ở khung khớp nhất (tools/video/rejoin_best.py): khung mờ 8,3% → 1,0% (bản chậm 1,8%, nhanh 1,1%). Upscale 1080p (0,2 credit) · HEVC. Lượt 1 hai chân cùng ra; lượt 2 chân phải đứng ngoài. Seedance 2.5 đổi chân đúng ngay lần đầu nhưng đứng dậy cuối clip (ảnh tham chiếu đứng) → làm lại với ảnh đầu/cuối ngồi.",
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (W1-3-quick)",
+     "file": "A/_replaced-2026-10-01/W1-3-quick_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Flow · bản cũ đã thay (W1-3-easy)",
+     "file": "A/_replaced-2026-10-01/W1-3-easy_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Flow · bản cũ đã thay (W1-3)",
+     "file": "A/_replaced-2026-10-01/W1-3_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Seedance 2.5 · 720p · 8 s · thử",
+     "file": "A/HF-test/W1-3_seedance25_720p.mp4",
+     "src": "seedance",
+     "crop": "none",
+     "verdict": "Không dùng — đứng dậy 2 s cuối",
+     "credits": 56
+    }
+   ],
+   "form": "ok",
+   "replaced": "2026-10-01",
+   "pattern": "alternate"
+  },
+  {
+   "id": "W1-4",
+   "name": "Knee lift",
+   "group": "Đi bộ ngồi",
+   "cat": "walk",
+   "angle": "Chính diện",
+   "frame": "MF-01 F-SIT",
+   "src": "flow-main",
+   "tries": 2,
+   "prio": 4,
+   "hf_s": 5,
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Lượt 1 thấp như march → mốc \"đế giày ngang giữa ống chân kia\".",
+   "form": "ok",
+   "pattern": "alternate",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "W1-5",
+   "name": "Toe tap forward",
+   "group": "Đi bộ ngồi",
+   "cat": "walk",
+   "angle": "Nghiêng",
+   "frame": "MF-03c P-SIT",
+   "src": "flow-main",
+   "tries": 3,
+   "prio": 4,
+   "hf_s": 5,
+   "note": "Lượt nghiêng đầu ra heel dig → sửa prompt \"gót nhấc, mũi chạm\".",
+   "form": "ok",
+   "pattern": "profile"
+  },
+  {
+   "id": "W1-6",
+   "name": "Weight shift",
+   "group": "Đi bộ ngồi",
+   "cat": "walk",
+   "angle": "Chính diện",
+   "frame": "MF-01 F-SIT",
+   "src": "flow-main",
+   "tries": 2,
+   "prio": 4,
+   "hf_s": 5,
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Chu kỳ đầu cân (+10/−9 px).",
+   "form": "ok",
+   "pattern": "symmetric",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "W2-1",
+   "name": "March",
+   "group": "Đi bộ đứng",
+   "cat": "walk",
+   "angle": "Chính diện",
+   "frame": "MF-02 F-STAND",
+   "src": "flow-m3",
+   "tries": 1,
+   "prio": 4,
+   "hf_s": 5,
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. ≈78 bước/phút, chân nhấc thấp — hợp người mới tập.",
+   "form": "ok",
+   "pattern": "alternate",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "W2-2",
+   "name": "Side step",
+   "group": "Đi bộ đứng",
+   "cat": "walk",
+   "angle": "Chính diện",
+   "frame": "MF-06 F-STAND-WIDE",
+   "src": "flow-main",
+   "tries": 1,
+   "prio": 4,
+   "hf_s": 5,
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Cũng dùng làm hình cho Balance \"Sideways walking\" (B2 đã bỏ).",
+   "form": "ok",
+   "pattern": "alternate",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "W2-3",
+   "name": "Knee lift",
+   "group": "Đi bộ đứng",
+   "cat": "walk",
+   "angle": "Chính diện",
+   "frame": "MF-02 F-STAND",
+   "src": "flow-main",
+   "tries": 1,
+   "prio": 4,
+   "hf_s": 5,
+   "form": "ok",
+   "pattern": "alternate",
+   "loopfix": "2026-10-01",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py."
+  },
+  {
+   "id": "W2-4",
+   "name": "Heel dig",
+   "group": "Đi bộ đứng",
+   "cat": "walk",
+   "angle": "Nghiêng",
+   "frame": "MF-05c P-WALL",
+   "src": "flow-main",
+   "tries": 1,
+   "prio": 4,
+   "hf_s": 5,
+   "issues": [
+    "Bản easy/quick trôi 8 px sau retime — cần xem bằng mắt"
+   ],
+   "form": "ok",
+   "pattern": "profile"
+  },
+  {
+   "id": "W2-5",
+   "name": "Toe tap forward",
+   "group": "Đi bộ đứng",
+   "cat": "walk",
+   "angle": "Nghiêng",
+   "frame": "P-STAND (chưa có ảnh)",
+   "prio": 3,
+   "hf_s": 5,
+   "missing": true,
+   "note": "Như W2-4 nhưng mũi chân chạm trước, gối hơi gập, gót nhấc; ~0,7 s/lần.",
+   "pattern": "profile"
+  },
+  {
+   "id": "W2-6",
+   "name": "Heel to back",
+   "group": "Đi bộ đứng",
+   "cat": "walk",
+   "angle": "Nghiêng",
+   "frame": "MF-04c P-STAND-CHAIR",
+   "prio": 3,
+   "hf_s": 5,
+   "missing": true,
+   "note": "Đứng sau ghế, gập gối đưa gót ra sau, luân phiên.",
+   "pattern": "profile"
+  },
+  {
+   "id": "W2-7",
+   "name": "Weight shift",
+   "group": "Đi bộ đứng",
+   "cat": "walk",
+   "angle": "Chính diện",
+   "frame": "MF-02 F-STAND",
+   "prio": 3,
+   "hf_s": 5,
+   "missing": true,
+   "note": "Chân rộng hơn hông, tay chống hông, dồn trọng tâm trái–phải.",
+   "pattern": "symmetric"
+  },
+  {
+   "id": "V1-1",
+   "name": "Sit-to-stand",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Chính diện",
+   "frame": "MF-01 F-SIT",
+   "src": "flow-main",
+   "tries": 1,
+   "prio": 4,
+   "hf_s": 8,
+   "note": "Crop lại --headroom 150 (đứng lên cao hơn khung ngồi).",
+   "issues": [
+    "Nhịp hơi không đều (rhythm 0,68) — xem bằng mắt"
+   ],
+   "form": "ok",
+   "pattern": "symmetric"
+  },
+  {
+   "id": "V1-alt",
+   "name": "Sit-to-stand (tay đẩy ghế)",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Chính diện",
+   "frame": "MF-01 F-SIT",
+   "src": "flow-main",
+   "tries": 1,
+   "prio": 4,
+   "hf_s": 8,
+   "form": "ok",
+   "pattern": "symmetric"
+  },
+  {
+   "id": "V2-1",
+   "name": "Seated knee lift",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Chính diện",
+   "frame": "F-SIT",
+   "src": "flow-old",
+   "prio": 4,
+   "hf_s": 5,
+   "form": "ok",
+   "pattern": "alternate"
+  },
+  {
+   "id": "V3-1",
+   "name": "Seated leg extension",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Nghiêng",
+   "frame": "P-SIT",
+   "src": "gemini-1080",
+   "prio": 4,
+   "hf_s": 6,
+   "issues": [],
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (V3-1)",
+     "file": "A/_replaced-2026-10-01/V3-1_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Gemini Omni 1.1 · 360p · 10 s · thử · 2 chân",
+     "file": "A/HF-test/V3_gemini11_360p.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 10,
+     "verdict": "Đạt — duỗi gần thẳng ngang ghế, mũi chân hướng trần, lưng thẳng, 2 chân lần lượt, đều nhịp"
+    },
+    {
+     "label": "Gemini Omni 1.1 · 720p · 10 s · bản chính · 2 chân",
+     "file": "A/HF-test/V3_gemini11_720p.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 30,
+     "verdict": "Đạt — đề xuất thay. Duỗi gần thẳng ngang ghế, 2 chân lần lượt, hết khựng (Flow có 12 khung lặp)"
+    }
+   ],
+   "replaced": "2026-10-01",
+   "note": "Đã thay 01/10: hết khựng (Flow cũ có 12 khung lặp). Clip app: 1920×1080 HEVC, 10 s, 2 chân lần lượt. Lỗi bản Flow cũ: 12 khung hình lặp → chuyển động khựng; Nhịp không đều (rhythm 0,69).",
+   "tries": null,
+   "hf_done": true,
+   "joined": false,
+   "form": "ok",
+   "pattern": "profile"
+  },
+  {
+   "id": "V4-1",
+   "name": "Heel and toe raises (ngồi)",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Nghiêng",
+   "frame": "P-SIT",
+   "src": "flow-old",
+   "prio": 4,
+   "hf_s": 6,
+   "form": "ok",
+   "pattern": "symmetric"
+  },
+  {
+   "id": "V4-alt",
+   "name": "Heel raise (đứng)",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Nghiêng",
+   "frame": "MF-04c P-STAND-CHAIR",
+   "src": "flow-main",
+   "tries": 1,
+   "prio": 4,
+   "hf_s": 6,
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Dùng cho Balance heel/toe raises.",
+   "form": "ok",
+   "pattern": "symmetric",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "V5-1",
+   "name": "Wall push-up",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Nghiêng",
+   "frame": "MF-05c P-WALL-HANDS",
+   "src": "flow-m3",
+   "tries": 2,
+   "prio": 4,
+   "hf_s": 5,
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Lượt 1 người lệch phải (tâm 57%) → dời khung, lượt 2 tâm 40%.",
+   "form": "ok",
+   "pattern": "symmetric",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "V6-1",
+   "name": "Single-leg stand",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Chính diện",
+   "frame": "MF-02b F-BEHIND",
+   "src": "flow-rejoin-1080",
+   "tries": 2,
+   "prio": 2,
+   "joined": false,
+   "hf_s": 10,
+   "issues": [],
+   "form": "ok",
+   "replaced": "2026-10-01",
+   "note": "Ghép lại 2 lượt Flow ở khung khớp nhất (tools/video/rejoin_best.py): khung mờ 2,6% → 0,3%. Upscale 1080p (0,2 credit) · HEVC.",
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (V6-1)",
+     "file": "A/_replaced-2026-10-01/V6-1_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "pattern": "sides"
+  },
+  {
+   "id": "V8-1",
+   "name": "Side leg raise",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Chính diện",
+   "frame": "MF-02b F-BEHIND",
+   "src": "seedance",
+   "tries": 5,
+   "prio": 2,
+   "joined": false,
+   "hf_s": 10,
+   "hf_done": true,
+   "issues": [],
+   "note": "Thay bằng bản Seedance 2.5 (2 bên liền 1 lượt), vòng lặp cắt thẳng 9,6 s. Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Không nhoè, chỉ upscale. Upscale 1080p (0,2 credit) · HEVC. Đã có bản Seedance 2.5 cả 2 bên trong 1 clip, đạt lượt 1 — chờ chủ app duyệt thay.",
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (V8-1)",
+     "file": "A/_replaced-2026-10-01/V8-1_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Seedance 2.5 · 720p · 10 s · đã cắt khung app (từ bản nguyên khung)",
+     "file": "A/HF-test/V8_seedance25_crop1124.mp4",
+     "src": "seedance",
+     "crop": "seedance-test",
+     "credits": 0,
+     "verdict": "Đạt — đề xuất thay"
+    },
+    {
+     "label": "Seedance 2.5 · 720p · 10 s · nguyên khung",
+     "file": "A/HF-test/V8_seedance25_720p.mp4",
+     "src": "seedance",
+     "crop": "none",
+     "credits": 70,
+     "verdict": "Góc rộng, người nhỏ hơn"
+    },
+    {
+     "label": "Seedance 2.5 · 480p · 5 s · 1 bên (thử rẻ)",
+     "file": "A/HF-test/V8L_seedance25_480p_5s.mp4",
+     "src": "seedance",
+     "crop": "none",
+     "credits": 15,
+     "verdict": "Động tác đúng, ra bên phải hình thay vì trái → 480p đủ để chấm động tác"
+    }
+   ],
+   "form": "ok",
+   "replaced": "2026-10-01",
+   "pattern": "sides",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "V9-1",
+   "name": "Back leg raise",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Nghiêng",
+   "frame": "MF-04c P-STAND-CHAIR",
+   "src": "gemini-1080",
+   "tries": null,
+   "prio": 4,
+   "joined": false,
+   "hf_s": 10,
+   "issues": [],
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (V9-1)",
+     "file": "A/_replaced-2026-10-01/V9-1_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Gemini Omni 1.1 · 360p · 10 s · thử · 2 chân",
+     "file": "A/HF-test/V9_gemini11_360p.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 10,
+     "verdict": "Đạt — gối thẳng mềm, chân ra sau vừa phải, 2 chân trong 1 clip; thân hơi đổ trước chút"
+    },
+    {
+     "label": "Gemini Omni 1.1 · 720p · 10 s · bản chính · 2 chân",
+     "file": "A/HF-test/V9_gemini11_720p.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 30,
+     "verdict": "Đạt — đề xuất thay. 2 chân liền 1 clip (hết nhoè ghép), chân ra sau vừa phải, thân gần thẳng"
+    }
+   ],
+   "replaced": "2026-10-01",
+   "note": "Đã thay 01/10: hết nhoè ghép, thân gần thẳng. Clip app: 1920×1080 HEVC, 10 s, 2 chân liền 1 clip. Lỗi bản Flow cũ: Thân nghiêng ra trước, chân cao hơn chuẩn; Nhoè chỗ ghép nặng (độ nét còn 36%); Máy trôi 4,5 px.",
+   "hf_done": true,
+   "form": "minor",
+   "form_note": "thân hơi đổ trước chút",
+   "pattern": "profile"
+  },
+  {
+   "id": "V10-1",
+   "name": "Knee curl",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Nghiêng",
+   "frame": "MF-04c P-STAND-CHAIR",
+   "src": "gemini-1080",
+   "tries": null,
+   "prio": 4,
+   "joined": false,
+   "hf_s": 10,
+   "issues": [],
+   "note": "Đã thay 01/10: đùi thẳng đứng cả 2 chân. Clip app: 1920×1080 HEVC, 10 s, 2 chân liền 1 clip. Lỗi bản Flow cũ: Đùi đưa ra trước (chuẩn: đùi đứng yên).",
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (V10-1)",
+     "file": "A/_replaced-2026-10-01/V10-1_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Seedance 2.5 · 720p · 10 s · lượt 1 · cả 2 chân",
+     "file": "A/HF-test/V10_seedance25_720p.mp4",
+     "src": "seedance",
+     "crop": "hf-frame",
+     "credits": 70,
+     "verdict": "Đạt — lệch nhỏ: chân gần máy đùi hơi ra trước ~15°, chân xa chuẩn; gót ngang nửa chừng, thân thẳng. Đề xuất thay"
+    },
+    {
+     "label": "Gemini Omni 1.1 · 360p · 10 s · thử · 2 chân",
+     "file": "A/HF-test/V10_gemini11_360p.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 10,
+     "verdict": "Đạt — đùi thẳng đứng cả 2 chân (tốt hơn Seedance), cẳng chân ngang sàn"
+    },
+    {
+     "label": "Gemini Omni 1.1 · 720p · 10 s · bản chính · 2 chân",
+     "file": "A/HF-test/V10_gemini11_720p.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 30,
+     "verdict": "Đạt — đề xuất thay (tốt hơn bản Seedance): đùi thẳng đứng cả 2 chân"
+    }
+   ],
+   "replaced": "2026-10-01",
+   "hf_done": true,
+   "form": "ok",
+   "pattern": "profile"
+  },
+  {
+   "id": "V11-1",
+   "name": "Mini-squat",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Nghiêng",
+   "frame": "MF-04c P-STAND-CHAIR",
+   "src": "gemini-1080",
+   "tries": null,
+   "prio": 4,
+   "hf_s": 6,
+   "issues": [],
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Đã thay 01/10: mini squat đầu hạ ~10% (Seedance 16–25%). Clip app: 1920×1080 HEVC, 5 s, 1 lần nhún. Lỗi bản Flow cũ: Flow ghi \"hơi sâu hơn nửa chừng\" — đo lại 01/10: đầu hạ 10,9%, nông hơn mọi lượt Seedance (16–25%).",
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (V11-1)",
+     "file": "A/_replaced-2026-10-01/V11-1_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Seedance 2.5 · 720p · 6 s · lượt 1",
+     "file": "A/HF-test/V11_seedance25_720p.mp4",
+     "src": "seedance",
+     "crop": "hf-frame",
+     "credits": 42,
+     "verdict": "Không đạt — ngồi quá sâu (đùi gần ngang), gối vượt mũi chân"
+    },
+    {
+     "label": "Seedance 2.5 · 720p · 6 s · lượt 2",
+     "file": "A/HF-test/V11_seedance25_720p_try2.mp4",
+     "src": "seedance",
+     "crop": "hf-frame",
+     "credits": 42,
+     "verdict": "Không đạt — vẫn sâu gần nửa squat, thân đổ trước, gối chạm mũi chân (đỡ hơn lượt 1)"
+    },
+    {
+     "label": "Seedance 2.5 · 480p · 5 s · lượt 3 (2 ảnh: đứng + điểm thấp nhất)",
+     "file": "A/HF-test/V11_seedance25_480p_try3.mp4",
+     "src": "seedance",
+     "crop": "hf-frame",
+     "credits": 15,
+     "verdict": "Gần đạt — xuống khoảng nửa chừng (đầu hạ 16% chiều cao, ảnh mục tiêu 7%), gối ngang mũi chân, gót chạm sàn, thân đổ trước ~30°"
+    },
+    {
+     "label": "Seedance 2.5 · 480p · 5 s · lượt 4 (ảnh điểm thấp nhất nông hơn)",
+     "file": "A/HF-test/V11_seedance25_480p_try4.mp4",
+     "src": "seedance",
+     "crop": "hf-frame",
+     "credits": 15,
+     "verdict": "Không khá hơn lượt 3 — đầu hạ 17,6% (ảnh mục tiêu 4,4%)"
+    },
+    {
+     "label": "Gemini Omni Flash 1.1 · 360p · 5 s · so model",
+     "file": "A/HF-test/V11_geminiomni11_360p.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 5,
+     "verdict": "Tốt nhất — đầu hạ 8,4% (mini squat đúng), thân thẳng, gót chạm sàn, không ✦. Đề xuất làm bản 720p/1080p"
+    },
+    {
+     "label": "Wan 3.0 Prime · 480p · 5 s · so model",
+     "file": "A/HF-test/V11_wan30prime_480p.mp4",
+     "src": "wan30prime",
+     "crop": "hf-frame",
+     "credits": 7.5,
+     "verdict": "Khá — đầu hạ 12,3% (gần Flow 10,9%), thân hơi đổ trước"
+    },
+    {
+     "label": "Kling 3.0 std · 720p · 5 s · so model",
+     "file": "A/HF-test/V11_kling30std.mp4",
+     "src": "kling30",
+     "crop": "hf-frame",
+     "credits": 7.5,
+     "verdict": "Không đạt — đứng im, không nhún (ảnh đầu = ảnh cuối làm Kling không chuyển động)"
+    },
+    {
+     "label": "Gemini Omni 1.1 · 720p · 5 s · bản chính",
+     "file": "A/HF-test/V11_gemini11_720p.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 15,
+     "verdict": "Đạt — đầu hạ 10,4% (mini squat), thân thẳng, không ✦. Đề xuất thay"
+    }
+   ],
+   "replaced": "2026-10-01",
+   "hf_done": true,
+   "joined": false,
+   "form": "ok",
+   "pattern": "symmetric",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "V12-1",
+   "name": "Arm raises",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Chính diện",
+   "frame": "MF-01 F-SIT",
+   "src": "flow-main",
+   "tries": 1,
+   "prio": 4,
+   "hf_s": 8,
+   "form": "ok",
+   "pattern": "symmetric",
+   "loopfix": "2026-10-01",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py."
+  },
+  {
+   "id": "V13-1",
+   "name": "Seated row",
+   "group": "Ghế",
+   "cat": "chair",
+   "angle": "Nghiêng",
+   "frame": "MF-03c P-SIT",
+   "src": "flow-main",
+   "tries": 2,
+   "prio": 4,
+   "hf_s": 6,
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Chính diện khuỷu mở ngang vai → quay nghiêng.",
+   "form": "ok",
+   "pattern": "symmetric",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "S1",
+   "name": "Neck turn",
+   "group": "Giãn cơ",
+   "cat": "stretch",
+   "angle": "Chính diện",
+   "frame": "MF-01 F-SIT",
+   "src": "flow-up-1080",
+   "tries": 2,
+   "prio": 2,
+   "joined": false,
+   "hf_s": 8,
+   "issues": [],
+   "form": "ok",
+   "replaced": "2026-10-01",
+   "note": "Không nhoè, chỉ upscale. Upscale 1080p (0,2 credit) · HEVC.",
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (S1-hold)",
+     "file": "A/_replaced-2026-10-01/S1-hold_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Flow · bản cũ đã thay (S1)",
+     "file": "A/_replaced-2026-10-01/S1_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "pattern": "sides:head_turn"
+  },
+  {
+   "id": "S2",
+   "name": "Side of the neck",
+   "group": "Giãn cơ",
+   "cat": "stretch",
+   "angle": "Chính diện",
+   "frame": "MF-01 F-SIT",
+   "src": "gemini-1080",
+   "tries": null,
+   "prio": 4,
+   "joined": false,
+   "hf_s": 8,
+   "issues": [],
+   "note": "Đã thay 01/10: mắt mở suốt, đủ 2 bên. Clip app: 1920×1080 HEVC, 10 s, 2 bên (ghép 2 lượt ở tư thế đầu thẳng) + hold bên 1 (2,75 s). Lỗi bản Flow cũ: Nhắm mắt lúc giữ (lỗi an toàn); Ghép 2 clip, ra ngược bên → đổi nhãn.",
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (S2-hold)",
+     "file": "A/_replaced-2026-10-01/S2-hold_flow.mp4",
+     "src": "flow-2",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Flow · bản cũ đã thay (S2)",
+     "file": "A/_replaced-2026-10-01/S2_flow.mp4",
+     "src": "flow-2",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Gemini Omni 1.1 · 360p · 10 s · thử · 2 bên",
+     "file": "A/HF-test/S2_gemini11_360p.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 10,
+     "verdict": "Đạt — nghiêng tai về vai 2 bên, MẮT MỞ suốt, vai không nhún"
+    },
+    {
+     "label": "Gemini Omni 1.1 · 720p · 10 s · lượt 1",
+     "file": "A/HF-test/S2_gemini11_720p.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 30,
+     "verdict": "Một phần — mắt mở nhưng nghiêng cùng 1 bên 2 lần"
+    },
+    {
+     "label": "Gemini Omni 1.1 · 720p · 10 s · lượt 2",
+     "file": "A/HF-test/S2_gemini11_720p_try2.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 30,
+     "verdict": "Không dùng nguyên — đủ 2 bên nhưng NHẮM MẮT khi giữ bên 1"
+    },
+    {
+     "label": "Gemini Omni 1.1 · 720p · 10 s · GHÉP: lượt 1 (bên 1) + lượt 2 (bên 2)",
+     "file": "A/HF-test/S2_gemini11_720p_joined.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 0,
+     "verdict": "Đạt — đề xuất thay. 2 bên, mắt mở suốt; nối ở tư thế đầu thẳng (lệch khung 1,2), không nhoè, nối vòng 1,09"
+    }
+   ],
+   "replaced": "2026-10-01",
+   "hf_done": true,
+   "form": "ok",
+   "pattern": "sides:head_tilt"
+  },
+  {
+   "id": "S3",
+   "name": "Chin tuck",
+   "group": "Giãn cơ",
+   "cat": "stretch",
+   "angle": "Nghiêng",
+   "frame": "MF-03c P-SIT",
+   "src": "flow-2",
+   "tries": 2,
+   "prio": 4,
+   "hf_s": 6,
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Lượt 1 ngửa cằm (lỗi an toàn) → lượt 2 đạt.",
+   "form": "ok",
+   "pattern": "symmetric",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "S4",
+   "name": "Shoulder rolls",
+   "group": "Giãn cơ",
+   "cat": "stretch",
+   "angle": "Chính diện",
+   "frame": "MF-01 F-SIT",
+   "src": "flow-2",
+   "tries": 1,
+   "prio": 4,
+   "hf_s": 6,
+   "form": "ok",
+   "pattern": "symmetric",
+   "loopfix": "2026-10-01",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py."
+  },
+  {
+   "id": "S5",
+   "name": "Chest and shoulders",
+   "group": "Giãn cơ",
+   "cat": "stretch",
+   "angle": "Chính diện",
+   "frame": "MF-01 F-SIT",
+   "src": "flow-m3",
+   "tries": 1,
+   "prio": 4,
+   "hf_s": 6,
+   "note": "Bàn tay hơi ngửa, cao hơn vai một chút.",
+   "form": "minor",
+   "form_note": "bàn tay hơi ngửa, cao hơn vai một chút",
+   "pattern": "hold"
+  },
+  {
+   "id": "S6",
+   "name": "Upper back reach",
+   "group": "Giãn cơ",
+   "cat": "stretch",
+   "angle": "Nghiêng",
+   "frame": "MF-03c P-SIT",
+   "src": "flow-2",
+   "tries": 1,
+   "prio": 4,
+   "hf_s": 6,
+   "form": "ok",
+   "pattern": "hold"
+  },
+  {
+   "id": "S7",
+   "name": "Upper back twist",
+   "group": "Giãn cơ",
+   "cat": "stretch",
+   "angle": "Chính diện",
+   "frame": "MF-01 F-SIT",
+   "src": "flow-up-1080",
+   "tries": 2,
+   "prio": 2,
+   "joined": false,
+   "hf_s": 8,
+   "issues": [],
+   "form": "ok",
+   "replaced": "2026-10-01",
+   "note": "Không nhoè, chỉ upscale. Upscale 1080p (0,2 credit) · HEVC.",
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (S7-hold)",
+     "file": "A/_replaced-2026-10-01/S7-hold_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Flow · bản cũ đã thay (S7)",
+     "file": "A/_replaced-2026-10-01/S7_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "pattern": "sides:twist"
+  },
+  {
+   "id": "S8",
+   "name": "Side stretch",
+   "group": "Giãn cơ",
+   "cat": "stretch",
+   "angle": "Chính diện",
+   "frame": "MF-01 F-SIT",
+   "src": "flow-rejoin-1080",
+   "tries": 3,
+   "prio": 2,
+   "joined": false,
+   "hf_s": 8,
+   "issues": [],
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (S8-hold)",
+     "file": "A/_replaced-2026-10-01/S8-hold_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Flow · bản cũ đã thay (S8)",
+     "file": "A/_replaced-2026-10-01/S8_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Upscale 1080p bản app hiện tại",
+     "file": "A/HF-test/S8_flow_1080p_upscaled.mp4",
+     "src": "flow-upscaled",
+     "crop": "flow",
+     "credits": 0.2,
+     "verdict": "Không hết nhoè — vẫn 12 khung bóng mờ ở 2 chỗ nối (upscale làm nét chứ không xoá được hình chồng)"
+    },
+    {
+     "label": "Ghép lại tại khung khớp nhất (0 credit)",
+     "file": "A/HF-test/S8_flow_rejoined.mp4",
+     "src": "flow-rejoin",
+     "crop": "flow",
+     "credits": 0,
+     "verdict": "Hết nhoè — 12 khung mờ còn 1 khung (1/24 s); chỗ nối giữa sạch. Có thể upscale tiếp lên 1080p"
+    }
+   ],
+   "form": "ok",
+   "replaced": "2026-10-01",
+   "note": "Ghép lại 2 lượt Flow ở khung khớp nhất (tools/video/rejoin_best.py): khung mờ 2,9% → 0,3%, độ nét thấp nhất 58% → 92%. Upscale 1080p (0,2 credit) · HEVC.",
+   "pattern": "sides:side_bend"
+  },
+  {
+   "id": "S9",
+   "name": "Back of the thigh",
+   "group": "Giãn cơ",
+   "cat": "stretch",
+   "angle": "Nghiêng",
+   "frame": "MF-03c P-SIT",
+   "src": "flow-up-1080",
+   "tries": 2,
+   "prio": 2,
+   "joined": false,
+   "hf_s": 8,
+   "issues": [],
+   "form": "ok",
+   "replaced": "2026-10-01",
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Không nhoè, chỉ upscale. Upscale 1080p (0,2 credit) · HEVC.",
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (S9-hold)",
+     "file": "A/_replaced-2026-10-01/S9-hold_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Flow · bản cũ đã thay (S9)",
+     "file": "A/_replaced-2026-10-01/S9_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "pattern": "profile",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "S10",
+   "name": "Ankle circles and points",
+   "group": "Giãn cơ",
+   "cat": "stretch",
+   "angle": "Nghiêng",
+   "frame": "MF-03c P-SIT",
+   "src": "flow-2",
+   "tries": 1,
+   "prio": 4,
+   "hf_s": 6,
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Biến thể: duỗi thẳng chân rồi gập duỗi cổ chân, gối yên — chấp nhận.",
+   "form": "minor",
+   "form_note": "biến thể duỗi thẳng chân rồi gập duỗi cổ chân",
+   "pattern": "symmetric",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "S11",
+   "name": "Calf stretch",
+   "group": "Giãn cơ",
+   "cat": "stretch",
+   "angle": "Nghiêng",
+   "frame": "MF-04c P-STAND-CHAIR",
+   "src": "flow-rejoin-1080",
+   "tries": 3,
+   "prio": 2,
+   "joined": false,
+   "hf_s": 10,
+   "issues": [],
+   "form": "ok",
+   "replaced": "2026-10-01",
+   "note": "Ghép lại 2 lượt Flow ở khung khớp nhất (tools/video/rejoin_best.py): độ nét chỗ nối 78% → 80%. Upscale 1080p (0,2 credit) · HEVC.",
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (S11-hold)",
+     "file": "A/_replaced-2026-10-01/S11-hold_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Flow · bản cũ đã thay (S11)",
+     "file": "A/_replaced-2026-10-01/S11_flow.mp4",
+     "src": "flow-main",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    }
+   ],
+   "pattern": "profile"
+  },
+  {
+   "id": "S12",
+   "name": "Overhead reach at the wall",
+   "group": "Giãn cơ",
+   "cat": "stretch",
+   "angle": "Nghiêng",
+   "frame": "MF-05c P-WALL",
+   "src": "flow-2",
+   "tries": 2,
+   "prio": 4,
+   "hf_s": 6,
+   "note": "Vòng lặp dựng lại 01/10 bằng tools/video/loop_best.py: cắt thẳng ở 2 khung khớp tư thế (không crossfade → hết in đôi), kiểm bằng motion_logic.py. Tool crop dò nhầm ✦ trên tường sáng → --logo thủ công. Kích thước 1120×630.",
+   "form": "ok",
+   "pattern": "hold",
+   "loopfix": "2026-10-01"
+  },
+  {
+   "id": "B1",
+   "name": "Tandem stance",
+   "group": "Thăng bằng",
+   "cat": "extras",
+   "angle": "Nghiêng",
+   "frame": "MF-04c P-STAND-CHAIR",
+   "src": "gemini-1080",
+   "tries": null,
+   "prio": 4,
+   "hf_s": 6,
+   "issues": [],
+   "candidates": [
+    {
+     "label": "Flow · bản cũ đã thay (B1-hold)",
+     "file": "A/_replaced-2026-10-01/B1-hold_flow.mp4",
+     "src": "flow-2",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Flow · bản cũ đã thay (B1)",
+     "file": "A/_replaced-2026-10-01/B1_flow.mp4",
+     "src": "flow-2",
+     "crop": "flow",
+     "verdict": "Bản cũ trước khi thay (để so sánh)",
+     "old": true
+    },
+    {
+     "label": "Gemini Omni 1.1 · 360p · 8 s · thử lượt 1 · một tay",
+     "file": "A/HF-test/B1_gemini11_360p.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 8,
+     "verdict": "Không đạt — bước chân ra (có khe) rồi thu về đứng song song, không giữ gót chạm mũi"
+    },
+    {
+     "label": "Gemini Omni 1.1 · 360p · 8 s · thử lượt 2 · một tay",
+     "file": "A/HF-test/B1_gemini11_360p_try2.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 8,
+     "verdict": "Không đạt — lại bước ra rồi đứng song song; Gemini không hiểu tư thế gót chạm mũi khi quay nghiêng"
+    },
+    {
+     "label": "Gemini Omni 1.1 · 360p · 6 s · lượt 3 (ảnh cuối = tư thế tandem)",
+     "file": "A/HF-test/B1_gemini11_360p_try3_tandemEnd.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 6,
+     "verdict": "Đạt — gót chạm mũi trên 1 đường thẳng, giữ yên, một tay vịn ghế"
+    },
+    {
+     "label": "Gemini Omni 1.1 · 720p · 6 s · bản chính (đứng → tandem, giữ)",
+     "file": "A/HF-test/B1_gemini11_720p_tandemEnd.mp4",
+     "src": "gemini-omni-hf",
+     "crop": "hf-frame",
+     "credits": 18,
+     "verdict": "Đạt — đề xuất thay. Vào tư thế 1–2,5 s, giữ yên 2,5–6 s, một tay vịn (khớp lời Steady/Strong). Trong app: bước vào + giữ (ping-pong), bước ra = phát ngược"
+    }
+   ],
+   "note": "Đã thay 01/10: một tay vịn, gót chạm mũi (ảnh cuối tandem làm bằng Flow Nano Banana). Clip app: 1920×1080 HEVC, 12 s = bước vào + giữ + phát ngược bước ra; hold 4 s. Lỗi bản Flow cũ: Vịn ghế hai tay, lời đọc Steady/Strong bảo một tay; Kích thước 1126×634 (lệch 2 px).",
+   "replaced": "2026-10-01",
+   "hf_done": true,
+   "joined": false,
+   "form": "ok",
+   "pattern": "hold"
+  },
+  {
+   "id": "B2",
+   "name": "Sideways walking",
+   "group": "Thăng bằng",
+   "cat": "extras",
+   "angle": "Chính diện",
+   "frame": "MF-06 F-STAND-WIDE",
+   "prio": 4,
+   "dropped": true,
+   "hf_s": 8,
+   "note": "Đã bỏ video 30/09 (Flow 4 lượt thất bại); màn Balance dùng W2-2. Thử Seedance 2.0 Mini: vẫn bắt chéo chân.",
+   "candidates": [
+    {
+     "label": "Seedance 2.0 Mini · 720p · 10 s · thử",
+     "file": "A/HF-test/B2_seedance20mini_try1.mp4",
+     "src": "seedance-mini",
+     "crop": "none",
+     "credits": 10,
+     "verdict": "Không dùng — bắt chéo chân ở 2 s và 6,5 s"
+    }
+   ],
+   "form": "ok",
+   "pattern": "hold"
+  },
+  {
+   "id": "B3",
+   "name": "Heel-to-toe walk",
+   "group": "Thăng bằng",
+   "cat": "extras",
+   "angle": "Nghiêng",
+   "frame": "P-WIDE",
+   "prio": 3,
+   "hf_s": 8,
+   "missing": true,
+   "note": "Đi gót chạm mũi. Di chuyển trong không gian là điểm yếu của Flow (B2 thất bại) → làm bằng Seedance.",
+   "pattern": "hold"
+  }
+ ]
+}

@@ -15,13 +15,14 @@ public struct SessionPreset: Equatable, Hashable, Sendable, Identifiable {
     public let standing: Bool
     /// Open on the free plan.
     public let isFree: Bool
-    /// Fixed move rotation (Balance always uses the same moves); nil follows the active days.
-    public let fixedRotation: Int?
+    /// Its own template instead of the day's (`SessionBuilder.Variant`): Commercial break walk,
+    /// Morning stretch, Balance.
+    public let variant: String?
 
     init(_ id: String, _ group: Group, _ main: PlannedDay.Main, _ intensity: Intensity, level: WalkLevel = .seated,
-         standing: Bool = false, isFree: Bool = false, fixedRotation: Int? = nil) {
+         standing: Bool = false, isFree: Bool = false, variant: String? = nil) {
         self.id = id; self.group = group; self.main = main; self.intensity = intensity; self.level = level
-        self.standing = standing; self.isFree = isFree; self.fixedRotation = fixedRotation
+        self.standing = standing; self.isFree = isFree; self.variant = variant
     }
 }
 
@@ -43,9 +44,9 @@ public enum SessionCatalog {
         SessionPreset("stretch.seated.steady", .stretch, .stretch, .steady),
         SessionPreset("stretch.standing.gentle", .stretch, .stretch, .gentle, standing: true),
         SessionPreset("stretch.standing.steady", .stretch, .stretch, .steady, standing: true),
-        SessionPreset("extra.commercial", .extras, .walk, .gentle),
-        SessionPreset("extra.morning", .extras, .stretch, .gentle),
-        SessionPreset("extra.balance", .extras, .chair, .gentle, fixedRotation: 5),
+        SessionPreset("extra.commercial", .extras, .walk, .gentle, variant: SessionBuilder.Variant.commercial),
+        SessionPreset("extra.morning", .extras, .stretch, .gentle, variant: SessionBuilder.Variant.morning),
+        SessionPreset("extra.balance", .extras, .chair, .gentle, variant: SessionBuilder.Variant.balance),
     ]
 
     public static func presets(in group: SessionPreset.Group) -> [SessionPreset] {

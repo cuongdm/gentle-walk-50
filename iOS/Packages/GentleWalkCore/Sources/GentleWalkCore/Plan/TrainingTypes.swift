@@ -28,19 +28,10 @@ public enum Intensity: String, CaseIterable, Codable, Sendable {
         }
     }
 
-    /// Chair moves on a chair day.
-    public var chairDayMoves: Int {
-        switch self {
-        case .gentle: 4
-        case .steady: 5
-        case .strong: 6
-        }
-    }
-
-    /// Stretch hold per side, once per side (A10 §3).
+    /// Stretch hold per side, once per side (A10 §1, changed 30/09/2026: Gentle 15 s).
     public var stretchHoldSeconds: Int {
         switch self {
-        case .gentle: 10
+        case .gentle: 15
         case .steady: 20
         case .strong: 30
         }

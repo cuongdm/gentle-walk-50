@@ -11,6 +11,7 @@ struct ExerciseVideo: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.forceStillFrames) private var forceStillFrames
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.videoPaused) private var videoPaused
     @State private var failed = false
 
     var body: some View {
@@ -20,7 +21,7 @@ struct ExerciseVideo: View {
                 if reduceMotion || forceStillFrames || failed {
                     StillFrameView(url: url)
                 } else {
-                    VideoLoopView(url: url, isPlaying: scenePhase == .active && !isHolding, onFailure: { failed = true })
+                    VideoLoopView(url: url, isPlaying: scenePhase == .active && !isHolding && !videoPaused, onFailure: { failed = true })
                 }
             } else {
                 IllustrationPlaceholder(symbol: "figure.seated.side", tint: Palette.secondary, height: 200)
@@ -36,6 +37,13 @@ struct ExerciseVideo: View {
         let name = (fileName as NSString).deletingPathExtension
         return Bundle.main.url(forResource: name, withExtension: (fileName as NSString).pathExtension)
     }
+
+    /// The first clip of `candidates` that is in the app bundle (best first, see
+    /// `Exercise.videoCandidates`); nil keeps the still picture. A clip dropped in later is picked
+    /// up with no code change.
+    static func firstBundled(_ candidates: [String]) -> String? {
+        candidates.first { url(for: $0) != nil }
+    }
 }
 
 extension EnvironmentValues {
@@ -44,6 +52,8 @@ extension EnvironmentValues {
     @Entry var forceStillFrames = false
     /// Opens the chair and stretch players in full-screen video (screenshots).
     @Entry var startsFullScreen = false
+    /// The session is not playing (paused, break, interruption): exercise clips hold their frame.
+    @Entry var videoPaused = false
 }
 
 /// `AVQueuePlayer` + `AVPlayerLooper` in a layer-backed view.

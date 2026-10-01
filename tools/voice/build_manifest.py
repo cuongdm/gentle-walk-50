@@ -3,7 +3,8 @@
 
 For every voice line whose text matches a cached ElevenLabs render (assets/voice/cache/<hash>.mp3 +
 <hash>.json with character alignment), this tool:
-  - converts the mp3 to AAC  iOS/App/Resources/Media/Voice/<line id>.m4a
+  - converts the mp3 to AAC  iOS/App/Resources/Media/Voice/<line id>.m4a at -16 LUFS integrated
+    (one gain per line, peaks limited near -1.5 dBFS; content plan §4.3)
   - writes  file, duration (seconds) and words [{word, start, end}]  into the voice line entry.
 
 Lines without a match keep no `file` field; the app then uses the DEBUG speech fallback (task 3.3)
@@ -57,10 +58,26 @@ def audio_duration(path):
     return round(float(out.strip()), 3)
 
 
+TARGET_LUFS = -16.0
+PEAK_LIMIT = 0.79  # -2 dBFS before AAC, so the encoded peak stays near -1.5 dBFS
+
+
+def measure_loudness(src):
+    """Integrated loudness of a clip in LUFS (EBU R128, ffmpeg loudnorm first pass)."""
+    out = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(src), "-af",
+                          "loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"],
+                         capture_output=True, text=True, check=True).stderr
+    return float(json.loads(out[out.rindex("{"):out.rindex("}") + 1])["input_i"])
+
+
 def convert_to_m4a(src, dst):
+    """AAC mono at -16 LUFS: one gain for the whole line (no pumping), then a peak limiter
+    (about -1.5 dBFS after encoding)."""
     dst.parent.mkdir(parents=True, exist_ok=True)
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(src), "-c:a", "aac", "-b:a", "96k", "-ac", "1", str(dst)],
-                   check=True)
+    gain = TARGET_LUFS - measure_loudness(src)
+    chain = "volume=%.2fdB,alimiter=limit=%.2f:attack=5:release=50:level=disabled" % (gain, PEAK_LIMIT)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(src), "-af", chain, "-ar", "44100",
+                    "-c:a", "aac", "-b:a", "96k", "-ac", "1", str(dst)], check=True)
 
 
 def load_cache(cache_dir):

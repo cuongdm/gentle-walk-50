@@ -27,6 +27,7 @@ cd iOS && xcodegen generate && open GentleWalk.xcodeproj
 | [docs/scripts/A1-first-walk.md](docs/scripts/A1-first-walk.md) | Kịch bản First Walk 5 phút (nháp 1) |
 | [docs/scripts/A2-walk-min.md](docs/scripts/A2-walk-min.md) · [A-min-support.md](docs/scripts/A-min-support.md) · [A10-stretch.md](docs/scripts/A10-stretch.md) · [D-min-texts.md](docs/scripts/D-min-texts.md) | Bộ nội dung tối thiểu cho demo MVP: dẫn đi bộ, câu phụ (ngoài trời, đếm, an toàn, địa danh, chuyển bài), giãn cơ có nguồn, chữ trong app |
 | [docs/scripts/V-exercise-clips.md](docs/scripts/V-exercise-clips.md) | Kịch bản 6 clip động tác ghế, lời giọng A4, kết quả clip (mục 5·0) |
+| [docs/plans/2026-09-30-content-4-groups.md](docs/plans/2026-09-30-content-4-groups.md) · [docs/scripts/P-production-prompts.md](docs/scripts/P-production-prompts.md) | Kế hoạch nội dung thật cho 4 nhóm bài (Walks, Chair moves, Stretches, Extras) và thư viện prompt Flow/ElevenLabs cho agent sản xuất; nền: `docs/research/2026-09-30-*.md` (chuẩn sức khoẻ có nguồn, đối thủ, kỹ thuật) |
 | [docs/video-skill-notes.md](docs/video-skill-notes.md) | Quy trình làm clip trên Google Flow, QA, dựng, bài học |
 | [docs/plans/2026-09-29-mvp.md](docs/plans/2026-09-29-mvp.md) | Kế hoạch MVP đã duyệt: kiến trúc, bảng tuân thủ, 113 task / 9 milestone, kế hoạch ngôn ngữ và test |
 | [docs/research/audio-api-options.md](docs/research/audio-api-options.md) | Giọng và nhạc AI: nền tảng, giấy phép, chi phí |
