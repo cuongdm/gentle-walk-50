@@ -51,6 +51,8 @@ import GentleWalkCore
     @ObservationIgnored var routeProvider: (() -> [RoutePoint])?
     /// Outdoors: whether GPS has a fix ("Location on").
     @ObservationIgnored var locationOn: (() -> Bool)?
+    /// Outdoors with GPS: the player shows the live map (otherwise steps are counted).
+    @ObservationIgnored var tracksRoute = false
     /// Called once when the session ends (stops location and pedometer).
     @ObservationIgnored var onEnded: (() -> Void)?
     /// Sit-to-stand counting when the phone is held to the chest (task 8.9).
@@ -81,6 +83,7 @@ import GentleWalkCore
         self.now = now
         player = SessionPlayer(engine: engine)
         player.onPhaseChange = { [weak self] phase in self?.phaseChanged(to: phase) }
+        player.onSkip = { CueSounds.shared.skip() }
         walkModel = WalkPlayerModel(player: player, level: request.level,
                                     exercises: Dictionary(content.exercises.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first }))
         chairModel = ChairPlayerModel(session: self)

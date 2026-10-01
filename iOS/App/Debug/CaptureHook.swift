@@ -93,6 +93,7 @@ enum CaptureState: String, CaseIterable, Sendable {
     case outdoorLocationAsk = "outdoor-location-ask"
     case outdoorPlayer = "outdoor-player"
     case outdoorPlayerNoGps = "outdoor-player-no-gps"
+    case outdoorPlayerFinding = "outdoor-player-finding"
 }
 
 enum CaptureHook {

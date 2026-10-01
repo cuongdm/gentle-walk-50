@@ -103,11 +103,15 @@ struct WorkoutCaptureScene: View {
             try? await model.load()
             model.startWithCountdown()
             return model
-        case .outdoorPlayer, .outdoorPlayerNoGps:
+        case .outdoorPlayer, .outdoorPlayerNoGps, .outdoorPlayerFinding:
             let model = await make(request(walk, intensity: .steady, place: .outdoors))
             let gps = state == .outdoorPlayer
-            model.outdoorDistance = { gps ? 0.6 : 0.5 }
+            // GPS on: the live map with a walk along Central Park's East Drive; finding: no fix
+            // yet; no GPS: steps only, the painting stays.
+            model.tracksRoute = state != .outdoorPlayerNoGps
+            model.outdoorDistance = { gps ? 0.6 : state == .outdoorPlayerFinding ? 0 : 0.5 }
             model.locationOn = { gps }
+            model.routeProvider = { gps ? Self.sampleRoute : [] }
             model.player.tick(200)
             return model
         case .chairPlayer, .chairPlayerDark, .chairFullscreen, .chairPlayerReduceMotion, .chairStandBehind, .chairTimed, .chairRest,
@@ -193,4 +197,22 @@ struct WorkoutCaptureScene: View {
         return model
     }
 }
+
+
+extension WorkoutCaptureScene {
+    /// About 0.6 mi up the East Drive of Central Park, for the live map capture.
+    static let sampleRoute: [RoutePoint] = {
+        let points: [(Double, Double)] = [
+            (40.7644, -73.9730), (40.7655, -73.9724), (40.7667, -73.9716), (40.7679, -73.9709),
+            (40.7690, -73.9704), (40.7701, -73.9700), (40.7712, -73.9697), (40.7723, -73.9693),
+            (40.7733, -73.9688), (40.7742, -73.9680), (40.7750, -73.9671), (40.7757, -73.9662),
+        ]
+        let start = Date(timeIntervalSince1970: 1_790_000_000)
+        return points.enumerated().map { index, point in
+            RoutePoint(latitude: point.0, longitude: point.1, horizontalAccuracy: 5,
+                       timestamp: start.addingTimeInterval(Double(index) * 18))
+        }
+    }()
+}
+
 #endif

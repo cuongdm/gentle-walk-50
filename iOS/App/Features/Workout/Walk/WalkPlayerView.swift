@@ -28,6 +28,13 @@ struct WalkPlayerView: View {
     /// Phone on its side, or the expand button: the clip fills the screen.
     private var showsFullScreen: Bool { video != nil && (fullScreen || verticalSizeClass == .compact) }
     private var tint: Color { model.tone == .brisk ? Palette.sun : Palette.secondary }
+    /// Outdoors with GPS: the live map takes the picture's place, and the distance moves into it.
+    private var showsLiveMap: Bool { isOutdoors && session.tracksRoute }
+
+    private func liveMap(height: CGFloat) -> some View {
+        OutdoorLiveMap(route: session.routeProvider?() ?? [], hasFix: session.locationOn?() ?? false,
+                       miles: session.outdoorDistance?() ?? 0, seconds: model.player.currentTime, height: height)
+    }
 
     var body: some View {
         ZStack {
@@ -99,7 +106,7 @@ struct WalkPlayerView: View {
             if isWide {
                 HStack(alignment: .top, spacing: 24) {
                     VStack(spacing: 16) {
-                        WalkTopBar(status: model.statusLine, locationOn: session.locationOn?() ?? false, onEnd: session.askToEnd,
+                        WalkTopBar(status: model.statusLine, locationOn: !showsLiveMap && (session.locationOn?() ?? false), onEnd: session.askToEnd,
                                    onSound: { showsSound = true })
                         Spacer(minLength: 0)
                         PhaseBlock(label: model.phaseLabel, levelNote: levelNote, tone: model.tone, clock: model.clock, distance: distanceText,
@@ -110,7 +117,9 @@ struct WalkPlayerView: View {
                     }
                     VStack(spacing: 20) {
                         // A phone on its side has no room for the picture above the controls.
-                        if verticalSizeClass != .compact {
+                        if showsLiveMap {
+                            liveMap(height: verticalSizeClass == .compact ? 220 : 340)
+                        } else if verticalSizeClass != .compact {
                             WalkScene(level: model.level, video: video, isOutdoors: isOutdoors, height: 270,
                                       onFullScreen: expandAction)
                         }
@@ -150,14 +159,17 @@ struct WalkPlayerView: View {
     /// Everything above the controls: top bar, picture, phase, clock, next and the spoken line.
     private func portraitText(showsScene: Bool) -> some View {
         VStack(spacing: 14) {
-            WalkTopBar(status: model.statusLine, locationOn: session.locationOn?() ?? false, onEnd: session.askToEnd,
+            WalkTopBar(status: model.statusLine, locationOn: !showsLiveMap && (session.locationOn?() ?? false), onEnd: session.askToEnd,
                                    onSound: { showsSound = true })
-            if showsScene {
+            if showsLiveMap {
+                liveMap(height: 360).layoutPriority(1)
+            } else if showsScene {
                 WalkScene(level: model.level, video: video, isOutdoors: isOutdoors, height: sceneHeight, minHeight: 0,
                           onFullScreen: expandAction)
                     .layoutPriority(1)
             }
-            PhaseBlock(label: model.phaseLabel, levelNote: levelNote, tone: model.tone, clock: model.clock, distance: distanceText)
+            PhaseBlock(label: model.phaseLabel, levelNote: levelNote, tone: model.tone, clock: model.clock,
+                       distance: showsLiveMap ? nil : distanceText)
             NextUpRow(next: model.nextLine, progress: model.phaseProgress, tone: model.tone)
             CaptionBar(caption: model.captionText, style: .plain(.center))
             Spacer(minLength: 0)

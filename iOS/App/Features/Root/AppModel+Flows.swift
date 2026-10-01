@@ -161,6 +161,7 @@ extension AppModel {
         let start = now()
         if usesLocationOutdoors, location.isAuthorized {
             location.startWalk(at: start)
+            session.tracksRoute = true
         } else {
             pedometer.start(at: start)
         }
