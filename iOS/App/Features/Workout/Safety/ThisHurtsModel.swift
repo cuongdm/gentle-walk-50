@@ -58,7 +58,7 @@ enum HurtOutcome: Equatable, Sendable {
     func showEasier() async -> HurtOutcome {
         record()
         if isWalk {
-            if player.currentPhase?.kind == .brisk { try? await player.apply(.skip) }
+            if player.currentPhase?.kind == .brisk { try? await player.apply(.skip()) }
         } else if let exercise = player.currentPhase?.exerciseID {
             try? await player.apply(.easierVersion(exerciseID: exercise))
         }
@@ -68,7 +68,7 @@ enum HurtOutcome: Equatable, Sendable {
 
     func skipMove() async -> HurtOutcome {
         record()
-        try? await player.apply(.skip)
+        try? await player.apply(.skip())
         player.resume()
         return .continueSession
     }

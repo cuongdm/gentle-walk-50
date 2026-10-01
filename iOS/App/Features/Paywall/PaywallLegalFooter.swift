@@ -1,6 +1,8 @@
 import SwiftUI
 
 /// Main button, the disclosure under it, "Maybe later", and Restore · Terms · Privacy (3.1.1, 3.1.2).
+/// "Or keep the free plan" sits on the page (`FreePlanNote`), not here: the pinned footer has to
+/// leave room for the plans.
 struct PaywallLegalFooter: View {
     let disclosure: String
     let buttonTitle: LocalizedStringResource
@@ -10,24 +12,41 @@ struct PaywallLegalFooter: View {
     let onPrivacy: () -> Void
 
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 4) {
             Button(action: onContinue) { Text(buttonTitle) }.buttonStyle(.primaryAction)
             Text(verbatim: disclosure)
                 .typeRole(.caption)
                 .foregroundStyle(Palette.text)
                 .multilineTextAlignment(.center)
-            Button("Maybe later", action: onMaybeLater).buttonStyle(.textLink)
-            Text("Or keep the free plan: a walk each weekday and the New York journey.")
-                .typeRole(.caption).foregroundStyle(Palette.textMuted).multilineTextAlignment(.center)
-            HStack(spacing: 8) {
+            // "Maybe later" and the legal links share one row of 56 pt targets.
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: 0) { maybeLater(.caption); Spacer(minLength: 4); links }
+                VStack(spacing: 0) { maybeLater(.body); links }
+            }
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    private func maybeLater(_ role: TypeRole) -> some View {
+        Button("Maybe later", action: onMaybeLater).buttonStyle(TextLinkButtonStyle(role: role))
+    }
+
+    private var links: some View {
+            HStack(spacing: 2) {
                 Button("Restore", action: onRestore).buttonStyle(.smallTextLink)
                 Text(verbatim: "·").foregroundStyle(Palette.textMuted).accessibilityHidden(true)
                 Link("Terms", destination: LegalLinks.termsOfUse).buttonStyle(.smallTextLink)
                 Text(verbatim: "·").foregroundStyle(Palette.textMuted).accessibilityHidden(true)
                 Button("Privacy", action: onPrivacy).buttonStyle(.smallTextLink)
             }
-        }
-        .frame(maxWidth: .infinity)
+    }
+}
+
+/// "Or keep the free plan": on the paywall page, under the plans.
+struct FreePlanNote: View {
+    var body: some View {
+        Text("Or keep the free plan: a walk each weekday and the New York journey.")
+            .typeRole(.caption).foregroundStyle(Palette.textMuted)
     }
 }
 

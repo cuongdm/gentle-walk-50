@@ -11,7 +11,7 @@ struct PlanReadyView: View {
 
     var body: some View {
         let profile = flow.profile
-        VStack(alignment: .leading, spacing: 18) {
+        VStack(alignment: .leading, spacing: 14) {
             if let name = profile.displayName {
                 ScreenHeaderText(title: String(localized: "Your plan, \(name)"))
             } else {
@@ -34,7 +34,7 @@ struct PlanCard: View {
     let limits: Set<BodyLimit>
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 8) {
             Text("5–10 min a day").typeRole(.cardTitle)
             Text("2 rest days a week · starting \(Text(startLevel.title).bold())").typeRole(.body)
             SampleWeekRow()
@@ -43,6 +43,7 @@ struct PlanCard: View {
             }
             Divider()
             Text("Day 1: first walk · 5 min · seated").typeRole(.body).fontWeight(.semibold)
+            FirstJourneyMini()
         }
         .foregroundStyle(Palette.text)
         .cardStyle()
@@ -50,7 +51,8 @@ struct PlanCard: View {
 }
 
 /// Her week as it starts (free plan): a walk each weekday, Saturday and Sunday to rest, with the day
-/// letters; one line says what Pro adds (clarity review D2: the Pro week looked like her plan).
+/// letters; one line says what Pro adds (clarity review D2: the Pro week looked like her plan). The
+/// tiles are not buttons, so they are lower than a touch target.
 struct SampleWeekRow: View {
     @Environment(\.dynamicTypeSize) private var typeSize
 
@@ -73,11 +75,10 @@ struct SampleWeekRow: View {
                     }
                     .foregroundStyle(rest ? Palette.textMuted : Palette.text)
                     .padding(.horizontal, typeSize.isAccessibilitySize ? 12 : 0)
-                    .frame(maxWidth: typeSize.isAccessibilitySize ? nil : .infinity, minHeight: 56)
+                    .frame(maxWidth: typeSize.isAccessibilitySize ? nil : .infinity, minHeight: 48)
                     .background(rest ? Palette.surface.opacity(0.5) : Palette.surface, in: .rect(cornerRadius: 12))
                 }
             }
-            Text("A walk each weekday, weekends to rest.").typeRole(.caption).foregroundStyle(Palette.text)
             Text("With Gentle Walk Pro, your week mixes walks, chair moves and stretches.")
                 .typeRole(.caption).foregroundStyle(Palette.textMuted)
         }
@@ -107,29 +108,28 @@ struct WhyThisWorks: View {
     let keys: [WhyKey]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Why this will work for you").typeRole(.cardTitle).foregroundStyle(Palette.text)
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Why this will work for you").typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
             ForEach(Array(keys.enumerated()), id: \.offset) { _, key in
                 Label {
-                    Text(OnboardingCopy.why(key)).typeRole(.body)
+                    Text(OnboardingCopy.why(key)).typeRole(.caption)
                 } icon: {
                     Image(systemName: "checkmark.circle.fill").foregroundStyle(Palette.secondary)
                 }
                 .foregroundStyle(Palette.text)
             }
-            FirstJourneyMini()
         }
         .cardStyle()
     }
 }
 
-/// The first journey, as the last line of "Why this will work".
+/// The first journey, as the last line of the plan card.
 struct FirstJourneyMini: View {
     var body: some View {
         HStack(spacing: 12) {
-            ArtImage(name: Art.coverName(journeyID: "jr.ny"), height: 56, fallbackSymbol: "map").frame(width: 72)
+            ArtImage(name: Art.coverName(journeyID: "jr.ny"), height: 48, fallbackSymbol: "map").frame(width: 60)
             VStack(alignment: .leading, spacing: 2) {
-                Text("Your first journey: Central Park to Brooklyn Bridge").typeRole(.body).fontWeight(.semibold)
+                Text("Your first journey: Central Park to Brooklyn Bridge").typeRole(.caption).fontWeight(.semibold)
                 Text("Every walk in the app moves you along.").typeRole(.caption).foregroundStyle(Palette.textMuted)
             }
             .foregroundStyle(Palette.text)
@@ -137,8 +137,10 @@ struct FirstJourneyMini: View {
     }
 }
 
-/// "What's a good moment for your daily walk?" The time can be typed (tap it), while − / + go to the
-/// next quarter hour (owner 30/09/2026).
+/// "What's a good moment for your daily walk?" Four moments as a 2 × 2 grid of tiles and the reminder
+/// time on one line (owner 01/10: four full-width cards and a two-line time block made the plan screen
+/// long). The time can be typed (tap it), while − / + go to the next quarter hour (owner 30/09/2026).
+/// One column at accessibility text sizes.
 struct DailyMomentPicker: View {
     let moment: DailyMoment
     let minutes: Int
@@ -146,22 +148,27 @@ struct DailyMomentPicker: View {
     let onStep: (Int) -> Void
     let onSet: (Int) -> Void
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("What's a good moment for your daily walk?").typeRole(.cardTitle).foregroundStyle(Palette.text)
-            ForEach(DailyMoment.allCases) { value in
-                SelectableCard(title: OnboardingCopy.title(value), isSelected: moment == value) { onChoose(value) }
+            let columns = typeSize.isAccessibilitySize ? [GridItem(.flexible())] : [GridItem(.flexible(), spacing: 8), GridItem(.flexible())]
+            LazyVGrid(columns: columns, spacing: 8) {
+                ForEach(DailyMoment.allCases) { value in
+                    MomentTile(title: OnboardingCopy.title(value), isSelected: moment == value) { onChoose(value) }
+                }
             }
-            Text("One gentle reminder a day, at:").typeRole(.caption).foregroundStyle(Palette.textMuted)
-            HStack(spacing: 16) {
+            HStack(spacing: 10) {
+                Text("One gentle reminder a day, at:").typeRole(.caption).foregroundStyle(Palette.textMuted)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 StepButton(symbol: "minus", label: "Earlier") { onStep(-1) }
                 DatePicker(selection: timeBinding, displayedComponents: .hourAndMinute) {
                     Text("Reminder time")
                 }
                 .labelsHidden()
                 .datePickerStyle(.compact)
-                .scaleEffect(1.2)
-                .frame(maxWidth: .infinity)
+                .fixedSize()
                 StepButton(symbol: "plus", label: "Later") { onStep(1) }
             }
             .cardStyle(padding: 10)
@@ -181,6 +188,40 @@ struct DailyMomentPicker: View {
     static func time(_ minutes: Int) -> String {
         let date = Calendar.current.date(bySettingHour: minutes / 60, minute: minutes % 60, second: 0, of: .now) ?? .now
         return date.formatted(date: .omitted, time: .shortened)
+    }
+}
+
+/// A daily moment: a tile with a tick when chosen, two lines at most.
+private struct MomentTile: View {
+    let title: LocalizedStringResource
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(alignment: .top, spacing: 6) {
+                Text(title).typeRole(.body).fontWeight(.semibold)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                    .foregroundStyle(isSelected ? Palette.primary : Palette.textMuted)
+                    .accessibilityHidden(true)
+            }
+            .foregroundStyle(Palette.text)
+            .padding(12)
+            .frame(maxWidth: .infinity, minHeight: 72, alignment: .topLeading)
+            .background {
+                RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
+                    .fill(isSelected ? Palette.secondary.opacity(0.12) : Palette.surface)
+            }
+            .overlay {
+                RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
+                    .strokeBorder(isSelected ? Palette.primary : Palette.textMuted.opacity(0.3), lineWidth: isSelected ? 3 : 1.5)
+            }
+            .contentShape(.rect)
+        }
+        .buttonStyle(.plain)
+        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
     }
 }
 

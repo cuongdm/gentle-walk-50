@@ -2,8 +2,9 @@
 public enum TimelineEdit: Equatable, Sendable {
     /// This hurts → Show an easier version: the rest of this exercise switches to the easier version.
     case easierVersion(exerciseID: String)
-    /// This hurts → Skip, or the Skip control: the rest of the current part is dropped.
-    case skip
+    /// This hurts → Skip, or the Skip control: the rest of the current part is dropped. `spoken`:
+    /// the coach says "We'll skip that one" (This hurts); the Skip control is silent.
+    case skip(spoken: Bool = true)
     /// Outdoors only: the rest becomes an easy walk until the user taps End.
     case walkHomeGently
 }
@@ -29,7 +30,7 @@ public enum TimelineEditing {
             result.voice.removeAll { $0.start >= time && $0.start < phase.end }
             result.insertEditLine("a7.hurt.easier", at: time)
 
-        case .skip:
+        case .skip(let spoken):
             let cut = phase.end - time
             result.phases[index].end = time
             for k in result.phases.indices where k > index {
@@ -41,7 +42,7 @@ public enum TimelineEditing {
             result.bells.removeAll { $0.at >= time && $0.at < phase.end }
             for k in result.bells.indices where result.bells[k].at >= phase.end { result.bells[k].at -= cut }
             result.total -= cut
-            result.insertEditLine("a7.hurt.skip", at: time)
+            if spoken { result.insertEditLine("a7.hurt.skip", at: time) }
 
         case .walkHomeGently:
             result.phases = Array(timeline.phases[..<index])

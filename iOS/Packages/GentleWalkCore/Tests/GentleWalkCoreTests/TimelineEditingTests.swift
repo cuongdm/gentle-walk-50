@@ -31,9 +31,23 @@ import Testing
         #expect(!edited.voice.contains { $0.start > at && $0.start < move.end && $0.lineID.hasPrefix("a4.") })
     }
 
+    /// The Skip control is silent (quick taps piled "We'll skip that one" up, owner 01/10): no edit
+    /// line, and the next part's lines keep their place. This hurts -> Skip still speaks.
+    @Test func silentSkipAddsNoLine() throws {
+        let timeline = try chairDay()
+        let move = try #require(timeline.phases.first { $0.kind == .move })
+        let at = move.start + 5
+        let silent = TimelineEditing.apply(.skip(spoken: false), to: timeline, at: at)
+        #expect(!silent.voice.contains { $0.lineID == "a7.hurt.skip" })
+        #expect(silent.total == timeline.total - (move.end - at))
+        let spoken = TimelineEditing.apply(.skip(), to: timeline, at: at)
+        #expect(spoken.voice.contains { $0.lineID == "a7.hurt.skip" && $0.start == at })
+        #expect(spoken.phases == silent.phases)
+    }
+
     @Test func skipDropsTheRestOfTheCurrentPartAndPullsTheRestForward() throws {
         let timeline = try firstWalk()
-        let edited = TimelineEditing.apply(.skip, to: timeline, at: 190)  // 3:10, second brisk (3:00–3:30)
+        let edited = TimelineEditing.apply(.skip(), to: timeline, at: 190)  // 3:10, second brisk (3:00–3:30)
         #expect(edited.total == 280)
         #expect(edited.phases.map(\.kind) == timeline.phases.map(\.kind))
         try #require(edited.phases.count == 7)

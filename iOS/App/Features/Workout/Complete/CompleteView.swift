@@ -156,10 +156,10 @@ struct FeelingQuestion: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("How did that feel?").typeRole(.cardTitle).foregroundStyle(Palette.text)
-            FlowLayout(spacing: Metrics.touchSpacing) {
-                option(.tooEasy, "Too easy")
-                option(.justRight, "Just right")
-                option(.tooHard, "Too hard")
+            // One row of three equal answers (they wrapped onto two lines); stacked at large text sizes.
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: 8) { options }
+                VStack(spacing: 8) { options }
             }
             if selection != nil {
                 Text("Got it. We'll adjust tomorrow.").typeRole(.body).foregroundStyle(Palette.text)
@@ -167,9 +167,15 @@ struct FeelingQuestion: View {
         }
     }
 
+    @ViewBuilder private var options: some View {
+        option(.tooEasy, "Too easy")
+        option(.justRight, "Just right")
+        option(.tooHard, "Too hard")
+    }
+
     private func option(_ feeling: Feeling, _ title: LocalizedStringResource) -> some View {
         Button { onSelect(feeling) } label: { Text(title) }
-            .buttonStyle(PillButtonStyle(isSelected: selection == feeling))
+            .buttonStyle(PillButtonStyle(isSelected: selection == feeling, fills: true))
             .accessibilityAddTraits(selection == feeling ? .isSelected : [])
     }
 }
@@ -212,13 +218,23 @@ struct CompleteHero: View {
     }
 }
 
-/// Leaves drifting down for two seconds; nothing with Reduce Motion.
+/// Leaves drifting down for two seconds with a short happy chime; the chime alone with Reduce Motion.
 struct FallingLeaves: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var start = Date()
     @State private var visible = true
+    @State private var cheered = false
 
     var body: some View {
+        // A ZStack so the chime runs even when no leaves are drawn (Reduce Motion).
+        ZStack { leaves }.task {
+            guard !cheered else { return }
+            cheered = true
+            CueSounds.shared.cheer()
+        }
+    }
+
+    @ViewBuilder private var leaves: some View {
         if !reduceMotion && visible {
             TimelineView(.animation) { context in
                 let t = context.date.timeIntervalSince(start)

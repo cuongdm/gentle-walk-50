@@ -1,7 +1,9 @@
 import SwiftUI
 
 /// "Get ready" before the first word: the coach, the session's name and a calm 3, 2, 1, Go.
-/// Nothing plays yet, so she can put the phone down and find her spot; "Skip the countdown" skips it.
+/// The session has not started, so she can put the phone down and find her spot; a soft "ting" marks
+/// 3, 2 and 1 and a brighter chime marks Go, so she can follow it without looking. "Skip the countdown"
+/// skips it.
 struct WorkoutCountdownView: View {
     let title: String
     let onFinished: () -> Void
@@ -24,7 +26,7 @@ struct WorkoutCountdownView: View {
             }
             CountdownDial(count: count, reduceMotion: reduceMotion)
             Spacer(minLength: 0)
-            Button("Skip the countdown", action: finish).buttonStyle(.secondaryAction)
+            Button("Skip the countdown") { CueSounds.shared.stop(); finish() }.buttonStyle(.secondaryAction)
         }
         .padding(Metrics.screenMargin)
         .frame(maxWidth: 520)
@@ -48,10 +50,12 @@ struct WorkoutCountdownView: View {
     }
 
     private func announce() {
+        count > 0 ? CueSounds.shared.tick() : CueSounds.shared.go()
         let text = count > 0 ? String(count) : String(localized: "Go")
         AccessibilityNotification.Announcement(text).post()
     }
 
+    /// The Go chime rings on into the first moments of the session.
     private func finish() { onFinished() }
 }
 

@@ -131,4 +131,11 @@ import GentleWalkCore
         #expect(try container.mainContext.fetch(FetchDescriptor<UserProfile>()).count == 1)
         #expect(flow.profile.understandingKey == .charged)
     }
+
+    /// The two groups on S06 and in Me hold every body limit exactly once (owner 01/10 layout).
+    @Test func bodyLimitGroupsCoverEveryLimitOnce() {
+        let grouped = BodyLimitChips.joints + BodyLimitChips.everyday
+        #expect(Set(grouped) == Set(OnboardingCopy.limitOrder))
+        #expect(grouped.count == OnboardingCopy.limitOrder.count)
+    }
 }

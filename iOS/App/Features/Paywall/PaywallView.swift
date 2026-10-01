@@ -24,14 +24,14 @@ struct PaywallView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 18) {
+            VStack(alignment: .leading, spacing: 12) {
                 ScreenHeader(title: model.title)
                 // What Pro adds comes first, then the dates and prices (clarity review D4).
                 IncludedList()
                 if model.showsTrial, let yearly = model.yearly {
                     TrialTimelineView(billingDate: model.billingDateText, price: yearly.price)
                 }
-                VStack(spacing: Metrics.touchSpacing) {
+                VStack(spacing: 8) {
                     ForEach(model.options) { option in
                         PlanOptionCard(option: option, isSelected: model.selectedID == option.id,
                                        showsTrialNote: option.kind == .yearly && model.isEligibleForTrial,
@@ -41,8 +41,9 @@ struct PaywallView: View {
                     }
                 }
                 Text("Cancel anytime in Settings. Deleting the app doesn't cancel.")
-                    .typeRole(.body)
+                    .typeRole(.caption)
                     .foregroundStyle(Palette.text)
+                FreePlanNote()
                 if !pinsFooter { footer }
             }
             .padding(Metrics.screenMargin)
@@ -78,7 +79,7 @@ struct TrialTimelineView: View {
             TimelineStepText(symbol: "creditcard.fill", title: billingDate,
                              detail: String(localized: "Billed \(price) unless you cancel"))
         }
-        .cardStyle()
+        .cardStyle(padding: 12)
     }
 }
 
@@ -95,18 +96,18 @@ private struct TimelineStep: View {
                     .typeRole(.body)
                     .fontWeight(.semibold)
                     .foregroundStyle(Palette.onStrongFill)
-                    .frame(width: 40, height: 40)
-                    // The icon sits in a fixed 40 pt disc: it grows with the text only so far.
+                    .frame(width: 32, height: 32)
+                    // The icon sits in a fixed 32 pt disc: it grows with the text only so far.
                     .dynamicTypeSize(...DynamicTypeSize.xxLarge)
                     .background(Palette.secondary, in: .circle)
-                if !isLast { Rectangle().fill(Palette.secondary.opacity(0.4)).frame(width: 3, height: 22) }
+                if !isLast { Rectangle().fill(Palette.secondary.opacity(0.4)).frame(width: 3, height: 6) }
             }
             .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 0) {
-                Text(title).typeRole(.body).fontWeight(.bold)
-                Text(detail).typeRole(.body)
-            }
-            .foregroundStyle(Palette.text)
+            // "Today  Full access, no charge" on one line where it fits.
+            Text("\(Text(title).bold())  \(Text(detail))")
+                .typeRole(.body)
+                .foregroundStyle(Palette.text)
+                .frame(minHeight: 32)
         }
         .accessibilityElement(children: .combine)
     }
@@ -123,22 +124,23 @@ private struct TimelineStepText: View {
                 .typeRole(.body)
                     .fontWeight(.semibold)
                 .foregroundStyle(Palette.onStrongFill)
-                .frame(width: 40, height: 40)
-                    // The icon sits in a fixed 40 pt disc: it grows with the text only so far.
+                .frame(width: 32, height: 32)
+                    // The icon sits in a fixed 32 pt disc: it grows with the text only so far.
                     .dynamicTypeSize(...DynamicTypeSize.xxLarge)
                 .background(Palette.secondary, in: .circle)
                 .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 0) {
-                Text(verbatim: title).typeRole(.body).fontWeight(.bold)
-                Text(verbatim: detail).typeRole(.body)
-            }
-            .foregroundStyle(Palette.text)
+            Text("\(Text(verbatim: title).bold())  \(Text(verbatim: detail))")
+                .typeRole(.body)
+                .foregroundStyle(Palette.text)
+                .frame(minHeight: 32)
         }
         .accessibilityElement(children: .combine)
     }
 }
 
-/// One plan: name, the billed price largest, a smaller monthly equivalent for yearly.
+/// One plan on one row (owner 01/10: three tall cards were hidden under the pinned button): the
+/// name and its notes on the left, the billed price on the right as the largest price, a smaller
+/// monthly equivalent under the yearly price.
 struct PlanOptionCard: View {
     let option: PlanOption
     let isSelected: Bool
@@ -148,17 +150,13 @@ struct PlanOptionCard: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(alignment: .top, spacing: 12) {
+            HStack(alignment: .center, spacing: 12) {
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                     .typeRole(.cardTitle)
                     .foregroundStyle(isSelected ? Palette.primary : Palette.textMuted)
                     .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 2) {
                     Text(option.title).typeRole(.body).fontWeight(.semibold)
-                    Text(verbatim: option.priceWithPeriod).typeRole(.cardTitle).fontWeight(.bold)
-                    if let monthly = option.monthlyEquivalent {
-                        Text(verbatim: monthly).typeRole(.caption).foregroundStyle(Palette.textMuted)
-                    }
                     if showsTrialNote {
                         Text("Includes 14 days free").typeRole(.caption).foregroundStyle(Palette.text)
                     }
@@ -172,8 +170,18 @@ struct PlanOptionCard: View {
                 }
                 .foregroundStyle(Palette.text)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                VStack(alignment: .trailing, spacing: 2) {
+                    Text(verbatim: option.priceWithPeriod).typeRole(.cardTitle).fontWeight(.bold)
+                        .lineLimit(1).minimumScaleFactor(0.8)
+                    if let monthly = option.monthlyEquivalent {
+                        Text(verbatim: monthly).typeRole(.caption).foregroundStyle(Palette.textMuted)
+                    }
+                }
+                .foregroundStyle(Palette.text)
+                .fixedSize()
             }
-            .padding(16)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
             .background(Palette.surface, in: .rect(cornerRadius: Metrics.cardRadius))
             .overlay {
                 RoundedRectangle(cornerRadius: Metrics.cardRadius)
@@ -189,7 +197,7 @@ struct PlanOptionCard: View {
 /// What the plan includes.
 struct IncludedList: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 4) {
             line("All walking levels and weekly plans")
             line("All chair, balance and stretch sessions")
             line("4 more journeys, with more coming")

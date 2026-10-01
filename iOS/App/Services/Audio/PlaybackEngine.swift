@@ -112,11 +112,13 @@ extension PlaybackEngine {
         isReady = true
         if let seconds = pendingSeek {
             pendingSeek = nil
+            seekGeneration += 1
+            let generation = seekGeneration
             isSeeking = true
             player.seek(to: CMTime(seconds: seconds, preferredTimescale: 600), toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] _ in
                 Task { @MainActor in
                     guard let self else { return }
-                    self.isSeeking = false
+                    if self.seekGeneration == generation { self.isSeeking = false }
                     guard self.pendingPlay else { return }
                     self.pendingPlay = false
                     self.player.play()
@@ -181,8 +183,20 @@ extension PlaybackEngine {
         player.pause()
     }
 
+    /// Back / Skip: while the seek runs, the clock is not reported (a tick from before the jump would
+    /// move the screen back for a moment). A newer seek replaces one still running.
     func seek(to seconds: Double) {
         guard isReady else { pendingSeek = seconds; return }
-        player.seek(to: CMTime(seconds: seconds, preferredTimescale: 600), toleranceBefore: .zero, toleranceAfter: .zero)
+        seekGeneration += 1
+        let generation = seekGeneration
+        isSeeking = true
+        player.seek(to: CMTime(seconds: seconds, preferredTimescale: 600), toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] _ in
+            Task { @MainActor in
+                guard let self, self.seekGeneration == generation else { return }
+                self.isSeeking = false
+            }
+        }
     }
+
+    private var seekGeneration = 0
 }

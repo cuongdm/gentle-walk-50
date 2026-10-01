@@ -14,7 +14,7 @@ struct OnboardingView: View {
     /// Short steps (a picture and a line) keep Continue at the bottom like the question steps,
     /// instead of right under the text with half the screen empty (review U5).
     private var pinsContinue: Bool {
-        [.part1, .understanding, .part2, .part3].contains(flow.step) && !typeSize.isAccessibilitySize
+        [.part1, .understanding, .part2, .part3, .body].contains(flow.step) && !typeSize.isAccessibilitySize
     }
 
     var body: some View {
@@ -36,6 +36,9 @@ struct OnboardingView: View {
         .pinnedActions(pinsPlanButton || pinsContinue) {
             if pinsPlanButton {
                 ContinueButton(title: "See my options", action: flow.next)
+            } else if flow.step == .body {
+                DoctorNote()
+                ContinueButton(action: flow.next)
             } else {
                 ContinueButton(action: flow.next)
             }
@@ -58,7 +61,7 @@ struct OnboardingView: View {
         case .stairs: StairsView(flow: flow)
         case .chair: ChairStrengthView(flow: flow)
         case .part3: PartIntroView(part: 3, title: "Your body", showsContinue: !pinsContinue, onContinue: flow.next)
-        case .body: BodyLimitsView(flow: flow)
+        case .body: BodyLimitsView(flow: flow, showsContinue: !pinsContinue)
         case .plan, .paywall: PlanReadyView(flow: flow, showsContinue: !pinsPlanButton)
         }
     }

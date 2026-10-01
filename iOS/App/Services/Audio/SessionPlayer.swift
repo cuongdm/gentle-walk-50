@@ -19,6 +19,10 @@ enum PauseReason: Equatable, Sendable {
 
 enum PlaybackState: Equatable, Sendable { case idle, ready, playing, paused(PauseReason), finished }
 
+/// Which way the last part change went: on to a later part (playing on, Skip) or back (Back).
+/// The exercise clip slides in from the matching side.
+enum MoveDirection: Equatable, Sendable { case forward, backward }
+
 /// Drives one session (task 3.4): the engine plays audio, this model turns the clock into the phase,
 /// caption and countdown the player screens show.
 @Observable @MainActor final class SessionPlayer {
@@ -30,6 +34,7 @@ enum PlaybackState: Equatable, Sendable { case idle, ready, playing, paused(Paus
     private(set) var caption: CaptionTimeline.Caption?
     /// Whole seconds left in the current phase, for the big countdown.
     private(set) var remainingInPhase = 0
+    private(set) var moveDirection: MoveDirection = .forward
 
     /// Called on every phase change after the first (haptics, transition card).
     @ObservationIgnored var onPhaseChange: ((SessionTimeline.Phase) -> Void)?
@@ -46,7 +51,7 @@ enum PlaybackState: Equatable, Sendable { case idle, ready, playing, paused(Paus
     init(engine: PlaybackEngine, notificationCenter: NotificationCenter = .default) {
         self.engine = engine
         self.notificationCenter = notificationCenter
-        engine.onTime = { [weak self] seconds in self?.tick(seconds) }
+        engine.onTime = { [weak self] seconds in self?.mediaTick(seconds) }
         engine.onEnd = { [weak self] in self?.programEnded() }
         let observer = notificationCenter.addObserver(forName: AVAudioSession.interruptionNotification, object: nil,
                                                               queue: .main) { [weak self] note in
@@ -59,6 +64,8 @@ enum PlaybackState: Equatable, Sendable { case idle, ready, playing, paused(Paus
 
     func load(_ timeline: SessionTimeline) async throws {
         try await engine.load(timeline)
+        cuts = []
+        timeFloor = nil
         self.timeline = timeline
         captions = CaptionTimeline(timeline: timeline)
         state = .ready
@@ -87,10 +94,32 @@ enum PlaybackState: Equatable, Sendable { case idle, ready, playing, paused(Paus
         nowPlaying?.update(elapsed: currentTime, duration: timeline.total, isPlaying: true)
     }
 
-    /// This hurts / Skip / Walk home gently: rebuilds the program and continues from the same moment.
-    /// The screen moves to the next part at once (the timeline edit is instant); the old sound stops
-    /// while the new program is built, then plays from the same moment. Taps during a rebuild are ignored
-    /// so two rebuilds never race (that replayed audio and skipped twice).
+    /// Skip control and "Skip rest": drops the rest of the current part and goes straight on, with no
+    /// rebuild of the audio program. The program keeps playing the media built at load; the player
+    /// remembers each cut (a media interval that is no longer part of the program) and maps between
+    /// program time and media time. A tap is one seek, so taps never queue or race, and the screen,
+    /// the voice and the clip all move at the same instant. The coach does not announce it (she did
+    /// for every tap, which piled up when tapped quickly); the sound is a short tick.
+    func skip() {
+        let at = currentTime
+        guard let phase = timeline.phases.first(where: { $0.start <= at && at < $0.end }) else { return }
+        let start = mediaTime(at)
+        cuts.append(Cut(start: start, end: start + (phase.end - at)))
+        cuts.sort { $0.start < $1.start }
+        timeline = TimelineEditing.apply(.skip(spoken: false), to: timeline, at: at)
+        captions = CaptionTimeline(timeline: timeline)
+        moveDirection = .forward
+        seekMedia(to: mediaTime(at))
+        tick(at)
+        onSkip?()
+    }
+
+    /// The Skip control's tick (set by the screen; nil in tests).
+    @ObservationIgnored var onSkip: (() -> Void)?
+
+    /// This hurts (easier version, Skip) / Walk home gently: rebuilds the program and continues from
+    /// the same moment. Used from the This hurts screen, where the session is paused, so the rebuild
+    /// is not heard. A second edit during a rebuild is ignored (two rebuilds raced and replayed audio).
     func apply(_ edit: TimelineEdit) async throws {
         guard !isEditing else { return }
         isEditing = true
@@ -103,13 +132,59 @@ enum PlaybackState: Equatable, Sendable { case idle, ready, playing, paused(Paus
         tick(at)
         if wasPlaying { engine.pause() }
         try await engine.load(edited)
-        engine.seek(to: at)
+        // The new media is the edited program itself: no cuts any more.
+        cuts = []
+        seekMedia(to: at)
         if wasPlaying && state == .playing { engine.play() }
         tick(at)
     }
 
-    /// True while a Skip / This hurts rebuild is loading.
+    /// True while a This hurts rebuild is loading.
     private(set) var isEditing = false
+
+    // MARK: Program time vs. media time
+
+    /// A media interval dropped by Skip: the program jumps from `start` to `end`.
+    private struct Cut { var start: Double; var end: Double; var length: Double { end - start } }
+    @ObservationIgnored private var cuts: [Cut] = []
+    /// After a seek, media times reported below the target are read as the target: the player lands a
+    /// sample or two early, which read as the last moment of the part just left (seen as "00:01" of the
+    /// skipped move flashing back). Cleared once the media is past it.
+    @ObservationIgnored private var timeFloor: Double?
+
+    private func mediaTime(_ program: Double) -> Double {
+        var media = program
+        for cut in cuts where cut.start <= media { media += cut.length }
+        return media
+    }
+
+    private func programTime(_ media: Double) -> Double {
+        var program = media
+        for cut in cuts where cut.end <= media { program -= cut.length }
+        return program
+    }
+
+    private func seekMedia(to media: Double) {
+        timeFloor = media
+        engine.seek(to: media)
+    }
+
+    /// The engine's clock (media time) → program time, skipping over cuts.
+    private func mediaTick(_ media: Double) {
+        var media = media
+        if let floor = timeFloor {
+            if media < floor { media = floor } else if media > floor + 0.3 { timeFloor = nil }
+        }
+        // Back played into skipped media: jump over it, and over any cut right after it (Skip tapped
+        // several times leaves cuts end to end).
+        var jumped = false
+        while let cut = cuts.first(where: { $0.start <= media && media < $0.end }) {
+            media = cut.end
+            jumped = true
+        }
+        if jumped { seekMedia(to: media) }
+        tick(programTime(media))
+    }
 
     private(set) var isVoiceOn = true
     private(set) var isMusicOn = true
@@ -129,9 +204,10 @@ enum PlaybackState: Equatable, Sendable { case idle, ready, playing, paused(Paus
         engine.setLevels(voice: Float(voice), music: Float(music))
     }
 
-    /// Back / Skip controls: jumps to a moment in the program.
+    /// Back control: jumps to a moment in the program.
     func seek(to seconds: Double) {
-        engine.seek(to: seconds)
+        moveDirection = seconds < currentTime ? .backward : .forward
+        seekMedia(to: mediaTime(seconds))
         tick(seconds)
     }
 
@@ -148,6 +224,7 @@ enum PlaybackState: Equatable, Sendable { case idle, ready, playing, paused(Paus
         let phase = timeline.phases.indices.contains(index) ? timeline.phases[index] : nil
         if index != phaseIndex || phase != currentPhase {
             let changed = index != phaseIndex
+            if changed, index > phaseIndex { moveDirection = .forward }
             phaseIndex = index
             currentPhase = phase
             if changed, let phase {

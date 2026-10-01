@@ -122,8 +122,8 @@ import GentleWalkCore
         showsHarder = false
     }
 
-    func skip() async {
+    func skip() {
         showsHarder = false
-        try? await player.apply(.skip)
+        player.skip()
     }
 }

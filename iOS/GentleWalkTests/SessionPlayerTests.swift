@@ -72,6 +72,48 @@ import GentleWalkCore
         #expect(player.state == .playing)
     }
 
+    /// Owner's screen recording 01/10: Skip must be one seek on the media already loaded, never a
+    /// rebuild. Three quick taps skip three parts; the program and the media then differ by the cuts.
+    @Test func skipIsAnInstantSeekOverTheCutMedia() async throws {
+        let engine = FakePlaybackEngine()
+        let player = SessionPlayer(engine: engine, notificationCenter: NotificationCenter())
+        let content = TestFixtures.content
+        let plan = try SessionBuilder.build(kind: PlannedDay(main: .chair, chairMoves: 0, cooldown: true), level: .seated,
+                                            intensity: .gentle, limits: [], rotationIndex: 0, content: content)
+        let original = SessionTimeline.make(plan: plan, voice: content.voiceLines)
+        try await player.load(original)
+        player.play()
+        let move = try #require(original.phases.first { $0.kind == .move })
+        let index = try #require(original.phases.firstIndex(of: move))
+        let at = move.start + 5
+        engine.advance(to: at)
+        player.skip()
+        player.skip()
+        player.skip()
+        #expect(engine.loaded.count == 1)
+        #expect(player.phaseIndex == index + 3)
+        #expect(player.currentTime == at)
+        #expect(player.moveDirection == .forward)
+        #expect(!player.timeline.voice.contains { $0.lineID == "a7.hurt.skip" })
+        // Media time of the next part = program time + what was cut.
+        let cut = (move.end - at) + (original.phases[index + 1].end - original.phases[index + 1].start)
+            + (original.phases[index + 2].end - original.phases[index + 2].start)
+        #expect(engine.seeks.last == at + cut)
+        // The engine lands a hair early: still read as the new part, never "00:01" of the old one.
+        engine.advance(to: at + cut - 0.02)
+        #expect(player.phaseIndex == index + 3)
+        #expect(player.currentTime == at)
+        engine.advance(to: at + cut + 10)
+        #expect(player.currentTime == at + 10)
+        // Back into the shortened move, then playing on jumps over the cut media.
+        player.seek(to: move.start)
+        #expect(player.moveDirection == .backward)
+        #expect(engine.seeks.last == move.start)
+        engine.advance(to: at + 1)   // media inside the cut
+        #expect(engine.seeks.last == at + cut)
+        #expect(player.phaseIndex == index + 3)
+    }
+
     @Test func reachingTheEndFinishes() async throws {
         let (player, engine) = try await player()
         player.play()

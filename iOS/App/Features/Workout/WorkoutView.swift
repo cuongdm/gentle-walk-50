@@ -21,6 +21,7 @@ struct WorkoutView: View {
             // Exercise clips move only while the coach plays: Pause, Break, a phone call or This hurts
             // freeze the clip with her (they kept looping before).
             .environment(\.videoPaused, session.player.state != .playing)
+            .environment(\.clipDirection, session.player.moveDirection)
             .onChange(of: session.player.state) { _, state in
                 if state == .finished, !session.isComplete, session.stage == .playing {
                     Task { await session.finish() }

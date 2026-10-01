@@ -7,6 +7,8 @@ struct ChairPlayerView: View {
     let model: ChairPlayerModel
     @State private var fullScreen = false
     @State private var showsSound = false
+    /// Tips are folded until she opens them; the choice holds for the rest of the session.
+    @State private var showsTips = false
 
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     @Environment(\.startsFullScreen) private var startsFullScreen
@@ -22,11 +24,11 @@ struct ChairPlayerView: View {
                     counter: model.countsReps ? model.repsText : model.timerText,
                     caption: model.player.caption?.text, isPaused: isPaused,
                     onExit: exitFullScreen, onBack: model.back, onPause: model.session.togglePause,
-                    onSkip: { Task { await model.skip() } },
+                    onSkip: model.skip,
                     onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
             } else if model.isRest {
                 RestBetweenMoves(timer: model.timerText, next: model.nextExercise, nextVideo: model.nextVideoFile,
-                                 onSkipRest: { Task { await model.skip() } },
+                                 onSkipRest: model.skip,
                                  onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
             } else {
                 portrait
@@ -50,7 +52,7 @@ struct ChairPlayerView: View {
     }
 
     private var portrait: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 10) {
             HStack {
                 Button("End", action: model.session.askToEnd).buttonStyle(.smallTextLink)
                 Spacer()
@@ -65,26 +67,33 @@ struct ChairPlayerView: View {
             ExerciseVideo(fileName: model.videoFile)
                 .overlay(alignment: .topTrailing) { VideoCornerButton.expand(enterFullScreen).padding(4) }
             ScrollView {
-                VStack(alignment: .leading, spacing: 14) {
-                    MoveHeader(exercise: model.exercise)
+                VStack(alignment: .leading, spacing: 10) {
                     if model.countsReps {
-                        RepCounter(text: model.repsText, countedForYou: model.session.isCountedForYou,
-                                   pulse: model.session.motion?.pulse ?? 0, onAdd: model.session.addRep)
+                        MoveHeaderWithClock(exercise: model.exercise, clockWidth: 190) {
+                            RepCounter(text: model.repsText, onAdd: model.session.addRep)
+                        } detail: {
+                            if model.session.isCountedForYou {
+                                CountedForYouLabel(pulse: model.session.motion?.pulse ?? 0)
+                            } else {
+                                // Without the phone held to the chest, the count is hers (review D13).
+                                Text("Tap +1 each time you stand").typeRole(.caption).foregroundStyle(Palette.textMuted)
+                            }
+                        }
                     } else {
-                        MoveTimer(text: model.timerText)
+                        // The clock beside the name, not on a row of its own (owner 01/10).
+                        MoveHeaderWithClock(exercise: model.exercise) { MoveTimer(text: model.timerText) }
                     }
-                    // Easier / Harder before the tips, so they are in view without scrolling (review D12).
-                    VersionPills(usesEasier: model.usesEasier, showsHarder: model.showsHarder,
-                                 hasHarder: model.exercise?.harder != nil,
-                                 onEasier: { Task { await model.chooseEasier() } }, onHarder: model.chooseHarder)
-                    MoveTips(tips: model.exercise?.tips ?? [], note: model.versionNote)
+                    MoveOptionsRow(usesEasier: model.usesEasier, showsHarder: model.showsHarder,
+                                   hasHarder: model.exercise?.harder != nil, showsTips: $showsTips,
+                                   onEasier: { Task { await model.chooseEasier() } }, onHarder: model.chooseHarder)
+                    MoveTips(tips: showsTips ? model.exercise?.tips ?? [] : [], note: model.versionNote)
                 }
             }
             .scrollBounceBehavior(.basedOnSize)
             // The spoken line stays in view above the controls, as plain text (review U3).
             CaptionBar(caption: model.player.caption?.text, style: .plain(.center))
             PlayerControlRow(isPaused: isPaused, onBack: model.back, onPause: model.session.togglePause,
-                             onSkip: { Task { await model.skip() } })
+                             onSkip: model.skip)
             WorkoutSafetyBar(showsVoice: false, onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
         }
         .padding(.horizontal, Metrics.screenMargin)
@@ -109,39 +118,31 @@ struct MoveHeader: View {
     }
 }
 
-/// "6 of 10" with a round +1 for counting by hand, and "Counted for you" when the sensor is sure.
+/// "6 of 10" with a round +1 for counting by hand. "Counted for you" / the tap hint sit under the
+/// move's name (`MoveHeaderWithClock`).
 struct RepCounter: View {
     let text: String
-    var countedForYou = false
-    var pulse = 0
     let onAdd: () -> Void
 
     var body: some View {
-        HStack(alignment: .center, spacing: 20) {
-            VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .trailing, spacing: 4) {
+            HStack(alignment: .center, spacing: 12) {
                 Text(verbatim: text)
                     .typeRole(.timer)
                     .foregroundStyle(Palette.text)
                     .lineLimit(1)
-                    .minimumScaleFactor(0.5)
+                    .minimumScaleFactor(0.45)
                     .contentTransition(.numericText())
-                if countedForYou {
-                    CountedForYouLabel(pulse: pulse)
-                } else {
-                    // Without the phone held to the chest, the count is hers (review D13).
-                    Text("Tap +1 each time you stand").typeRole(.caption).foregroundStyle(Palette.textMuted)
+                Button(action: onAdd) {
+                    Text(verbatim: "+1")
+                        .typeRole(.cardTitle)
+                        .foregroundStyle(Palette.onStrongFill)
+                        .frame(width: 64, height: 64)
+                        .background(Palette.secondary, in: .circle)
                 }
+                .buttonStyle(.plain)
+                .accessibilityLabel(Text("Count one"))
             }
-            Spacer(minLength: 0)
-            Button(action: onAdd) {
-                Text(verbatim: "+1")
-                    .typeRole(.cardTitle)
-                    .foregroundStyle(Palette.onStrongFill)
-                    .frame(width: 72, height: 72)
-                    .background(Palette.secondary, in: .circle)
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel(Text("Count one"))
         }
     }
 }
@@ -199,37 +200,11 @@ struct MoveTips: View {
                     .typeRole(.body)
                     .fontWeight(.semibold)
                     .foregroundStyle(Palette.text)
-                    .padding(12)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(Palette.secondary.opacity(0.14), in: .rect(cornerRadius: 14))
             }
-        }
-    }
-}
-
-/// "Easier version" · "Harder version" pills (stretches: Easier only).
-struct VersionPills: View {
-    let usesEasier: Bool
-    var showsHarder = false
-    var hasHarder = true
-    let onEasier: () -> Void
-    var onHarder: () -> Void = {}
-
-    var body: some View {
-        ViewThatFits(in: .horizontal) {
-            HStack(spacing: Metrics.touchSpacing) { pills }
-            VStack(alignment: .leading, spacing: Metrics.touchSpacing) { pills }
-        }
-    }
-
-    @ViewBuilder private var pills: some View {
-        Button("Easier version", action: onEasier)
-            .buttonStyle(PillButtonStyle(isSelected: usesEasier))
-            .accessibilityAddTraits(usesEasier ? .isSelected : [])
-        if hasHarder {
-            Button("Harder version", action: onHarder)
-                .buttonStyle(PillButtonStyle(isSelected: showsHarder))
-                .accessibilityAddTraits(showsHarder ? .isSelected : [])
         }
     }
 }

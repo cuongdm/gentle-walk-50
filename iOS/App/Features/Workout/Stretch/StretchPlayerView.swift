@@ -7,6 +7,8 @@ struct StretchPlayerView: View {
     let model: StretchPlayerModel
     @State private var fullScreen = false
     @State private var showsSound = false
+    /// Tips are folded until she opens them; the choice holds for the rest of the session.
+    @State private var showsTips = false
 
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     private var isPaused: Bool { if case .paused = model.player.state { true } else { false } }
@@ -19,7 +21,7 @@ struct StretchPlayerView: View {
                     moveProgress: model.moveProgress, next: model.followingName, counter: model.holdText,
                     caption: model.player.caption?.text, isPaused: isPaused,
                     onExit: exitFullScreen, onBack: model.back, onPause: model.session.togglePause,
-                    onSkip: { Task { await model.skip() } }, onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
+                    onSkip: model.skip, onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
             } else {
                 portrait
             }
@@ -41,7 +43,7 @@ struct StretchPlayerView: View {
     }
 
     private var portrait: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 10) {
             HStack {
                 Button("End", action: model.session.askToEnd).buttonStyle(.smallTextLink)
                 Spacer()
@@ -55,31 +57,25 @@ struct StretchPlayerView: View {
             }
             ExerciseVideo(fileName: model.videoFile, isHolding: model.isHolding && !model.playsHoldClip)
                 .overlay(alignment: .topTrailing) { VideoCornerButton.expand(enterFullScreen).padding(4) }
+                // The breathing guide sits on the clip during a hold, not on a row of its own (owner 01/10).
+                .overlay(alignment: .bottomLeading) {
+                    if model.isHolding { BreathingGuide(isActive: !isPaused).padding(8) }
+                }
             ScrollView {
-                VStack(alignment: .leading, spacing: 14) {
-                    MoveHeader(exercise: model.pose)
-                    HStack(alignment: .center, spacing: 20) {
+                VStack(alignment: .leading, spacing: 10) {
+                    MoveHeaderWithClock(exercise: model.pose) {
                         HoldTimer(text: model.holdText, side: model.sideText)
-                        Spacer(minLength: 0)
-                        VStack(spacing: 4) {
-                            BreathingDot(isActive: model.isHolding && !isPaused)
-                            // The circle is a breathing guide, not a button (clarity review D33).
-                            Text("Breathe with the circle").typeRole(.caption).foregroundStyle(Palette.textMuted)
-                                .multilineTextAlignment(.center)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                        .frame(maxWidth: 110)
                     }
-                    MoveTips(tips: model.pose?.tips ?? [], note: model.note)
-                    VersionPills(usesEasier: model.usesEasier, hasHarder: false,
-                                 onEasier: { Task { await model.chooseEasier() } })
+                    MoveOptionsRow(usesEasier: model.usesEasier, hasHarder: false, showsTips: $showsTips,
+                                   onEasier: { Task { await model.chooseEasier() } })
+                    MoveTips(tips: showsTips ? model.pose?.tips ?? [] : [], note: model.note)
                 }
             }
             .scrollBounceBehavior(.basedOnSize)
             // The spoken line stays in view above the controls, as plain text (review U3).
             CaptionBar(caption: model.player.caption?.text, style: .plain(.center))
             PlayerControlRow(isPaused: isPaused, onBack: model.back, onPause: model.session.togglePause,
-                             onSkip: { Task { await model.skip() } })
+                             onSkip: model.skip)
             WorkoutSafetyBar(showsVoice: false, onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
         }
         .padding(.horizontal, Metrics.screenMargin)
@@ -95,7 +91,7 @@ struct HoldTimer: View {
     let side: String?
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
+        VStack(alignment: .trailing, spacing: 2) {
             Text(verbatim: text)
                 .typeRole(.timer)
                 .foregroundStyle(Palette.text)
@@ -110,9 +106,28 @@ struct HoldTimer: View {
     }
 }
 
+/// The breathing dot with its label, on a light capsule over the clip. The circle is a breathing guide,
+/// not a button (clarity review D33).
+struct BreathingGuide: View {
+    let isActive: Bool
+
+    var body: some View {
+        HStack(spacing: 8) {
+            BreathingDot(isActive: isActive, size: 40)
+            Text("Breathe with the circle").typeRole(.caption).foregroundStyle(Palette.text)
+                .lineLimit(2)
+        }
+        .padding(.leading, 4)
+        .padding(.trailing, 12)
+        .padding(.vertical, 4)
+        .background(Palette.surface.opacity(0.88), in: .capsule)
+    }
+}
+
 /// Breathing dot: grows for 4 s, shrinks for 4 s. Reduce Motion shows the words only.
 struct BreathingDot: View {
     let isActive: Bool
+    var size: CGFloat = 88
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -127,10 +142,10 @@ struct BreathingDot: View {
                 let scale = phase < 4 ? 0.55 + 0.45 * (phase / 4) : 1 - 0.45 * ((phase - 4) / 4)
                 Circle()
                     .fill(Palette.sky)
-                    .frame(width: 88, height: 88)
+                    .frame(width: size, height: size)
                     .scaleEffect(isActive ? scale : 0.7)
             }
-            .frame(width: 96, height: 96)
+            .frame(width: size + 8, height: size + 8)
             .accessibilityHidden(true)
         }
     }

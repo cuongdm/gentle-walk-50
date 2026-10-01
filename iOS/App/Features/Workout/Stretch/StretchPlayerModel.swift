@@ -131,5 +131,5 @@ import GentleWalkCore
         }
     }
 
-    func skip() async { try? await player.apply(.skip) }
+    func skip() { player.skip() }
 }

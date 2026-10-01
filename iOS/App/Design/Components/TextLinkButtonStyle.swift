@@ -27,14 +27,19 @@ extension ButtonStyle where Self == TextLinkButtonStyle {
 /// Pill used for chips and version toggles: bordered, filled when selected, at least 56 pt tall.
 struct PillButtonStyle: ButtonStyle {
     var isSelected = false
+    /// Shares a row with its siblings: each pill takes an equal part of the width (three answers or
+    /// three options on one line instead of wrapping onto two).
+    var fills = false
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .typeRole(.body)
             .fontWeight(.semibold)
+            .lineLimit(fills ? 1 : nil)
+            .minimumScaleFactor(fills ? 0.85 : 1)
             .foregroundStyle(isSelected ? Palette.onStrongFill : Palette.text)
-            .padding(.horizontal, 18)
-            .frame(minHeight: Metrics.minTouchTarget)
+            .padding(.horizontal, fills ? 10 : 18)
+            .frame(maxWidth: fills ? .infinity : nil, minHeight: Metrics.minTouchTarget)
             .background(isSelected ? Palette.secondary : Palette.surface, in: .capsule)
             .overlay { Capsule().strokeBorder(isSelected ? Palette.secondary : Palette.textMuted.opacity(0.4), lineWidth: 2) }
             .contentShape(.capsule)

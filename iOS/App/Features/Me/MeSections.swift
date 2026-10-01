@@ -289,13 +289,8 @@ struct BodyLimitsEditor: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 ScreenHeader(title: "Anything we should go easy on?", subtitle: "We'll only show moves that fit.")
-                FlowLayout(spacing: Metrics.touchSpacing) {
-                    ForEach(OnboardingCopy.limitOrder, id: \.rawValue) { limit in
-                        Button { if limits.contains(limit) { limits.remove(limit) } else { limits.insert(limit) } } label: {
-                            Text(OnboardingCopy.chip(limit))
-                        }
-                        .buttonStyle(PillButtonStyle(isSelected: limits.contains(limit)))
-                    }
+                BodyLimitChips(selected: limits) { limit in
+                    if limits.contains(limit) { limits.remove(limit) } else { limits.insert(limit) }
                 }
                 Button("Save") {
                     onSave(limits)

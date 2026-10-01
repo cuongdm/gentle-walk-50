@@ -157,34 +157,34 @@ private struct NotedLine: View {
     }
 }
 
-/// S06 "Anything we should go easy on?" — big chips, the body picture is only an illustration,
-/// and a clear note to check with a doctor (1.4.1).
+/// S06 "Anything we should go easy on?" — the choices in two short groups (`BodyLimitChips`) and a
+/// clear note to check with a doctor (1.4.1), pinned with Continue so it is always in view. No
+/// picture: it took a third of the screen and said nothing (owner 01/10).
 struct BodyLimitsView: View {
     let flow: OnboardingFlow
+    /// Continue is pinned at the bottom by the container, except at accessibility sizes.
+    var showsContinue = true
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 12) {
             ScreenHeader(title: "Anything we should go easy on?", subtitle: "We'll only show moves that fit.")
-            ArtImage(art: .walkerStand, height: 140, fallbackSymbol: "figure.stand")
-            FlowLayout(spacing: Metrics.touchSpacing) {
-                ForEach(OnboardingCopy.limitOrder, id: \.rawValue) { limit in
-                    let selected = flow.answers.limits.contains(limit)
-                    Button { flow.toggleLimit(limit) } label: { Text(OnboardingCopy.chip(limit)) }
-                        .buttonStyle(PillButtonStyle(isSelected: selected))
-                        .accessibilityAddTraits(selected ? .isSelected : [])
-                }
-                Button { flow.chooseNoLimits() } label: { Text("None of these") }
-                    .buttonStyle(PillButtonStyle(isSelected: flow.noLimitsChosen))
-                    .accessibilityAddTraits(flow.noLimitsChosen ? .isSelected : [])
+            BodyLimitChips(selected: flow.answers.limits, onToggle: flow.toggleLimit,
+                           noneChosen: flow.noLimitsChosen, onNone: flow.chooseNoLimits)
+            if showsContinue {
+                DoctorNote()
+                ContinueButton(action: flow.next)
             }
-            Label("If you have a heart condition, recent surgery or you've been told to limit exercise, check with your doctor first.",
-                  systemImage: "stethoscope")
-                .typeRole(.body)
-                .foregroundStyle(Palette.text)
-                .padding(16)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Palette.sun.opacity(0.18), in: .rect(cornerRadius: Metrics.cardRadius))
-            ContinueButton(action: flow.next)
         }
+    }
+}
+
+/// "Check with your doctor first" (1.4.1): small, always next to Continue on S06.
+struct DoctorNote: View {
+    var body: some View {
+        Label("If you have a heart condition, recent surgery or you've been told to limit exercise, check with your doctor first.",
+              systemImage: "stethoscope")
+            .typeRole(.caption)
+            .foregroundStyle(Palette.text)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
