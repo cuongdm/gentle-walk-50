@@ -31,6 +31,24 @@ import Testing
         #expect(!edited.voice.contains { $0.start > at && $0.start < move.end && $0.lineID.hasPrefix("a4.") })
     }
 
+    /// Quick Skip taps (owner's screen recording 01/10): "We'll skip that one" was queued once per tap and
+    /// played back to back. Now it is said once and the next part's lines wait for it.
+    @Test func quickSkipsSayTheSkipLineOnce() throws {
+        let timeline = try chairDay()
+        let moves = timeline.phases.filter { $0.kind == .move }
+        try #require(moves.count >= 3)
+        let first = moves[0].start + 5
+        var edited = TimelineEditing.apply(.skip, to: timeline, at: first)
+        edited = TimelineEditing.apply(.skip, to: edited, at: first + 1)       // tapped again while it speaks
+        edited = TimelineEditing.apply(.skip, to: edited, at: first + 1)       // and a third tap, same moment
+        #expect(edited.voice.filter { $0.lineID == "a7.hurt.skip" }.count == 1)
+        let sorted = edited.voice.sorted { $0.start < $1.start }
+        for (a, b) in zip(sorted, sorted.dropFirst()) { #expect(b.start >= a.end - 0.001, "\(a.lineID) overlaps \(b.lineID)") }
+        // Later, a fresh Skip speaks again.
+        let later = TimelineEditing.apply(.skip, to: edited, at: first + 20)
+        #expect(later.voice.filter { $0.lineID == "a7.hurt.skip" }.count == 2)
+    }
+
     @Test func skipDropsTheRestOfTheCurrentPartAndPullsTheRestForward() throws {
         let timeline = try firstWalk()
         let edited = TimelineEditing.apply(.skip, to: timeline, at: 190)  // 3:10, second brisk (3:00–3:30)

@@ -11,7 +11,15 @@ import GentleWalkCore
     private(set) var isPlaying = false
     private(set) var seeks: [Double] = []
 
-    func load(_ timeline: SessionTimeline) async throws { loaded.append(timeline) }
+    /// Runs inside the next `load`, e.g. to tap Skip again while a rebuild is loading.
+    var duringNextLoad: (() async -> Void)?
+    func load(_ timeline: SessionTimeline) async throws {
+        loaded.append(timeline)
+        if let hook = duringNextLoad {
+            duringNextLoad = nil
+            await hook()
+        }
+    }
     func play() { isPlaying = true }
     func pause() { isPlaying = false }
     func seek(to seconds: Double) { seeks.append(seconds) }
@@ -70,6 +78,36 @@ import GentleWalkCore
         #expect(engine.seeks.last == move.start + 20)
         #expect(player.currentPhase?.isEasier == true)
         #expect(player.state == .playing)
+    }
+
+    /// Owner's screen recording 01/10: three quick Skip taps. Taps during the rebuild are folded into it
+    /// (one more load, not one per tap), three parts are skipped and the skip line is said once.
+    @Test func quickSkipsAreQueuedIntoOneRebuild() async throws {
+        let engine = FakePlaybackEngine()
+        let player = SessionPlayer(engine: engine, notificationCenter: NotificationCenter())
+        let content = TestFixtures.content
+        let plan = try SessionBuilder.build(kind: PlannedDay(main: .chair, chairMoves: 0, cooldown: true), level: .seated,
+                                            intensity: .gentle, limits: [], rotationIndex: 0, content: content)
+        try await player.load(SessionTimeline.make(plan: plan, voice: content.voiceLines))
+        player.play()
+        let start = player.timeline.phases
+        let move = try #require(start.first { $0.kind == .move })
+        let at = move.start + 5
+        engine.advance(to: at)
+        let index = player.phaseIndex
+        engine.duringNextLoad = {
+            try? await player.apply(.skip)
+            try? await player.apply(.skip)
+        }
+        try await player.apply(.skip)
+        #expect(engine.loaded.count == 3)          // the session, the first rebuild, one more for the queued taps
+        #expect(player.phaseIndex == index + 3)
+        #expect(player.timeline.voice.filter { $0.lineID == "a7.hurt.skip" }.count == 1)
+        #expect(engine.seeks.last == at)
+        #expect(player.state == .playing)
+        #expect(player.moveDirection == .forward)
+        player.seek(to: move.start)
+        #expect(player.moveDirection == .backward)
     }
 
     @Test func reachingTheEndFinishes() async throws {
