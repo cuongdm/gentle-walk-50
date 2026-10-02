@@ -1086,7 +1086,7 @@
   ]
  },
  {
-  "key": "Journeys and outdoor walks use your distance unit. Gentle Walk doesn't ask for your weight or height; these are for wherever they appear.",
+  "key": "Journeys and outdoor walks use your distance unit.",
   "comment": "",
   "files": [
    "MeSections"
@@ -2588,8 +2588,8 @@
   ]
  },
  {
-  "key": "Day 1: first walk · 5 min · seated",
-  "comment": "The text of the first day of the week.",
+  "key": "Day 1",
+  "comment": "",
   "files": [
    "PlanReadyView"
   ]
@@ -2599,6 +2599,14 @@
   "comment": "A description of the benefits of the first journey.",
   "files": [
    "PlanReadyView"
+  ]
+ },
+ {
+  "key": "Seated · march in your chair",
+  "comment": "",
+  "files": [
+   "PlanReadyView",
+   "TodayModel"
   ]
  },
  {
@@ -2620,6 +2628,14 @@
   "comment": "The title of the first journey.",
   "files": [
    "PlanReadyView"
+  ]
+ },
+ {
+  "key": "Your first walk · %lld min",
+  "comment": "",
+  "files": [
+   "PlanReadyView",
+   "TodayModel"
   ]
  },
  {
@@ -3688,13 +3704,6 @@
   ]
  },
  {
-  "key": "Seated · march in your chair",
-  "comment": "",
-  "files": [
-   "TodayModel"
-  ]
- },
- {
   "key": "Today counts as an active day.",
   "comment": "",
   "files": [
@@ -3710,13 +3719,6 @@
  },
  {
   "key": "Welcome back. Your journey is right where you left it.",
-  "comment": "",
-  "files": [
-   "TodayModel"
-  ]
- },
- {
-  "key": "Your first walk · %lld min",
   "comment": "",
   "files": [
    "TodayModel"
@@ -3846,6 +3848,48 @@
  {
   "key": "Pounds (lb)",
   "comment": "",
+  "files": [
+   "UnitPreferences"
+  ]
+ },
+ {
+  "key": "unit.cm",
+  "comment": "Centimeters, as a short unit on a button.",
+  "files": [
+   "UnitPreferences"
+  ]
+ },
+ {
+  "key": "unit.ft",
+  "comment": "Feet and inches, as a short unit on a button.",
+  "files": [
+   "UnitPreferences"
+  ]
+ },
+ {
+  "key": "unit.kg",
+  "comment": "Kilograms, as a short unit on a button.",
+  "files": [
+   "UnitPreferences"
+  ]
+ },
+ {
+  "key": "unit.km",
+  "comment": "Kilometers, as a short unit on a button.",
+  "files": [
+   "UnitPreferences"
+  ]
+ },
+ {
+  "key": "unit.lb",
+  "comment": "Pounds, as a short unit on a button.",
+  "files": [
+   "UnitPreferences"
+  ]
+ },
+ {
+  "key": "unit.mi",
+  "comment": "Miles, as a short unit on a button.",
   "files": [
    "UnitPreferences"
   ]

@@ -1,5 +1,5 @@
 {
- "Starting in %lld": "Bắt đầu sau %lld",
+ "Starting in %lld": "Bắt đầu sau %lld giây",
  "Starting in %lld seconds": "Bắt đầu sau %lld giây",
  "Wait": "Chờ đã",
  "No thanks": "Thôi, cảm ơn",
@@ -23,5 +23,13 @@
  "A shorter, gentle version of the real route. Every minute you move takes you further.": "Phiên bản ngắn và nhẹ nhàng của lộ trình thật. Mỗi phút vận động đưa bạn đi xa hơn.",
  "You walked the free leg. The rest of this route comes with Gentle Walk Pro, and your distance keeps counting.": "Bạn đã đi hết chặng miễn phí. Phần còn lại của lộ trình có trong Gentle Walk Pro, và quãng đường của bạn vẫn tiếp tục được tính.",
  "Every minute you move takes you further on your journey.": "Mỗi phút vận động đưa bạn đi xa hơn trên hành trình.",
- "Sound and captions": "Âm thanh và phụ đề"
+ "Sound and captions": "Âm thanh và phụ đề",
+ "Day 1": "Ngày 1",
+ "Journeys and outdoor walks use your distance unit.": "Hành trình và đi bộ ngoài trời dùng đơn vị khoảng cách bạn chọn.",
+ "unit.mi": "dặm",
+ "unit.km": "km",
+ "unit.lb": "lb",
+ "unit.kg": "kg",
+ "unit.ft": "ft",
+ "unit.cm": "cm"
 }

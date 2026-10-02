@@ -1,7 +1,8 @@
 import SwiftUI
 import GentleWalkCore
 
-/// S07 "Your plan is ready": one plan card (length, her week, limits, Day 1) and why it will work.
+/// S07 "Your plan is ready": her week (length, rest days, level, limits), Day 1 in its own card (the
+/// one thing she does next, so it carries the emphasis) and why it will work.
 /// No fake "Creating your plan 98%". "When would you like to start?" was removed (owner 30/09/2026),
 /// and the daily moment moved to S16, where the reminder is asked for (owner 01/10/2026), so the
 /// plan fits one screen. The Continue button is pinned by the container (review I16).
@@ -11,13 +12,14 @@ struct PlanReadyView: View {
 
     var body: some View {
         let profile = flow.profile
-        VStack(alignment: .leading, spacing: 14) {
+        VStack(alignment: .leading, spacing: 16) {
             if let name = profile.displayName {
                 ScreenHeaderText(title: String(localized: "Your plan, \(name)"))
             } else {
                 ScreenHeader(title: "Your plan")
             }
             PlanCard(startLevel: profile.startLevel, limits: flow.answers.limits)
+            DayOneCard()
             WhyThisWorks(keys: profile.whyKeys)
             if showsContinue {
                 ContinueButton(title: "See my options", action: flow.next)
@@ -26,25 +28,62 @@ struct PlanReadyView: View {
     }
 }
 
-/// Length, rest days and level, the sample week, her limits and Day 1, in one card.
+/// Length, rest days and level, the sample week and her limits.
 struct PlanCard: View {
     let startLevel: WalkLevel
     let limits: Set<BodyLimit>
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("5–10 min a day").typeRole(.cardTitle)
-            Text("2 rest days a week · starting \(Text(startLevel.title).bold())").typeRole(.body)
+        VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text("5–10 min a day").typeRole(.cardTitle)
+                Text("2 rest days a week · starting \(Text(startLevel.title).bold())").typeRole(.body)
+            }
             SampleWeekRow()
             if !limits.isEmpty {
                 LimitChips(limits: limits)
             }
-            Divider()
-            Text("Day 1: first walk · 5 min · seated").typeRole(.body).fontWeight(.semibold)
-            FirstJourneyMini()
         }
         .foregroundStyle(Palette.text)
         .cardStyle()
+    }
+}
+
+/// Day 1, the one thing she does next: the walk itself, then the journey it starts. Outlined in the
+/// brand green with a "Day 1" tab on its top edge, so it reads first after the title without taking a
+/// row of its own (the plan fits one screen); it is not a button.
+struct DayOneCard: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(alignment: .firstTextBaseline, spacing: 10) {
+                Image(systemName: "figure.walk").foregroundStyle(Palette.secondary).accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Your first walk · \(5) min").typeRole(.body).fontWeight(.semibold)
+                    Text("Seated · march in your chair").typeRole(.caption).foregroundStyle(Palette.textMuted)
+                }
+            }
+            Divider()
+            FirstJourneyMini()
+        }
+        .padding(.top, 6)
+        .foregroundStyle(Palette.text)
+        .cardStyle()
+        .overlay {
+            RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
+                .strokeBorder(Palette.secondary, lineWidth: 2)
+        }
+        .overlay(alignment: .topLeading) {
+            Text("Day 1")
+                .typeRole(.caption).fontWeight(.bold)
+                .foregroundStyle(Palette.onStrongFill)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 3)
+                .background(Palette.secondary, in: .capsule)
+                .padding(.leading, 16)
+                .alignmentGuide(.top) { $0.height / 2 }
+        }
+        .padding(.top, 10)
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -121,12 +160,12 @@ struct WhyThisWorks: View {
     }
 }
 
-/// The first journey, as the last line of the plan card.
+/// The first journey, as the last part of the Day 1 card.
 struct FirstJourneyMini: View {
     var body: some View {
-        HStack(spacing: 12) {
-            ArtImage(name: Art.coverName(journeyID: "jr.ny"), height: 48, fallbackSymbol: "map").frame(width: 60)
-            VStack(alignment: .leading, spacing: 2) {
+        HStack(spacing: 14) {
+            ArtImage(name: Art.coverName(journeyID: "jr.ny"), height: 56, fallbackSymbol: "map").frame(width: 74)
+            VStack(alignment: .leading, spacing: 4) {
                 Text("Your first journey: Central Park to Brooklyn Bridge").typeRole(.caption).fontWeight(.semibold)
                 Text("Every walk in the app moves you along.").typeRole(.caption).foregroundStyle(Palette.textMuted)
             }

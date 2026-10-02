@@ -261,22 +261,24 @@ struct LanguageUnitsSection: View {
                 }
                 Divider()
             }
+            // One line per unit, short symbols on the buttons (the full name is what VoiceOver reads):
+            // three label-over-buttons rows made Me a screen longer (owner 02/10/2026).
             choiceRow("Distance") {
                 ForEach(UnitPreferences.Distance.allCases) { value in
-                    pill(isOn: units.distance == value, label: Text(value.title)) { units.distance = value }
+                    pill(isOn: units.distance == value, label: Text(value.symbol), spoken: value.title) { units.distance = value }
                 }
             }
             choiceRow("Weight") {
                 ForEach(UnitPreferences.Weight.allCases) { value in
-                    pill(isOn: units.weight == value, label: Text(value.title)) { units.weight = value }
+                    pill(isOn: units.weight == value, label: Text(value.symbol), spoken: value.title) { units.weight = value }
                 }
             }
             choiceRow("Height") {
                 ForEach(UnitPreferences.Height.allCases) { value in
-                    pill(isOn: units.height == value, label: Text(value.title)) { units.height = value }
+                    pill(isOn: units.height == value, label: Text(value.symbol), spoken: value.title) { units.height = value }
                 }
             }
-            Text("Journeys and outdoor walks use your distance unit. Gentle Walk doesn't ask for your weight or height; these are for wherever they appear.")
+            Text("Journeys and outdoor walks use your distance unit.")
                 .typeRole(.caption).foregroundStyle(Palette.textMuted)
         }
         // In the picked language itself: whoever picks it can read it.
@@ -287,20 +289,30 @@ struct LanguageUnitsSection: View {
         }
     }
 
-    /// A label over two equal pills (stacked at accessibility sizes).
+    /// The label and its buttons on one line; the label over the buttons when they do not fit
+    /// (long language names, large text).
     private func choiceRow<Pills: View>(_ title: LocalizedStringResource, @ViewBuilder pills: () -> Pills) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(title).typeRole(.body).fontWeight(.semibold)
-            ViewThatFits(in: .horizontal) {
-                HStack(spacing: 8) { pills() }
-                VStack(spacing: 8) { pills() }
+        ViewThatFits(in: .horizontal) {
+            HStack(spacing: 12) {
+                Text(title).typeRole(.body).fontWeight(.semibold).fixedSize()
+                Spacer(minLength: 8)
+                HStack(spacing: 8) { pills() }.fixedSize()
+            }
+            VStack(alignment: .leading, spacing: 6) {
+                Text(title).typeRole(.body).fontWeight(.semibold)
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: 8) { pills() }
+                    VStack(spacing: 8) { pills() }
+                }
             }
         }
     }
 
-    private func pill(isOn: Bool, label: Text, action: @escaping () -> Void) -> some View {
-        Button(action: action) { label }
-            .buttonStyle(PillButtonStyle(isSelected: isOn, fills: true))
+    private func pill(isOn: Bool, label: Text, spoken: LocalizedStringResource? = nil,
+                      action: @escaping () -> Void) -> some View {
+        Button(action: action) { label.frame(minWidth: 44) }
+            .buttonStyle(PillButtonStyle(isSelected: isOn))
+            .accessibilityLabel(spoken.map { Text($0) } ?? label)
             .accessibilityAddTraits(isOn ? .isSelected : [])
     }
 }

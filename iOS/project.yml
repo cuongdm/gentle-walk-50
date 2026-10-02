@@ -26,6 +26,8 @@ targets:
       - path: App
         excludes:
           - GentleWalk.storekit
+          # Pose data written by tools/video (loop and form checks); the app never reads it.
+          - "**/*.npz"
     dependencies:
       - package: GentleWalkCore
     settings:

@@ -54,6 +54,14 @@ extension UnitPreferences.Distance {
         }
     }
 
+    /// The short button label in Me (the title is its spoken label).
+    var symbol: LocalizedStringResource {
+        switch self {
+        case .miles: LocalizedStringResource("unit.mi", defaultValue: "mi", comment: "Miles, as a short unit on a button.")
+        case .kilometers: LocalizedStringResource("unit.km", defaultValue: "km", comment: "Kilometers, as a short unit on a button.")
+        }
+    }
+
     var unit: UnitLength { self == .miles ? .miles : .kilometers }
 }
 
@@ -64,6 +72,13 @@ extension UnitPreferences.Weight {
         case .kilograms: "Kilograms (kg)"
         }
     }
+
+    var symbol: LocalizedStringResource {
+        switch self {
+        case .pounds: LocalizedStringResource("unit.lb", defaultValue: "lb", comment: "Pounds, as a short unit on a button.")
+        case .kilograms: LocalizedStringResource("unit.kg", defaultValue: "kg", comment: "Kilograms, as a short unit on a button.")
+        }
+    }
 }
 
 extension UnitPreferences.Height {
@@ -71,6 +86,13 @@ extension UnitPreferences.Height {
         switch self {
         case .feetInches: "Feet (ft)"
         case .centimeters: "Centimeters (cm)"
+        }
+    }
+
+    var symbol: LocalizedStringResource {
+        switch self {
+        case .feetInches: LocalizedStringResource("unit.ft", defaultValue: "ft", comment: "Feet and inches, as a short unit on a button.")
+        case .centimeters: LocalizedStringResource("unit.cm", defaultValue: "cm", comment: "Centimeters, as a short unit on a button.")
         }
     }
 }

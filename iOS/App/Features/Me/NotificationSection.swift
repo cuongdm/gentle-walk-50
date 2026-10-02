@@ -11,7 +11,8 @@ struct NotificationSection: View {
 
     var body: some View {
         let profile = app.profile ?? .empty
-        SettingsCard(title: "Notifications") {
+        // "Change time" on the title's line, like Edit and Change on the other cards (one row less).
+        SettingsCard(title: "Notifications", actionTitle: "Change time", action: { changingTime = true }) {
             Toggle(isOn: binding(\.walkReminders)) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Walk reminder").typeRole(.body)
@@ -21,7 +22,6 @@ struct NotificationSection: View {
             }
             .frame(minHeight: Metrics.minTouchTarget)
             if permission == .blocked { BlockedRemindersNote() }
-            Button("Change time") { changingTime = true }.buttonStyle(.textLink)
             Text("How often").typeRole(.body).fontWeight(.semibold)
             HStack(spacing: Metrics.touchSpacing) {
                 frequencyButton(.daily, "Daily", current: profile.frequency)
