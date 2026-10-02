@@ -31,8 +31,9 @@ Cài bản DEBUG từ Xcode lên iPhone (cần Team ID đúng, xem mục 3).
 
 ## 2b. Tiếng Việt (02/10/2026)
 - [x] Chọn giọng tiếng Việt: **Bella** (02/10/2026). Đã thu 2 câu màn Đứng sau ghế.
-- [ ] Tạo 591 câu HLV tiếng Việt còn lại (~35.000 ký tự ElevenLabs): sau 21/10/2026 khi gói reset, hoặc bật trả thêm. Lệnh ở `docs/i18n/README.md` mục "Tạo giọng tiếng Việt".
-- [ ] Một người Việt đọc thử app bản tiếng Việt (DEBUG, giọng hệ thống đọc tạm) để soát văn phong.
+- [x] Tạo đủ 593 câu HLV tiếng Việt qua Vibi (02/10/2026, ~26.000 credit Vibi; ký tự ElevenLabs giữ nguyên). QC: `docs/i18n/vi/qc-report.md`.
+- [ ] Nghe `docs/i18n/vi/nghe-thu-giong-viet.m4a` (39 câu), nhất là câu 15–16: "Khuỷu…" và "Cằm giữ ngang" (máy nghe ra "Cầm"). Câu nào nghe lạ thì báo id, tôi sửa chữ và thu lại.
+- [ ] Một người Việt đọc thử app bản tiếng Việt (giờ đã có giọng Bella thật) để soát văn phong.
 
 ## 3. Quyết định và thông tin chờ chủ app
 - [x] **Team ID** `55V8Y3PCLY` trong `iOS/Config/Local.xcconfig`: chủ app xác nhận đúng (29/09).

@@ -1,0 +1,1 @@
+{"text": "Hai.", "voice_id": "hpp4J3VqNfWAUOO0d1Us", "model": "eleven_v4", "via": "vibi", "task_id": "43dbd7cb-df11-4e75-a274-51457559461b", "alignment": {"characters": ["H", "a", "i", "."], "character_start_times_seconds": [0.24, 0.315, 0.39, 0.465], "character_end_times_seconds": [0.315, 0.39, 0.465, 0.54], "source": "vibi-speech-to-text"}, "heard": "Hai"}
