@@ -69,3 +69,16 @@ import Testing
         #expect(edited.bells.allSatisfy { $0.at <= 190 })
     }
 }
+
+/// Walking home is open-ended: Skip and a second "Walk home" leave it as it is (review 02/10/2026).
+@Suite struct OpenEndedEditTests {
+    @Test func skipAndWalkHomeAgainLeaveAnOpenEndedWalkAlone() throws {
+        let content = TestSupport.appContent
+        let template = try #require(content.sessions.first { $0.id == "ses.firstWalk" })
+        let walk = SessionTimeline.make(plan: SessionPlan(template: template), voice: content.voiceLines)
+        let home = TimelineEditing.apply(.walkHomeGently, to: walk, at: 60)
+        #expect(home.isOpenEnded)
+        #expect(TimelineEditing.apply(.skip(), to: home, at: 90) == home)
+        #expect(TimelineEditing.apply(.walkHomeGently, to: home, at: 90) == home)
+    }
+}

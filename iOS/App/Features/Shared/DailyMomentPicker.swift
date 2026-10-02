@@ -29,14 +29,14 @@ struct DailyMomentPicker: View {
             HStack(spacing: 10) {
                 Text("One gentle reminder a day, at:").typeRole(.caption).foregroundStyle(Palette.textMuted)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                StepButton(symbol: "minus", label: "Earlier") { onStep(-1) }
+                StepButton(symbol: "minus", label: "Earlier time") { onStep(-1) }
                 DatePicker(selection: timeBinding, displayedComponents: .hourAndMinute) {
                     Text("Reminder time")
                 }
                 .labelsHidden()
                 .datePickerStyle(.compact)
                 .fixedSize()
-                StepButton(symbol: "plus", label: "Later") { onStep(1) }
+                StepButton(symbol: "plus", label: "Later time") { onStep(1) }
             }
             .cardStyle(padding: 10)
         }
@@ -45,7 +45,7 @@ struct DailyMomentPicker: View {
     /// Minutes after midnight as a time of today, for the picker.
     private var timeBinding: Binding<Date> {
         Binding(
-            get: { Calendar.current.startOfDay(for: .now).addingTimeInterval(TimeInterval(minutes * 60)) },
+            get: { Calendar.current.date(bySettingHour: minutes / 60, minute: minutes % 60, second: 0, of: .now) ?? .now },
             set: { date in
                 let parts = Calendar.current.dateComponents([.hour, .minute], from: date)
                 onSet((parts.hour ?? 0) * 60 + (parts.minute ?? 0))

@@ -3,7 +3,7 @@ import GentleWalkCore
 
 /// Everything S15 shows, worked out once from the completion result.
 struct CompleteContent: Equatable {
-    enum Variant: Equatable { case regular, firstWalk, stretch, outdoors }
+    enum Variant: Equatable { case regular, firstWalk, stretch, outdoors, stoppedForPain }
 
     var variant: Variant
     var title: String
@@ -21,18 +21,25 @@ struct CompleteContent: Equatable {
     var reachedLevel: TreeLevel?
     var shareLine: String
 
+    /// - Parameter stoppedForPain: ended from This hurts → Stop for today: a calm screen, no cheer
+    ///   (it celebrated a session she stopped because it hurt; review 02/10/2026).
     init(result: CompletionResult, request: WorkoutRequest, minutes: Int, name: String?, content: ContentBundle,
-         comparison: String? = nil) {
+         comparison: String? = nil, stoppedForPain: Bool = false) {
         self.minutes = minutes
         activeDays = result.activeDays
         reachedLevel = result.reachedLevel
         newPostcard = result.unlockedStops.last
         self.comparison = request.day.main == .stretch ? nil : comparison
 
-        if request.isFirstWalk {
+        if stoppedForPain {
+            variant = .stoppedForPain
+            title = String(localized: "Good call to stop.")
+            subtitle = String(localized: "Today still counts. Rest now, and take it easy.")
+        } else if request.isFirstWalk {
             variant = .firstWalk
             title = String(localized: "That's your first walk!")
-            subtitle = String(localized: "Five minutes. You showed up, and that's the hardest part.")
+            // The real minutes: she may have ended it early (it always said five; review 02/10/2026).
+            subtitle = String(localized: "\(Plural.minutes(minutes)). You showed up, and that's the hardest part.")
         } else if request.place == .outdoors {
             variant = .outdoors
             title = name.map { String(localized: "Lovely walk, \($0)!") } ?? String(localized: "Lovely walk!")
@@ -45,7 +52,7 @@ struct CompleteContent: Equatable {
         }
 
         let miles = Self.miles(result.sessionMiles)
-        if variant == .outdoors {
+        if variant == .outdoors || (variant == .stoppedForPain && request.place == .outdoors) {
             milesText = miles
             milesLabel = String(localized: "walked")
         } else {
@@ -75,11 +82,9 @@ struct CompleteContent: Equatable {
         }
     }
 
-    /// "2.6 mi" in the user's units; `trimmed` drops a trailing ".0" ("5 mi").
+    /// Miles shown in the user's unit ("2.6 mi" / "4.2 km"); `trimmed` drops a trailing ".0" ("5 mi").
     static func miles(_ value: Double, trimmed: Bool = false) -> String {
-        let digits: ClosedRange<Int> = trimmed ? 0...1 : 1...1
-        return Measurement(value: value, unit: UnitLength.miles)
-            .formatted(.measurement(width: .abbreviated, usage: .asProvided, numberFormatStyle: .number.precision(.fractionLength(digits))))
+        DistanceText.text(miles: value, trimmed: trimmed)
     }
 }
 

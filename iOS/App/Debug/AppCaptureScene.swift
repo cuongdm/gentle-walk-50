@@ -11,7 +11,7 @@ struct AppCaptureScene: View {
     static func handles(_ state: CaptureState) -> Bool {
         let name = state.rawValue
         return ["onboarding", "paywall", "today", "journey", "journeys", "where-next", "postcard", "locked-stop", "progress",
-                "me", "cancel-guide", "sound-sheet", "watch-on-tv", "permissions", "outdoor-prep", "outdoor-location-ask", "root", "all-sessions"]
+                "me", "cancel-guide", "sound-sheet", "watch-on-tv", "permissions", "reminder-offer", "outdoor-prep", "outdoor-location-ask", "root", "all-sessions"]
             .contains { name == $0 || name.hasPrefix($0 + "-") }
     }
 
@@ -163,6 +163,7 @@ struct AppCaptureScene: View {
 
     private func prepare(_ app: AppModel) {
         switch state {
+        case .reminderOffer: app.cover = .reminderOffer
         case .allSessions:
             app.favourites.toggle("walk.long")
             app.favourites.toggle("extra.balance")

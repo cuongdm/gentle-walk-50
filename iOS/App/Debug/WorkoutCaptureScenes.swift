@@ -78,6 +78,13 @@ struct WorkoutCaptureScene: View {
         let walk = PlannedDay(main: .walk, chairMoves: 0, cooldown: false)
         let chair = PlannedDay(main: .chair, chairMoves: 0, cooldown: true)
         switch state {
+        case .walkHome:
+            // Break outdoors → "Walk home gently", two minutes later (it crashed the app before 02/10/2026).
+            let model = await make(request(walk, intensity: .steady, place: .outdoors))
+            model.player.tick(200)
+            try? await model.player.apply(.walkHomeGently)
+            model.player.tick(320)
+            return model
         case .walkPlayer, .walkPlayerDark, .walkPlayerIpad, .walkFullscreen, .walkTransition, .walkPaused, .walkEnd, .break, .breakOutdoor, .thisHurts:
             let place: WorkoutPlace = state == .breakOutdoor ? .outdoors : .indoors
             let model = await make(request(walk, intensity: .strong, place: place))
@@ -154,7 +161,7 @@ struct WorkoutCaptureScene: View {
             let poses = model.player.timeline.phases.filter { $0.block == .cooldown && $0.isExercise }
             if poses.count > 1 { model.player.tick(poses[1].start + 24) }
             return model
-        case .complete, .completeXxl, .completeFirstWalk, .completeLevelUp, .completeStretch, .completeOutdoor:
+        case .complete, .completeXxl, .completeFirstWalk, .completeLevelUp, .completeStretch, .completeOutdoor, .completeStopped:
             return await completeScene()
         default:
             return nil
@@ -199,6 +206,7 @@ struct WorkoutCaptureScene: View {
                                   horizontalAccuracy: 5, timestamp: start.addingTimeInterval(Double(i) * 18))
             })
         }
+        if state == .completeStopped { model.markStoppedForPain() }
         model.show(result, seconds: seconds)
         return model
     }

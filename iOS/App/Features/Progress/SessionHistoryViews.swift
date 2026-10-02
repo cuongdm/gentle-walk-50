@@ -77,7 +77,8 @@ struct DaySessionsSheet: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
-                ClosableHeader(title: day.formatted(.dateTime.weekday(.wide).month(.wide).day()), onClose: { dismiss() })
+                ClosableHeader(title: day.formatted(.dateTime.weekday(.wide).month(.wide).day()).capitalizedFirstLetter,
+                               onClose: { dismiss() })
                 ForEach(sessions) { item in
                     SessionHistoryRow(item: item, showsDate: false)
                 }
@@ -101,7 +102,7 @@ struct SessionHistoryScreen: View {
                 ScreenHeader(title: "Your sessions")
                 ForEach(SessionHistoryItem.byMonth(sessions, calendar: calendar), id: \.month) { group in
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(verbatim: group.month.formatted(.dateTime.month(.wide).year()))
+                        Text(verbatim: group.month.formatted(.dateTime.month(.wide).year()).capitalizedFirstLetter)
                             .typeRole(.cardTitle).foregroundStyle(Palette.text)
                             .accessibilityAddTraits(.isHeader)
                         Text(verbatim: Plural.sessions(group.items.count))

@@ -1,0 +1,138 @@
+{
+ "jr.ny": {
+  "title": "New York City",
+  "subtitle": "Central Park to Brooklyn Bridge",
+  "summary": "From the zoo in Central Park, through Times Square, all the way to the Brooklyn Bridge. About 2–3 weeks.",
+  "stops": {
+   "pc.ny.zoo": {
+    "name": "Central Park Zoo",
+    "back": "Tucked inside Central Park, the zoo is a favorite stop for families and first walks alike.",
+    "coachLine": "Your very first stop. Here's to many more."
+   },
+   "pc.ny.bethesda": {
+    "name": "Bethesda Fountain",
+    "back": "The fountain sits by the lake in the middle of the park, with a wide terrace for resting and people-watching.",
+    "coachLine": "A lovely place to catch your breath."
+   },
+   "pc.ny.times": {
+    "name": "Times Square",
+    "back": "Bright screens, busy sidewalks and theaters all around. It's one of the most famous crossroads in the world.",
+    "coachLine": "Look how far those minutes have carried you."
+   },
+   "pc.ny.bryant": {
+    "name": "Bryant Park",
+    "back": "A leafy park in Midtown, with a lawn, green chairs and a quiet library next door.",
+    "coachLine": "A calm spot in the middle of it all."
+   },
+   "pc.ny.union": {
+    "name": "Union Square",
+    "back": "A lively square with a farmers market on many days of the week.",
+    "coachLine": "Almost at the river. Keep going."
+   },
+   "pc.ny.bridge": {
+    "name": "Brooklyn Bridge",
+    "back": "The bridge crosses the East River to Brooklyn, with a wide walkway above the traffic.",
+    "coachLine": "You walked all of New York. I'm so proud of you."
+   }
+  }
+ },
+ "jr.smoky": {
+  "title": "Smoky Mountains and the Blue Ridge Parkway",
+  "summary": "Quiet valleys, waterfalls and mountain views, from Cades Cove to the Linn Cove Viaduct. About 4–6 weeks.",
+  "stops": {
+   "pc.smoky.1": {
+    "name": "Cades Cove"
+   },
+   "pc.smoky.2": {
+    "name": "Laurel Falls"
+   },
+   "pc.smoky.3": {
+    "name": "Clingmans Dome"
+   },
+   "pc.smoky.4": {
+    "name": "Mingus Mill"
+   },
+   "pc.smoky.5": {
+    "name": "Mabry Mill"
+   },
+   "pc.smoky.6": {
+    "name": "Linn Cove Viaduct"
+   }
+  }
+ },
+ "jr.camino": {
+  "title": "The Camino de Santiago",
+  "subtitle": "the last 100 km",
+  "summary": "Stone villages and green hills of Galicia, from Sarria to the great square in Santiago. About 4–6 weeks.",
+  "stops": {
+   "pc.camino.1": {
+    "name": "Sarria"
+   },
+   "pc.camino.2": {
+    "name": "Portomarín"
+   },
+   "pc.camino.3": {
+    "name": "Palas de Rei"
+   },
+   "pc.camino.4": {
+    "name": "Melide"
+   },
+   "pc.camino.5": {
+    "name": "O Pedrouzo"
+   },
+   "pc.camino.6": {
+    "name": "Obradoiro Square"
+   }
+  }
+ },
+ "jr.ne": {
+  "title": "New England lighthouses",
+  "subtitle": "Maine to Cape Cod",
+  "summary": "Rocky coastline and white lighthouses, from Portland Head Light to Nauset Light. About 4–6 weeks.",
+  "stops": {
+   "pc.ne.1": {
+    "name": "Portland Head Light"
+   },
+   "pc.ne.2": {
+    "name": "Nubble Light"
+   },
+   "pc.ne.3": {
+    "name": "Portsmouth Harbor"
+   },
+   "pc.ne.4": {
+    "name": "Rockport"
+   },
+   "pc.ne.5": {
+    "name": "Plymouth"
+   },
+   "pc.ne.6": {
+    "name": "Nauset Light"
+   }
+  }
+ },
+ "jr.pch": {
+  "title": "Pacific Coast Highway",
+  "subtitle": "Big Sur",
+  "summary": "Cliffs, beaches and ocean views, from Carmel-by-the-Sea past Bixby Bridge. About 4–6 weeks.",
+  "stops": {
+   "pc.pch.1": {
+    "name": "Carmel-by-the-Sea"
+   },
+   "pc.pch.2": {
+    "name": "Point Lobos"
+   },
+   "pc.pch.3": {
+    "name": "Bixby Bridge"
+   },
+   "pc.pch.4": {
+    "name": "Pfeiffer Beach"
+   },
+   "pc.pch.5": {
+    "name": "McWay Falls"
+   },
+   "pc.pch.6": {
+    "name": "Hearst Castle"
+   }
+  }
+ }
+}

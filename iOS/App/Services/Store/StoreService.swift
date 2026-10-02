@@ -115,9 +115,17 @@ enum StoreError: Error { case productUnavailable, unverified }
             }
         }
         if let purchased, !seen.contains(purchased.id) { snapshots.append(TransactionSnapshot(purchased)) }
-        entitlement = EntitlementRules.resolve(snapshots, now: .now)
-        let statusKnown = await readRenewal()
-        if !statusKnown {
+        var resolved = EntitlementRules.resolve(snapshots, now: .now)
+        let renewal = await readRenewal()
+        // Apple still retrying the payment in the grace period: Pro stays (its transaction already
+        // reads as expired; review 02/10/2026).
+        if renewal?.inGracePeriod == true, resolved == .free { resolved = .subscribed }
+        entitlement = resolved
+        // Assigned once, after every await: a refresh running alongside (Transaction.updates after the
+        // same purchase) can no longer leave them nil halfway (review 02/10/2026).
+        activeRenewingProductID = renewal?.productID
+        renewalDate = renewal?.date
+        if renewal == nil {
             // Status not readable yet (right after a purchase): an active, unrevoked plan renews.
             let now = Date.now
             let active = snapshots.first { snapshot in
@@ -131,20 +139,23 @@ enum StoreError: Error { case productUnavailable, unverified }
         updateTrialReminder()
     }
 
-    /// Which plan in the group will renew, and when. Returns false when the status cannot be read.
-    private func readRenewal() async -> Bool {
-        activeRenewingProductID = nil
-        renewalDate = nil
+    private struct Renewal { var productID: String?; var date: Date?; var inGracePeriod: Bool }
+
+    /// Which plan in the group will renew, when, and whether Apple is in the billing grace period.
+    /// nil when the status cannot be read yet.
+    private func readRenewal() async -> Renewal? {
         guard let subscription = products[ProductID.yearly]?.subscription ?? products[ProductID.monthly]?.subscription,
-              let statuses = try? await subscription.status, !statuses.isEmpty else { return false }
+              let statuses = try? await subscription.status, !statuses.isEmpty else { return nil }
+        var result = Renewal(productID: nil, date: nil, inGracePeriod: false)
         for status in statuses where [.subscribed, .inGracePeriod, .inBillingRetryPeriod].contains(status.state) {
+            if status.state == .inGracePeriod { result.inGracePeriod = true }
             guard case .verified(let renewal) = status.renewalInfo, renewal.willAutoRenew else { continue }
-            activeRenewingProductID = renewal.autoRenewPreference ?? renewal.currentProductID
+            result.productID = renewal.autoRenewPreference ?? renewal.currentProductID
             if case .verified(let transaction) = status.transaction {
-                renewalDate = renewal.renewalDate ?? transaction.expirationDate
+                result.date = renewal.renewalDate ?? transaction.expirationDate
             }
         }
-        return true
+        return result
     }
 
     /// The free trial is offered once per subscription group: StoreKit's flag, and no earlier plan.

@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 import GentleWalkCore
 
 // Sections of S20 Me (task 6.9). Each is its own view with narrow inputs.
@@ -108,6 +109,8 @@ struct BodySection: View {
 /// Pick two rest days from a list (no drag and drop). Pro only; free is Saturday and Sunday.
 struct WeekSection: View {
     let restDays: Set<Weekday>
+    var isPro = true
+    var onSeePlans: () -> Void = {}
     let onChange: (Set<Weekday>) -> Void
     @State private var editing = false
     @State private var draft: Set<Weekday> = []
@@ -115,7 +118,10 @@ struct WeekSection: View {
     private let order: [Weekday] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
 
     var body: some View {
-        SettingsCard(title: "Your week", actionTitle: editing ? nil : "Change", action: {
+        // On the free plan the card shows too, with the way to Pro (moving rest days is a Pro feature;
+        // free users never learned it existed; review 02/10/2026).
+        SettingsCard(title: "Your week", actionTitle: editing ? nil : (isPro ? "Change" : "Change with Pro"), action: {
+            guard isPro else { return onSeePlans() }
             draft = restDays
             editing = true
         }) {
@@ -150,7 +156,7 @@ struct WorkoutAudioSection: View {
     @AppStorage("musicOff") private var musicOff = false
 
     var body: some View {
-        SettingsCard(title: "During a session") {
+        SettingsCard(title: "Sound and captions") {
             Toggle("Captions", isOn: $captionsOn).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
             SoundControls(showsMusic: !musicStyles.isEmpty && !musicOff)
             if let style = musicStyles.first {
@@ -212,6 +218,93 @@ struct DisplaySection: View {
     }
 }
 
+/// A small heading over a group of cards in Me.
+struct SettingsGroupHeader: View {
+    let title: LocalizedStringResource
+
+    var body: some View {
+        Text(title)
+            .typeRole(.body).fontWeight(.semibold)
+            .foregroundStyle(Palette.textMuted)
+            .padding(.top, 10)
+            .accessibilityAddTraits(.isHeader)
+    }
+}
+
+/// Language and units in one card (owner 02/10/2026). The language follows the iPhone, English when
+/// the app does not have it; a pick here shows from the next launch (iOS applies a language when the
+/// app opens) and is the same preference as iOS Settings → Gentle Walk → Language. Each language name
+/// is in its own language. Units: distance (used for journeys and outdoor walks), weight and height
+/// (kept for where they appear: the app does not ask for them).
+struct LanguageUnitsSection: View {
+    @Binding var units: UnitPreferences
+    /// The stored pick, so a pick waiting for the next launch can be undone.
+    @State private var picked = AppLanguage.picked()
+    @State private var showsReopen = false
+
+    var body: some View {
+        SettingsCard(title: "Language and units") {
+            if AppLanguage.selectable.count > 1 {
+                choiceRow("Language") {
+                    ForEach(AppLanguage.selectable) { language in
+                        pill(isOn: picked == language, label: Text(verbatim: language.nativeName)) {
+                            guard language != picked else { return }
+                            picked = language
+                            AppLanguage.choose(language)
+                            showsReopen = language != AppLanguage.current
+                        }
+                    }
+                }
+                if picked != AppLanguage.current {
+                    Label { Text(verbatim: picked.reopenHint) } icon: { Image(systemName: "arrow.clockwise") }
+                        .typeRole(.caption).foregroundStyle(Palette.text)
+                }
+                Divider()
+            }
+            choiceRow("Distance") {
+                ForEach(UnitPreferences.Distance.allCases) { value in
+                    pill(isOn: units.distance == value, label: Text(value.title)) { units.distance = value }
+                }
+            }
+            choiceRow("Weight") {
+                ForEach(UnitPreferences.Weight.allCases) { value in
+                    pill(isOn: units.weight == value, label: Text(value.title)) { units.weight = value }
+                }
+            }
+            choiceRow("Height") {
+                ForEach(UnitPreferences.Height.allCases) { value in
+                    pill(isOn: units.height == value, label: Text(value.title)) { units.height = value }
+                }
+            }
+            Text("Journeys and outdoor walks use your distance unit. Gentle Walk doesn't ask for your weight or height; these are for wherever they appear.")
+                .typeRole(.caption).foregroundStyle(Palette.textMuted)
+        }
+        // In the picked language itself: whoever picks it can read it.
+        .alert(Text(verbatim: picked.nativeName), isPresented: $showsReopen) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(verbatim: picked.reopenHint)
+        }
+    }
+
+    /// A label over two equal pills (stacked at accessibility sizes).
+    private func choiceRow<Pills: View>(_ title: LocalizedStringResource, @ViewBuilder pills: () -> Pills) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title).typeRole(.body).fontWeight(.semibold)
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: 8) { pills() }
+                VStack(spacing: 8) { pills() }
+            }
+        }
+    }
+
+    private func pill(isOn: Bool, label: Text, action: @escaping () -> Void) -> some View {
+        Button(action: action) { label }
+            .buttonStyle(PillButtonStyle(isSelected: isOn, fills: true))
+            .accessibilityAddTraits(isOn ? .isSelected : [])
+    }
+}
+
 struct HealthSection: View {
     let connected: Bool
     let onConnect: () -> Void
@@ -228,19 +321,42 @@ struct HealthSection: View {
     }
 }
 
+/// Location for outdoor walks. Turning it on asks iOS when it never asked; when iOS blocks it, the
+/// card says so with the way to Settings (the switch read "on" and did nothing; review 02/10/2026).
 struct OutdoorSection: View {
     let defaults: UserDefaults
+    let location: LocationService
     @AppStorage("outdoorLocationChoice") private var choice = ""
+    /// Read when Me shows, when the app comes back from Settings, and after Apple's dialog.
+    @State private var denied = false
 
     var body: some View {
         SettingsCard(title: "Outdoor walks") {
-            Toggle(isOn: Binding(get: { choice == "location" }, set: { choice = $0 ? "location" : "steps" })) {
+            Toggle(isOn: Binding(get: { choice == "location" }, set: { on in
+                choice = on ? "location" : "steps"
+                if on { Task { _ = await location.requestPermissionAndWait(); denied = location.isDenied } }
+            })) {
                 VStack(alignment: .leading) {
                     Text("Use location for outdoor walks").typeRole(.body)
                     Text("Only while you walk. Stays on this phone.").typeRole(.caption)
                 }
             }
             .tint(Palette.secondary)
+            if choice == "location", denied {
+                VStack(alignment: .leading, spacing: 6) {
+                    Label("Location is off for Gentle Walk on this iPhone.", systemImage: "location.slash.fill")
+                        .typeRole(.body).foregroundStyle(Palette.text)
+                    Button("Turn on in Settings", action: SystemPermission.openSettings)
+                        .buttonStyle(.smallTextLink)
+                }
+                .padding(12)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Palette.sun.opacity(0.18), in: .rect(cornerRadius: 14))
+            }
+        }
+        .task { denied = location.isDenied }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            denied = location.isDenied
         }
     }
 }

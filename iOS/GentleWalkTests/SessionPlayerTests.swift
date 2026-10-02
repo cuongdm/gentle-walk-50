@@ -55,6 +55,22 @@ import GentleWalkCore
         #expect(player.phaseIndex == 2)
     }
 
+    /// Walk home gently ends at infinity: the clock goes on without a countdown, and nothing traps
+    /// (Int(.infinity) crashed the app, review 02/10/2026).
+    @Test func walkHomeGentlyRunsOpenEnded() async throws {
+        let (player, engine) = try await player()
+        player.play()
+        engine.advance(to: 122.5)
+        try await player.apply(.walkHomeGently)
+        engine.advance(to: 300)
+        #expect(player.currentPhase?.end == .infinity)
+        #expect(player.remainingInPhase == 0)
+        #expect(player.state == .playing)
+        #expect(player.timeline.isOpenEnded)
+        engine.advance(to: 10_000)
+        #expect(player.state == .playing)
+    }
+
     @Test func easierVersionRebuildsAndSeeksToTheSameMoment() async throws {
         let engine = FakePlaybackEngine()
         let player = SessionPlayer(engine: engine, notificationCenter: NotificationCenter())

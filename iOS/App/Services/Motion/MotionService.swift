@@ -18,11 +18,18 @@ import GentleWalkCore
 
     var isAvailable: Bool { manager.isDeviceMotionAvailable }
 
+    /// A new session: the count starts from zero. One service serves every session, so a count left
+    /// from the last one was added to the next (review 02/10/2026).
+    func reset() {
+        stop()
+        count = 0
+        confident = false
+    }
+
+    /// Listening again (the sit-to-stand move, or back into it): the count goes on from where it was.
     func start() {
         guard isAvailable, !isRunning else { return }
         detector = SitToStandDetector()
-        count = 0
-        confident = false
         startTime = nil
         isRunning = true
         manager.deviceMotionUpdateInterval = 1.0 / 50
@@ -48,7 +55,8 @@ import GentleWalkCore
         let start = startTime ?? time
         startTime = start
         if detector.add(MotionSample(time: time - start, verticalAcceleration: vertical, pitchDegrees: pitch)) {
-            count = detector.count
+            // Added, not copied: a new detector after Back starts at zero, the session's count goes on.
+            count += 1
             pulse += 1
         }
         confident = detector.confident

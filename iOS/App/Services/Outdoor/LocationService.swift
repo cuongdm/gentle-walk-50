@@ -54,6 +54,18 @@ import GentleWalkCore
         manager.requestWhenInUseAuthorization()
     }
 
+    /// Asks, then waits for her answer (at most a minute) before the walk starts: starting at once
+    /// read "not allowed" while Apple's dialog was still up, so the first outdoor walk lost its map
+    /// (review 02/10/2026). True when location may be used.
+    func requestPermissionAndWait() async -> Bool {
+        guard manager.authorizationStatus == .notDetermined else { return isAuthorized }
+        manager.requestWhenInUseAuthorization()
+        for _ in 0..<200 where manager.authorizationStatus == .notDetermined {
+            try? await Task.sleep(for: .milliseconds(300))
+        }
+        return isAuthorized
+    }
+
     func startWalk(at date: Date) {
         accumulator = RouteDistanceAccumulator()
         route = []

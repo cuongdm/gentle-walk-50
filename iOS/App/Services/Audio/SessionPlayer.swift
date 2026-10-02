@@ -60,6 +60,17 @@ enum MoveDirection: Equatable, Sendable { case forward, backward }
         }
         nonisolated(unsafe) let token = observer
         cleanup.add { [notificationCenter] in notificationCenter.removeObserver(token) }
+        // Headphones out (AirPods taken off outdoors): iOS pauses the audio on its own; say so on the
+        // screen and the lock screen instead of a frozen clock that still reads as playing.
+        let routeObserver = notificationCenter.addObserver(forName: AVAudioSession.routeChangeNotification, object: nil,
+                                                           queue: .main) { [weak self] note in
+            let raw = note.userInfo?[AVAudioSessionRouteChangeReasonKey] as? UInt
+            MainActor.assumeIsolated {
+                if raw.flatMap(AVAudioSession.RouteChangeReason.init) == .oldDeviceUnavailable { self?.pause(.interrupted) }
+            }
+        }
+        nonisolated(unsafe) let routeToken = routeObserver
+        cleanup.add { [notificationCenter] in notificationCenter.removeObserver(routeToken) }
     }
 
     func load(_ timeline: SessionTimeline) async throws {
@@ -101,8 +112,10 @@ enum MoveDirection: Equatable, Sendable { case forward, backward }
     /// the voice and the clip all move at the same instant. The coach does not announce it (she did
     /// for every tap, which piled up when tapped quickly); the sound is a short tick.
     func skip() {
+        // A rebuild is loading: its media replaces the cuts, so a cut made now would be lost.
+        guard !isEditing else { return }
         let at = currentTime
-        guard let phase = timeline.phases.first(where: { $0.start <= at && at < $0.end }) else { return }
+        guard let phase = timeline.phases.first(where: { $0.start <= at && at < $0.end }), phase.end.isFinite else { return }
         let start = mediaTime(at)
         cuts.append(Cut(start: start, end: start + (phase.end - at)))
         cuts.sort { $0.start < $1.start }
@@ -127,11 +140,17 @@ enum MoveDirection: Equatable, Sendable { case forward, backward }
         let at = currentTime
         let wasPlaying = state == .playing
         let edited = TimelineEditing.apply(edit, to: timeline, at: at)
+        if wasPlaying { engine.pause() }
+        do {
+            try await engine.load(edited)
+        } catch {
+            // The old media is still loaded and matches the old program: carry on with it.
+            if wasPlaying && state == .playing { engine.play() }
+            throw error
+        }
+        // Swapped only once the new media is in, so screen and sound never disagree.
         timeline = edited
         captions = CaptionTimeline(timeline: edited)
-        tick(at)
-        if wasPlaying { engine.pause() }
-        try await engine.load(edited)
         // The new media is the edited program itself: no cuts any more.
         cuts = []
         seekMedia(to: at)
@@ -206,6 +225,7 @@ enum MoveDirection: Equatable, Sendable { case forward, backward }
 
     /// Back control: jumps to a moment in the program.
     func seek(to seconds: Double) {
+        guard !isEditing else { return }
         moveDirection = seconds < currentTime ? .backward : .forward
         seekMedia(to: mediaTime(seconds))
         tick(seconds)
@@ -238,7 +258,8 @@ enum MoveDirection: Equatable, Sendable { case forward, backward }
             lastLoggedLine = line
             Self.log.info("cue \(line, privacy: .public) at \(seconds, format: .fixed(precision: 1))")
         }
-        let remaining = phase.map { max(0, Int(($0.end - seconds).rounded(.up))) } ?? 0
+        // Walk home gently ends at infinity: no countdown (Int(.infinity) traps).
+        let remaining = phase.map { $0.end.isFinite ? max(0, Int(($0.end - seconds).rounded(.up))) : 0 } ?? 0
         if remaining != remainingInPhase { remainingInPhase = remaining }
         if !timeline.isOpenEnded, timeline.total > 0, seconds >= timeline.total - 0.05, state == .playing { finish() }
     }

@@ -18,7 +18,7 @@ struct JourneyView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(verbatim: journey.title).typeRole(.screenTitle).foregroundStyle(Palette.text)
                             .accessibilityAddTraits(.isHeader)
-                        Text("A shorter, gentle version of the real route. Every minute you move adds miles.").typeRole(.caption).foregroundStyle(Palette.textMuted)
+                        Text("A shorter, gentle version of the real route. Every minute you move takes you further.").typeRole(.caption).foregroundStyle(Palette.textMuted)
                     }
                     JourneyMap(snapshot: snapshot, journey: journey, onPostcard: onPostcard)
                     JourneyProgressCard(journey: journey, routeMiles: snapshot.routeMiles)
@@ -30,7 +30,7 @@ struct JourneyView: View {
                     } else if snapshot.isComplete {
                         RouteDoneCard()
                     }
-                    RouteList(journey: journey, snapshot: snapshot, onPostcard: onPostcard)
+                    RouteList(journey: journey, snapshot: snapshot, onPostcard: onPostcard, onLocked: onSeePlans)
                     Text("Outdoor walks count their real distance.")
                         .typeRole(.caption).foregroundStyle(Palette.textMuted)
                 }
@@ -69,7 +69,7 @@ struct LockedStopCard: View {
                     Spacer()
                     ProBadge()
                 }
-                Text("You walked the free leg. The rest of this route comes with Gentle Walk Pro, and your miles keep counting.").typeRole(.body)
+                Text("You walked the free leg. The rest of this route comes with Gentle Walk Pro, and your distance keeps counting.").typeRole(.body)
                 HStack(spacing: Metrics.touchSpacing) {
                     Button("See Pro plans", action: onSeePlans).buttonStyle(PillButtonStyle(isSelected: true))
                     Button("Not now") { dismissed = true }.buttonStyle(.textLink)

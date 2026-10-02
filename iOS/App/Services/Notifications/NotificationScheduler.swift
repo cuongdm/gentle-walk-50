@@ -38,9 +38,15 @@ struct PhraseBank: Equatable, Sendable {
 
     private struct File: Decodable { var schemaVersion: Int; var phrases: [NotificationPhrase] }
 
-    static func load(bundle: Bundle) throws -> PhraseBank {
+    /// The phrases, in the app's language when it has them (`texts`: `content.<code>.json`).
+    static func load(bundle: Bundle, texts: [String: String] = AppContent.texts?.notifications ?? [:]) throws -> PhraseBank {
         guard let url = bundle.url(forResource: "notifications", withExtension: "json") else { throw CocoaError(.fileNoSuchFile) }
-        return PhraseBank(phrases: try JSONDecoder().decode(File.self, from: Data(contentsOf: url)).phrases)
+        let phrases = try JSONDecoder().decode(File.self, from: Data(contentsOf: url)).phrases
+        return PhraseBank(phrases: phrases.map { phrase in
+            var copy = phrase
+            copy.text = texts[phrase.id] ?? phrase.text
+            return copy
+        })
     }
 
     func ids(for kind: NotificationKind) -> [String] { phrases.filter { $0.kind == kind.rawValue }.map(\.id) }
@@ -54,6 +60,7 @@ struct PhraseBank: Equatable, Sendable {
 /// walk) and the day-12 trial reminder, for someone who does not open the app (review I9).
 @MainActor final class NotificationScheduler: NotificationRescheduling, TrialReminderScheduling, PendingNotificationClearing {
     static let identifierPrefix = "gw."
+    static let laterIdentifier = "gw.later"
     static let horizonDays = 16
 
     private let center: NotificationCenterProtocol
@@ -86,11 +93,26 @@ struct PhraseBank: Equatable, Sendable {
 
     func reschedule() async {
         center.setCategories(Self.categories)
-        let old = await center.pendingRequests().map(\.identifier).filter { $0.hasPrefix(Self.identifierPrefix) }
+        // "Remind me later" is her own request for today: rescheduling the plan keeps it (it was
+        // dropped by any relaunch or settings change within the two hours; review 02/10/2026).
+        let pending = await center.pendingRequests().map(\.identifier)
+        let old = pending.filter { $0.hasPrefix(Self.identifierPrefix) && $0 != Self.laterIdentifier }
         if !old.isEmpty { center.removePending(ids: old) }
+        let hasLater = pending.contains(Self.laterIdentifier)
         let now = now()
         forgetFutureHistory(after: now)
-        guard var plannerInput = input() else { return }
+        guard var plannerInput = input() else {
+            if hasLater { center.removePending(ids: [Self.laterIdentifier]) }
+            return
+        }
+        // "Remind me later" goes once it has no point: she walked today, rested today, or turned
+        // walk reminders off.
+        let cal = plannerInput.calendar
+        let walkedToday = plannerInput.workouts.contains { cal.isDate($0, inSameDayAs: now) }
+        let restingToday = plannerInput.restDays.contains(Weekday(of: now, in: cal))
+        if hasLater, walkedToday || restingToday || !plannerInput.settings.walkReminders {
+            center.removePending(ids: [Self.laterIdentifier])
+        }
         plannerInput.trialReminder = trial?.at
         var history = pastHistory()
         for planned in NotificationPlanner.plan(input: plannerInput, now: now, days: Self.horizonDays) {
@@ -135,7 +157,7 @@ struct PhraseBank: Equatable, Sendable {
         content.sound = .default
         content.categoryIdentifier = NotificationCategory.reminder
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
-        try? await center.add(UNNotificationRequest(identifier: "\(Self.identifierPrefix)later", content: content, trigger: trigger))
+        try? await center.add(UNNotificationRequest(identifier: Self.laterIdentifier, content: content, trigger: trigger))
     }
 
     // MARK: TrialReminderScheduling

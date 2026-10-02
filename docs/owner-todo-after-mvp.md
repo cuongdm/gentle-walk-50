@@ -29,6 +29,11 @@ Cài bản DEBUG từ Xcode lên iPhone (cần Team ID đúng, xem mục 3).
   TEST_RUNNER_RELEASE_CHECK=1 xcodebuild test -project iOS/GentleWalk.xcodeproj -scheme GentleWalk -destination 'platform=iOS Simulator,name=iPhone 17' -only-testing:GentleWalkTests/ReleaseContentTests
   ```
 
+## 2b. Tiếng Việt (02/10/2026)
+- [x] Chọn giọng tiếng Việt: **Bella** (02/10/2026). Đã thu 2 câu màn Đứng sau ghế.
+- [ ] Tạo 591 câu HLV tiếng Việt còn lại (~35.000 ký tự ElevenLabs): sau 21/10/2026 khi gói reset, hoặc bật trả thêm. Lệnh ở `docs/i18n/README.md` mục "Tạo giọng tiếng Việt".
+- [ ] Một người Việt đọc thử app bản tiếng Việt (DEBUG, giọng hệ thống đọc tạm) để soát văn phong.
+
 ## 3. Quyết định và thông tin chờ chủ app
 - [x] **Team ID** `55V8Y3PCLY` trong `iOS/Config/Local.xcconfig`: chủ app xác nhận đúng (29/09).
 - [x] **Email hỗ trợ:** `cuongdm@live.com` (29/09). Đã thêm nút Contact us ở Me → Help và điền vào `site/privacy.html`.

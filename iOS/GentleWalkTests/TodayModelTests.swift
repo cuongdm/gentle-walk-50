@@ -89,6 +89,9 @@ import GentleWalkCore
         let model = model(input(entitlement: .free, trialEnds: at(20)))
         #expect(model.session.title.hasPrefix("Free walk of the day"))
         #expect(model.trialEnded)
+        // The note on the card stays a week, then goes (it showed on every open for ever).
+        #expect(!model.showsTrialEndedNote)
+        #expect(self.model(input(entitlement: .free, trialEnds: at(25))).showsTrialEndedNote)
     }
 
     @Test func twoMissedDaysOfferAGentleRestart() {

@@ -19,7 +19,8 @@ import UserNotifications
 @MainActor enum AppDefaultsKeys {
     static let all: [String] = [
         PhonePlacement.defaultsKey, PhonePlacement.seenKey, WorkoutPreviewModel.placeKey, TextSizeOverride.defaultsKey,
-        HealthService.askedKey, "paywallDismissedAt", "restTodayDate", "notificationSettings", "outdoorLocationChoice",
+        HealthService.askedKey, "paywallDismissedAt", "restTodayDate", "permissionsShownAt", "reminderOfferShown", UnitPreferences.distanceKey, UnitPreferences.weightKey,
+        UnitPreferences.heightKey, "notificationSettings", "outdoorLocationChoice",
         "outdoorPrepSeen", "healthCardDismissed", "musicOff", "voiceLouder", "captionsOn", "reviewPromptMilestones", "lastSchedule",
         FavouriteSessions.defaultsKey, "permissionsShown", "fewerRemindersAnswered", "lastTrialEnds",
         AudioLevels.voiceKey, AudioLevels.musicKey, AudioLevels.introsKey,

@@ -31,6 +31,18 @@ import Testing
         #expect(reminders.allSatisfy { cal.component(.hour, from: $0.fireDate) == 8 && cal.component(.minute, from: $0.fireDate) == 30 })
     }
 
+    /// Sunday Nov 1 2026, the day clocks go back in New York: the reminder still comes at 8:30
+    /// (minutes added to midnight landed at 7:30; review 02/10/2026).
+    @Test func reminderKeepsItsClockTimeOnADaylightSavingDay() {
+        let now = at(31, 10, 7)
+        let input = PlannerInput(calendar: cal, restDays: [], reminderMinutes: 8 * 60 + 30, frequency: .daily,
+                                 workouts: [], trialReminder: nil, landmark: nil, settings: .init(), newJourneyName: nil)
+        let sunday = NotificationPlanner.plan(input: input, now: now, days: 3).filter { $0.kind == .reminder }
+            .first { cal.component(.day, from: $0.fireDate) == 1 }
+        #expect(sunday.map { cal.component(.hour, from: $0.fireDate) } == 8)
+        #expect(sunday.map { cal.component(.minute, from: $0.fireDate) } == 30)
+    }
+
     // 7.2
     @Test func noReminderOnADayAlreadyWalkedOrOutsideTheWindow() {
         let monday = at(28, 9, 7)

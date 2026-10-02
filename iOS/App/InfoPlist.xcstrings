@@ -10,6 +10,12 @@
             "state" : "translated",
             "value" : "Gentle Walk"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gentle Walk"
+          }
         }
       }
     },
@@ -20,6 +26,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "GentleWalk"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "GentleWalk"
           }
         }
@@ -34,6 +46,12 @@
             "state" : "translated",
             "value" : "Gentle Walk reads your step count to show your everyday activity in Progress."
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gentle Walk đọc số bước chân của bạn để hiện mức vận động hằng ngày trong mục Tiến bộ."
+          }
         }
       }
     },
@@ -45,6 +63,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gentle Walk saves your walks and exercise sessions to Apple Health."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gentle Walk lưu các buổi đi bộ và buổi tập của bạn vào Apple Health."
           }
         }
       }
@@ -58,6 +82,12 @@
             "state" : "translated",
             "value" : "Gentle Walk uses your location only during outdoor walks to measure distance and draw your route. It stays on this phone."
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gentle Walk chỉ dùng vị trí của bạn khi đi bộ ngoài trời để đo quãng đường và vẽ lộ trình. Dữ liệu này chỉ nằm trên điện thoại này."
+          }
         }
       }
     },
@@ -69,6 +99,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gentle Walk uses motion to count your sit-to-stands while your phone is held to your chest, and to measure outdoor walks without location."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gentle Walk dùng cảm biến chuyển động để đếm số lần bạn ngồi xuống đứng lên khi giữ điện thoại trước ngực, và để đo buổi đi bộ ngoài trời khi không dùng vị trí."
           }
         }
       }

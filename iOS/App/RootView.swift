@@ -79,6 +79,12 @@ struct CaptureRouter: View {
     let state: CaptureState
 
     var body: some View {
+        scene
+            // "-xxl" states show the largest accessibility text (they rendered at the normal size).
+            .dynamicTypeSize(state.rawValue.hasSuffix("-xxl") ? .accessibility3 : .large)
+    }
+
+    @ViewBuilder private var scene: some View {
         switch state {
         case .tokens:
             TokenGalleryView()

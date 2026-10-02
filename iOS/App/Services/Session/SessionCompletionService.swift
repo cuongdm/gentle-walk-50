@@ -130,14 +130,17 @@ struct CompletionResult: Equatable, Sendable {
         for stop in unlocked {
             context.insert(PostcardUnlock(journeyID: journey.id, stopID: stop.id, unlockedAt: date))
         }
-        if step.isComplete, state.completedAt == nil { state.completedAt = date }
+        // Complete only in the session that reached the end; later sessions on a finished route are
+        // not "journey complete" again (each one offered the plans; review 02/10/2026).
+        let finishedNow = step.isComplete && state.completedAt == nil
+        if finishedNow { state.completedAt = date }
 
         result.journeyID = journey.id
         result.routeMiles = to
         result.unlockedStops = unlocked
         result.nextStop = step.next
         result.milesToNext = step.milesToNext
-        result.journeyComplete = step.isComplete
+        result.journeyComplete = finishedNow
         result.isLockedAhead = limit != nil && step.next != nil && to >= (limit ?? 0)
         result.routeLimit = limit
     }

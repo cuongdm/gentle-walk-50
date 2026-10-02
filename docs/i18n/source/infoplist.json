@@ -1,0 +1,8 @@
+{
+ "CFBundleDisplayName": "Gentle Walk",
+ "CFBundleName": "GentleWalk",
+ "NSHealthShareUsageDescription": "Gentle Walk reads your step count to show your everyday activity in Progress.",
+ "NSHealthUpdateUsageDescription": "Gentle Walk saves your walks and exercise sessions to Apple Health.",
+ "NSLocationWhenInUseUsageDescription": "Gentle Walk uses your location only during outdoor walks to measure distance and draw your route. It stays on this phone.",
+ "NSMotionUsageDescription": "Gentle Walk uses motion to count your sit-to-stands while your phone is held to your chest, and to measure outdoor walks without location."
+}

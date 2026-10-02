@@ -1,0 +1,591 @@
+{
+ "exercises": {
+  "wk.march": {
+   "name": "Bước tại chỗ",
+   "purpose": "Để theo kịp cả nhà khi đi dạo",
+   "tips": [
+    "Đứng hoặc ngồi thẳng, mắt nhìn phía trước",
+    "Nhấc một chân, đặt xuống nhẹ nhàng",
+    "Vung tay, hoặc đặt tay lên đùi"
+   ],
+   "easier": "Chỉ nhấc gót, mũi chân giữ trên sàn",
+   "harder": "Nâng gối cao hơn chút, đẩy tay ra trước",
+   "limitNotes": {
+    "jointReplacement": "Giữ gối thấp hẳn dưới hông"
+   }
+  },
+  "wk.heel-dig": {
+   "name": "Chạm gót",
+   "purpose": "Để bước qua bậc cửa",
+   "tips": [
+    "Đặt gót chân phía trước, mũi chân hướng lên",
+    "Thu chân về, rồi đổi chân",
+    "Thân trên giữ thẳng và yên"
+   ],
+   "easier": "Làm chậm lại, vẫn đưa chân ra gần",
+   "harder": "Đổi chân nhanh hơn một chút"
+  },
+  "wk.side-step": {
+   "name": "Bước sang ngang",
+   "purpose": "Để đi lại trong bếp",
+   "tips": [
+    "Bước sang ngang, rồi khép chân lại",
+    "Gối hơi chùng, mũi chân hướng về trước",
+    "Hông giữ ngang, mắt nhìn phía trước"
+   ],
+   "easier": "Bước nhỏ, tay chống hông",
+   "harder": "Bước rộng hơn, dang tay sang hai bên",
+   "limitNotes": {
+    "dizzy": "Bước nhỏ, ở gần ghế"
+   }
+  },
+  "wk.knee-lift": {
+   "name": "Nâng gối",
+   "purpose": "Để bước lên xe",
+   "tips": [
+    "Vịn nhẹ vào ghế hoặc mép ghế ngồi",
+    "Gối không cao quá hông",
+    "Bàn chân hướng về trước, người thẳng"
+   ],
+   "easier": "Nâng thấp hơn, tay vịn ghế",
+   "harder": "Chạm gối bằng tay bên kia",
+   "limitNotes": {
+    "jointReplacement": "Gối luôn thấp hẳn dưới hông"
+   }
+  },
+  "wk.toe-tap": {
+   "name": "Chạm mũi chân phía trước",
+   "purpose": "Để băng qua đường",
+   "tips": [
+    "Chạm mũi chân ra phía trước",
+    "Gối giữ hơi cong",
+    "Giữ người thẳng, không ngả ra sau"
+   ],
+   "easier": "Chạm gần người hơn một chút",
+   "harder": "Đá chân thấp, đừng duỗi cứng gối",
+   "limitNotes": {
+    "knees": "Chỉ chạm, không đá"
+   }
+  },
+  "wk.heel-back": {
+   "name": "Đá gót ra sau",
+   "purpose": "Để đi lên dốc",
+   "tips": [
+    "Vịn ghế, đứng thẳng",
+    "Đưa gót chân ra sau và lên cao",
+    "Gối hướng xuống, không cúi người"
+   ],
+   "easier": "Chỉ nhấc gót lên một chút",
+   "harder": "Buông tay khỏi ghế, nếu thấy vững",
+   "limitNotes": {
+    "jointReplacement": "Chỉ co gối đến mức thấy thoải mái"
+   }
+  },
+  "wk.shift": {
+   "name": "Chuyển trọng tâm",
+   "purpose": "Để đứng vững khi xếp hàng",
+   "tips": [
+    "Hai chân rộng hơn hông một chút",
+    "Dồn trọng tâm sang trái, sang phải",
+    "Gối giữ thẳng hàng với mũi chân"
+   ],
+   "easier": "Vịn ghế khi chuyển trọng tâm",
+   "harder": "Để gót chân bên kia nhấc lên nhẹ"
+  },
+  "wk.arms": {
+   "name": "Vung tay / đẩy tay",
+   "purpose": "Để xách đồ đi chợ về",
+   "tips": [
+    "Vung tay, khuỷu tay thả lỏng",
+    "Hoặc đẩy tay ra trước, ngang vai",
+    "Vai hạ xuống, thả lỏng"
+   ],
+   "easier": "Giữ tay thấp hơn vai",
+   "harder": "Đẩy tay chếch lên và ra ngoài",
+   "limitNotes": {
+    "shoulders": "Giữ tay thấp hơn tầm vai"
+   }
+  },
+  "mv.sit-to-stand": {
+   "name": "Ngồi xuống đứng lên",
+   "purpose": "Để đứng dậy khỏi ghế",
+   "tips": [
+    "Bàn chân đặt phẳng, rộng bằng hông",
+    "Nghiêng người ra trước, mũi ngay trên ngón chân",
+    "Chống tay lên ghế nếu cần"
+   ],
+   "easier": "Chống tay lên ghế để đẩy người đứng dậy",
+   "harder": "Khoanh tay, ngồi xuống thật chậm, đếm đến ba"
+  },
+  "mv.knee-lift": {
+   "name": "Nâng gối khi ngồi",
+   "purpose": "Cho từng bước chân",
+   "tips": [
+    "Vịn hai bên mép ghế",
+    "Ngồi thẳng, không ngả ra sau",
+    "Nâng lên, rồi đặt xuống nhẹ nhàng"
+   ],
+   "easier": "Chỉ nhấc gót, mũi chân giữ trên sàn",
+   "harder": "Nâng cao hơn chút và vung tay bên kia"
+  },
+  "mv.leg-ext": {
+   "name": "Duỗi chân khi ngồi",
+   "purpose": "Để leo cầu thang",
+   "tips": [
+    "Vịn hai bên mép ghế",
+    "Duỗi chân thẳng ra phía trước",
+    "Hạ chân xuống từ từ"
+   ],
+   "easier": "Chỉ duỗi chân nửa chừng",
+   "harder": "Giữ chân trên cao, đếm đến ba"
+  },
+  "mv.heel-toe": {
+   "name": "Nhón gót và nhón mũi",
+   "purpose": "Để với tới kệ cao",
+   "tips": [
+    "Bắt đầu với bàn chân đặt phẳng",
+    "Nhấc gót lên, rồi hạ xuống",
+    "Giờ nhấc mũi chân, gót giữ trên sàn"
+   ],
+   "easier": "Chỉ nhấc gót, nhấc thấp thôi",
+   "harder": "Đứng sau ghế và nhón lên mũi chân"
+  },
+  "mv.wall-push": {
+   "name": "Chống đẩy vào tường",
+   "purpose": "Để đẩy cửa và nhấc túi",
+   "tips": [
+    "Áp bàn tay vào tường, ngang vai",
+    "Người thẳng như một tấm ván",
+    "Gót chân giữ trên sàn"
+   ],
+   "easier": "Đứng gần tường hơn, chỉ gập khuỷu tay một chút",
+   "harder": "Lùi chân ra xa hơn một chút"
+  },
+  "mv.single-leg": {
+   "name": "Đứng một chân",
+   "purpose": "Để đứng vững hơn",
+   "tips": [
+    "Vịn ghế bằng cả hai tay",
+    "Nhìn vào một điểm phía trước",
+    "Chỉ nhấc chân lên một chút"
+   ],
+   "easier": "Chỉ nhấc gót, mũi chân giữ trên sàn",
+   "harder": "Chỉ vịn bằng một tay"
+  },
+  "mv.side-leg": {
+   "name": "Nâng chân sang ngang",
+   "purpose": "Để bước ra khỏi xe",
+   "tips": [
+    "Vịn lưng ghế bằng cả hai tay",
+    "Nâng cao khoảng một bàn tay, mũi chân hướng về trước",
+    "Giữ người thẳng, không nghiêng sang bên"
+   ],
+   "easier": "Nâng thấp hơn, hai tay vịn ghế",
+   "harder": "Chỉ vịn bằng một tay",
+   "limitNotes": {
+    "jointReplacement": "Nâng thấp, mũi chân và gối hướng về trước"
+   }
+  },
+  "mv.back-leg": {
+   "name": "Nâng chân ra sau",
+   "purpose": "Để bước lên lề đường",
+   "tips": [
+    "Đứng thẳng, tay vịn ghế",
+    "Đưa chân thẳng ra sau, mũi chân hướng xuống",
+    "Không cúi người hay ưỡn lưng"
+   ],
+   "easier": "Nâng thấp hơn, vừa rời khỏi sàn",
+   "harder": "Dừng một chút ở điểm cao nhất",
+   "limitNotes": {
+    "lowerBack": "Nâng thấp, không ưỡn lưng"
+   }
+  },
+  "mv.knee-curl": {
+   "name": "Co gối ra sau",
+   "purpose": "Để bước vào bồn tắm",
+   "tips": [
+    "Tay vịn ghế, đứng thẳng",
+    "Co gót chân lên phía sau",
+    "Gối hướng xuống, đùi giữ yên"
+   ],
+   "easier": "Chỉ co gối một chút",
+   "harder": "Buông tay khỏi ghế, nếu thấy vững",
+   "limitNotes": {
+    "jointReplacement": "Chỉ co gối đến mức thấy thoải mái"
+   }
+  },
+  "mv.mini-squat": {
+   "name": "Khuỵu gối nhẹ",
+   "purpose": "Để ngồi xuống ghế",
+   "tips": [
+    "Hai tay vịn ghế, chân rộng bằng hông",
+    "Đẩy hông ra sau một chút, gót giữ trên sàn",
+    "Gối hướng về trước, không vượt quá mũi chân"
+   ],
+   "easier": "Chỉ chùng gối một chút",
+   "harder": "Hạ người thật chậm, đếm đến ba",
+   "limitNotes": {
+    "knees": "Chỉ xuống nửa chừng, dừng lại nếu gót nhấc lên"
+   }
+  },
+  "mv.arm-raise": {
+   "name": "Nâng tay",
+   "purpose": "Để cất bát đĩa lên cao",
+   "tips": [
+    "Ngồi thẳng, bàn chân đặt phẳng",
+    "Nâng tay lên ngang vai",
+    "Khuỷu tay thả lỏng, vai hạ xuống"
+   ],
+   "easier": "Chỉ nâng một phần, thấp hơn vai",
+   "harder": "Dừng một chút ở trên, hoặc vươn qua đầu",
+   "limitNotes": {
+    "shoulders": "Chỉ nâng đến ngang vai"
+   }
+  },
+  "mv.row": {
+   "name": "Kéo tay khi ngồi",
+   "purpose": "Để kéo cánh cửa nặng",
+   "tips": [
+    "Đưa tay ra trước, lòng bàn tay hướng vào nhau",
+    "Kéo khuỷu tay ra sau, qua khỏi mạn sườn",
+    "Ép hai bả vai vào nhau"
+   ],
+   "easier": "Chỉ kéo về nửa chừng",
+   "harder": "Giữ bả vai ép lại, đếm đến hai"
+  },
+  "st.neck-turn": {
+   "name": "Xoay cổ",
+   "purpose": "Để ngoái nhìn qua vai",
+   "tips": [
+    "Cằm giữ ngang, vai hạ xuống",
+    "Chỉ xoay đến mức thấy thoải mái"
+   ],
+   "easier": "Xoay nửa chừng, mắt mở, làm thật chậm"
+  },
+  "st.neck-tilt": {
+   "name": "Nghiêng cổ",
+   "purpose": "Cho cổ thư thái hơn",
+   "tips": [
+    "Đặt tay lên vai bên kia",
+    "Nghiêng tai về phía vai, không kéo"
+   ],
+   "easier": "Nghiêng nhẹ, không cần đặt tay lên vai"
+  },
+  "st.chin-tuck": {
+   "name": "Thu cằm",
+   "purpose": "Sau khi đọc sách hay xem màn hình",
+   "tips": [
+    "Nhẹ nhàng lùi đầu thẳng ra sau",
+    "Mắt nhìn ngang, không ngước lên"
+   ],
+   "easier": "Lùi ít hơn, chỉ vài lần"
+  },
+  "st.shoulder-roll": {
+   "name": "Xoay vai",
+   "purpose": "Cho đôi vai sau một ngày bận rộn",
+   "tips": [
+    "Xoay vai lên, ra sau, rồi xuống, thật chậm",
+    "Đầu giữ yên, tay đặt trên đùi"
+   ],
+   "easier": "Xoay vòng nhỏ hơn",
+   "limitNotes": {
+    "shoulders": "Xoay vòng nhỏ và chậm"
+   }
+  },
+  "st.chest": {
+   "name": "Mở ngực và vai",
+   "purpose": "Để ngồi thẳng lưng",
+   "tips": [
+    "Kéo vai ra sau và xuống",
+    "Nhẹ nhàng mở ngực ra trước và lên"
+   ],
+   "easier": "Đặt tay lên hông thay vì dang tay"
+  },
+  "st.upper-back": {
+   "name": "Vươn lưng trên",
+   "purpose": "Để với qua bàn",
+   "tips": [
+    "Đưa tay ra trước, lòng bàn tay hướng ra ngoài",
+    "Vươn ra trước, lưng dưới giữ thẳng"
+   ],
+   "easier": "Để tay thấp hơn một chút",
+   "limitNotes": {
+    "lowerBack": "Lưng giữ thẳng, chỉ vươn tay"
+   }
+  },
+  "st.twist": {
+   "name": "Vặn lưng trên",
+   "purpose": "Để xoay người lấy đồ",
+   "tips": [
+    "Bắt chéo tay, đặt lên vai",
+    "Xoay từ ngực, hông giữ yên"
+   ],
+   "easier": "Xoay ít thôi, đầu thẳng hàng với thân"
+  },
+  "st.side": {
+   "name": "Giãn sườn",
+   "purpose": "Để với lên cao và sang ngang",
+   "tips": [
+    "Ngồi thẳng, bàn chân đặt phẳng",
+    "Vươn tay lên và nghiêng sang, hoặc trượt tay xuống"
+   ],
+   "easier": "Tay để xuôi bên người, nghiêng nhẹ"
+  },
+  "st.thigh": {
+   "name": "Giãn mặt sau đùi",
+   "purpose": "Để cúi và đi lại dễ hơn",
+   "tips": [
+    "Gót chạm sàn, mũi chân hướng lên",
+    "Nghiêng người ra trước từ hông, lưng thẳng"
+   ],
+   "easier": "Giữ gối hơi cong, chỉ nghiêng nhẹ"
+  },
+  "st.ankle": {
+   "name": "Xoay và duỗi cổ chân",
+   "purpose": "Cho bước chân vững hơn",
+   "tips": [
+    "Vịn mép ghế",
+    "Duỗi mũi chân ra xa, rồi kéo về"
+   ],
+   "easier": "Giữ gót trên sàn, chỉ nhấc và hạ mũi chân"
+  },
+  "st.calf": {
+   "name": "Giãn bắp chân",
+   "purpose": "Để đi lại thoải mái",
+   "tips": [
+    "Hai bàn chân đặt phẳng, gót chân sau chạm sàn",
+    "Vịn ghế suốt lúc tập"
+   ],
+   "easier": "Lùi chân sau ngắn hơn, gối sau hơi cong"
+  },
+  "st.overhead": {
+   "name": "Vươn tay lên tường",
+   "purpose": "Để với tới tủ trên cao",
+   "tips": [
+    "Lần tay dần lên tường",
+    "Gót chạm sàn, không ưỡn lưng"
+   ],
+   "easier": "Dừng khi tay lên tới ngang tầm mắt",
+   "limitNotes": {
+    "shoulders": "Chỉ vươn tới ngang tầm mắt",
+    "standingIsHard": "Thay bằng ngồi thẳng và vươn tay lên"
+   }
+  },
+  "bl.tandem": {
+   "name": "Đứng nối gót",
+   "purpose": "Cho lối đi hẹp và hành lang",
+   "tips": [
+    "Vịn ghế suốt lúc tập",
+    "Gót chân trước chạm mũi chân sau",
+    "Gối hơi chùng, mắt nhìn thẳng"
+   ],
+   "easier": "Chân trước lệch sang bên một chút",
+   "harder": "Chỉ chạm đầu ngón tay vào ghế",
+   "limitNotes": {
+    "jointReplacement": "Hai chân thẳng hàng, không bắt chéo",
+    "dizzy": "Hai tay vịn ghế"
+   }
+  },
+  "bl.side-walk": {
+   "name": "Đi ngang",
+   "purpose": "Để đi qua phòng đông người",
+   "tips": [
+    "Bước sang ngang, rồi khép chân",
+    "Mũi chân hướng về trước, hông giữ ngang",
+    "Ở gần bàn bếp hoặc bức tường"
+   ],
+   "easier": "Bước nhỏ hơn, một tay vịn bàn bếp",
+   "harder": "Bước rộng hơn chút, vẫn chậm như cũ",
+   "limitNotes": {
+    "dizzy": "Bước nhỏ, một tay vịn bàn bếp"
+   }
+  },
+  "bl.heel-toe-walk": {
+   "name": "Đi nối gót",
+   "purpose": "Cho đường trong vườn và đường mòn",
+   "tips": [
+    "Đầu ngón tay chạm bức tường bên cạnh",
+    "Đặt gót ngay trước mũi chân kia",
+    "Mắt nhìn phía trước, chậm rãi từng bước"
+   ],
+   "easier": "Chừa một khoảng nhỏ giữa hai bước",
+   "harder": "Thêm vài bước, vẫn chậm như cũ"
+  }
+ },
+ "journeys": {
+  "jr.ny": {
+   "title": "New York City",
+   "subtitle": "Từ Central Park đến Brooklyn Bridge",
+   "summary": "Từ vườn thú trong Central Park, qua Times Square, đến tận Brooklyn Bridge. Khoảng 2–3 tuần.",
+   "stops": {
+    "pc.ny.zoo": {
+     "name": "Central Park Zoo",
+     "back": "Nằm gọn trong Central Park, vườn thú là điểm dừng được yêu thích của các gia đình, và của cả những buổi đi bộ đầu tiên.",
+     "coachLine": "Điểm dừng đầu tiên của bạn. Còn nhiều điểm nữa đang chờ."
+    },
+    "pc.ny.bethesda": {
+     "name": "Bethesda Fountain",
+     "back": "Đài phun nước nằm bên hồ, giữa lòng công viên, có sân hiên rộng để nghỉ chân và ngắm người qua lại.",
+     "coachLine": "Một chỗ thật đẹp để nghỉ lấy hơi."
+    },
+    "pc.ny.times": {
+     "name": "Times Square",
+     "back": "Màn hình rực sáng, vỉa hè tấp nập và nhà hát khắp xung quanh. Đây là một trong những giao lộ nổi tiếng nhất thế giới.",
+     "coachLine": "Nhìn xem, những phút đi bộ ấy đã đưa bạn đi xa thế nào."
+    },
+    "pc.ny.bryant": {
+     "name": "Bryant Park",
+     "back": "Một công viên rợp bóng cây ở Midtown, có bãi cỏ, những chiếc ghế xanh và một thư viện yên tĩnh ngay bên cạnh.",
+     "coachLine": "Một góc yên bình giữa phố xá nhộn nhịp."
+    },
+    "pc.ny.union": {
+     "name": "Union Square",
+     "back": "Một quảng trường sôi động, có chợ nông sản họp nhiều ngày trong tuần.",
+     "coachLine": "Sắp tới bờ sông rồi. Cứ tiếp tục nhé."
+    },
+    "pc.ny.bridge": {
+     "name": "Brooklyn Bridge",
+     "back": "Cây cầu bắc qua sông East sang Brooklyn, có lối đi bộ rộng nằm phía trên dòng xe.",
+     "coachLine": "Bạn đã đi trọn New York. Mình rất tự hào về bạn."
+    }
+   }
+  },
+  "jr.smoky": {
+   "title": "Dãy Smoky và đường Blue Ridge Parkway",
+   "summary": "Thung lũng yên tĩnh, thác nước và cảnh núi non, từ Cades Cove đến Linn Cove Viaduct. Khoảng 4–6 tuần.",
+   "stops": {
+    "pc.smoky.1": {
+     "name": "Cades Cove"
+    },
+    "pc.smoky.2": {
+     "name": "Laurel Falls"
+    },
+    "pc.smoky.3": {
+     "name": "Clingmans Dome"
+    },
+    "pc.smoky.4": {
+     "name": "Mingus Mill"
+    },
+    "pc.smoky.5": {
+     "name": "Mabry Mill"
+    },
+    "pc.smoky.6": {
+     "name": "Linn Cove Viaduct"
+    }
+   }
+  },
+  "jr.camino": {
+   "title": "Đường hành hương Camino de Santiago",
+   "subtitle": "100 km cuối",
+   "summary": "Những ngôi làng đá và đồi xanh của Galicia, từ Sarria đến quảng trường lớn ở Santiago. Khoảng 4–6 tuần.",
+   "stops": {
+    "pc.camino.1": {
+     "name": "Sarria"
+    },
+    "pc.camino.2": {
+     "name": "Portomarín"
+    },
+    "pc.camino.3": {
+     "name": "Palas de Rei"
+    },
+    "pc.camino.4": {
+     "name": "Melide"
+    },
+    "pc.camino.5": {
+     "name": "O Pedrouzo"
+    },
+    "pc.camino.6": {
+     "name": "Obradoiro Square"
+    }
+   }
+  },
+  "jr.ne": {
+   "title": "Hải đăng New England",
+   "subtitle": "Từ Maine đến Cape Cod",
+   "summary": "Bờ biển nhiều đá và những ngọn hải đăng trắng, từ Portland Head Light đến Nauset Light. Khoảng 4–6 tuần.",
+   "stops": {
+    "pc.ne.1": {
+     "name": "Portland Head Light"
+    },
+    "pc.ne.2": {
+     "name": "Nubble Light"
+    },
+    "pc.ne.3": {
+     "name": "Portsmouth Harbor"
+    },
+    "pc.ne.4": {
+     "name": "Rockport"
+    },
+    "pc.ne.5": {
+     "name": "Plymouth"
+    },
+    "pc.ne.6": {
+     "name": "Nauset Light"
+    }
+   }
+  },
+  "jr.pch": {
+   "title": "Pacific Coast Highway",
+   "subtitle": "Big Sur",
+   "summary": "Vách đá, bãi biển và cảnh đại dương, từ Carmel-by-the-Sea qua Bixby Bridge và xa hơn nữa. Khoảng 4–6 tuần.",
+   "stops": {
+    "pc.pch.1": {
+     "name": "Carmel-by-the-Sea"
+    },
+    "pc.pch.2": {
+     "name": "Point Lobos"
+    },
+    "pc.pch.3": {
+     "name": "Bixby Bridge"
+    },
+    "pc.pch.4": {
+     "name": "Pfeiffer Beach"
+    },
+    "pc.pch.5": {
+     "name": "McWay Falls"
+    },
+    "pc.pch.6": {
+     "name": "Hearst Castle"
+    }
+   }
+  }
+ },
+ "notifications": {
+  "nt.remind.1": "Sẵn sàng cho vài phút nhẹ nhàng chưa? Ngồi tập cũng tính nhé.",
+  "nt.remind.2": "Buổi đi bộ đã sẵn sàng, lúc nào bạn muốn cũng được.",
+  "nt.remind.3": "Hôm nay đi bộ một chút nhé? Năm phút là đủ.",
+  "nt.remind.4": "Đến giờ đi bộ rồi. Cứ đi theo nhịp của bạn.",
+  "nt.remind.5": "Chiếc ghế ở ngay đó rồi. Bắt đầu nhé?",
+  "nt.remind.6": "Vài phút cho riêng bạn, trước khi ngày bắt đầu bận rộn.",
+  "nt.remind.7": "Cùng cho đôi chân vận động nào. Chỉ một chút thôi.",
+  "nt.remind.8": "Hành trình đang chờ những bước chân hôm nay của bạn.",
+  "nt.remind.9": "Có vài phút không? Buổi đi bộ đã sẵn sàng.",
+  "nt.remind.10": "Buổi tập hôm nay ngắn thôi. Sẵn sàng chưa?",
+  "nt.remind.11": "Một giọng nói êm dịu và vài phút nhẹ nhàng. Cùng bắt đầu nhé?",
+  "nt.remind.12": "Muốn vận động một chút không? Kế hoạch của bạn đã sẵn sàng.",
+  "nt.remind.13": "Thời gian của bạn. Nhịp của bạn. Buổi đi bộ của bạn.",
+  "nt.remind.14": "Chỉ cần nhấn Bắt đầu. Giọng hướng dẫn sẽ lo phần còn lại.",
+  "nt.day2.1": "Hôm qua là buổi đi bộ đầu tiên của bạn. Hôm nay cũng ngắn như vậy.",
+  "nt.day2.2": "Ngày thứ hai. Vẫn nhẹ nhàng như hôm qua.",
+  "nt.day2.3": "Hôm qua bạn khởi đầu thật tốt. Thêm vài phút nữa nhé?",
+  "nt.near.1": "Chỉ còn một buổi đi bộ nữa là tới {stop}.",
+  "nt.week.up": "Tuần này bạn có {n} ngày vận động, nhiều hơn tuần trước.",
+  "nt.week.same": "Tuần này bạn có {n} ngày vận động, bằng tuần trước. Đều đặn lắm.",
+  "nt.week.less": "Tuần này bạn có {n} ngày vận động. Ngày mai đã là tuần mới.",
+  "nt.back.3": "Hành trình vẫn ở nguyên chỗ bạn dừng lại. Thử 5 phút nhẹ nhàng nhé?",
+  "nt.back.10": "Khi nào bạn sẵn sàng, buổi bắt đầu lại nhẹ nhàng đang chờ bạn.",
+  "nt.trial": "Thời gian dùng thử miễn phí của bạn kết thúc vào {date}. Nếu không huỷ, bạn sẽ bị tính phí {price}. Quản lý trong Cài đặt.",
+  "nt.newjourney": "Có hành trình mới cho bạn: {journey}.",
+  "card.fewer": "Giờ bạn đã tự tập đều rồi. Bạn có muốn nhận ít lời nhắc hơn không?"
+ },
+ "wins": {
+  "win.1": "Đứng dậy khỏi ghế sofa mà không cần chống tay",
+  "win.2": "Xách hết đồ đi chợ vào nhà chỉ trong một chuyến",
+  "win.3": "Đi hết một vòng cửa hàng",
+  "win.4": "Leo hết cầu thang mà không phải dừng lại",
+  "win.5": "Ngồi chơi dưới sàn với các cháu",
+  "win.6": "Với tới kệ cao nhất mà không cần ghế kê",
+  "win.7": "Đi ra hộp thư rồi quay về, thấy nhẹ nhàng",
+  "win.8": "Đứng suốt cả buổi hoà nhạc hay trận bóng"
+ }
+}

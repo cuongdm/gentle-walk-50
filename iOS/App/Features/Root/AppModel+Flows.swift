@@ -65,7 +65,7 @@ extension AppModel {
         if trigger == .onboarding {
             begin(.firstWalk(limits: profile?.limits ?? []))
         } else {
-            cover = nil
+            oneTimeScreenClosed()
         }
     }
 
@@ -87,7 +87,26 @@ extension AppModel {
     func again(_ request: WorkoutRequest) {
         var request = request
         request.id = UUID()
-        preview(request, checkIn: today?.checkedIn)
+        afterOneTimeScreens { [self] in preview(request, checkIn: today?.checkedIn) }
+    }
+
+    /// Runs `action` now, or once "Two quick things" or the cancel guide closes: those show once and
+    /// were replaced (lost for good) by "Do it again", "Do them now" or a reminder's Start (review
+    /// 02/10/2026).
+    func afterOneTimeScreens(_ action: @escaping () -> Void) {
+        switch cover {
+        // The plans offered at the end of New York wait too (they flashed and were lost).
+        case .permissions?, .cancelGuide?, .paywall?: pendingAfterCover = action
+        default: action()
+        }
+    }
+
+    /// The one-time screen closed: what was waiting runs now.
+    func oneTimeScreenClosed() {
+        cover = nil
+        let action = pendingAfterCover
+        pendingAfterCover = nil
+        action?()
     }
 
     /// Starts a session, showing phone placement or outdoor prep the first time. `showsReady`: an
@@ -139,8 +158,6 @@ extension AppModel {
         else { cover = nil; return }
         let session = WorkoutSessionModel(request: request, content: content, engine: engine, completion: completion,
                                           painRecorder: painRecorder, now: now)
-        if request.place == .outdoors { attachOutdoor(to: session) }
-        if request.day.main == .chair || request.day.chairMoves > 0 { attachMotion(to: session) }
         do {
             try await session.load(timeline: media.timeline)
         } catch {
@@ -149,13 +166,19 @@ extension AppModel {
             storeNotice = .sessionFailed
             return
         }
+        // GPS, pedometer and motion start only for a session that will run (they kept running after a
+        // failed build; review 02/10/2026).
+        if request.place == .outdoors { attachOutdoor(to: session) }
+        if request.day.main == .chair || request.day.chairMoves > 0 { attachMotion(to: session) }
         if defaults.bool(forKey: "musicOff") { session.player.setMusicOn(false) }
         session.player.setLevels(voice: levels.voice, music: levels.music)
         let context: AudioContext = request.place == .outdoors && AVAudioSession.sharedInstance().isOtherAudioPlaying
             ? .overUserAudio : .guided
         try? AudioSessionConfigurator.apply(context)
+        // Her own podcast or music outdoors: no app music on top of it (the Music button can still add it).
+        if context == .overUserAudio { session.player.setMusicOn(false) }
         session.player.nowPlaying = NowPlayingController(
-            title: request.title, onPlay: { [weak session] in session?.player.resume() },
+            title: request.title, onPlay: { [weak session] in session?.remoteResume() },
             onPause: { [weak session] in session?.player.pause(.user) })
         // "Get ready" 3-2-1 first, like a class starting: time to set the phone down.
         session.startWithCountdown(showsReady: showsReady)
@@ -184,14 +207,24 @@ extension AppModel {
 
     private func attachMotion(to session: WorkoutSessionModel) {
         guard PhonePlacement.saved(in: defaults) == .chest else { return }
+        motion.reset()
         session.motion = motion
+    }
+
+    /// "Not yet" on the First Walk: offer a reminder, once, unless iOS was already asked.
+    func offerReminderAfterNotYet() async {
+        guard !defaults.bool(forKey: "reminderOfferShown"), await SystemPermission.reminders() == .notAsked else { return }
+        defaults.set(true, forKey: "reminderOfferShown")
+        if cover == nil { cover = .reminderOffer }
     }
 
     func workoutClosed(_ result: CompletionResult?) {
         AudioSessionConfigurator.deactivate()
         reload()
-        if result?.isFirstWorkout == true, !defaults.bool(forKey: "permissionsShown") {
+        // After the first saved session of any kind (an Extra or a swap can come before the First Walk).
+        if result != nil, !defaults.bool(forKey: "permissionsShown") {
             defaults.set(true, forKey: "permissionsShown")
+            defaults.set(now(), forKey: "permissionsShownAt")
             cover = .permissions
         } else {
             cover = nil
@@ -247,6 +280,7 @@ extension AppModel {
         // In-memory settings first (their setters write defaults), then everything is removed.
         textSize = TextSizeOverride(step: 0)
         appearance = .auto
+        units = UnitPreferences.regionDefault()
         notificationSettings = NotificationSettings()
         try? DataEraser(context: container.mainContext, defaults: defaults, notifications: notifications).eraseAll()
         favourites = FavouriteSessions(defaults: defaults)
@@ -254,6 +288,7 @@ extension AppModel {
         cover = nil
         tab = .today
         reload()
+        storeNotice = .dataDeleted
     }
 
     func chooseJourney(_ journeyID: String) {
@@ -281,7 +316,9 @@ extension AppModel: DeepLinkTarget {
         default: break
         }
         tab = .today
-        if let today, let request = today.request { startFromToday(request, checkIn: today.checkedIn) }
+        afterOneTimeScreens { [self] in
+            if let today, let request = today.request { startFromToday(request, checkIn: today.checkedIn) }
+        }
     }
 
     /// Today's Start: the preview, except the First Walk, which has its own "Up next" (it is set,
@@ -291,7 +328,8 @@ extension AppModel: DeepLinkTarget {
     }
 
     func markRestToday() {
-        defaults.set(now(), forKey: "restTodayDate")
+        // The notification delegate wrote the day she tapped (the app may open on a later day).
+        reload()
         Task { await notifications.reschedule() }
     }
 

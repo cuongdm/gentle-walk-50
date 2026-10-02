@@ -50,9 +50,14 @@ struct PermissionsView: View {
         }
         // Always in view: the way out never sits under two long cards.
         .pinnedActions(true) {
-            Button(model.healthConnected && model.remindersAllowed ? "Continue" : "Not now", action: onDone)
-                .buttonStyle(.textLink)
-                .frame(maxWidth: .infinity)
+            // Something granted: a clear "Done" (a "Not now" link read as undoing what she set).
+            if model.healthConnected || model.remindersAllowed {
+                Button("Done", action: onDone).buttonStyle(.primaryAction)
+            } else {
+                Button("Not now", action: onDone)
+                    .buttonStyle(.textLink)
+                    .frame(maxWidth: .infinity)
+            }
         }
         .screenBackground()
     }

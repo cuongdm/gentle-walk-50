@@ -11,6 +11,8 @@ enum AppCover: Identifiable {
     case preparing(WorkoutRequest)
     case workout(WorkoutSessionModel)
     case permissions
+    /// "Not yet" on the First Walk: offer a daily reminder.
+    case reminderOffer
     case cancelGuide(afterLifetime: Bool)
 
     var id: String {
@@ -22,6 +24,7 @@ enum AppCover: Identifiable {
         case .preparing(let request): "preparing-\(request.id)"
         case .workout(let session): "workout-\(session.request.id)"
         case .permissions: "permissions"
+        case .reminderOffer: "reminder-offer"
         case .cancelGuide: "cancel"
         }
     }

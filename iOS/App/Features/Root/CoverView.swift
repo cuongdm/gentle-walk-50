@@ -16,8 +16,9 @@ struct CoverView: View {
             PreviewCover(model: model, app: app)
         case .outdoorPrep(let request):
             OutdoorPrepView(asksLocation: app.defaults.string(forKey: "outdoorLocationChoice") == nil,
-                            onRequestLocation: app.location.requestPermission,
-                            onDone: { app.outdoorPrepDone(request, useLocation: $0) })
+                            onRequestLocation: { _ = await app.location.requestPermissionAndWait() },
+                            onDone: { app.outdoorPrepDone(request, useLocation: $0) },
+                            onClose: { app.cover = nil })
         case .preparing:
             VStack(spacing: 16) {
                 ProgressView().controlSize(.large)
@@ -30,17 +31,32 @@ struct CoverView: View {
                         healthConnected: app.health.isConnected,
                         reviewMilestone: app.reviewMilestone(for:), onReviewAsked: app.markReviewAsked,
                         onChairMoves: session.request.place == .outdoors ? {
-                            app.workoutClosed(nil)
-                            app.begin(.chairMovesAfterOutdoor(limits: session.request.limits,
-                                                              rotationIndex: app.progress.activeDays))
+                            app.workoutClosed(session.completionResult)
+                            app.afterOneTimeScreens {
+                                app.begin(.chairMovesAfterOutdoor(limits: session.request.limits,
+                                                                  rotationIndex: app.progress.activeDays))
+                            }
                         } : nil,
+                        onOpenPostcard: { stop in
+                            let journeyID = session.completionResult?.journeyID ?? app.journey.journeyID
+                            app.afterOneTimeScreens {
+                                app.tab = .journey
+                                app.journeyPath = [.postcard(journeyID: journeyID, stopID: stop.id)]
+                            }
+                        },
                         onAgain: session.request.canReplay(isPro: app.isPro) ? { app.again(session.request) } : nil,
+                        onNotYet: {
+                            app.workoutClosed(nil)
+                            if session.request.isFirstWalk { Task { await app.offerReminderAfterNotYet() } }
+                        },
                         onClose: app.workoutClosed)
         case .permissions:
             PermissionsCover(app: app)
+        case .reminderOffer:
+            ReminderOfferCover(app: app)
         case .cancelGuide(let afterLifetime):
             CancelGuideView(accessUntil: app.store.renewalDate?.formatted(.dateTime.month(.abbreviated).day()),
-                            isAfterLifetimePurchase: afterLifetime, onBack: { app.cover = nil })
+                            isAfterLifetimePurchase: afterLifetime, onBack: app.oneTimeScreenClosed)
         }
     }
 }
@@ -123,9 +139,62 @@ private struct PermissionsCover: View {
                                 $0.reminderMinutes = minutes
                             }
                         }) {
-            app.cover = nil
+            app.oneTimeScreenClosed()
             app.reload()
             Task { await app.notifications.reschedule() }
         }
+        .task { await model.readReminders() }
     }
 }
+
+/// After "Not yet" on the First Walk: a reminder for the walk still waiting (owner 02/10/2026: the
+/// people most likely to drift away got none, reminders were asked only after a first session).
+private struct ReminderOfferCover: View {
+    let app: AppModel
+    @State private var asking = false
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                ArtImage(art: .momentFriends, height: 150, fallbackSymbol: "bell.fill")
+                    .accessibilityHidden(true)
+                ScreenHeader(title: "Want a reminder?", subtitle: "Your first walk waits on Today. We can nudge you once a day, at a moment you choose.")
+                DailyMomentPicker(moment: app.profile?.reminderMoment ?? .coffee,
+                                  minutes: app.profile?.reminderMinutes ?? DailyMoment.coffee.suggestedMinutes,
+                                  onChoose: { moment in update(moment, moment.suggestedMinutes) },
+                                  onStep: { step in
+                                      update(app.profile?.reminderMoment ?? .coffee,
+                                             ReminderTime.step(app.profile?.reminderMinutes ?? DailyMoment.coffee.suggestedMinutes, by: step))
+                                  },
+                                  onSet: { minutes in update(app.profile?.reminderMoment ?? .coffee, minutes) },
+                                  showsQuestion: true)
+            }
+            .padding(Metrics.screenMargin)
+            .readableColumn()
+        }
+        .pinnedActions(true) {
+            Button("Remind me") {
+                guard !asking else { return }
+                asking = true
+                Task {
+                    _ = await SystemNotificationAuthorizer().requestAuthorization()
+                    await app.notifications.reschedule()
+                    app.cover = nil
+                }
+            }
+            .buttonStyle(.primaryAction)
+            Button("No thanks") { app.cover = nil }
+                .buttonStyle(.textLink)
+                .frame(maxWidth: .infinity)
+        }
+        .screenBackground()
+    }
+
+    private func update(_ moment: DailyMoment, _ minutes: Int) {
+        app.updateProfile {
+            $0.reminderMoment = moment.rawValue
+            $0.reminderMinutes = minutes
+        }
+    }
+}
+

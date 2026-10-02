@@ -17,6 +17,7 @@ enum VoiceResolution: Equatable, Sendable {
     private let lines: [String: VoiceLine]
     private let allowsSynthesis: Bool
     private let cacheDirectory: URL
+    private let language: AppLanguage
 
     #if DEBUG
     static let synthesisDefault = true
@@ -25,8 +26,9 @@ enum VoiceResolution: Equatable, Sendable {
     #endif
 
     init(bundle: Bundle = .main, lines: [VoiceLine], allowsSynthesis: Bool = VoiceSource.synthesisDefault,
-         cacheDirectory: URL = VoiceSource.defaultCache) {
+         cacheDirectory: URL = VoiceSource.defaultCache, language: AppLanguage = .current) {
         self.bundle = bundle
+        self.language = language
         self.lines = Dictionary(lines.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         self.allowsSynthesis = allowsSynthesis
         self.cacheDirectory = cacheDirectory
@@ -44,11 +46,12 @@ enum VoiceResolution: Equatable, Sendable {
             if let url = bundle.url(forResource: name, withExtension: ext) { return .bundled(url) }
         }
         guard allowsSynthesis, !line.text.isEmpty else { return .missing }
-        let url = cacheDirectory.appendingPathComponent(id + ".caf")
+        // One cache per language: the same id is another sentence in another language.
+        let url = cacheDirectory.appendingPathComponent("\(id).\(language.rawValue).caf")
         if FileManager.default.fileExists(atPath: url.path) { return .synthesized(url) }
         do {
             try FileManager.default.createDirectory(at: cacheDirectory, withIntermediateDirectories: true)
-            try await SpeechFileWriter().write(line.text, to: url)
+            try await SpeechFileWriter().write(line.text, language: language.speechCode, to: url)
             return .synthesized(url)
         } catch {
             return .missing
@@ -63,9 +66,9 @@ final class SpeechFileWriter: @unchecked Sendable {
     private let synthesizer = AVSpeechSynthesizer()
     private var file: AVAudioFile?
 
-    func write(_ text: String, to url: URL) async throws {
+    func write(_ text: String, language: String = "en-US", to url: URL) async throws {
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.voice = AVSpeechSynthesisVoice(language: language)
         utterance.rate = AVSpeechUtteranceDefaultSpeechRate * 0.9
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             var finished = false

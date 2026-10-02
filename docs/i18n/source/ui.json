@@ -1,0 +1,4656 @@
+[
+ {
+  "key": "%lld min",
+  "comment": "",
+  "files": [
+   "AllSessionsModel",
+   "ProgressScreen",
+   "TodayCards",
+   "CompleteView",
+   "WorkoutPreviewModel",
+   "SessionHistoryItem"
+  ]
+ },
+ {
+  "key": "All sessions",
+  "comment": "",
+  "files": [
+   "AllSessionsView"
+  ]
+ },
+ {
+  "key": "Pick any session. It counts for today.",
+  "comment": "",
+  "files": [
+   "AllSessionsView"
+  ]
+ },
+ {
+  "key": "Your favourites",
+  "comment": "",
+  "files": [
+   "AllSessionsView"
+  ]
+ },
+ {
+  "key": "Auto",
+  "comment": "",
+  "files": [
+   "AppearanceChoice"
+  ]
+ },
+ {
+  "key": "Dark",
+  "comment": "",
+  "files": [
+   "AppearanceChoice"
+  ]
+ },
+ {
+  "key": "Light",
+  "comment": "",
+  "files": [
+   "AppearanceChoice"
+  ]
+ },
+ {
+  "key": "None of these",
+  "comment": "A button title that lets the user choose that they don't want to limit their exercise.",
+  "files": [
+   "BodyLimitChips"
+  ]
+ },
+ {
+  "key": "Break time %@",
+  "comment": "A timer that counts down the remaining time for a break.",
+  "files": [
+   "BreakView"
+  ]
+ },
+ {
+  "key": "Find somewhere to sit or lean, in the shade if you can. Sip some water and breathe slowly.",
+  "comment": "",
+  "files": [
+   "BreakView"
+  ]
+ },
+ {
+  "key": "Finish here for today",
+  "comment": "",
+  "files": [
+   "BreakView"
+  ]
+ },
+ {
+  "key": "I'm ready to continue",
+  "comment": "",
+  "files": [
+   "BreakView"
+  ]
+ },
+ {
+  "key": "Resting for",
+  "comment": "",
+  "files": [
+   "BreakView"
+  ]
+ },
+ {
+  "key": "Take as long as you need.",
+  "comment": "",
+  "files": [
+   "BreakView"
+  ]
+ },
+ {
+  "key": "Take your time.",
+  "comment": "",
+  "files": [
+   "BreakView"
+  ]
+ },
+ {
+  "key": "Walk home gently",
+  "comment": "",
+  "files": [
+   "BreakView"
+  ]
+ },
+ {
+  "key": "Canceling takes a few taps",
+  "comment": "",
+  "files": [
+   "CancelGuideView"
+  ]
+ },
+ {
+  "key": "Choose Gentle Walk",
+  "comment": "",
+  "files": [
+   "CancelGuideView"
+  ]
+ },
+ {
+  "key": "One last step: cancel your old plan",
+  "comment": "",
+  "files": [
+   "CancelGuideView"
+  ]
+ },
+ {
+  "key": "Open Apple subscriptions",
+  "comment": "",
+  "files": [
+   "CancelGuideView"
+  ]
+ },
+ {
+  "key": "Tap Cancel Subscription",
+  "comment": "",
+  "files": [
+   "CancelGuideView"
+  ]
+ },
+ {
+  "key": "Tap the button below",
+  "comment": "",
+  "files": [
+   "CancelGuideView"
+  ]
+ },
+ {
+  "key": "You keep full access until %@.",
+  "comment": "A paragraph that explains that the user will keep full access to the app until a certain date.",
+  "files": [
+   "CancelGuideView"
+  ]
+ },
+ {
+  "key": "%lld of %lld",
+  "comment": "",
+  "files": [
+   "ChairPlayerModel"
+  ]
+ },
+ {
+  "key": "Move %lld of %lld",
+  "comment": "",
+  "files": [
+   "ChairPlayerModel",
+   "MoveGuidance"
+  ]
+ },
+ {
+  "key": "Count one",
+  "comment": "A label for a button that counts one.",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "Counted for you",
+  "comment": "A label that appears when the app counts reps for you.",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "Next up",
+  "comment": "A label displayed above the name of the next exercise.",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "Ready",
+  "comment": "",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "Rest",
+  "comment": "The name of a workout break.",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "Skip rest",
+  "comment": "",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "Skip this move",
+  "comment": "",
+  "files": [
+   "ChairPlayerView",
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "Stand behind your chair. Hold on if you need to.",
+  "comment": "",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "Starting in %lld",
+  "comment": "",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "Starting in %lld seconds",
+  "comment": "",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "Tap +1 each time you stand",
+  "comment": "",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "Time left: %@",
+  "comment": "A timer that shows the remaining time for a move. The text is read aloud as \"Time left: 00:40\".",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "Wait",
+  "comment": "",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "%@ moved for %@ today, on the way to %@.",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "%@ of moving today, on the way to %@.",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "%@ walked %@ today.",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "%@. You showed up, and that's the hardest part.",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "+%@",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "A %@ walk today.",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "Good call to stop.",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "Lovely walk!",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "Lovely walk, %@!",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "Nice and easy, %@.",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "Nice and easy.",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "Sapling",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "Seed",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "Sprout",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "That's your first walk!",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "Today still counts. Rest now, and take it easy.",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "Tree",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "You did it!",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "You did it, %@!",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "You made it to %@!",
+  "comment": "",
+  "files": [
+   "CompleteContent",
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "on your journey",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "the next stop",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "walked",
+  "comment": "",
+  "files": [
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "Do it again",
+  "comment": "",
+  "files": [
+   "CompleteView"
+  ]
+ },
+ {
+  "key": "Every minute you move takes you further on your journey.",
+  "comment": "",
+  "files": [
+   "CompleteView"
+  ]
+ },
+ {
+  "key": "Got it. We'll adjust tomorrow.",
+  "comment": "A message that appears when the user selects a feeling.",
+  "files": [
+   "CompleteView"
+  ]
+ },
+ {
+  "key": "How did that feel?",
+  "comment": "A question asking the user how they felt about a workout.",
+  "files": [
+   "CompleteView"
+  ]
+ },
+ {
+  "key": "Just right",
+  "comment": "",
+  "files": [
+   "CompleteView",
+   "SessionHistoryItem"
+  ]
+ },
+ {
+  "key": "New postcard",
+  "comment": "A label describing a new postcard.",
+  "files": [
+   "CompleteView"
+  ]
+ },
+ {
+  "key": "Open",
+  "comment": "",
+  "files": [
+   "CompleteView"
+  ]
+ },
+ {
+  "key": "Too easy",
+  "comment": "",
+  "files": [
+   "CompleteView",
+   "SessionHistoryItem"
+  ]
+ },
+ {
+  "key": "Too hard",
+  "comment": "",
+  "files": [
+   "CompleteView",
+   "SessionHistoryItem"
+  ]
+ },
+ {
+  "key": "You reached %@. Your tree grows with every active day.",
+  "comment": "",
+  "files": [
+   "CompleteView"
+  ]
+ },
+ {
+  "key": "Your route is saved in Apple Health.",
+  "comment": "",
+  "files": [
+   "CompleteView"
+  ]
+ },
+ {
+  "key": "moving",
+  "comment": "",
+  "files": [
+   "CompleteView"
+  ]
+ },
+ {
+  "key": "Getting your session ready",
+  "comment": "A description of the screen that appears when the app is loading.",
+  "files": [
+   "CoverView"
+  ]
+ },
+ {
+  "key": "Maybe later",
+  "comment": "",
+  "files": [
+   "CoverView",
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "No thanks",
+  "comment": "",
+  "files": [
+   "CoverView"
+  ]
+ },
+ {
+  "key": "Plans aren't available right now.",
+  "comment": "A message displayed when the user can't purchase a subscription.",
+  "files": [
+   "CoverView"
+  ]
+ },
+ {
+  "key": "Remind me",
+  "comment": "",
+  "files": [
+   "CoverView"
+  ]
+ },
+ {
+  "key": "Want a reminder?",
+  "comment": "",
+  "files": [
+   "CoverView"
+  ]
+ },
+ {
+  "key": "You can start with the free plan and look again later in Me.",
+  "comment": "A description of the paywall.",
+  "files": [
+   "CoverView"
+  ]
+ },
+ {
+  "key": "Your first walk waits on Today. We can nudge you once a day, at a moment you choose.",
+  "comment": "",
+  "files": [
+   "CoverView"
+  ]
+ },
+ {
+  "key": "Earlier time",
+  "comment": "",
+  "files": [
+   "DailyMomentPicker"
+  ]
+ },
+ {
+  "key": "Later time",
+  "comment": "",
+  "files": [
+   "DailyMomentPicker"
+  ]
+ },
+ {
+  "key": "One gentle reminder a day, at:",
+  "comment": "",
+  "files": [
+   "DailyMomentPicker"
+  ]
+ },
+ {
+  "key": "Reminder time",
+  "comment": "The label of the time picker in the DailyMomentPicker.",
+  "files": [
+   "DailyMomentPicker"
+  ]
+ },
+ {
+  "key": "What's a good moment for your daily walk?",
+  "comment": "A heading for the daily moment picker.",
+  "files": [
+   "DailyMomentPicker",
+   "PermissionsView"
+  ]
+ },
+ {
+  "key": "End",
+  "comment": "",
+  "files": [
+   "EndSessionButton"
+  ]
+ },
+ {
+  "key": "End session",
+  "comment": "",
+  "files": [
+   "EndSessionButton",
+   "WorkoutView",
+   "WalkPlayerView"
+  ]
+ },
+ {
+  "key": "Watch on your TV",
+  "comment": "",
+  "files": [
+   "FullScreenVideoView",
+   "MoveGuidance"
+  ]
+ },
+ {
+  "key": "Exit full screen",
+  "comment": "",
+  "files": [
+   "InterfaceOrientation"
+  ]
+ },
+ {
+  "key": "Full screen",
+  "comment": "",
+  "files": [
+   "InterfaceOrientation"
+  ]
+ },
+ {
+  "key": "Coming next: Route 66",
+  "comment": "A description of the next journeys to come.",
+  "files": [
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "Done",
+  "comment": "",
+  "files": [
+   "JourneyListView",
+   "PermissionsView",
+   "CompleteView"
+  ]
+ },
+ {
+  "key": "First leg free · to %@",
+  "comment": "",
+  "files": [
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "I walked to %@ with Gentle Walk.",
+  "comment": "",
+  "files": [
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "In progress",
+  "comment": "A label for a journey that's currently being followed.",
+  "files": [
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "More journeys coming",
+  "comment": "A title displayed below the list of journeys.",
+  "files": [
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "Share",
+  "comment": "A button that shares the user's location.",
+  "files": [
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "Start %@?",
+  "comment": "",
+  "files": [
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "Start this journey",
+  "comment": "A button text that appears on the card for a journey that is not yet started.",
+  "files": [
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "The first leg, to %@, is free.",
+  "comment": "",
+  "files": [
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "Where to next?",
+  "comment": "",
+  "files": [
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "You finished a whole route. Pick your next one.",
+  "comment": "",
+  "files": [
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "Your %@ progress stays saved, and you can come back any time.",
+  "comment": "",
+  "files": [
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "%@, not reached yet",
+  "comment": "A button that opens a postcard.",
+  "files": [
+   "JourneyMapView"
+  ]
+ },
+ {
+  "key": "%@, part of Gentle Walk Pro",
+  "comment": "VoiceOver label for a locked stop on the map. The argument is the stop's name.",
+  "files": [
+   "JourneyMapView"
+  ]
+ },
+ {
+  "key": "Map of %@",
+  "comment": "A map of a journey. The argument is the name of the journey.",
+  "files": [
+   "JourneyMapView"
+  ]
+ },
+ {
+  "key": "Next stop: %@",
+  "comment": "VoiceOver label for the next stop on the map. The argument is the stop's name.",
+  "files": [
+   "JourneyMapView",
+   "JourneyView"
+  ]
+ },
+ {
+  "key": "Postcard: %@",
+  "comment": "A button that opens a postcard.",
+  "files": [
+   "JourneyMapView"
+  ]
+ },
+ {
+  "key": "You are here, %@",
+  "comment": "VoiceOver label for her marker on the map. The argument is a distance.",
+  "files": [
+   "JourneyMapView"
+  ]
+ },
+ {
+  "key": "You · %@",
+  "comment": "",
+  "files": [
+   "JourneyMapView"
+  ]
+ },
+ {
+  "key": "%@ of %@",
+  "comment": "",
+  "files": [
+   "JourneyRouteList",
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "%@ to go",
+  "comment": "",
+  "files": [
+   "JourneyRouteList"
+  ]
+ },
+ {
+  "key": "Next stop",
+  "comment": "Label above the next stop's name on the Journey screen.",
+  "files": [
+   "JourneyRouteList"
+  ]
+ },
+ {
+  "key": "Reach it at %@",
+  "comment": "",
+  "files": [
+   "JourneyRouteList"
+  ]
+ },
+ {
+  "key": "Reached",
+  "comment": "",
+  "files": [
+   "JourneyRouteList"
+  ]
+ },
+ {
+  "key": "Reached %@",
+  "comment": "",
+  "files": [
+   "JourneyRouteList"
+  ]
+ },
+ {
+  "key": "Start today's session",
+  "comment": "",
+  "files": [
+   "JourneyRouteList"
+  ]
+ },
+ {
+  "key": "The route",
+  "comment": "Heading of the list of every stop on the journey.",
+  "files": [
+   "JourneyRouteList"
+  ]
+ },
+ {
+  "key": "With Gentle Walk Pro · at %@",
+  "comment": "",
+  "files": [
+   "JourneyRouteList"
+  ]
+ },
+ {
+  "key": "You walked the whole route.",
+  "comment": "A message displayed when a user has completed a journey.",
+  "files": [
+   "JourneyRouteList"
+  ]
+ },
+ {
+  "key": "A shorter, gentle version of the real route. Every minute you move takes you further.",
+  "comment": "",
+  "files": [
+   "JourneyView"
+  ]
+ },
+ {
+  "key": "All journeys",
+  "comment": "",
+  "files": [
+   "JourneyView",
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "Not now",
+  "comment": "",
+  "files": [
+   "JourneyView",
+   "JourneyListView",
+   "PermissionsView",
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Outdoor walks count their real distance.",
+  "comment": "",
+  "files": [
+   "JourneyView"
+  ]
+ },
+ {
+  "key": "You walked the free leg. The rest of this route comes with Gentle Walk Pro, and your distance keeps counting.",
+  "comment": "",
+  "files": [
+   "JourneyView"
+  ]
+ },
+ {
+  "key": "Journey",
+  "comment": "",
+  "files": [
+   "MainTabView"
+  ]
+ },
+ {
+  "key": "Anything we should go easy on?",
+  "comment": "",
+  "files": [
+   "MeSections",
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "Appearance",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Apple Health",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Auto follows your iPhone: light by day, dark at night if you've set it.",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Cancel it",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Captions",
+  "comment": "",
+  "files": [
+   "MeSections",
+   "SoundControls"
+  ]
+ },
+ {
+  "key": "Change",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Coming soon",
+  "comment": "A placeholder text for a feature that is not yet implemented.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Connect Apple Health",
+  "comment": "",
+  "files": [
+   "MeSections",
+   "ProgressScreen",
+   "PermissionsView"
+  ]
+ },
+ {
+  "key": "Connected",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Contact us",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Delete all your data?",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Delete everything",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Display",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Distance",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Edit",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Free plan: a walk each weekday, the New York journey, and the first leg of every other journey.",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Free trial · ends %@",
+  "comment": "A subscription card for a free trial that ends on a specific date.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Free trial · ends %@, then %@ a year",
+  "comment": "The yearly price is optional.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Gentle Walk Pro · renews %@",
+  "comment": "A subscription that renews on a specific date.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Gentle Walk is for general fitness. It isn't medical advice.",
+  "comment": "A disclaimer for the Terms and Conditions page.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Height",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Help",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "How to cancel",
+  "comment": "",
+  "files": [
+   "MeSections",
+   "TodayView"
+  ]
+ },
+ {
+  "key": "Journeys and outdoor walks use your distance unit. Gentle Walk doesn't ask for your weight or height; these are for wherever they appear.",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Keep my data",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Language",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Language and units",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Larger text",
+  "comment": "A button to increase the text size.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Lifetime access · no renewals",
+  "comment": "A description of a user's subscription that indicates they have lifetime access to the app.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Location is off for Gentle Walk on this iPhone.",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Music",
+  "comment": "A toggle for the user to turn on or off music in a workout.",
+  "files": [
+   "MeSections",
+   "SoundControls",
+   "WorkoutSafetyBar"
+  ]
+ },
+ {
+  "key": "Not connected",
+  "comment": "A label displayed when the user's Apple Health is not connected.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Nothing to go easy on",
+  "comment": "A message displayed when a user has no body limits.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "OK",
+  "comment": "",
+  "files": [
+   "MeSections",
+   "StoreNotice"
+  ]
+ },
+ {
+  "key": "Only while you walk. Stays on this phone.",
+  "comment": "A description of the location-based outdoor walks feature.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Outdoor walks",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Privacy",
+  "comment": "A heading for the privacy policy.",
+  "files": [
+   "MeSections",
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "Reduce motion follows your iPhone setting in Settings → Accessibility.",
+  "comment": "A description of the reduce motion setting.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Rest days: %@",
+  "comment": "A label that says \"Rest days: ...\" and then the names of the days that are selected. The list of days is generated by the `names` function.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Restore purchase",
+  "comment": "",
+  "files": [
+   "MeSections",
+   "WelcomeView"
+  ]
+ },
+ {
+  "key": "Save",
+  "comment": "",
+  "files": [
+   "MeSections",
+   "NotificationSection"
+  ]
+ },
+ {
+  "key": "See Pro plans",
+  "comment": "",
+  "files": [
+   "MeSections",
+   "TodayView",
+   "JourneyView"
+  ]
+ },
+ {
+  "key": "Smaller text",
+  "comment": "A description of a button that shrinks text.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Sound and captions",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Subscription",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Terms of Use",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Text size",
+  "comment": "A label for the text size settings.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "This removes your answers, sessions, journey progress and settings from this phone. It can't be undone.",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Turn on in Settings",
+  "comment": "",
+  "files": [
+   "MeSections",
+   "SystemPermission"
+  ]
+ },
+ {
+  "key": "Use location for outdoor walks",
+  "comment": "A toggle that lets the user choose whether to use location for outdoor walks.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Voice louder than music",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "We'll only show moves that fit.",
+  "comment": "",
+  "files": [
+   "MeSections",
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "Weight",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Workouts already saved in Apple Health stay there. You can remove them in the Health app.",
+  "comment": "A description of the data that is not deleted when the user deletes their data.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Your %@ plan still renews on %@",
+  "comment": "A sentence that describes a user's subscription to a product, including the product name and the date when the subscription will renew. The first argument is the product name. The second argument is the formatted date when the subscription will renew.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Your body",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Your subscription is not affected. Manage it in Settings.",
+  "comment": "A description of the effect of deleting data on the user's subscription.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Your week",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "monthly",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "yearly",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "App",
+  "comment": "",
+  "files": [
+   "MeView"
+  ]
+ },
+ {
+  "key": "Delete all my data",
+  "comment": "",
+  "files": [
+   "MeView"
+  ]
+ },
+ {
+  "key": "During a session",
+  "comment": "",
+  "files": [
+   "MeView"
+  ]
+ },
+ {
+  "key": "Me",
+  "comment": "",
+  "files": [
+   "MeView",
+   "MainTabView"
+  ]
+ },
+ {
+  "key": "Phone and Health",
+  "comment": "",
+  "files": [
+   "MeView"
+  ]
+ },
+ {
+  "key": "Your plan",
+  "comment": "",
+  "files": [
+   "MeView",
+   "PlanReadyView"
+  ]
+ },
+ {
+  "key": "Choose your TV, then turn your phone on its side.",
+  "comment": "",
+  "files": [
+   "MoveGuidance"
+  ]
+ },
+ {
+  "key": "Got it",
+  "comment": "",
+  "files": [
+   "MoveGuidance"
+  ]
+ },
+ {
+  "key": "Last move",
+  "comment": "",
+  "files": [
+   "MoveGuidance"
+  ]
+ },
+ {
+  "key": "Next: %@",
+  "comment": "",
+  "files": [
+   "MoveGuidance"
+  ]
+ },
+ {
+  "key": "Sound",
+  "comment": "Title of the Sound sheet and label of the speaker button in the players.",
+  "files": [
+   "MoveGuidance",
+   "SoundControls"
+  ]
+ },
+ {
+  "key": "Swipe down from the top-right corner of your phone.",
+  "comment": "",
+  "files": [
+   "MoveGuidance"
+  ]
+ },
+ {
+  "key": "Tap Screen Mirroring: the two overlapping rectangles.",
+  "comment": "",
+  "files": [
+   "MoveGuidance"
+  ]
+ },
+ {
+  "key": "Works with a TV that supports AirPlay. The coach's voice plays on the TV too.",
+  "comment": "",
+  "files": [
+   "MoveGuidance"
+  ]
+ },
+ {
+  "key": "Easier",
+  "comment": "",
+  "files": [
+   "MoveOptionsRow"
+  ]
+ },
+ {
+  "key": "Easier version",
+  "comment": "A label for the \"Easier\" button.",
+  "files": [
+   "MoveOptionsRow"
+  ]
+ },
+ {
+  "key": "Harder",
+  "comment": "",
+  "files": [
+   "MoveOptionsRow"
+  ]
+ },
+ {
+  "key": "Harder version",
+  "comment": "A label for the \"Harder\" button.",
+  "files": [
+   "MoveOptionsRow"
+  ]
+ },
+ {
+  "key": "Hide tips",
+  "comment": "",
+  "files": [
+   "MoveOptionsRow"
+  ]
+ },
+ {
+  "key": "Show tips",
+  "comment": "",
+  "files": [
+   "MoveOptionsRow"
+  ]
+ },
+ {
+  "key": "Tips",
+  "comment": "",
+  "files": [
+   "MoveOptionsRow"
+  ]
+ },
+ {
+  "key": "Calm acoustic",
+  "comment": "",
+  "files": [
+   "MusicLibrary"
+  ]
+ },
+ {
+  "key": "Feel-good 70s and 80s",
+  "comment": "",
+  "files": [
+   "MusicLibrary"
+  ]
+ },
+ {
+  "key": "Upbeat pop",
+  "comment": "",
+  "files": [
+   "MusicLibrary"
+  ]
+ },
+ {
+  "key": "Rest today",
+  "comment": "",
+  "files": [
+   "NotificationScheduler"
+  ]
+ },
+ {
+  "key": "Start walk",
+  "comment": "",
+  "files": [
+   "NotificationScheduler"
+  ]
+ },
+ {
+  "key": "Change time",
+  "comment": "",
+  "files": [
+   "NotificationSection"
+  ]
+ },
+ {
+  "key": "Daily",
+  "comment": "",
+  "files": [
+   "NotificationSection"
+  ]
+ },
+ {
+  "key": "How often",
+  "comment": "",
+  "files": [
+   "NotificationSection"
+  ]
+ },
+ {
+  "key": "New journeys",
+  "comment": "",
+  "files": [
+   "NotificationSection"
+  ]
+ },
+ {
+  "key": "Notifications",
+  "comment": "",
+  "files": [
+   "NotificationSection"
+  ]
+ },
+ {
+  "key": "Occasional news about new routes.",
+  "comment": "A description of the new journeys notification.",
+  "files": [
+   "NotificationSection"
+  ]
+ },
+ {
+  "key": "Only if I haven't moved",
+  "comment": "",
+  "files": [
+   "NotificationSection"
+  ]
+ },
+ {
+  "key": "Walk reminder",
+  "comment": "A label for the user's walk reminder.",
+  "files": [
+   "NotificationSection"
+  ]
+ },
+ {
+  "key": "Weekly recap",
+  "comment": "",
+  "files": [
+   "NotificationSection"
+  ]
+ },
+ {
+  "key": "When I reach a new postcard",
+  "comment": "",
+  "files": [
+   "NotificationSection"
+  ]
+ },
+ {
+  "key": "A little tired, but I can talk",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "After lunch",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "After my morning coffee",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "During evening TV",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Easy",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Easy on hips",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Easy on knees",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Easy on lower back",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Easy on shoulders",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Every move has a seated version. If something hurts, one tap swaps it for an easier one.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Everything starts seated, and moves are filtered for your joints.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Feel steadier on my feet",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Fine",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Gentle on replaced joints",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Get up from chairs more easily",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Hard, but I can",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Have more energy",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Hips",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "I can do several flights",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "I can't get down on the floor",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "I exercise regularly",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "I get dizzy easily",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "I got bored after a few weeks",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "I mostly sit",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "I walk most days",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "I was charged when I didn't expect it",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "I'm busy looking after others",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "I'm not sure where to start",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Joint replacement",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Keep up with the grandkids",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Knees",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Lose some weight",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Lower back",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Move with less pain",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "My joints hurt",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "No floor moves",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "No jumping",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Not possible right now",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Pick a time",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Sessions are 5 to 10 minutes, at the moment of the day you choose.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Short standing parts",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Short walks sometimes",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Shoulders",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Sore knees don't mean you can't move.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Standing for long is hard",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Steady, no quick turns",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Too out of breath to talk",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Videos go too fast",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Videos went too fast? Here a calm voice sets the pace, and you can pause anytime.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "We start you at the right level and adjust after every session.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "You can do it with your phone in your pocket. Just follow the voice.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "You'll see your billing date today, get a reminder before it, and can cancel anytime from Me.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Your week mixes walks, chair moves and stretches, and your journey keeps moving.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Part 1 of 3 · Your goal",
+  "comment": "",
+  "files": [
+   "OnboardingFlow"
+  ]
+ },
+ {
+  "key": "Part 2 of 3 · About you",
+  "comment": "",
+  "files": [
+   "OnboardingFlow"
+  ]
+ },
+ {
+  "key": "Part 3 of 3 · Your body",
+  "comment": "",
+  "files": [
+   "OnboardingFlow"
+  ]
+ },
+ {
+  "key": "Pick at least one.",
+  "comment": "",
+  "files": [
+   "OnboardingFlow"
+  ]
+ },
+ {
+  "key": "Pick one to continue.",
+  "comment": "",
+  "files": [
+   "OnboardingFlow"
+  ]
+ },
+ {
+  "key": "Back",
+  "comment": "",
+  "files": [
+   "OnboardingView",
+   "PauseButton",
+   "CancelGuideView",
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "Continue",
+  "comment": "",
+  "files": [
+   "OnboardingView",
+   "PaywallModel",
+   "PhonePlacementView",
+   "PaywallLegalFooter",
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "See my options",
+  "comment": "",
+  "files": [
+   "OnboardingView",
+   "PlanReadyView"
+  ]
+ },
+ {
+  "key": "Finding GPS…",
+  "comment": "",
+  "files": [
+   "OutdoorLiveMap"
+  ]
+ },
+ {
+  "key": "Recenter",
+  "comment": "",
+  "files": [
+   "OutdoorLiveMap"
+  ]
+ },
+ {
+  "key": "Tracking your walk",
+  "comment": "",
+  "files": [
+   "OutdoorLiveMap"
+  ]
+ },
+ {
+  "key": "distance",
+  "comment": "",
+  "files": [
+   "OutdoorLiveMap"
+  ]
+ },
+ {
+  "key": "min per km",
+  "comment": "",
+  "files": [
+   "OutdoorLiveMap"
+  ]
+ },
+ {
+  "key": "min per mile",
+  "comment": "",
+  "files": [
+   "OutdoorLiveMap"
+  ]
+ },
+ {
+  "key": "time",
+  "comment": "",
+  "files": [
+   "OutdoorLiveMap"
+  ]
+ },
+ {
+  "key": "Before you head out",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "Just count my steps",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "On hot days, walk early or late and rest in the shade. Stop if you feel dizzy or unwell.",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "One ear free to hear traffic",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "Phone charged",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "Sturdy shoes",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "Use my location",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "Want a map of your walk?",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "Water with you",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "With your location on, we can measure your distance and show your route afterwards. It's only used while you're walking and stays on this phone.",
+  "comment": "A description of the map feature that shows your route and distance.",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "Pause",
+  "comment": "A label for the pause button.",
+  "files": [
+   "PauseButton"
+  ]
+ },
+ {
+  "key": "Resume",
+  "comment": "A label for the resume button.",
+  "files": [
+   "PauseButton",
+   "WalkPlayerView"
+  ]
+ },
+ {
+  "key": "Skip",
+  "comment": "",
+  "files": [
+   "PauseButton",
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "Gentle Walk keeps everything on this phone.",
+  "comment": "A description of the app's privacy policy.",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "If you connect Apple Health, we read your step count to show it in Progress and save your workouts to Health. Health data never leaves your phone through us.",
+  "comment": "A description of how the app uses Apple Health.",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "Next, Apple will ask you to confirm.",
+  "comment": "A description of the next step in the Apple purchase process.",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "Or keep the free plan: a walk each weekday and the New York journey.",
+  "comment": "",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "Outdoor walks use your location only while you walk, to measure distance and draw your route. The route stays on this phone and in Apple Health if you allow it.",
+  "comment": "A description of how the app uses location when the user is outdoors.",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "Purchases are handled by Apple. We never see your payment details.",
+  "comment": "A description of how the app handles purchases.",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "Restore",
+  "comment": "",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "Terms",
+  "comment": "",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "We don't have accounts, servers, ads or tracking. We don't collect or sell your data.",
+  "comment": "A description of the app's privacy policy.",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "You can delete everything at any time in Me → Delete all my data.",
+  "comment": "A description of the data that can be deleted from the app.",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "You won't be charged today.",
+  "comment": "A description of the free trial period.",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "Your answers, workouts, pain reports and journey progress are stored only on this phone and are not backed up to iCloud by the app.",
+  "comment": "A description of the data that is stored on the user's device.",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "%@ a month",
+  "comment": "",
+  "files": [
+   "PaywallModel",
+   "CaptureServices"
+  ]
+ },
+ {
+  "key": "%@ a year",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "%@ charged today, one time. No renewals.",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "%@ charged today, then every month. %@",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "%@ charged today, then every year. %@",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "%@ once",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Free for 14 days, then %@ a year from %@. %@",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Gentle Walk Pro",
+  "comment": "The name of the subscription.",
+  "files": [
+   "PaywallModel",
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Gentle Walk Pro: free for 14 days",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Monthly",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "One payment",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Renews automatically unless you cancel at least 24 hours before the renewal date.",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Start free trial",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Yearly",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "%@  %@",
+  "comment": "A title and detail for a step in a timeline. The argument is the title, the second argument is the detail.",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "4 more journeys, with more coming",
+  "comment": "",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "All chair, balance and stretch sessions",
+  "comment": "",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "All walking levels and weekly plans",
+  "comment": "",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "Billed %@ unless you cancel",
+  "comment": "",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "Cancel anytime in Settings. Deleting the app doesn't cancel.",
+  "comment": "A description of the cancellation policy.",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "Day 12",
+  "comment": "",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "Full access, no charge",
+  "comment": "",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "Includes 14 days free",
+  "comment": "A note that a subscription includes 14 days of free trial.",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "We'll remind you",
+  "comment": "",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "Your current plan keeps renewing until you cancel it.",
+  "comment": "A warning that appears when the user's current plan is set to renew.",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "Yours to keep, no renewals",
+  "comment": "A description of a lifetime plan.",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "**One message a day at most**, never on rest days or days you've moved.",
+  "comment": "A description of the benefits of allowing daily reminders.",
+  "files": [
+   "PermissionsView"
+  ]
+ },
+ {
+  "key": "Allow reminders",
+  "comment": "",
+  "files": [
+   "PermissionsView"
+  ]
+ },
+ {
+  "key": "Apple Health connected",
+  "comment": "",
+  "files": [
+   "PermissionsView"
+  ]
+ },
+ {
+  "key": "Next, Apple asks what to share: tap **Turn On All**, then **Allow**. Or tap **Don't Allow** to skip.",
+  "comment": "",
+  "files": [
+   "PermissionsView"
+  ]
+ },
+ {
+  "key": "Progress shows your all-day steps. **Your journey moves with or without it.** Your data stays on this phone.",
+  "comment": "A description of the benefits of connecting Apple Health.",
+  "files": [
+   "PermissionsView"
+  ]
+ },
+ {
+  "key": "Reminders on",
+  "comment": "",
+  "files": [
+   "PermissionsView"
+  ]
+ },
+ {
+  "key": "See your everyday steps",
+  "comment": "",
+  "files": [
+   "PermissionsView"
+  ]
+ },
+ {
+  "key": "Two quick things",
+  "comment": "",
+  "files": [
+   "PermissionsView"
+  ]
+ },
+ {
+  "key": "Best for walking.",
+  "comment": "",
+  "files": [
+   "PhonePlacementView"
+  ]
+ },
+ {
+  "key": "Great if you have no pockets. We can count your stand-ups.",
+  "comment": "",
+  "files": [
+   "PhonePlacementView"
+  ]
+ },
+ {
+  "key": "Held to my chest",
+  "comment": "",
+  "files": [
+   "PhonePlacementView"
+  ]
+ },
+ {
+  "key": "In my pocket",
+  "comment": "",
+  "files": [
+   "PhonePlacementView"
+  ]
+ },
+ {
+  "key": "Just listen and follow along.",
+  "comment": "",
+  "files": [
+   "PhonePlacementView"
+  ]
+ },
+ {
+  "key": "On the table",
+  "comment": "",
+  "files": [
+   "PhonePlacementView"
+  ]
+ },
+ {
+  "key": "So the voice knows how to guide you.",
+  "comment": "",
+  "files": [
+   "PhonePlacementView"
+  ]
+ },
+ {
+  "key": "Where will your phone be?",
+  "comment": "",
+  "files": [
+   "PhonePlacementView"
+  ]
+ },
+ {
+  "key": "Your screen can lock. The voice keeps going.",
+  "comment": "",
+  "files": [
+   "PhonePlacementView"
+  ]
+ },
+ {
+  "key": "2 rest days a week · starting %@",
+  "comment": "A description of the user's walking plan, including the number of minutes per day, the number of rest days, and the starting level.",
+  "files": [
+   "PlanReadyView"
+  ]
+ },
+ {
+  "key": "5–10 min a day",
+  "comment": "The text of the first line of the plan card.",
+  "files": [
+   "PlanReadyView"
+  ]
+ },
+ {
+  "key": "Day 1: first walk · 5 min · seated",
+  "comment": "The text of the first day of the week.",
+  "files": [
+   "PlanReadyView"
+  ]
+ },
+ {
+  "key": "Every walk in the app moves you along.",
+  "comment": "A description of the benefits of the first journey.",
+  "files": [
+   "PlanReadyView"
+  ]
+ },
+ {
+  "key": "Why this will work for you",
+  "comment": "A heading for the reasons why the plan will work for the user.",
+  "files": [
+   "PlanReadyView"
+  ]
+ },
+ {
+  "key": "With Gentle Walk Pro, your week mixes walks, chair moves and stretches.",
+  "comment": "",
+  "files": [
+   "PlanReadyView"
+  ]
+ },
+ {
+  "key": "Your first journey: Central Park to Brooklyn Bridge",
+  "comment": "The title of the first journey.",
+  "files": [
+   "PlanReadyView"
+  ]
+ },
+ {
+  "key": "Your plan, %@",
+  "comment": "",
+  "files": [
+   "PlanReadyView"
+  ]
+ },
+ {
+  "key": "^[%lld active day](inflect: true)",
+  "comment": "",
+  "files": [
+   "Plural"
+  ]
+ },
+ {
+  "key": "^[%lld minute](inflect: true)",
+  "comment": "",
+  "files": [
+   "Plural"
+  ]
+ },
+ {
+  "key": "^[%lld session](inflect: true)",
+  "comment": "",
+  "files": [
+   "Plural"
+  ]
+ },
+ {
+  "key": "active day",
+  "comment": "",
+  "files": [
+   "Plural"
+  ]
+ },
+ {
+  "key": "active days",
+  "comment": "",
+  "files": [
+   "Plural"
+  ]
+ },
+ {
+  "key": "Pro",
+  "comment": "",
+  "files": [
+   "ProBadge"
+  ]
+ },
+ {
+  "key": "Pro, locked",
+  "comment": "A description of the Pro badge.",
+  "files": [
+   "ProBadge",
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "%@ a day this week",
+  "comment": "A label that shows the average number of steps taken by the user each day this week. The number is formatted to a more readable number, e.g. 10,000.",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Active",
+  "comment": "A description of a day that is active.",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Active day",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "All-day steps",
+  "comment": "A title for a card that shows the user's average daily steps from Apple Health.",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "An active day is any day you finish a session.",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Connect Apple Health to see your everyday steps. Your journey doesn't need Health: it moves with your minutes here.",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Do a chair session to see this grow.",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Everyday wins",
+  "comment": "A heading for a list of user-selected achievements.",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Last week: %@ a day",
+  "comment": "A label showing the average number of steps taken by a user on a given day in the past week.",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Longest walk without a break",
+  "comment": "A title for the longest walk without a break.",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Most sit-to-stands in one session, by week",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Progress",
+  "comment": "",
+  "files": [
+   "ProgressScreen",
+   "MainTabView"
+  ]
+ },
+ {
+  "key": "Rest day",
+  "comment": "A description of a day off from work.",
+  "files": [
+   "ProgressScreen",
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Shows the sessions of that day",
+  "comment": "Accessibility hint for a button that opens a day's sessions.",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Sit-to-stands",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Tick the ones you can do now.",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Week",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "^[%lld year ring](inflect: true)",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Getting up from a chair without using your hands is…",
+  "comment": "",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "How active are you now?",
+  "comment": "",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "If you have a heart condition, recent surgery or you've been told to limit exercise, check with your doctor first.",
+  "comment": "",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "Next, a few questions about your day.",
+  "comment": "A description of the next section of the onboarding flow.",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "Noted. We'll start you somewhere comfortable.",
+  "comment": "",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "Pick any that fit. No judgment.",
+  "comment": "",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "Pick up to 2.",
+  "comment": "",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "What should we call you?",
+  "comment": "",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "What would you like from this?",
+  "comment": "",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "What's made it hard before?",
+  "comment": "",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "You can pick 2. Tap one to change it.",
+  "comment": "",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "Your name",
+  "comment": "The title of the text field for the user's name.",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "name.example",
+  "comment": "Example first name in the empty name field; a common name in each language.",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "Do them now",
+  "comment": "",
+  "files": [
+   "RouteMapView"
+  ]
+ },
+ {
+  "key": "Later",
+  "comment": "",
+  "files": [
+   "RouteMapView"
+  ]
+ },
+ {
+  "key": "Map of today's walk",
+  "comment": "The accessibility label for the map of the user's route.",
+  "files": [
+   "RouteMapView"
+  ]
+ },
+ {
+  "key": "You'll find them later in All sessions.",
+  "comment": "",
+  "files": [
+   "RouteMapView"
+  ]
+ },
+ {
+  "key": "Your chair moves for today · %lld min",
+  "comment": "",
+  "files": [
+   "RouteMapView"
+  ]
+ },
+ {
+  "key": "Close",
+  "comment": "",
+  "files": [
+   "ScreenHeader",
+   "JourneyListView",
+   "PaywallLegalFooter",
+   "WorkoutView",
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "Add %@ to favourites",
+  "comment": "A spoken label that says what the heart does.",
+  "files": [
+   "SessionCard"
+  ]
+ },
+ {
+  "key": "Remove %@ from favourites",
+  "comment": "A spoken label that says what the heart does.",
+  "files": [
+   "SessionCard"
+  ]
+ },
+ {
+  "key": "Cool-down",
+  "comment": "",
+  "files": [
+   "SessionHistoryItem"
+  ]
+ },
+ {
+  "key": "Outdoor walk",
+  "comment": "",
+  "files": [
+   "SessionHistoryItem"
+  ]
+ },
+ {
+  "key": "Stretch",
+  "comment": "",
+  "files": [
+   "SessionHistoryItem"
+  ]
+ },
+ {
+  "key": "Walk",
+  "comment": "",
+  "files": [
+   "SessionHistoryItem"
+  ]
+ },
+ {
+  "key": "Finish a session to see it here.",
+  "comment": "A description of the text that appears when the user has no sessions.",
+  "files": [
+   "SessionHistoryViews"
+  ]
+ },
+ {
+  "key": "Recent sessions",
+  "comment": "The title of the section that shows the user's recent sessions.",
+  "files": [
+   "SessionHistoryViews"
+  ]
+ },
+ {
+  "key": "See all",
+  "comment": "A button label that opens the full list of sessions.",
+  "files": [
+   "SessionHistoryViews",
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "See all sessions",
+  "comment": "A button that opens a list of all the user's sessions.",
+  "files": [
+   "SessionHistoryViews",
+   "TodayView",
+   "TodayCards",
+   "SwapSessionSheet"
+  ]
+ },
+ {
+  "key": "See all sessions, with Gentle Walk Pro",
+  "comment": "A button label that opens the full list of sessions, with the Pro badge.",
+  "files": [
+   "SessionHistoryViews"
+  ]
+ },
+ {
+  "key": "Your sessions",
+  "comment": "",
+  "files": [
+   "SessionHistoryViews"
+  ]
+ },
+ {
+  "key": "Balance",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request",
+   "SessionHistoryItem"
+  ]
+ },
+ {
+  "key": "Commercial break walk",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Gentle chair moves",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Gentle seated stretch",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Gentle standing stretch",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Longer walk",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Morning stretch",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Seated stretch",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Session",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Short extras",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request",
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Standing stretch",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Stretches",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Stronger chair moves",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Walks",
+  "comment": "",
+  "files": [
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Gentle Walk",
+  "comment": "A button that shares the user's location with family.",
+  "files": [
+   "ShareCardRenderer"
+  ]
+ },
+ {
+  "key": "Share with family",
+  "comment": "A button title that opens a share sheet.",
+  "files": [
+   "ShareCardRenderer"
+  ]
+ },
+ {
+  "key": "Coach's voice",
+  "comment": "",
+  "files": [
+   "SoundControls"
+  ]
+ },
+ {
+  "key": "Move introductions",
+  "comment": "Sound: switch for the coach saying each chair move's name and purpose.",
+  "files": [
+   "SoundControls"
+  ]
+ },
+ {
+  "key": "Move introductions change from your next session.",
+  "comment": "Sound sheet footnote.",
+  "files": [
+   "SoundControls"
+  ]
+ },
+ {
+  "key": "The coach says each chair move's name and what it helps with. Turn off once you know them.",
+  "comment": "Sound: explanation under Move introductions.",
+  "files": [
+   "SoundControls"
+  ]
+ },
+ {
+  "key": "Couldn't reach the App Store",
+  "comment": "",
+  "files": [
+   "StoreNotice"
+  ]
+ },
+ {
+  "key": "Couldn't start the session",
+  "comment": "",
+  "files": [
+   "StoreNotice"
+  ]
+ },
+ {
+  "key": "Everything is deleted from this phone. You can start again whenever you like.",
+  "comment": "",
+  "files": [
+   "StoreNotice"
+  ]
+ },
+ {
+  "key": "No purchases found",
+  "comment": "",
+  "files": [
+   "StoreNotice"
+  ]
+ },
+ {
+  "key": "Please check your connection and try again.",
+  "comment": "",
+  "files": [
+   "StoreNotice"
+  ]
+ },
+ {
+  "key": "Please try again. If it keeps happening, restart the app.",
+  "comment": "",
+  "files": [
+   "StoreNotice"
+  ]
+ },
+ {
+  "key": "Purchase restored",
+  "comment": "",
+  "files": [
+   "StoreNotice"
+  ]
+ },
+ {
+  "key": "Waiting for approval",
+  "comment": "",
+  "files": [
+   "StoreNotice"
+  ]
+ },
+ {
+  "key": "We couldn't find a purchase for this Apple Account.",
+  "comment": "",
+  "files": [
+   "StoreNotice"
+  ]
+ },
+ {
+  "key": "Your data is deleted",
+  "comment": "",
+  "files": [
+   "StoreNotice"
+  ]
+ },
+ {
+  "key": "Your plan is back on this iPhone.",
+  "comment": "",
+  "files": [
+   "StoreNotice"
+  ]
+ },
+ {
+  "key": "Your purchase will start as soon as it's approved.",
+  "comment": "",
+  "files": [
+   "StoreNotice"
+  ]
+ },
+ {
+  "key": "Cool-down · %lld of %lld",
+  "comment": "",
+  "files": [
+   "StretchPlayerModel"
+  ]
+ },
+ {
+  "key": "Left side",
+  "comment": "",
+  "files": [
+   "StretchPlayerModel"
+  ]
+ },
+ {
+  "key": "Right side",
+  "comment": "",
+  "files": [
+   "StretchPlayerModel"
+  ]
+ },
+ {
+  "key": "Stretch %lld of %lld",
+  "comment": "",
+  "files": [
+   "StretchPlayerModel"
+  ]
+ },
+ {
+  "key": "Breathe in… and out.",
+  "comment": "A description of the breathing animation.",
+  "files": [
+   "StretchPlayerView"
+  ]
+ },
+ {
+  "key": "Breathe with the circle",
+  "comment": "",
+  "files": [
+   "StretchPlayerView"
+  ]
+ },
+ {
+  "key": "It still counts for today.",
+  "comment": "",
+  "files": [
+   "SwapSessionSheet"
+  ]
+ },
+ {
+  "key": "Try something else today",
+  "comment": "",
+  "files": [
+   "SwapSessionSheet"
+  ]
+ },
+ {
+  "key": "Reminders are off on this iPhone.",
+  "comment": "",
+  "files": [
+   "SystemPermission"
+  ]
+ },
+ {
+  "key": "Hip",
+  "comment": "",
+  "files": [
+   "ThisHurtsModel"
+  ]
+ },
+ {
+  "key": "Knee",
+  "comment": "",
+  "files": [
+   "ThisHurtsModel"
+  ]
+ },
+ {
+  "key": "Shoulder",
+  "comment": "",
+  "files": [
+   "ThisHurtsModel"
+  ]
+ },
+ {
+  "key": "Somewhere else",
+  "comment": "",
+  "files": [
+   "ThisHurtsModel"
+  ]
+ },
+ {
+  "key": "body.back",
+  "comment": "Body area chip on This hurts: the back.",
+  "files": [
+   "ThisHurtsModel"
+  ]
+ },
+ {
+  "key": "Chest pain, feeling faint or very short of breath? Stop now and call emergency services.",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "I'm okay, go back",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "Let's take care of that.",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "Show an easier version",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "Skip this part",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "Slow down to an easy walk",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "Stop for today",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "We'll remember this and adjust your plan. Today still counts.",
+  "comment": "A description of the impact of skipping a move.",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "Where does it hurt? (optional)",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "%@, done",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "%@, rest day",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Connect",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Count your steps automatically",
+  "comment": "A title for a card that asks the user to allow the app to count their steps.",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Grey dots are days still open.",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Just on quiet days",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Keep them daily",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Next, Apple asks what to share: tap “Turn On All”, then “Allow”. Or tap “Don’t Allow” to skip.",
+  "comment": "A description of the next step in the user's health data consent process.",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Short sessions for any moment. Each one counts as an active day.",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Today",
+  "comment": "",
+  "files": [
+   "TodayCards",
+   "PaywallView",
+   "MainTabView"
+  ]
+ },
+ {
+  "key": "We made today a little shorter. Build up at your pace.",
+  "comment": "A description of a Today card that says that the user's day was shortened.",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "We moved you back to %@ for now.",
+  "comment": "A message that says the user has been moved back to a lower exercise level.",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "You're doing this on your own now. Want fewer reminders?",
+  "comment": "A prompt asking the user if they want fewer reminders.",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "You've mentioned %@ pain 3 times this week. We've switched you to seated moves. Consider checking with your doctor.",
+  "comment": "A body text that explains why the user is being moved to seated exercises.",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Your journey · %@",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "ankle",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "back",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "hip",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "knee",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "neck",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "shoulder",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "some",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "%@ of %@ · %@ to %@",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "%@ of %@ · free leg walked",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "%@ this week · %lld rest days are part of the plan",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Done for today",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Free walk of the day · %lld min",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Gentle restart · %lld min",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Good afternoon",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Good afternoon, %@",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Good evening",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Good evening, %@",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Good morning",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Good morning, %@",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "In place · march on the spot",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Just %lld minutes: a gentle seated walk",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "On your walking pad",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Rest days are part of the plan.",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Seated · march in your chair",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Today counts as an active day.",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Welcome back, %@. Your journey is right where you left it.",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Welcome back. Your journey is right where you left it.",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Your first walk · %lld min",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Achy",
+  "comment": "",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
+  "key": "Great",
+  "comment": "",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
+  "key": "How do your joints feel today?",
+  "comment": "A heading for the check-in row.",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
+  "key": "Okay",
+  "comment": "",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
+  "key": "Pick a different session",
+  "comment": "",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
+  "key": "Start",
+  "comment": "",
+  "files": [
+   "TodayView",
+   "JourneyRouteList",
+   "JourneyListView"
+  ]
+ },
+ {
+  "key": "Today's session is still here if you'd like it",
+  "comment": "",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
+  "key": "You'll be billed %@ unless you cancel.",
+  "comment": "A subtext under the main text in a trial-ending card. The argument is the price of the yearly subscription.",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
+  "key": "Your free trial ends on %@.",
+  "comment": "A card that informs the user that their free trial is ending and that they can manage their subscription. The date is dynamic and depends on the current date.",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
+  "key": "Your trial has ended",
+  "comment": "A message displayed when the user's trial has ended.",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
+  "key": "%lld of %lld active days to %@",
+  "comment": "",
+  "files": [
+   "TreeMilestone"
+  ]
+ },
+ {
+  "key": "%lld of %lld active days to the next ring",
+  "comment": "",
+  "files": [
+   "TreeMilestone"
+  ]
+ },
+ {
+  "key": "Centimeters (cm)",
+  "comment": "",
+  "files": [
+   "UnitPreferences"
+  ]
+ },
+ {
+  "key": "Feet (ft)",
+  "comment": "",
+  "files": [
+   "UnitPreferences"
+  ]
+ },
+ {
+  "key": "Kilograms (kg)",
+  "comment": "",
+  "files": [
+   "UnitPreferences"
+  ]
+ },
+ {
+  "key": "Kilometers",
+  "comment": "",
+  "files": [
+   "UnitPreferences"
+  ]
+ },
+ {
+  "key": "Miles",
+  "comment": "",
+  "files": [
+   "UnitPreferences"
+  ]
+ },
+ {
+  "key": "Pounds (lb)",
+  "comment": "",
+  "files": [
+   "UnitPreferences"
+  ]
+ },
+ {
+  "key": "Video",
+  "comment": "",
+  "files": [
+   "VideoBadge"
+  ]
+ },
+ {
+  "key": "With video",
+  "comment": "VoiceOver label for the Video badge on a session card.",
+  "files": [
+   "VideoBadge",
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "%@ · %@",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "BRISK WALK",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "COOL-DOWN",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "Cool-down · %@ left in total",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "EASY WALK",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "GET READY",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "Next: %@ · %@",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "QUICKER",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "Round %lld of %lld · %@ left in total",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "WARM-UP",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "Walking home at your pace",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "Warm-up · %@ left in total",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "brisk walk",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "cool-down",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "easy walk",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "left in this part",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel",
+   "WalkPlayerView"
+  ]
+ },
+ {
+  "key": "quicker",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "walking home",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "warm-up",
+  "comment": "",
+  "files": [
+   "WalkPlayerModel"
+  ]
+ },
+ {
+  "key": "%@ walked",
+  "comment": "",
+  "files": [
+   "WalkPlayerView",
+   "SessionHistoryItem"
+  ]
+ },
+ {
+  "key": "In place",
+  "comment": "",
+  "files": [
+   "WalkPlayerView"
+  ]
+ },
+ {
+  "key": "Location on",
+  "comment": "",
+  "files": [
+   "WalkPlayerView"
+  ]
+ },
+ {
+  "key": "Paused",
+  "comment": "The title of the paused overlay.",
+  "files": [
+   "WalkPlayerView"
+  ]
+ },
+ {
+  "key": "Time left in this part: %@",
+  "comment": "A label for the accessibility element representing the time left in the current phase. The argument is the time left in the current phase.",
+  "files": [
+   "WalkPlayerView"
+  ]
+ },
+ {
+  "key": "5 minutes is enough to start",
+  "comment": "",
+  "files": [
+   "WelcomeView"
+  ]
+ },
+ {
+  "key": "Every move has a seated version",
+  "comment": "",
+  "files": [
+   "WelcomeView"
+  ]
+ },
+ {
+  "key": "Follow the voice, no need to watch",
+  "comment": "",
+  "files": [
+   "WelcomeView"
+  ]
+ },
+ {
+  "key": "Gentle walks and chair moves, at your pace.",
+  "comment": "A description of the benefits of Gentle.",
+  "files": [
+   "WelcomeView"
+  ]
+ },
+ {
+  "key": "Let's begin",
+  "comment": "",
+  "files": [
+   "WelcomeView"
+  ]
+ },
+ {
+  "key": "Get ready",
+  "comment": "Title of the 3-2-1 countdown before a session starts.",
+  "files": [
+   "WorkoutCountdownView"
+  ]
+ },
+ {
+  "key": "Go",
+  "comment": "Last step of the 3-2-1 countdown before a session starts.",
+  "files": [
+   "WorkoutCountdownView"
+  ]
+ },
+ {
+  "key": "Skip the countdown",
+  "comment": "",
+  "files": [
+   "WorkoutCountdownView"
+  ]
+ },
+ {
+  "key": "%@ · %lld min",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel",
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "%lld reps",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "%lld sec",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "%lld sec each side",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Chair moves · %lld min",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel",
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Cool-down and stretches",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Cool-down stretch",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Cool-down walk",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Easy and brisk rounds",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Easy and quicker rounds",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Gentle stretch · %lld min",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel",
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Gentle walk · %lld min",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel",
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Picked for a “Great” day.",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Picked for an “Achy” day.",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Picked for an “Okay” day.",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Seated, with a chair to hold on to.",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Standing, holding the chair.",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Steady walk · %lld min",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel",
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Strong walk · %lld min",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel",
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Walking moves",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Warm-up march",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Warm-up stroll",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Warm-up walk",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "After your walk, you can do your chair moves at home from All sessions.",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "How will you walk today?",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "In a chair",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "In a chair · suggested for you",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "Indoors",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "Outdoors",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "Remind me at %@",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "Seated",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView",
+   "WalkPlayerView"
+  ]
+ },
+ {
+  "key": "Standing, holding the chair",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "Standing, on the spot",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "Standing, on the spot · suggested for you",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "Start now",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "Swap",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "Swap %@",
+  "comment": "A button that swaps the exercise in a workout. The label is a copy of the exercise title.",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "Walking pad",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewView",
+   "WalkPlayerView"
+  ]
+ },
+ {
+  "key": "Where are you walking today?",
+  "comment": "A title for a view that lets the user choose where they're walking.",
+  "files": [
+   "WorkoutPreviewView"
+  ]
+ },
+ {
+  "key": "%lld min · %@",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "3, 2, 1",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Follow the voice",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Gentle stretches",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView",
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Have ready",
+  "comment": "The title of the Have ready section.",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "I'm ready",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "In pocket",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Not yet",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "On chest",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "On table",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Pause anytime",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Phone: %@",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Room to move",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Sturdy chair",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Then",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Up next",
+  "comment": "A label displayed above the \"Up next\" section of a workout.",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Water",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "With your chair",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView",
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "You'll find it later in All sessions.",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Your first walk",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Your first walk waits for you on Today.",
+  "comment": "",
+  "files": [
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Chair moves",
+  "comment": "",
+  "files": [
+   "WorkoutRequest",
+   "SessionPreset+Request",
+   "SessionHistoryItem"
+  ]
+ },
+ {
+  "key": "First walk",
+  "comment": "",
+  "files": [
+   "WorkoutRequest",
+   "SessionHistoryItem"
+  ]
+ },
+ {
+  "key": "Gentle stretch",
+  "comment": "",
+  "files": [
+   "WorkoutRequest"
+  ]
+ },
+ {
+  "key": "Gentle walk",
+  "comment": "",
+  "files": [
+   "WorkoutRequest",
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Steady walk",
+  "comment": "",
+  "files": [
+   "WorkoutRequest",
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Strong walk",
+  "comment": "",
+  "files": [
+   "WorkoutRequest",
+   "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Break",
+  "comment": "",
+  "files": [
+   "WorkoutSafetyBar"
+  ]
+ },
+ {
+  "key": "Off",
+  "comment": "A word that describes the state of a voice.",
+  "files": [
+   "WorkoutSafetyBar"
+  ]
+ },
+ {
+  "key": "On",
+  "comment": "A word that describes the state of a voice.",
+  "files": [
+   "WorkoutSafetyBar"
+  ]
+ },
+ {
+  "key": "This hurts",
+  "comment": "",
+  "files": [
+   "WorkoutSafetyBar"
+  ]
+ },
+ {
+  "key": "Voice",
+  "comment": "",
+  "files": [
+   "WorkoutSafetyBar"
+  ]
+ },
+ {
+  "key": "End this session?",
+  "comment": "",
+  "files": [
+   "WorkoutView"
+  ]
+ },
+ {
+  "key": "It's under a minute, so nothing will be saved.",
+  "comment": "",
+  "files": [
+   "WorkoutView"
+  ]
+ },
+ {
+  "key": "Keep going",
+  "comment": "",
+  "files": [
+   "WorkoutView"
+  ]
+ },
+ {
+  "key": "No problem.",
+  "comment": "Shown when a session is ended in under a minute: nothing was saved.",
+  "files": [
+   "WorkoutView"
+  ]
+ },
+ {
+  "key": "Nothing was saved. Come back whenever you like.",
+  "comment": "Under-a-minute session: nothing saved, no pressure.",
+  "files": [
+   "WorkoutView"
+  ]
+ },
+ {
+  "key": "Paused while your phone was busy.",
+  "comment": "",
+  "files": [
+   "WorkoutView"
+  ]
+ },
+ {
+  "key": "Your progress so far is saved.",
+  "comment": "",
+  "files": [
+   "WorkoutView"
+  ]
+ }
+]

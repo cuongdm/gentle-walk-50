@@ -30,6 +30,7 @@ struct BreakView: View {
                     .accessibilityLabel(Text("Break time \(Duration.seconds(seconds).formatted(.units(allowed: [.minutes, .seconds])))"))
             }
             Text("Take as long as you need.").typeRole(.body).foregroundStyle(Palette.text)
+            UrgentSignsNote()
             Spacer(minLength: 0)
             Button("I'm ready to continue", action: onContinue).buttonStyle(.primaryAction)
             if isOutdoors {

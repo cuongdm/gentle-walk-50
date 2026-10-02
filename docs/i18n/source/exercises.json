@@ -1,0 +1,413 @@
+{
+ "wk.march": {
+  "name": "March",
+  "purpose": "For keeping up on family walks",
+  "tips": [
+   "Stand or sit tall, eyes ahead",
+   "Lift one foot, set it down softly",
+   "Arms swing, or hands rest on thighs"
+  ],
+  "easier": "Just lift your heels, toes stay down",
+  "harder": "Knees a little higher, arms press forward",
+  "limitNotes": {
+   "jointReplacement": "Keep your knees well below your hips"
+  }
+ },
+ "wk.heel-dig": {
+  "name": "Heel dig",
+  "purpose": "For stepping over doorsteps",
+  "tips": [
+   "Heel down in front, toes up",
+   "Bring the foot back, then switch",
+   "Upper body stays tall and still"
+  ],
+  "easier": "Slow it down, same small reach",
+  "harder": "Switch feet a little quicker"
+ },
+ "wk.side-step": {
+  "name": "Side step",
+  "purpose": "For moving around the kitchen",
+  "tips": [
+   "Step out to the side, then together",
+   "Knees soft, toes point forward",
+   "Hips stay level, eyes ahead"
+  ],
+  "easier": "Small steps, hands on your hips",
+  "harder": "Wider steps, arms open to the sides",
+  "limitNotes": {
+   "dizzy": "Small steps, close to your chair"
+  }
+ },
+ "wk.knee-lift": {
+  "name": "Knee lift",
+  "purpose": "For stepping into the car",
+  "tips": [
+   "Hold the chair or seat lightly",
+   "Knee no higher than your hip",
+   "Foot points forward, body tall"
+  ],
+  "easier": "Lift lower, hand on the chair",
+  "harder": "Touch the knee with the opposite hand",
+  "limitNotes": {
+   "jointReplacement": "Knees stay clearly below your hips"
+  }
+ },
+ "wk.toe-tap": {
+  "name": "Toe tap forward",
+  "purpose": "For crossing the street",
+  "tips": [
+   "Tap your toes out in front",
+   "Knee stays a little bent",
+   "Stay tall, don't lean back"
+  ],
+  "easier": "Tap a little closer to you",
+  "harder": "A low kick, knee never locked",
+  "limitNotes": {
+   "knees": "Tap only, no kicks"
+  }
+ },
+ "wk.heel-back": {
+  "name": "Heel to back",
+  "purpose": "For walking up hills",
+  "tips": [
+   "Hold the chair, stand tall",
+   "Bring your heel back and up",
+   "Knee points down, don't lean forward"
+  ],
+  "easier": "Lift your heel only a little",
+  "harder": "Hands off the chair, if you feel steady",
+  "limitNotes": {
+   "jointReplacement": "Bend only as far as feels comfortable"
+  }
+ },
+ "wk.shift": {
+  "name": "Weight shift",
+  "purpose": "For standing steady in line",
+  "tips": [
+   "Feet a little wider than your hips",
+   "Shift your weight side to side",
+   "Knees stay over your toes"
+  ],
+  "easier": "Hold the chair as you shift",
+  "harder": "Let the other heel lift a little"
+ },
+ "wk.arms": {
+  "name": "Arm swing / press",
+  "purpose": "For carrying the groceries in",
+  "tips": [
+   "Swing your arms, elbows soft",
+   "Or press forward at shoulder height",
+   "Shoulders stay down and relaxed"
+  ],
+  "easier": "Keep your hands below your shoulders",
+  "harder": "Press up and out at an angle",
+  "limitNotes": {
+   "shoulders": "Keep your hands below shoulder height"
+  }
+ },
+ "mv.sit-to-stand": {
+  "name": "Sit-to-stand",
+  "purpose": "For getting up from chairs",
+  "tips": [
+   "Feet flat, hip-width apart",
+   "Lean forward, nose over toes",
+   "Use your hands on the chair if you need to"
+  ],
+  "easier": "Push up with your hands on the chair",
+  "harder": "Arms crossed, sit down on a slow count of three"
+ },
+ "mv.knee-lift": {
+  "name": "Seated knee lift",
+  "purpose": "For every step you take",
+  "tips": [
+   "Hold the sides of your seat",
+   "Sit tall, don't lean back",
+   "Lift, then set down softly"
+  ],
+  "easier": "Just lift your heel, toes stay down",
+  "harder": "Lift a little higher and swing the opposite arm"
+ },
+ "mv.leg-ext": {
+  "name": "Seated leg extension",
+  "purpose": "For climbing stairs",
+  "tips": [
+   "Hold the sides of your seat",
+   "Leg points straight ahead",
+   "Lower it slowly"
+  ],
+  "easier": "Straighten your leg only halfway",
+  "harder": "Hold it up for a count of three"
+ },
+ "mv.heel-toe": {
+  "name": "Heel and toe raises",
+  "purpose": "For reaching a high shelf",
+  "tips": [
+   "Feet flat to start",
+   "Lift heels, then lower",
+   "Now lift toes, heels stay down"
+  ],
+  "easier": "Heels only, small lifts",
+  "harder": "Stand behind your chair and rise onto your toes"
+ },
+ "mv.wall-push": {
+  "name": "Wall push-up",
+  "purpose": "For pushing doors and lifting bags",
+  "tips": [
+   "Hands flat at shoulder height",
+   "Body straight, like a plank",
+   "Heels stay on the floor"
+  ],
+  "easier": "Stand closer, bend your elbows just a bit",
+  "harder": "Step your feet back a little"
+ },
+ "mv.single-leg": {
+  "name": "Single-leg stand",
+  "purpose": "For steadier balance",
+  "tips": [
+   "Hold the chair with both hands",
+   "Look at one spot ahead",
+   "Lift your foot just a little"
+  ],
+  "easier": "Lift only your heel, toes stay down",
+  "harder": "Hold on with just one hand"
+ },
+ "mv.side-leg": {
+  "name": "Side leg raise",
+  "purpose": "For getting out of the car",
+  "tips": [
+   "Hold the chair back with both hands",
+   "Lift about a hand's height, toes forward",
+   "Stay tall, no leaning to the side"
+  ],
+  "easier": "A smaller lift, both hands on the chair",
+  "harder": "Hold on with just one hand",
+  "limitNotes": {
+   "jointReplacement": "A small lift, toes and knee face forward"
+  }
+ },
+ "mv.back-leg": {
+  "name": "Back leg raise",
+  "purpose": "For stepping up onto curbs",
+  "tips": [
+   "Stand tall, hands on the chair",
+   "Leg moves straight back, toes down",
+   "Don't lean forward or arch your back"
+  ],
+  "easier": "A smaller lift, just off the floor",
+  "harder": "Pause at the top for a moment",
+  "limitNotes": {
+   "lowerBack": "A small lift, no arching your back"
+  }
+ },
+ "mv.knee-curl": {
+  "name": "Knee curl",
+  "purpose": "For stepping into the bathtub",
+  "tips": [
+   "Hands on the chair, stand tall",
+   "Bring your heel up behind you",
+   "Knee points down, thigh stays still"
+  ],
+  "easier": "Bend your knee only a little",
+  "harder": "Hands off the chair, if you feel steady",
+  "limitNotes": {
+   "jointReplacement": "Bend only as far as feels comfortable"
+  }
+ },
+ "mv.mini-squat": {
+  "name": "Mini-squat",
+  "purpose": "For lowering into a chair",
+  "tips": [
+   "Both hands on the chair, feet hip-width",
+   "Sit back a little, heels stay down",
+   "Knees point forward, not past your toes"
+  ],
+  "easier": "Just a small bend at the knees",
+  "harder": "Lower on a slow count of three",
+  "limitNotes": {
+   "knees": "Halfway only, stop if your heels lift"
+  }
+ },
+ "mv.arm-raise": {
+  "name": "Arm raises",
+  "purpose": "For putting dishes away",
+  "tips": [
+   "Sit tall, feet flat",
+   "Raise your arms to shoulder height",
+   "Elbows soft, shoulders stay down"
+  ],
+  "easier": "Lift only partway, below your shoulders",
+  "harder": "Pause at the top, or reach overhead",
+  "limitNotes": {
+   "shoulders": "Only up to shoulder height"
+  }
+ },
+ "mv.row": {
+  "name": "Seated row",
+  "purpose": "For pulling open heavy doors",
+  "tips": [
+   "Arms out in front, palms facing in",
+   "Pull your elbows back past your ribs",
+   "Squeeze your shoulder blades together"
+  ],
+  "easier": "Pull back only halfway",
+  "harder": "Hold the squeeze for a count of two"
+ },
+ "st.neck-turn": {
+  "name": "Neck turn",
+  "purpose": "For looking over your shoulder",
+  "tips": [
+   "Chin level, shoulders down",
+   "Only as far as is comfortable"
+  ],
+  "easier": "Turn halfway, eyes open, move slowly"
+ },
+ "st.neck-tilt": {
+  "name": "Side of the neck",
+  "purpose": "For a looser neck",
+  "tips": [
+   "Hand on the opposite shoulder",
+   "Ear toward shoulder, no pulling"
+  ],
+  "easier": "Tilt a little, skip the hand on the shoulder"
+ },
+ "st.chin-tuck": {
+  "name": "Chin tuck",
+  "purpose": "For after reading or screen time",
+  "tips": [
+   "Glide your head straight back",
+   "Eyes level, don't look up"
+  ],
+  "easier": "A smaller glide, just a few times"
+ },
+ "st.shoulder-roll": {
+  "name": "Shoulder rolls",
+  "purpose": "For shoulders after a busy day",
+  "tips": [
+   "Roll up, back, then down, slowly",
+   "Head still, hands on your thighs"
+  ],
+  "easier": "Make the circles smaller",
+  "limitNotes": {
+   "shoulders": "Make small, slow circles"
+  }
+ },
+ "st.chest": {
+  "name": "Chest and shoulders",
+  "purpose": "For sitting tall",
+  "tips": [
+   "Shoulders back and down",
+   "Chest forward and up, gently"
+  ],
+  "easier": "Hands resting on your hips instead of arms out"
+ },
+ "st.upper-back": {
+  "name": "Upper back reach",
+  "purpose": "For reaching across the table",
+  "tips": [
+   "Arms forward, palms facing away",
+   "Reach forward, lower back stays tall"
+  ],
+  "easier": "Keep your hands a little lower",
+  "limitNotes": {
+   "lowerBack": "Back stays straight, just reach your arms"
+  }
+ },
+ "st.twist": {
+  "name": "Upper back twist",
+  "purpose": "For turning to reach for things",
+  "tips": [
+   "Arms crossed, hands on shoulders",
+   "Turn from the chest, hips stay still"
+  ],
+  "easier": "Turn a small way, head in line with your body"
+ },
+ "st.side": {
+  "name": "Side stretch",
+  "purpose": "For reaching up and across",
+  "tips": [
+   "Sit tall, feet flat",
+   "Reach up and over, or slide your hand down"
+  ],
+  "easier": "Arm by your side, lean a little"
+ },
+ "st.thigh": {
+  "name": "Back of the thigh",
+  "purpose": "For easier bending and walking",
+  "tips": [
+   "Heel down, toes up",
+   "Lean forward from the hips, back long"
+  ],
+  "easier": "Keep the knee a little bent, lean only a little"
+ },
+ "st.ankle": {
+  "name": "Ankle circles and points",
+  "purpose": "For steadier steps",
+  "tips": [
+   "Hold the side of the seat",
+   "Point your toes away, then back"
+  ],
+  "easier": "Keep your heel on the floor, just lift and lower your toes"
+ },
+ "st.calf": {
+  "name": "Calf stretch",
+  "purpose": "For comfortable walking",
+  "tips": [
+   "Both feet flat, back heel down",
+   "Hold the chair the whole time"
+  ],
+  "easier": "Shorter step back, back knee a little bent"
+ },
+ "st.overhead": {
+  "name": "Overhead reach at the wall",
+  "purpose": "For reaching the top cupboard",
+  "tips": [
+   "Walk your hands up the wall",
+   "Heels down, don't arch your back"
+  ],
+  "easier": "Stop when your hands reach eye level",
+  "limitNotes": {
+   "shoulders": "Reach only to eye level",
+   "standingIsHard": "Sit tall and reach up instead"
+  }
+ },
+ "bl.tandem": {
+  "name": "Tandem stance",
+  "purpose": "For narrow aisles and hallways",
+  "tips": [
+   "Hold the chair the whole time",
+   "Front heel touches your back toes",
+   "Knees soft, eyes straight ahead"
+  ],
+  "easier": "Front foot a little to the side",
+  "harder": "Just your fingertips on the chair",
+  "limitNotes": {
+   "jointReplacement": "Feet stay in line, never crossing over",
+   "dizzy": "Both hands on the chair"
+  }
+ },
+ "bl.side-walk": {
+  "name": "Sideways walking",
+  "purpose": "For getting through crowded rooms",
+  "tips": [
+   "Step to the side, feet together",
+   "Toes point forward, hips level",
+   "Stay near a counter or wall"
+  ],
+  "easier": "Smaller steps, one hand on the counter",
+  "harder": "Slightly bigger steps, same slow pace",
+  "limitNotes": {
+   "dizzy": "Small steps, one hand on the counter"
+  }
+ },
+ "bl.heel-toe-walk": {
+  "name": "Heel-to-toe walk",
+  "purpose": "For garden paths and trails",
+  "tips": [
+   "Fingertips on the wall beside you",
+   "Heel lands right in front of toes",
+   "Eyes ahead, one slow step at a time"
+  ],
+  "easier": "Leave a small gap between steps",
+  "harder": "A few more steps, same slow pace"
+ }
+}

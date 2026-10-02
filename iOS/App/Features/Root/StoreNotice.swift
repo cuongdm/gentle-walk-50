@@ -6,6 +6,8 @@ enum StoreNotice: Equatable, Sendable {
     case restored, nothingToRestore, failed, pending
     /// The session's audio could not be put together.
     case sessionFailed
+    /// Me → Delete all my data: done (it dropped her on Welcome without a word; review 02/10/2026).
+    case dataDeleted
 
     var title: LocalizedStringResource {
         switch self {
@@ -14,6 +16,7 @@ enum StoreNotice: Equatable, Sendable {
         case .failed: "Couldn't reach the App Store"
         case .pending: "Waiting for approval"
         case .sessionFailed: "Couldn't start the session"
+        case .dataDeleted: "Your data is deleted"
         }
     }
 
@@ -24,6 +27,7 @@ enum StoreNotice: Equatable, Sendable {
         case .failed: "Please check your connection and try again."
         case .pending: "Your purchase will start as soon as it's approved."
         case .sessionFailed: "Please try again. If it keeps happening, restart the app."
+        case .dataDeleted: "Everything is deleted from this phone. You can start again whenever you like."
         }
     }
 }

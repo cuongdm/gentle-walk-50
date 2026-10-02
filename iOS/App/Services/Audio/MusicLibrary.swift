@@ -23,9 +23,9 @@ struct MusicLibrary: Equatable, Sendable {
 
     /// Style ids in display order with their names; the first one that has tracks is the default.
     static let knownStyles: [(id: String, name: String)] = [
-        ("feelGood", "Feel-good 70s and 80s"),
-        ("calm", "Calm acoustic"),
-        ("upbeat", "Upbeat pop"),
+        ("feelGood", String(localized: "Feel-good 70s and 80s")),
+        ("calm", String(localized: "Calm acoustic")),
+        ("upbeat", String(localized: "Upbeat pop")),
     ]
 
     private(set) var styles: [MusicStyle]

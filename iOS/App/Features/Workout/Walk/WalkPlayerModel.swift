@@ -61,11 +61,39 @@ enum PhaseTone: Equatable, Sendable { case ready, easy, brisk }
         }
     }
 
-    /// Time left in this phase, "02:14" (the biggest number on screen).
-    var clock: String { Self.clock(player.remainingInPhase) }
+    /// Back: to the start of this part, or the part before if it just started (as on the chair player).
+    func back() {
+        let phases = player.timeline.phases
+        guard let current = phases.last(where: { $0.start <= player.currentTime }) else { return player.seek(to: 0) }
+        if player.currentTime - current.start > 3 {
+            player.seek(to: current.start)
+        } else if let previous = phases.last(where: { $0.start < current.start }) {
+            player.seek(to: previous.start)
+        } else {
+            player.seek(to: 0)
+        }
+    }
+
+    /// Skip: on to the next part (a quicker part tiring her: the easy part comes next). Walking home
+    /// has no next part.
+    func skip() { player.skip() }
+
+    /// Walk home gently: an open-ended part with no end to count down to.
+    var isWalkingHome: Bool { player.currentPhase.map { !$0.end.isFinite } ?? false }
+
+    /// Time left in this phase, "02:14" (the biggest number on screen); walking home, the time since
+    /// she turned for home.
+    var clock: String {
+        guard isWalkingHome, let phase = player.currentPhase else { return Self.clock(player.remainingInPhase) }
+        return Self.clock(max(0, Int(player.currentTime - phase.start)))
+    }
+
+    /// Under the big clock.
+    var clockCaption: LocalizedStringResource { isWalkingHome ? "walking home" : "left in this part" }
 
     /// "Round 2 of 3 · 5:54 left", or "Warm-up · …" / "Cool-down · …" outside the rounds.
     var statusLine: String {
+        if isWalkingHome { return String(localized: "Walking home at your pace") }
         let left = Self.minutes(max(0, Int((player.timeline.total - player.currentTime).rounded(.up))))
         switch phaseKind {
         case .intro, .warmup:

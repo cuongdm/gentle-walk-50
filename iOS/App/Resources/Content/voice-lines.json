@@ -13356,6 +13356,69 @@
       ]
     },
     {
+      "id": "a7.stand.wait",
+      "text": "We'll start in ten seconds. Tap Wait if you need longer.",
+      "file": "a7.stand.wait.m4a",
+      "duration": 4.0,
+      "words": [
+        {
+          "word": "We'll",
+          "start": 0.0,
+          "end": 0.16
+        },
+        {
+          "word": "start",
+          "start": 0.24,
+          "end": 0.48
+        },
+        {
+          "word": "in",
+          "start": 0.56,
+          "end": 0.72
+        },
+        {
+          "word": "ten",
+          "start": 0.8,
+          "end": 0.96
+        },
+        {
+          "word": "seconds.",
+          "start": 1.12,
+          "end": 1.84
+        },
+        {
+          "word": "Tap",
+          "start": 2.08,
+          "end": 2.32
+        },
+        {
+          "word": "Wait",
+          "start": 2.4,
+          "end": 2.8
+        },
+        {
+          "word": "if",
+          "start": 2.88,
+          "end": 2.96
+        },
+        {
+          "word": "you",
+          "start": 3.04,
+          "end": 3.12
+        },
+        {
+          "word": "need",
+          "start": 3.2,
+          "end": 3.28
+        },
+        {
+          "word": "longer.",
+          "start": 3.36,
+          "end": 4.08
+        }
+      ]
+    },
+    {
       "id": "a7.stand.ready",
       "text": "Hold the chair the whole time. Only let go if you feel steady.",
       "file": "a7.stand.ready.m4a",

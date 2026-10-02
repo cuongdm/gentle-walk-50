@@ -19,7 +19,8 @@ struct JourneyProgressCard: View {
         .cardStyle()
     }
 
-    static func number(_ value: Double) -> String { value.formatted(.number.precision(.fractionLength(0...1))) }
+    /// Miles as a bare number in the user's unit ("1.8" of "5 mi").
+    static func number(_ value: Double) -> String { DistanceText.number(miles: value) }
 }
 
 /// The next postcard, softly shown, how far it is, a bar from the last stop, and "Start today's
@@ -68,6 +69,8 @@ struct RouteList: View {
     let journey: Journey
     let snapshot: JourneySnapshot
     let onPostcard: (Journey.Stop) -> Void
+    /// A Pro stop: the plans, like any locked content (it was a dead tap; review 02/10/2026).
+    var onLocked: () -> Void = {}
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -76,7 +79,8 @@ struct RouteList: View {
                 ForEach(Array(journey.stops.enumerated()), id: \.element.id) { index, stop in
                     RouteRow(stop: stop, status: snapshot.status(of: stop), isFirst: index == 0,
                              isLast: index == journey.stops.count - 1,
-                             lineDone: snapshot.status(of: journey.stops[min(index + 1, journey.stops.count - 1)]).isReached) {
+                             lineDone: snapshot.status(of: journey.stops[min(index + 1, journey.stops.count - 1)]).isReached,
+                             onLocked: onLocked) {
                         onPostcard(stop)
                     }
                 }
@@ -93,12 +97,17 @@ private struct RouteRow: View {
     let isLast: Bool
     /// The line down to the next stop is walked.
     let lineDone: Bool
+    var onLocked: () -> Void = {}
     let onOpen: () -> Void
 
     var body: some View {
         // Only a reached stop opens its postcard: the others are still a reward to walk to (review D36).
         if status.isReached {
             Button(action: onOpen) { row }
+                .buttonStyle(.plain)
+                .accessibilityElement(children: .combine)
+        } else if status == .locked {
+            Button(action: onLocked) { row }
                 .buttonStyle(.plain)
                 .accessibilityElement(children: .combine)
         } else {

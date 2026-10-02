@@ -31,6 +31,9 @@ public enum TimelineEditing {
             result.insertEditLine("a7.hurt.easier", at: time)
 
         case .skip(let spoken):
+            // Walking home has no end to skip to (an infinite cut broke the whole program and the
+            // app trapped; review 02/10/2026).
+            guard phase.end.isFinite else { return timeline }
             let cut = phase.end - time
             result.phases[index].end = time
             for k in result.phases.indices where k > index {
@@ -45,6 +48,7 @@ public enum TimelineEditing {
             if spoken { result.insertEditLine("a7.hurt.skip", at: time) }
 
         case .walkHomeGently:
+            guard !timeline.isOpenEnded else { return timeline }
             result.phases = Array(timeline.phases[..<index])
             if time > phase.start {
                 var done = phase

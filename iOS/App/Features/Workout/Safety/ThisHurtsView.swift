@@ -18,8 +18,10 @@ struct ThisHurtsView: View {
                 }
                 .buttonStyle(.primaryAction)
                 VStack(spacing: 4) {
-                    Button(model.isWalk ? "Skip this part" : "Skip this move") { Task { onDone(await model.skipMove()) } }
-                        .buttonStyle(.textLink)
+                    if model.canSkip {
+                        Button(model.isWalk ? "Skip this part" : "Skip this move") { Task { onDone(await model.skipMove()) } }
+                            .buttonStyle(.textLink)
+                    }
                     Button("Stop for today") { onDone(model.stopForToday()) }
                         .buttonStyle(.textLink)
                     // A mistaken tap: back to the session, nothing is recorded.
@@ -30,6 +32,7 @@ struct ThisHurtsView: View {
                 Text("We'll remember this and adjust your plan. Today still counts.")
                     .typeRole(.body)
                     .foregroundStyle(Palette.text)
+                UrgentSignsNote()
             }
             .padding(Metrics.screenMargin)
             .readableColumn()
@@ -100,5 +103,19 @@ struct FlowLayout: Layout {
             rows[rows.count - 1] = row
         }
         return rows
+    }
+}
+
+/// The signs that are not for an easier move: said on screen too, not only by the coach (review
+/// 02/10/2026). Safety guidance, not a medical claim.
+struct UrgentSignsNote: View {
+    var body: some View {
+        Label("Chest pain, feeling faint or very short of breath? Stop now and call emergency services.",
+              systemImage: "exclamationmark.triangle.fill")
+            .typeRole(.body)
+            .foregroundStyle(Palette.text)
+            .padding(12)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Palette.sun.opacity(0.18), in: .rect(cornerRadius: 14))
     }
 }

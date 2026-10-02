@@ -67,7 +67,8 @@ struct NameView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
             ScreenHeader(title: "What should we call you?")
-            TextField(text: $flow.nameText, prompt: Text(verbatim: "Margaret")) { Text("Your name") }
+            TextField(text: $flow.nameText, prompt: Text(LocalizedStringResource("name.example", defaultValue: "Margaret",
+                                                                                     comment: "Example first name in the empty name field; a common name in each language."))) { Text("Your name") }
                 .typeRole(.cardTitle)
                 .textContentType(.givenName)
                 .submitLabel(.continue)

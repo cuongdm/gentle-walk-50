@@ -1,0 +1,2492 @@
+{
+ "schemaVersion": 1,
+ "language": "vi",
+ "exercises": {
+  "wk.march": {
+   "name": "Bước tại chỗ",
+   "purpose": "Để theo kịp cả nhà khi đi dạo",
+   "tips": [
+    "Đứng hoặc ngồi thẳng, mắt nhìn phía trước",
+    "Nhấc một chân, đặt xuống nhẹ nhàng",
+    "Vung tay, hoặc đặt tay lên đùi"
+   ],
+   "easier": "Chỉ nhấc gót, mũi chân giữ trên sàn",
+   "harder": "Nâng gối cao hơn chút, đẩy tay ra trước",
+   "limitNotes": {
+    "jointReplacement": "Giữ gối thấp hẳn dưới hông"
+   }
+  },
+  "wk.heel-dig": {
+   "name": "Chạm gót",
+   "purpose": "Để bước qua bậc cửa",
+   "tips": [
+    "Đặt gót chân phía trước, mũi chân hướng lên",
+    "Thu chân về, rồi đổi chân",
+    "Thân trên giữ thẳng và yên"
+   ],
+   "easier": "Làm chậm lại, vẫn đưa chân ra gần",
+   "harder": "Đổi chân nhanh hơn một chút"
+  },
+  "wk.side-step": {
+   "name": "Bước sang ngang",
+   "purpose": "Để đi lại trong bếp",
+   "tips": [
+    "Bước sang ngang, rồi khép chân lại",
+    "Gối hơi chùng, mũi chân hướng về trước",
+    "Hông giữ ngang, mắt nhìn phía trước"
+   ],
+   "easier": "Bước nhỏ, tay chống hông",
+   "harder": "Bước rộng hơn, dang tay sang hai bên",
+   "limitNotes": {
+    "dizzy": "Bước nhỏ, ở gần ghế"
+   }
+  },
+  "wk.knee-lift": {
+   "name": "Nâng gối",
+   "purpose": "Để bước lên xe",
+   "tips": [
+    "Vịn nhẹ vào ghế hoặc mép ghế ngồi",
+    "Gối không cao quá hông",
+    "Bàn chân hướng về trước, người thẳng"
+   ],
+   "easier": "Nâng thấp hơn, tay vịn ghế",
+   "harder": "Chạm gối bằng tay bên kia",
+   "limitNotes": {
+    "jointReplacement": "Gối luôn thấp hẳn dưới hông"
+   }
+  },
+  "wk.toe-tap": {
+   "name": "Chạm mũi chân phía trước",
+   "purpose": "Để băng qua đường",
+   "tips": [
+    "Chạm mũi chân ra phía trước",
+    "Gối giữ hơi cong",
+    "Giữ người thẳng, không ngả ra sau"
+   ],
+   "easier": "Chạm gần người hơn một chút",
+   "harder": "Đá chân thấp, đừng duỗi cứng gối",
+   "limitNotes": {
+    "knees": "Chỉ chạm, không đá"
+   }
+  },
+  "wk.heel-back": {
+   "name": "Đá gót ra sau",
+   "purpose": "Để đi lên dốc",
+   "tips": [
+    "Vịn ghế, đứng thẳng",
+    "Đưa gót chân ra sau và lên cao",
+    "Gối hướng xuống, không cúi người"
+   ],
+   "easier": "Chỉ nhấc gót lên một chút",
+   "harder": "Buông tay khỏi ghế, nếu thấy vững",
+   "limitNotes": {
+    "jointReplacement": "Chỉ co gối đến mức thấy thoải mái"
+   }
+  },
+  "wk.shift": {
+   "name": "Chuyển trọng tâm",
+   "purpose": "Để đứng vững khi xếp hàng",
+   "tips": [
+    "Hai chân rộng hơn hông một chút",
+    "Dồn trọng tâm sang trái, sang phải",
+    "Gối giữ thẳng hàng với mũi chân"
+   ],
+   "easier": "Vịn ghế khi chuyển trọng tâm",
+   "harder": "Để gót chân bên kia nhấc lên nhẹ"
+  },
+  "wk.arms": {
+   "name": "Vung tay / đẩy tay",
+   "purpose": "Để xách đồ đi chợ về",
+   "tips": [
+    "Vung tay, khuỷu tay thả lỏng",
+    "Hoặc đẩy tay ra trước, ngang vai",
+    "Vai hạ xuống, thả lỏng"
+   ],
+   "easier": "Giữ tay thấp hơn vai",
+   "harder": "Đẩy tay chếch lên và ra ngoài",
+   "limitNotes": {
+    "shoulders": "Giữ tay thấp hơn tầm vai"
+   }
+  },
+  "mv.sit-to-stand": {
+   "name": "Ngồi xuống đứng lên",
+   "purpose": "Để đứng dậy khỏi ghế",
+   "tips": [
+    "Bàn chân đặt phẳng, rộng bằng hông",
+    "Nghiêng người ra trước, mũi ngay trên ngón chân",
+    "Chống tay lên ghế nếu cần"
+   ],
+   "easier": "Chống tay lên ghế để đẩy người đứng dậy",
+   "harder": "Khoanh tay, ngồi xuống thật chậm, đếm đến ba"
+  },
+  "mv.knee-lift": {
+   "name": "Nâng gối khi ngồi",
+   "purpose": "Cho từng bước chân",
+   "tips": [
+    "Vịn hai bên mép ghế",
+    "Ngồi thẳng, không ngả ra sau",
+    "Nâng lên, rồi đặt xuống nhẹ nhàng"
+   ],
+   "easier": "Chỉ nhấc gót, mũi chân giữ trên sàn",
+   "harder": "Nâng cao hơn chút và vung tay bên kia"
+  },
+  "mv.leg-ext": {
+   "name": "Duỗi chân khi ngồi",
+   "purpose": "Để leo cầu thang",
+   "tips": [
+    "Vịn hai bên mép ghế",
+    "Duỗi chân thẳng ra phía trước",
+    "Hạ chân xuống từ từ"
+   ],
+   "easier": "Chỉ duỗi chân nửa chừng",
+   "harder": "Giữ chân trên cao, đếm đến ba"
+  },
+  "mv.heel-toe": {
+   "name": "Nhón gót và nhón mũi",
+   "purpose": "Để với tới kệ cao",
+   "tips": [
+    "Bắt đầu với bàn chân đặt phẳng",
+    "Nhấc gót lên, rồi hạ xuống",
+    "Giờ nhấc mũi chân, gót giữ trên sàn"
+   ],
+   "easier": "Chỉ nhấc gót, nhấc thấp thôi",
+   "harder": "Đứng sau ghế và nhón lên mũi chân"
+  },
+  "mv.wall-push": {
+   "name": "Chống đẩy vào tường",
+   "purpose": "Để đẩy cửa và nhấc túi",
+   "tips": [
+    "Áp bàn tay vào tường, ngang vai",
+    "Người thẳng như một tấm ván",
+    "Gót chân giữ trên sàn"
+   ],
+   "easier": "Đứng gần tường hơn, chỉ gập khuỷu tay một chút",
+   "harder": "Lùi chân ra xa hơn một chút"
+  },
+  "mv.single-leg": {
+   "name": "Đứng một chân",
+   "purpose": "Để đứng vững hơn",
+   "tips": [
+    "Vịn ghế bằng cả hai tay",
+    "Nhìn vào một điểm phía trước",
+    "Chỉ nhấc chân lên một chút"
+   ],
+   "easier": "Chỉ nhấc gót, mũi chân giữ trên sàn",
+   "harder": "Chỉ vịn bằng một tay"
+  },
+  "mv.side-leg": {
+   "name": "Nâng chân sang ngang",
+   "purpose": "Để bước ra khỏi xe",
+   "tips": [
+    "Vịn lưng ghế bằng cả hai tay",
+    "Nâng cao khoảng một bàn tay, mũi chân hướng về trước",
+    "Giữ người thẳng, không nghiêng sang bên"
+   ],
+   "easier": "Nâng thấp hơn, hai tay vịn ghế",
+   "harder": "Chỉ vịn bằng một tay",
+   "limitNotes": {
+    "jointReplacement": "Nâng thấp, mũi chân và gối hướng về trước"
+   }
+  },
+  "mv.back-leg": {
+   "name": "Nâng chân ra sau",
+   "purpose": "Để bước lên lề đường",
+   "tips": [
+    "Đứng thẳng, tay vịn ghế",
+    "Đưa chân thẳng ra sau, mũi chân hướng xuống",
+    "Không cúi người hay ưỡn lưng"
+   ],
+   "easier": "Nâng thấp hơn, vừa rời khỏi sàn",
+   "harder": "Dừng một chút ở điểm cao nhất",
+   "limitNotes": {
+    "lowerBack": "Nâng thấp, không ưỡn lưng"
+   }
+  },
+  "mv.knee-curl": {
+   "name": "Co gối ra sau",
+   "purpose": "Để bước vào bồn tắm",
+   "tips": [
+    "Tay vịn ghế, đứng thẳng",
+    "Co gót chân lên phía sau",
+    "Gối hướng xuống, đùi giữ yên"
+   ],
+   "easier": "Chỉ co gối một chút",
+   "harder": "Buông tay khỏi ghế, nếu thấy vững",
+   "limitNotes": {
+    "jointReplacement": "Chỉ co gối đến mức thấy thoải mái"
+   }
+  },
+  "mv.mini-squat": {
+   "name": "Khuỵu gối nhẹ",
+   "purpose": "Để ngồi xuống ghế",
+   "tips": [
+    "Hai tay vịn ghế, chân rộng bằng hông",
+    "Đẩy hông ra sau một chút, gót giữ trên sàn",
+    "Gối hướng về trước, không vượt quá mũi chân"
+   ],
+   "easier": "Chỉ chùng gối một chút",
+   "harder": "Hạ người thật chậm, đếm đến ba",
+   "limitNotes": {
+    "knees": "Chỉ xuống nửa chừng, dừng lại nếu gót nhấc lên"
+   }
+  },
+  "mv.arm-raise": {
+   "name": "Nâng tay",
+   "purpose": "Để cất bát đĩa lên cao",
+   "tips": [
+    "Ngồi thẳng, bàn chân đặt phẳng",
+    "Nâng tay lên ngang vai",
+    "Khuỷu tay thả lỏng, vai hạ xuống"
+   ],
+   "easier": "Chỉ nâng một phần, thấp hơn vai",
+   "harder": "Dừng một chút ở trên, hoặc vươn qua đầu",
+   "limitNotes": {
+    "shoulders": "Chỉ nâng đến ngang vai"
+   }
+  },
+  "mv.row": {
+   "name": "Kéo tay khi ngồi",
+   "purpose": "Để kéo cánh cửa nặng",
+   "tips": [
+    "Đưa tay ra trước, lòng bàn tay hướng vào nhau",
+    "Kéo khuỷu tay ra sau, qua khỏi mạn sườn",
+    "Ép hai bả vai vào nhau"
+   ],
+   "easier": "Chỉ kéo về nửa chừng",
+   "harder": "Giữ bả vai ép lại, đếm đến hai"
+  },
+  "st.neck-turn": {
+   "name": "Xoay cổ",
+   "purpose": "Để ngoái nhìn qua vai",
+   "tips": [
+    "Cằm giữ ngang, vai hạ xuống",
+    "Chỉ xoay đến mức thấy thoải mái"
+   ],
+   "easier": "Xoay nửa chừng, mắt mở, làm thật chậm"
+  },
+  "st.neck-tilt": {
+   "name": "Nghiêng cổ",
+   "purpose": "Cho cổ thư thái hơn",
+   "tips": [
+    "Đặt tay lên vai bên kia",
+    "Nghiêng tai về phía vai, không kéo"
+   ],
+   "easier": "Nghiêng nhẹ, không cần đặt tay lên vai"
+  },
+  "st.chin-tuck": {
+   "name": "Thu cằm",
+   "purpose": "Sau khi đọc sách hay xem màn hình",
+   "tips": [
+    "Nhẹ nhàng lùi đầu thẳng ra sau",
+    "Mắt nhìn ngang, không ngước lên"
+   ],
+   "easier": "Lùi ít hơn, chỉ vài lần"
+  },
+  "st.shoulder-roll": {
+   "name": "Xoay vai",
+   "purpose": "Cho đôi vai sau một ngày bận rộn",
+   "tips": [
+    "Xoay vai lên, ra sau, rồi xuống, thật chậm",
+    "Đầu giữ yên, tay đặt trên đùi"
+   ],
+   "easier": "Xoay vòng nhỏ hơn",
+   "limitNotes": {
+    "shoulders": "Xoay vòng nhỏ và chậm"
+   }
+  },
+  "st.chest": {
+   "name": "Mở ngực và vai",
+   "purpose": "Để ngồi thẳng lưng",
+   "tips": [
+    "Kéo vai ra sau và xuống",
+    "Nhẹ nhàng mở ngực ra trước và lên"
+   ],
+   "easier": "Đặt tay lên hông thay vì dang tay"
+  },
+  "st.upper-back": {
+   "name": "Vươn lưng trên",
+   "purpose": "Để với qua bàn",
+   "tips": [
+    "Đưa tay ra trước, lòng bàn tay hướng ra ngoài",
+    "Vươn ra trước, lưng dưới giữ thẳng"
+   ],
+   "easier": "Để tay thấp hơn một chút",
+   "limitNotes": {
+    "lowerBack": "Lưng giữ thẳng, chỉ vươn tay"
+   }
+  },
+  "st.twist": {
+   "name": "Vặn lưng trên",
+   "purpose": "Để xoay người lấy đồ",
+   "tips": [
+    "Bắt chéo tay, đặt lên vai",
+    "Xoay từ ngực, hông giữ yên"
+   ],
+   "easier": "Xoay ít thôi, đầu thẳng hàng với thân"
+  },
+  "st.side": {
+   "name": "Giãn sườn",
+   "purpose": "Để với lên cao và sang ngang",
+   "tips": [
+    "Ngồi thẳng, bàn chân đặt phẳng",
+    "Vươn tay lên và nghiêng sang, hoặc trượt tay xuống"
+   ],
+   "easier": "Tay để xuôi bên người, nghiêng nhẹ"
+  },
+  "st.thigh": {
+   "name": "Giãn mặt sau đùi",
+   "purpose": "Để cúi và đi lại dễ hơn",
+   "tips": [
+    "Gót chạm sàn, mũi chân hướng lên",
+    "Nghiêng người ra trước từ hông, lưng thẳng"
+   ],
+   "easier": "Giữ gối hơi cong, chỉ nghiêng nhẹ"
+  },
+  "st.ankle": {
+   "name": "Xoay và duỗi cổ chân",
+   "purpose": "Cho bước chân vững hơn",
+   "tips": [
+    "Vịn mép ghế",
+    "Duỗi mũi chân ra xa, rồi kéo về"
+   ],
+   "easier": "Giữ gót trên sàn, chỉ nhấc và hạ mũi chân"
+  },
+  "st.calf": {
+   "name": "Giãn bắp chân",
+   "purpose": "Để đi lại thoải mái",
+   "tips": [
+    "Hai bàn chân đặt phẳng, gót chân sau chạm sàn",
+    "Vịn ghế suốt lúc tập"
+   ],
+   "easier": "Lùi chân sau ngắn hơn, gối sau hơi cong"
+  },
+  "st.overhead": {
+   "name": "Vươn tay lên tường",
+   "purpose": "Để với tới tủ trên cao",
+   "tips": [
+    "Lần tay dần lên tường",
+    "Gót chạm sàn, không ưỡn lưng"
+   ],
+   "easier": "Dừng khi tay lên tới ngang tầm mắt",
+   "limitNotes": {
+    "shoulders": "Chỉ vươn tới ngang tầm mắt",
+    "standingIsHard": "Thay bằng ngồi thẳng và vươn tay lên"
+   }
+  },
+  "bl.tandem": {
+   "name": "Đứng nối gót",
+   "purpose": "Cho lối đi hẹp và hành lang",
+   "tips": [
+    "Vịn ghế suốt lúc tập",
+    "Gót chân trước chạm mũi chân sau",
+    "Gối hơi chùng, mắt nhìn thẳng"
+   ],
+   "easier": "Chân trước lệch sang bên một chút",
+   "harder": "Chỉ chạm đầu ngón tay vào ghế",
+   "limitNotes": {
+    "jointReplacement": "Hai chân thẳng hàng, không bắt chéo",
+    "dizzy": "Hai tay vịn ghế"
+   }
+  },
+  "bl.side-walk": {
+   "name": "Đi ngang",
+   "purpose": "Để đi qua phòng đông người",
+   "tips": [
+    "Bước sang ngang, rồi khép chân",
+    "Mũi chân hướng về trước, hông giữ ngang",
+    "Ở gần bàn bếp hoặc bức tường"
+   ],
+   "easier": "Bước nhỏ hơn, một tay vịn bàn bếp",
+   "harder": "Bước rộng hơn chút, vẫn chậm như cũ",
+   "limitNotes": {
+    "dizzy": "Bước nhỏ, một tay vịn bàn bếp"
+   }
+  },
+  "bl.heel-toe-walk": {
+   "name": "Đi nối gót",
+   "purpose": "Cho đường trong vườn và đường mòn",
+   "tips": [
+    "Đầu ngón tay chạm bức tường bên cạnh",
+    "Đặt gót ngay trước mũi chân kia",
+    "Mắt nhìn phía trước, chậm rãi từng bước"
+   ],
+   "easier": "Chừa một khoảng nhỏ giữa hai bước",
+   "harder": "Thêm vài bước, vẫn chậm như cũ"
+  }
+ },
+ "journeys": {
+  "jr.ny": {
+   "title": "New York City",
+   "subtitle": "Từ Central Park đến Brooklyn Bridge",
+   "summary": "Từ vườn thú trong Central Park, qua Times Square, đến tận Brooklyn Bridge. Khoảng 2–3 tuần.",
+   "stops": {
+    "pc.ny.zoo": {
+     "name": "Central Park Zoo",
+     "back": "Nằm gọn trong Central Park, vườn thú là điểm dừng được yêu thích của các gia đình, và của cả những buổi đi bộ đầu tiên.",
+     "coachLine": "Điểm dừng đầu tiên của bạn. Còn nhiều điểm nữa đang chờ."
+    },
+    "pc.ny.bethesda": {
+     "name": "Bethesda Fountain",
+     "back": "Đài phun nước nằm bên hồ, giữa lòng công viên, có sân hiên rộng để nghỉ chân và ngắm người qua lại.",
+     "coachLine": "Một chỗ thật đẹp để nghỉ lấy hơi."
+    },
+    "pc.ny.times": {
+     "name": "Times Square",
+     "back": "Màn hình rực sáng, vỉa hè tấp nập và nhà hát khắp xung quanh. Đây là một trong những giao lộ nổi tiếng nhất thế giới.",
+     "coachLine": "Nhìn xem, những phút đi bộ ấy đã đưa bạn đi xa thế nào."
+    },
+    "pc.ny.bryant": {
+     "name": "Bryant Park",
+     "back": "Một công viên rợp bóng cây ở Midtown, có bãi cỏ, những chiếc ghế xanh và một thư viện yên tĩnh ngay bên cạnh.",
+     "coachLine": "Một góc yên bình giữa phố xá nhộn nhịp."
+    },
+    "pc.ny.union": {
+     "name": "Union Square",
+     "back": "Một quảng trường sôi động, có chợ nông sản họp nhiều ngày trong tuần.",
+     "coachLine": "Sắp tới bờ sông rồi. Cứ tiếp tục nhé."
+    },
+    "pc.ny.bridge": {
+     "name": "Brooklyn Bridge",
+     "back": "Cây cầu bắc qua sông East sang Brooklyn, có lối đi bộ rộng nằm phía trên dòng xe.",
+     "coachLine": "Bạn đã đi trọn New York. Mình rất tự hào về bạn."
+    }
+   }
+  },
+  "jr.smoky": {
+   "title": "Dãy Smoky và đường Blue Ridge Parkway",
+   "summary": "Thung lũng yên tĩnh, thác nước và cảnh núi non, từ Cades Cove đến Linn Cove Viaduct. Khoảng 4–6 tuần.",
+   "stops": {
+    "pc.smoky.1": {
+     "name": "Cades Cove"
+    },
+    "pc.smoky.2": {
+     "name": "Laurel Falls"
+    },
+    "pc.smoky.3": {
+     "name": "Clingmans Dome"
+    },
+    "pc.smoky.4": {
+     "name": "Mingus Mill"
+    },
+    "pc.smoky.5": {
+     "name": "Mabry Mill"
+    },
+    "pc.smoky.6": {
+     "name": "Linn Cove Viaduct"
+    }
+   }
+  },
+  "jr.camino": {
+   "title": "Đường hành hương Camino de Santiago",
+   "subtitle": "100 km cuối",
+   "summary": "Những ngôi làng đá và đồi xanh của Galicia, từ Sarria đến quảng trường lớn ở Santiago. Khoảng 4–6 tuần.",
+   "stops": {
+    "pc.camino.1": {
+     "name": "Sarria"
+    },
+    "pc.camino.2": {
+     "name": "Portomarín"
+    },
+    "pc.camino.3": {
+     "name": "Palas de Rei"
+    },
+    "pc.camino.4": {
+     "name": "Melide"
+    },
+    "pc.camino.5": {
+     "name": "O Pedrouzo"
+    },
+    "pc.camino.6": {
+     "name": "Obradoiro Square"
+    }
+   }
+  },
+  "jr.ne": {
+   "title": "Hải đăng New England",
+   "subtitle": "Từ Maine đến Cape Cod",
+   "summary": "Bờ biển nhiều đá và những ngọn hải đăng trắng, từ Portland Head Light đến Nauset Light. Khoảng 4–6 tuần.",
+   "stops": {
+    "pc.ne.1": {
+     "name": "Portland Head Light"
+    },
+    "pc.ne.2": {
+     "name": "Nubble Light"
+    },
+    "pc.ne.3": {
+     "name": "Portsmouth Harbor"
+    },
+    "pc.ne.4": {
+     "name": "Rockport"
+    },
+    "pc.ne.5": {
+     "name": "Plymouth"
+    },
+    "pc.ne.6": {
+     "name": "Nauset Light"
+    }
+   }
+  },
+  "jr.pch": {
+   "title": "Pacific Coast Highway",
+   "subtitle": "Big Sur",
+   "summary": "Vách đá, bãi biển và cảnh đại dương, từ Carmel-by-the-Sea qua Bixby Bridge và xa hơn nữa. Khoảng 4–6 tuần.",
+   "stops": {
+    "pc.pch.1": {
+     "name": "Carmel-by-the-Sea"
+    },
+    "pc.pch.2": {
+     "name": "Point Lobos"
+    },
+    "pc.pch.3": {
+     "name": "Bixby Bridge"
+    },
+    "pc.pch.4": {
+     "name": "Pfeiffer Beach"
+    },
+    "pc.pch.5": {
+     "name": "McWay Falls"
+    },
+    "pc.pch.6": {
+     "name": "Hearst Castle"
+    }
+   }
+  }
+ },
+ "voiceLines": {
+  "a1.01": {
+   "text": "Chào bạn. Rất vui vì bạn ở đây. Buổi đi bộ đầu tiên dài năm phút, mình sẽ ngồi tập."
+  },
+  "a1.02": {
+   "text": "Ngồi lên phía trước ghế, bàn chân đặt phẳng, hai tay đặt trên đùi."
+  },
+  "a1.03": {
+   "text": "Điện thoại cứ để trong túi. Nếu thấy đau ở đâu, cứ dừng lại. Tập thế nào cũng không sai."
+  },
+  "a1.04": {
+   "text": "Mình bắt đầu bằng nhịp gót. Nhấc gót lên, rồi hạ xuống."
+  },
+  "a1.05": {
+   "text": "Nếu thấy ổn, nhấc cả bàn chân lên một chút. Bên này, rồi bên kia. Đó là bước tại chỗ."
+  },
+  "a1.06": {
+   "text": "Để hai tay vung nhẹ, như đang đi ra lấy thư."
+  },
+  "a1.07": {
+   "text": "Nhẹ nhàng thôi. Hít vào bằng mũi, rồi thở ra bằng miệng."
+  },
+  "a1.08": {
+   "text": "Ngồi thẳng, như có sợi dây kéo nhẹ đỉnh đầu lên."
+  },
+  "a1.09": {
+   "text": "Nếu muốn thêm chút nữa, nâng gối cao hơn một chút. Chỉ khi thấy dễ chịu thôi."
+  },
+  "a1.10": {
+   "text": "Bạn đang làm được. Đây là giờ của bạn."
+  },
+  "a1.11": {
+   "text": "Giữ nhịp đều như vậy. Bạn vẫn nói chuyện được, thậm chí ngân nga theo."
+  },
+  "a1.12": {
+   "text": "Vài giây nữa, mình sẽ tăng nhịp lên, chỉ một chút thôi."
+  },
+  "a1.13": {
+   "text": "Giờ nhanh hơn một chút. Vẫn bước nhỏ, chỉ nhanh hơn chút."
+  },
+  "a1.14": {
+   "text": "Vẫn nói được chứ? Tốt lắm. Đó là nhịp vừa với bạn."
+  },
+  "a1.15": {
+   "text": "Còn mười giây."
+  },
+  "a1.16": {
+   "text": "Giờ chậm lại. Bước tại chỗ nhẹ nhàng, thả lỏng."
+  },
+  "a1.17": {
+   "text": "Lắc nhẹ hai bàn tay nếu muốn. Chân vẫn bước nhẹ nhàng."
+  },
+  "a1.18": {
+   "text": "Sắp có thêm một lượt nhanh. Chỉ ba mươi giây."
+  },
+  "a1.19": {
+   "text": "Lại nhanh hơn. Nếu lúc này nhịp gót dễ chịu hơn, thế là tốt."
+  },
+  "a1.20": {
+   "text": "Muốn thêm chút nữa? Vung tay rộng hơn một chút."
+  },
+  "a1.21": {
+   "text": "Sắp xong. Mười giây."
+  },
+  "a1.22": {
+   "text": "Giờ chậm lại. Bước chậm, thoải mái."
+  },
+  "a1.23": {
+   "text": "Để ý xem đôi chân lúc này thế nào. Có lẽ ấm hơn chút."
+  },
+  "a1.24": {
+   "text": "Mình bắt đầu thả lỏng nhé."
+  },
+  "a1.25": {
+   "text": "Bước chậm dần, đến khi bàn chân đặt yên trên sàn."
+  },
+  "a1.26": {
+   "text": "Xoay vai ra sau, thật chậm. Hai, ba lần."
+  },
+  "a1.27": {
+   "text": "Hít một hơi thật sâu, rồi thở ra."
+  },
+  "a1.28": {
+   "text": "Hít thêm hơi nữa, rồi thở ra."
+  },
+  "a1.29": {
+   "text": "Vậy là năm phút. Hôm nay bạn đã bắt đầu, đó là bước khó nhất."
+  },
+  "a1.30": {
+   "text": "Buổi đi bộ đầu tiên đưa bạn tới Central Park Zoo. Khi sẵn sàng, hãy xem nhé. Có một bưu thiếp đang chờ bạn."
+  },
+  "a2.open.1": {
+   "text": "Chào mừng bạn quay lại. Mình cùng bước nào."
+  },
+  "a2.open.2": {
+   "text": "Vui được gặp bạn. Buổi đi bộ này hoàn toàn theo nhịp của bạn."
+  },
+  "a2.open.3": {
+   "text": "Bạn sẵn sàng thì mình bắt đầu. Chậm rãi, nhẹ nhàng."
+  },
+  "a2.open.4": {
+   "text": "Mình bắt đầu nhé. Bước nhẹ trước, rồi tăng dần lên."
+  },
+  "a2.setup.seated.1": {
+   "text": "Ngồi lên phía trước ghế, bàn chân đặt phẳng, lưng thẳng."
+  },
+  "a2.setup.seated.2": {
+   "text": "Ngồi ra mép trước ghế, đặt vững hai bàn chân. Hai tay đặt trên đùi."
+  },
+  "a2.setup.seated.3": {
+   "text": "Dùng ghế chắc chắn, không có bánh xe. Ngồi thẳng, không tựa lưng ghế."
+  },
+  "a2.setup.seated.joint": {
+   "text": "Ghế cao một chút sẽ hợp với bạn hơn, có tay vịn thì càng tốt."
+  },
+  "a2.setup.inplace.1": {
+   "text": "Đứng gần ghế để vịn khi cần. Hai chân rộng khoảng bằng hông."
+  },
+  "a2.setup.inplace.2": {
+   "text": "Đứng thẳng, ghế ở ngay bên cạnh. Gối hơi chùng, vai thả lỏng."
+  },
+  "a2.setup.inplace.3": {
+   "text": "Dọn chút chỗ trống quanh bạn. Để ghế bên trái, trong tầm tay."
+  },
+  "a2.setup.inplace.shoes": {
+   "text": "Tốt nhất là đi giày bám chắc. Sàn trơn thì đừng chỉ đi tất nhé."
+  },
+  "a2.setup.pad.1": {
+   "text": "Vịn chắc tay, rồi bước lên băng khi băng đang chạy chậm."
+  },
+  "a2.setup.pad.2": {
+   "text": "Cho máy chạy thật chậm. Bạn đổi tốc độ lúc nào cũng được."
+  },
+  "a2.pad.moves": {
+   "text": "Trên máy, mình chỉ đi bộ và dùng tay. Không bước sang ngang trên băng."
+  },
+  "a2.warm.1": {
+   "text": "Bắt đầu bằng bước nhẹ. Để tay vung tự nhiên."
+  },
+  "a2.warm.2": {
+   "text": "Bước nhẹ thôi. Gót trước, rồi mũi chân, đều đặn."
+  },
+  "a2.warm.3": {
+   "text": "Xoay vai một hai lần. Cứ thả lỏng."
+  },
+  "a2.warm.4": {
+   "text": "Chỉ là khởi động thôi. Không cần vội."
+  },
+  "a2.warm.5": {
+   "text": "Nhìn về phía trước, đừng nhìn xuống chân."
+  },
+  "a2.warm.6": {
+   "text": "Đứng thẳng, như có sợi dây kéo nhẹ đỉnh đầu lên."
+  },
+  "a2.warm.7": {
+   "text": "Thở nhẹ nhàng. Lúc này hơi thở vẫn êm."
+  },
+  "a2.warm.8": {
+   "text": "Gối hơi chùng, tay thả lỏng. Bước chân thật nhẹ."
+  },
+  "a2.soon.1": {
+   "text": "Vài giây nữa, mình bước nhanh hơn."
+  },
+  "a2.soon.2": {
+   "text": "Chuẩn bị tăng nhịp lên, chỉ một chút thôi."
+  },
+  "a2.soon.3": {
+   "text": "Mười giây nữa, rồi nhanh hơn chút."
+  },
+  "a2.soon.4": {
+   "text": "Mười giây nữa, mình đi nhanh hơn chút. Vẫn động tác này."
+  },
+  "a2.next.1": {
+   "text": "Sắp đổi động tác mới. Còn mười giây."
+  },
+  "a2.now.1": {
+   "text": "Giờ mình cùng tập, bên phải trước."
+  },
+  "a2.now.2": {
+   "text": "Đến lượt bạn. Sẵn sàng thì tập cùng nhé."
+  },
+  "a2.now.3": {
+   "text": "Giờ mình cùng tập. Bắt đầu nhẹ nhàng thôi."
+  },
+  "a2.move.march.intro": {
+   "text": "Bước tại chỗ, bước đi cơ bản."
+  },
+  "a2.move.march.demo": {
+   "text": "Gối phải nâng lên, bàn chân đặt xuống, rồi đến chân trái."
+  },
+  "a2.move.march.seated": {
+   "text": "Ngồi thẳng. Nhấc từng bàn chân lên khỏi sàn một chút, rồi đặt phẳng xuống."
+  },
+  "a2.move.march.inplace": {
+   "text": "Đứng thẳng. Mỗi bàn chân đặt nhẹ, gót trước, rồi mũi chân."
+  },
+  "a2.move.march.easy": {
+   "text": "Muốn dễ hơn, chỉ cần nhấc gót. Mũi chân vẫn chạm sàn."
+  },
+  "a2.move.march.harder": {
+   "text": "Muốn thêm chút nữa, nâng gối cao hơn, nhưng vẫn thấp hơn hông."
+  },
+  "a2.move.march.joint": {
+   "text": "Lúc nào cũng giữ gối thấp hẳn dưới hông."
+  },
+  "a2.move.march.next": {
+   "text": "Còn mười giây. Tiếp theo, bước tại chỗ."
+  },
+  "a2.move.heel-dig.intro": {
+   "text": "Chạm gót. Gót chân ra trước, mũi chân hướng lên."
+  },
+  "a2.move.heel-dig.demo": {
+   "text": "Gót phải đưa ra trước, mũi chân hướng lên, rồi thu về."
+  },
+  "a2.move.heel-dig.seated": {
+   "text": "Trượt chân ra trước, đặt gót xuống, rồi kéo mũi chân về phía mình."
+  },
+  "a2.move.heel-dig.inplace": {
+   "text": "Gối chân trụ hơi chùng, ghế luôn trong tầm tay."
+  },
+  "a2.move.heel-dig.easy": {
+   "text": "Muốn dễ hơn, làm chậm lại, đặt gót gần người hơn."
+  },
+  "a2.move.heel-dig.harder": {
+   "text": "Muốn thêm chút nữa, đổi chân nhanh hơn chút, giữ nhịp đều."
+  },
+  "a2.move.heel-dig.next": {
+   "text": "Còn mười giây. Tiếp theo, chạm gót."
+  },
+  "a2.move.side-step.intro": {
+   "text": "Bước sang ngang."
+  },
+  "a2.move.side-step.demo.seated": {
+   "text": "Chân phải bước sang ngang, rồi thu về."
+  },
+  "a2.move.side-step.demo.inplace": {
+   "text": "Bước sang phải, rồi đưa chân trái khép theo."
+  },
+  "a2.move.side-step.seated": {
+   "text": "Giữ chân thấp, sát sàn khi trượt ra. Hông giữ yên trên ghế."
+  },
+  "a2.move.side-step.inplace": {
+   "text": "Hai bước sang phải, rồi hai bước về bên trái. Hông giữ ngang, gối hơi chùng."
+  },
+  "a2.move.side-step.easy": {
+   "text": "Muốn dễ hơn, bước nhỏ lại, hai tay chống hông."
+  },
+  "a2.move.side-step.harder": {
+   "text": "Muốn thêm chút nữa, bước rộng hơn và dang hai tay sang ngang."
+  },
+  "a2.move.side-step.dizzy": {
+   "text": "Bước nhỏ thôi, và luôn ở gần ghế."
+  },
+  "a2.move.side-step.next": {
+   "text": "Còn mười giây. Tiếp theo, bước sang ngang."
+  },
+  "a2.move.knee-lift.intro": {
+   "text": "Nâng gối. Cao hơn bước tại chỗ một chút."
+  },
+  "a2.move.knee-lift.demo": {
+   "text": "Gối phải nâng lên, mũi chân hướng ra trước, rồi hạ xuống."
+  },
+  "a2.move.knee-lift.seated": {
+   "text": "Có thể vịn hai bên mép ghế. Ngồi thẳng khi nâng gối."
+  },
+  "a2.move.knee-lift.inplace": {
+   "text": "Đặt tay trái lên ghế. Gối không nâng cao quá hông."
+  },
+  "a2.move.knee-lift.easy": {
+   "text": "Muốn dễ hơn, chỉ nâng một chút, và vịn ghế."
+  },
+  "a2.move.knee-lift.harder": {
+   "text": "Muốn thêm chút nữa, dùng tay bên kia chạm vào gối."
+  },
+  "a2.move.knee-lift.joint": {
+   "text": "Giữ gối thấp hẳn dưới hông. Nâng thấp thôi là vừa."
+  },
+  "a2.move.knee-lift.next": {
+   "text": "Còn mười giây. Tiếp theo, nâng gối."
+  },
+  "a2.move.toe-tap.intro": {
+   "text": "Chạm mũi chân phía trước."
+  },
+  "a2.move.toe-tap.demo": {
+   "text": "Mũi chân phải chạm sàn phía trước, rồi thu về."
+  },
+  "a2.move.toe-tap.seated": {
+   "text": "Đưa chân ra trước một chút, chạm sàn, rồi thu về dưới gối."
+  },
+  "a2.move.toe-tap.inplace": {
+   "text": "Gối chân trụ hơi chùng, người thẳng. Đừng ngả ra sau."
+  },
+  "a2.move.toe-tap.easy": {
+   "text": "Muốn dễ hơn, chạm gần người hơn, và chậm hơn."
+  },
+  "a2.move.toe-tap.harder": {
+   "text": "Muốn thêm chút nữa, chuyển thành đá chân thấp. Gối vẫn hơi cong."
+  },
+  "a2.move.toe-tap.knees": {
+   "text": "Hôm nay chỉ chạm nhẹ thôi. Không đá chân."
+  },
+  "a2.move.toe-tap.next": {
+   "text": "Còn mười giây. Tiếp theo, chạm mũi chân phía trước."
+  },
+  "a2.move.heel-back.intro": {
+   "text": "Đá gót ra sau."
+  },
+  "a2.move.heel-back.demo.seated": {
+   "text": "Gót phải trượt ra sau, vào dưới ghế, rồi trở ra trước."
+  },
+  "a2.move.heel-back.demo.inplace": {
+   "text": "Gót phải co ra sau và lên cao, rồi đặt xuống."
+  },
+  "a2.move.heel-back.seated": {
+   "text": "Ngồi thẳng, chân đặt phẳng. Trượt một gót ra sau, rồi gót kia."
+  },
+  "a2.move.heel-back.inplace": {
+   "text": "Đứng sau ghế, hai tay vịn lưng ghế. Người thẳng, không chúi về trước."
+  },
+  "a2.move.heel-back.easy": {
+   "text": "Muốn dễ hơn, co nhỏ thôi. Nửa chừng là đủ rồi."
+  },
+  "a2.move.heel-back.harder": {
+   "text": "Muốn thêm chút nữa, buông ghế ra nếu thấy vững. Vẫn đứng sát ghế."
+  },
+  "a2.move.heel-back.joint": {
+   "text": "Chỉ co gối đến mức thấy thoải mái."
+  },
+  "a2.move.heel-back.next": {
+   "text": "Còn mười giây. Tiếp theo, đá gót ra sau."
+  },
+  "a2.move.shift.intro": {
+   "text": "Chuyển trọng tâm."
+  },
+  "a2.move.shift.demo.seated": {
+   "text": "Nghiêng nhẹ sang phải, rồi qua giữa sang trái."
+  },
+  "a2.move.shift.demo.inplace": {
+   "text": "Dồn trọng tâm sang chân phải, rồi sang bên trái."
+  },
+  "a2.move.shift.seated": {
+   "text": "Hai bàn chân đặt phẳng, đầu giữ ngang. Chỉ nghiêng nhẹ thôi."
+  },
+  "a2.move.shift.inplace": {
+   "text": "Hai chân rộng hơn hông một chút. Gối cùng hướng với mũi chân."
+  },
+  "a2.move.shift.easy": {
+   "text": "Muốn dễ hơn, vịn ghế, và chỉ dồn nhẹ thôi."
+  },
+  "a2.move.shift.harder": {
+   "text": "Muốn thêm chút nữa, để gót chân kia nhấc khỏi sàn một chút."
+  },
+  "a2.move.shift.next": {
+   "text": "Còn mười giây. Tiếp theo, chuyển trọng tâm."
+  },
+  "a2.move.arms.intro": {
+   "text": "Giờ mình thêm tay vào nhé."
+  },
+  "a2.move.arms.swing": {
+   "text": "Vung tay. Gập khuỷu tay, vung tay theo bước chân."
+  },
+  "a2.move.arms.press": {
+   "text": "Đẩy tay. Đẩy hai tay ra trước ngang vai, rồi kéo về."
+  },
+  "a2.move.arms.soft": {
+   "text": "Khuỷu tay hơi cong, đừng duỗi thẳng cứng."
+  },
+  "a2.move.arms.easy": {
+   "text": "Muốn dễ hơn, giữ tay thấp hơn vai."
+  },
+  "a2.move.arms.harder": {
+   "text": "Muốn thêm chút nữa, đẩy chéo lên trên, nếu vai thấy thoải mái."
+  },
+  "a2.move.arms.shoulders": {
+   "text": "Hôm nay giữ tay thấp hơn vai. Nhỏ và nhẹ là được."
+  },
+  "a2.move.arms.pad": {
+   "text": "Nếu thấy vững, buông tay ra và vung tay. Vẫn ở gần tay vịn."
+  },
+  "a2.move.arms.next": {
+   "text": "Còn mười giây. Tiếp theo, vung tay."
+  },
+  "a2.brisk.seated.1": {
+   "text": "Giờ nhanh hơn một chút. Bước tại chỗ, và cho tay cùng vung."
+  },
+  "a2.brisk.seated.2": {
+   "text": "Tăng nhịp ngay trên ghế. Bước nhỏ và nhanh."
+  },
+  "a2.brisk.seated.3": {
+   "text": "Giờ vung tay nhanh hơn chút. Chân bước theo."
+  },
+  "a2.brisk.seated.4": {
+   "text": "Nhanh hơn chút, vẫn động tác này. Vung tay rộng hơn một chút."
+  },
+  "a2.brisk.inplace.1": {
+   "text": "Giờ nhanh hơn một chút. Nâng gối lên chút và vung tay."
+  },
+  "a2.brisk.inplace.2": {
+   "text": "Tăng nhịp ngay tại chỗ. Luôn ở gần ghế."
+  },
+  "a2.brisk.inplace.3": {
+   "text": "Bước nhanh hơn, vẫn động tác này. Tay cùng giúp sức."
+  },
+  "a2.brisk.inplace.4": {
+   "text": "Giờ nhanh hơn chút. Bước nhỏ và nhẹ thôi."
+  },
+  "a2.brisk.pad.1": {
+   "text": "Tăng máy lên một nấc, hoặc chỉ cần bước nhanh hơn."
+  },
+  "a2.brisk.pad.2": {
+   "text": "Giờ nhanh hơn chút, nếu thấy ổn. Vịn thanh vịn, hoặc mặt bàn, khi tăng tốc."
+  },
+  "a2.brisk.pad.3": {
+   "text": "Giữ tốc độ cũng được. Chỉ cần vung tay nhiều hơn chút."
+  },
+  "a2.brisk.again.1": {
+   "text": "Lại nào. Bước nhanh hơn."
+  },
+  "a2.brisk.again.2": {
+   "text": "Lại đi nhanh. Tìm lại nhịp cũ."
+  },
+  "a2.brisk.again.3": {
+   "text": "Lại nhanh hơn chút. Vẫn động tác này."
+  },
+  "a2.brisk.again.4": {
+   "text": "Lại nhanh hơn chút. Hai tay cùng góp sức."
+  },
+  "a2.brisk.mid.1": {
+   "text": "Lúc này bạn thở mạnh hơn chút, nhưng vẫn nói được."
+  },
+  "a2.brisk.mid.2": {
+   "text": "Nhịp tốt lắm. Vai thả lỏng."
+  },
+  "a2.brisk.mid.3": {
+   "text": "Nếu thấy quá sức, chậm lại một chút. Vậy vẫn được tính mà."
+  },
+  "a2.brisk.mid.4": {
+   "text": "Nhìn phía trước, thở đều. Bạn làm tốt lắm."
+  },
+  "a2.brisk.last": {
+   "text": "Lượt nhanh cuối. Bạn làm được mà."
+  },
+  "a2.brisk.end.1": {
+   "text": "Còn mười giây, rồi mình chậm lại."
+  },
+  "a2.brisk.end.2": {
+   "text": "Sắp xong phần nhanh rồi. Còn mười giây."
+  },
+  "a2.talk.1": {
+   "text": "Kiểm tra nhanh nhé. Bạn vẫn nói được, nhưng khó mà hát. Vậy là đúng nhịp."
+  },
+  "a2.talk.2": {
+   "text": "Thử nói to vài câu. Nếu thấy dễ, vậy là ổn."
+  },
+  "a2.talk.3": {
+   "text": "Thấy khó nói thành lời? Chậm lại đến khi nói dễ dàng."
+  },
+  "a2.talk.seated": {
+   "text": "Bạn vẫn trò chuyện thoải mái được. Muốn thì vung tay thêm chút."
+  },
+  "a2.easy.1": {
+   "text": "Giờ chậm lại. Bước nhẹ, lấy lại hơi."
+  },
+  "a2.easy.2": {
+   "text": "Chậm lại nào. Thật thư thả."
+  },
+  "a2.easy.3": {
+   "text": "Về nhịp chậm. Vẫn động tác này, chậm hơn."
+  },
+  "a2.easy.4": {
+   "text": "Lại nhẹ nhàng nào. Thả lỏng hai tay."
+  },
+  "a2.easy.mid.1": {
+   "text": "Để hơi thở dịu lại. Bạn làm tốt lắm."
+  },
+  "a2.easy.mid.2": {
+   "text": "Nhịp chậm. Thả lỏng bàn tay."
+  },
+  "a2.easy.mid.3": {
+   "text": "Nhịp chậm. Phần này cũng quan trọng không kém."
+  },
+  "a2.round.1": {
+   "text": "Vài giây nữa, thêm một lượt nhanh."
+  },
+  "a2.round.2": {
+   "text": "Chuẩn bị nhé. Sắp có thêm một lượt."
+  },
+  "a2.gentle.1": {
+   "text": "Đều và nhẹ. Hôm nay chẳng cần vội."
+  },
+  "a2.gentle.2": {
+   "text": "Giữ nhịp nhẹ nhàng này. Cứ vận động là được."
+  },
+  "a2.gentle.3": {
+   "text": "Cứ thoải mái. Bước nhỏ cũng được."
+  },
+  "a2.gentle.arms": {
+   "text": "Nếu muốn thêm chút nữa, thêm tay vào nhé."
+  },
+  "a2.cool.seated.1": {
+   "text": "Đến lúc thả lỏng. Bước chậm dần, đến khi chân gần như dừng."
+  },
+  "a2.cool.seated.2": {
+   "text": "Mình chậm lại nào. Bước nhỏ, nhẹ nhàng trên ghế."
+  },
+  "a2.cool.inplace.1": {
+   "text": "Đến lúc thả lỏng. Bước chậm, nhẹ, rồi để chân nghỉ."
+  },
+  "a2.cool.inplace.2": {
+   "text": "Bước tại chỗ thật chậm. Tay thấp, thả lỏng."
+  },
+  "a2.cool.pad.1": {
+   "text": "Giảm máy về tốc độ đi dạo chậm."
+  },
+  "a2.cool.pad.2": {
+   "text": "Vịn chắc khi bước xuống. Rồi đứng sau ghế."
+  },
+  "a2.cool.mid.1": {
+   "text": "Lắc nhẹ hai bàn tay. Để hơi thở chậm lại."
+  },
+  "a2.cool.mid.2": {
+   "text": "Thật chậm thôi. Để hơi thở trở lại nhẹ nhàng."
+  },
+  "a2.cool.mid.3": {
+   "text": "Cảm nhận hơi thở chậm dần. Bạn đã làm được rồi."
+  },
+  "a2.cool.feet": {
+   "text": "Để đôi chân nghỉ ngơi."
+  },
+  "a2.cool.stretch.1": {
+   "text": "Giờ giãn cơ nhẹ một chút để kết thúc."
+  },
+  "a2.cool.stretch.2": {
+   "text": "Mình kết thúc bằng hai động tác giãn cơ nhẹ. Cứ ở nguyên chỗ."
+  },
+  "a2.cool.breath": {
+   "text": "Cuối cùng, ba hơi thở chậm."
+  },
+  "a2.cool.breath.last": {
+   "text": "Hít vào lần cuối, rồi thở ra thật chậm."
+  },
+  "a2.close.1": {
+   "text": "Xong buổi đi bộ hôm nay. Tốt lắm."
+  },
+  "a2.close.2": {
+   "text": "Xong rồi. Phút nào cũng quý, và bạn không bỏ phút nào."
+  },
+  "a2.close.3": {
+   "text": "Hôm nay vậy là xong. Hành trình của bạn vừa đi xa thêm chút."
+  },
+  "a2.close.4": {
+   "text": "Xong rồi. Cảm ơn bạn đã dành thời gian cho bản thân."
+  },
+  "a2.close.5": {
+   "text": "Đi bộ xong rồi. Nhớ uống một ngụm nước nhé."
+  },
+  "a2.close.6": {
+   "text": "Bạn làm tốt lắm. Chúc bạn một ngày thật vui."
+  },
+  "a2.long.open": {
+   "text": "Hôm nay đi lâu hơn, có nhiều đoạn đi chậm xen kẽ."
+  },
+  "a2.long.round.2": {
+   "text": "Lượt thứ hai. Vẫn bắt đầu chậm, rồi nhanh hơn chút."
+  },
+  "a2.long.round.3": {
+   "text": "Lượt cuối. Cứ đi theo nhịp của bạn."
+  },
+  "a2.long.half": {
+   "text": "Được khoảng nửa buổi rồi. Uống một ngụm nước, nếu có sẵn gần đó."
+  },
+  "a2.long.tired": {
+   "text": "Thấy mệt à? Từ giờ cứ đi nhịp chậm. Phút nào cũng được tính."
+  },
+  "a3.open.1": {
+   "text": "Mình ra ngoài nào. Bắt đầu bằng đi dạo nhẹ."
+  },
+  "a3.open.2": {
+   "text": "Mình ra cửa thôi. Vài phút đầu đi thật nhẹ nhàng."
+  },
+  "a3.safe.1": {
+   "text": "Chừa một bên tai trống, để nghe được xung quanh."
+  },
+  "a3.safe.2": {
+   "text": "Tăng nhịp lên chút. Chú ý mép vỉa hè nhé."
+  },
+  "a3.safe.3": {
+   "text": "Bước nhanh hơn, nhưng nhìn đường trước mặt."
+  },
+  "a3.safe.4": {
+   "text": "Trời nóng thì tìm chỗ râm, và uống một ngụm nước."
+  },
+  "a3.brisk.1": {
+   "text": "Giờ nhanh hơn một chút. Vung tay và đi thẳng lưng."
+  },
+  "a3.easy.1": {
+   "text": "Chậm lại, đi thong thả thôi."
+  },
+  "a3.break.1": {
+   "text": "Tìm chỗ ngồi hoặc tựa, có bóng mát thì tốt."
+  },
+  "a3.home.1": {
+   "text": "Mình thong thả đi về. Từ đây đi chậm thôi."
+  },
+  "a3.cool.1": {
+   "text": "Chậm lại, đi thong thả để kết thúc."
+  },
+  "a3.close.1": {
+   "text": "Buổi đi bộ thật tuyệt. Về nhà rồi, nếu muốn, các động tác với ghế đang chờ bạn."
+  },
+  "a5.n.1": {
+   "text": "Một."
+  },
+  "a5.n.2": {
+   "text": "Hai."
+  },
+  "a5.n.3": {
+   "text": "Ba."
+  },
+  "a5.n.4": {
+   "text": "Bốn."
+  },
+  "a5.n.5": {
+   "text": "Năm."
+  },
+  "a5.n.6": {
+   "text": "Sáu."
+  },
+  "a5.n.7": {
+   "text": "Bảy."
+  },
+  "a5.n.8": {
+   "text": "Tám."
+  },
+  "a5.n.9": {
+   "text": "Chín."
+  },
+  "a5.n.10": {
+   "text": "Mười."
+  },
+  "a5.n.11": {
+   "text": "Mười một."
+  },
+  "a5.n.12": {
+   "text": "Mười hai."
+  },
+  "a5.321": {
+   "text": "Ba, hai, một."
+  },
+  "a5.10s": {
+   "text": "Còn mười giây."
+  },
+  "a5.5s": {
+   "text": "Còn năm giây."
+  },
+  "a5.30s": {
+   "text": "Còn ba mươi giây."
+  },
+  "a5.1m": {
+   "text": "Còn một phút."
+  },
+  "a5.half": {
+   "text": "Được nửa rồi."
+  },
+  "a5.last": {
+   "text": "Lần cuối."
+  },
+  "a5.two-more": {
+   "text": "Còn hai."
+  },
+  "a5.rest20": {
+   "text": "Nghỉ hai mươi giây. Uống chút nước nếu muốn."
+  },
+  "a5.side": {
+   "text": "Giờ sang bên kia."
+  },
+  "a6.1": {
+   "text": "Bạn làm được."
+  },
+  "a6.2": {
+   "text": "Đều đặn lắm. Đúng như thế đấy."
+  },
+  "a6.3": {
+   "text": "Nhịp của bạn là nhịp đúng."
+  },
+  "a6.4": {
+   "text": "Bước nhỏ góp lại thành nhiều."
+  },
+  "a6.5": {
+   "text": "Xem bạn kìa, vẫn giữ nhịp đều."
+  },
+  "a6.6": {
+   "text": "Lần này khoẻ hơn lần trước một chút."
+  },
+  "a6.7": {
+   "text": "Cứ nhẹ nhàng với bản thân. Bạn đã bắt đầu rồi."
+  },
+  "a6.8": {
+   "text": "Tuyệt. Thở đều nhé."
+  },
+  "a6.9": {
+   "text": "Sắp xong rồi."
+  },
+  "a6.10": {
+   "text": "Mỗi phút đều có ích."
+  },
+  "a7.break.1": {
+   "text": "Cứ từ từ. Ngồi xuống, uống chút nước, và thở chậm."
+  },
+  "a7.break.2": {
+   "text": "Khi bạn sẵn sàng. Không vội đâu."
+  },
+  "a7.resume": {
+   "text": "Chào mừng bạn quay lại. Mình từ từ tiếp, thật chậm."
+  },
+  "a7.finish": {
+   "text": "Dừng ở đây là hợp lý. Hôm nay vẫn được tính."
+  },
+  "a7.hurt.1": {
+   "text": "Mình cùng điều chỉnh nhé."
+  },
+  "a7.hurt.easier": {
+   "text": "Thử cách dễ hơn. Nhẹ nhàng thôi."
+  },
+  "a7.hurt.skip": {
+   "text": "Mình bỏ qua động tác này. Sang động tác tiếp."
+  },
+  "a7.hurt.stop": {
+   "text": "Mình dừng ở đây. Bạn nghỉ nhé, mình sẽ chỉnh lại kế hoạch."
+  },
+  "a7.stand": {
+   "text": "Đứng sau ghế. Vịn vào ghế nếu cần.",
+   "file": "a7.stand.vi.m4a",
+   "duration": 2.96,
+   "words": [
+    {
+     "word": "Đứng",
+     "start": 0.0,
+     "end": 0.24
+    },
+    {
+     "word": "sau",
+     "start": 0.32,
+     "end": 0.48
+    },
+    {
+     "word": "ghế.",
+     "start": 0.56,
+     "end": 0.96
+    },
+    {
+     "word": "Vịn",
+     "start": 1.44,
+     "end": 1.64
+    },
+    {
+     "word": "vào",
+     "start": 1.68,
+     "end": 1.84
+    },
+    {
+     "word": "ghế",
+     "start": 1.92,
+     "end": 2.08
+    },
+    {
+     "word": "nếu",
+     "start": 2.16,
+     "end": 2.4
+    },
+    {
+     "word": "cần.",
+     "start": 2.48,
+     "end": 3.04
+    }
+   ]
+  },
+  "a7.stand.wait": {
+   "text": "Mình bắt đầu sau mười giây. Cần thêm thời gian thì chạm Chờ đã.",
+   "file": "a7.stand.wait.vi.m4a",
+   "duration": 4.32,
+   "words": [
+    {
+     "word": "Mình",
+     "start": 0.0,
+     "end": 0.16
+    },
+    {
+     "word": "bắt",
+     "start": 0.2,
+     "end": 0.32
+    },
+    {
+     "word": "đầu",
+     "start": 0.4,
+     "end": 0.56
+    },
+    {
+     "word": "sau",
+     "start": 0.64,
+     "end": 0.8
+    },
+    {
+     "word": "mười",
+     "start": 0.88,
+     "end": 1.04
+    },
+    {
+     "word": "giây.",
+     "start": 1.12,
+     "end": 1.44
+    },
+    {
+     "word": "Cần",
+     "start": 1.92,
+     "end": 2.0
+    },
+    {
+     "word": "thêm",
+     "start": 2.08,
+     "end": 2.24
+    },
+    {
+     "word": "thời",
+     "start": 2.28,
+     "end": 2.4
+    },
+    {
+     "word": "gian",
+     "start": 2.48,
+     "end": 2.72
+    },
+    {
+     "word": "thì",
+     "start": 2.8,
+     "end": 2.92
+    },
+    {
+     "word": "chạm",
+     "start": 2.96,
+     "end": 3.28
+    },
+    {
+     "word": "Chờ",
+     "start": 3.6,
+     "end": 3.76
+    },
+    {
+     "word": "đã.",
+     "start": 3.84,
+     "end": 4.4
+    }
+   ]
+  },
+  "a7.stand.ready": {
+   "text": "Vịn ghế suốt lúc tập. Chỉ buông tay khi bạn thấy vững."
+  },
+  "a7.pause": {
+   "text": "Đã tạm dừng. Bạn cứ thong thả."
+  },
+  "a7.dizzy": {
+   "text": "Nếu thấy chóng mặt hay khó chịu, hãy dừng lại và ngồi xuống."
+  },
+  "a8.ny.1": {
+   "text": "Bạn đã đến Central Park Zoo. Hành trình New York bắt đầu từ đây."
+  },
+  "a8.ny.2": {
+   "text": "Bạn đã tới Bethesda Fountain, ngay giữa lòng công viên."
+  },
+  "a8.ny.3": {
+   "text": "Đây là Times Square, rực rỡ ánh đèn, và bạn đi bộ tới đây."
+  },
+  "a8.ny.4": {
+   "text": "Bryant Park. Một góc xanh, yên tĩnh giữa lòng thành phố."
+  },
+  "a8.ny.5": {
+   "text": "Bạn đã đến Union Square. Thêm một chút nữa là tới cây cầu."
+  },
+  "a8.ny.6": {
+   "text": "Bạn đã tới Brooklyn Bridge. Vậy là trọn vẹn New York. Giỏi lắm."
+  },
+  "a8.smoky.1": {
+   "text": "Chào mừng đến Cades Cove, một thung lũng yên tĩnh ở dãy Smoky."
+  },
+  "a8.camino.1": {
+   "text": "Bạn đang ở Sarria, nơi bắt đầu chặng cuối của Camino."
+  },
+  "a8.ne.1": {
+   "text": "Portland Head Light, sừng sững trên bờ biển Maine."
+  },
+  "a8.pch.1": {
+   "text": "Carmel-by-the-Sea. Bắt đầu đi dọc bờ biển Thái Bình Dương."
+  },
+  "a9.to-chair": {
+   "text": "Đi tốt lắm. Giờ vài động tác với ghế."
+  },
+  "a9.to-stretch": {
+   "text": "Mình kết thúc bằng giãn cơ nhẹ."
+  },
+  "a9.next-move": {
+   "text": "Tiếp theo."
+  },
+  "a9.chair.open": {
+   "text": "Hôm nay là động tác với ghế. Ngồi ra mép ghế, chân đặt phẳng sàn."
+  },
+  "a9.chair.close": {
+   "text": "Xong hết động tác hôm nay rồi. Làm tốt lắm."
+  },
+  "a9.gentle": {
+   "text": "Hôm nay khớp bạn hơi nhức, nên mình tập nhẹ nhàng thôi."
+  },
+  "a9.steady": {
+   "text": "Hôm nay tập đều đặn."
+  },
+  "a9.strong": {
+   "text": "Hôm nay thấy khoẻ à? Mình tranh thủ nhé, theo nhịp của bạn."
+  },
+  "a9.back.1": {
+   "text": "Chào mừng bạn quay lại. Hành trình vẫn ở đúng chỗ bạn dừng."
+  },
+  "a9.back.2": {
+   "text": "Vui vì bạn quay lại. Mình bắt đầu bằng năm phút nhẹ nhàng."
+  },
+  "a9.shorter": {
+   "text": "Hôm nay mình rút ngắn một chút. Tăng dần theo nhịp của bạn."
+  },
+  "a9.levelup": {
+   "text": "Bạn đã sẵn sàng tập thêm chút rồi. Hôm nay mình thử mức tiếp theo."
+  },
+  "a9.leveldown": {
+   "text": "Lúc này mình cứ tập ngồi. Chọn vậy là sáng suốt."
+  },
+  "a9.extras": {
+   "text": "Hôm nay thêm một chút. Chỉ vài phút thôi."
+  },
+  "a5.n.13": {
+   "text": "Mười ba."
+  },
+  "a5.n.14": {
+   "text": "Mười bốn."
+  },
+  "a5.n.15": {
+   "text": "Mười lăm."
+  },
+  "a5.10s.change": {
+   "text": "Còn mười giây, rồi mình đổi."
+  },
+  "a5.10s.rest": {
+   "text": "Còn mười giây, rồi nghỉ một chút."
+  },
+  "a5.one-more": {
+   "text": "Còn một."
+  },
+  "a5.last-two": {
+   "text": "Hai lần cuối."
+  },
+  "a5.two-more.2": {
+   "text": "Còn hai lần. Thở đều nhé."
+  },
+  "a5.last.2": {
+   "text": "Và lần cuối. Thật chậm nhé."
+  },
+  "a7.pad.start": {
+   "text": "Đặt hai chân lên hai mép máy đi bộ, rồi bật băng chạy."
+  },
+  "a7.pad.slow": {
+   "text": "Bắt đầu ở tốc độ chậm nhất. Tăng dần từng chút một."
+  },
+  "a7.pad.rail": {
+   "text": "Nắm thanh vịn nếu máy có, hoặc đặt một tay lên bàn chắc chắn."
+  },
+  "a7.pad.clip": {
+   "text": "Nếu máy có kẹp an toàn, hãy kẹp vào quần áo."
+  },
+  "a7.pad.phone": {
+   "text": "Để điện thoại trên bàn. Chỉ cần làm theo giọng hướng dẫn."
+  },
+  "a7.pad.off": {
+   "text": "Tắt băng chạy trước. Đợi băng dừng hẳn, rồi bước xuống."
+  },
+  "a7.pad.dizzy": {
+   "text": "Thấy chóng mặt? Tắt băng chạy, vịn chắc, rồi ngồi xuống."
+  },
+  "a7.morning.1": {
+   "text": "Ngồi thẳng lưng ba nhịp thở. Nếu thấy chóng mặt, cứ ngồi yên."
+  },
+  "a7.morning.2": {
+   "text": "Đứng lên từ từ, rồi đứng yên một nhịp thở trước khi bước."
+  },
+  "a7.stop.1": {
+   "text": "Nếu thấy đau nhói, đau ngực hay chóng mặt, hãy dừng lại và nghỉ."
+  },
+  "a7.stop.2": {
+   "text": "Nếu cứ lặp lại, hãy hỏi bác sĩ của bạn."
+  },
+  "a7.stop.breath": {
+   "text": "Nếu thấy hụt hơi, hãy chậm lại hoặc dừng lại."
+  },
+  "a4.warm.1": {
+   "text": "Mình khởi động trên ghế trước. Bắt đầu bằng bước tại chỗ nhẹ nhàng."
+  },
+  "a4.warm.toe": {
+   "text": "Giờ là chạm mũi chân. Gót giữ trên sàn, nhấc mũi chân rồi gõ xuống."
+  },
+  "a4.warm.done": {
+   "text": "Ấm người rồi. Mình bắt đầu các động tác."
+  },
+  "a4.demo.1": {
+   "text": "Xem mẫu trước."
+  },
+  "a4.demo.2": {
+   "text": "Chỉ xem lần đầu này thôi. Chưa cần làm theo."
+  },
+  "a4.demo.3": {
+   "text": "Xem mình làm mẫu một lần, thật chậm."
+  },
+  "a4.with-me.1": {
+   "text": "Nào, cùng làm."
+  },
+  "a4.with-me.2": {
+   "text": "Đến lượt bạn. Mình cùng làm nhé."
+  },
+  "a4.with-me.3": {
+   "text": "Giờ cùng làm, theo nhịp của bạn."
+  },
+  "a4.breath.1": {
+   "text": "Thở ra khi nâng lên, hít vào khi hạ xuống."
+  },
+  "a4.breath.2": {
+   "text": "Cứ thở đều. Đừng nín thở."
+  },
+  "a4.slow.1": {
+   "text": "Hạ xuống thật chậm, đừng buông người xuống."
+  },
+  "a4.slow.2": {
+   "text": "Êm và đều. Ở đây càng chậm càng tốt."
+  },
+  "a4.count.1": {
+   "text": "Mình đếm cùng bạn nhé."
+  },
+  "a4.count.stop": {
+   "text": "Dừng khi bạn vẫn còn làm thêm được hai lần. Như vậy là vừa sức."
+  },
+  "a4.pain.1": {
+   "text": "Gắng nhẹ thôi, đừng để đau."
+  },
+  "a4.pain.2": {
+   "text": "Nếu thấy đau, làm nhỏ lại hoặc bỏ qua."
+  },
+  "a4.range": {
+   "text": "Chỉ cử động trong mức thấy thoải mái."
+  },
+  "a4.rest.1": {
+   "text": "Nghỉ. Ba nhịp thở nhẹ."
+  },
+  "a4.rest.2": {
+   "text": "Thả lỏng tay chân. Hít vào, rồi thở ra."
+  },
+  "a4.rest.3": {
+   "text": "Lắc nhẹ hai bàn tay. Lát nữa sang động tác tiếp."
+  },
+  "a4.stand.setup": {
+   "text": "Đứng sau ghế, hai tay đặt lên lưng ghế."
+  },
+  "a4.stand.feet": {
+   "text": "Chân rộng bằng hông, gối hơi chùng."
+  },
+  "a4.stand.chair": {
+   "text": "Dùng ghế chắc, không bị trượt. Mặt bàn bếp cũng được."
+  },
+  "a4.to-stand.1": {
+   "text": "Tay đặt lên ghế, hít một hơi, rồi đứng lên."
+  },
+  "a4.to-stand.2": {
+   "text": "Đứng yên một nhịp thở trước khi bắt đầu."
+  },
+  "a4.to-stand.sts": {
+   "text": "Sau lần cuối này, cứ đứng luôn."
+  },
+  "a4.to-stand.behind": {
+   "text": "Giờ bước ra sau ghế và vịn bằng cả hai tay."
+  },
+  "a4.to-sit.1": {
+   "text": "Đi vòng ra trước ghế. Cứ từ từ."
+  },
+  "a4.to-sit.2": {
+   "text": "Với tay ra sau chạm ghế, rồi từ từ ngồi xuống."
+  },
+  "a4.side.right": {
+   "text": "Bắt đầu với chân phải."
+  },
+  "a4.side.left": {
+   "text": "Bắt đầu với chân trái."
+  },
+  "a4.rotate.1": {
+   "text": "Hôm nay đổi vài động tác cho mới mẻ."
+  },
+  "a4.rotate.2": {
+   "text": "Đây là động tác mới. Mình tập chậm thôi."
+  },
+  "a4.v1.1": {
+   "text": "Ngồi xuống đứng lên. Giúp bạn đứng dậy khỏi ghế."
+  },
+  "a4.v1.2": {
+   "text": "Nhích ra mép ghế. Chân đặt phẳng, rộng chừng bằng hông."
+  },
+  "a4.v1.3": {
+   "text": "Nếu cần, đặt tay lên ghế và đẩy người lên. Bắt đầu như vậy là rất tốt."
+  },
+  "a4.v1.4": {
+   "text": "Nghiêng người tới, mũi trên ngón chân. Rồi đứng lên."
+  },
+  "a4.v1.5": {
+   "text": "Giờ ngồi xuống, thật chậm. Đưa hông ra sau tìm ghế."
+  },
+  "a4.v1.6": {
+   "text": "Cứ lấy hơi bất cứ khi nào cần."
+  },
+  "a4.v1.7": {
+   "text": "Muốn khó hơn? Khoanh tay trước ngực, rồi ngồi xuống chậm, đếm đến ba."
+  },
+  "a4.v1.8": {
+   "text": "Tuyệt lắm. Đó là lần cuối."
+  },
+  "a4.v1.breath": {
+   "text": "Thở ra khi đứng lên, hít vào khi ngồi xuống."
+  },
+  "a4.v1.top": {
+   "text": "Đứng thẳng hẳn lên, rồi thở một hơi trọn vẹn."
+  },
+  "a4.v1.var.joint": {
+   "text": "Hôm nay dùng ghế cao hơn, có tay vịn thì càng tốt."
+  },
+  "a4.v1.var.joint-lean": {
+   "text": "Giữ ngực thẳng, chỉ ngả người một chút, rồi đứng lên."
+  },
+  "a4.v2.1": {
+   "text": "Nâng gối khi ngồi. Chính động tác bạn dùng cho từng bước chân."
+  },
+  "a4.v2.2": {
+   "text": "Nhẹ tay giữ hai bên mặt ghế. Ngồi thẳng lưng."
+  },
+  "a4.v2.3": {
+   "text": "Bắt đầu nhẹ thôi. Chỉ nhấc gót lên, rồi đặt xuống."
+  },
+  "a4.v2.4": {
+   "text": "Nếu thấy ổn, nâng cả đầu gối lên một chút. Rồi đổi bên."
+  },
+  "a4.v2.5": {
+   "text": "Giữ lưng thẳng. Không cần ngả ra sau."
+  },
+  "a4.v2.6": {
+   "text": "Muốn khó hơn? Nâng cao hơn chút và vung tay bên kia."
+  },
+  "a4.v2.7": {
+   "text": "Đều đặn lắm. Còn mười giây."
+  },
+  "a4.v2.var.joint": {
+   "text": "Giữ gối thấp hơn hông. Nâng một chút là đủ rồi."
+  },
+  "a4.v3.1": {
+   "text": "Duỗi chân khi ngồi. Động tác bạn dùng khi leo cầu thang."
+  },
+  "a4.v3.2": {
+   "text": "Ngồi thẳng lưng và giữ hai bên mặt ghế."
+  },
+  "a4.v3.3": {
+   "text": "Bắt đầu nâng nhẹ thôi. Duỗi chân chỉ nửa chừng."
+  },
+  "a4.v3.4": {
+   "text": "Nếu thấy thoải mái, duỗi thẳng hơn, mũi chân hướng lên trần. Gối đừng duỗi cứng."
+  },
+  "a4.v3.5": {
+   "text": "Giữ chân hướng thẳng ra trước, rồi hạ xuống thật chậm."
+  },
+  "a4.v3.6": {
+   "text": "Muốn khó hơn? Giữ chân trên cao, đếm đến ba."
+  },
+  "a4.v3.7": {
+   "text": "Nếu gối thấy khó chịu, nâng thấp hơn. Vậy vẫn được tính."
+  },
+  "a4.v3.breath": {
+   "text": "Thở ra khi duỗi chân, hít vào khi hạ xuống."
+  },
+  "a4.v4.1": {
+   "text": "Nhón gót và nhón mũi. Động tác bạn dùng khi với tới kệ cao."
+  },
+  "a4.v4.2": {
+   "text": "Ngồi thẳng lưng, chân đặt phẳng trên sàn."
+  },
+  "a4.v4.3": {
+   "text": "Nhấc gót lên một chút, rồi hạ xuống."
+  },
+  "a4.v4.4": {
+   "text": "Giờ làm ngược lại. Nhấc mũi chân lên, gót giữ trên sàn."
+  },
+  "a4.v4.5": {
+   "text": "Nhỏ, nhẹ là vừa đẹp."
+  },
+  "a4.v4.6": {
+   "text": "Muốn khó hơn? Đứng sau ghế, vịn bằng hai tay, rồi nhón lên mũi chân."
+  },
+  "a4.v4.var.dizzy": {
+   "text": "Hôm nay mình ngồi tập bài này."
+  },
+  "a4.v5.1": {
+   "text": "Chống đẩy vào tường. Giúp đẩy cửa và nhấc túi dễ hơn."
+  },
+  "a4.v5.2": {
+   "text": "Đứng cách tường chừng một cánh tay. Hai bàn tay áp tường, ngang vai."
+  },
+  "a4.v5.3": {
+   "text": "Lúc đầu đứng gần tường hơn chút. Chỉ gập khuỷu tay một ít."
+  },
+  "a4.v5.4": {
+   "text": "Đưa ngực về phía tường, rồi đẩy người ra."
+  },
+  "a4.v5.5": {
+   "text": "Giữ người thẳng, như một tấm ván."
+  },
+  "a4.v5.6": {
+   "text": "Muốn khó hơn? Lùi chân ra sau một chút."
+  },
+  "a4.v5.breath": {
+   "text": "Hít vào khi nghiêng vào tường, thở ra khi đẩy người ra."
+  },
+  "a4.v5.heels": {
+   "text": "Gót chân giữ trên sàn. Cuối động tác tay thẳng, nhưng đừng duỗi cứng."
+  },
+  "a4.v5.var.shoulder": {
+   "text": "Làm nhỏ thôi. Chỉ gập khuỷu tay một chút, rồi đẩy ra."
+  },
+  "a4.v6.1": {
+   "text": "Đứng một chân. Đứng sau ghế và vịn bằng cả hai tay."
+  },
+  "a4.v6.2": {
+   "text": "Bắt đầu nhẹ. Chỉ nhấc gót, mũi chân chạm sàn."
+  },
+  "a4.v6.3": {
+   "text": "Nếu thấy vững, nhấc bàn chân khỏi sàn một chút."
+  },
+  "a4.v6.4": {
+   "text": "Nhìn vào một điểm trước mặt. Như vậy dễ giữ thăng bằng hơn."
+  },
+  "a4.v6.5": {
+   "text": "Giữ nào, bạn làm tốt lắm, rồi đặt chân xuống."
+  },
+  "a4.v6.6": {
+   "text": "Nếu hơi lắc lư, đó là bình thường. Vịn ghế chặt hơn một chút."
+  },
+  "a4.v6.7": {
+   "text": "Muốn khó hơn? Thử vịn chỉ bằng một tay."
+  },
+  "a4.v6.var.dizzy": {
+   "text": "Giữ cả hai tay trên ghế suốt lúc tập."
+  },
+  "a4.v6.breath": {
+   "text": "Cứ thở chậm trong lúc giữ."
+  },
+  "a4.side-leg.intro": {
+   "text": "Nâng chân sang ngang. Để bước sang bên, và lên xuống xe."
+  },
+  "a4.side-leg.setup.1": {
+   "text": "Chân khép gần, mũi chân hướng trước."
+  },
+  "a4.side-leg.demo.1": {
+   "text": "Chân nâng sang ngang, bàn chân cao chừng ngang ống chân bên kia."
+  },
+  "a4.side-leg.breath": {
+   "text": "Thở ra khi chân đưa ra, hít vào khi chân về."
+  },
+  "a4.side-leg.easier": {
+   "text": "Muốn dễ hơn, chỉ nâng một chút. Nâng nhẹ vẫn được tính."
+  },
+  "a4.side-leg.form.1": {
+   "text": "Giữ mũi chân hướng ra trước, đừng hướng lên trần."
+  },
+  "a4.side-leg.form.2": {
+   "text": "Đứng thẳng. Đừng nghiêng người sang bên kia."
+  },
+  "a4.side-leg.harder": {
+   "text": "Muốn khó hơn? Vịn ghế chỉ bằng một tay."
+  },
+  "a4.side-leg.var.joint": {
+   "text": "Nâng nhỏ thôi, mũi chân luôn hướng ra trước."
+  },
+  "a4.side-leg.done": {
+   "text": "Đặt chân xuống nhẹ nhàng. Xong cả hai bên."
+  },
+  "a4.back-leg.intro": {
+   "text": "Nâng chân ra sau. Cho bước chân khoẻ hơn, như khi đi lên dốc."
+  },
+  "a4.back-leg.setup.1": {
+   "text": "Đứng sát ghế, chân rộng bằng hông."
+  },
+  "a4.back-leg.demo.1": {
+   "text": "Chân đưa thẳng ra sau, chỉ một chút. Chân vẫn duỗi dài."
+  },
+  "a4.back-leg.breath": {
+   "text": "Thở ra khi chân đưa ra sau, hít vào khi chân về."
+  },
+  "a4.back-leg.easier": {
+   "text": "Muốn dễ hơn, nâng thấp thôi. Chỉ ra sau một chút."
+  },
+  "a4.back-leg.form.1": {
+   "text": "Đứng thẳng. Đừng chúi người tới hay ưỡn lưng."
+  },
+  "a4.back-leg.form.2": {
+   "text": "Mũi chân hướng xuống sàn."
+  },
+  "a4.back-leg.harder": {
+   "text": "Muốn khó hơn? Giữ ở trên cao lâu hơn một chút."
+  },
+  "a4.back-leg.var.back": {
+   "text": "Nâng chân thấp thôi, và giữ lưng yên."
+  },
+  "a4.back-leg.done": {
+   "text": "Hạ chân xuống nghỉ. Làm tốt lắm."
+  },
+  "a4.knee-curl.intro": {
+   "text": "Co gối ra sau. Để nhấc chân qua bậc thềm và lề đường."
+  },
+  "a4.knee-curl.setup.1": {
+   "text": "Đứng thẳng, chân rộng bằng hông."
+  },
+  "a4.knee-curl.demo.1": {
+   "text": "Co một gối, đưa gót chân lên phía sau."
+  },
+  "a4.knee-curl.breath": {
+   "text": "Thở ra khi gót chân lên, hít vào khi hạ xuống."
+  },
+  "a4.knee-curl.easier": {
+   "text": "Muốn dễ hơn, chỉ đưa gót lên một chút."
+  },
+  "a4.knee-curl.form.1": {
+   "text": "Hai gối sát cạnh nhau. Chỉ cẳng chân chuyển động."
+  },
+  "a4.knee-curl.form.2": {
+   "text": "Gối kia hơi chùng, người giữ thẳng."
+  },
+  "a4.knee-curl.harder": {
+   "text": "Muốn khó hơn? Nới tay ra, chỉ đặt hờ lên ghế."
+  },
+  "a4.knee-curl.var.joint": {
+   "text": "Chỉ co gối đến mức thấy thoải mái."
+  },
+  "a4.knee-curl.done": {
+   "text": "Nhẹ nhàng đặt chân xuống. Làm hay lắm."
+  },
+  "a4.mini-squat.intro": {
+   "text": "Khuỵu gối nhẹ. Để ngồi xuống và đứng dậy nhẹ nhàng."
+  },
+  "a4.mini-squat.setup.1": {
+   "text": "Hai tay đặt lên lưng ghế, chân rộng bằng hông."
+  },
+  "a4.mini-squat.demo.1": {
+   "text": "Hơi chùng gối một chút, như sắp ngồi xuống."
+  },
+  "a4.mini-squat.breath": {
+   "text": "Hít vào khi chùng xuống, thở ra khi đứng lên."
+  },
+  "a4.mini-squat.easier": {
+   "text": "Muốn dễ hơn, chùng thật ít thôi. Vẫn tính nhé."
+  },
+  "a4.mini-squat.form.1": {
+   "text": "Đẩy hông ra sau một chút. Gối giữ thẳng trên bàn chân."
+  },
+  "a4.mini-squat.form.2": {
+   "text": "Gót chân sát sàn. Lưng thẳng, ngực mở."
+  },
+  "a4.mini-squat.harder": {
+   "text": "Muốn khó hơn? Xuống chậm hơn, vẫn chỉ nửa chừng."
+  },
+  "a4.mini-squat.var.knees.1": {
+   "text": "Chỉ xuống nửa chừng. Nếu gót bắt đầu nhấc, hãy đứng lên."
+  },
+  "a4.mini-squat.var.knees.2": {
+   "text": "Gối thẳng hướng mũi chân. Đừng để gối chụm vào trong."
+  },
+  "a4.mini-squat.done": {
+   "text": "Đứng thẳng, gối hơi chùng. Tốt lắm."
+  },
+  "a4.arm-raise.intro": {
+   "text": "Nâng tay. Để nhấc túi đồ lên bàn bếp."
+  },
+  "a4.arm-raise.setup.1": {
+   "text": "Ngồi thẳng, chân đặt phẳng, tay đặt trên đùi."
+  },
+  "a4.arm-raise.demo.1": {
+   "text": "Đưa tay lên phía trước, cao ngang vai, rồi từ từ hạ xuống."
+  },
+  "a4.arm-raise.demo.2": {
+   "text": "Giờ đưa sang hai bên, cũng cao ngang vai."
+  },
+  "a4.arm-raise.breath": {
+   "text": "Thở ra khi nâng tay, hít vào khi hạ xuống."
+  },
+  "a4.arm-raise.easier": {
+   "text": "Muốn dễ hơn, chỉ nâng thấp dưới vai."
+  },
+  "a4.arm-raise.form.1": {
+   "text": "Khuỷu hơi cong, lòng tay úp."
+  },
+  "a4.arm-raise.form.2": {
+   "text": "Vai hạ thấp, cách xa tai."
+  },
+  "a4.arm-raise.harder": {
+   "text": "Muốn khó hơn? Dừng ở trên một chút."
+  },
+  "a4.arm-raise.var.shoulder": {
+   "text": "Dừng ngang vai hoặc thấp hơn, chỗ nào thấy thoải mái."
+  },
+  "a4.arm-raise.done": {
+   "text": "Đặt tay lên đùi nghỉ. Làm tốt lắm."
+  },
+  "a4.row.intro": {
+   "text": "Kéo tay khi ngồi. Để kéo cửa nặng và ngăn kéo."
+  },
+  "a4.row.setup.1": {
+   "text": "Ngồi thẳng, không tựa lưng ghế, chân đặt phẳng."
+  },
+  "a4.row.setup.2": {
+   "text": "Không cần dây tập. Như đang kéo sợi thừng về phía mình."
+  },
+  "a4.row.demo.1": {
+   "text": "Duỗi tay ra trước, rồi kéo khuỷu thẳng ra sau."
+  },
+  "a4.row.breath": {
+   "text": "Thở ra khi kéo về, hít vào khi duỗi ra trước."
+  },
+  "a4.row.easier": {
+   "text": "Muốn dễ hơn, kéo nhẹ thôi. Khuỷu chỉ lùi một chút."
+  },
+  "a4.row.form.1": {
+   "text": "Khép nhẹ hai bả vai lại."
+  },
+  "a4.row.form.2": {
+   "text": "Khuỷu sát người. Cằm giữ ngang."
+  },
+  "a4.row.harder": {
+   "text": "Muốn khó hơn? Giữ bả vai khép, đếm đến hai."
+  },
+  "a4.row.done": {
+   "text": "Thả tay nghỉ. Tuyệt lắm."
+  },
+  "a10.open.1": {
+   "text": "Đến giờ giãn cơ nhẹ. Ngồi ra phía trước ghế, hai chân đặt phẳng trên sàn."
+  },
+  "a10.open.2": {
+   "text": "Mình làm thật chậm và hít thở đều. Căng nhẹ thôi, đừng để đau."
+  },
+  "a10.open.stand": {
+   "text": "Đứng sau ghế, hai tay giữ lưng ghế. Hai chân rộng khoảng bằng hông."
+  },
+  "a10.cool.open": {
+   "text": "Đi bộ tốt lắm. Cứ ngồi yên, mình thả lỏng bằng vài động tác giãn nhẹ."
+  },
+  "a10.into.1": {
+   "text": "Từ từ vào thế."
+  },
+  "a10.into.2": {
+   "text": "Chỉ đến mức thấy thoải mái."
+  },
+  "a10.hold.1": {
+   "text": "Hít vào bằng mũi, rồi thở ra bằng miệng."
+  },
+  "a10.hold.2": {
+   "text": "Thở vào chỗ căng. Vai cứ thả lỏng."
+  },
+  "a10.hold.3": {
+   "text": "Căng nhẹ là đủ. Đừng nhún."
+  },
+  "a10.hold.4": {
+   "text": "Cứ thở đều. Không cần cố."
+  },
+  "a10.hold.5": {
+   "text": "Nếu thấy nhói hay đau, nới ra một chút."
+  },
+  "a10.left": {
+   "text": "Mình bắt đầu bên trái."
+  },
+  "a10.switch.1": {
+   "text": "Giờ sang bên kia."
+  },
+  "a10.switch.2": {
+   "text": "Quay về giữa. Giờ sang bên kia."
+  },
+  "a10.again": {
+   "text": "Thêm lần nữa, thật nhẹ nhàng."
+  },
+  "a10.release.1": {
+   "text": "Rồi từ từ trở về."
+  },
+  "a10.release.2": {
+   "text": "Nhẹ nhàng thả ra, ngồi thẳng."
+  },
+  "a10.release.3": {
+   "text": "Thả lỏng, cảm nhận cơ thể."
+  },
+  "a10.next": {
+   "text": "Sắp đến động tác tiếp."
+  },
+  "a10.easier": {
+   "text": "Đây là cách dễ hơn. Nhỏ hơn, chậm hơn cũng tốt không kém."
+  },
+  "a10.close.1": {
+   "text": "Xong phần giãn cơ hôm nay. Hít thêm một hơi thật chậm."
+  },
+  "a10.close.2": {
+   "text": "Nhẹ nhàng thôi. Hôm nay bạn đã chăm sóc cơ thể mình."
+  },
+  "a10.cool.close": {
+   "text": "Xong rồi. Ngồi nghỉ một chút, và uống ngụm nước nhé."
+  },
+  "a10.neck-turn.intro": {
+   "text": "Xoay cổ. Giúp bạn ngoái nhìn qua vai dễ hơn."
+  },
+  "a10.neck-turn.setup": {
+   "text": "Ngồi thẳng, vai hạ, mắt nhìn thẳng."
+  },
+  "a10.neck-turn.move": {
+   "text": "Từ từ quay đầu về phía vai, đến mức thấy thoải mái."
+  },
+  "a10.neck-turn.easy": {
+   "text": "Chỉ quay nửa chừng, thật chậm, và mắt vẫn mở."
+  },
+  "a10.neck-tilt.intro": {
+   "text": "Giờ đến nghiêng cổ."
+  },
+  "a10.neck-tilt.setup": {
+   "text": "Đặt tay phải lên vai trái, và giữ vai đó hạ thấp."
+  },
+  "a10.neck-tilt.move": {
+   "text": "Từ từ nghiêng đầu sang phải, tai về phía vai. Đừng kéo."
+  },
+  "a10.neck-tilt.easy": {
+   "text": "Bỏ tay ra, chỉ hơi nghiêng đầu thôi."
+  },
+  "a10.chest.intro": {
+   "text": "Mở ngực và vai. Giúp bạn ngồi thẳng lưng."
+  },
+  "a10.chest.setup": {
+   "text": "Ngồi ra trước, không tựa lưng ghế."
+  },
+  "a10.chest.move": {
+   "text": "Kéo vai ra sau và xuống. Dang tay sang hai bên, nhẹ nhàng nâng ngực lên."
+  },
+  "a10.chest.easy": {
+   "text": "Đặt tay lên hông, chỉ cần kéo vai ra sau."
+  },
+  "a10.twist.intro": {
+   "text": "Vặn lưng trên. Giúp bạn xoay người lấy đồ."
+  },
+  "a10.twist.setup": {
+   "text": "Bắt chéo tay, đặt bàn tay lên vai. Chân đặt phẳng."
+  },
+  "a10.twist.move": {
+   "text": "Xoay thân trên sang một bên. Hông giữ yên, đầu xoay theo."
+  },
+  "a10.twist.easy": {
+   "text": "Chỉ xoay một chút. Vậy là đủ."
+  },
+  "a10.side.intro": {
+   "text": "Giãn sườn."
+  },
+  "a10.side.setup": {
+   "text": "Ngồi thẳng, chân đặt phẳng, hơi tách ra."
+  },
+  "a10.side.move": {
+   "text": "Đưa một tay lên qua đầu, rồi nhẹ nhàng nghiêng sang bên kia."
+  },
+  "a10.side.easy": {
+   "text": "Để tay xuôi bên người, chỉ hơi nghiêng thôi."
+  },
+  "a10.thigh.intro": {
+   "text": "Giãn mặt sau đùi. Giúp cúi người dễ hơn một chút."
+  },
+  "a10.thigh.setup": {
+   "text": "Ngồi gần mép trước ghế. Duỗi một chân ra, gót chạm sàn, mũi chân hướng lên."
+  },
+  "a10.thigh.move": {
+   "text": "Đặt tay lên chân kia. Nghiêng người tới trước từ hông, giữ lưng thẳng."
+  },
+  "a10.thigh.easy": {
+   "text": "Giữ gối đó hơi cong, và chỉ nghiêng tới trước một chút."
+  },
+  "a10.ankle.intro": {
+   "text": "Cổ chân, cho bước vững hơn."
+  },
+  "a10.ankle.setup": {
+   "text": "Tay giữ cạnh ghế, nhấc một bàn chân lên khỏi sàn một chút."
+  },
+  "a10.ankle.move": {
+   "text": "Duỗi mũi chân ra xa. Rồi kéo về phía bạn. Chậm và đều."
+  },
+  "a10.ankle.easy": {
+   "text": "Giữ gót trên sàn, chỉ nâng lên hạ xuống mũi chân."
+  },
+  "a10.calf.intro": {
+   "text": "Giãn bắp chân. Luôn giữ tay vào ghế."
+  },
+  "a10.calf.setup": {
+   "text": "Tay đặt lên lưng ghế. Lùi một chân ra sau, hai bàn chân đặt phẳng."
+  },
+  "a10.calf.move": {
+   "text": "Hơi gập gối trước, chân sau thẳng và gót sát sàn. Bạn sẽ thấy căng ở bắp chân."
+  },
+  "a10.calf.easy": {
+   "text": "Lùi chân ngắn hơn, và để gối sau hơi cong."
+  },
+  "a10.chin-tuck.intro": {
+   "text": "Thu cằm. Động tác nhỏ, nhẹ nhàng cho cổ."
+  },
+  "a10.chin-tuck.setup": {
+   "text": "Ngồi thẳng, mắt nhìn thẳng. Mắt giữ ngang, đừng bao giờ ngửa đầu ra sau."
+  },
+  "a10.chin-tuck.move": {
+   "text": "Nhẹ nhàng lùi đầu thẳng ra sau, như làm cằm đôi. Rồi thả ra."
+  },
+  "a10.chin-tuck.easy": {
+   "text": "Lùi đầu ít hơn. Một chút xíu là đủ."
+  },
+  "a10.shoulder-roll.intro": {
+   "text": "Xoay vai. Cách nhẹ nhàng để thả lỏng đôi vai."
+  },
+  "a10.shoulder-roll.setup": {
+   "text": "Ngồi thẳng, tay đặt trên đùi."
+  },
+  "a10.shoulder-roll.move": {
+   "text": "Xoay vai lên, ra sau, rồi xuống, thành một vòng chậm."
+  },
+  "a10.shoulder-roll.easy": {
+   "text": "Vòng nhỏ hơn, và vẫn chậm."
+  },
+  "a10.upper-back.intro": {
+   "text": "Vươn lưng trên. Bạn sẽ thấy căng giữa hai bả vai."
+  },
+  "a10.upper-back.setup": {
+   "text": "Ngồi thẳng. Đưa hai tay ra trước ngang vai, lòng bàn tay hướng ra ngoài."
+  },
+  "a10.upper-back.move": {
+   "text": "Vươn tay ra trước, để lưng trên hơi cong. Lưng dưới vẫn giữ thẳng."
+  },
+  "a10.upper-back.easy": {
+   "text": "Giữ cả lưng thẳng, chỉ vươn tay thôi. Tay thấp hơn một chút cũng được."
+  },
+  "a10.overhead.intro": {
+   "text": "Vươn tay lên tường. Giúp bạn với tới tủ trên cao."
+  },
+  "a10.overhead.setup": {
+   "text": "Đứng quay mặt vào tường, đủ gần để đặt lòng bàn tay lên tường ngang vai."
+  },
+  "a10.overhead.move": {
+   "text": "Từ từ đưa tay lên dọc tường, cao đến mức thoải mái. Gót sát sàn, đừng ưỡn lưng."
+  },
+  "a10.overhead.easy": {
+   "text": "Chỉ với đến ngang mắt. Vậy là đủ."
+  },
+  "a10.overhead.seated": {
+   "text": "Bạn cứ ngồi trên ghế. Ngồi thẳng, rồi từ từ đưa hai tay lên phía trước."
+  },
+  "a10.thigh.back": {
+   "text": "Chỉ duỗi chân ra và ngồi thẳng. Không cần nghiêng tới trước."
+  },
+  "a10.warm.1": {
+   "text": "Mình khởi động trước nhé. Bước tại chỗ nhẹ nhàng, tay vung tự nhiên."
+  },
+  "a10.warm.end": {
+   "text": "Ấm người rồi. Giờ mình bắt đầu giãn cơ."
+  },
+  "a10.hold.start.1": {
+   "text": "Giữ ở đây, và thở."
+  },
+  "a10.hold.start.2": {
+   "text": "Giữ yên đó. Thở chậm, nhẹ nhàng."
+  },
+  "a10.round2.1": {
+   "text": "Thêm lần nữa. Lần này có thể vào thế dễ hơn."
+  },
+  "a10.round2.2": {
+   "text": "Mình làm lại động tác đó. Vào thế từ từ, từng chút một."
+  },
+  "a10.reps": {
+   "text": "Chậm và nhẹ nhàng. Mình đếm cho bạn nhé."
+  },
+  "a10.to-wall": {
+   "text": "Khi thấy vững, buông ghế ra và đi tới bên tường."
+  },
+  "a10.to-sit": {
+   "text": "Giờ ngồi xuống nhé. Ngồi ra phía trước ghế, chân đặt phẳng."
+  },
+  "a10.cool.open.stand": {
+   "text": "Đi bộ tốt lắm. Đứng gần ghế, mình thả lỏng bằng vài động tác giãn nhẹ."
+  },
+  "a10.breathe.open": {
+   "text": "Mình kết thúc bằng vài hơi thở chậm. Ngồi tựa vào ghế, chân đặt phẳng."
+  },
+  "a10.breathe.how": {
+   "text": "Hít vào bằng mũi, đếm đến năm. Rồi thở ra bằng miệng, cũng đếm năm."
+  },
+  "a10.breathe.in": {
+   "text": "Hít vào bằng mũi. Hai. Ba. Bốn. Năm."
+  },
+  "a10.breathe.out": {
+   "text": "Và thở ra bằng miệng. Hai. Ba. Bốn. Năm."
+  },
+  "a10.breathe.mid": {
+   "text": "Thở nhẹ nhàng. Không cần gắng sức."
+  },
+  "a10.breathe.end": {
+   "text": "Để hơi thở trở lại nhịp tự nhiên, thoải mái."
+  },
+  "a11.extra.note": {
+   "text": "Bài này là phần thêm. Buổi tập hôm nay vẫn chờ bạn, khi nào bạn sẵn sàng."
+  },
+  "a11.balance.place": {
+   "text": "Đặt ghế tựa lưng vào tường, hoặc dùng bàn bếp."
+  },
+  "a11.balance.reach": {
+   "text": "Luôn để ghế hoặc bàn bếp trong tầm tay."
+  },
+  "a11.balance.posture": {
+   "text": "Đứng thẳng, chân rộng bằng hông, gối hơi chùng."
+  },
+  "a11.balance.breaths": {
+   "text": "Hít thở chậm ba lần."
+  },
+  "a11.balance.shift": {
+   "text": "Giờ nhẹ nhàng dồn trọng tâm sang một chân. Rồi sang chân kia."
+  },
+  "a11.hands.two": {
+   "text": "Bài này giữ ghế bằng cả hai tay."
+  },
+  "a11.hands.one": {
+   "text": "Giữ ghế bằng một tay, tay kia để gần."
+  },
+  "a11.hands.tips": {
+   "text": "Nếu thấy vững, chỉ đặt đầu ngón tay lên ghế."
+  },
+  "a11.hands.keep": {
+   "text": "Luôn giữ ít nhất một tay trên ghế."
+  },
+  "a11.hands.back": {
+   "text": "Hai tay trở lại ghế, và hít một hơi."
+  },
+  "a11.sts.intro": {
+   "text": "Ngồi vào ghế, tập ngồi xuống đứng lên."
+  },
+  "a11.sts.two": {
+   "text": "Hai tay chống lên mặt ghế để đẩy người lên. Đứng thẳng, rồi dừng lại hít một hơi."
+  },
+  "a11.sts.one": {
+   "text": "Thấy vững chưa? Lần này, chỉ chống một tay để đứng lên."
+  },
+  "a11.tandem.intro": {
+   "text": "Đứng nối gót. Đứng sau ghế, hai chân đặt cạnh nhau."
+  },
+  "a11.tandem.move": {
+   "text": "Đặt một chân ngay trước chân kia, gót chạm mũi chân."
+  },
+  "a11.tandem.easy": {
+   "text": "Thấy loạng choạng? Đặt chân trước lệch sang bên một chút. Vẫn tính nhé."
+  },
+  "a11.tandem.jr": {
+   "text": "Hai chân trên một đường thẳng. Đừng bắt chéo chân."
+  },
+  "a11.tandem.switch": {
+   "text": "Lùi về tư thế đầu. Giờ đổi chân kia lên trước."
+  },
+  "a11.single-leg.intro": {
+   "text": "Đứng một chân. Hai chân cạnh nhau, đứng sát ghế."
+  },
+  "a11.side-walk.intro": {
+   "text": "Đi ngang. Quay mặt vào bàn bếp, đặt tay lên đó."
+  },
+  "a11.side-walk.move": {
+   "text": "Bước một chân sang ngang, rồi đưa chân kia theo."
+  },
+  "a11.side-walk.count": {
+   "text": "Mười bước bên này, rồi mười bước quay lại."
+  },
+  "a11.side-walk.nocounter": {
+   "text": "Không có bàn bếp? Đứng cạnh ghế, bước ra rồi bước vào tại chỗ."
+  },
+  "a11.side-walk.easy": {
+   "text": "Bước nhỏ thôi, và trượt tay theo khi bước."
+  },
+  "a11.heel-toe.intro": {
+   "text": "Nhón gót và nhón mũi, lần này đứng. Giữ lưng ghế."
+  },
+  "a11.heel-toe.up": {
+   "text": "Nhón lên trên mũi chân. Rồi hạ gót thật chậm."
+  },
+  "a11.heel-toe-walk.intro": {
+   "text": "Đi nối gót. Đứng cạnh tường, đầu ngón tay chạm nhẹ lên tường."
+  },
+  "a11.heel-toe-walk.move": {
+   "text": "Bước một chân ngay trước chân kia, gót chạm mũi. Từng bước chậm một."
+  },
+  "a11.heel-toe-walk.easy": {
+   "text": "Chừa một khoảng nhỏ giữa hai chân nếu cần."
+  },
+  "a11.balance.sit": {
+   "text": "Giờ ngồi xuống ghế, và để chân nghỉ ngơi."
+  },
+  "a11.balance.close": {
+   "text": "Xong bài thăng bằng hôm nay. Thật vững vàng."
+  },
+  "a11.morning.open": {
+   "text": "Chào buổi sáng. Mình cùng đánh thức cơ thể nhẹ nhàng, ngay trên ghế."
+  },
+  "a11.morning.sit": {
+   "text": "Ngồi thẳng, chân đặt phẳng, hít thở chậm ba lần."
+  },
+  "a11.morning.dizzy": {
+   "text": "Thấy chóng mặt? Cứ ngồi yên, nghỉ bao lâu cũng được."
+  },
+  "a11.morning.gentle": {
+   "text": "Cơ bắp còn đang thức dậy, nên mình làm mọi động tác thật nhỏ và chậm."
+  },
+  "a11.neck-turn.reps": {
+   "text": "Từ từ quay đầu sang một bên, về giữa, rồi sang bên kia."
+  },
+  "a11.twist.reps": {
+   "text": "Xoay người một chút sang một bên, về giữa, rồi sang bên kia."
+  },
+  "a11.march.seated": {
+   "text": "Giờ bước tại chỗ nhẹ nhàng trên ghế. Nâng một gối, rồi gối kia."
+  },
+  "a11.ankle.circles": {
+   "text": "Giờ xoay mũi chân thành vòng chậm, một chiều. Rồi chiều ngược lại."
+  },
+  "a11.morning.stand": {
+   "text": "Cuối cùng, ngồi xuống đứng lên. Ba lần thật chậm, hai tay chống lên."
+  },
+  "a11.morning.lightheaded": {
+   "text": "Nếu thấy chóng mặt khi đứng lên, hãy ngồi xuống lại. Không sao cả."
+  },
+  "a11.morning.still": {
+   "text": "Đứng yên, hít thở chậm ba lần. Giữ ghế nếu bạn muốn."
+  },
+  "a11.morning.close": {
+   "text": "Xong giãn cơ buổi sáng. Chúc bạn một ngày vui."
+  },
+  "a11.break.open.1": {
+   "text": "Đi bộ giờ quảng cáo. Mình tranh thủ lúc nghỉ để vận động đôi chân."
+  },
+  "a11.break.open.2": {
+   "text": "Ngồi hoặc đứng cạnh ghế, tuỳ bạn thấy hợp hôm nay."
+  },
+  "a11.break.mid": {
+   "text": "Vẫn để ý chương trình nhé. Tạm dừng lúc nào cũng được."
+  },
+  "a11.break.close.1": {
+   "text": "Xong bài đi bộ giờ quảng cáo. Chúc bạn xem tiếp vui vẻ."
+  },
+  "a11.break.close.2": {
+   "text": "Làm tốt lắm. Vài phút vận động, ngay giữa ngày của bạn."
+  },
+  "a11.wind.open": {
+   "text": "Đến lúc thư giãn rồi. Ngồi tựa vào ghế, để ghế đỡ lấy bạn."
+  },
+  "a11.wind.setup": {
+   "text": "Chân đặt phẳng, rộng khoảng bằng hông. Hai tay đặt nhẹ trên đùi."
+  },
+  "a11.wind.screen": {
+   "text": "Bạn có thể đặt điện thoại xuống. Không cần nhìn gì đâu."
+  },
+  "a11.wind.stretch": {
+   "text": "Trước tiên, vài động tác giãn chậm cho cổ và ngực."
+  },
+  "a11.wind.breathe": {
+   "text": "Giờ mình chỉ cùng hít thở vài phút."
+  },
+  "a11.wind.mid.1": {
+   "text": "Nếu tâm trí lơ đãng, không sao. Quay lại với nhịp đếm."
+  },
+  "a11.wind.mid.2": {
+   "text": "Thả lỏng hàm, và để vai buông xuống."
+  },
+  "a11.wind.mid.3": {
+   "text": "Mỗi lần thở ra, buông bớt thêm chút bộn bề trong ngày."
+  },
+  "a11.wind.close": {
+   "text": "Tối nay vậy thôi. Ngủ ngon nhé."
+  },
+  "a11.posture.open": {
+   "text": "Chỉnh lại tư thế nhanh, khi bạn đã ngồi lâu."
+  },
+  "a11.posture.setup": {
+   "text": "Ngồi ra phía trước ghế, và mình cùng mở người ra một chút."
+  },
+  "a11.posture.to-wall": {
+   "text": "Bài cuối ở bên tường. Đứng lên từ từ, hít một hơi, rồi đi tới."
+  },
+  "a11.posture.close": {
+   "text": "Xong bài lấy lại tư thế. Cảm nhận đôi vai, rồi tiếp tục ngày của bạn."
+  }
+ },
+ "notifications": {
+  "nt.remind.1": "Sẵn sàng cho vài phút nhẹ nhàng chưa? Ngồi tập cũng tính nhé.",
+  "nt.remind.2": "Buổi đi bộ đã sẵn sàng, lúc nào bạn muốn cũng được.",
+  "nt.remind.3": "Hôm nay đi bộ một chút nhé? Năm phút là đủ.",
+  "nt.remind.4": "Đến giờ đi bộ rồi. Cứ đi theo nhịp của bạn.",
+  "nt.remind.5": "Chiếc ghế ở ngay đó rồi. Bắt đầu nhé?",
+  "nt.remind.6": "Vài phút cho riêng bạn, trước khi ngày bắt đầu bận rộn.",
+  "nt.remind.7": "Cùng cho đôi chân vận động nào. Chỉ một chút thôi.",
+  "nt.remind.8": "Hành trình đang chờ những bước chân hôm nay của bạn.",
+  "nt.remind.9": "Có vài phút không? Buổi đi bộ đã sẵn sàng.",
+  "nt.remind.10": "Buổi tập hôm nay ngắn thôi. Sẵn sàng chưa?",
+  "nt.remind.11": "Một giọng nói êm dịu và vài phút nhẹ nhàng. Cùng bắt đầu nhé?",
+  "nt.remind.12": "Muốn vận động một chút không? Kế hoạch của bạn đã sẵn sàng.",
+  "nt.remind.13": "Thời gian của bạn. Nhịp của bạn. Buổi đi bộ của bạn.",
+  "nt.remind.14": "Chỉ cần nhấn Bắt đầu. Giọng hướng dẫn sẽ lo phần còn lại.",
+  "nt.day2.1": "Hôm qua là buổi đi bộ đầu tiên của bạn. Hôm nay cũng ngắn như vậy.",
+  "nt.day2.2": "Ngày thứ hai. Vẫn nhẹ nhàng như hôm qua.",
+  "nt.day2.3": "Hôm qua bạn khởi đầu thật tốt. Thêm vài phút nữa nhé?",
+  "nt.near.1": "Chỉ còn một buổi đi bộ nữa là tới {stop}.",
+  "nt.week.up": "Tuần này bạn có {n} ngày vận động, nhiều hơn tuần trước.",
+  "nt.week.same": "Tuần này bạn có {n} ngày vận động, bằng tuần trước. Đều đặn lắm.",
+  "nt.week.less": "Tuần này bạn có {n} ngày vận động. Ngày mai đã là tuần mới.",
+  "nt.back.3": "Hành trình vẫn ở nguyên chỗ bạn dừng lại. Thử 5 phút nhẹ nhàng nhé?",
+  "nt.back.10": "Khi nào bạn sẵn sàng, buổi bắt đầu lại nhẹ nhàng đang chờ bạn.",
+  "nt.trial": "Thời gian dùng thử miễn phí của bạn kết thúc vào {date}. Nếu không huỷ, bạn sẽ bị tính phí {price}. Quản lý trong Cài đặt.",
+  "nt.newjourney": "Có hành trình mới cho bạn: {journey}.",
+  "card.fewer": "Giờ bạn đã tự tập đều rồi. Bạn có muốn nhận ít lời nhắc hơn không?"
+ },
+ "wins": {
+  "win.1": "Đứng dậy khỏi ghế sofa mà không cần chống tay",
+  "win.2": "Xách hết đồ đi chợ vào nhà chỉ trong một chuyến",
+  "win.3": "Đi hết một vòng cửa hàng",
+  "win.4": "Leo hết cầu thang mà không phải dừng lại",
+  "win.5": "Ngồi chơi dưới sàn với các cháu",
+  "win.6": "Với tới kệ cao nhất mà không cần ghế kê",
+  "win.7": "Đi ra hộp thư rồi quay về, thấy nhẹ nhàng",
+  "win.8": "Đứng suốt cả buổi hoà nhạc hay trận bóng"
+ }
+}

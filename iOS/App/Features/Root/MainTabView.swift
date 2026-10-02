@@ -62,7 +62,8 @@ struct TodayTab: View {
                 yearlyPrice: app.price(ProductID.yearly),
                 onStart: { request in app.startFromToday(request, checkIn: today.checkedIn) },
                 onSeePlans: { app.offerPlans(.lockedContent) },
-                onManagePlan: { app.tab = .me },
+                // Straight to the cancel steps: the card is about being billed (review 02/10/2026).
+                onManagePlan: { app.cover = .cancelGuide(afterLifetime: false) },
                 onOpenJourney: { app.tab = .journey },
                 onSeeAllSessions: { app.todayPath.append(.allSessions) },
                 onConnectHealth: { Task { _ = await app.health.requestAuthorization(); app.reload() } },

@@ -29,7 +29,8 @@ struct CompleteView: View {
         ZStack(alignment: .top) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    CompleteHero(title: content.title, subtitle: content.subtitle, level: content.reachedLevel)
+                    CompleteHero(title: content.title, subtitle: content.subtitle, level: content.reachedLevel,
+                                 isCalm: content.variant == .stoppedForPain)
                     CompleteStats(minutes: content.minutes, milesText: content.milesText, milesLabel: content.milesLabel,
                                   activeDays: content.activeDays)
                     TreeMilestoneLine(activeDays: content.activeDays)
@@ -55,14 +56,17 @@ struct CompleteView: View {
                     if let chairMovesMinutes {
                         ChairMovesWaitingCard(minutes: chairMovesMinutes, onDoNow: onChairMoves)
                     }
-                    FeelingQuestion(selection: feeling) { value in
-                        feeling = value
-                        onFeeling(value)
+                    // After stopping for pain the answer is already known: no "too easy?" question.
+                    if content.variant != .stoppedForPain {
+                        FeelingQuestion(selection: feeling) { value in
+                            feeling = value
+                            onFeeling(value)
+                        }
                     }
                     if !pinsDone {
                         Button("Done", action: onDone).buttonStyle(.primaryAction)
                     }
-                    ShareCardButton(content: content)
+                    if content.variant != .stoppedForPain { ShareCardButton(content: content) }
                     if let onAgain {
                         Button("Do it again", action: onAgain)
                             .buttonStyle(.smallTextLink)
@@ -76,7 +80,7 @@ struct CompleteView: View {
             .pinnedActions(pinsDone) {
                 Button("Done", action: onDone).buttonStyle(.primaryAction)
             }
-            FallingLeaves()
+            if content.variant != .stoppedForPain { FallingLeaves() }
         }
         .screenBackground()
     }
@@ -128,7 +132,7 @@ struct JourneyProgressBar: View {
             ProgressView(value: progress).tint(Palette.secondary).scaleEffect(x: 1, y: 2, anchor: .center)
                 .accessibilityHidden(true)
             // Why a chair session moves the journey (clarity review D16).
-            Text("Every minute you move adds miles to your journey.").typeRole(.caption).foregroundStyle(Palette.textMuted)
+            Text("Every minute you move takes you further on your journey.").typeRole(.caption).foregroundStyle(Palette.textMuted)
         }
         .cardStyle()
     }
@@ -205,6 +209,8 @@ struct CompleteHero: View {
     let title: String
     let subtitle: String?
     let level: TreeLevel?
+    /// Stopped for pain: the coach resting, not cheering.
+    var isCalm = false
 
     @Environment(\.dynamicTypeSize) private var typeSize
     @ScaledMetric(relativeTo: .title) private var badgeSize: CGFloat = 76
@@ -222,7 +228,7 @@ struct CompleteHero: View {
                     .background(Palette.secondary.opacity(0.15), in: .circle)
                     .accessibilityHidden(true)
             } else {
-                ArtImage(art: .walkerCelebrate, height: 132).frame(width: 110)
+                ArtImage(art: isCalm ? .walkerRest : .walkerCelebrate, height: 132).frame(width: 110)
             }
             VStack(alignment: .leading, spacing: 4) {
                 if let level {

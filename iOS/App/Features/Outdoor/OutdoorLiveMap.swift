@@ -126,8 +126,8 @@ struct LiveStatsStrip: View {
             Divider().frame(height: 34)
             stat(WalkPlayerModel.clock(Int(seconds)), String(localized: "time"))
             Divider().frame(height: 34)
-            stat(WalkPace.text(minutesPerMile: WalkPace.minutesPerMile(seconds: seconds, miles: miles)),
-                 String(localized: "min per mile"))
+            stat(WalkPace.text(minutesPerMile: DistanceText.pace(minutesPerMile: WalkPace.minutesPerMile(seconds: seconds, miles: miles))),
+                 UnitPreferences.current.distance == .miles ? String(localized: "min per mile") : String(localized: "min per km"))
         }
         .padding(.vertical, 10)
         .background(.regularMaterial)

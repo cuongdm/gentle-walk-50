@@ -5,10 +5,14 @@ import SwiftUI
 /// steps" never asks again.
 struct OutdoorPrepView: View {
     let asksLocation: Bool
-    let onRequestLocation: () -> Void
+    /// Apple's location dialog; returns once she has answered.
+    let onRequestLocation: () async -> Void
     let onDone: (_ useLocation: Bool?) -> Void
+    /// Not ready to go out after all: back, nothing starts (review 02/10/2026).
+    var onClose: () -> Void = {}
     @State private var step = 1
     @State private var ticked: Set<Int> = []
+    @State private var asking = false
 
     var body: some View {
         ScrollView {
@@ -19,12 +23,25 @@ struct OutdoorPrepView: View {
                 }
             } else {
                 OutdoorLocationAskView(onUseLocation: {
-                    onRequestLocation()
-                    onDone(true)
+                    guard !asking else { return }
+                    asking = true
+                    Task {
+                        await onRequestLocation()
+                        onDone(true)
+                    }
                 }, onStepsOnly: { onDone(false) })
             }
             }
             .readableColumn()
+        }
+        // Its own row above the picture (on the picture it was hard to read).
+        .safeAreaInset(edge: .top, spacing: 0) {
+            HStack {
+                Spacer()
+                Button("Close", action: onClose).buttonStyle(.smallTextLink)
+            }
+            .padding(.horizontal, Metrics.screenMargin)
+            .background(Palette.bg)
         }
         .screenBackground()
     }

@@ -60,13 +60,28 @@ private struct LevelSlider: View {
 /// change from the next session.
 struct SoundSheet: View {
     let showsMusic: Bool
+    /// The walk player: the coach's voice and the music switch on and off here (they were buttons
+    /// beside Pause, now Back and Skip).
+    var player: SessionPlayer?
     let onChange: (AudioLevels) -> Void
     @Environment(\.dismiss) private var dismiss
+    /// Captions can be turned on or off here too, where they are seen (they were only in Me).
+    @AppStorage("captionsOn") private var captionsOn = true
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 ClosableHeader(title: String(localized: "Sound"), onClose: { dismiss() })
+                Toggle("Captions", isOn: $captionsOn).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
+                    .tint(Palette.secondary)
+                if let player {
+                    Toggle("Coach's voice", isOn: Binding(get: { player.isVoiceOn }, set: { player.setVoiceOn($0) }))
+                        .typeRole(.body).frame(minHeight: Metrics.minTouchTarget).tint(Palette.secondary)
+                    if showsMusic {
+                        Toggle("Music", isOn: Binding(get: { player.isMusicOn }, set: { player.setMusicOn($0) }))
+                            .typeRole(.body).frame(minHeight: Metrics.minTouchTarget).tint(Palette.secondary)
+                    }
+                }
                 SoundControls(showsMusic: showsMusic, onChange: onChange)
                 Text("Move introductions change from your next session.")
                     .typeRole(.caption).foregroundStyle(Palette.textMuted)

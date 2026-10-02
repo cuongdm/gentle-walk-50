@@ -16,6 +16,11 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, @u
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         let link = DeepLink(category: response.notification.request.content.categoryIdentifier, action: response.actionIdentifier)
+        // "Rest today" runs without opening the app, so no model may exist yet: the day is written
+        // now, as the day she tapped, not the day the app next opens (review 02/10/2026).
+        if link == .restToday {
+            UserDefaults.standard.set(Date.now, forKey: AppModel.restTodayKey)
+        }
         await MainActor.run {
             if let target { link.handle(with: target) } else { pending = link }
         }

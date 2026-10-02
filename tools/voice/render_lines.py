@@ -27,6 +27,11 @@ VOICES = {
                  "cache": ROOT / "assets" / "voice" / "cache"},
     "bella-v4": {"voice_id": "hpp4J3VqNfWAUOO0d1Us", "model": "eleven_v4", "format": "mp3_44100_192",
                  "cache": ROOT / "assets" / "voice" / "cache-bella-v4"},
+    # Vietnamese (i18n, 01/10/2026): the same coach voice on Eleven v4 with language_code "vi". Samples to
+    # compare against other voices: assets/voice/samples-vi/. Texts from docs/i18n/vi/voice-*.json;
+    # attach with tools/i18n/build_content_overlay.py vi --cache assets/voice/cache-vi-bella-v4.
+    "bella-v4-vi": {"voice_id": "hpp4J3VqNfWAUOO0d1Us", "model": "eleven_v4", "format": "mp3_44100_192",
+                    "language": "vi", "cache": ROOT / "assets" / "voice" / "cache-vi-bella-v4"},
 }
 SETTINGS = {"stability": 0.6, "similarity_boost": 0.75, "style": 0.15, "speed": 0.92}
 VOICE = VOICES["bella-v4"]
@@ -34,7 +39,10 @@ CACHE = VOICE["cache"]
 
 
 def body_for(text):
-    return {"text": text, "model_id": VOICE["model"], "voice_settings": SETTINGS}
+    body = {"text": text, "model_id": VOICE["model"], "voice_settings": SETTINGS}
+    if VOICE.get("language"):
+        body["language_code"] = VOICE["language"]
+    return body
 
 
 def cache_key(text):
@@ -43,6 +51,12 @@ def cache_key(text):
 
 
 def load_lines():
+    """id -> text in the voice's language (English from the app, others from docs/i18n/<lang>/)."""
+    if VOICE.get("language"):
+        texts = {}
+        for f in sorted((ROOT / "docs" / "i18n" / VOICE["language"]).glob("voice-*.json")):
+            texts.update(json.load(open(f, encoding="utf-8")))
+        return texts
     data = json.load(open(LINES, encoding="utf-8"))
     items = data["voiceLines"]
     return {line["id"]: line["text"] for line in items}

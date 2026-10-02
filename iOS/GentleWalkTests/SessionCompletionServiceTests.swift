@@ -68,6 +68,16 @@ import GentleWalkCore
         #expect(Set(unlocks.map(\.stopID)) == ["pc.ny.zoo", "pc.ny.bethesda"])
     }
 
+    /// The route is complete in the session that reaches its end, not in every one after it
+    /// (each later session offered the plans again; review 02/10/2026).
+    @Test func journeyCompleteOnlyOnce() async throws {
+        let (service, _, _, _) = try service()
+        let finish = try await service.complete(summary(minutes: 110, on: day(21)))
+        #expect(finish.journeyComplete)
+        let after = try await service.complete(summary(minutes: 10, on: day(22)))
+        #expect(!after.journeyComplete)
+    }
+
     @Test func sameDayTwiceIsOneActiveDay() async throws {
         let (service, _, _, _) = try service()
         _ = try await service.complete(summary(minutes: 5, on: day(28, 8)))

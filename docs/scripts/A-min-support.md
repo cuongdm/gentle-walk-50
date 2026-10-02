@@ -66,6 +66,7 @@ So với chính mình, không hype, không so với người khác.
 | a7.hurt.skip | chọn Skip this move | We'll skip that one. On to the next. |
 | a7.hurt.stop | chọn Stop for today | Let's stop here. Rest up, and we'll adjust your plan. |
 | a7.stand | trước bài đứng | Stand behind your chair. Hold on if you need to. |
+| a7.stand.wait | ngay sau a7.stand, màn đếm 10 giây (chủ app 02/10/2026) | We'll start in ten seconds. Tap Wait if you need longer. |
 | a7.stand.ready | sau khi bấm Ready | Hold the chair the whole time. Only let go if you feel steady. |
 | a7.pause | Pause | Paused. Take all the time you need. |
 | a7.dizzy | câu nhắc chung, buổi đứng | If you feel dizzy or unwell, stop and sit down. |

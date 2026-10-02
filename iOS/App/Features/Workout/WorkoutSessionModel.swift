@@ -34,6 +34,8 @@ import GentleWalkCore
     private(set) var transition: PhaseTransition?
     private(set) var easierExerciseIDs: Set<String> = []
     private(set) var feelingSaved = false
+    /// Ended from This hurts → Stop for today (Complete stays calm).
+    private(set) var stoppedForPain = false
 
     struct PhaseTransition: Equatable {
         var label: String
@@ -156,27 +158,69 @@ import GentleWalkCore
         hurtsModel = nil
         switch outcome {
         case .continueSession:
+            // Skipping or easing a move can land on a standing one: its "Stand behind your chair"
+            // screen (set while This hurts was open) stays, and waits for her (review 02/10/2026).
+            // This hurts never resumes by itself, so nothing plays behind that screen.
+            if case .standBehindChair = stage { return }
             stage = .playing
             player.resume()
         case .endSession(let counts):
+            stoppedForPain = true
             await finish(counts: counts)
         }
     }
 
+    /// Play from the lock screen, headphones or the car: only on the session itself after her own
+    /// pause or a phone call, never behind Break, This hurts, "Stand behind your chair" or the End
+    /// question (a car sends Play on connect; review 02/10/2026).
+    func remoteResume() {
+        guard stage == .playing else { return }
+        switch player.state {
+        case .paused(.user), .paused(.interrupted): player.resume()
+        default: break
+        }
+    }
+
     func askToEnd() {
+        // From "Stand behind your chair", Keep going comes back to it (not into the standing move).
+        if case .standBehindChair = stage { stageBeforeEnd = stage }
         player.pause(.user)
         stage = .confirmEnd
     }
 
     func keepGoing() {
+        if let previous = stageBeforeEnd {
+            stageBeforeEnd = nil
+            stage = previous
+            return
+        }
         stage = .playing
         player.resume()
     }
+
+    @ObservationIgnored private var stageBeforeEnd: Stage?
 
     func confirmStanding() {
         guard case .standBehindChair = stage else { return }
         confirmedStanding.insert(player.currentPhase?.block ?? .chair)
         stage = .playing
+        player.resume()
+    }
+
+    /// "Skip this move" on "Stand behind your chair": on to the next part. Another standing move
+    /// right after it gets its own screen.
+    func skipStandingMove() {
+        guard case .standBehindChair = stage else { return }
+        let before = player.phaseIndex
+        stage = .playing
+        player.skip()
+        // The next part is standing too (a second round of the same stretch): its own screen, set
+        // by the phase change. Nothing skipped (a rebuild loading): the same screen stays.
+        if case .standBehindChair = stage { return }
+        if player.phaseIndex == before, let id = player.currentPhase?.exerciseID {
+            stage = .standBehindChair(exerciseID: id)
+            return
+        }
         player.resume()
     }
 
@@ -192,6 +236,9 @@ import GentleWalkCore
     /// Sessions shorter than this are not saved when she ends them herself.
     static let minimumSeconds = 60
 
+    /// The one rule for "saved or not", used by finish() and by the End question.
+    static func wouldSave(seconds: Double) -> Bool { Int(seconds.rounded()) >= minimumSeconds }
+
     /// - Parameter counts: true when the session must be saved however short (stopping for pain).
     func finish(counts: Bool = false) async {
         guard stage != .saving, !isComplete else { return }
@@ -200,7 +247,7 @@ import GentleWalkCore
         motion?.stop()
         let total = player.timeline.isOpenEnded ? player.currentTime : player.timeline.total
         secondsDone = Int(min(player.currentTime, total).rounded())
-        if !counts, secondsDone < Self.minimumSeconds {
+        if !counts, !Self.wouldSave(seconds: Double(secondsDone)) {
             // Nothing to save: stop the outdoor services and say so kindly.
             route = []
             onEnded?()
@@ -217,6 +264,12 @@ import GentleWalkCore
             route: route)
         let result = (try? await completion?.complete(summary)) ?? CompletionResult(activeDays: 1, isFirstWorkout: request.isFirstWalk)
         stage = .complete(result)
+    }
+
+    /// The saved result once Complete shows.
+    var completionResult: CompletionResult? {
+        if case .complete(let result) = stage { return result }
+        return nil
     }
 
     /// Shows a finished state directly (screenshots).
@@ -270,5 +323,6 @@ import GentleWalkCore
         transition = value
     }
     func setRoute(_ points: [RoutePoint]) { route = points }
+    func markStoppedForPain() { stoppedForPain = true }
     #endif
 }

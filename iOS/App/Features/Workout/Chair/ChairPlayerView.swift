@@ -29,7 +29,8 @@ struct ChairPlayerView: View {
             } else if model.isRest {
                 RestBetweenMoves(timer: model.timerText, next: model.nextExercise, nextVideo: model.nextVideoFile,
                                  onSkipRest: model.skip,
-                                 onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
+                                 onBreak: model.session.takeBreak, onHurts: model.session.openHurts,
+                                 onEnd: model.session.askToEnd)
             } else {
                 portrait
             }
@@ -218,10 +219,18 @@ struct RestBetweenMoves: View {
     let onSkipRest: () -> Void
     let onBreak: () -> Void
     let onHurts: () -> Void
+    /// The way out stays during the rest too (it vanished between moves; review 02/10/2026).
+    var onEnd: (() -> Void)?
 
     var body: some View {
         // Break and This hurts stay on screen; only the part above them scrolls when crowded.
         VStack(spacing: 18) {
+            if let onEnd {
+                HStack {
+                    EndSessionButton(action: onEnd)
+                    Spacer()
+                }
+            }
             restInfo.scrollsWhenCrowded()
             WorkoutSafetyBar(showsVoice: false, onBreak: onBreak, onHurts: onHurts)
         }
@@ -264,24 +273,74 @@ private struct NextUpName: View {
 }
 
 /// Before a standing move: "Stand behind your chair. Hold on if you need to." · Ready.
+/// Before the first standing move. The coach says it ("Stand behind your chair… We'll start in ten
+/// seconds") with a soft chime, and a 10-second count runs, so someone not looking at the phone hears
+/// what to do and the session goes on by itself (owner 02/10/2026: it waited in silence for "Ready").
+/// "Wait" holds the count; "Ready" starts at once; she can skip the move or end the session.
 struct StandBehindChairView: View {
     var line: LocalizedStringResource = "Stand behind your chair. Hold on if you need to."
     let onReady: () -> Void
+    var onSkip: (() -> Void)?
+    var onEnd: (() -> Void)?
+    /// Plays the spoken cue (nil in screenshots and tests).
+    var onSpeak: (() -> Void)?
+    var onStopSpeaking: () -> Void = {}
+
+    static let countdownSeconds = 10
+    @State private var remaining = StandBehindChairView.countdownSeconds
+    @State private var holding = false
 
     var body: some View {
         VStack(spacing: 24) {
+            if let onEnd {
+                HStack {
+                    EndSessionButton(action: { onStopSpeaking(); onEnd() })
+                    Spacer()
+                }
+            }
             Spacer()
             ArtImage(art: .walkerBehindChair, height: 220, fallbackSymbol: "chair.fill")
             Text(line)
                 .typeRole(.screenTitle)
                 .foregroundStyle(Palette.text)
                 .multilineTextAlignment(.center)
+            if !holding {
+                Text("Starting in \(remaining)")
+                    .typeRole(.cardTitle)
+                    .foregroundStyle(Palette.textMuted)
+                    .contentTransition(.numericText())
+                    .accessibilityLabel(Text("Starting in \(remaining) seconds"))
+            }
             Spacer()
-            Button("Ready", action: onReady).buttonStyle(.primaryAction)
+            Button("Ready") { onStopSpeaking(); onReady() }.buttonStyle(.primaryAction)
+            if !holding {
+                Button("Wait") {
+                    holding = true
+                    onStopSpeaking()
+                }
+                .buttonStyle(.secondaryAction)
+            }
+            if let onSkip {
+                Button("Skip this move") { onStopSpeaking(); onSkip() }.buttonStyle(.textLink)
+            }
         }
         .padding(Metrics.screenMargin)
         .scrollsWhenCrowded()
         .readableColumn()
         .screenBackground()
+        .task { await run() }
+        .onDisappear(perform: onStopSpeaking)
+    }
+
+    private func run() async {
+        guard let onSpeak else { return }
+        CueSounds.shared.tick()
+        onSpeak()
+        while remaining > 0 {
+            try? await Task.sleep(for: .seconds(1))
+            if Task.isCancelled || holding { return }
+            withAnimation { remaining -= 1 }
+        }
+        onReady()
     }
 }

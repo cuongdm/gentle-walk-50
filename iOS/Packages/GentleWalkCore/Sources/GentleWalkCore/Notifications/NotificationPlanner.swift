@@ -77,7 +77,8 @@ public enum NotificationPlanner {
 
         for offset in 0..<days {
             guard let day = cal.date(byAdding: .day, value: offset, to: today),
-                  let remindAt = cal.date(byAdding: .minute, value: clamped, to: day) else { continue }
+                  // Clock time, not minutes after midnight: on a daylight-saving day those are an hour off.
+                  let remindAt = cal.date(bySettingHour: clamped / 60, minute: clamped % 60, second: 0, of: day) else { continue }
             var candidates: [PlannedNotification] = []
             let isRest = input.restDays.contains(Weekday(of: day, in: cal))
             let walked = walkedDays.contains(day)

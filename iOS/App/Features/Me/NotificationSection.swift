@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 import GentleWalkCore
 
 /// Me → Notifications (task 7.11): the reminder moment and time, how often, and the three
@@ -6,6 +7,7 @@ import GentleWalkCore
 struct NotificationSection: View {
     let app: AppModel
     @State private var changingTime = false
+    @State private var permission: SystemPermission.Reminders?
 
     var body: some View {
         let profile = app.profile ?? .empty
@@ -18,6 +20,7 @@ struct NotificationSection: View {
                 }
             }
             .frame(minHeight: Metrics.minTouchTarget)
+            if permission == .blocked { BlockedRemindersNote() }
             Button("Change time") { changingTime = true }.buttonStyle(.textLink)
             Text("How often").typeRole(.body).fontWeight(.semibold)
             HStack(spacing: Metrics.touchSpacing) {
@@ -35,6 +38,11 @@ struct NotificationSection: View {
             .frame(minHeight: Metrics.minTouchTarget)
         }
         .tint(Palette.secondary)
+        // Read again each time Me shows (she may have changed it in Settings).
+        .task { permission = await SystemPermission.reminders() }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            Task { permission = await SystemPermission.reminders() }
+        }
         .sheet(isPresented: $changingTime) {
             ReminderTimeEditor(moment: profile.reminderMoment, minutes: profile.reminderMinutes) { moment, minutes in
                 app.updateProfile {

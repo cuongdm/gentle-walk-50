@@ -93,7 +93,12 @@ struct WeekStrip: View {
             HStack(spacing: 6) {
                 ForEach(days) { day in
                     VStack(spacing: 4) {
-                        Text(verbatim: day.isToday ? String(localized: "Today") : day.date.formatted(.dateTime.weekday(.abbreviated)))
+                        // "Today" when the word is short enough for a seventh of the card; a longer one
+                        // ("Hôm nay") gives way to the weekday in bold, the ring already marks the day
+                        // (shrinking it made it unreadable).
+                        let todayWord = String(localized: "Today")
+                        let label = day.isToday && todayWord.count <= 6 ? todayWord : day.date.formatted(.dateTime.weekday(.abbreviated))
+                        Text(verbatim: label)
                             .typeRole(.caption).fontWeight(day.isToday ? .bold : .regular).foregroundStyle(Palette.text)
                             .lineLimit(1).minimumScaleFactor(0.7)
                         Image(systemName: symbol(for: day))

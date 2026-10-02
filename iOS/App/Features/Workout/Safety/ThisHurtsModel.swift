@@ -26,7 +26,8 @@ enum HurtArea: String, CaseIterable, Identifiable, Sendable {
         switch self {
         case .knee: "Knee"
         case .hip: "Hip"
-        case .back: "Back"
+        // Its own key: "Back" is also the Back button (another word in other languages).
+        case .back: LocalizedStringResource("body.back", defaultValue: "Back", comment: "Body area chip on This hurts: the back.")
         case .shoulder: "Shoulder"
         case .elsewhere: "Somewhere else"
         }
@@ -39,7 +40,8 @@ enum HurtOutcome: Equatable, Sendable {
     case endSession(counts: Bool)
 }
 
-/// S13 This hurts (task 4.9): records where it hurts and adapts the session.
+/// S13 This hurts (task 4.9): records where it hurts and adapts the session. It leaves the player
+/// paused; the session resumes it, or keeps it for "Stand behind your chair" (review 02/10/2026).
 @Observable @MainActor final class ThisHurtsModel {
     var area: HurtArea?
 
@@ -62,22 +64,24 @@ enum HurtOutcome: Equatable, Sendable {
         } else if let exercise = player.currentPhase?.exerciseID {
             try? await player.apply(.easierVersion(exerciseID: exercise))
         }
-        player.resume()
         return .continueSession
     }
 
+    /// Skip records pain only when she said where it hurts: a skip alone is often tiredness, and three
+    /// reports in a week move her to seated moves (review 02/10/2026).
     func skipMove() async -> HurtOutcome {
-        record()
+        if area != nil { record() }
         try? await player.apply(.skip())
-        player.resume()
         return .continueSession
     }
 
     /// "I'm okay, go back": a mistaken tap, nothing is recorded.
     func goBack() -> HurtOutcome {
-        player.resume()
         return .continueSession
     }
+
+    /// Walking home there is no part to skip (Skip would have nowhere to go).
+    var canSkip: Bool { player.currentPhase?.end.isFinite ?? true }
 
     /// A walk (its moves included): the choices speak about the walk ("Slow down to an easy walk").
     var isWalk: Bool { player.currentPhase?.block == .walk }

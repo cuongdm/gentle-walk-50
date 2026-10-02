@@ -14,9 +14,14 @@ struct WorkoutView: View {
     var onReviewAsked: (ReviewMilestone) -> Void = { _ in }
     /// Outdoors: start today's chair moves from Complete.
     var onChairMoves: (() -> Void)?
+    /// Complete → "New postcard · Open": closes this session (recording it), then opens the postcard.
+    var onOpenPostcard: ((Journey.Stop) -> Void)?
     /// Complete → "Do it again": closes this session (recording it), then starts the same one.
     var onAgain: (() -> Void)?
+    /// "Not yet" on Up next: closes the session; the app may offer a reminder (First Walk).
+    var onNotYet: (() -> Void)?
     let onClose: (CompletionResult?) -> Void
+    @State private var standCue = SpokenCue()
 
     var body: some View {
         content
@@ -33,7 +38,13 @@ struct WorkoutView: View {
                 Button("Keep going", role: .cancel, action: session.keepGoing)
                 Button("End session") { Task { await session.finish() } }
             } message: {
-                Text("Your progress so far is saved.")
+                // Under a minute nothing is saved: the question says so (it promised "saved", then the
+                // next screen said nothing was; review 02/10/2026).
+                if !WorkoutSessionModel.wouldSave(seconds: session.player.currentTime) {
+                    Text("It's under a minute, so nothing will be saved.")
+                } else {
+                    Text("Your progress so far is saved.")
+                }
             }
     }
 
@@ -43,11 +54,14 @@ struct WorkoutView: View {
             ProgressView().controlSize(.large).frame(maxWidth: .infinity, maxHeight: .infinity).screenBackground()
         case .ready:
             WorkoutReadyView(request: session.request, minutes: session.request.minutes(content: session.content),
-                             onReady: session.readyConfirmed, onNotYet: { onClose(nil) })
+                             onReady: session.readyConfirmed, onNotYet: { onNotYet?() ?? onClose(nil) })
         case .countdown:
             WorkoutCountdownView(title: session.request.title, onFinished: session.countdownFinished)
         case .standBehindChair:
-            StandBehindChairView(onReady: session.confirmStanding)
+            StandBehindChairView(onReady: session.confirmStanding, onSkip: session.skipStandingMove,
+                                 onEnd: session.askToEnd,
+                                 onSpeak: { standCue.play(["a7.stand", "a7.stand.wait"], from: session.content) },
+                                 onStopSpeaking: standCue.stop)
         case .breakTime(let startedAt):
             BreakView(startedAt: startedAt, isOutdoors: session.request.place == .outdoors,
                       onContinue: session.endBreak, onFinish: { Task { await session.finish() } },
@@ -66,20 +80,30 @@ struct WorkoutView: View {
         case .complete(let result):
             CompleteView(
                 content: CompleteContent(result: result, request: session.request, minutes: session.minutesDone,
-                                         name: name, content: session.content),
-                onFeeling: session.recordFeeling, onDone: { onClose(result) }, route: session.route,
+                                         name: name, content: session.content, stoppedForPain: session.stoppedForPain),
+                onFeeling: session.recordFeeling, onDone: { onClose(result) },
+                onOpenPostcard: { stop in onClose(result); onOpenPostcard?(stop) }, route: session.route,
                 routeInHealth: healthConnected,
-                chairMovesMinutes: session.request.place == .outdoors && onChairMoves != nil
+                // Stopped for pain: no "do more" offers (chair moves, again).
+                chairMovesMinutes: session.request.place == .outdoors && onChairMoves != nil && !session.stoppedForPain
                     ? WorkoutRequest.chairMovesAfterOutdoor(limits: session.request.limits, rotationIndex: 0)
                         .minutes(content: session.content)
                     : nil,
                 onChairMoves: { onChairMoves?() },
-                onAgain: onAgain.map { again in { onClose(result); again() } })
+                onAgain: session.stoppedForPain ? nil : onAgain.map { again in { onClose(result); again() } })
             .reviewPrompt(reviewMilestone(result), onAsked: onReviewAsked)
         case .notSaved:
             NotSavedView { onClose(nil) }
         case .playing, .confirmEnd:
             player
+                // A phone call, Siri or headphones taken out paused it: say so on every player, with
+                // Resume (it sat silent, only the Pause icon had turned to Play; review 02/10/2026).
+                .overlay {
+                    if session.player.state == .paused(.interrupted), session.stage == .playing {
+                        PausedOverlay(note: "Paused while your phone was busy.", onResume: session.togglePause,
+                                      onEnd: session.askToEnd)
+                    }
+                }
         }
     }
 

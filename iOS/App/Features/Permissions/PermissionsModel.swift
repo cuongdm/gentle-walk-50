@@ -36,11 +36,21 @@ import UserNotifications
         self.remindersAllowed = remindersAllowed
     }
 
+    /// Reminders allowed earlier (the offer after "Not yet"): the card shows them on.
+    func readReminders() async {
+        if notifications is SystemNotificationAuthorizer, await SystemPermission.reminders() == .allowed { remindersAllowed = true }
+    }
+
     func connectHealth() async {
         healthConnected = await health?.requestAuthorization() ?? false
     }
 
+    /// Apple asks only once: after a "Don't Allow", the button opens Settings instead of doing nothing.
     func allowReminders() async {
+        if notifications is SystemNotificationAuthorizer, await SystemPermission.reminders() == .blocked {
+            SystemPermission.openSettings()
+            return
+        }
         remindersAllowed = await notifications?.requestAuthorization() ?? false
     }
 }

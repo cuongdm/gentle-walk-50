@@ -42,7 +42,7 @@ struct WalkPlayerView: View {
                 FullScreenVideoView(
                     fileName: video, title: model.phaseLabel, counter: model.clock, progress: model.phaseProgress,
                     tint: tint, caption: model.captionText, isPaused: isPaused,
-                    onExit: exitFullScreen, onBack: nil, onPause: session.togglePause, onSkip: nil,
+                    onExit: exitFullScreen, onBack: model.back, onPause: session.togglePause, onSkip: model.skip,
                     onBreak: session.takeBreak, onHurts: session.openHurts)
             } else {
                 columns
@@ -58,7 +58,7 @@ struct WalkPlayerView: View {
         .animation(.easeInOut(duration: 0.25), value: session.transition)
         .leavesFullScreenWhenUpright($fullScreen)
         .sheet(isPresented: $showsSound) {
-            SoundSheet(showsMusic: showsMusic) { session.player.setLevels(voice: $0.voice, music: $0.music) }
+            SoundSheet(showsMusic: showsMusic, player: session.player) { session.player.setLevels(voice: $0.voice, music: $0.music) }
         }
         .onAppear { if startsFullScreen { enterFullScreen() } }
     }
@@ -109,8 +109,8 @@ struct WalkPlayerView: View {
                         WalkTopBar(status: model.statusLine, locationOn: !showsLiveMap && (session.locationOn?() ?? false), onEnd: session.askToEnd,
                                    onSound: { showsSound = true })
                         Spacer(minLength: 0)
-                        PhaseBlock(label: model.phaseLabel, levelNote: levelNote, tone: model.tone, clock: model.clock, distance: distanceText,
-                                   isLarge: true)
+                        PhaseBlock(label: model.phaseLabel, levelNote: levelNote, tone: model.tone, clock: model.clock,
+                                   clockCaption: model.clockCaption, distance: distanceText, isLarge: true)
                         NextUpRow(next: model.nextLine, progress: model.phaseProgress, tone: model.tone)
                         CaptionBar(caption: model.captionText, style: .plain(.center))
                         Spacer(minLength: 0)
@@ -169,62 +169,21 @@ struct WalkPlayerView: View {
                     .layoutPriority(1)
             }
             PhaseBlock(label: model.phaseLabel, levelNote: levelNote, tone: model.tone, clock: model.clock,
-                       distance: showsLiveMap ? nil : distanceText)
+                       clockCaption: model.clockCaption, distance: showsLiveMap ? nil : distanceText)
             NextUpRow(next: model.nextLine, progress: model.phaseProgress, tone: model.tone)
             CaptionBar(caption: model.captionText, style: .plain(.center))
             Spacer(minLength: 0)
         }
     }
 
-    /// Playback on one row (Voice · Pause · Music), safety on the next (Break · This hurts).
+    /// Back · Pause · Skip as on the chair and stretch players (owner 02/10/2026: a tired walker could
+    /// only leave a quicker part through This hurts, which logged pain); voice and music moved to the
+    /// Sound sheet (top bar). Safety on the next row (Break · This hurts).
     private var controls: some View {
         VStack(spacing: 12) {
-            HStack(alignment: .top) {
-                PlayerToggle(title: "Voice", symbol: model.player.isVoiceOn ? "speaker.wave.2.fill" : "speaker.slash.fill",
-                             isOn: model.player.isVoiceOn) { model.player.setVoiceOn(!model.player.isVoiceOn) }
-                Spacer(minLength: 8)
-                PauseButton(isPaused: isPaused, action: session.togglePause)
-                Spacer(minLength: 8)
-                if showsMusic {
-                    PlayerToggle(title: "Music", symbol: model.player.isMusicOn ? "music.note" : "speaker.slash",
-                                 isOn: model.player.isMusicOn) { model.player.setMusicOn(!model.player.isMusicOn) }
-                } else {
-                    // Keeps Pause in the middle.
-                    Color.clear.frame(width: PlayerToggle.width, height: 1).accessibilityHidden(true)
-                }
-            }
+            PlayerControlRow(isPaused: isPaused, onBack: model.back, onPause: session.togglePause, onSkip: model.skip)
             WorkoutSafetyBar(showsVoice: false, onBreak: session.takeBreak, onHurts: session.openHurts)
         }
-    }
-}
-
-/// Voice or Music beside Pause: a round 56 pt button with its word under it.
-struct PlayerToggle: View {
-    static let width: CGFloat = 76
-
-    let title: LocalizedStringResource
-    let symbol: String
-    let isOn: Bool
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            VStack(spacing: 4) {
-                Image(systemName: symbol)
-                    .typeRole(.body)
-                    .fontWeight(.semibold)
-                    .frame(width: Metrics.minTouchTarget, height: Metrics.minTouchTarget)
-                    .background(Palette.surface, in: .circle)
-                    .overlay { Circle().strokeBorder(Palette.textMuted.opacity(0.2)) }
-                    .accessibilityHidden(true)
-                Text(title).typeRole(.caption)
-            }
-            .foregroundStyle(Palette.text)
-            .frame(minWidth: Self.width)
-            .contentShape(.rect)
-        }
-        .buttonStyle(.plain)
-        .accessibilityValue(isOn ? Text("On") : Text("Off"))
     }
 }
 
@@ -320,6 +279,8 @@ struct PhaseBlock: View {
     var levelNote: String? = nil
     let tone: PhaseTone
     let clock: String
+    /// "left in this part", or "walking home" when the clock counts up.
+    var clockCaption: LocalizedStringResource = "left in this part"
     var distance: String? = nil
     /// iPad and landscape: clock and label take half the screen.
     var isLarge = false
@@ -340,7 +301,7 @@ struct PhaseBlock: View {
             }
             PhaseClock(text: clock, isLarge: isLarge)
             // The big clock is this part; the top line is the whole session (clarity review D11).
-            Text("left in this part").typeRole(.caption).foregroundStyle(Palette.textMuted)
+            Text(clockCaption).typeRole(.caption).foregroundStyle(Palette.textMuted)
             if let distance {
                 Text(verbatim: distance).typeRole(.cardTitle).foregroundStyle(Palette.text)
             }
@@ -399,6 +360,8 @@ struct PhaseProgressBar: View {
 
 /// Paused: dimmed background, "Paused", a big Resume and End session.
 struct PausedOverlay: View {
+    /// Why it paused, when it was not her ("Paused while your phone was busy.").
+    var note: LocalizedStringResource?
     let onResume: () -> Void
     let onEnd: () -> Void
 
@@ -407,6 +370,9 @@ struct PausedOverlay: View {
             Rectangle().fill(.ultraThinMaterial).ignoresSafeArea()
             VStack(spacing: 20) {
                 Text("Paused").typeRole(.screenTitle).foregroundStyle(Palette.text)
+                if let note {
+                    Text(note).typeRole(.body).foregroundStyle(Palette.text).multilineTextAlignment(.center)
+                }
                 Button("Resume", action: onResume).buttonStyle(.primaryAction)
                 Button("End session", action: onEnd).buttonStyle(.textLink)
             }

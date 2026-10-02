@@ -27,6 +27,8 @@ struct TodayInput: Equatable {
     var suggestFewerReminders: Bool
     var journeyID: String
     var journeyMiles: Double
+    /// "Rest today" was tapped on today's reminder: today is a rest day (review 02/10/2026).
+    var restedToday = false
 }
 
 /// At most one of these shows at a time, in this order of priority.
@@ -99,7 +101,8 @@ struct TodaySwapOption: Equatable, Identifiable {
         restart = done ? nil : WelcomeBack.state(lastWorkout: input.workouts.map(\.date).max(), restDays: restDays,
                                                  now: input.now, calendar: input.calendar)
         painAlert = PainRules.evaluate(reports: input.pains, now: input.now)
-        plannedDay = WeeklyPlanner.day(for: input.now, restDays: restDays, entitlement: input.entitlement, calendar: input.calendar)
+        plannedDay = input.restedToday ? .rest
+            : WeeklyPlanner.day(for: input.now, restDays: restDays, entitlement: input.entitlement, calendar: input.calendar)
     }
 
     var isPro: Bool { input.entitlement.isPro }
@@ -145,6 +148,13 @@ struct TodaySwapOption: Equatable, Identifiable {
         return ends < input.now
     }
 
+    /// "Your trial has ended · See Pro plans" on the session card: for a week after the trial, not for
+    /// ever (Today never offers the plans on every open; app-context, review 02/10/2026).
+    var showsTrialEndedNote: Bool {
+        guard trialEnded, let ends = input.trialEnds else { return false }
+        return input.now < ends.addingTimeInterval(7 * 86_400)
+    }
+
     /// Day 10 of the trial until billing (I1): shown whether or not notifications are allowed.
     var trialEndingDate: Date? {
         guard case .trial(let ends) = input.entitlement else { return nil }
@@ -166,6 +176,8 @@ struct TodaySwapOption: Equatable, Identifiable {
         if isNew, let request {
             return TodaySession(kind: .planned, title: String(localized: "Your first walk · \(minutes(of: request)) min"), main: .walk)
         }
+        // "Rest today" on the reminder wins over a gentle restart too (review 02/10/2026).
+        if input.restedToday { return TodaySession(kind: .rest, title: String(localized: "Rest day")) }
         if case .gentleRestart(let minutes)? = restart {
             return TodaySession(kind: .gentleRestart, title: String(localized: "Gentle restart · \(minutes) min"))
         }
@@ -209,6 +221,7 @@ struct TodaySwapOption: Equatable, Identifiable {
 
     var request: WorkoutRequest? {
         if isNew { return .firstWalk(limits: input.limits) }
+        if input.restedToday { return nil }
         if case .gentleRestart? = restart {
             return WorkoutRequest(day: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), level: .seated, intensity: .gentle,
                                   place: .indoors, limits: input.limits, rotationIndex: activeDays)
@@ -222,7 +235,8 @@ struct TodaySwapOption: Equatable, Identifiable {
         if let painAlert { return .pain(area: painAlert.area) }
         if adaptation.minutesDelta < 0 { return .shorter }
         if case .movedDown(let to)? = adaptation.card { return .movedDown(to: to) }
-        if !input.healthConnected { return .connectHealth }
+        // Not before a first session: Apple Health is asked after it (S16), never before.
+        if !input.healthConnected, !isNew { return .connectHealth }
         if input.suggestFewerReminders { return .fewerReminders }
         return nil
     }
@@ -286,9 +300,11 @@ struct TodaySwapOption: Equatable, Identifiable {
     /// "New York City": the card says which journey the miles belong to (clarity review D7).
     var journeyTitle: String { journey?.title ?? "" }
 
+    /// The bar stops where the words do: at the end of the free leg on a paid route (review 02/10/2026).
     var journeyProgress: Double {
-        guard let last = journey?.stops.last, last.mile > 0 else { return 0 }
-        return min(1, input.journeyMiles / last.mile)
+        guard let journey, let last = journey.stops.last, last.mile > 0 else { return 0 }
+        let limit = JourneyAccess.limitMile(for: journey, entitlement: input.entitlement)
+        return min(1, JourneyAccess.routeMiles(total: input.journeyMiles, limit: limit) / last.mile)
     }
 
     private func minutes(of request: WorkoutRequest) -> Int {
@@ -316,7 +332,7 @@ enum JourneyText {
     static func progress(routeMiles: Double, journey: Journey, limit: Double?) -> String {
         guard let last = journey.stops.last else { return "" }
         if routeMiles >= last.mile - 1e-9 { return String(localized: "You made it to \(last.name)!") }
-        let done = routeMiles.formatted(.number.precision(.fractionLength(0...1)))
+        let done = DistanceText.number(miles: routeMiles)
         let total = CompleteContent.miles(last.mile, trimmed: true)
         guard let next = journey.stops.first(where: { $0.mile > routeMiles + 1e-9 }) else {
             return String(localized: "\(done) of \(total)")

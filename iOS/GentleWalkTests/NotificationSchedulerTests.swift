@@ -35,6 +35,28 @@ import GentleWalkCore
                                      input: { input }, now: { [now] in now })
     }
 
+    /// "Remind me later" survives a reschedule, and goes once she has walked today (review 02/10/2026).
+    @Test func remindLaterStaysUntilSheWalks() async throws {
+        let monday = calendar.date(from: DateComponents(year: 2026, month: 9, day: 28, hour: 9))!
+        let later = UNNotificationRequest(identifier: NotificationScheduler.laterIdentifier, content: UNMutableNotificationContent(),
+                                          trigger: nil)
+        let input = { (workouts: [Date]) in
+            PlannerInput(calendar: calendar, restDays: [.saturday, .sunday], reminderMinutes: 510, frequency: .daily,
+                         workouts: workouts, trialReminder: nil, landmark: nil, settings: NotificationSettings(), newJourneyName: nil)
+        }
+        let bank = try PhraseBank.load(bundle: .main)
+        let center = FakeNotificationCenter()
+        center.pending = [later]
+        let kept = NotificationScheduler(center: center, bank: bank, context: container.mainContext,
+                                         input: { input([]) }, now: { monday })
+        await kept.reschedule()
+        #expect(!center.removedIDs.contains(NotificationScheduler.laterIdentifier))
+        let walked = NotificationScheduler(center: center, bank: bank, context: container.mainContext,
+                                           input: { input([monday.addingTimeInterval(-1_800)]) }, now: { monday })
+        await walked.reschedule()
+        #expect(center.removedIDs.contains(NotificationScheduler.laterIdentifier))
+    }
+
     @Test func replacesOldPendingWithSixteenDaysOfNotifications() async throws {
         let center = FakeNotificationCenter()
         center.pending = [UNNotificationRequest(identifier: "gw.old", content: UNMutableNotificationContent(), trigger: nil),

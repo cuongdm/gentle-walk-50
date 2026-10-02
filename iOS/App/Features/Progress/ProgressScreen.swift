@@ -93,7 +93,7 @@ struct MonthCalendar: View {
     var body: some View {
         let days = monthDays
         VStack(alignment: .leading, spacing: 10) {
-            Text(verbatim: now.formatted(.dateTime.month(.wide).year())).typeRole(.cardTitle).foregroundStyle(Palette.text)
+            Text(verbatim: now.formatted(.dateTime.month(.wide).year()).capitalizedFirstLetter).typeRole(.cardTitle).foregroundStyle(Palette.text)
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 7), spacing: 6) {
                 // Grid positions are fixed for the month, so the position is a stable identity
                 // (blank lead cells would otherwise share one).

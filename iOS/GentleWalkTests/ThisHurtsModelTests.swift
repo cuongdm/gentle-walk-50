@@ -44,7 +44,8 @@ import GentleWalkCore
         #expect(outcome == .continueSession)
         #expect(recorder.reports.isEmpty)
         #expect(engine.loaded.count == 1)
-        #expect(player.state == .playing)
+        // The session resumes it (closeHurts), not This hurts.
+        #expect(player.state == .paused(.hurts))
     }
 
     @Test func onAWalkTheChoicesTalkAboutTheWalk() async throws {
@@ -92,8 +93,20 @@ import GentleWalkCore
         let (player, _, _) = try await chairPlayer()
         let recorder = FakePainRecorder()
         let model = ThisHurtsModel(player: player, recorder: recorder, now: { TestSupportDate.now })
-        _ = await model.skipMove()
+        _ = await model.showEasier()
         #expect(recorder.reports.map(\.area) == [.other])
+    }
+
+    /// A skip with no area is not a pain report (often tiredness; three reports move her to seated).
+    @Test func skipWithoutAnAreaRecordsNothing() async throws {
+        let (player, _, _) = try await chairPlayer()
+        let recorder = FakePainRecorder()
+        let model = ThisHurtsModel(player: player, recorder: recorder, now: { TestSupportDate.now })
+        _ = await model.skipMove()
+        #expect(recorder.reports.isEmpty)
+        model.area = .knee
+        _ = await model.skipMove()
+        #expect(recorder.reports.map(\.area) == [.knees])
     }
 }
 

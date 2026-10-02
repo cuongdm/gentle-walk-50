@@ -32,10 +32,22 @@ import GentleWalkCore
     }
     var journeyPath: [JourneyRoute] = []
     var progressPath: [ProgressRoute] = []
+    /// "Rest today" from a reminder: the day it was tapped.
+    nonisolated static let restTodayKey = "restTodayDate"
+    /// Waits for "Two quick things" or the cancel guide to close (`afterOneTimeScreens`).
+    @ObservationIgnored var pendingAfterCover: (() -> Void)?
     private(set) var today: TodayModel?
     private(set) var journey = JourneySnapshot.empty
     private(set) var progress = ProgressSnapshot.empty
     var textSize: TextSizeOverride { didSet { textSize.save(to: defaults) } }
+    /// Distance, weight and height units (Me → Language & units).
+    var units: UnitPreferences {
+        didSet {
+            units.save(to: defaults)
+            UnitPreferences.current = units
+            reload()
+        }
+    }
     var appearance: AppearanceChoice {
         didSet {
             appearance.save(to: defaults)
@@ -57,7 +69,13 @@ import GentleWalkCore
         struct File: Decodable { var wins: [EverydayWinItem] }
         guard let url = Bundle.main.url(forResource: "wins", withExtension: "json"),
               let data = try? Data(contentsOf: url) else { return [] }
-        return (try? JSONDecoder().decode(File.self, from: data).wins) ?? []
+        let wins = (try? JSONDecoder().decode(File.self, from: data).wins) ?? []
+        let texts = AppContent.texts?.wins ?? [:]
+        return wins.map { win in
+            var copy = win
+            copy.text = texts[win.id] ?? win.text
+            return copy
+        }
     }()
     /// Hearted sessions of "All sessions" (milestone 10).
     @ObservationIgnored lazy var favourites = FavouriteSessions(defaults: defaults)
@@ -95,6 +113,9 @@ import GentleWalkCore
         voiceSource = VoiceSource(lines: content.voiceLines)
         textSize = TextSizeOverride(defaults: defaults)
         appearance = AppearanceChoice(defaults: defaults)
+        let units = UnitPreferences(defaults: defaults)
+        self.units = units
+        UnitPreferences.current = units
         notificationSettings = defaults.data(forKey: "notificationSettings")
             .flatMap { try? JSONDecoder().decode(NotificationSettings.self, from: $0) } ?? NotificationSettings()
         let bank = (try? PhraseBank.load(bundle: .main)) ?? PhraseBank(phrases: [])
@@ -157,10 +178,19 @@ import GentleWalkCore
             level: profile.level, entitlement: entitlement, trialEnds: trialEnds, workouts: records.map {
                 TodayInput.Workout(date: $0.date, feeling: $0.feeling.flatMap(Feeling.init), breakCount: $0.breakCount,
                                    level: WalkLevel(rawValue: $0.level) ?? .seated)
-            }, pains: pains, healthConnected: health.isConnected || defaults.bool(forKey: "healthCardDismissed"),
+            }, pains: pains, healthConnected: health.isConnected || defaults.bool(forKey: "healthCardDismissed")
+                || healthAskedRecently,
             suggestFewerReminders: suggestsFewerReminders(records.map(\.date), profile: profile),
-            journeyID: journey.journeyID, journeyMiles: journey.totalMiles)
+            journeyID: journey.journeyID, journeyMiles: journey.totalMiles,
+            restedToday: (defaults.object(forKey: Self.restTodayKey) as? Date).map { calendar.isDate($0, inSameDayAs: now()) } ?? false)
         today = TodayModel(input: input, content: content)
+    }
+
+    /// "Two quick things" asked about Apple Health in the last 7 days: Today does not ask again yet
+    /// (it asked right after "Not now"; review 02/10/2026).
+    private var healthAskedRecently: Bool {
+        guard let asked = defaults.object(forKey: "permissionsShownAt") as? Date else { return false }
+        return now().timeIntervalSince(asked) < 7 * 86_400
     }
 
     var everydayWins: [EverydayWinItem] {
@@ -210,7 +240,7 @@ import GentleWalkCore
         let records = (try? container.mainContext.fetch(FetchDescriptor<WorkoutRecord>())) ?? []
         var restDays = restDays
         // "Rest today" from a reminder: today counts as a rest day (its weekday appears once in 7 days).
-        if let rest = defaults.object(forKey: "restTodayDate") as? Date, calendar.isDate(rest, inSameDayAs: now()) {
+        if let rest = defaults.object(forKey: Self.restTodayKey) as? Date, calendar.isDate(rest, inSameDayAs: now()) {
             restDays.insert(Weekday(of: now(), in: calendar))
         }
         return PlannerInput(calendar: calendar, restDays: restDays, reminderMinutes: profile.reminderMinutes,

@@ -21,7 +21,7 @@ struct TodayView: View {
                 if let welcome = model.welcomeBack {
                     Text(verbatim: welcome).typeRole(.body).foregroundStyle(Palette.text)
                 }
-                TodaySessionCard(session: model.session, detail: model.sessionDetail, trialEnded: model.trialEnded,
+                TodaySessionCard(session: model.session, detail: model.sessionDetail, trialEnded: model.showsTrialEndedNote,
                                  isSeated: model.isSeatedWalk,
                                  checkIn: model.showsCheckIn && model.session.kind != .rest
                                     ? .init(selected: model.checkedIn, onSelect: model.checkIn) : nil,
@@ -188,6 +188,8 @@ struct TodaySessionCard: View {
     /// Done for today: the planned session is still here if she'd like it.
     var onStillOpen: (() -> Void)?
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     struct CheckInChoice {
         let selected: CheckIn?
         let onSelect: (CheckIn) -> Void
@@ -202,11 +204,14 @@ struct TodaySessionCard: View {
                 }
                 .foregroundStyle(session.kind == .done ? Palette.onStrongFill : Palette.text)
                 Spacer(minLength: 0)
-                Image(systemName: symbol)
-                    .typeRole(.stat)
-                    .fontWeight(.regular)
-                    .foregroundStyle(session.kind == .done ? Palette.onStrongFill : Palette.secondary)
-                    .accessibilityHidden(true)
+                // At accessibility sizes the title needs the width (it broke word by word).
+                if !typeSize.isAccessibilitySize {
+                    Image(systemName: symbol)
+                        .typeRole(.stat)
+                        .fontWeight(.regular)
+                        .foregroundStyle(session.kind == .done ? Palette.onStrongFill : Palette.secondary)
+                        .accessibilityHidden(true)
+                }
             }
             if trialEnded {
                 HStack {
@@ -227,9 +232,11 @@ struct TodaySessionCard: View {
                     .foregroundStyle(Palette.onStrongFill)
                     .multilineTextAlignment(.leading)
             }
-            if let onPickAnother, session.kind != .done {
-                Button("Pick a different session", action: onPickAnother)
+            if let onPickAnother {
+                // Done for today: All sessions stays one tap away (it was only at the foot of Today).
+                Button(session.kind == .done ? "See all sessions" : "Pick a different session", action: onPickAnother)
                     .buttonStyle(.smallTextLink)
+                    .foregroundStyle(session.kind == .done ? Palette.onStrongFill : Palette.text)
                     .frame(maxWidth: .infinity)
                     // The 56 pt touch area keeps its size; only the empty space around the words shrinks.
                     .padding(.vertical, -8)
@@ -265,7 +272,7 @@ struct TrialEndingCard: View {
             if let price {
                 Text("You'll be billed \(price) unless you cancel.").typeRole(.body)
             }
-            Button("Manage", action: onManage).buttonStyle(.secondaryAction)
+            Button("How to cancel", action: onManage).buttonStyle(.secondaryAction)
         }
         .foregroundStyle(Palette.text)
         .cardStyle()
