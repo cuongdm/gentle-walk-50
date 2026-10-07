@@ -1,4 +1,4 @@
-# Gentle Walk 1.0 — asset thật cần có trước khi nộp (task 9.2)
+# Good Footing 1.0 — asset thật cần có trước khi nộp (task 9.2)
 _29/09/2026. `ReleaseContentTests` (chạy với `TEST_RUNNER_RELEASE_CHECK=1`) chỉ xanh khi đủ các mục có dấu ✱._
 
 | Asset | Hiện có | Cần | Kiểm bằng |

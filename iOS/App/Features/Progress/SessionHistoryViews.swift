@@ -29,7 +29,7 @@ struct RecentSessionsCard: View {
                         .contentShape(.rect)
                     }
                     .buttonStyle(.plain)
-                    .accessibilityLabel(isPro ? Text("See all sessions") : Text("See all sessions, with Gentle Walk Pro"))
+                    .accessibilityLabel(isPro ? Text("See all sessions") : Text("See all sessions, with \(AppBrand.name) Pro"))
                 }
             }
             if sessions.isEmpty {

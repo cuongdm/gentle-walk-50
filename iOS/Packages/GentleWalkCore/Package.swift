@@ -1,7 +1,7 @@
 // swift-tools-version: 6.0
 import PackageDescription
 
-/// Pure product logic for Gentle Walk. Foundation only — no SwiftUI, SwiftData, StoreKit or other
+/// Pure product logic for Good Footing (internal name GentleWalk). Foundation only — no SwiftUI, SwiftData, StoreKit or other
 /// Apple frameworks, so everything here is testable with `swift test` in seconds.
 let package = Package(
     name: "GentleWalkCore",

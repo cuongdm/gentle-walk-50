@@ -63,7 +63,7 @@ struct PlanOption: Identifiable, Equatable, Sendable {
 
     var title: LocalizedStringResource {
         // Names Pro, so the "Pro" badges elsewhere connect to this screen (clarity review D4).
-        isEligibleForTrial ? "Gentle Walk Pro: free for 14 days" : "Gentle Walk Pro"
+        isEligibleForTrial ? "\(AppBrand.name) Pro: free for 14 days" : "\(AppBrand.name) Pro"
     }
 
     /// "Start my free trial": a beginning she owns, not a subscription (uxpeak A/B, review M11).

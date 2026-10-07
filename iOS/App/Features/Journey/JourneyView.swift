@@ -69,7 +69,7 @@ struct LockedStopCard: View {
                     Spacer()
                     ProBadge()
                 }
-                Text("You walked the free leg. The rest of this route comes with Gentle Walk Pro, and your distance keeps counting.").typeRole(.body)
+                Text("You walked the free leg. The rest of this route comes with \(AppBrand.name) Pro, and your distance keeps counting.").typeRole(.body)
                 HStack(spacing: Metrics.touchSpacing) {
                     Button("See Pro plans", action: onSeePlans).buttonStyle(PillButtonStyle(isSelected: true))
                     Button("Not now") { dismissed = true }.buttonStyle(.textLink)

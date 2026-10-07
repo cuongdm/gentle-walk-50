@@ -1,4 +1,4 @@
-# Brief infographic v2: "Bài tập của Gentle Walk lấy từ đâu"
+# Brief infographic v2: "Bài tập của Good Footing lấy từ đâu"
 
 _06/10/2026 · Thay bản v1 cùng ngày · Cho designer vẽ bản demo · Đã kiểm từng số với nguồn gốc: `docs/reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md` (Phần 1) · Số liệu app lấy từ `iOS/App/Resources/Content/sessions.json`, `exercises.json`_
 
@@ -44,7 +44,7 @@ _06/10/2026 · Thay bản v1 cùng ngày · Cho designer vẽ bản demo · Đã
 ## 2. Khối mở đầu (header)
 
 - **Tiêu đề:** "Every move has a public source" (bản Việt: "Mỗi động tác đều có nguồn công khai").
-- **Dòng phụ:** "Gentle Walk · walk, chair moves, stretch, balance · built from public health guidance".
+- **Dòng phụ:** "Good Footing · walk, chair moves, stretch, balance · built from public health guidance".
 - **Ba con số** (3 ô ngang): `5` bộ hướng dẫn công · `4` nhóm bài: Walk · Chair moves · Stretch · Balance · `0` bài phải xuống sàn.
 - **Hình:** HLV đứng cạnh ghế, một tay đặt trên lưng ghế, vẫy tay kia.
 
@@ -198,8 +198,8 @@ Câu trong app (đúng chữ): *"If you feel sharp pain, chest pain, or dizzines
 ## 10. Chân trang
 
 - **Dòng nguồn (chữ nhỏ):** "Sources: NIA, Exercise & Physical Activity (nia.nih.gov) · HHS, Physical Activity Guidelines for Americans, 2nd ed. (2018) · Otago Exercise Programme (ACC / University of Otago; UNC guide 2024) · CDC STEADI · NHS Live Well (nhs.uk) · Montero-Odasso et al., World Guidelines for Falls Prevention and Management for Older Adults, Age and Ageing 2022 · Brooke-Wavell et al., Strong, Steady and Straight, BJSM 2022 · OARSI Guidelines 2019 · Arthritis Foundation, Walk With Ease · AAOS OrthoInfo."
-- **Miễn trừ (chữ nhỏ):** "Gentle Walk is for general fitness. It does not diagnose or treat any condition. Talk to your doctor if you have a health condition. Gentle Walk is not affiliated with or endorsed by any organisation named above."
-- **Tên app:** "Gentle Walk" là tên làm việc; tên store đang test: Good Footing / Kind Pace. Khi chốt chỉ thay chữ ở dòng phụ (mục 2) và câu miễn trừ.
+- **Miễn trừ (chữ nhỏ):** "Good Footing is for general fitness. It does not diagnose or treat any condition. Talk to your doctor if you have a health condition. Good Footing is not affiliated with or endorsed by any organisation named above."
+- **Tên app:** Good Footing (chốt 07/10/2026; "Gentle Walk" là tên làm việc cũ). Luật sư nhãn hiệu xem tên app và dòng nguồn cùng lúc.
 
 ## 11. Danh sách kiểm tra cho designer
 

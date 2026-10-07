@@ -12,7 +12,7 @@ struct ShareCardButton: View {
             // Non-empty base so the render task runs.
             Color.clear.frame(height: 1)
             if let image {
-                ShareLink(item: image, preview: SharePreview(Text("Gentle Walk"), image: image)) {
+                ShareLink(item: image, preview: SharePreview(Text(verbatim: AppBrand.name), image: image)) {
                     Text("Share with family")
                 }
                 .buttonStyle(.secondaryAction)
@@ -39,7 +39,7 @@ struct ShareCard: View {
                 .font(.system(size: 26, weight: .semibold, design: .rounded))
                 .foregroundStyle(Palette.text)
                 .multilineTextAlignment(.center)
-            Text(verbatim: "Gentle Walk")
+            Text(verbatim: AppBrand.name)
                 .font(.system(size: 17, weight: .bold, design: .rounded))
                 .foregroundStyle(Palette.secondary)
         }

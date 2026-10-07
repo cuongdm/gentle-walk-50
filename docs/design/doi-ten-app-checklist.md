@@ -4,6 +4,8 @@ _06/10/2026 · Rà toàn repo: `docs/`, `site/`, `app-context.md`, `CLAUDE.md`, 
 
 ## Tình trạng tên
 
+> **07/10/2026: đã đổi sang Good Footing** (chủ app chốt trước test người dùng và luật sư). Đã làm bước 2–5, 7 (phần repo), 8, 10 ở mục 6; tên gom ở `iOS/App/Design/AppBrand.swift` (câu hỏi mở 2: có). Còn, cần Mac hoặc chủ app: `xcodegen generate` + build + test + xem bằng mắt (bước 11), App Store Connect (bước 7), ảnh store, icon, video (bước 9). Khẩu hiệu mới thay câu Welcome cũ (mục 5 không còn đúng cho câu này). Bảng dưới là trạng thái trước khi đổi, giữ để tra.
+
 - **Tên làm việc:** "Gentle Walk" / "Gentle Walk 50+". Chưa phải tên store.
 - **Hai tên đang test với người dùng (04/10/2026):** **Good Footing** và **Kind Pace**.
 - **Mẫu tên store:** `<Tên>: Gentle Workouts` → "Good Footing: Gentle Workouts" (29 ký tự) · "Kind Pace: Gentle Workouts" (26). Giới hạn 30.
@@ -188,7 +190,7 @@ Báo cáo, kế hoạch đã duyệt và review là lịch sử: **giữ nguyên
 | `iOS/scripts/capture_states.sh` | 9, 15, 24 | 3 | GentleWalk, gentlewalk | Giữ: tên type, target, file, test |
 ## 5. Không phải tên app
 
-"Gentle walk" (chữ w thường) là tên buổi đi bộ Gentle walk 5 và nhãn "Gentle walk · %lld min"; câu Welcome "Gentle walks and chair moves, at your pace." là khẩu hiệu. **Không đổi.** Vị trí: `docs/design/gentle-walk-screen-spec.html` L260 · `docs/i18n/source/ui.json` L4286, 4401, 4775 · `docs/i18n/vi/ui-2.json` L229, 245, 297 · `docs/plans/2026-09-29-mvp.md` L805 · `docs/plans/2026-09-30-content-4-groups.md` L58, 62, 151 · `docs/reviews/2026-09-30-can-duyet.md` L41, 44 · `docs/scripts/A11-extras.md` L123 · `docs/scripts/A2-walk.md` L5, 28, 38, 45, 72, 131, 357, 464 · `iOS/App/Features/Onboarding/WelcomeView.swift` L20 · `iOS/App/Features/Sessions/SessionPreset+Request.swift` L26 · `iOS/App/Features/Today/TodayModel.swift` L328 · `iOS/App/Features/Workout/Preview/WorkoutPreviewModel.swift` L83 · `iOS/App/Features/Workout/WorkoutRequest.swift` L70 · `iOS/App/Localizable.xcstrings` L2085, 2096, 2107 · `iOS/GentleWalkTests/TodayModelTests.swift` L33 · `iOS/Packages/GentleWalkCore/Sources/GentleWalkCore/Plan/SessionCatalog.swift` L32 · `tools/content/sessions_walk.py` L2, 157 · `tools/lint/test_copy_lint.py` L37.
+"Gentle walk" (chữ w thường) là tên buổi đi bộ Gentle walk 5 và nhãn "Gentle walk · %lld min". **Không đổi.** (Câu Welcome "Gentle walks and chair moves, at your pace." đã được thay bằng khẩu hiệu mới ngày 07/10/2026.) Vị trí: `docs/design/gentle-walk-screen-spec.html` L260 · `docs/i18n/source/ui.json` L4286, 4401, 4775 · `docs/i18n/vi/ui-2.json` L229, 245, 297 · `docs/plans/2026-09-29-mvp.md` L805 · `docs/plans/2026-09-30-content-4-groups.md` L58, 62, 151 · `docs/reviews/2026-09-30-can-duyet.md` L41, 44 · `docs/scripts/A11-extras.md` L123 · `docs/scripts/A2-walk.md` L5, 28, 38, 45, 72, 131, 357, 464 · `iOS/App/Features/Onboarding/WelcomeView.swift` L20 · `iOS/App/Features/Sessions/SessionPreset+Request.swift` L26 · `iOS/App/Features/Today/TodayModel.swift` L328 · `iOS/App/Features/Workout/Preview/WorkoutPreviewModel.swift` L83 · `iOS/App/Features/Workout/WorkoutRequest.swift` L70 · `iOS/App/Localizable.xcstrings` L2085, 2096, 2107 · `iOS/GentleWalkTests/TodayModelTests.swift` L33 · `iOS/Packages/GentleWalkCore/Sources/GentleWalkCore/Plan/SessionCatalog.swift` L32 · `tools/content/sessions_walk.py` L2, 157 · `tools/lint/test_copy_lint.py` L37.
 
 ## 6. Đổi một lượt khi chốt tên
 

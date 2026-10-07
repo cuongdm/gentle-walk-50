@@ -1,8 +1,8 @@
-# Gentle Walk 1.0 — checklist release (task 9.4)
+# Good Footing 1.0 — checklist release (task 9.4)
 _Khung 29/09/2026. Người chịu trách nhiệm: **Chủ app** (App Store Connect, tài khoản, pháp lý) · **Claude** (code, kiểm tra tự động). Đánh dấu khi xong, ghi ngày._
 
 ## 1. In-App Purchases (App Store Connect → Monetization)
-- [ ] **Chủ app** — Tạo nhóm subscription "Gentle Walk Pro" (một nhóm, 3.1.2(b)).
+- [ ] **Chủ app** — Tạo nhóm subscription "Good Footing Pro" (một nhóm, 3.1.2(b)).
 - [ ] **Chủ app** — `com.kmd.gentlewalk.pro.yearly`: 1 năm, level 1, intro offer **Free trial 2 weeks**; giá thật (file .storekit đang là giá test).
 - [ ] **Chủ app** — `com.kmd.gentlewalk.pro.monthly`: 1 tháng, level 1 (đổi qua lại với yearly là crossgrade).
 - [ ] **Chủ app** — `com.kmd.gentlewalk.pro.lifetime`: non-consumable.
@@ -33,7 +33,7 @@ _Khung 29/09/2026. Người chịu trách nhiệm: **Chủ app** (App Store Conn
 - [ ] **Chủ app** — Điền EULA link vào mô tả app hoặc trường License Agreement trong ASC.
 
 ## 5. Review notes (dán vào App Review Information)
-> Gentle Walk needs no account and works offline. To see the paywall, finish the short onboarding (about 2 minutes) or tap any "Pro" item.
+> Good Footing needs no account and works offline. To see the paywall, finish the short onboarding (about 2 minutes) or tap any "Pro" item.
 > Background audio: the app plays continuous spoken guidance, bells and optional music during a workout so the user can follow with the screen locked. It never plays silent audio.
 > Background location: used only during an outdoor walk the user starts after choosing "Use my location", to measure distance and draw the route. It is switched off when the walk ends. Indoor sessions never use location.
 > HealthKit: step count is read for the Progress screen; workouts are written after each session. Permission is asked after the first workout, not at launch.
@@ -45,6 +45,6 @@ _Khung 29/09/2026. Người chịu trách nhiệm: **Chủ app** (App Store Conn
 - [ ] **Claude** — `TEST_RUNNER_RELEASE_CHECK=1 … ReleaseContentTests` xanh (chỉ xanh khi đủ asset thật — task 9.2).
 - [ ] **Chủ app** — Kiểm trên iPhone thật theo `docs/owner-todo-after-mvp.md` mục 1.
 - [ ] **Chủ app** — App icon thật (icon tạm dùng SF Symbol, **không được** dùng trong icon nộp store).
-- [ ] **Chủ app** — Tên app trên store (tên làm việc "Gentle Walk", backlog M11).
+- [ ] **Chủ app** — Tên app trên store: Name "Good Footing: Gentle Workouts", Subtitle "Chair Yoga, Walks & Stretches" (chốt 07/10/2026; trước khi đặt: luật sư nhãn hiệu, giữ tên trên App Store Connect).
 - [ ] **Chủ app** — Ảnh chụp store theo `docs/release/1.0/screenshots.md`.
 - [ ] **Chủ app** — Archive, upload, TestFlight nội bộ, rồi Submit (chủ app tự bấm).

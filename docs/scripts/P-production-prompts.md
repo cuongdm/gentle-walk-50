@@ -209,7 +209,7 @@ ffmpeg -y -i "$IN" -vf "setpts=PTS/$F,minterpolate=fps=24:mi_mode=mci:mc_mode=ao
 }
 ```
 - A/B `speed` 0.92 với 0.88 trên 3 câu (setup, đếm, thở); nghe với người 50+. Không dùng audio tag của v3 cho coach; ngắt bằng `<break time="0.8s" />` (≤ 2 tag/câu, ≤ 1,0 s) hoặc "…"; khoảng lặng giữa các câu do timeline app đặt (PROD §3.3).
-- Từ điển phát âm `gw-terms`: "Gentle Walk" (nhấn đều), "sit-to-stand" (không đọc dấu gạch), "heel dig", "tandem", tên địa danh (Camino de Santiago, Bethesda).
+- Từ điển phát âm `gw-terms`: "Good Footing" (nhấn đều; hiện chưa câu nào đọc tên app), "sit-to-stand" (không đọc dấu gạch), "heel dig", "tandem", tên địa danh (Camino de Santiago, Bethesda).
 - Chuẩn hoá `loudnorm` I=−16 LUFS, TP −1,5 dB; chuông −18 LUFS; nhạc −26 LUFS khi có giọng (ducking trong player).
 - Trước khi tạo hàng loạt: mua Creator; nghe lại Elise Hart / Jane Hackett / Carol so với Bella; **tạo lại toàn bộ cache** trên gói mới; lưu hoá đơn + ảnh trang giọng có ngày.
 

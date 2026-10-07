@@ -190,7 +190,7 @@ Got up from the sofa without using my hands · Carried the groceries in one trip
 | S06 chọn Joint replacement | We'll leave out deep hip bends and crossed legs. Follow your surgeon's advice first. |
 | Thẻ báo đau 3 lần (Today) | You've mentioned [area] pain 3 times this week. We've switched you to seated moves. Consider checking with your doctor. |
 | S14 Break | Take your time. Sit down, sip some water, breathe slowly. Your progress is saved. |
-| Me → Help | Gentle Walk is for general fitness. It isn't medical advice. |
+| Me → Help | Good Footing is for general fitness. It isn't medical advice. |
 Câu thứ hai dựa trên NHS-HIP (xem A10 §1); không nói "safe", "prevents", "treats".
 
 ## Tổng

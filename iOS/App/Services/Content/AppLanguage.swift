@@ -22,8 +22,8 @@ enum AppLanguage: String, CaseIterable, Identifiable, Sendable {
     /// "Close and open again" in this language itself: whoever picks it can read it.
     var reopenHint: String {
         switch self {
-        case .english: "To see it in English, close Gentle Walk and open it again: swipe up from the bottom edge, then swipe Gentle Walk up to close it."
-        case .vietnamese: "Để xem bằng tiếng Việt, hãy đóng hẳn Gentle Walk rồi mở lại: vuốt lên từ cạnh dưới màn hình, rồi vuốt Gentle Walk lên để đóng."
+        case .english: "To see it in English, close \(AppBrand.name) and open it again: swipe up from the bottom edge, then swipe \(AppBrand.name) up to close it."
+        case .vietnamese: "Để xem bằng tiếng Việt, hãy đóng hẳn \(AppBrand.name) rồi mở lại: vuốt lên từ cạnh dưới màn hình, rồi vuốt \(AppBrand.name) lên để đóng."
         }
     }
 
@@ -44,7 +44,7 @@ enum AppLanguage: String, CaseIterable, Identifiable, Sendable {
     static let choiceKey = "appLanguage"
 
     /// The iPhone's language when the app has it, English otherwise (owner 02/10/2026; iOS resolves it
-    /// from the app's localizations at launch). A pick in Me or in iOS Settings → Gentle Walk wins.
+    /// from the app's localizations at launch). A pick in Me or in the app's page in iOS Settings wins.
     /// What Me shows as chosen: a pick waiting for the next launch (Me or iOS Settings write the
     /// app's own AppleLanguages), else what shows now.
     static func picked(defaults: UserDefaults = .standard) -> AppLanguage {
@@ -53,8 +53,8 @@ enum AppLanguage: String, CaseIterable, Identifiable, Sendable {
         return pick.flatMap(AppLanguage.init) ?? current
     }
 
-    /// Picked in Me; the app shows it from its next launch. Same preference as iOS Settings →
-    /// Gentle Walk → Language (that page shows only when the iPhone has two languages or more, so the
+    /// Picked in Me; the app shows it from its next launch. Same preference as the app's page in
+    /// iOS Settings → Language (that page shows only when the iPhone has two languages or more, so the
     /// app offers it too).
     static func choose(_ language: AppLanguage, defaults: UserDefaults = .standard) {
         defaults.set(language.rawValue, forKey: choiceKey)

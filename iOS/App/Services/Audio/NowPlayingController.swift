@@ -34,7 +34,7 @@ import MediaPlayer
     func update(elapsed: Double, duration: Double, isPlaying: Bool) {
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
             MPMediaItemPropertyTitle: title,
-            MPMediaItemPropertyArtist: "Gentle Walk",
+            MPMediaItemPropertyArtist: AppBrand.name,
             MPMediaItemPropertyPlaybackDuration: duration,
             MPNowPlayingInfoPropertyElapsedPlaybackTime: elapsed,
             MPNowPlayingInfoPropertyPlaybackRate: isPlaying ? 1.0 : 0.0,

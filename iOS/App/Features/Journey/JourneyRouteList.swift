@@ -140,7 +140,7 @@ private struct RouteRow: View {
         case .reached(nil): String(localized: "Reached")
         case .next(let miles): String(localized: "\(CompleteContent.miles(miles)) to go")
         case .ahead: stop.mile == 0 ? String(localized: "Start") : String(localized: "Reach it at \(CompleteContent.miles(stop.mile))")
-        case .locked: String(localized: "With Gentle Walk Pro · at \(CompleteContent.miles(stop.mile))")
+        case .locked: String(localized: "With \(AppBrand.name) Pro · at \(CompleteContent.miles(stop.mile))")
         }
     }
 }

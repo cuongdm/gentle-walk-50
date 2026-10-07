@@ -1,9 +1,11 @@
-# App context — Gentle Walk 50+ (tên làm việc)
+# App context — Good Footing
 
-_Updated: 03/10/2026 (khách mục tiêu 58–75, định vị, tìm tên mới, quảng cáo năm đầu) · trước đó 28/09/2026 · by: manh-skill-idea · Brief: docs/idea/gentle-walk-voice.md · Spec màn hình: docs/design/gentle-walk-screen-spec.html · Kế hoạch nội dung: docs/content-plan.md_
+_Updated: 07/10/2026 (chốt tên Good Footing và khẩu hiệu) · trước đó 03/10/2026 (khách mục tiêu 58–75, định vị, tìm tên mới, quảng cáo năm đầu), 28/09/2026 · by: manh-skill-idea · Brief: docs/idea/gentle-walk-voice.md · Spec màn hình: docs/design/gentle-walk-screen-spec.html · Kế hoạch nội dung: docs/content-plan.md_
 
 ## Identity
-- App name (store): chưa chốt. "Gentle Walk" là tên làm việc, kéo app về thể loại đi bộ; đang tìm tên mới: docs/research/2026-10-03-ten-app-moi.md · Bundle ID (iOS): chưa có · Package (Android): chưa có
+- App name (store, chốt 07/10/2026): **Good Footing: Gentle Workouts** (29/30) · tên dưới icon và trong app: **Good Footing** (`AppBrand.name`) · gói: **Good Footing Pro** · Subtitle: "Chair Yoga, Walks & Stretches" (29/30). Chưa qua luật sư nhãn hiệu và chưa giữ tên trên App Store Connect (docs/todo.md). Tên làm việc cũ "Gentle Walk 50+" chỉ còn trong mã nội bộ và báo cáo lịch sử. Cơ sở: docs/research/2026-10-03-ten-app-moi.md
+- Khẩu hiệu: **"Steadier on your feet, at your own pace."** (VI: "Vững chân hơn, theo nhịp của riêng bạn.") · tiêu đề màn Welcome, dùng cho store, site, quảng cáo. Tên nói kết quả (đứng vững, khởi đầu tốt), phụ đề nói trong app có gì.
+- Bundle ID (iOS): `com.kmd.gentlewalk` (giữ nguyên, không theo tên store) · Package (Android): chưa có
 - App Store ID: chưa có · Website / Support / Privacy / Terms URL: chưa có
 - Category: Health & Fitness · Age rating: chưa trả lời
 - Platforms: iOS trước (iPhone + iPad) · Android để sau, tính như sản phẩm thứ hai
@@ -22,7 +24,7 @@ _Updated: 03/10/2026 (khách mục tiêu 58–75, định vị, tìm tên mới,
 - Bồi thêm, không lên listing: hành trình địa danh tính theo phút tập; tự đếm ngồi–đứng khi áp ngực (mặc định tính giờ, luôn có đếm tay); chế độ đi ngoài trời.
 - Not for: người chạy bộ và tập gym · phục hồi sau phẫu thuật · người hạn chế vận động nặng (xe lăn, nằm giường; vẫn dùng được bản ngồi nhưng không nhắm) · người chỉ dùng app miễn phí qua bảo hiểm (Bold/SilverSneakers; không chặn, không nhắm riêng) · trẻ em.
 - Không gọi người dùng là "senior", "elderly" hay "60+" ở bất cứ đâu người dùng thấy (app gọi thẳng "senior" có doanh thu thấp dù cùng khách). Nhãn tuổi tối đa là "50+".
-- Two-sentence definition: Gentle Walk 50+ (tên làm việc) là app iPhone dẫn bài tập nhẹ tại nhà bằng giọng nói, gồm đi bộ trong nhà, động tác trên ghế và giãn cơ, cho phụ nữ 58–75 mới bắt đầu hoặc quay lại. Mỗi phút tập đưa người dùng qua hành trình địa danh thật như Central Park hay Camino de Santiago.
+- Two-sentence definition: Good Footing là app iPhone dẫn bài tập nhẹ tại nhà bằng giọng nói, gồm đi bộ trong nhà, động tác trên ghế, giãn cơ và thăng bằng, cho phụ nữ 58–75 mới bắt đầu hoặc quay lại. Mỗi phút tập đưa người dùng qua hành trình địa danh thật như Central Park hay Camino de Santiago.
 
 ## Market
 | Name | Link/ID | Model | They win at | We win at |
@@ -155,4 +157,4 @@ _Updated: 03/10/2026 (khách mục tiêu 58–75, định vị, tìm tên mới,
   - **Thang vịn** theo bài (Pro): hai tay → một tay → đầu ngón tay (đầu ngón tay chỉ ở Tandem), lên bậc sau 2 buổi vững, xuống bậc khi This hurts/Break; cường độ và chip Dizzy/Unsteady giới hạn bậc. Lưu bằng UserDefaults (giống Favourites), không thêm schema; "Delete all my data" xoá.
   - 25 câu thoại mới (EN + VI) thu qua **Vibi** (chủ app chốt: giọng tiếng Anh qua Vibi trước), khoảng 2.924 credit Vibi. Video: 74,24 credit Higgsfield + 4 tranh 1 credit (hạn mức 110).
   - Infographic: dùng brief v2 (docs/design/infographic-nguon-bai-tap-brief-v2.md); luật sư nhãn hiệu xem dòng nguồn cùng lúc với tên app.
-
+- 07/10/2026 — **Tên app chốt: Good Footing** (store "Good Footing: Gentle Workouts", phụ đề giữ "Chair Yoga, Walks & Stretches"), **khẩu hiệu "Steadier on your feet, at your own pace."** Chủ app chốt trước test người dùng và luật sư nhãn hiệu (bỏ qua điều kiện của checklist đổi tên mục 6 bước 1); hai bước đó vẫn làm, tên trượt thì chỉ đổi `AppBrand.name` và các file ở checklist. Lý do: sau rà soát 06/10, "vững" là trục của app (Steady set mọi ngày tập, chip unsteady, nguồn WFG/Otago/Strong-Steady-Straight); "footing" nói kết quả, không bó vào đi bộ; Kind Pace gợi tốc độ. Không dùng "Steady Footing" làm dự phòng (trùng mức cường độ Steady). Tên tổ chức nguồn (NIA, CDC, NHS, Otago…) không vào tên, phụ đề hay keywords. Đã đổi trong app: tên dưới icon, câu xin quyền, Welcome (tên chữ hoa + khẩu hiệu thay "Gentle walks and chair moves, at your pace."), paywall, Me, Journey, thẻ chia sẻ, Now Playing, `.storekit`, privacy.html, bản Việt; tên gom một chỗ ở `iOS/App/Design/AppBrand.swift` (khoá catalog dạng "%@ Pro"). Giữ: bundle ID, product ID, target, tên file.

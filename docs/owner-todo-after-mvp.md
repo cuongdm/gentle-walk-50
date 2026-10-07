@@ -8,7 +8,7 @@ Cài bản DEBUG từ Xcode lên iPhone (cần Team ID đúng, xem mục 3).
   log stream --device --predicate 'subsystem == "com.kmd.gentlewalk" AND category == "cue"'
   ```
 - [ ] **3.6 Rung khi đổi pha:** hai nhịp rung khi màn hình đang mở.
-- [ ] **3.7 Màn khoá:** hiện "Gentle Walk · First walk"; bấm Pause/Play trên màn khoá; mở lại app vẫn đúng chỗ.
+- [ ] **3.7 Màn khoá:** hiện "Good Footing · First walk"; bấm Pause/Play trên màn khoá; mở lại app vẫn đúng chỗ.
 - [ ] **4.7 Toàn màn hình ngang:** ở động tác ghế, xoay ngang: nút Exit, bộ đếm, phụ đề, Break và This hurts đều thấy.
 - [ ] **4.13 Chạy tay trọn luồng lần đầu ở chế độ máy bay:** Welcome → câu hỏi → Your plan → paywall → Maybe later → Phone placement → First Walk → Complete → Two quick things → Today.
 - [ ] **6.7 Apple Health:** sau buổi tập, workout hiện trong app Health (đi bộ trong nhà có nhãn indoor).
@@ -42,7 +42,7 @@ Cài bản DEBUG từ Xcode lên iPhone (cần Team ID đúng, xem mục 3).
 - [ ] **Trang Privacy:** tạm bỏ qua (29/09). App vẫn mở bản Privacy trong app. Trước khi nộp store vẫn cần điền ngày, đăng lên hosting và gửi tôi URL (App Store Connect bắt buộc có Privacy Policy URL).
 - [x] **Terms:** dùng EULA chuẩn của Apple, chủ app đồng ý (29/09).
 - [ ] **App Store Connect:** làm theo `docs/release/1.0/checklist.md` (3 IAP, age rating, App Privacy, review notes).
-- [ ] **Tên app trên store** (backlog M11): đang dùng tên làm việc "Gentle Walk".
+- [ ] **Tên app trên store** (backlog M11): app đã đổi sang **Good Footing** (07/10/2026). Còn: luật sư nhãn hiệu, giữ tên "Good Footing: Gentle Workouts" trên App Store Connect, tên miền, icon và ảnh store; xem tên dưới icon trên iPhone nhỏ nhất (12 ký tự).
 
 ## 4. Quyết định nhỏ tôi đã tự chốt khi code (xem, đổi được)
 - Walk dài ngày thứ Sáu = thêm một vòng nhanh + chậm (Steady 8 → 10 phút).

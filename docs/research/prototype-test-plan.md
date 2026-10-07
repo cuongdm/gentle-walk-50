@@ -1,4 +1,4 @@
-# Kế hoạch test prototype — Gentle Walk 50+ (một trang)
+# Kế hoạch test prototype — Good Footing (một trang)
 _28/09/2026, sửa 29/09/2026 · Bước 4 trong docs/content-plan.md §8 · **Thời điểm (chốt 29/09/2026): sau khi code hết MVP với asset tạm, trước khi sản xuất asset thật**; mẫu thử M1–M3 chạy trên bản build TestFlight thay vì file rời khi có. Mục tiêu: trả lời 4 câu hỏi mở ở docs/idea/gentle-walk-voice.md §12._
 
 ## Câu hỏi cần trả lời
@@ -6,7 +6,7 @@ _28/09/2026, sửa 29/09/2026 · Bước 4 trong docs/content-plan.md §8 · **T
 2. **Giọng** nào (Bella hay ứng viên khác), nhịp 8–10 giây mỗi câu có vội không, "heel taps" có hiểu khi chỉ nghe không?
 3. **Giãn cơ dẫn bằng giọng** có theo được mà không nhìn màn hình không (tư thế, đổi bên, thở)?
 4. **Nhân vật** trông giống họ không; muốn đi hành trình nào sau New York; có dùng tai nghe khi đi ngoài trời không?
-5. **Tên app** (thêm 03/10/2026; 04/10 chốt 2 tên: **Good Footing**, **Kind Pace**): đọc to 2 tên, đổi thứ tự giữa các người tham gia, hỏi tên nào nghe như app dành cho mình, tên nào nghe như app cho "người già".
+5. **Tên app** (thêm 03/10/2026; 07/10 chủ app đã chốt **Good Footing**, Kind Pace giữ làm đối chứng): trước khi cho xem phụ đề, đọc to "Good Footing" và hỏi *"Just from the name, what do you think this app helps you do?"*; rồi đọc to 2 tên (đổi thứ tự giữa các người tham gia), hỏi tên nào nghe như app dành cho mình, tên nào nghe như app cho "người già". Đạt khi đa số trả lời kiểu "balance / feel steady / get started again"; nếu ≥ 3/8 nghĩ tới chăm sóc bàn chân, chỉ đi bộ, hoặc "app cho người già" thì xem lại tên trước khi nộp đơn nhãn hiệu.
 
 ## Người tham gia
 - 6–8 phụ nữ Mỹ **58–75 tuổi** (khách mục tiêu đổi 03/10/2026; ít nhất 3 người 65+, tối đa 1 người 50–57 để so sánh), tự nhận là mới hoặc đã bỏ tập lâu, có đau gối/hông/lưng hoặc thừa cân; không tuyển người tập gym hay chạy bộ. Ưu tiên 2–3 người đang hoặc từng dùng WalkFit, LazyFit, Walk at Home, Leslie Sansone trên YouTube.

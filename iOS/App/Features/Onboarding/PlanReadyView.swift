@@ -120,7 +120,7 @@ struct SampleWeekRow: View {
                     .reveal(.pop, delay: 0.2 + 0.07 * Double(index))
                 }
             }
-            Text("With Gentle Walk Pro, your week mixes walks, chair moves and stretches.")
+            Text("With \(AppBrand.name) Pro, your week mixes walks, chair moves and stretches.")
                 .typeRole(.caption).foregroundStyle(Palette.textMuted)
         }
         .accessibilityElement(children: .combine)

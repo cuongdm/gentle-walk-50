@@ -84,7 +84,7 @@ struct PrivacyPolicyView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
-                    Text("Gentle Walk keeps everything on this phone.").typeRole(.cardTitle)
+                    Text("\(AppBrand.name) keeps everything on this phone.").typeRole(.cardTitle)
                     Text("We don't have accounts, servers, ads or tracking. We don't collect or sell your data.")
                     Text("Your answers, workouts, pain reports and journey progress are stored only on this phone and are not backed up to iCloud by the app.")
                     Text("If you connect Apple Health, we read your step count to show it in Progress and save your workouts to Health. Health data never leaves your phone through us.")

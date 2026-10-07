@@ -1,4 +1,4 @@
-# Chuẩn tập luyện cho Gentle Walk 50+ — tham chiếu kỹ thuật có nguồn
+# Chuẩn tập luyện cho Good Footing — tham chiếu kỹ thuật có nguồn
 
 Ngày lập: 30/09/2026 · Rà lại 06/10/2026 · Tài liệu nội bộ (không phải nội dung người dùng) · Phạm vi: phụ nữ Mỹ 58–75 (đổi từ 50–64 ngày 03/10/2026), mới tập hoặc quay lại, thường thừa cân hoặc đau khớp.
 

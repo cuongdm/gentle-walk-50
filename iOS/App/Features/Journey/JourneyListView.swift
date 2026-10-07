@@ -144,7 +144,7 @@ struct PostcardDetailView: View {
                 if let coach = stop.coachLine {
                     Text(verbatim: coach).typeRole(.cardTitle).italic().foregroundStyle(Palette.text)
                 }
-                ShareLink(item: String(localized: "I walked to \(stop.name) with Gentle Walk.")) {
+                ShareLink(item: String(localized: "I walked to \(stop.name) with \(AppBrand.name).")) {
                     Text("Share")
                 }
                 .buttonStyle(.secondaryAction)

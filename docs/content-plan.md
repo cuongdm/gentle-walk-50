@@ -1,4 +1,4 @@
-# Kế hoạch nội dung — Gentle Walk 50+ (MVP)
+# Kế hoạch nội dung — Good Footing (MVP)
 _Cập nhật: 28/09/2026 (thêm video động tác, giãn cơ; rà soát) · Số lượng là ước tính từ spec, chưa phải số đo · Không ghi số tiền_
 
 ## Tham chiếu

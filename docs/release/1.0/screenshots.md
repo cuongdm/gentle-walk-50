@@ -1,4 +1,4 @@
-# Gentle Walk 1.0 — màn chụp cho store (task 9.5)
+# Good Footing 1.0 — màn chụp cho store (task 9.5)
 _29/09/2026. Mọi màn chụp bằng hook `-ScreenshotMode <state>` (dữ liệu mẫu Margaret, `App/Debug/Fixtures/en-US.json`). Lệnh:_
 
 ```bash

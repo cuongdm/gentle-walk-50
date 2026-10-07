@@ -71,9 +71,9 @@ struct SubscriptionSection: View {
                 }
             case .subscribed:
                 if let renewalDate {
-                    Text("Gentle Walk Pro · renews \(renewalDate.formatted(.dateTime.month(.abbreviated).day()))").typeRole(.body)
+                    Text("\(AppBrand.name) Pro · renews \(renewalDate.formatted(.dateTime.month(.abbreviated).day()))").typeRole(.body)
                 } else {
-                    Text("Gentle Walk Pro").typeRole(.body)
+                    Text("\(AppBrand.name) Pro").typeRole(.body)
                 }
             case .lifetime:
                 Text("Lifetime access · no renewals").typeRole(.body)
@@ -233,7 +233,7 @@ struct SettingsGroupHeader: View {
 
 /// Language and units in one card (owner 02/10/2026). The language follows the iPhone, English when
 /// the app does not have it; a pick here shows from the next launch (iOS applies a language when the
-/// app opens) and is the same preference as iOS Settings → Gentle Walk → Language. Each language name
+/// app opens) and is the same preference as the app's page in iOS Settings → Language. Each language name
 /// is in its own language. Units: distance (used for journeys and outdoor walks), weight and height
 /// (kept for where they appear: the app does not ask for them).
 struct LanguageUnitsSection: View {
@@ -356,7 +356,7 @@ struct OutdoorSection: View {
             .tint(Palette.secondary)
             if choice == "location", denied {
                 VStack(alignment: .leading, spacing: 6) {
-                    Label("Location is off for Gentle Walk on this iPhone.", systemImage: "location.slash.fill")
+                    Label("Location is off for \(AppBrand.name) on this iPhone.", systemImage: "location.slash.fill")
                         .typeRole(.body).foregroundStyle(Palette.text)
                     Button("Turn on in Settings", action: SystemPermission.openSettings)
                         .buttonStyle(.smallTextLink)
@@ -390,7 +390,7 @@ struct HelpSection: View {
                 Divider()
                 SettingsRow(title: "Privacy", symbol: "hand.raised", action: onPrivacy)
             }
-            Text("Gentle Walk is for general fitness. It isn't medical advice.")
+            Text("\(AppBrand.name) is for general fitness. It isn't medical advice.")
                 .typeRole(.caption).foregroundStyle(Palette.textMuted)
                 .padding(.top, 4)
         }

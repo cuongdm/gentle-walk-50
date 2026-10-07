@@ -1,6 +1,6 @@
 # Tóm tắt thị trường — Gentle Walk 50+ (tên làm việc) · 04/10/2026
 
-_"Gentle Walk" là tên làm việc; tên store đang test: Good Footing / Kind Pace (mục 6). Việc đổi tên khi chốt: [docs/design/doi-ten-app-checklist.md](../design/doi-ten-app-checklist.md)._
+_"Gentle Walk" là tên làm việc cũ. **07/10/2026 chủ app chốt Good Footing**, khẩu hiệu "Steadier on your feet, at your own pace." ([ten-app-moi.md](2026-10-03-ten-app-moi.md) mục 6). Việc đổi tên: [docs/design/doi-ten-app-checklist.md](../design/doi-ten-app-checklist.md)._
 
 Bản ngắn của 4 báo cáo:
 - [2026-10-03-van-de-va-chan-dung-khach-hang.md](2026-10-03-van-de-va-chan-dung-khach-hang.md)

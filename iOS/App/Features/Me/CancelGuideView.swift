@@ -15,7 +15,7 @@ struct CancelGuideView: View {
             VStack(alignment: .leading, spacing: 18) {
                 ScreenHeader(title: isAfterLifetimePurchase ? "One last step: cancel your old plan" : "Canceling takes a few taps")
                 GuideStep(number: 1, text: "Tap the button below", symbol: "hand.tap")
-                GuideStep(number: 2, text: "Choose Gentle Walk", symbol: "list.bullet")
+                GuideStep(number: 2, text: "Choose \(AppBrand.name)", symbol: "list.bullet")
                 GuideStep(number: 3, text: "Tap Cancel Subscription", symbol: "xmark.circle")
                 if let accessUntil {
                     Text("You keep full access until \(accessUntil).").typeRole(.body).foregroundStyle(Palette.text)

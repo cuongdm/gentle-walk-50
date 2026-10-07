@@ -112,7 +112,7 @@ struct StopNode: View {
                 .foregroundStyle(Palette.text.opacity(0.7))
                 .frame(width: 20, height: 20)
                 .background(Palette.artPaper, in: .circle)
-                .accessibilityLabel(Text("\(stop.name), part of Gentle Walk Pro"))
+                .accessibilityLabel(Text("\(stop.name), part of \(AppBrand.name) Pro"))
         }
     }
 }

@@ -44,6 +44,7 @@ Ba cách kiểm tra:
 ## 3. Danh sách ngắn
 
 **04/10/2026: chủ app chọn Good Footing (A) và Kind Pace (B) để test.** C chỉ là dự phòng.
+**07/10/2026: chủ app chốt Good Footing** (mục 6).
 
 ### A. Good Footing ⭐ đề xuất
 - **Tên store:** `Good Footing: Gentle Workouts` (29 ký tự)
@@ -100,3 +101,20 @@ Ba cách kiểm tra:
 ## Câu hỏi còn mở
 - Có cho thêm `seniors` vào trường keywords ẩn không?
 - Có thử tên bằng quảng cáo (300–500 USD) không?
+
+## 6. Cập nhật 07/10/2026: chốt Good Footing, khẩu hiệu
+
+**Chủ app chốt:** tên **Good Footing**, store `Good Footing: Gentle Workouts`, phụ đề giữ `Chair Yoga, Walks & Stretches`, khẩu hiệu **"Steadier on your feet, at your own pace."** Chốt trước test người dùng và luật sư; hai bước đó vẫn làm.
+
+**Vì sao, sau rà soát bài tập 06/10:**
+- "Vững" thành trục của app: Steady set ở mọi ngày tập (cả miễn phí), chip "I feel unsteady on my feet", thang vịn, nguồn chính là WFG 2022, Otago, "Strong, Steady and Straight". Khách tự nói "feel steadier", "get up from chairs".
+- "Footing" là một kết quả (đứng vững, khởi đầu tốt), không phải một hoạt động như "Walk", nên không bó vào đi bộ. Tên không tự nói yoga hay giãn cơ; phần sau dấu hai chấm và phụ đề nói việc đó.
+- Kind Pace yếu đi: "pace" gợi tốc độ đi, chạy; rủi ro nhãn KIND và .com còn nguyên.
+
+**Đổi so với mục 3:**
+- **Loại "Steady Footing" khỏi dự phòng:** "Steady" đã là tên mức cường độ và tên bộ "Steady set". Dự phòng: Move Gently, Gentle Strong.
+- **Phụ đề giữ nguyên.** "Balance" không nằm trong các cụm người ta gõ; "vững, thăng bằng" đi vào ảnh store đầu tiên và promotional text.
+- **Tên tổ chức nguồn không vào tên, phụ đề hay keywords** (NIA, CDC, NHS, Otago, STEADI, Go4Life): chỉ ở dòng nguồn có câu "not affiliated with or endorsed by" (cùng luật với infographic, docs/reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md Phần 1).
+- **Khẩu hiệu** chỉ hứa kết quả thể lực ("steadier"), không hứa chống ngã (1.4.1); toàn từ trong danh sách "Nên dùng". VI: "Vững chân hơn, theo nhịp của riêng bạn."
+
+**Còn mở:** keywords ẩn có `seniors` không; thử tên bằng quảng cáo (chỉ cần nếu test người dùng cho kết quả xấu với Good Footing).

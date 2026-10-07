@@ -1,4 +1,4 @@
-# Việc cần làm — Gentle Walk 50+
+# Việc cần làm — Good Footing
 _Cập nhật 03/10/2026 (trước đó 28/09/2026). Mỗi việc có người làm, đầu ra và trạng thái. Xong thì gạch và ghi ngày; quyết định sản phẩm ghi thêm vào decisions log của app-context.md._
 
 ## Chủ app quyết định (đề xuất mặc định đã ghi, chưa chốt)
@@ -24,7 +24,8 @@ _Cập nhật 03/10/2026 (trước đó 28/09/2026). Mỗi việc có người l
 - [ ] Khi chốt: sửa `.storekit` và App Store Connect, nhãn "Lowest monthly cost" (S2) tự tính lại, cập nhật app-context mục Price model.
 
 **Việc khác:**
-- [ ] **Tên mới:** xem dòng "Chọn tên store" ở mục Tài liệu và repo. Khi chốt: đổi `CFBundleDisplayName`, chữ "GENTLE WALK" ở Welcome, "Gentle Walk Pro", icon, ảnh store, bản dịch tiếng Việt. Bundle ID và mã sản phẩm giữ nguyên.
+- [x] ~~**Tên mới**~~ Đổi 07/10/2026 sang **Good Footing**, khẩu hiệu "Steadier on your feet, at your own pace.": tên dưới icon, câu xin quyền, Welcome, "Good Footing Pro", `.storekit`, trang privacy, bản Việt; tên gom ở `iOS/App/Design/AppBrand.swift`. Bundle ID và mã sản phẩm giữ nguyên.
+- [ ] **Sau khi đổi tên (cần Mac):** `xcodegen generate`, build, `LocalizationTests` `StoreConfigTests` `PaywallModelTests`; xem bằng mắt Welcome, paywall, Me, Journey, thẻ chia sẻ, 4 hộp xin quyền, tên dưới icon trên iPhone nhỏ nhất (checklist đổi tên mục 6 bước 11). Icon, ảnh store, video preview làm lại với tên mới.
 - [ ] **Quảng cáo:** chủ app đặt mức lỗ tối đa năm 1; quyết có cho app tự báo AdAttributionKit/SKAdNetwork (vượt luật nhẹ) trước giai đoạn Meta không; chọn cách làm video UGC. Kế hoạch: [research/2026-10-03-quang-cao-nam-dau.md](research/2026-10-03-quang-cao-nam-dau.md).
 - [x] ~~**Rà chuẩn tập theo nhóm 65+**~~ Xong 06/10/2026: docs/reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md (Steady set miễn phí, liều mới, chip unsteady, 4 bài Otago, thang vịn Pro, 2 clip, 2 tranh); STD đã cập nhật.
 - [ ] **Nhân vật HLV và tranh (chốt 27/09: 55–58 tuổi):** có cần trông lớn hơn (khoảng 60–65) không? Hỏi trong test prototype (câu 4), chưa đổi asset.
@@ -57,17 +58,17 @@ Sang manh-skill-plan với asset hiện có (6 clip, A1, giọng prototype). Nh�
 
 ## Tài liệu và repo
 - [ ] Chép tranh mẫu phong cách từ `Idea-Fitness/docs/ai-test/` vào `docs/design/reference/`.
-- [ ] Chọn tên store: kết quả kiểm tra sơ bộ ở [research/2026-10-03-ten-app-moi.md](research/2026-10-03-ten-app-moi.md); **04/10/2026 chủ app chọn 2 tên để test: Good Footing, Kind Pace** → hỏi người test (câu 5 trong test prototype) → luật sư nhãn hiệu Mỹ kiểm tra → nộp đơn, đăng ký tên miền, giữ tên trên App Store Connect.
+- [ ] Tên store: **07/10/2026 chủ app chốt Good Footing** ("Good Footing: Gentle Workouts", phụ đề "Chair Yoga, Walks & Stretches"), trước khi test người dùng và luật sư. Còn: hỏi người test (câu 5, để bắt rủi ro "nghe như app cho người già" hoặc "chăm sóc bàn chân") → luật sư nhãn hiệu Mỹ (cả dòng nguồn infographic) → nộp đơn, đăng ký `goodfooting.app` / `getgoodfooting.com`, giữ tên trên App Store Connect. Nếu trượt: đổi `AppBrand.name` và các file ở checklist đổi tên.
 - [ ] Viết Privacy Policy và Terms (cần cho HealthKit và subscription) trước khi nộp; URL ghi vào app-context.
 - [ ] Cân nhắc Git LFS nếu thêm nhiều clip 1080p (repo hiện khoảng 109 MB).
 
 ## Backlog từ review 29/09/2026 (docs/reviews/2026-09-29-tai-lieu-ke-hoach.md)
 Plan đã duyệt nên không sửa thầm; các mục dưới đưa vào task tương ứng khi bắt đầu task đó.
 - [ ] **M5** Task 9.1 thêm Support URL và email liên hệ (ASC bắt buộc; S20 "Contact us"); ghi vào app-context Identity.
-- [ ] **M8** Task 5.9 thêm biến thể `paywall-not-eligible`: tiêu đề "Everything in Gentle Walk Pro", nút "Continue"; sửa spec S08.
+- [ ] **M8** Task 5.9 thêm biến thể `paywall-not-eligible`: tiêu đề "Everything in Good Footing Pro", nút "Continue"; sửa spec S08.
 - [ ] **M9** Task 3.5 thêm bước: bấm Break khi màn hình khoá, chờ 3 phút, Resume từ màn khoá (Now Playing 3.7) — app không phát âm thanh có thể bị treo.
 - [ ] **M10** Dựng file A1 5 phút cho mẫu thử M1 bằng `tools/video/build_preview.py` (giọng Bella, cảnh tĩnh S11) — cần cho test prototype.
-- [ ] **M11** Task 1.8 ghi chú `CFBundleDisplayName` "Gentle Walk" là tên tạm, đổi khi chốt tên store.
+- [x] ~~**M11**~~ `CFBundleDisplayName` đổi thành "Good Footing" (07/10/2026).
 - [x] ~~**I1–I3, I5** chờ chốt~~ Chốt 29/09/2026 (app-context decisions log); đã ghi vào brief, spec, plan (dòng "Bổ sung 29/09" ở task 2.4, 2.7, 2.13, 5.8, 5.9, 6.2, 6.4, 6.9, 7.1), test plan.
 - [x] ~~**I4**~~ Xong 29/09/2026 (nháp 1): A10 (55 câu, nguồn NHS/NIA), A2 tối thiểu (67 câu), A3/A5–A9 (80 câu), D2–D10. Bảng "Bộ nội dung tối thiểu cho demo MVP" ở content-plan §2. Chờ chủ app đọc duyệt.
 - [x] ~~**I6**~~ Chốt 29/09/2026: dùng Flow Pro hiện tại; báo giá credit khi tạo clip giãn cơ, và ước thêm một lần tạo lại toàn bộ (6 + 6–8 clip) khi nâng gói.

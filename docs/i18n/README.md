@@ -1,4 +1,4 @@
-# Đa ngôn ngữ — Gentle Walk
+# Đa ngôn ngữ — Good Footing
 
 _Soạn 02/10/2026. Ngôn ngữ hiện có: English (gốc, mặc định), Tiếng Việt._
 
@@ -14,7 +14,7 @@ _Soạn 02/10/2026. Ngôn ngữ hiện có: English (gốc, mặc định), Ti�
 Phần nào thiếu bản dịch thì app giữ tiếng Anh cho phần đó. Câu HLV đã dịch nhưng chưa có file giọng: bản DEBUG đọc bằng giọng hệ thống iOS của ngôn ngữ đó; bản Release bị cổng phát hành chặn (`ReleaseContentTests.everyLanguageHasItsRecordings`).
 
 ## Người dùng đổi ngôn ngữ
-Me → Ngôn ngữ và đơn vị (English · Tiếng Việt). Mặc định theo ngôn ngữ iPhone; iPhone dùng ngôn ngữ app chưa có thì tiếng Anh (chủ app chốt 02/10/2026). iOS áp ngôn ngữ khi mở app, nên app nhắc "Đóng Gentle Walk rồi mở lại" bằng chính ngôn ngữ vừa chọn. Đổi trong Cài đặt iOS → Gentle Walk → Ngôn ngữ cũng được.
+Me → Ngôn ngữ và đơn vị (English · Tiếng Việt). Mặc định theo ngôn ngữ iPhone; iPhone dùng ngôn ngữ app chưa có thì tiếng Anh (chủ app chốt 02/10/2026). iOS áp ngôn ngữ khi mở app, nên app nhắc "Đóng Good Footing rồi mở lại" bằng chính ngôn ngữ vừa chọn. Đổi trong Cài đặt iOS → Good Footing → Ngôn ngữ cũng được.
 
 ## Quy trình cập nhật (sau khi sửa chữ trong code hoặc nội dung)
 ```bash

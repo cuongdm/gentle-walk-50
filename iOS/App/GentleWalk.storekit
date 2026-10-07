@@ -9,7 +9,7 @@
       "localizations" : [
         {
           "description" : "All walks, chair moves, stretches and journeys, yours to keep.",
-          "displayName" : "Gentle Walk Pro, one payment",
+          "displayName" : "Good Footing Pro, one payment",
           "locale" : "en_US"
         }
       ],
@@ -28,7 +28,7 @@
     {
       "id" : "6A0B2C11-0100-4000-8000-000000000100",
       "localizations" : [ ],
-      "name" : "Gentle Walk Pro",
+      "name" : "Good Footing Pro",
       "subscriptions" : [
         {
           "adHocOffers" : [ ],
@@ -45,7 +45,7 @@
           "localizations" : [
             {
               "description" : "All walks, chair moves, stretches and journeys.",
-              "displayName" : "Gentle Walk Pro, yearly",
+              "displayName" : "Good Footing Pro, yearly",
               "locale" : "en_US"
             }
           ],
@@ -66,7 +66,7 @@
           "localizations" : [
             {
               "description" : "All walks, chair moves, stretches and journeys.",
-              "displayName" : "Gentle Walk Pro, monthly",
+              "displayName" : "Good Footing Pro, monthly",
               "locale" : "en_US"
             }
           ],

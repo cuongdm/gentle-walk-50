@@ -124,7 +124,7 @@
   ]
  },
  {
-  "key": "Choose Gentle Walk",
+  "key": "Choose %@",
   "comment": "",
   "files": [
    "CancelGuideView"
@@ -676,7 +676,7 @@
   ]
  },
  {
-  "key": "I walked to %@ with Gentle Walk.",
+  "key": "I walked to %@ with %@.",
   "comment": "",
   "files": [
    "JourneyListView"
@@ -753,7 +753,7 @@
   ]
  },
  {
-  "key": "%@, part of Gentle Walk Pro",
+  "key": "%@, part of %@ Pro",
   "comment": "VoiceOver label for a locked stop on the map. The argument is the stop's name.",
   "files": [
    "JourneyMapView"
@@ -853,7 +853,7 @@
   ]
  },
  {
-  "key": "With Gentle Walk Pro · at %@",
+  "key": "With %@ Pro · at %@",
   "comment": "",
   "files": [
    "JourneyRouteList"
@@ -899,7 +899,7 @@
   ]
  },
  {
-  "key": "You walked the free leg. The rest of this route comes with Gentle Walk Pro, and your distance keeps counting.",
+  "key": "You walked the free leg. The rest of this route comes with %@ Pro, and your distance keeps counting.",
   "comment": "",
   "files": [
    "JourneyView"
@@ -1050,14 +1050,14 @@
   ]
  },
  {
-  "key": "Gentle Walk Pro · renews %@",
+  "key": "%@ Pro · renews %@",
   "comment": "A subscription that renews on a specific date.",
   "files": [
    "MeSections"
   ]
  },
  {
-  "key": "Gentle Walk is for general fitness. It isn't medical advice.",
+  "key": "%@ is for general fitness. It isn't medical advice.",
   "comment": "A disclaimer for the Terms and Conditions page.",
   "files": [
    "MeSections"
@@ -1128,7 +1128,7 @@
   ]
  },
  {
-  "key": "Location is off for Gentle Walk on this iPhone.",
+  "key": "Location is off for %@ on this iPhone.",
   "comment": "",
   "files": [
    "MeSections"
@@ -2313,7 +2313,7 @@
   ]
  },
  {
-  "key": "Gentle Walk keeps everything on this phone.",
+  "key": "%@ keeps everything on this phone.",
   "comment": "A description of the app's privacy policy.",
   "files": [
    "PaywallLegalFooter"
@@ -2447,7 +2447,7 @@
   ]
  },
  {
-  "key": "Gentle Walk Pro",
+  "key": "%@ Pro",
   "comment": "The name of the subscription.",
   "files": [
    "PaywallModel",
@@ -2455,7 +2455,7 @@
   ]
  },
  {
-  "key": "Gentle Walk Pro: free for 14 days",
+  "key": "%@ Pro: free for 14 days",
   "comment": "",
   "files": [
    "PaywallModel"
@@ -2743,7 +2743,7 @@
   ]
  },
  {
-  "key": "With Gentle Walk Pro, your week mixes walks, chair moves and stretches.",
+  "key": "With %@ Pro, your week mixes walks, chair moves and stretches.",
   "comment": "",
   "files": [
    "PlanReadyView"
@@ -3196,7 +3196,7 @@
   ]
  },
  {
-  "key": "See all sessions, with Gentle Walk Pro",
+  "key": "See all sessions, with %@ Pro",
   "comment": "A button label that opens the full list of sessions, with the Pro badge.",
   "files": [
    "SessionHistoryViews"
@@ -3307,13 +3307,6 @@
   "comment": "",
   "files": [
    "SessionPreset+Request"
-  ]
- },
- {
-  "key": "Gentle Walk",
-  "comment": "A button that shares the user's location with family.",
-  "files": [
-   "ShareCardRenderer"
   ]
  },
  {
@@ -4297,7 +4290,7 @@
   ]
  },
  {
-  "key": "Gentle walks and chair moves, at your pace.",
+  "key": "Steadier on your feet, at your own pace.",
   "comment": "A description of the benefits of Gentle.",
   "files": [
    "WelcomeView"

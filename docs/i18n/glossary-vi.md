@@ -1,4 +1,4 @@
-# Bảng thuật ngữ tiếng Việt — Gentle Walk
+# Bảng thuật ngữ tiếng Việt — Good Footing
 
 _Soạn 01/10/2026. Mọi bản dịch (giao diện, nội dung, lời HLV, thông báo) theo bảng này. Thêm ngôn ngữ khác: chép file này thành `glossary-<mã>.md`._
 
@@ -9,7 +9,7 @@ _Soạn 01/10/2026. Mọi bản dịch (giao diện, nội dung, lời HLV, thô
 - Không dùng: "lười", "béo", "đốt mỡ", "người già", "cao tuổi", "lão", "phục hồi chức năng", "trị liệu", "đảm bảo", "giảm cân nhanh".
 - Lời HLV (giọng nói): câu nói được thành tiếng, không dấu ngoặc, không ký hiệu; số viết bằng chữ khi đọc ("mười giây"); độ dài gần bằng câu tiếng Anh (lời được đặt theo giây trong buổi tập).
 - Dấu câu: dấu chấm, phẩy thường; "·" giữ nguyên như bản tiếng Anh; ngoặc kép “ ”.
-- HLV tự xưng "mình" (ít dùng), gọi người dùng là "bạn"; "we / let's" → "mình cùng…". Màn hình nói về app thì tránh "chúng tôi", dùng câu bị động hoặc "Gentle Walk".
+- HLV tự xưng "mình" (ít dùng), gọi người dùng là "bạn"; "we / let's" → "mình cùng…". Màn hình nói về app thì tránh "chúng tôi", dùng câu bị động hoặc tên app "Good Footing".
 - Tên địa danh giữ nguyên tiếng Anh/bản địa (Bethesda Fountain, Obradoiro Square…), không dịch.
 - Tên app Sức khoẻ của iOS: "Sức khỏe" (đúng chữ iOS tiếng Việt); nhãn sản phẩm "Apple Health" giữ nguyên.
 
@@ -47,7 +47,9 @@ _Soạn 01/10/2026. Mọi bản dịch (giao diện, nội dung, lời HLV, thô
 | free leg | chặng miễn phí |
 | Today · Journey · Progress · Me (tab) | Hôm nay · Hành trình · Tiến bộ · Tôi |
 | Everyday wins | Việc nhỏ làm được |
-| Gentle Walk Pro · Pro | Gentle Walk Pro · Pro (giữ nguyên) |
+| Good Footing Pro · Pro | Good Footing Pro · Pro (giữ nguyên; trong code là `\(AppBrand.name) Pro`, khoá `%@ Pro`) |
+| Good Footing (tên app) | Good Footing (tên riêng, không dịch) |
+| Steadier on your feet, at your own pace. (khẩu hiệu) | Vững chân hơn, theo nhịp của riêng bạn. |
 | free trial · subscription · yearly · monthly · one payment | dùng thử miễn phí · gói đăng ký · theo năm · theo tháng · trả một lần |
 | Restore purchase | Khôi phục giao dịch |
 | Terms of Use · Privacy | Điều khoản sử dụng · Quyền riêng tư |
