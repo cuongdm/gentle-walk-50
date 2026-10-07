@@ -30,6 +30,12 @@ _Cập nhật 03/10/2026 (trước đó 28/09/2026). Mỗi việc có người l
 - [x] ~~**Rà chuẩn tập theo nhóm 65+**~~ Xong 06/10/2026: docs/reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md (Steady set miễn phí, liều mới, chip unsteady, 4 bài Otago, thang vịn Pro, 2 clip, 2 tranh); STD đã cập nhật.
 - [ ] **Nhân vật HLV và tranh (chốt 27/09: 55–58 tuổi):** có cần trông lớn hơn (khoảng 60–65) không? Hỏi trong test prototype (câu 4), chưa đổi asset.
 - [ ] **Trường keywords ẩn có chữ `seniors` không** (vượt luật copy nhẹ, người dùng không thấy): chủ app quyết.
+- [ ] **Từ nghiên cứu yes2next (07/10/2026, [research/2026-10-07-yes2next.md](research/2026-10-07-yes2next.md)):**
+  - Mở [studio.com/yes2next](https://studio.com/yes2next) trên máy, ghi giá và cách bán của app Get Moving 50+ vào bảng Market.
+  - Có làm "15-day Steady challenge" không (sự kiện trong app trên App Store + móc quảng cáo), làm trong 1.0 hay sau ra mắt?
+  - Ảnh store và video preview: một khung người ngồi và người đứng cùng làm một động tác; thẻ buổi tập ghi "Seated or standing".
+  - Phase 2: một bài 25–30 phút cho Pro; đi bộ theo mùa và dịp lễ Mỹ.
+  - Gửi ảnh chụp trang playlist YouTube nếu cần tên và số video chính xác từng playlist.
 
 **Còn mở sau rà soát 06/10/2026:**
 - [ ] Chủ app xem clip S13 (`assets/video/A/S13/stills/`): chỉ một lần ngả lặp lại (2,17 s). Muốn làm lại: khoảng 24 credit mỗi lượt 720p.

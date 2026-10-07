@@ -38,7 +38,8 @@ _Updated: 07/10/2026 (chốt tên Good Footing và khẩu hiệu) · trước đ
 | Bend | 1513988468 | subscription | giãn cơ, thư viện lớn | làm riêng cho 50+ đau khớp, bản ngồi |
 | Tai chi cho người lớn tuổi (nhiều app 2025–2026) | 6751329158 · 6759260204 | subscription, quảng cáo mạnh | bắt trend tai chi | chậm, dẫn bằng giọng, minh bạch tiền |
 | The Conqueror | 1539543704 | trả một lần mỗi thử thách | tuyến thật, medal | tuyến rút gọn cho người mới, gắn với bài tập |
-- Đối thủ thật: YouTube miễn phí và ChatGPT.
+| yes2next / Get Moving 50+ | YouTube @yes2next · app: studio.com/yes2next (chưa thấy trên App Store) | video YouTube miễn phí → app trả phí trên Studio.com (giá chưa rõ) | mẹ 84 tuổi làm bản ngồi, con làm bản đứng cùng video; khoảng 650 nghìn người đăng ký, 80% trên 55 tuổi; thử thách 15 ngày thăng bằng | dẫn bằng giọng không cần nhìn màn hình, minh bạch tiền, app iOS làm kỹ (docs/research/2026-10-07-yes2next.md) |
+- Đối thủ thật: YouTube miễn phí (lớn nhất ngách: yes2next, nay đã có app trả phí Get Moving 50+) và ChatGPT.
 - Doanh thu, xu hướng và mức đe doạ của từng đối thủ (cập nhật 03/10/2026, 107 app, 15.756 review): docs/research/2026-10-03-kiem-tien-dinh-vi-doi-thu.md. Đe doạ lớn nhất: LazyFit (đúng khách, đang lên), Bend (giãn cơ), ChillFit (mới, lên nhanh nhờ quảng cáo); Fast Builder phủ kín từ khoá "senior / chair / tai chi".
 - Saturated-category exposure: adjacent — simple timers. Mitigation: ba trụ thấy trong 2 phút; ngoài trời là chế độ trong app, không tách app; review notes nêu khác biệt.
 - Portfolio overlap: không có app cùng mảng trên tài khoản.
