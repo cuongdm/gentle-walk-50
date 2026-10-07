@@ -55,8 +55,7 @@ import GentleWalkCore
     var followingName: String? {
         guard let progress = moveProgress else { return nil }
         let poses = player.timeline.phases.filter { $0.block == phase?.block && $0.isExercise }
-        guard poses.indices.contains(progress.index + 1), let id = poses[progress.index + 1].exerciseID else { return nil }
-        return session.exercisesByID[id]?.name
+        return FollowingMove.label(ids: poses.map(\.exerciseID), index: progress.index) { session.exercisesByID[$0]?.name }
     }
     var usesEasier: Bool { phase?.isEasier == true || (pose.map { session.easierExerciseIDs.contains($0.id) } ?? false) }
 

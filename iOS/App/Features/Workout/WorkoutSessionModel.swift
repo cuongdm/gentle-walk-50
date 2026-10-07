@@ -57,10 +57,17 @@ import GentleWalkCore
     @ObservationIgnored var routeProvider: (() -> [RoutePoint])?
     /// Outdoors: whether GPS has a fix ("Location on").
     @ObservationIgnored var locationOn: (() -> Bool)?
+    /// Steps so far on an outdoor walk; nil when steps are not counted (Motion not allowed).
+    @ObservationIgnored var outdoorSteps: (() -> Int?)?
     /// Outdoors with GPS: the player shows the live map (otherwise steps are counted).
     @ObservationIgnored var tracksRoute = false
     /// Called once when the session ends (stops location and pedometer).
     @ObservationIgnored var onEnded: (() -> Void)?
+    /// Called when a saved session ends: balance exercises held through, and those with This hurts or a
+    /// Break (the support ladder, Pro).
+    @ObservationIgnored var onBalanceResult: ((_ steady: Set<String>, _ troubled: Set<String>) -> Void)?
+    /// Balance exercises where she tapped This hurts or took a Break.
+    @ObservationIgnored private var troubledExercises: Set<String> = []
     /// Sit-to-stand counting when the phone is held to the chest (task 8.9).
     var motion: MotionService?
     /// Route kept for Complete after the outdoor services stop.
@@ -139,6 +146,7 @@ import GentleWalkCore
 
     func takeBreak() {
         breakCount += 1
+        noteTrouble()
         player.pause(.breakTaken)
         stage = .breakTime(startedAt: now())
     }
@@ -149,6 +157,7 @@ import GentleWalkCore
     }
 
     func openHurts() {
+        noteTrouble()
         player.pause(.hurts)
         if let painRecorder { hurtsModel = ThisHurtsModel(player: player, recorder: painRecorder, now: now) }
         stage = .hurts
@@ -263,7 +272,20 @@ import GentleWalkCore
             activeSeconds: secondsDone, breakCount: breakCount, outdoorMiles: outdoorMiles, sitToStandCount: reps > 0 ? reps : nil,
             route: route)
         let result = (try? await completion?.complete(summary)) ?? CompletionResult(activeDays: 1, isFirstWorkout: request.isFirstWalk)
+        onBalanceResult?(balanceHeldThrough, troubledExercises)
         stage = .complete(result)
+    }
+
+    private func noteTrouble() {
+        if let id = player.currentPhase?.exerciseID, SupportLadder.exercises.contains(id) { troubledExercises.insert(id) }
+    }
+
+    /// Balance exercises whose every part was played, without This hurts or a Break.
+    private var balanceHeldThrough: Set<String> {
+        let phases = player.timeline.phases.filter { $0.exerciseID.map(SupportLadder.exercises.contains) ?? false }
+        let ids = Set(phases.compactMap(\.exerciseID))
+        return ids.filter { id in phases.filter { $0.exerciseID == id }.allSatisfy { $0.end <= player.currentTime + 0.5 } }
+            .subtracting(troubledExercises)
     }
 
     /// The saved result once Complete shows.

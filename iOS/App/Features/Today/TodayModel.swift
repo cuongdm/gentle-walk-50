@@ -281,8 +281,15 @@ struct TodaySwapOption: Equatable, Identifiable {
         }
     }
 
+    /// "4 of 5 active days so far · 2 rest days are part of the plan": a soft weekly target that is
+    /// never lost (owner S3, 02/10/2026, past the "count up only" rule). Shown once a day is done
+    /// and while the count fits the plan; otherwise the plain count up.
     var weekLine: String {
         let active = activity.week(containing: input.now).activeDays
+        let planned = 7 - restDays.count
+        if active > 0, active <= planned {
+            return String(localized: "\(active) of \(planned) active days so far · \(restDays.count) rest days are part of the plan")
+        }
         return String(localized: "\(Plural.activeDays(active)) this week · \(restDays.count) rest days are part of the plan")
     }
 

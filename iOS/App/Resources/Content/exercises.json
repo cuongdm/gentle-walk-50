@@ -287,7 +287,7 @@
       "counting": "timed",
       "standing": false,
       "videoFile": "V4-1.mp4",
-      "videoAlt": "V4-alt.mp4",
+      "videoAlt": "V4-3.mp4",
       "hiddenFor": [],
       "easierFor": [],
       "source": "S9 p.62, S16 #4–5"
@@ -334,7 +334,14 @@
         "standingIsHard"
       ],
       "easierFor": [
-        "dizzy"
+        "dizzy",
+        "unsteady"
+      ],
+      "limitNotes": [
+        {
+          "limit": "unsteady",
+          "text": "Both hands, lift just your heel"
+        }
       ],
       "source": "S9 p.65, S16 #9"
     },
@@ -774,6 +781,35 @@
       "source": "S9 p.74"
     },
     {
+      "id": "st.back-ext",
+      "name": "Standing back extension",
+      "purpose": "For standing tall",
+      "tips": [
+        "Hands on your hips",
+        "Lean back only a little",
+        "Chin level, eyes ahead"
+      ],
+      "easier": "Hold the chair, a smaller lean",
+      "kind": "stretch",
+      "counting": "reps",
+      "standing": true,
+      "videoFile": "S13.mp4",
+      "videoHold": "S13-hold.mp4",
+      "hiddenFor": [
+        "standingIsHard"
+      ],
+      "easierFor": [
+        "lowerBack"
+      ],
+      "limitNotes": [
+        {
+          "limit": "lowerBack",
+          "text": "A small lean, back long"
+        }
+      ],
+      "source": "S16 p.29, S50"
+    },
+    {
       "id": "bl.tandem",
       "name": "Tandem stance",
       "purpose": "For narrow aisles and hallways",
@@ -793,7 +829,8 @@
         "standingIsHard"
       ],
       "easierFor": [
-        "dizzy"
+        "dizzy",
+        "unsteady"
       ],
       "limitNotes": [
         {
@@ -802,6 +839,10 @@
         },
         {
           "limit": "dizzy",
+          "text": "Both hands on the chair"
+        },
+        {
+          "limit": "unsteady",
           "text": "Both hands on the chair"
         }
       ],
@@ -826,12 +867,17 @@
         "standingIsHard"
       ],
       "easierFor": [
-        "dizzy"
+        "dizzy",
+        "unsteady"
       ],
       "limitNotes": [
         {
           "limit": "dizzy",
           "text": "Small steps, one hand on the counter"
+        },
+        {
+          "limit": "unsteady",
+          "text": "Both hands on the counter, small steps"
         }
       ],
       "source": "S16 p.21, S13"
@@ -852,10 +898,86 @@
       "standing": true,
       "videoFile": "B3.mp4",
       "hiddenFor": [
-        "standingIsHard"
+        "standingIsHard",
+        "unsteady"
       ],
       "easierFor": [],
       "source": "S13, S9 p.66, S16 p.23"
+    },
+    {
+      "id": "bl.back-walk",
+      "name": "Walking backwards",
+      "purpose": "For stepping back from a counter",
+      "tips": [
+        "Hands slide along the counter",
+        "Toes first, then the heel",
+        "Eyes ahead, small slow steps"
+      ],
+      "easier": "Fewer, smaller steps",
+      "harder": "Ten steps, one hand on the counter",
+      "kind": "balance",
+      "counting": "timed",
+      "standing": true,
+      "picture": "ex-back-walk",
+      "hiddenFor": [
+        "standingIsHard",
+        "dizzy",
+        "unsteady"
+      ],
+      "easierFor": [],
+      "source": "S16 p.30, S7"
+    },
+    {
+      "id": "bl.walk-turn",
+      "name": "Walk and turn",
+      "purpose": "For turning around at home",
+      "tips": [
+        "Walk along your counter",
+        "Turn in tiny steps",
+        "A hand within reach the whole time"
+      ],
+      "easier": "Both hands on the counter for the turn",
+      "harder": "Five steps each way",
+      "kind": "balance",
+      "counting": "timed",
+      "standing": true,
+      "picture": "ex-walk-turn",
+      "hiddenFor": [
+        "standingIsHard",
+        "dizzy"
+      ],
+      "easierFor": [
+        "unsteady"
+      ],
+      "limitNotes": [
+        {
+          "limit": "unsteady",
+          "text": "Both hands on the counter"
+        }
+      ],
+      "source": "S16 p.30"
+    },
+    {
+      "id": "bl.heel-toe-walking",
+      "name": "Heel and toe walking",
+      "purpose": "For uneven paths and lawns",
+      "tips": [
+        "One hand on the counter",
+        "Toes up for the heel steps",
+        "Heels up for the toe steps"
+      ],
+      "easier": "Raise heels and toes standing still",
+      "harder": "A few more steps, same slow pace",
+      "kind": "balance",
+      "counting": "timed",
+      "standing": true,
+      "videoFile": "V4-3.mp4",
+      "hiddenFor": [
+        "standingIsHard",
+        "unsteady"
+      ],
+      "easierFor": [],
+      "source": "S16 p.30"
     }
   ]
 }

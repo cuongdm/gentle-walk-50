@@ -18,6 +18,8 @@ import Testing
         #expect(OnboardingProfile.make(answers: answers(activity: .exerciseRegularly, chair: .easy)).startLevel == .inPlace)
         // Standing being hard always keeps the seated start.
         #expect(OnboardingProfile.make(answers: answers(activity: .walkMostDays, chair: .easy, limits: [.standingIsHard])).startLevel == .seated)
+        // "I feel unsteady on my feet" starts seated too (review 06/10/2026 Q3).
+        #expect(OnboardingProfile.make(answers: answers(activity: .walkMostDays, chair: .easy, limits: [.unsteady])).startLevel == .seated)
         #expect(OnboardingProfile.make(answers: answers(activity: .shortWalks, chair: .easy)).startLevel == .seated)
     }
 

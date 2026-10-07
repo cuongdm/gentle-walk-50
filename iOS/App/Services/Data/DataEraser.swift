@@ -22,7 +22,7 @@ import UserNotifications
         HealthService.askedKey, "paywallDismissedAt", "restTodayDate", "permissionsShownAt", "reminderOfferShown", UnitPreferences.distanceKey, UnitPreferences.weightKey,
         UnitPreferences.heightKey, "notificationSettings", "outdoorLocationChoice",
         "outdoorPrepSeen", "healthCardDismissed", "musicOff", "voiceLouder", "captionsOn", "reviewPromptMilestones", "lastSchedule",
-        FavouriteSessions.defaultsKey, "permissionsShown", "fewerRemindersAnswered", "lastTrialEnds",
+        FavouriteSessions.defaultsKey, SupportLadderStore.defaultsKey, "permissionsShown", "fewerRemindersAnswered", "lastTrialEnds",
         AudioLevels.voiceKey, AudioLevels.musicKey, AudioLevels.introsKey,
     ]
 }

@@ -8,11 +8,12 @@ import Testing
 
     @Test func proWeekWithWeekendRest() {
         let week = WeeklyPlanner.week(restDays: weekend, entitlement: .subscribed)
-        #expect(week[.monday] == Day(main: .walk, chairMoves: 1, cooldown: false))
-        #expect(week[.tuesday] == Day(main: .stretch, chairMoves: 0, cooldown: false))
-        #expect(week[.wednesday] == Day(main: .walk, chairMoves: 2, cooldown: false))
-        #expect(week[.thursday] == Day(main: .chair, chairMoves: 0, cooldown: true))
-        #expect(week[.friday] == Day(main: .longWalk, chairMoves: 0, cooldown: true))
+        let steady = PlannedDay.SteadySet.matchingIntensity
+        #expect(week[.monday] == Day(main: .walk, chairMoves: 1, cooldown: false, steadySet: steady))
+        #expect(week[.tuesday] == Day(main: .stretch, chairMoves: 0, cooldown: false, steadySet: steady))
+        #expect(week[.wednesday] == Day(main: .walk, chairMoves: 2, cooldown: false, steadySet: steady))
+        #expect(week[.thursday] == Day(main: .chair, chairMoves: 0, cooldown: true, steadySet: steady))
+        #expect(week[.friday] == Day(main: .longWalk, chairMoves: 0, cooldown: true, steadySet: steady))
         #expect(week[.saturday] == .rest)
         #expect(week[.sunday] == .rest)
     }
@@ -39,6 +40,28 @@ import Testing
         #expect(week[.saturday] == .rest)
         #expect(week[.sunday] == .rest)
         #expect(week[.monday]?.main == .walk)
+    }
+
+    /// Balance on at least three days a week for everyone (World Falls Guidelines 2022, review 06/10/2026 Q2):
+    /// the free plan gets the gentle two-hands set, Pro follows the day's intensity.
+    @Test func everyTrainingDayEndsWithASteadySet() {
+        let free = WeeklyPlanner.week(restDays: weekend, entitlement: .free)
+        #expect(free.values.filter { !$0.isRest }.allSatisfy { $0.steadySet == .gentle })
+        let pro = WeeklyPlanner.week(restDays: weekend, entitlement: .lifetime)
+        #expect(pro.values.filter { !$0.isRest }.allSatisfy { $0.steadySet == .matchingIntensity })
+        #expect(pro.values.filter(\.isRest).allSatisfy { $0.steadySet == nil })
+    }
+
+    @Test func anyChoiceOfRestDaysLeavesAtLeastThreeSteadyDays() {
+        let days = WeeklyPlanner.order
+        for entitlement in [Entitlement.free, .subscribed] {
+            for first in days {
+                for second in days {
+                    let week = WeeklyPlanner.week(restDays: [first, second], entitlement: entitlement)
+                    #expect(week.values.filter { $0.steadySet != nil }.count >= 3, "\(first) \(second)")
+                }
+            }
+        }
     }
 
     @Test func dayForADateUsesTheCalendarWeekday() {

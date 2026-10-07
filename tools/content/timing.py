@@ -77,8 +77,8 @@ class Voice:
 
 
 class Seg:
-    def __init__(self, kind, exercise=None, hold=None, reps=None, only=None, not_=None):
-        self.kind, self.exercise, self.hold, self.reps = kind, exercise, hold, reps
+    def __init__(self, kind, exercise=None, hold=None, reps=None, only=None, not_=None, sets=None):
+        self.kind, self.exercise, self.hold, self.reps, self.sets = kind, exercise, hold, reps, sets
         self.only, self.not_ = only, not_
         self.items = []
 
@@ -157,7 +157,8 @@ class Seg:
         if self.exercise:
             seg["exerciseID"] = self.exercise
         seg["cues"] = cues
-        for key, value in (("hold", self.hold), ("reps", self.reps), ("onlyFor", self.only), ("notFor", self.not_)):
+        for key, value in (("hold", self.hold), ("reps", self.reps), ("sets", self.sets), ("onlyFor", self.only),
+                           ("notFor", self.not_)):
             if value is not None:
                 seg[key] = value
         return seg

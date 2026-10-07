@@ -14,7 +14,7 @@ struct BodyLimitChips: View {
     var onNone: () -> Void = {}
 
     static let joints: [BodyLimit] = [.knees, .hips, .lowerBack, .shoulders, .jointReplacement, .noJumping]
-    static let everyday: [BodyLimit] = [.noFloor, .standingIsHard, .dizzy]
+    static let everyday: [BodyLimit] = [.noFloor, .standingIsHard, .dizzy, .unsteady]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {

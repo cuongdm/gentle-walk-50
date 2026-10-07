@@ -140,6 +140,14 @@ extension AppModel {
     var usesLocationOutdoors: Bool { defaults.string(forKey: "outdoorLocationChoice") == "location" }
 
     private func prepareAndPlay(_ request: WorkoutRequest, showsReady: Bool) async {
+        var request = request
+        let ladder = SupportLadderStore(defaults: defaults)
+        // Pro: the support ladder sets the hands for each balance exercise (free keeps both hands).
+        if isPro, !request.isFirstWalk {
+            let support = SupportLadder.plan(progress: ladder.progress, intensity: request.intensity, limits: request.limits)
+            request.supportLevels = support.levels
+            request.supportAnnouncements = support.announce
+        }
         guard var plan = try? request.plan(content: content) else { cover = nil; return }
         let levels = AudioLevels.saved(in: defaults)
         // "Move introductions" off: each chair move starts with its instructions, not its name.
@@ -158,6 +166,12 @@ extension AppModel {
         else { cover = nil; return }
         let session = WorkoutSessionModel(request: request, content: content, engine: engine, completion: completion,
                                           painRecorder: painRecorder, now: now)
+        if isPro {
+            let announced = Set(request.supportAnnouncements.keys)
+            session.onBalanceResult = { steady, troubled in
+                ladder.record(steady: steady, troubled: troubled, announced: announced)
+            }
+        }
         do {
             try await session.load(timeline: media.timeline)
         } catch {
@@ -190,6 +204,8 @@ extension AppModel {
         if usesLocationOutdoors, location.isAuthorized {
             location.startWalk(at: start)
             session.tracksRoute = true
+            // Steps for the live map's third number, only when Motion is already allowed (S1).
+            if pedometer.isAuthorized { pedometer.start(at: start) }
         } else {
             pedometer.start(at: start)
         }
@@ -199,6 +215,10 @@ extension AppModel {
         }
         session.routeProvider = { [weak self] in self?.location.route ?? [] }
         session.locationOn = { [weak self] in self?.location.hasFix ?? false }
+        session.outdoorSteps = { [weak self] in
+            guard let self, self.pedometer.isRunning else { return nil }
+            return self.pedometer.steps
+        }
         session.onEnded = { [weak self] in
             self?.location.endWalk()
             self?.pedometer.stop()

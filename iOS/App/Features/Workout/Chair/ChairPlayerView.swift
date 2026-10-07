@@ -65,7 +65,7 @@ struct ChairPlayerView: View {
             if let progress = model.moveProgress {
                 MoveProgressHeader(progress: progress, next: model.followingName)
             }
-            ExerciseVideo(fileName: model.videoFile)
+            ExerciseVideo(fileName: model.videoFile, picture: model.picture)
                 .overlay(alignment: .topTrailing) { VideoCornerButton.expand(enterFullScreen).padding(4) }
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
@@ -305,11 +305,17 @@ struct StandBehindChairView: View {
                 .foregroundStyle(Palette.text)
                 .multilineTextAlignment(.center)
             if !holding {
-                Text("Starting in \(remaining)")
-                    .typeRole(.cardTitle)
-                    .foregroundStyle(Palette.textMuted)
-                    .contentTransition(.numericText())
-                    .accessibilityLabel(Text("Starting in \(remaining) seconds"))
+                // The number as big as a clock: she reads it from behind the chair (review M9).
+                VStack(spacing: 2) {
+                    Text("Starting in").typeRole(.body).foregroundStyle(Palette.textMuted)
+                    Text(verbatim: "\(remaining)")
+                        .typeRole(.stat)
+                        .monospacedDigit()
+                        .foregroundStyle(Palette.text)
+                        .contentTransition(.numericText())
+                }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(Text("Starting in \(remaining) seconds"))
             }
             Spacer()
             Button("Ready") { onStopSpeaking(); onReady() }.buttonStyle(.primaryAction)

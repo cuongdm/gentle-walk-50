@@ -238,7 +238,7 @@
   ]
  },
  {
-  "key": "Starting in %lld",
+  "key": "Starting in",
   "comment": "",
   "files": [
    "ChairPlayerView"
@@ -1399,6 +1399,13 @@
   ]
  },
  {
+  "key": "%@, once more",
+  "comment": "",
+  "files": [
+   "MoveGuidance"
+  ]
+ },
+ {
   "key": "Choose your TV, then turn your phone on its side.",
   "comment": "",
   "files": [
@@ -1631,6 +1638,13 @@
   ]
  },
  {
+  "key": "Both hands on the chair",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
   "key": "During evening TV",
   "comment": "",
   "files": [
@@ -1715,6 +1729,20 @@
   ]
  },
  {
+  "key": "Good one. Sit-to-stands start with your hands on the chair.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Got it. Every move starts seated, and one tap swaps anything that hurts.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
   "key": "Hard, but I can",
   "comment": "",
   "files": [
@@ -1751,6 +1779,13 @@
  },
  {
   "key": "I exercise regularly",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "I feel unsteady on my feet",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -1834,6 +1869,13 @@
   ]
  },
  {
+  "key": "Love that. We build steady stamina, one walk at a time.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
   "key": "Lower back",
   "comment": "",
   "files": [
@@ -1849,6 +1891,13 @@
  },
  {
   "key": "My joints hurt",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Nice. Even 5 minutes a day is a good start.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -1876,6 +1925,27 @@
   ]
  },
  {
+  "key": "Not sure yet, I just want to start",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Noted. Short daily walks add up, at your pace.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Noted. We'll start you somewhere comfortable.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
   "key": "Pick a time",
   "comment": "",
   "files": [
@@ -1884,6 +1954,13 @@
  },
  {
   "key": "Sessions are 5 to 10 minutes, at the moment of the day you choose.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Sessions fit around your day, from 5 minutes.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -1925,7 +2002,42 @@
   ]
  },
  {
+  "key": "Steadier it is. Balance moves always come with a chair beside you.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
   "key": "Steady, no quick turns",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Thanks for telling us. Every move has a seated version.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Thanks. We start you at a comfortable level and grow from there.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "That works. We start gentle, and you can change anything later.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "That's what we're here for. We pick each day for you.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -1953,7 +2065,21 @@
   ]
  },
  {
+  "key": "We hear you. Here a calm voice sets the pace.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
   "key": "We start you at the right level and adjust after every session.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "We'll always show the exact date before any charge.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -1968,6 +2094,13 @@
  },
  {
   "key": "You'll see your billing date today, get a reminder before it, and can cancel anytime from Me.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Your walks move you along real places, so there's always somewhere new.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -2073,14 +2206,7 @@
   ]
  },
  {
-  "key": "min per km",
-  "comment": "",
-  "files": [
-   "OutdoorLiveMap"
-  ]
- },
- {
-  "key": "min per mile",
+  "key": "steps",
   "comment": "",
   "files": [
    "OutdoorLiveMap"
@@ -2357,7 +2483,7 @@
   ]
  },
  {
-  "key": "Start free trial",
+  "key": "Start my free trial",
   "comment": "",
   "files": [
    "PaywallModel"
@@ -2413,13 +2539,6 @@
   ]
  },
  {
-  "key": "Day 12",
-  "comment": "",
-  "files": [
-   "PaywallView"
-  ]
- },
- {
   "key": "Full access, no charge",
   "comment": "",
   "files": [
@@ -2429,6 +2548,13 @@
  {
   "key": "Includes 14 days free",
   "comment": "A note that a subscription includes 14 days of free trial.",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "Lowest monthly cost",
+  "comment": "",
   "files": [
    "PaywallView"
   ]
@@ -2703,6 +2829,13 @@
   ]
  },
  {
+  "key": "%@ so far this month",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
   "key": "Active",
   "comment": "A description of a day that is active.",
   "files": [
@@ -2817,6 +2950,13 @@
   ]
  },
  {
+  "key": "Your first active day this month will show here.",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
   "key": "^[%lld year ring](inflect: true)",
   "comment": "",
   "files": [
@@ -2838,7 +2978,14 @@
   ]
  },
  {
-  "key": "If you have a heart condition, recent surgery or you've been told to limit exercise, check with your doctor first.",
+  "key": "If you have a heart condition, recent surgery, a fall or fainting in the past year, or you've been told to limit exercise, check with your doctor first.",
+  "comment": "",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "It helps us pick your first chair moves.",
   "comment": "",
   "files": [
    "QuestionViews"
@@ -2852,7 +2999,7 @@
   ]
  },
  {
-  "key": "Noted. We'll start you somewhere comfortable.",
+  "key": "Nice to meet you, %@.",
   "comment": "",
   "files": [
    "QuestionViews"
@@ -2867,6 +3014,20 @@
  },
  {
   "key": "Pick up to 2.",
+  "comment": "",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "So we start you at a comfortable level.",
+  "comment": "",
+  "files": [
+   "QuestionViews"
+  ]
+ },
+ {
+  "key": "We use it to say hello. You can skip it.",
   "comment": "",
   "files": [
    "QuestionViews"
@@ -3613,6 +3774,13 @@
   ]
  },
  {
+  "key": "%lld of %lld active days so far · %lld rest days are part of the plan",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
   "key": "Done for today",
   "comment": "",
   "files": [
@@ -3746,6 +3914,13 @@
   ]
  },
  {
+  "key": "Like to move a little? Pick a short session",
+  "comment": "",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
   "key": "Okay",
   "comment": "",
   "files": [
@@ -3770,6 +3945,13 @@
  },
  {
   "key": "Today's session is still here if you'd like it",
+  "comment": "",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
+  "key": "We'll set today's session to match.",
   "comment": "",
   "files": [
    "TodayView"
@@ -3805,6 +3987,20 @@
  },
  {
   "key": "%lld of %lld active days to the next ring",
+  "comment": "",
+  "files": [
+   "TreeMilestone"
+  ]
+ },
+ {
+  "key": "Next ring in %lld active days.",
+  "comment": "",
+  "files": [
+   "TreeMilestone"
+  ]
+ },
+ {
+  "key": "Next: %@, %lld active days from here.",
   "comment": "",
   "files": [
    "TreeMilestone"
@@ -4165,6 +4361,13 @@
   ]
  },
  {
+  "key": "%lld × %lld reps",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
   "key": "Chair moves · %lld min",
   "comment": "",
   "files": [
@@ -4253,6 +4456,13 @@
  },
  {
   "key": "Standing, holding the chair.",
+  "comment": "",
+  "files": [
+   "WorkoutPreviewModel"
+  ]
+ },
+ {
+  "key": "Steady set",
   "comment": "",
   "files": [
    "WorkoutPreviewModel"

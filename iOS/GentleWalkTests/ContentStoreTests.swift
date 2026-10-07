@@ -9,11 +9,12 @@ import GentleWalkCore
         let issues = ContentValidator.validate(bundle, mode: .development, bundledFiles: Self.bundledFiles())
 
         #expect(!issues.contains { $0.severity == .error }, "errors: \(issues.filter { $0.severity == .error })")
-        // Content plan 30/09/2026: 8 walk moves, 12 chair moves, 12 stretches, 3 balance exercises.
+        // Content plan 30/09/2026: 8 walk moves, 12 chair moves, 12 stretches, 3 balance exercises; 06/10/2026
+        // (review 58–75): + Standing back extension and three Otago balance exercises.
         #expect(bundle.exercises.filter { $0.kind == .walk }.count == 8)
         #expect(bundle.exercises.filter { $0.kind == .move }.count == 12)
-        #expect(bundle.exercises.filter { $0.kind == .stretch }.count == 12)
-        #expect(bundle.exercises.filter { $0.kind == .balance }.count == 3)
+        #expect(bundle.exercises.filter { $0.kind == .stretch }.count == 13)
+        #expect(bundle.exercises.filter { $0.kind == .balance }.count == 6)
         #expect(bundle.journeys.count == 5)
         #expect(bundle.sessions.contains { $0.id == "ses.firstWalk" })
         #expect(bundle.voiceLines.count >= 590)
@@ -48,7 +49,7 @@ import GentleWalkCore
                 named.formUnion([file, Exercise.variant(file, "easy"), Exercise.variant(file, "quick")])
             }
         }
-        let unused = Self.bundledFiles().filter { $0.hasSuffix(".mp4") && !named.contains($0) }
+        let unused = Self.bundledFiles().filter { $0.hasSuffix(".mp4") && !named.contains($0) && !SceneVideo.all.contains($0) }
         #expect(unused.isEmpty, "clips no exercise uses: \(unused.sorted())")
     }
 

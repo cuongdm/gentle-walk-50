@@ -37,6 +37,9 @@ public struct Exercise: Codable, Equatable, Identifiable, Sendable {
     public var videoAlt: String?
     /// Clips of this exercise that come in a later batch: missing ones are expected, not errors.
     public var videoLater: [String]?
+    /// Painted still (asset name) for an exercise with no clip of its own (walking backwards, walk and
+    /// turn: AI video cannot walk backwards or turn, 06/10/2026).
+    public var picture: String?
     public var counting: Counting
     /// True when the exercise is done standing (needs the "Stand behind your chair" screen).
     public var standing: Bool
@@ -52,12 +55,14 @@ public struct Exercise: Codable, Equatable, Identifiable, Sendable {
     public init(
         id: String, kind: Kind, name: String, purpose: String, tips: [String], easier: String,
         harder: String? = nil, videoFile: String? = nil, videoSeated: String? = nil, videoEasy: String? = nil,
-        videoHold: String? = nil, videoAlt: String? = nil, videoLater: [String]? = nil, counting: Counting, standing: Bool,
+        videoHold: String? = nil, videoAlt: String? = nil, videoLater: [String]? = nil, picture: String? = nil,
+        counting: Counting, standing: Bool,
         hiddenFor: [BodyLimit] = [], easierFor: [BodyLimit] = [], limitNotes: [LimitNote]? = nil, source: String? = nil
     ) {
         self.id = id; self.kind = kind; self.name = name; self.purpose = purpose; self.tips = tips
         self.easier = easier; self.harder = harder; self.videoFile = videoFile; self.videoSeated = videoSeated
         self.videoEasy = videoEasy; self.videoHold = videoHold; self.videoAlt = videoAlt; self.videoLater = videoLater
+        self.picture = picture
         self.counting = counting; self.standing = standing; self.hiddenFor = hiddenFor; self.easierFor = easierFor
         self.limitNotes = limitNotes; self.source = source
     }
@@ -71,4 +76,7 @@ public struct Exercise: Codable, Equatable, Identifiable, Sendable {
 /// The chips on onboarding screen S06 "Anything we should go easy on?".
 public enum BodyLimit: String, Codable, CaseIterable, Sendable {
     case knees, hips, lowerBack, shoulders, noFloor, standingIsHard, dizzy, jointReplacement, noJumping
+    /// "I feel unsteady on my feet" (added 06/10/2026): both hands on the chair in every balance exercise,
+    /// no walking backwards or heel-to-toe walk, walks start Seated. Stored on the device only.
+    case unsteady
 }

@@ -14,6 +14,9 @@ struct PlanOption: Identifiable, Equatable, Sendable {
     var price: String
     /// "$3.33 a month", yearly only, smaller than the price.
     var monthlyEquivalent: String?
+    /// "Lowest monthly cost" on the yearly card, only when the store prices make it true
+    /// (owner S2, 02/10/2026, past the "no hype" copy rule).
+    var isLowestMonthly = false
 
     var title: LocalizedStringResource {
         switch kind {
@@ -63,9 +66,13 @@ struct PlanOption: Identifiable, Equatable, Sendable {
         isEligibleForTrial ? "Gentle Walk Pro: free for 14 days" : "Gentle Walk Pro"
     }
 
-    var buttonTitle: LocalizedStringResource { showsTrial ? "Start free trial" : "Continue" }
+    /// "Start my free trial": a beginning she owns, not a subscription (uxpeak A/B, review M11).
+    var buttonTitle: LocalizedStringResource { showsTrial ? "Start my free trial" : "Continue" }
 
     var billingDateText: String { trial.billingDate.formatted(.dateTime.month(.abbreviated).day()) }
+
+    /// The day the trial reminder is sent, as a date like the billing day.
+    var reminderDateText: String { trial.reminderDate.formatted(.dateTime.month(.abbreviated).day()) }
 
     /// Plain terms under the button: what is charged, when, and that it renews (3.1.2(c)).
     var disclosure: String {
@@ -86,12 +93,18 @@ struct PlanOption: Identifiable, Equatable, Sendable {
     var showsRenewingWarning: Bool { activeRenewingProductID != nil }
 
     /// Builds cards from StoreKit products (price text from `displayPrice`, never typed in code).
+    /// The yearly plan costs less per month than the monthly plan.
+    static func isLowestMonthly(yearlyPrice: Decimal, monthlyPrice: Decimal) -> Bool {
+        yearlyPrice / 12 < monthlyPrice
+    }
+
     static func options(from products: [String: Product]) -> [PlanOption] {
         var result: [PlanOption] = []
         if let yearly = products[ProductID.yearly] {
             let monthly = (yearly.price / 12).formatted(yearly.priceFormatStyle)
+            let lowest = products[ProductID.monthly].map { isLowestMonthly(yearlyPrice: yearly.price, monthlyPrice: $0.price) } ?? false
             result.append(PlanOption(id: yearly.id, kind: .yearly, price: yearly.displayPrice,
-                                     monthlyEquivalent: String(localized: "\(monthly) a month")))
+                                     monthlyEquivalent: String(localized: "\(monthly) a month"), isLowestMonthly: lowest))
         }
         if let monthly = products[ProductID.monthly] {
             result.append(PlanOption(id: monthly.id, kind: .monthly, price: monthly.displayPrice))

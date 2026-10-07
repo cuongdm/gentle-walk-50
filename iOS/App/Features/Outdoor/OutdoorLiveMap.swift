@@ -4,15 +4,17 @@ import GentleWalkCore
 
 /// The live map of an outdoor walk (30/09/2026, like a running app): the route drawn as she walks,
 /// a start mark and her position, the map following her until she pans it ("Recenter" brings it
-/// back), a tracking badge so she knows the walk is being recorded, and distance · time · pace
-/// along the foot. The route never leaves the phone and is never shared.
+/// back), a tracking badge so she knows the walk is being recorded, and distance · time · steps
+/// along the foot (steps, not a runner's pace: owner S1, 02/10/2026). The route never leaves the phone and is never shared.
 struct OutdoorLiveMap: View {
     let route: [RoutePoint]
     /// GPS has a position (otherwise "Finding GPS…").
     let hasFix: Bool
     let miles: Double
-    /// Session time so far, for the time and pace.
+    /// Session time so far.
     let seconds: Double
+    /// Steps so far; nil when steps are not counted (the strip then shows two numbers).
+    var steps: Int?
     var height: CGFloat = 320
 
     /// Before the first recorded point: the phone's own location, close up (never a whole country).
@@ -68,13 +70,14 @@ struct OutdoorLiveMap: View {
                         .padding(.horizontal, 12)
                         .frame(minHeight: 44)
                         .background(Palette.surface.opacity(0.95), in: .capsule)
+                        .shadow(color: .black.opacity(0.12), radius: 4, y: 1)
                 }
                 .buttonStyle(.plain)
                 .padding(10)
             }
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
-            LiveStatsStrip(miles: miles, seconds: seconds)
+            LiveStatsStrip(miles: miles, seconds: seconds, steps: steps)
         }
         .frame(maxWidth: .infinity)
         .frame(minHeight: 180, maxHeight: height)
@@ -115,19 +118,21 @@ struct TrackingBadge: View {
     }
 }
 
-/// Distance · time · pace in large figures along the map's foot.
+/// Distance · time · steps in large figures along the map's foot.
 struct LiveStatsStrip: View {
     let miles: Double
     let seconds: Double
+    var steps: Int?
 
     var body: some View {
         HStack(spacing: 0) {
             stat(CompleteContent.miles(miles), String(localized: "distance"))
             Divider().frame(height: 34)
             stat(WalkPlayerModel.clock(Int(seconds)), String(localized: "time"))
-            Divider().frame(height: 34)
-            stat(WalkPace.text(minutesPerMile: DistanceText.pace(minutesPerMile: WalkPace.minutesPerMile(seconds: seconds, miles: miles))),
-                 UnitPreferences.current.distance == .miles ? String(localized: "min per mile") : String(localized: "min per km"))
+            if let steps {
+                Divider().frame(height: 34)
+                stat(steps.formatted(), String(localized: "steps"))
+            }
         }
         .padding(.vertical, 10)
         .background(.regularMaterial)

@@ -46,6 +46,11 @@ enum CaptureState: String, CaseIterable, Sendable {
     case chairFullscreen = "chair-fullscreen"
     case chairPlayerReduceMotion = "chair-player-reduce-motion"
     case chairCounted = "chair-counted"
+    /// The two-minute steady set closing a planned day (06/10/2026).
+    case steadySet = "steady-set"
+    case previewSteady = "preview-steady"
+    /// Balance Strong on walking backwards: a painted still, no clip.
+    case balanceBackWalk = "balance-back-walk"
     case stretchPlayer = "stretch-player"
     case stretchSwitchSide = "stretch-switch-side"
     case stretchCooldown = "stretch-cooldown"
@@ -73,6 +78,7 @@ enum CaptureState: String, CaseIterable, Sendable {
     case todayXxl = "today-xxl"
     case todaySwap = "today-swap"
     case todayNew = "today-new"
+    case todayRest = "today-rest"
     case reminderOffer = "reminder-offer"
     case allSessions = "all-sessions"
     case allSessionsFree = "all-sessions-free"

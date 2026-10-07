@@ -15,7 +15,8 @@ struct PermissionsView: View {
             VStack(alignment: .leading, spacing: 18) {
                 ScreenHeader(title: "Two quick things")
                 PermissionCard(symbol: "bell.fill", tint: Palette.secondary, title: "What's a good moment for your daily walk?",
-                               button: "Allow reminders", granted: "Reminders on", isGranted: model.remindersAllowed) {
+                               button: "Allow reminders", granted: "Reminders on", isGranted: model.remindersAllowed,
+                               showsButton: pinned != .reminders) {
                     Task { await model.allowReminders() }
                 } content: {
                     Text("**One message a day at most**, never on rest days or days you've moved.")
@@ -27,7 +28,8 @@ struct PermissionsView: View {
                                       showsQuestion: false)
                 }
                 PermissionCard(symbol: "heart.fill", tint: Palette.dangerSoft, title: "See your everyday steps",
-                               button: "Connect Apple Health", granted: "Apple Health connected", isGranted: model.healthConnected) {
+                               button: "Connect Apple Health", granted: "Apple Health connected", isGranted: model.healthConnected,
+                               showsButton: pinned != .health) {
                     Task { await model.connectHealth() }
                 } content: {
                     Text("Progress shows your all-day steps. **Your journey moves with or without it.** Your data stays on this phone.")
@@ -48,18 +50,30 @@ struct PermissionsView: View {
             .padding(Metrics.screenMargin)
             .readableColumn()
         }
-        // Always in view: the way out never sits under two long cards.
+        // Always in view: the next thing to allow as the big button, the way out as a link under it.
+        // A lone "Not now" in the big spot read as "the button to go on" (review M8, 02/10/2026).
         .pinnedActions(true) {
-            // Something granted: a clear "Done" (a "Not now" link read as undoing what she set).
-            if model.healthConnected || model.remindersAllowed {
+            switch pinned {
+            case .reminders:
+                Button("Allow reminders") { Task { await model.allowReminders() } }.buttonStyle(.primaryAction)
+                Button("Not now", action: onDone).buttonStyle(.textLink).frame(maxWidth: .infinity)
+            case .health:
+                Button("Connect Apple Health") { Task { await model.connectHealth() } }.buttonStyle(.primaryAction)
+                Button("Done", action: onDone).buttonStyle(.textLink).frame(maxWidth: .infinity)
+            case nil:
                 Button("Done", action: onDone).buttonStyle(.primaryAction)
-            } else {
-                Button("Not now", action: onDone)
-                    .buttonStyle(.textLink)
-                    .frame(maxWidth: .infinity)
             }
         }
         .screenBackground()
+    }
+
+    private enum Ask { case reminders, health }
+
+    /// The first permission still to ask for: its button moves to the pinned area.
+    private var pinned: Ask? {
+        if !model.remindersAllowed { return .reminders }
+        if !model.healthConnected { return .health }
+        return nil
     }
 }
 
@@ -72,6 +86,8 @@ private struct PermissionCard<Content: View>: View {
     let button: LocalizedStringResource
     let granted: LocalizedStringResource
     let isGranted: Bool
+    /// False while this permission's button is the pinned one at the bottom.
+    var showsButton = true
     let action: () -> Void
     @ViewBuilder let content: () -> Content
 
@@ -97,7 +113,7 @@ private struct PermissionCard<Content: View>: View {
                     .padding(.horizontal, 16)
                     .frame(maxWidth: .infinity, minHeight: Metrics.minTouchTarget, alignment: .leading)
                     .background(Palette.secondary.opacity(0.15), in: .rect(cornerRadius: Metrics.buttonRadius))
-            } else {
+            } else if showsButton {
                 Button(action: action) { Text(button) }.buttonStyle(.secondaryAction)
             }
         }

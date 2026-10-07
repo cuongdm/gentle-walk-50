@@ -1,0 +1,108 @@
+segment,app_id,name,seller,release_year,ratings_us,st_downloads_last_month_ww,st_revenue_last_month_ww,am_downloads_30d,am_revenue_30d,iap_prices_usd,reviews_analysed,pct_1_2_star,pct_billing_in_1_2_star,reviewers_stating_age,median_stated_age
+lazy_beginner,1669413773,LazyFit: Workout For Beginners,Next Vision Limited,2023,81662,100K,$800K,"> 200,000","> $1,000,000",7.99 9.99 19.99 29.99 39.99 69.99,271,6,41,9,73
+lazy_beginner,1574460221,JustFit: Lazy Workout & Fit,ENERJOY PTE. LTD.,2021,214996,60K,$300K,"> 100,000","> $200,000",19.99 29.99 39.99 69.99 79.99,265,32,48,4,74.0
+lazy_beginner,6463793132,FitMe - Lazy Workout at Home,Extramile Limited,2023,79320,20K,$200K,"> 50,000","> $100,000",9.99 14.99 19.99 24.99 29.99 38.99 59.99,264,23,72,5,74
+lazy_beginner,1635707277,Light: Chair Yoga Plan,ENERJOY PTE. LTD.,2022,13090,,,"< 5,000","> $5,000",19.99 24.99 29.99 39.99 69.99 79.99 99.99,100,31,52,1,77
+lazy_beginner,6754075317,ChillFit: Home Workout Planner,FOYATECH PTE. LTD.,2025,2777,100K,$300K,"> 100,000","> $200,000",9.99 29.99 39.99 59.99,49,29,64,0,
+lazy_beginner,6748642404,Yogio: Chair Yoga & Pilates,PROMIN APPS LTD,2025,3772,< 5k,< $5k,,,44.99 79.99 104.99,200,3,67,2,49.0
+lazy_beginner,6596760204,SheFit: Home Workout for Women,DEEP FLOW SOFTWARE SERVICES - FZCO,2024,3337,< 5k,< $5k,,,4.99 6.99 39.99,50,18,22,0,
+lazy_beginner,1492681216,Everdance－Women Chair Workout,"Everdance, Inc.",2020,3711,< 5k,< $5k,,,7.99 9.99 10.99 12.99 14.99 15.99 17.99 19.99 29.99 35.99 49.99 149.99,100,42,81,1,70
+lazy_beginner,1542181484,Dancebit: Home Dance Workouts,Gismart Ltd,2021,28254,6K,$60K,,,6.99 7.99 14.99 19.99 29.99 44.99 59.99,0,,,0,
+lazy_beginner,6444850772,Dancefitme: Fun weight loss,TechPioneers Limited,2022,18027,50K,$300K,,,9.99 19.99 29.99 37.99 39.99 47.99 49.99,494,14,75,4,48.0
+lazy_beginner,1438092960,Home Fitness Coach: FitCoach,WELLTECH APPS LIMITED,2018,65202,,,"> 10,000","> $20,000",9.99 14.99 19.99 29.99 39.99 42.99 59.99,0,,,0,
+lazy_beginner,839285684,Workout for Women: Home & Gym,Fast Builder Limited,2014,531751,,,"> 50,000","> $100,000",4.99 5.99 9.99 19.99 29.99 39.99 49.99 59.99,250,32,42,2,60.5
+lazy_beginner,806995720,7 Minute Workout: Exercise App,Fast Builder Limited,2014,123743,,,"> 10,000","> $20,000",9.99 12.99 19.99 29.99 39.99 49.99 59.99,500,15,33,7,70
+lazy_beginner,1382141225,Yoga Fit | Yoga for Beginners,Fast Builder Limited,2018,119868,,,"> 5,000","> $20,000",3.99 9.99 12.99 19.99 29.99 39.99 49.99 59.99 69.99,50,16,62,1,63
+lazy_beginner,1215301573,Home Fitness for Weight Loss,MONTIBUS LTD,2017,58565,,,"< 5,000","> $10,000",8.99 9.99 14.99 19.99 39.99 41.99 49.99,0,,,0,
+lazy_beginner,1472638797,Fitness Coach - Workout Plan,Luni,2019,73098,,,"< 5,000","< $5,000",4.99 5.99 6.99 15.99 19.99 29.99 49.99,0,,,0,
+lazy_beginner,1460136147,Lose Weight with SlimQueen,"BRAVOKADO, OOO",2019,11665,,,"< 5,000","< $5,000",9.99 19.99 29.99 39.99 49.99 99.99,250,4,20,0,
+lazy_beginner,897413975,Lazy Workout for Weight Loss,Fast Builder Limited,2014,1160,,,,,12.99 29.99 39.99,20,45,33,0,
+lazy_beginner,6478916264,Keep: Pilates Workout at Home,KEEP TECHNOLOGY PTE. LTD.,2024,1216,,,,,9.99 11.99 19.99 29.99 39.99 49.99 59.99 79.99 99.99,61,56,44,0,
+lazy_beginner,6476600395,EasyFit - Lazy Workout at Home,CATCH YAZILIM LIMITED SIRKETI,2024,378,< 5k,< $5k,,,9.99 19.99 24.99 39.99 49.99 79.99,2,0,,0,
+lazy_beginner,6737597315,CozyFit: Gentle Home Fitness,德新 张,2024,374,,,,,6.99 9.99 12.99 14.99 29.99 39.99,1,0,,0,
+lazy_beginner,1313192037,Home Workout - No Equipments,Leap Health Fitness Limited,2017,126111,200K,$400K,,,9.99 14.99 23.99 27.99 29.99 39.99 49.99 59.99 69.99,400,6,46,0,
+lazy_beginner,1357527742,Workout for Women: Fit at Home,Leap Health Fitness Limited,2018,30119,,,"> 200,000","> $20,000",3.99 9.99 12.99 24.99 29.99 34.99 39.99 59.99 69.99,0,,,0,
+lazy_beginner,6479605427,Workout Planner MuscleFit,Next Vision Limited,2024,7178,,,"> 50,000","> $50,000",9.99 19.99 29.99 39.99 59.99,211,24,39,10,66.0
+senior_explicit,6477544815,Chair Yoga for Seniors,Young Aces LLC,2024,13906,< 5k,< $5k,"< 5,000","> $5,000",12.99 19.99 29.99 39.99 49.99,161,62,44,1,98
+senior_explicit,6443794000,Workout for Seniors: SeniorFit,Fast Builder Limited,2022,8560,< 5k,$20K,,,3.99 5.99 12.99 19.99 29.99 39.99 49.99 59.99 83.99,100,17,35,3,69
+senior_explicit,6484069035,Chair Yoga for Seniors at Home,Fast Builder Limited,2024,2456,,,,,19.99 39.99 49.99 59.99 69.99 83.99,210,11,43,5,72
+senior_explicit,6751329158,Tai Chi for Beginners Seniors,Fast Builder Limited,2025,7657,,,"> 20,000","> $20,000",9.99 19.99 29.99 39.99 49.99 59.99 69.99 83.99,161,12,42,12,68.5
+senior_explicit,6759260204,Tai Chi Beginners & Seniors,PRODIGYAI SOLUTIONS,2026,4355,,,"< 5,000","> $10,000",14.99 19.99 34.99 39.99 59.99 99.99,31,39,33,0,
+senior_explicit,6758255768,Tai Chi – Seniors & Beginners,Dmytro Hrechko,2026,2617,,,"< 5,000","> $5,000",0.99 9.99 14.99 19.99 39.99 59.99,51,37,42,2,71.5
+senior_explicit,6758745743,Tai Chi for Seniors Beginners,YUAN QI PTY LTD,2026,2192,,,,,17.99 29.99 39.99 59.99 79.99,0,,,0,
+senior_explicit,6752488142,Tai Chi Walking : GentleFit,TROPIC INNOVATION PRIVATE LIMITED,2025,2446,,,,,11.99 44.99 59.99 79.99,52,52,48,0,
+senior_explicit,6478184749,Bold: Science-backed exercises,"Age Bold, Inc.",2024,12034,< 5k,< $5k,,,,141,2,0,6,75.0
+senior_explicit,1410437380,SilverSneakers GO,"Tivity Health, Inc.",2018,1756,,,,,,513,26,3,11,71
+senior_explicit,1155575069,Nymbl Training,"Nymbl Science, Inc.",2017,3640,,,,,,68,10,14,2,76.0
+senior_explicit,6766233167,Simple Move,Simple.Life Apps Inc,2026,6169,20K,< $5k,,,44,132,6,75,3,77
+senior_explicit,1478161321,Essentrics TV,6228755 Canada Inc,2019,1132,,,"< 5,000","> $10,000",19.99 189.99,500,3,31,57,66
+senior_explicit,6742379255,Chair Workout for Men: Muscle,Fast Builder Limited,2025,1507,,,,,19.99 24.99 29.99 39.99 49.99 59.99 69.99 83.99,114,13,20,2,75.0
+senior_explicit,1568729196,Over Fifty Fitness,Over Fifty Fitness Ltd,2021,405,< 5k,< $5k,,,34.99 36.99,89,0,,4,55.0
+senior_explicit,6787552554,Chair Yoga: Senior Workout,Dmytro Hrechko,2026,307,,,,,0.99 9.99 24.99 39.99,3,0,,0,
+senior_explicit,6744635674,ZenFit: Tai Chi for Beginners,ZenFiture Limited,2025,563,,,,,6.99 19.99 34.99 39.99 69.99 70.99,34,32,45,2,66.5
+senior_explicit,1048130885,7 Minute Chi: Calm & Move,Bionic88 LLC,2015,2545,,,,,2.99,339,12,8,5,74
+senior_explicit,839432729,HASfit: Home Workout Programs,Kozak Barbell Inc.,2014,7093,< 5k,$30K,,,6.99 49.99,300,3,12,26,69.0
+walking,1457956232,WalkFit: Steps counter,WELLTECH APPS LIMITED,2019,164546,70K,$300K,"> 100,000","> $200,000",4.99 9.99 24.99 29.99 32.99 34.99 54.99 79.99,262,10,74,3,65
+walking,1535065182,Walk At Home,"Walk Productions, Inc.",2020,3982,< 5k,$10K,,,7.99 79.99,234,25,47,7,80
+walking,1319686013,Weight Loss Walking Step Count,Bickster LLC,2018,12186,,,,,4.99 9.99 29.99 39.99 59.99 89.99,133,52,39,1,65
+walking,950669893,Weight Loss Walking by Slimkit,MONTIBUS LTD,2015,14809,,,"< 5,000","> $5,000",8.99 9.99 39.99 41.99 49.99 69.99,100,82,72,0,
+walking,1434647111,Walking for Weight Loss,Leap Health Fitness Limited,2018,5586,,,"> 10,000","< $5,000",6.99 29.99,121,21,46,1,73
+walking,1319986108,Walk Workouts & Meal Planner,FITMEUP LP,2018,2014,,,,,7.99 9.99 24.99 41.99 44.99 59.99,41,83,76,0,
+walking,6756878710,GirlWalk: Walk to Lose Weight,Tangent Apps,2025,2386,,,,,0.99 1.99 4.99 5.99 8.99 49.99 59.99 89.99,38,55,43,0,
+walking,6636476252,Walking Yoga,WEST FEES UAB,2024,2223,,,"< 5,000","< $5,000",7.99 17.99 39.99 66.99 99.99,288,69,89,0,
+walking,1436607687,Walking Tracker by GetFit,TEBEPAKET INC.,2019,2114,,,,,4.99 9.99 14.99 15.99 24.99 34.99 39.99 41.99,50,44,91,0,
+walking,1570417735,Walking & Weight Loss Tracker,Extramile Limited,2021,1781,,,,,7.99 19.99 29.99 39.99 49.99,250,79,77,0,
+walking,1071005232,Walking For Weight Loss GPS,Cloforce LLC,2017,1058,,,,,3.49 14.99 24.99,99,4,0,1,67
+walking,1566563065,Walking Weight Loss: Walk Pal,Fast Builder Limited,2021,876,,,,,19.99 29.99 39.99 49.99,34,32,55,0,
+walking,1442823191,Organic Walk: Indoor Walking,Organic Apps Inc,2018,509,< 5k,< $5k,,,4.99 9.99 19.99 29.99 41.99 59.99 149.99,50,20,40,0,
+walking,1456357156,Walking & Weight loss - Depfit,Cogvance Inc,2019,304,,,,,7.99 9.99 39.99 59.99,12,58,57,0,
+stretch_pain,1513988468,Bend: Stretching & Flexibility,Bowery Digital LLC,2020,174024,100K,$700K,"> 200,000","> $1,000,000",4.99 9.99 13.99 19.99 23.99 29.99 39.99,560,9,39,7,65
+stretch_pain,1124278517,Stretching Mobility: STRETCHIT,"STRETCHIT, INC.",2016,15129,,,"< 5,000","> $20,000",4.99 24.99 179.99,125,12,53,2,36.5
+stretch_pain,1175346453,pliability: Stretch & Mobility,"pliability, LLC",2018,10080,,,"> 10,000","> $20,000",19.99 179.99,50,66,73,0,
+stretch_pain,6737028992,JustStretch | Flex & Mobility,TechPioneers Limited,2024,2407,,,"< 5,000","> $20,000",9.99 19.99 29.99 35.99 37.99 39.99 47.99,99,23,74,3,47
+stretch_pain,1412615103,"Stretching at Home, Mobility",Leap Health Fitness Limited,2018,2405,,,"> 50,000","> $5,000",4.99 12.99 19.99 24.99 29.99 34.99 69.99,157,24,32,2,65.0
+stretch_pain,1565899308,Stretch: Stretching & Mobility,Breakthrough Apps,2021,3207,,,,,8.99 14.99 43.99 79.99 149.99,0,,,0,
+stretch_pain,1485733376,ROM Coach (Mobility Workouts),Mixed Martial Media Inc.,2020,1573,< 5k,< $5k,,,14.99 29.99 119.99,0,,,0,
+stretch_pain,1626839977,"Prehab: Physical Therapy, Pain",The Prehab Guys LLC,2022,1707,,,,,9.99 34.99 49.99 199.99 299.99,150,10,87,2,44.5
+stretch_pain,6453073837,Stretch Now: Flexibility+ Bend,EZ Health Limited,2023,588,,,,,9.99 12.99 24.99 29.99 34.99 69.99,75,5,100,0,
+stretch_pain,1447740421,Back pain exercises at home,Vladimir Ratsev,2018,355,< 5k,< $5k,,,2.99 4.99 41.99,80,2,0,0,
+stretch_pain,1227834875,GOWOD – Mobility & Stretching,Mobility First Group,2018,3363,,,,,11.49 13.99 83.9 108.99 124.99,150,23,31,1,30
+stretch_pain,1533849055,Perfect Posture: Back & Neck,Jet fitness LLC,2020,337,,,,,1.99 2.99 4.99 6.99 8.99 14.99 29.99,15,0,,1,64
+clinical_pt,1429270372,Hinge Health,"Hinge Health, Inc.",2020,167938,,,,,,50,10,20,0,
+clinical_pt,1468523447,Sword Health: AI Care,"SWORD HEALTH, INC.",2019,54352,,,,,,100,23,9,0,
+clinical_pt,1100673977,Kaia Health,Kaia Health Software GmbH,2016,7087,,,"< 5,000","< $5,000",,185,56,50,2,58.5
+clinical_pt,1127885574,Omada Joint & Muscle Health,"Omada Health, inc.",2016,3228,,,,,,95,23,23,0,
+clinical_pt,1436600203,Joint Academy,Arthro Therapeutics AB,2018,897,,,,,,39,31,8,0,
+clinical_pt,1047722007,PhysiApp,Physitrack PLC,2015,2269,90K,< $5k,,,,48,44,5,0,
+clinical_pt,1089747982,Medbridge GO for Patients,MedBridge Education LLC,2017,151518,70K,< $5k,,,,500,31,0,0,
+wall_pilates_somatic,6461083545,Wall Pilates Challenge & Fit,TROPIC INNOVATION PRIVATE LIMITED,2023,9734,,,"< 5,000","< $5,000",9.99 34.99 69.99,115,57,30,1,80
+wall_pilates_somatic,6478167657,Wall Pilates: 28 Day Challenge,The App Studio LC,2024,2290,< 5k,< $5k,,,12.99 19.99 29.99 39.99,18,78,43,0,
+wall_pilates_somatic,6446575424,Wall Pilates by Fit & Lean,At team LLC,2023,1353,,,"< 5,000","> $5,000",9.99 19.99 29.99,153,7,30,2,71.5
+wall_pilates_somatic,6667098452,"Pilates at Home, Wall Pilates",Zankhana Pte Ltd,2024,1101,,,,,19.99 29.99 39.99 49.99 79.99,119,18,55,0,
+wall_pilates_somatic,886109733,Wall Pilates Challenge:WallFit,Fast Builder Limited,2014,1891,,,,,9.99 12.99 19.99 29.99 39.99 49.99 59.99,92,18,29,0,
+wall_pilates_somatic,6443820380,Pilates | Down Dog,Yoga Buddhi Co,2024,10489,,,"> 20,000","> $10,000",12.99 99.99 119.99,0,,,0,
+wall_pilates_somatic,6462659259,Wall Pilates: Fit Weight Loss,Wire Salad OU,2023,945,,,"< 5,000","> $5,000",9.99 19.99 79.99,120,68,95,0,
+wall_pilates_somatic,1630278170,Nervous System Reset: NEUROFIT,"Xama Technologies, Inc.",2022,724,< 5k,< $5k,,,19.99 39.99 49.99 124.99 179.99,236,5,27,0,
+women40_menopause,6464588020,RH: Weight Loss for Women 40+,ReverseGroup Sia,2023,9528,,,"> 20,000","< $5,000",4.99 9.99 19.99 76.99,50,44,55,0,
+women40_menopause,6667108028,Lila - Peri Weight Loss Coach,NerveCenter.ai BV,2024,1706,,,"< 5,000","< $5,000",5.99 19.99 39.99 59.99 69.99 79.99 464.99,43,49,67,1,45
+women40_menopause,1503345959,Balance - Menopause & Hormones,Balance App Limited,2020,1128,,,"> 20,000","> $5,000",3.99 4.99 10.99 49.99 98.99,21,48,10,0,
+women40_menopause,1477621356,Caria: Menopause & Midlife,ApexHealth LLC,2019,1430,< 5k,< $5k,,,5.99 47.99,36,39,7,0,
+women40_menopause,1429328712,Pvolve Streaming,Pvolve LLC,2018,9714,,,"< 5,000","> $20,000",19.99 24.99 53.99 101.99 179.99 224.99,300,24,27,22,55.5
+women40_menopause,1601550455,Sculpt You: Women's Fitness,Sculpt You LLC,2021,6459,< 5k,< $5k,,,2.99 11.99 12.99 14.99 26.99 35.99 39.99 89.99 129.99,100,47,45,0,
+women40_menopause,1188810254,Organic Fit: Workout for Women,Organic Apps Inc,2017,29090,< 5k,$8K,,,9.99 19.99 24.99 29.99 59.99,100,12,58,0,
+women40_menopause,1470614112,Fitingo: Workouts for Women,Fitingo Limited,2019,16843,< 5k,< $5k,,,1.99 2.99 4.99 6.99 12.99 19.99 25.99 35.99 44.99 79.99,200,14,56,0,
+women40_menopause,1337083258,obé | Fitness for women,Dear Media LLC,2018,11756,,,,,19.99 24.99 64.99 135.99 169.99,500,34,61,1,65
+women40_menopause,1634441929,Lindywell,The Balanced Life dba LindywellC,2022,5771,,,"< 5,000","< $5,000",37 199,183,3,50,9,68
+women40_menopause,1557238647,Evlo Fitness,Evlo Fitness LLC,2021,1500,,,"< 5,000","> $100,000",55.99,100,0,,5,45
+women40_menopause,1049234587,Sweat: Fitness App For Women,The Bikini Body Training Company Pty Ltd,2015,43241,,,"> 20,000","> $1,000,000",13.99 19.99 24.99 54.99 134.99,0,,,0,
+women40_menopause,1252077383,Tone It Up: Workout For Women,"Tone It Up, LLC.",2017,14432,,,"< 5,000","> $10,000",11.49 12.99 14.99 49.99 59.99 83.99 99.99,500,8,38,1,49
+women40_menopause,6450262705,Grounds: Fitness App For Women,Studio 93 LLC,2023,1390,,,,,9.99 19.99 77.99 89.99 119.99,0,,,0,
+women40_menopause,1482294997,Wild.AI: Hormones & Fitness,WILD TECHNOLOGIES AI LIMITED,2020,410,,,,,14.99 79.99,59,58,24,0,
+weightloss_coach_mass,1264546236,BetterMe Well-Being Coach,BetterMe Limited,2017,713103,300K,$1M,"> 500,000","> $1,000,000",6.99 9.99 14.99 19.99 29.99 41.99,256,12,67,6,66.0
+weightloss_coach_mass,1467720176,Simple: AI Weight Loss Coach,AM APPS LTD,2019,406356,,,"> 100,000","> $100,000",14.99 29.99 39.99 49.99 59.99,350,10,35,4,80.0
+weightloss_coach_mass,1515595647,Omo: Healthy Weight Loss App,WELLTECH APPS LIMITED,2020,32608,,,"< 5,000","> $5,000",9.99 19.99 24 29.99 48 59.99,350,49,55,3,46
+weightloss_coach_mass,1361619409,Yoga-Go: Tai Chi & Pilates,WELLTECH APPS LIMITED,2018,89199,30K,$200K,"> 100,000","> $200,000",14.99 19.99 24.99 34.99 44.99 52.99 59.99 69.99 149.99,257,28,68,7,67
+weightloss_coach_mass,1446447749,Muscle Booster Workout Tracker,WELLTECH APPS LIMITED,2018,137973,60K,$400K,,,14.99 19.99 24.99 29.99 39.99 59.99,321,34,63,19,70
+weightloss_coach_mass,6446928128,HARNA: Workout & Fitness,Amoapps Limited,2023,25319,,,"> 10,000","> $20,000",9.99 14.99 19.99 34.99 39.99 59.99 99.99,100,20,50,1,47
+weightloss_coach_mass,1442473191,FitOn Workouts & Fitness Plans,FitOn Inc.,2018,282694,,,"> 50,000","> $100,000",19.99 23.99 24.99 29.99 34.99 35.99 39.99,200,34,28,1,30
+weightloss_coach_mass,983693694,Yoga | Down Dog,Yoga Buddhi Co,2015,327036,,,"> 50,000","> $200,000",2.99 3.99 7.99 12.99 99.99,150,7,30,0,

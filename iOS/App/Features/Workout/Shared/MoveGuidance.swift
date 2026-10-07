@@ -27,6 +27,17 @@ struct MoveProgressHeader: View {
     }
 }
 
+/// The name for "Next: …": the move after `index`, or "<name>, once more" when the same move comes
+/// round again (a stretch set repeats a pose back to back; review M5, 02/10/2026). Nil on the last.
+enum FollowingMove {
+    static func label(ids: [String?], index: Int, name: (String) -> String?) -> String? {
+        let after = index + 1
+        guard ids.indices.contains(after), let id = ids[after], let next = name(id) else { return nil }
+        let current = ids.indices.contains(index) ? ids[index] : nil
+        return current == id ? String(localized: "\(next), once more") : next
+    }
+}
+
 struct SegmentedMoveBar: View {
     let progress: SessionTimeline.MoveProgress
 

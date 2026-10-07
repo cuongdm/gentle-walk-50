@@ -134,7 +134,9 @@ struct PreviewRow: Identifiable, Equatable {
                 let swappable = request.variant == nil
                 for (index, segment) in block.segments.enumerated() where segment.kind == .move {
                     guard let id = segment.exerciseID, let exercise = exercises[id] else { continue }
-                    let detail = segment.reps.map { String(localized: "\($0) reps") } ?? Self.secondsText(segment.seconds)
+                    let detail = segment.reps.map { reps in
+                        segment.sets.map { String(localized: "\($0) × \(reps) reps") } ?? String(localized: "\(reps) reps")
+                    } ?? Self.secondsText(segment.seconds)
                     rows.append(PreviewRow(id: "move-\(index)-\(id)", title: exercise.name, detail: detail, symbol: "chair.fill",
                                            swappableExerciseID: swappable && exercise.kind == .move ? id : nil))
                 }
@@ -151,6 +153,9 @@ struct PreviewRow: Identifiable, Equatable {
             case .cooldown:
                 rows.append(PreviewRow(id: "cooldown", title: String(localized: "Cool-down stretch"),
                                        detail: Self.minutesText(block.seconds), symbol: "figure.cooldown"))
+            case .steady:
+                rows.append(PreviewRow(id: "steady", title: String(localized: "Steady set"),
+                                       detail: Self.minutesText(block.seconds), symbol: "figure.stand"))
             }
         }
         return rows

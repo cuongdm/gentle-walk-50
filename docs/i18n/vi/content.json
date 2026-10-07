@@ -170,7 +170,10 @@
     "Chỉ nhấc chân lên một chút"
    ],
    "easier": "Chỉ nhấc gót, mũi chân giữ trên sàn",
-   "harder": "Chỉ vịn bằng một tay"
+   "harder": "Chỉ vịn bằng một tay",
+   "limitNotes": {
+    "unsteady": "Hai tay, chỉ nhấc gót"
+   }
   },
   "mv.side-leg": {
    "name": "Nâng chân sang ngang",
@@ -383,7 +386,8 @@
    "harder": "Chỉ chạm đầu ngón tay vào ghế",
    "limitNotes": {
     "jointReplacement": "Hai chân thẳng hàng, không bắt chéo",
-    "dizzy": "Hai tay vịn ghế"
+    "dizzy": "Hai tay vịn ghế",
+    "unsteady": "Hai tay vịn ghế"
    }
   },
   "bl.side-walk": {
@@ -397,7 +401,8 @@
    "easier": "Bước nhỏ hơn, một tay vịn bàn bếp",
    "harder": "Bước rộng hơn chút, vẫn chậm như cũ",
    "limitNotes": {
-    "dizzy": "Bước nhỏ, một tay vịn bàn bếp"
+    "dizzy": "Bước nhỏ, một tay vịn bàn bếp",
+    "unsteady": "Hai tay vịn bàn bếp, bước nhỏ"
    }
   },
   "bl.heel-toe-walk": {
@@ -410,6 +415,55 @@
    ],
    "easier": "Chừa một khoảng nhỏ giữa hai bước",
    "harder": "Thêm vài bước, vẫn chậm như cũ"
+  },
+  "bl.back-walk": {
+   "name": "Đi lùi",
+   "purpose": "Để lùi lại khỏi bàn bếp",
+   "tips": [
+    "Tay trượt dọc mặt bàn bếp",
+    "Mũi chân chạm trước, rồi đến gót",
+    "Mắt nhìn phía trước, bước nhỏ và chậm"
+   ],
+   "easier": "Ít bước hơn, bước nhỏ hơn",
+   "harder": "Mười bước, một tay vịn mặt bàn"
+  },
+  "bl.walk-turn": {
+   "name": "Đi rồi quay lại",
+   "purpose": "Để quay người trong nhà",
+   "tips": [
+    "Đi dọc mặt bàn bếp",
+    "Quay người bằng những bước thật nhỏ",
+    "Luôn có một tay ở gần chỗ vịn"
+   ],
+   "easier": "Hai tay vịn mặt bàn khi quay",
+   "harder": "Năm bước mỗi chiều",
+   "limitNotes": {
+    "unsteady": "Hai tay vịn mặt bàn"
+   }
+  },
+  "bl.heel-toe-walking": {
+   "name": "Đi bằng gót và mũi chân",
+   "purpose": "Cho lối đi gồ ghề và bãi cỏ",
+   "tips": [
+    "Một tay vịn mặt bàn bếp",
+    "Nhấc mũi chân khi đi bằng gót",
+    "Nhón gót khi đi bằng mũi chân"
+   ],
+   "easier": "Nhón gót và mũi chân khi đứng yên",
+   "harder": "Thêm vài bước, vẫn chậm như cũ"
+  },
+  "st.back-ext": {
+   "name": "Ngả lưng khi đứng",
+   "purpose": "Để đứng thẳng người",
+   "tips": [
+    "Tay chống hông",
+    "Chỉ ngả ra sau một chút",
+    "Cằm giữ ngang, mắt nhìn phía trước"
+   ],
+   "easier": "Vịn ghế, ngả ít hơn",
+   "limitNotes": {
+    "lowerBack": "Ngả nhẹ, lưng giữ dài"
+   }
   }
  },
  "journeys": {

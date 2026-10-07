@@ -111,7 +111,7 @@ struct WorkoutView: View {
         switch session.player.currentPhase?.block ?? .walk {
         case .walk:
             WalkPlayerView(model: session.walkModel, session: session, showsMusic: showsMusic)
-        case .chair:
+        case .chair, .steady:
             ChairPlayerView(model: session.chairModel)
         case .stretch, .cooldown:
             StretchPlayerView(model: session.stretchModel)

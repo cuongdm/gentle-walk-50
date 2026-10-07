@@ -3,17 +3,17 @@ import UIKit
 
 /// Colour roles from the screen spec (docs/design/gentle-walk-screen-spec.html, "Design tokens").
 ///
-/// Each role lives in `Assets.xcassets` with a dark variant. Light shades of primary, secondary and
-/// dangerSoft are darkened slightly from the spec hex (7.5 %, 10 %, 4.5 %) so white text reaches
-/// 4.5:1, as the spec allows ("keep each colour's role and reach 4.5:1"). Dark variants are the light
-/// shade dimmed 10 %.
+/// Each role lives in `Assets.xcassets` with a dark variant. The "Pigment" palette (owner 03/10/2026)
+/// takes its hues from the app's own watercolours instead of the stock sage-cream-terracotta set:
+/// paper, umber ink, Hooker's green, sap green, ochre, sienna and a sky wash. Every pair below
+/// reaches 4.5:1 in light and dark (DesignTokenTests).
 enum Palette {
     /// App background.
     static let bg = Color(Name.bg)
     /// Cards.
     static let surface = Color(Name.surface)
-    /// The one main button per screen; white text. Deep sage (decided 29/09/2026): green reads as
-    /// "go" next to the red This hurts button, and the dark shade stands out on cream for older eyes.
+    /// The one main button per screen; white text. Hooker's green, deep like ink (Pigment, 03/10/2026):
+    /// green reads as "go" next to the red This hurts button and stands out on paper for older eyes.
     static let primary = Color(Name.primary)
     /// Small warm accent (the old terracotta): selected tab. Used as text, never as a fill under text.
     static let accent = Color(Name.accent)
@@ -88,9 +88,10 @@ enum Metrics {
     /// Widest column of text and buttons on iPad (review U1).
     static let readableWidth: CGFloat = 700
     static let buttonHeight: CGFloat = 60
-    static let buttonRadius: CGFloat = 18
+    /// 14 and 16 (Pigment, 03/10/2026): calmer corners than the stock 18–28.
+    static let buttonRadius: CGFloat = 14
     static let secondaryBorder: CGFloat = 2
-    static let cardRadius: CGFloat = 20
+    static let cardRadius: CGFloat = 16
     static let minTouchTarget: CGFloat = 56
     static let touchSpacing: CGFloat = 12
 }

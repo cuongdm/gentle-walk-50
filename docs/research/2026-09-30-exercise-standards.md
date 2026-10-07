@@ -1,6 +1,8 @@
 # Chuẩn tập luyện cho Gentle Walk 50+ — tham chiếu kỹ thuật có nguồn
 
-Ngày lập: 30/09/2026 · Tài liệu nội bộ (không phải nội dung người dùng) · Phạm vi: phụ nữ Mỹ 50–64, mới tập, thường thừa cân hoặc đau khớp.
+Ngày lập: 30/09/2026 · Rà lại 06/10/2026 · Tài liệu nội bộ (không phải nội dung người dùng) · Phạm vi: phụ nữ Mỹ 58–75 (đổi từ 50–64 ngày 03/10/2026), mới tập hoặc quay lại, thường thừa cân hoặc đau khớp.
+
+> **Đã rà 06/10/2026** theo chuẩn người lớn tuổi (HHS Older Adults, WHO 65+, World Falls Guidelines 2022): [docs/reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md](../reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md). Chủ app chốt cùng ngày: phương án "Đề xuất", Steady set miễn phí, chip "I feel unsteady on my feet", giữ giãn 20/30/30 s, rep ghế 6–8 / 8–10 / 10–12. Đã sửa §1.1, §1.5, §3.1, §4.1, thêm §5.0, §5.5, nguồn S48–S55.
 
 Quy ước:
 - Mỗi con số, tư thế, quy tắc đều kèm mã nguồn `[S#]` → xem mục 9. Số trang PDF ghi theo trang in của tài liệu gốc.
@@ -13,17 +15,21 @@ Quy ước:
 
 ## 1. Nguyên tắc chung
 
-### 1.1 Liều tuần cho người 50–64 (và cách app áp dụng)
+### 1.1 Liều tuần cho phụ nữ 58–75 (chuẩn người lớn tuổi) và cách app áp dụng
 
-| Thành phần | HHS Physical Activity Guidelines 2nd ed. 2018 [S1] | WHO 2020 [S4] | Ghi chú cho app |
-|---|---|---|---|
-| Aerobic | 150–300 phút/tuần cường độ vừa (moderate), hoặc 75–150 phút mạnh, hoặc kết hợp; "preferably spread throughout the week" (Summary p.8) | 150–300 phút vừa hoặc 75–150 mạnh | Walk là thành phần chính. Mọi phút tập đều đếm ("some physical activity is better than none" [S1 p.8; S46]). |
-| Muscle-strengthening | ≥2 ngày/tuần, cường độ vừa trở lên, tất cả nhóm cơ lớn (legs, hips, back, chest, abdomen, shoulders, arms) [S1 p.8, p.61] | ≥2 ngày/tuần | Chair moves đảm nhiệm. NIA: không tập cùng nhóm cơ 2 ngày liên tiếp [S7]. |
-| Balance | Cho "older adults" (65+): "multicomponent physical activity that includes balance training as well as aerobic and muscle-strengthening" [S1 p.8, p.67]. CDC: balance "weekly", ví dụ heel-to-toe walk, standing from sitting [S3]. NIA: "about three sessions of balance exercises a week" [S7]. | 65+: "functional balance and strength training at moderate or greater intensity on 3 or more days a week" [S4] | Nhóm 50–64 chưa bắt buộc theo guideline, nhưng đối tượng app có đau khớp/ít vận động → **khuyến nghị 3 ngày/tuần** theo NIA/WHO (bên dè dặt). Không hứa giảm nguy cơ ngã trong copy. |
-| Flexibility | Không tính vào aerobic/strength; "an appropriate part of a physical activity program" [S1 p.61] | — | ACSM: ≥2–3 ngày/tuần [S5]; ACSM/AHA older adults: ≥2 ngày/tuần, ≥10 phút/lần [S6 — tóm tắt thứ cấp]. |
-| Người có bệnh mạn tính | "be as physically active as their abilities and conditions allow"; nên dưới sự chăm sóc của bác sĩ [S1 p.9] | — | Onboarding chỉ hỏi kiểu PAR-Q+ (1.5), không chẩn đoán. |
+App dùng **chuẩn người lớn tuổi cho mọi người dùng**, kể cả nhóm 58–64. Lý do: phần lớn khách thuộc nhóm 65+ của HHS/WHO, và chuẩn này dè dặt hơn chuẩn "adults" (cường độ theo sức mình, thăng bằng ≥3 ngày, tăng chậm).
 
-Ngưỡng "older adult" trong guideline là 65+; app nhắm 50–64 nên dùng chuẩn "adults" làm nền và mượn nguyên tắc older-adult (relative intensity, balance, start low) làm biên an toàn [S1 p.67: "Older adults should determine their level of effort for physical activity relative to their level of fitness"].
+| Thành phần | HHS, Key Guidelines for Older Adults [S1 p.67–68] | WHO 2020, 65+ [S4] | World Falls Guidelines 2022 [S48] | App làm thế nào |
+|---|---|---|---|---|
+| Aerobic | Như adults: 150–300 phút/tuần vừa, hoặc 75–150 phút mạnh; "some physical activity is better than none" [S1 p.8, p.67] | 150–300 phút vừa | Đi bộ đơn thuần khó giảm ngã; cần kèm thăng bằng và sức mạnh | Walk 5–18 phút (Pro: 3/5 ngày tập; miễn phí: mọi ngày tập); mọi phút đều đếm [S46]. Không hứa đủ 150 phút ngay ("start low and go slow" [S1 p.10, p.88]). |
+| Sức mạnh | ≥2 ngày/tuần, mọi nhóm cơ lớn; 1 set 8–12 lần là đủ hiệu quả [S1 p.61, p.67] | ≥2 ngày/tuần | Kháng lực tăng dần, có hoặc thay bằng tai chi (GRADE 1B) | Chair moves; ngày đi bộ kèm 1–2 bài ghế. Rep theo §3.1 (chốt 06/10). |
+| Thăng bằng | "multicomponent physical activity that includes balance training as well as aerobic and muscle-strengthening" [S1 p.67]; chương trình chống ngã "about three sessions a week" [S1 p.73] | "varied multicomponent physical activity that emphasises functional balance and strength training at moderate or greater intensity on 3 or more days a week" [S4] | Bài thăng bằng + chức năng (ngồi–đứng, bước) ≥3 buổi/tuần, tăng dần, ≥12 tuần, tiếp tục lâu hơn thì tốt hơn (GRADE 1A, cho mọi người lớn tuổi) | **Steady set ~2 phút sau mọi buổi chính, miễn phí** (§5.0) → ≥3 ngày/tuần. Balance Extra 6–7 phút là Pro. NIA cũng ghi "about three sessions" [S7]. |
+| Giãn cơ | Không tính vào aerobic/sức mạnh [S1 p.61] | — | — | ACSM người lớn tuổi: ≥2–3 ngày/tuần, giữ 30–60 s, tổng 60 s/nhóm cơ [S5 tóm tắt]. App giữ 20/30/30 s (§4.1). |
+| Cường độ | "determine their level of effort for physical activity relative to their level of fitness" [S1 p.67]; talk test [S1 p.60] | Vừa trở lên, theo khả năng | Tăng dần theo khả năng từng người | Check-in Achy / Okay / Great → Gentle / Steady / Strong; talk test; thang vịn theo bài (Pro, §5.0). |
+| Bệnh mạn tính | Hiểu bệnh ảnh hưởng thế nào tới việc tập; nếu chưa đạt 150 phút thì "as physically active as their abilities and conditions allow" [S1 p.67–68] | Như HHS | Hỏi 3 câu: ngã trong 12 tháng, thấy không vững, lo ngã; chú ý hạ huyết áp tư thế | Onboarding hỏi kiểu PAR-Q+ và chip cơ thể (§1.5), không chẩn đoán. |
+| Độ dài buổi | — | — | — | Delphi bài ghế: buổi ≥10 phút, không quá 1 giờ, có khởi động và hạ nhiệt [S50]. Buổi 5 phút chỉ là bản rất nhẹ. |
+
+Ghi chú: câu "không tập cùng nhóm cơ 2 ngày liền" trước đây gán cho NIA [S7]; rà 06/10 không thấy trên trang NIA hiện tại → không dùng làm luật.
 
 ### 1.2 Warm-up / cool-down
 
@@ -59,7 +65,7 @@ Hợp nhất từ NIA Everyday Guide [S9 p.33], NIA web [S7], Otago [S15 p.16, p
 - Đau cơ không hết [S15 p.16].
 - Otago/NIA: dừng, nghỉ, liên hệ bác sĩ nếu triệu chứng trên xuất hiện.
 
-Copy trong app: "Stop and rest if you feel chest pain, dizziness or you can't catch your breath. If it doesn't pass, call your doctor." — không chẩn đoán, không hứa.
+Copy trong app (đúng chữ, rà 06/10): "If you feel sharp pain, chest pain, or dizziness, stop and rest." · "If it keeps happening, talk to your doctor." (`a7.stop.1/.2`); onboarding: "Chest pain, feeling faint or very short of breath? Stop now and call emergency services." — không chẩn đoán, không hứa.
 
 ### 1.5 Sàng lọc trước tập — app được hỏi gì
 
@@ -77,6 +83,11 @@ Ghi chú PAR-Q+: "If you are over the age of 45 yr and NOT accustomed to regular
 NIA: người không có bệnh mạn tính/chấn thương và tăng dần thì "generally do not need to talk with a doctor before becoming physically active" [S8]. HHS: người có bệnh mạn tính nên có bác sĩ theo dõi [S1 p.9].
 
 **Đề xuất app (ràng buộc pháp lý 1.4.1, không chẩn đoán):** onboarding hỏi tối đa 2 nhóm: (a) khớp nhân tạo hông/gối, loãng xương, đau vai, hay chóng mặt → để chọn biến thể động tác; (b) một màn "Before you start" nhắc: nếu có bệnh tim/huyết áp, đau ngực, chóng mặt/ngất, hoặc bác sĩ dặn tập có giám sát → hỏi bác sĩ trước. Không lưu câu trả lời lên iCloud; không diễn giải thành kết luận y khoa.
+
+**Chốt 06/10/2026 (Q3):**
+- Chip **"I feel unsteady on my feet"** ở S06, ngay sau "I get dizzy easily"; summary "Both hands on the chair". Căn cứ: câu 2 trong 3 câu hỏi của WFG [S48]. Hiệu ứng: hai tay ở mọi bài thăng bằng, không lên bậc; ẩn Heel-to-toe walk và Walking backwards; Walk and turn 4 bước; cấp đi bộ bắt đầu Seated; Steady set dùng Sit-to-stand hai tay thay Single-leg stand.
+- Dòng nhắc dưới hộp lưu ý S06: "Had a fall recently, or fainted or felt dizzy in the past year? Check with your doctor first." (PAR-Q+ câu 3 [S25]; WFG câu 1 [S48]). Chỉ là lời nhắc, không lưu câu trả lời.
+- Chip không có chữ "fall". Xử lý trên máy, không gửi đi → không là dữ liệu "collected", không đổi nhãn Privacy hay `PrivacyInfo.xcprivacy`.
 
 ---
 
@@ -160,13 +171,14 @@ Quy tắc chung mọi buổi Walk: ghế trong tầm tay [S7][S9 p.64]; brisk = 
 
 | Tham số | Nguồn | Giá trị |
 |---|---|---|
-| Reps/sets | HHS [S1 p.61]: 1 set 8–12 hiệu quả, 2–3 set hơn. NIA [S7]: 1 set 8–12; [S9 p.42]: 10–15 reps, "hard to very hard", nếu không nâng được 8 lần → quá nặng. ACSM [S5]: 10–15 reps cho người mới/trung niên/lớn tuổi. STEADI Chair Rise [S18]: 10–15, nghỉ 1 phút, set 2. Otago [S16]: 10 reps, đạt 2×10 mới tăng. NHS [S12]: 5 reps mỗi bài (mức khởi đầu). | **App: 8–12 reps, 1–2 set (Gentle: 5–8 reps theo NHS; Strong: 12–15).** |
+| Reps/sets | HHS [S1 p.61]: 1 set 8–12 hiệu quả, 2–3 set hơn. NIA [S7]: 1 set 8–12; [S9 p.42]: 10–15 reps, "hard to very hard", nếu không nâng được 8 lần → quá nặng. ACSM [S5]: 10–15 reps cho người mới/trung niên/lớn tuổi. STEADI Chair Rise [S18]: 10–15, nghỉ 1 phút, set 2. Otago [S16]: 10 reps, đạt 2×10 mới tăng. NHS [S12]: 5 reps mỗi bài (mức khởi đầu). | **App (chốt 06/10/2026): Gentle 6–8 · Steady 8–10 · Strong 10–12 reps, 1 set; Sit-to-stand ở Strong 2 set, nghỉ 60 s giữa set** [S18][S16 p.25]. Trước đây 5/6/8, thấp hơn Otago/NIA. |
 | Tempo | NIA [S9 p.42]: 3 s lên, giữ 1 s, 3 s xuống, "Don't let the weight drop". Otago [S15 p.15; S16 p.9]: 2–3 s lên, 4–5 s xuống. | **App: 2–3 s lên · 1 s giữ · 3–4 s xuống** (nằm giữa hai nguồn). |
 | Nghỉ giữa set | STEADI: "Rest for a minute" [S18]; Otago: 1–2 phút [S15 p.15]; "Between each set of exercises take three deep breaths or more" [S15 p.30] | **App: 30–60 s chuyển động tác (3 hơi thở sâu) trong buổi ngắn; 60 s nếu lặp cùng bài.** |
 | Thở | NIA: "breathe out during the effort and breathe in as you relax"; không nín thở [S7][S9 p.42]. Otago: hít trước khi nâng, thở ra khi nâng, hít khi hạ [S15 p.15]. | Cue: "Breathe out as you lift, breathe in as you lower." |
 | Khớp | NIA: "Avoid 'locking' your arm and leg joints"; động tác mượt, không giật [S7][S10 p.3] | |
 | Cường độ | Otago: "moderate intensity; the person should not get unduly tired" [S15 p.15]; NIA: tới mức khó làm thêm 1 rep [S7] | App chọn Otago (dè dặt): kết thúc set khi còn làm được ~2 rep. |
-| Tần suất | ≥2 ngày/tuần, không cùng nhóm cơ 2 ngày liền [S1][S7]; Otago 3 lần/tuần cách ngày [S16 p.9] | App: 2–3 ngày/tuần. |
+| Tần suất | ≥2 ngày/tuần [S1]; Otago 3 lần/tuần cách ngày [S16 p.9, p.18]. ("Không cùng nhóm cơ 2 ngày liền" không thấy trên trang NIA hiện tại, rà 06/10.) | App: Pro 3 ngày có bài sức mạnh; miễn phí 1–2 bài mỗi ngày tập. |
+| Tiến trình | Otago: đạt 2×10 rồi mới tăng, mức A–D [S16 p.25, p.29–30]; WFG: tăng dần theo cá nhân [S48] | Rep tăng theo cấp (Gentle → Steady → Strong). Pro: thang vịn theo bài, hai tay → một tay → đầu ngón tay (§5.0). |
 | Đau | Otago: viêm khớp → "work in a pain-free range" [S15 p.16]; NIA: "Stop if you feel pain" [S10 p.3]; Cleveland Clinic: có thể hơi khó chịu nhưng "you shouldn't feel worse" sau buổi [S31] | Cue chuẩn: "Move in the range that feels comfortable." |
 
 ### 3.2 Yêu cầu ghế
@@ -230,7 +242,7 @@ Mỗi bài: form → reps/tempo → thở → bản dễ → bản khó → ch�
 **C7. Chair-hold single-leg stand (Stand on One Foot)** — NIA [S9 p.65][S10 p.11], Otago #9 [S16 p.20], NHS [S13].
 - Form: đứng sau/bên ghế, vịn; đứng một chân, "Hold position for up to 10 seconds"; đổi chân; chân trụ hơi chùng, hông ngang [S13].
 - Reps: NIA 10–15 lần mỗi chân; Otago 5 lần/chân 10 s → tiến tới 30 s; NHS 5–10 s × 3.
-- Tiến trình: 2 tay → 1 tay → 1 ngón → không tay → (chỉ khi vững) nhắm mắt [S9 p.68] — **app không dùng nhắm mắt ở người mới** (xem 5.1).
+- Tiến trình: 2 tay → 1 tay → 1 ngón → không tay → (chỉ khi vững) nhắm mắt [S9 p.68] — **app không nhắm mắt ở mọi cấp** (xem 5.1).
 
 **C8. Side leg raise (hip abduction)** — NIA [S9 p.57][S10 p.9], NHS [S12], Otago #2 [S16 p.11].
 - Form: đứng sau ghế vịn; thở ra nhấc chân sang bên, "Keep your back straight and your toes facing forward", chân trụ hơi chùng; giữ 1 s; hít vào hạ [S9]; NHS: không nghiêng thân [S12].
@@ -282,7 +294,7 @@ Bài **không** đưa vào Chair moves: biceps curl với tạ (NHS [S12]) — a
 | 7 phút | 1:30 seated march + ankle | 4:30 = 5 bài × 40 s + 15 s chuyển (C1 dễ, C3, C4, C12, C13) | 1:00 stretch | 5 bài, 1–2 bài đứng vịn |
 | 8 phút | 1:30 | 5:30 = 6 bài × 40 s + 15 s (C1, C3, C4, C8, C11, C13) | 1:00 | 6 bài; Strong: 45 s + 10 s |
 
-Mỗi bài 40–45 s ở tempo 2–3 s lên/1 s giữ/3–4 s xuống ≈ 6–8 reps (Gentle) tới 8–12 (Strong) — khớp 3.1. Chuyển ngồi↔đứng: luôn có cue "hands on the chair, take a breath, then stand" [S36][S18].
+Rep theo §3.1 (chốt 06/10): 6–8 (Gentle) · 8–10 (Steady) · 10–12 (Strong), tempo 2–3 s lên/1 s giữ/3–4 s xuống. Chuyển ngồi↔đứng: luôn có cue "hands on the chair, take a breath, then stand" [S36][S18].
 
 ---
 
@@ -292,7 +304,9 @@ Mỗi bài 40–45 s ở tempo 2–3 s lên/1 s giữ/3–4 s xuống ≈ 6–8 
 
 | Tham số | Nguồn | Giá trị |
 |---|---|---|
-| Hold | ACSM 2011 [S5]: 10–30 s người lớn; **30–60 s người lớn tuổi**; tổng 60 s/nhóm cơ. NIA [S9 p.70]: 10–30 s, lặp 3–5 lần. NHS [S11][S14]: 5–10 s (rất nhẹ). Feland 2001 (≥65, TB 84.7 tuổi) [S38]: 60 s > 30 s > 15 s về tăng tầm vận động hamstring. | **App: 15–30 s mỗi lần, lặp 2–3 lần → tổng 45–60 s/nhóm cơ** (dè dặt hơn 30–60 s một lần cho người mới; đủ tổng 60 s ACSM). |
+| Hold | ACSM 2011 [S5]: 10–30 s người lớn; **30–60 s người lớn tuổi**; tổng 60 s/nhóm cơ. NIA [S9 p.70]: 10–30 s, lặp 3–5 lần. NHS [S11][S14]: 5–10 s (rất nhẹ). Feland 2001 (≥65, TB 84.7 tuổi, có giám sát) [S38]: 60 s > 30 s > 15 s về tăng tầm vận động hamstring. | **App (chốt 06/10/2026, Q4):** Gentle 20 s × 2 vòng cho 3 tư thế chính (calf hoặc thigh, chest, twist), 20 s × 1 cho tư thế còn lại → 40 s/nhóm cơ chính. Steady 30 s × 2 cho 3 tư thế chính, 30 s × 1 còn lại → 60 s. Strong 30 s × 2 mọi tư thế giữ, bớt số tư thế để buổi ≤12 phút. Không lần giữ nào quá 30 s. Vòng 2 không đọc lại intro. |
+| Bài lặp (không giữ) | Otago warm-up [S16 p.29] | Mọi cấp: Neck turn 5 mỗi bên · Chin tuck 10 · Shoulder rolls 5 · Ankle 10 gập–duỗi + 5 vòng mỗi chiều · thở kết 30–60 s. |
+| Độ dài buổi | Delphi: ≥10 phút, không quá 1 giờ [S50] | **Stretch ≤12 phút** (kiểm ≤12:30). Chốt 06/10 (Q6): Steady/Strong bỏ Side of the neck (neck tilt) và Shoulder rolls khỏi vòng 2; Strong bỏ Upper back reach khi Chest and shoulders đã làm 2 lần. Trước đây Steady 15:35, Strong 18:05. |
 | Tần suất | ACSM ≥2–3 ngày/tuần [S5]; ACSM/AHA ≥2 ngày [S6 thứ cấp] | 2–3 ngày; có thể hằng ngày ở mức nhẹ (NIA: balance/flex "as often as you like" [S9 p.64]). |
 | Khi nào | Sau khi cơ ấm; sau endurance/strength; nếu chỉ giãn → đi bộ nhẹ vài phút trước [S9 p.70][S7] | Buổi Stretch bắt đầu bằng 1–2 phút seated march/arm swing. |
 | Cách | Vào tư thế chậm "as far as possible without pain"; "mild pulling feeling is normal"; "sharp or stabbing pain, or joint pain" = quá xa; "Never 'bounce'"; thở bình thường; không khoá khớp [S9 p.70][S10 p.3] | Cue chuẩn: "stretch to a gentle pull, never to pain"; "keep breathing". |
@@ -300,7 +314,7 @@ Mỗi bài 40–45 s ở tempo 2–3 s lên/1 s giữ/3–4 s xuống ≈ 6–8 
 
 ### 4.2 Danh mục 15 bài giãn
 
-Mặc định: hold 15–30 s ×2–3; thở đều; không nhún; không nín thở; dừng khi đau nhói/đau khớp [S9 p.70].
+Mặc định: hold theo §4.1 (20 s hoặc 30 s, 1–2 vòng); thở đều; không nhún; không nín thở; dừng khi đau nhói/đau khớp [S9 p.70].
 
 | # | Stretch | Form (nguồn) | Bản dễ | KHÔNG làm | Chống chỉ định/biến thể |
 |---|---|---|---|---|---|
@@ -338,15 +352,25 @@ Bài NIA **loại**: Back 1 seated forward bend (loãng xương [S32]; hông nh�
 | 6 phút Seated | 1:00 seated march + arm swing (cơ ấm trước khi giãn [S9 p.70]) | 4:00 = 6 bài × 40 s (2 lần × 15–20 s): F1, F3, F5, F7 (nhỏ), F10 (lưng thẳng), F11 | 1:00 F17 |
 | 8 phút Standing (ghế) | 1:30 march + heel dig | 5:30 = 7 bài × ~45 s: F12, F13 (hoặc C3), F8, F9, F5, F6, F1 | 1:00 F17 |
 
-Tổng 45–60 s/nhóm cơ đạt liều ACSM [S5]. Cue mỗi bài: "gentle pull, never pain", "keep breathing", "no bouncing".
+Bảng trên là đề xuất 30/09; số giây và độ dài buổi nay theo §4.1 (chốt 06/10: 40 s/nhóm cơ chính ở Gentle, 60 s ở Steady/Strong, buổi ≤12 phút). Cue mỗi bài: "gentle pull, never pain", "keep breathing", "no bouncing".
 
 ---
 
 ## 5. Nhóm 4 · Short extras
 
+### 5.0 Steady set (miễn phí, khoảng 2 phút) — chốt 06/10/2026
+
+- **Là gì:** khối thăng bằng ~2 phút, nối sau phần hạ nhiệt của **mọi buổi chính**, mọi ngày tập, cả gói miễn phí và Pro → người dùng có thăng bằng **≥3 ngày/tuần** dù tập ít ngày [S48 GRADE 1A][S4][S7][S16 p.18].
+- **Vì sao miễn phí (Q2):** đi bộ đơn thuần khó giảm ngã [S48][S16 p.26]; onboarding đã hứa "Steadier"; gói miễn phí chỉ có đi bộ + 1–2 bài ghế là thiếu phần này.
+- **Nội dung (Gentle, hai tay, bản miễn phí):** Tandem stance 10 s × 2 mỗi chân trước, rồi Sit-to-stand × 5 (hai tay) hoặc Single-leg stand 10 s × 2 mỗi chân (vịn). Dừng một hơi thở sau mỗi lần đứng lên [S36].
+- **Bản ngồi** (chip Standing is hard): Weight shift ngồi + Seated knee lift có với tay.
+- **Chip Unsteady:** luôn hai tay; Sit-to-stand thay Single-leg stand.
+- **Pro:** cấp Steady/Strong, thang vịn theo bài hai tay → một tay → đầu ngón tay. Lên bậc khi 2 buổi liền giữ đủ giây, không bấm This hurts/Break; xuống bậc khi chọn "Wobbly" hoặc có chip Dizzy/Unsteady. Không có bậc "không vịn" trong 12 tuần đầu. Balance Extra 6–7 phút cũng là Pro.
+- Đếm vào "steady minutes" của tổng kết tuần. Thứ tự lời thoại mỗi bài: tên bài → mức vịn → "eyes on one spot ahead" → đếm giây → "both hands back on the chair".
+
 ### 5.1 Balance micro-session 5–6 phút (Otago/STEADI/NIA)
 
-Nguyên tắc: ghế/tường/bàn bếp trong tầm tay [S7][S9 p.64][S16 p.3]; tiến trình giảm tay vịn 2 tay → 1 tay → 1 ngón → không tay [S9 p.68][S16 "Progress from 2 hands to 1 hand to no hands"]; mắt nhìn thẳng [S15 p.15]; được phép bước điều chỉnh (recovery step) [S15 p.15]; NIA cho phép nhắm mắt chỉ "When you are steady on your feet" [S9 p.68] → **app: không nhắm mắt cho người mới** (không có cấp đủ để xác nhận "steady"). Tần suất: 3 lần/tuần, có thể hằng ngày [S16 p.17][S7].
+Nguyên tắc: ghế/tường/bàn bếp trong tầm tay [S7][S9 p.64][S16 p.3]; tiến trình giảm tay vịn 2 tay → 1 tay → 1 ngón → không tay [S9 p.68][S16 "Progress from 2 hands to 1 hand to no hands"]; mắt nhìn thẳng [S15 p.15]; được phép bước điều chỉnh (recovery step) [S15 p.15]; NIA cho phép nhắm mắt chỉ "When you are steady on your feet" [S9 p.68] → **app: không nhắm mắt ở mọi cấp**. Đây là quyết định app, dè dặt hơn NIA: app không có giám sát để xác nhận "steady". App cũng chỉ đi tới bậc "đầu ngón tay"; bậc không vịn để sau (xem 5.0). Tần suất: 3 lần/tuần, có thể hằng ngày [S16 p.17][S7].
 
 | Phút | Bài | Liều (nguồn) |
 |---|---|---|
@@ -385,6 +409,15 @@ Cấu trúc 5 phút = hàng "5 phút" ở 2.6. Bản 3 phút: 30 s march chậm 
 
 - Wind-down 5 phút: F17 breathing NHS ≥5 phút (hít mũi 1–5, thở miệng 1–5, ngồi ghế tựa lưng) [S35] + F1/F2/F5 giữ 15 s. Có nguồn cho breathing; ghép giãn là đề xuất app.
 - Posture reset 3 phút: chin tuck [S16 p.7], chest stretch [S9 p.75], upper back reach [S9 p.78], seated row không tạ (C13), wall walk-up [S9 p.74]. Nguồn NHS "Common posture mistakes and fixes" chỉ còn ở bản sao ngoài NHS [S34 — chưa xác minh trên nhs.uk] → không dùng làm nguồn chính; copy tránh hứa "fix posture" (Tone rules).
+
+### 5.5 Không làm (NO-GO), chốt 06/10/2026
+
+| Bài | Nguồn có nhắc | Vì sao không | Thay bằng |
+|---|---|---|---|
+| Tập đứng dậy từ sàn ("backward chaining") | WFG 2022 [S48] | App không xuống sàn (app-context NO-GO); tự tập không giám sát dễ ngã | Help có một dòng "nếu bạn ngã: gọi người giúp". Không phải bài tập |
+| Cầu thang | Otago mức D "as instructed" [S16 p.30] | Cần tay vịn và người giám sát | Không làm v1. Xét lại ở phase 2, với màn xác nhận có tay vịn như Walking pad |
+| Nhắm mắt khi tập thăng bằng | NIA "when you are steady" [S9 p.68] | Không có giám sát | Không nhắm mắt ở mọi cấp (5.1) |
+| Bỏ tay vịn hoàn toàn | Otago, NIA (bậc cuối) | Chưa đủ tuần tập để an toàn | Dừng ở "đầu ngón tay" trong 12 tuần đầu (5.0) |
 
 ---
 
@@ -428,8 +461,8 @@ Quy tắc kiểm `sessions.json`:
 1. Không buổi nào có khối brisk trước khi đủ 2:00 warm-up (trừ Walk 5/Commercial: không brisk, chỉ Steady tăng tay).
 2. Seated không có khối "brisk" (chỉ light theo [S22]); cường độ đo bằng talk test.
 3. Chair: tổng reps mỗi bài 6–12; tempo ≥6 s/rep; nghỉ ≥10 s giữa bài; ≥30 s + cue tay khi đổi tư thế.
-4. Stretch: tổng thời gian giữ mỗi nhóm cơ 40–60 s; không hold >30 s một lần cho người mới.
-5. Balance: mọi bài có vị trí tay vịn khai báo (2H/1H/NS); người mới không NS ở one-leg stand; không "eyes closed".
+4. Stretch: hold Gentle ≥20 s; tổng giữ mỗi nhóm cơ chính ≥40 s (Gentle) / ≥60 s (Steady, Strong); không hold >30 s một lần; buổi ≤12:30 (chốt 06/10, §4.1).
+5. Balance và Steady set: mọi bài có vị trí tay vịn khai báo (2H/1H/tips); không NS (không vịn) ở mọi bài; không "eyes closed".
 6. Cool-down ≥1:00 cho mọi buổi ≥5 phút; ≥2:00 cho ≥8 phút.
 
 ---
@@ -453,6 +486,7 @@ Quy tắc kiểm `sessions.json`:
 - [ ] Không nhảy, không impact; hai chân không rời sàn cùng lúc [S30][S31][S32].
 - [ ] Giày đế bám, không tất trơn; quần áo không vướng; sàn trống, không thảm rời/dây [S8][S16 p.29].
 - [ ] Không nhắm mắt, không ngửa cổ nhìn trần [S9 p.68][S16 p.7].
+- [ ] Standing back extension (clip S13, chốt 06/10): tay chống hông, ngả nhẹ ≤15°, không ưỡn quá, không ngửa cổ, mắt nhìn ngang, gót chạm sàn [S16 p.29][S49].
 - [ ] Walking pad: tay vịn/bàn trong tầm, clip an toàn, không cầm điện thoại, dừng belt trước khi bước xuống [S39][S42].
 
 ### 8.2 Lời thoại (mỗi câu)
@@ -479,9 +513,11 @@ Kiểm tự động: `python3 tools/lint/copy_lint.py` phải ra `0 findings` (C
 
 ---
 
-## 9. Nguồn (xem ngày 30/09/2026)
+## 9. Nguồn (xem ngày 30/09/2026; thêm S48–S55 ngày 06/10/2026)
 
 Cách lấy: WebFetch/WebSearch, curl + pdftotext cho PDF. "Đã đọc" = mở được nguyên văn; "tóm tắt thứ cấp" = chỉ qua kết quả tìm kiếm/bài trung gian; "chưa xác minh" = không mở được trang gốc.
+
+Rà 06/10/2026 (mã `[N#]` trong review [docs/reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md](../reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md)): N1 = S1 (đọc lại p.10, 60–61, 67–68, 71, 73, 88) · N4 = S16 · N5 = S7 (curl lại 06/10) · N6 = S11–S14 (bản xem lại 2023–2024) · N11 = S38 (abstract Europe PMC) · S4 đọc lại 06/10. Nguồn mới: N2 → S48 · N3 → S49 · N13 → S50 · N7 → S51 · N8 → S52 · N10 → S53 · N9 → S54 · N12 → S55. Go4Life: go4life.nia.nih.gov không phân giải (06/10); S9, S10 là ấn bản cũ.
 
 | Mã | Nguồn | URL | Dùng cho | Trạng thái |
 |---|---|---|---|---|
@@ -522,7 +558,7 @@ Cách lấy: WebFetch/WebSearch, curl + pdftotext cho PDF. "Đã đọc" = mở 
 | S35 | NHS, Breathing exercises for stress | https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/breathing-exercises-for-stress/ | Hít mũi 1–5 / thở miệng 1–5, ≥5 phút, ngồi ghế tựa | Đã đọc |
 | S36 | United Lincolnshire Hospitals NHS Trust, Guide to understanding postural hypotension | https://www.ulh.nhs.uk/patients/patient-information-library/guide-to-understanding-postural-hypotension/ | Ngồi mép 15–30 s; đứng yên vài giây; "sit back if dizzy"; khu vực trống | Đã đọc |
 | S37 | NHS Scotland Right Decisions / BESS, The painful shoulder (PDF) | https://rightdecisions.scot.nhs.uk/media/23plobge/the-painful-shoulder.pdf | Giữ vai vận động; tránh động tác đau/overhead; điều chỉnh hoạt động | Đã đọc (trích ngắn) |
-| S38 | Feland JB et al., The effect of duration of stretching of the hamstring muscle group for increasing range of motion in people aged 65 years or older, Phys Ther 2001;81(5):1110–7 (PMID 11319936) | https://pubmed.ncbi.nlm.nih.gov/11319936/ | 60 s > 30 s > 15 s ở người ≥65 | Abstract qua tìm kiếm (PubMed chặn cookie) — tóm tắt thứ cấp |
+| S38 | Feland JB et al., The effect of duration of stretching of the hamstring muscle group for increasing range of motion in people aged 65 years or older, Phys Ther 2001;81(5):1110–7 (PMID 11319936) | https://pubmed.ncbi.nlm.nih.gov/11319936/ | 60 s > 30 s > 15 s ở người ≥65 | Abstract (Europe PMC, 06/10); PubMed chặn cookie; chưa có toàn văn |
 | S39 | Consumer Reports, Are under-desk treadmills safe? | https://www.consumerreports.org/health/treadmills/are-under-desk-treadmills-safe-a4593016844/ | Không tay vịn; belt 14–16.5 in; safety key dừng đột ngột; tốc độ cao | Đã đọc (trích) |
 | S40 | CPSC cảnh báo walking pad Sperax (66 ca ngã/chấn thương) | (qua kết quả tìm kiếm, không có URL CPSC) | Rủi ro dừng đột ngột/tốc độ | Chưa xác minh |
 | S41 | LifeSpan Europe (nhà sản xuất), Finding your ideal walking pace on a walking pad | https://www.lifespaneurope.com/blogs/general/finding-your-ideal-walking-pace-on-a-walking-pad | 1–2 mph khi làm việc; 2–3 mph "slow pace" người mới | Đã đọc — nguồn thương mại, thứ cấp |
@@ -535,14 +571,22 @@ Cách lấy: WebFetch/WebSearch, curl + pdftotext cho PDF. "Đã đọc" = mở 
 | S45 | Chodzko-Zajko WJ et al., ACSM Position Stand: Exercise and Physical Activity for Older Adults, MSSE 2009;41(7):1510–30 | https://pubmed.ncbi.nlm.nih.gov/19516148/ | Nền cho S6 | Chưa mở được toàn văn — chưa xác minh |
 | S46 | WHO, Physical activity fact sheet | https://www.who.int/news-room/fact-sheets/detail/physical-activity | "any amount of physical activity is better than none" | Đã đọc |
 | S47 | CDC, Perceived Exertion (Borg RPE) — trang cũ | https://www.cdc.gov/physicalactivity/basics/measuring/exertion.htm | RPE 12–14 moderate | Chưa xác minh (chuyển hướng về S23, không còn nội dung Borg) |
+| S48 | Montero-Odasso M et al., World guidelines for falls prevention and management for older adults: a global initiative, Age and Ageing 2022;51(9):afac205, doi:10.1093/ageing/afac205 (PMC9523684) [N2] | https://pmc.ncbi.nlm.nih.gov/articles/PMC9523684/ | Thăng bằng + chức năng ≥3 buổi/tuần, tăng dần, ≥12 tuần (GRADE 1A); tai chi và/hoặc kháng lực (1B); đi bộ đơn thuần khó giảm ngã; 3 câu hỏi; hạ huyết áp tư thế; đứng dậy từ sàn | Đã đọc toàn văn (06/10) |
+| S49 | Brooke-Wavell K, Skelton DA et al., Strong, steady and straight: UK consensus statement on physical activity and exercise for osteoporosis, BJSM 2022;56:837–846 (PMC9304091) [N3] | https://pmc.ncbi.nlm.nih.gov/articles/PMC9304091 | Kháng lực 2–3 ngày/tuần; thăng bằng + sức mạnh ≥2 lần/tuần; tránh gập sâu lặp lại, xoay mượt an toàn, tăng cơ duỗi lưng; "how to, not don't do" | Đã đọc toàn văn (06/10) |
+| S50 | Robinson KR et al., Developing the principles of chair based exercise for older people: a modified Delphi study, BMC Geriatrics 2014;14:65 [N13] | https://bmcgeriatr.biomedcentral.com/articles/10.1186/1471-2318-14-65 | Buổi ghế ≥10 phút, không quá 1 giờ; có khởi động, hạ nhiệt; kháng lực tăng dần theo cá nhân; ghế là bậc tiến tới bài đứng | Đã đọc toàn văn (Europe PMC XML, 06/10) |
+| S51 | Bannuru RR et al., OARSI guidelines for the non-surgical management of knee, hip, and polyarticular osteoarthritis, Osteoarthritis and Cartilage 2019 [N7] | https://www.esceo.org/sites/esceo/files/pdf/Bannuru_O%26C_OARSIguidelines_2019.pdf | Lõi điều trị: giáo dục + tập có cấu trúc trên cạn (sức mạnh, cardio, thăng bằng; tai chi/yoga) | Đã đọc toàn văn (PDF mirror ESCEO, 06/10) |
+| S52 | Osteoarthritis Action Alliance, Walk With Ease program page; Arthritis Foundation, Walk With Ease [N8] | (URL chưa ghi trong review) | 3 buổi/tuần × 6 tuần; đi 10–40 phút có khởi động, hạ nhiệt | Đã đọc trang chương trình (06/10); trang Arthritis Foundation qua WebFetch |
+| S53 | CDC, Use of Agency Materials [N10] | (URL chưa ghi trong review) | Nội dung public domain; tên, logo không được dùng để ngụ ý chứng thực | Đã đọc (06/10) |
+| S54 | NIH Policy Manual 1186, tên và logo NIH, "appearance of endorsement" [N9] | (trang trả 403) | Không ngụ ý được NIH chứng thực | Tóm tắt thứ cấp (chỉ qua kết quả tìm kiếm) |
+| S55 | NHS England, identity guidelines: "NHS" là nhãn hiệu [N12] | (trang trả rỗng) | Không dùng "NHS" trong tên tổ chức, slogan, tên chương trình | Tóm tắt thứ cấp (chỉ qua kết quả tìm kiếm) |
 
-Không xác minh được trong phiên này (ghi rõ để chủ app quyết): S6/S45 (ACSM older adults bản gốc), S33 (Mayo), S34 (NHS posture), S38 (chỉ abstract), S40 (CPSC), S43d (Walk at Home 4 bước & 4×4 ft), S47 (CDC Borg), tương quan 2.5 mph ≈ 3 METs (Compendium 2011).
+Không xác minh được trong phiên này (ghi rõ để chủ app quyết): S6/S45 (ACSM older adults bản gốc), S33 (Mayo), S34 (NHS posture), S38 (chỉ abstract), S40 (CPSC), S43d (Walk at Home 4 bước & 4×4 ft), S47 (CDC Borg), S54 (NIH 403), S55 (NHS England), tương quan 2.5 mph ≈ 3 METs (Compendium 2011).
 
 ---
 
 ## Câu hỏi chưa chốt
 1. Seated có cần một cấp "Strong" không, khi bằng chứng cho thấy ngồi đi tại chỗ chỉ đạt light [S22]? Đề xuất: Seated chỉ Gentle/Steady, Strong = gợi ý chuyển In place vịn ghế.
-2. Hold giãn cơ: giữ 15–30 s ×2–3 (dè dặt) hay theo ACSM older 30–60 s một lần [S5]? Tài liệu chọn dè dặt; nếu chủ app muốn hiệu quả hơn theo Feland [S38] thì tăng ở cấp Strong.
+2. ~~Hold giãn cơ~~ Đã chốt 06/10/2026: 20/30/30 s, xem §4.1.
 3. Walking pad: có bắt buộc người dùng xác nhận "my walking pad has a rail or I can hold a desk" trước buổi Pad đầu tiên không (căn cứ [S39])?
 4. Onboarding hỏi tình trạng khớp/loãng xương ở mức nào để chọn biến thể mà không thành "medical questionnaire" (1.4.1)? Cần review pháp lý trước milestone tương ứng.
 5. Ghế có tay vịn hay không: mặc định "không tay vịn" (sit-to-stand) mâu thuẫn với Workout to Go "chair with arms" [S10] và Kaiser khuyên ghế có tay vịn cho hông nhân tạo [S28] → app cho phép cả hai, ưu tiên ghế cao có tay vịn cho biến thể hip-replacement?

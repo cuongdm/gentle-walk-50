@@ -1,6 +1,6 @@
 # Gentle Walk 50+ (tên làm việc)
 
-App iPhone/iPad dẫn đi bộ trong nhà, động tác ghế và giãn cơ bằng giọng cho phụ nữ Mỹ 50–64 mới tập. Kế hoạch hiện hành: `docs/plans/2026-09-29-mvp.md`. Việc cần làm: `docs/todo.md`.
+App iPhone/iPad dẫn bài tập nhẹ tại nhà bằng giọng (đi bộ trong nhà, động tác ghế, giãn cơ) cho phụ nữ Mỹ 58–75 mới tập hoặc quay lại (đổi từ 50–64 ngày 03/10/2026; tên store đang tìm). Kế hoạch hiện hành: `docs/plans/2026-09-29-mvp.md`. Việc cần làm: `docs/todo.md`.
 
 ## Quy ước dự án (manh-skill — đọc trước khi làm bất cứ gì)
 - Step 0 of every task: read `app-context.md` (product truth) and the current plan in `docs/plans/`.

@@ -6,6 +6,9 @@ import GentleWalkCore
 /// No fake "Creating your plan 98%". "When would you like to start?" was removed (owner 30/09/2026),
 /// and the daily moment moved to S16, where the reminder is asked for (owner 01/10/2026), so the
 /// plan fits one screen. The Continue button is pinned by the container (review I16).
+/// The plan builds itself in front of her (redesign 03/10/2026), from her own answers, never a fake
+/// loader: the card rises, the week's days step in, her limits drop in, Day 1 rises and the first
+/// journey's route draws itself. The button works at once; nothing waits for the animation.
 struct PlanReadyView: View {
     @Bindable var flow: OnboardingFlow
     var showsContinue = true
@@ -18,9 +21,9 @@ struct PlanReadyView: View {
             } else {
                 ScreenHeader(title: "Your plan")
             }
-            PlanCard(startLevel: profile.startLevel, limits: flow.answers.limits)
-            DayOneCard()
-            WhyThisWorks(keys: profile.whyKeys)
+            PlanCard(startLevel: profile.startLevel, limits: flow.answers.limits).reveal(delay: 0.05)
+            DayOneCard().reveal(delay: 0.85)
+            WhyThisWorks(keys: profile.whyKeys).reveal(delay: 1.05)
             if showsContinue {
                 ContinueButton(title: "See my options", action: flow.next)
             }
@@ -41,7 +44,7 @@ struct PlanCard: View {
             }
             SampleWeekRow()
             if !limits.isEmpty {
-                LimitChips(limits: limits)
+                LimitChips(limits: limits, dropsIn: true)
             }
         }
         .foregroundStyle(Palette.text)
@@ -114,6 +117,7 @@ struct SampleWeekRow: View {
                     .padding(.horizontal, typeSize.isAccessibilitySize ? 12 : 0)
                     .frame(maxWidth: typeSize.isAccessibilitySize ? nil : .infinity, minHeight: 48)
                     .background(rest ? Palette.surface.opacity(0.5) : Palette.surface, in: .rect(cornerRadius: 12))
+                    .reveal(.pop, delay: 0.2 + 0.07 * Double(index))
                 }
             }
             Text("With Gentle Walk Pro, your week mixes walks, chair moves and stretches.")
@@ -125,10 +129,12 @@ struct SampleWeekRow: View {
 
 struct LimitChips: View {
     let limits: Set<BodyLimit>
+    /// On Your plan the chips drop in one by one; in Me they are simply there.
+    var dropsIn = false
 
     var body: some View {
         FlowLayout(spacing: 8) {
-            ForEach(OnboardingCopy.limitOrder.filter(limits.contains), id: \.rawValue) { limit in
+            ForEach(Array(OnboardingCopy.limitOrder.filter(limits.contains).enumerated()), id: \.element.rawValue) { index, limit in
                 Text(OnboardingCopy.summary(limit))
                     .typeRole(.caption)
                     .fontWeight(.semibold)
@@ -136,6 +142,7 @@ struct LimitChips: View {
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
                     .background(Palette.textMuted.opacity(0.15), in: .capsule)
+                    .reveal(.drop, delay: dropsIn ? 0.7 + 0.06 * Double(index) : 0, enabled: dropsIn)
             }
         }
     }
@@ -165,11 +172,45 @@ struct FirstJourneyMini: View {
     var body: some View {
         HStack(spacing: 14) {
             ArtImage(name: Art.coverName(journeyID: "jr.ny"), height: 56, fallbackSymbol: "map").frame(width: 74)
+                .overlay { RouteSketch() }
             VStack(alignment: .leading, spacing: 4) {
                 Text("Your first journey: Central Park to Brooklyn Bridge").typeRole(.caption).fontWeight(.semibold)
                 Text("Every walk in the app moves you along.").typeRole(.caption).foregroundStyle(Palette.textMuted)
             }
             .foregroundStyle(Palette.text)
         }
+    }
+}
+
+/// A route line that draws itself across the journey's cover, start to stop.
+private struct RouteSketch: View {
+    @State private var drawn = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        GeometryReader { proxy in
+            let w = proxy.size.width, h = proxy.size.height
+            let route = Path { path in
+                path.move(to: CGPoint(x: w * 0.14, y: h * 0.78))
+                path.addCurve(to: CGPoint(x: w * 0.5, y: h * 0.5), control1: CGPoint(x: w * 0.3, y: h * 0.62),
+                              control2: CGPoint(x: w * 0.34, y: h * 0.46))
+                path.addCurve(to: CGPoint(x: w * 0.86, y: h * 0.2), control1: CGPoint(x: w * 0.66, y: h * 0.54),
+                              control2: CGPoint(x: w * 0.74, y: h * 0.26))
+            }
+            route.trim(from: 0, to: drawn ? 1 : 0)
+                .stroke(Palette.onStrongFill, style: StrokeStyle(lineWidth: 3.5, lineCap: .round))
+                .shadow(color: .black.opacity(0.25), radius: 1.5)
+            Circle().fill(Palette.secondary)
+                .overlay { Circle().strokeBorder(Palette.onStrongFill, lineWidth: 1.5) }
+                .frame(width: 8, height: 8).position(x: w * 0.14, y: h * 0.78)
+            Circle().fill(Palette.sun)
+                .overlay { Circle().strokeBorder(Palette.onStrongFill, lineWidth: 1.5) }
+                .frame(width: 8, height: 8).position(x: w * 0.86, y: h * 0.2)
+                .opacity(drawn ? 1 : 0)
+        }
+        .onAppear {
+            withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .easeInOut(duration: 1.2).delay(1.0)) { drawn = true }
+        }
+        .accessibilityHidden(true)
     }
 }

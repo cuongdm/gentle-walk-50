@@ -6812,7 +6812,7 @@
       "segments": [
         {
           "kind": "move",
-          "seconds": 69,
+          "seconds": 76,
           "exerciseID": "mv.sit-to-stand",
           "cues": [
             {
@@ -6893,14 +6893,22 @@
             },
             {
               "at": 57,
-              "line": "a4.v1.8"
+              "line": "a4.slow.1"
             },
             {
               "at": 62,
               "line": "a5.n.5"
+            },
+            {
+              "at": 64,
+              "line": "a4.v1.8"
+            },
+            {
+              "at": 69,
+              "line": "a5.n.6"
             }
           ],
-          "reps": 5
+          "reps": 6
         },
         {
           "kind": "move",
@@ -7031,7 +7039,7 @@
         },
         {
           "kind": "move",
-          "seconds": 73,
+          "seconds": 85,
           "exerciseID": "mv.wall-push",
           "cues": [
             {
@@ -7109,15 +7117,23 @@
               "line": "a5.n.5"
             },
             {
-              "at": 62,
+              "at": 66,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 72,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 74,
               "line": "a5.last"
             },
             {
-              "at": 66,
-              "line": "a5.n.6"
+              "at": 78,
+              "line": "a5.n.8"
             }
           ],
-          "reps": 6
+          "reps": 8
         },
         {
           "kind": "move",
@@ -7163,7 +7179,7 @@
         },
         {
           "kind": "move",
-          "seconds": 83,
+          "seconds": 95,
           "exerciseID": "mv.side-leg",
           "cues": [
             {
@@ -7221,43 +7237,59 @@
               "line": "a5.n.2"
             },
             {
+              "at": 46,
+              "line": "a4.side-leg.form.1"
+            },
+            {
               "at": 50,
               "line": "a5.n.3"
             },
             {
               "at": 56,
-              "line": "a5.side"
-            },
-            {
-              "at": 60,
-              "line": "a5.n.1"
+              "line": "a5.n.4"
             },
             {
               "at": 62,
-              "line": "a4.side-leg.form.1"
+              "line": "a5.side"
             },
             {
               "at": 66,
-              "line": "a5.n.2"
+              "line": "a5.n.1"
             },
             {
               "at": 68,
-              "line": "a5.last"
+              "line": "a4.side-leg.form.2"
             },
             {
               "at": 72,
-              "line": "a5.n.3"
+              "line": "a5.n.2"
+            },
+            {
+              "at": 74,
+              "line": "a4.slow.1"
             },
             {
               "at": 78,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 80,
+              "line": "a5.last"
+            },
+            {
+              "at": 84,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 90,
               "line": "a4.side-leg.done"
             }
           ],
-          "reps": 6
+          "reps": 8
         },
         {
           "kind": "move",
-          "seconds": 81,
+          "seconds": 93,
           "exerciseID": "mv.back-leg",
           "cues": [
             {
@@ -7315,43 +7347,59 @@
               "line": "a5.n.2"
             },
             {
+              "at": 45,
+              "line": "a4.back-leg.form.1"
+            },
+            {
               "at": 49,
               "line": "a5.n.3"
             },
             {
               "at": 55,
-              "line": "a5.side"
-            },
-            {
-              "at": 59,
-              "line": "a5.n.1"
+              "line": "a5.n.4"
             },
             {
               "at": 61,
-              "line": "a4.back-leg.form.1"
+              "line": "a5.side"
             },
             {
               "at": 65,
-              "line": "a5.n.2"
+              "line": "a5.n.1"
             },
             {
               "at": 67,
-              "line": "a5.last"
+              "line": "a4.back-leg.form.2"
             },
             {
               "at": 71,
-              "line": "a5.n.3"
+              "line": "a5.n.2"
+            },
+            {
+              "at": 73,
+              "line": "a4.slow.2"
             },
             {
               "at": 77,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 79,
+              "line": "a5.last"
+            },
+            {
+              "at": 83,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 89,
               "line": "a4.back-leg.done"
             }
           ],
-          "reps": 6
+          "reps": 8
         },
         {
           "kind": "move",
-          "seconds": 80,
+          "seconds": 92,
           "exerciseID": "mv.knee-curl",
           "cues": [
             {
@@ -7411,43 +7459,59 @@
               "line": "a5.n.2"
             },
             {
+              "at": 43,
+              "line": "a4.knee-curl.form.1"
+            },
+            {
               "at": 47,
               "line": "a5.n.3"
             },
             {
               "at": 53,
-              "line": "a5.side"
-            },
-            {
-              "at": 57,
-              "line": "a5.n.1"
+              "line": "a5.n.4"
             },
             {
               "at": 59,
-              "line": "a4.knee-curl.form.1"
+              "line": "a5.side"
             },
             {
               "at": 63,
-              "line": "a5.n.2"
+              "line": "a5.n.1"
             },
             {
               "at": 65,
-              "line": "a5.last"
+              "line": "a4.knee-curl.form.2"
             },
             {
               "at": 69,
-              "line": "a5.n.3"
+              "line": "a5.n.2"
+            },
+            {
+              "at": 71,
+              "line": "a4.slow.1"
             },
             {
               "at": 75,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 77,
+              "line": "a5.last"
+            },
+            {
+              "at": 81,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 87,
               "line": "a4.knee-curl.done"
             }
           ],
-          "reps": 6
+          "reps": 8
         },
         {
           "kind": "move",
-          "seconds": 73,
+          "seconds": 85,
           "exerciseID": "mv.mini-squat",
           "cues": [
             {
@@ -7537,23 +7601,31 @@
               "line": "a5.n.5"
             },
             {
-              "at": 58,
-              "line": "a5.last"
-            },
-            {
               "at": 62,
               "line": "a5.n.6"
             },
             {
               "at": 68,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 70,
+              "line": "a5.last"
+            },
+            {
+              "at": 74,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 80,
               "line": "a4.mini-squat.done"
             }
           ],
-          "reps": 6
+          "reps": 8
         },
         {
           "kind": "move",
-          "seconds": 77,
+          "seconds": 89,
           "exerciseID": "mv.arm-raise",
           "cues": [
             {
@@ -7635,23 +7707,31 @@
               "line": "a5.n.5"
             },
             {
-              "at": 62,
-              "line": "a5.last"
-            },
-            {
               "at": 66,
               "line": "a5.n.6"
             },
             {
               "at": 72,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 74,
+              "line": "a5.last"
+            },
+            {
+              "at": 78,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 84,
               "line": "a4.arm-raise.done"
             }
           ],
-          "reps": 6
+          "reps": 8
         },
         {
           "kind": "move",
-          "seconds": 77,
+          "seconds": 89,
           "exerciseID": "mv.row",
           "cues": [
             {
@@ -7723,1069 +7803,32 @@
               "line": "a5.n.5"
             },
             {
-              "at": 63,
-              "line": "a5.last"
-            },
-            {
               "at": 67,
               "line": "a5.n.6"
             },
             {
               "at": 73,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 75,
+              "line": "a5.last"
+            },
+            {
+              "at": 79,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 85,
               "line": "a4.row.done"
             }
           ],
-          "reps": 6
+          "reps": 8
         }
       ]
     },
     {
       "id": "ses.moves.steady",
-      "kind": "chair",
-      "segments": [
-        {
-          "kind": "move",
-          "seconds": 77,
-          "exerciseID": "mv.sit-to-stand",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a4.v1.1"
-            },
-            {
-              "at": 5,
-              "line": "a4.v1.2",
-              "notFor": [
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 5,
-              "line": "a4.v1.var.joint",
-              "onlyFor": [
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 10,
-              "line": "a4.demo.1"
-            },
-            {
-              "at": 14,
-              "line": "a4.v1.4",
-              "notFor": [
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 14,
-              "line": "a4.v1.var.joint-lean",
-              "onlyFor": [
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 21,
-              "line": "a4.with-me.1"
-            },
-            {
-              "at": 25,
-              "line": "a4.v1.breath"
-            },
-            {
-              "at": 30,
-              "line": "a4.count.1"
-            },
-            {
-              "at": 32,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 34,
-              "line": "a4.v1.3"
-            },
-            {
-              "at": 40,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 42,
-              "line": "a4.v1.7",
-              "notFor": [
-                "knees",
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 42,
-              "line": "a4.v1.6",
-              "onlyFor": [
-                "knees",
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 48,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 50,
-              "line": "a4.v1.top"
-            },
-            {
-              "at": 55,
-              "line": "a5.n.4"
-            },
-            {
-              "at": 57,
-              "line": "a4.v1.5"
-            },
-            {
-              "at": 63,
-              "line": "a5.n.5"
-            },
-            {
-              "at": 65,
-              "line": "a4.v1.8"
-            },
-            {
-              "at": 70,
-              "line": "a5.n.6"
-            }
-          ],
-          "reps": 6
-        },
-        {
-          "kind": "move",
-          "seconds": 40,
-          "exerciseID": "mv.knee-lift",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a4.v2.1"
-            },
-            {
-              "at": 5,
-              "line": "a4.v2.2"
-            },
-            {
-              "at": 9,
-              "line": "a4.demo.2"
-            },
-            {
-              "at": 13,
-              "line": "a4.v2.3"
-            },
-            {
-              "at": 18,
-              "line": "a4.with-me.2"
-            },
-            {
-              "at": 22,
-              "line": "a4.v2.4"
-            },
-            {
-              "at": 28,
-              "line": "a4.v2.6",
-              "notFor": [
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 28,
-              "line": "a4.v2.var.joint",
-              "onlyFor": [
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 33,
-              "line": "a4.v2.7"
-            }
-          ]
-        },
-        {
-          "kind": "move",
-          "seconds": 40,
-          "exerciseID": "mv.leg-ext",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a4.v3.1"
-            },
-            {
-              "at": 5,
-              "line": "a4.v3.2"
-            },
-            {
-              "at": 9,
-              "line": "a4.demo.3"
-            },
-            {
-              "at": 13,
-              "line": "a4.v3.3"
-            },
-            {
-              "at": 18,
-              "line": "a4.with-me.3"
-            },
-            {
-              "at": 22,
-              "line": "a4.v3.breath"
-            },
-            {
-              "at": 27,
-              "line": "a4.v3.4"
-            },
-            {
-              "at": 34,
-              "line": "a4.v3.6",
-              "notFor": [
-                "knees"
-              ]
-            },
-            {
-              "at": 38,
-              "line": "a5.10s.change"
-            }
-          ]
-        },
-        {
-          "kind": "move",
-          "seconds": 40,
-          "exerciseID": "mv.heel-toe",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a4.v4.1"
-            },
-            {
-              "at": 5,
-              "line": "a4.v4.2"
-            },
-            {
-              "at": 9,
-              "line": "a4.demo.1"
-            },
-            {
-              "at": 13,
-              "line": "a4.v4.5"
-            },
-            {
-              "at": 17,
-              "line": "a4.with-me.1"
-            },
-            {
-              "at": 21,
-              "line": "a4.v4.3"
-            },
-            {
-              "at": 25,
-              "line": "a4.v4.6",
-              "notFor": [
-                "dizzy"
-              ]
-            },
-            {
-              "at": 25,
-              "line": "a4.v4.var.dizzy",
-              "onlyFor": [
-                "dizzy"
-              ]
-            },
-            {
-              "at": 32,
-              "line": "a5.10s.change"
-            }
-          ]
-        },
-        {
-          "kind": "move",
-          "seconds": 73,
-          "exerciseID": "mv.wall-push",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a4.v5.1"
-            },
-            {
-              "at": 5,
-              "line": "a4.v5.2"
-            },
-            {
-              "at": 11,
-              "line": "a4.demo.2"
-            },
-            {
-              "at": 15,
-              "line": "a4.v5.4",
-              "notFor": [
-                "shoulders"
-              ]
-            },
-            {
-              "at": 15,
-              "line": "a4.v5.var.shoulder",
-              "onlyFor": [
-                "shoulders"
-              ]
-            },
-            {
-              "at": 22,
-              "line": "a4.with-me.2"
-            },
-            {
-              "at": 26,
-              "line": "a4.v5.breath"
-            },
-            {
-              "at": 32,
-              "line": "a4.count.1"
-            },
-            {
-              "at": 34,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 36,
-              "line": "a4.v5.3"
-            },
-            {
-              "at": 41,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 43,
-              "line": "a4.v5.6",
-              "notFor": [
-                "shoulders"
-              ]
-            },
-            {
-              "at": 43,
-              "line": "a4.v5.var.shoulder",
-              "onlyFor": [
-                "shoulders"
-              ]
-            },
-            {
-              "at": 48,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 50,
-              "line": "a4.v5.5"
-            },
-            {
-              "at": 54,
-              "line": "a5.n.4"
-            },
-            {
-              "at": 56,
-              "line": "a4.v5.heels"
-            },
-            {
-              "at": 61,
-              "line": "a5.n.5"
-            },
-            {
-              "at": 63,
-              "line": "a5.last"
-            },
-            {
-              "at": 67,
-              "line": "a5.n.6"
-            }
-          ],
-          "reps": 6
-        },
-        {
-          "kind": "move",
-          "seconds": 40,
-          "exerciseID": "mv.single-leg",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a4.v6.1"
-            },
-            {
-              "at": 8,
-              "line": "a4.demo.3"
-            },
-            {
-              "at": 12,
-              "line": "a4.v6.2"
-            },
-            {
-              "at": 17,
-              "line": "a4.with-me.3"
-            },
-            {
-              "at": 21,
-              "line": "a4.v6.breath"
-            },
-            {
-              "at": 25,
-              "line": "a4.v6.3"
-            },
-            {
-              "at": 30,
-              "line": "a4.v6.7",
-              "notFor": [
-                "dizzy"
-              ]
-            },
-            {
-              "at": 30,
-              "line": "a4.v6.var.dizzy",
-              "onlyFor": [
-                "dizzy"
-              ]
-            },
-            {
-              "at": 34,
-              "line": "a5.10s.change"
-            }
-          ]
-        },
-        {
-          "kind": "move",
-          "seconds": 83,
-          "exerciseID": "mv.side-leg",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a4.side-leg.intro"
-            },
-            {
-              "at": 6,
-              "line": "a4.stand.setup"
-            },
-            {
-              "at": 11,
-              "line": "a4.side-leg.setup.1"
-            },
-            {
-              "at": 15,
-              "line": "a4.demo.1"
-            },
-            {
-              "at": 19,
-              "line": "a4.side-leg.demo.1"
-            },
-            {
-              "at": 26,
-              "line": "a4.with-me.1"
-            },
-            {
-              "at": 30,
-              "line": "a4.side-leg.breath"
-            },
-            {
-              "at": 35,
-              "line": "a4.count.1"
-            },
-            {
-              "at": 37,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 39,
-              "line": "a4.side-leg.easier",
-              "notFor": [
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 39,
-              "line": "a4.side-leg.var.joint",
-              "onlyFor": [
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 44,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 50,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 56,
-              "line": "a5.side"
-            },
-            {
-              "at": 60,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 62,
-              "line": "a4.side-leg.harder",
-              "notFor": [
-                "dizzy",
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 62,
-              "line": "a4.side-leg.form.2",
-              "onlyFor": [
-                "dizzy",
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 66,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 68,
-              "line": "a5.last"
-            },
-            {
-              "at": 72,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 78,
-              "line": "a4.side-leg.done"
-            }
-          ],
-          "reps": 6
-        },
-        {
-          "kind": "move",
-          "seconds": 81,
-          "exerciseID": "mv.back-leg",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a4.back-leg.intro"
-            },
-            {
-              "at": 5,
-              "line": "a4.stand.setup"
-            },
-            {
-              "at": 10,
-              "line": "a4.back-leg.setup.1"
-            },
-            {
-              "at": 14,
-              "line": "a4.demo.2"
-            },
-            {
-              "at": 18,
-              "line": "a4.back-leg.demo.1"
-            },
-            {
-              "at": 25,
-              "line": "a4.with-me.2"
-            },
-            {
-              "at": 29,
-              "line": "a4.back-leg.breath"
-            },
-            {
-              "at": 35,
-              "line": "a4.count.1"
-            },
-            {
-              "at": 37,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 39,
-              "line": "a4.back-leg.easier",
-              "notFor": [
-                "lowerBack"
-              ]
-            },
-            {
-              "at": 39,
-              "line": "a4.back-leg.var.back",
-              "onlyFor": [
-                "lowerBack"
-              ]
-            },
-            {
-              "at": 43,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 49,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 55,
-              "line": "a5.side"
-            },
-            {
-              "at": 59,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 61,
-              "line": "a4.back-leg.harder",
-              "notFor": [
-                "lowerBack"
-              ]
-            },
-            {
-              "at": 61,
-              "line": "a4.back-leg.form.1",
-              "onlyFor": [
-                "lowerBack"
-              ]
-            },
-            {
-              "at": 65,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 67,
-              "line": "a5.last"
-            },
-            {
-              "at": 71,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 77,
-              "line": "a4.back-leg.done"
-            }
-          ],
-          "reps": 6
-        },
-        {
-          "kind": "move",
-          "seconds": 81,
-          "exerciseID": "mv.knee-curl",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a4.knee-curl.intro"
-            },
-            {
-              "at": 5,
-              "line": "a4.stand.setup"
-            },
-            {
-              "at": 10,
-              "line": "a4.knee-curl.setup.1"
-            },
-            {
-              "at": 14,
-              "line": "a4.demo.3"
-            },
-            {
-              "at": 18,
-              "line": "a4.knee-curl.demo.1"
-            },
-            {
-              "at": 24,
-              "line": "a4.with-me.3"
-            },
-            {
-              "at": 28,
-              "line": "a4.knee-curl.breath"
-            },
-            {
-              "at": 33,
-              "line": "a4.count.1"
-            },
-            {
-              "at": 35,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 37,
-              "line": "a4.knee-curl.easier",
-              "notFor": [
-                "jointReplacement",
-                "knees"
-              ]
-            },
-            {
-              "at": 37,
-              "line": "a4.knee-curl.var.joint",
-              "onlyFor": [
-                "jointReplacement",
-                "knees"
-              ]
-            },
-            {
-              "at": 41,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 47,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 53,
-              "line": "a5.side"
-            },
-            {
-              "at": 57,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 59,
-              "line": "a4.knee-curl.harder",
-              "notFor": [
-                "dizzy",
-                "jointReplacement",
-                "knees"
-              ]
-            },
-            {
-              "at": 59,
-              "line": "a4.knee-curl.form.2",
-              "onlyFor": [
-                "dizzy",
-                "jointReplacement",
-                "knees"
-              ]
-            },
-            {
-              "at": 64,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 66,
-              "line": "a5.last"
-            },
-            {
-              "at": 70,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 76,
-              "line": "a4.knee-curl.done"
-            }
-          ],
-          "reps": 6
-        },
-        {
-          "kind": "move",
-          "seconds": 74,
-          "exerciseID": "mv.mini-squat",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a4.mini-squat.intro"
-            },
-            {
-              "at": 5,
-              "line": "a4.mini-squat.setup.1"
-            },
-            {
-              "at": 10,
-              "line": "a4.demo.1"
-            },
-            {
-              "at": 14,
-              "line": "a4.mini-squat.demo.1"
-            },
-            {
-              "at": 20,
-              "line": "a4.with-me.1"
-            },
-            {
-              "at": 24,
-              "line": "a4.mini-squat.breath"
-            },
-            {
-              "at": 29,
-              "line": "a4.count.1"
-            },
-            {
-              "at": 31,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 33,
-              "line": "a4.mini-squat.easier",
-              "notFor": [
-                "knees",
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 33,
-              "line": "a4.mini-squat.var.knees.1",
-              "onlyFor": [
-                "knees",
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 38,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 40,
-              "line": "a4.mini-squat.harder",
-              "notFor": [
-                "knees",
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 40,
-              "line": "a4.mini-squat.form.2",
-              "onlyFor": [
-                "knees",
-                "jointReplacement"
-              ]
-            },
-            {
-              "at": 45,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 47,
-              "line": "a4.mini-squat.form.1",
-              "notFor": [
-                "knees"
-              ]
-            },
-            {
-              "at": 47,
-              "line": "a4.mini-squat.var.knees.2",
-              "onlyFor": [
-                "knees"
-              ]
-            },
-            {
-              "at": 51,
-              "line": "a5.n.4"
-            },
-            {
-              "at": 53,
-              "line": "a4.mini-squat.form.2"
-            },
-            {
-              "at": 57,
-              "line": "a5.n.5"
-            },
-            {
-              "at": 59,
-              "line": "a5.last"
-            },
-            {
-              "at": 63,
-              "line": "a5.n.6"
-            },
-            {
-              "at": 69,
-              "line": "a4.mini-squat.done"
-            }
-          ],
-          "reps": 6
-        },
-        {
-          "kind": "move",
-          "seconds": 77,
-          "exerciseID": "mv.arm-raise",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a4.arm-raise.intro"
-            },
-            {
-              "at": 4,
-              "line": "a4.arm-raise.setup.1"
-            },
-            {
-              "at": 9,
-              "line": "a4.demo.2"
-            },
-            {
-              "at": 13,
-              "line": "a4.arm-raise.demo.1"
-            },
-            {
-              "at": 19,
-              "line": "a4.arm-raise.demo.2"
-            },
-            {
-              "at": 25,
-              "line": "a4.with-me.2"
-            },
-            {
-              "at": 29,
-              "line": "a4.arm-raise.breath"
-            },
-            {
-              "at": 34,
-              "line": "a4.count.1"
-            },
-            {
-              "at": 36,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 38,
-              "line": "a4.arm-raise.easier",
-              "notFor": [
-                "shoulders"
-              ]
-            },
-            {
-              "at": 38,
-              "line": "a4.arm-raise.var.shoulder",
-              "onlyFor": [
-                "shoulders"
-              ]
-            },
-            {
-              "at": 42,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 44,
-              "line": "a4.arm-raise.harder",
-              "notFor": [
-                "shoulders"
-              ]
-            },
-            {
-              "at": 44,
-              "line": "a4.arm-raise.form.2",
-              "onlyFor": [
-                "shoulders"
-              ]
-            },
-            {
-              "at": 48,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 50,
-              "line": "a4.arm-raise.form.1"
-            },
-            {
-              "at": 54,
-              "line": "a5.n.4"
-            },
-            {
-              "at": 56,
-              "line": "a4.arm-raise.form.2"
-            },
-            {
-              "at": 60,
-              "line": "a5.n.5"
-            },
-            {
-              "at": 62,
-              "line": "a5.last"
-            },
-            {
-              "at": 66,
-              "line": "a5.n.6"
-            },
-            {
-              "at": 72,
-              "line": "a4.arm-raise.done"
-            }
-          ],
-          "reps": 6
-        },
-        {
-          "kind": "move",
-          "seconds": 77,
-          "exerciseID": "mv.row",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a4.row.intro"
-            },
-            {
-              "at": 5,
-              "line": "a4.row.setup.1"
-            },
-            {
-              "at": 10,
-              "line": "a4.row.setup.2"
-            },
-            {
-              "at": 15,
-              "line": "a4.demo.3"
-            },
-            {
-              "at": 19,
-              "line": "a4.row.demo.1"
-            },
-            {
-              "at": 25,
-              "line": "a4.with-me.3"
-            },
-            {
-              "at": 29,
-              "line": "a4.row.breath"
-            },
-            {
-              "at": 34,
-              "line": "a4.count.1"
-            },
-            {
-              "at": 36,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 38,
-              "line": "a4.row.easier"
-            },
-            {
-              "at": 43,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 45,
-              "line": "a4.row.harder"
-            },
-            {
-              "at": 49,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 51,
-              "line": "a4.row.form.1"
-            },
-            {
-              "at": 55,
-              "line": "a5.n.4"
-            },
-            {
-              "at": 57,
-              "line": "a4.row.form.2"
-            },
-            {
-              "at": 61,
-              "line": "a5.n.5"
-            },
-            {
-              "at": 63,
-              "line": "a5.last"
-            },
-            {
-              "at": 67,
-              "line": "a5.n.6"
-            },
-            {
-              "at": 73,
-              "line": "a4.row.done"
-            }
-          ],
-          "reps": 6
-        }
-      ]
-    },
-    {
-      "id": "ses.moves.strong",
       "kind": "chair",
       "segments": [
         {
@@ -8914,6 +7957,1272 @@
         },
         {
           "kind": "move",
+          "seconds": 40,
+          "exerciseID": "mv.knee-lift",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v2.1"
+            },
+            {
+              "at": 5,
+              "line": "a4.v2.2"
+            },
+            {
+              "at": 9,
+              "line": "a4.demo.2"
+            },
+            {
+              "at": 13,
+              "line": "a4.v2.3"
+            },
+            {
+              "at": 18,
+              "line": "a4.with-me.2"
+            },
+            {
+              "at": 22,
+              "line": "a4.v2.4"
+            },
+            {
+              "at": 28,
+              "line": "a4.v2.6",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 28,
+              "line": "a4.v2.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 33,
+              "line": "a4.v2.7"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 40,
+          "exerciseID": "mv.leg-ext",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v3.1"
+            },
+            {
+              "at": 5,
+              "line": "a4.v3.2"
+            },
+            {
+              "at": 9,
+              "line": "a4.demo.3"
+            },
+            {
+              "at": 13,
+              "line": "a4.v3.3"
+            },
+            {
+              "at": 18,
+              "line": "a4.with-me.3"
+            },
+            {
+              "at": 22,
+              "line": "a4.v3.breath"
+            },
+            {
+              "at": 27,
+              "line": "a4.v3.4"
+            },
+            {
+              "at": 34,
+              "line": "a4.v3.6",
+              "notFor": [
+                "knees"
+              ]
+            },
+            {
+              "at": 38,
+              "line": "a5.10s.change"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 40,
+          "exerciseID": "mv.heel-toe",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v4.1"
+            },
+            {
+              "at": 5,
+              "line": "a4.v4.2"
+            },
+            {
+              "at": 9,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 13,
+              "line": "a4.v4.5"
+            },
+            {
+              "at": 17,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 21,
+              "line": "a4.v4.3"
+            },
+            {
+              "at": 25,
+              "line": "a4.v4.6",
+              "notFor": [
+                "dizzy"
+              ]
+            },
+            {
+              "at": 25,
+              "line": "a4.v4.var.dizzy",
+              "onlyFor": [
+                "dizzy"
+              ]
+            },
+            {
+              "at": 32,
+              "line": "a5.10s.change"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 98,
+          "exerciseID": "mv.wall-push",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v5.1"
+            },
+            {
+              "at": 5,
+              "line": "a4.v5.2"
+            },
+            {
+              "at": 11,
+              "line": "a4.demo.2"
+            },
+            {
+              "at": 15,
+              "line": "a4.v5.4",
+              "notFor": [
+                "shoulders"
+              ]
+            },
+            {
+              "at": 15,
+              "line": "a4.v5.var.shoulder",
+              "onlyFor": [
+                "shoulders"
+              ]
+            },
+            {
+              "at": 22,
+              "line": "a4.with-me.2"
+            },
+            {
+              "at": 26,
+              "line": "a4.v5.breath"
+            },
+            {
+              "at": 32,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 34,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 36,
+              "line": "a4.v5.3"
+            },
+            {
+              "at": 41,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 43,
+              "line": "a4.v5.6",
+              "notFor": [
+                "shoulders"
+              ]
+            },
+            {
+              "at": 43,
+              "line": "a4.v5.var.shoulder",
+              "onlyFor": [
+                "shoulders"
+              ]
+            },
+            {
+              "at": 48,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 50,
+              "line": "a4.v5.5"
+            },
+            {
+              "at": 54,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 56,
+              "line": "a4.v5.heels"
+            },
+            {
+              "at": 61,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 63,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 67,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 73,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 79,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 85,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 87,
+              "line": "a5.last"
+            },
+            {
+              "at": 91,
+              "line": "a5.n.10"
+            }
+          ],
+          "reps": 10
+        },
+        {
+          "kind": "move",
+          "seconds": 40,
+          "exerciseID": "mv.single-leg",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v6.1"
+            },
+            {
+              "at": 8,
+              "line": "a4.demo.3"
+            },
+            {
+              "at": 12,
+              "line": "a4.v6.2"
+            },
+            {
+              "at": 17,
+              "line": "a4.with-me.3"
+            },
+            {
+              "at": 21,
+              "line": "a4.v6.breath"
+            },
+            {
+              "at": 25,
+              "line": "a4.v6.3"
+            },
+            {
+              "at": 30,
+              "line": "a4.v6.7",
+              "notFor": [
+                "dizzy"
+              ]
+            },
+            {
+              "at": 30,
+              "line": "a4.v6.var.dizzy",
+              "onlyFor": [
+                "dizzy"
+              ]
+            },
+            {
+              "at": 34,
+              "line": "a5.10s.change"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 107,
+          "exerciseID": "mv.side-leg",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.side-leg.intro"
+            },
+            {
+              "at": 6,
+              "line": "a4.stand.setup"
+            },
+            {
+              "at": 11,
+              "line": "a4.side-leg.setup.1"
+            },
+            {
+              "at": 15,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 19,
+              "line": "a4.side-leg.demo.1"
+            },
+            {
+              "at": 26,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 30,
+              "line": "a4.side-leg.breath"
+            },
+            {
+              "at": 35,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 37,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 39,
+              "line": "a4.side-leg.easier",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 39,
+              "line": "a4.side-leg.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 44,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 46,
+              "line": "a4.side-leg.harder",
+              "notFor": [
+                "dizzy",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 46,
+              "line": "a4.side-leg.form.2",
+              "onlyFor": [
+                "dizzy",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 50,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 52,
+              "line": "a4.side-leg.form.1"
+            },
+            {
+              "at": 56,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 62,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 68,
+              "line": "a5.side"
+            },
+            {
+              "at": 72,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 74,
+              "line": "a4.side-leg.form.2"
+            },
+            {
+              "at": 78,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 80,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 84,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 90,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 92,
+              "line": "a5.last"
+            },
+            {
+              "at": 96,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 102,
+              "line": "a4.side-leg.done"
+            }
+          ],
+          "reps": 10
+        },
+        {
+          "kind": "move",
+          "seconds": 105,
+          "exerciseID": "mv.back-leg",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.back-leg.intro"
+            },
+            {
+              "at": 5,
+              "line": "a4.stand.setup"
+            },
+            {
+              "at": 10,
+              "line": "a4.back-leg.setup.1"
+            },
+            {
+              "at": 14,
+              "line": "a4.demo.2"
+            },
+            {
+              "at": 18,
+              "line": "a4.back-leg.demo.1"
+            },
+            {
+              "at": 25,
+              "line": "a4.with-me.2"
+            },
+            {
+              "at": 29,
+              "line": "a4.back-leg.breath"
+            },
+            {
+              "at": 35,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 37,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 39,
+              "line": "a4.back-leg.easier",
+              "notFor": [
+                "lowerBack"
+              ]
+            },
+            {
+              "at": 39,
+              "line": "a4.back-leg.var.back",
+              "onlyFor": [
+                "lowerBack"
+              ]
+            },
+            {
+              "at": 43,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 45,
+              "line": "a4.back-leg.harder",
+              "notFor": [
+                "lowerBack"
+              ]
+            },
+            {
+              "at": 45,
+              "line": "a4.back-leg.form.1",
+              "onlyFor": [
+                "lowerBack"
+              ]
+            },
+            {
+              "at": 49,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 51,
+              "line": "a4.back-leg.form.1"
+            },
+            {
+              "at": 55,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 61,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 67,
+              "line": "a5.side"
+            },
+            {
+              "at": 71,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 73,
+              "line": "a4.back-leg.form.2"
+            },
+            {
+              "at": 77,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 79,
+              "line": "a4.slow.2"
+            },
+            {
+              "at": 83,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 89,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 91,
+              "line": "a5.last"
+            },
+            {
+              "at": 95,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 101,
+              "line": "a4.back-leg.done"
+            }
+          ],
+          "reps": 10
+        },
+        {
+          "kind": "move",
+          "seconds": 105,
+          "exerciseID": "mv.knee-curl",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.knee-curl.intro"
+            },
+            {
+              "at": 5,
+              "line": "a4.stand.setup"
+            },
+            {
+              "at": 10,
+              "line": "a4.knee-curl.setup.1"
+            },
+            {
+              "at": 14,
+              "line": "a4.demo.3"
+            },
+            {
+              "at": 18,
+              "line": "a4.knee-curl.demo.1"
+            },
+            {
+              "at": 24,
+              "line": "a4.with-me.3"
+            },
+            {
+              "at": 28,
+              "line": "a4.knee-curl.breath"
+            },
+            {
+              "at": 33,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 35,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 37,
+              "line": "a4.knee-curl.easier",
+              "notFor": [
+                "jointReplacement",
+                "knees"
+              ]
+            },
+            {
+              "at": 37,
+              "line": "a4.knee-curl.var.joint",
+              "onlyFor": [
+                "jointReplacement",
+                "knees"
+              ]
+            },
+            {
+              "at": 41,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 43,
+              "line": "a4.knee-curl.harder",
+              "notFor": [
+                "dizzy",
+                "jointReplacement",
+                "knees"
+              ]
+            },
+            {
+              "at": 43,
+              "line": "a4.knee-curl.form.2",
+              "onlyFor": [
+                "dizzy",
+                "jointReplacement",
+                "knees"
+              ]
+            },
+            {
+              "at": 48,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 50,
+              "line": "a4.knee-curl.form.1"
+            },
+            {
+              "at": 54,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 60,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 66,
+              "line": "a5.side"
+            },
+            {
+              "at": 70,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 72,
+              "line": "a4.knee-curl.form.2"
+            },
+            {
+              "at": 76,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 78,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 82,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 88,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 90,
+              "line": "a5.last"
+            },
+            {
+              "at": 94,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 100,
+              "line": "a4.knee-curl.done"
+            }
+          ],
+          "reps": 10
+        },
+        {
+          "kind": "move",
+          "seconds": 98,
+          "exerciseID": "mv.mini-squat",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.mini-squat.intro"
+            },
+            {
+              "at": 5,
+              "line": "a4.mini-squat.setup.1"
+            },
+            {
+              "at": 10,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 14,
+              "line": "a4.mini-squat.demo.1"
+            },
+            {
+              "at": 20,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 24,
+              "line": "a4.mini-squat.breath"
+            },
+            {
+              "at": 29,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 31,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 33,
+              "line": "a4.mini-squat.easier",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 33,
+              "line": "a4.mini-squat.var.knees.1",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 38,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 40,
+              "line": "a4.mini-squat.harder",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 40,
+              "line": "a4.mini-squat.form.2",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 45,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 47,
+              "line": "a4.mini-squat.form.1",
+              "notFor": [
+                "knees"
+              ]
+            },
+            {
+              "at": 47,
+              "line": "a4.mini-squat.var.knees.2",
+              "onlyFor": [
+                "knees"
+              ]
+            },
+            {
+              "at": 51,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 53,
+              "line": "a4.mini-squat.form.2"
+            },
+            {
+              "at": 57,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 59,
+              "line": "a4.slow.2"
+            },
+            {
+              "at": 63,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 69,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 75,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 81,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 83,
+              "line": "a5.last"
+            },
+            {
+              "at": 87,
+              "line": "a5.n.10"
+            },
+            {
+              "at": 93,
+              "line": "a4.mini-squat.done"
+            }
+          ],
+          "reps": 10
+        },
+        {
+          "kind": "move",
+          "seconds": 101,
+          "exerciseID": "mv.arm-raise",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.arm-raise.intro"
+            },
+            {
+              "at": 4,
+              "line": "a4.arm-raise.setup.1"
+            },
+            {
+              "at": 9,
+              "line": "a4.demo.2"
+            },
+            {
+              "at": 13,
+              "line": "a4.arm-raise.demo.1"
+            },
+            {
+              "at": 19,
+              "line": "a4.arm-raise.demo.2"
+            },
+            {
+              "at": 25,
+              "line": "a4.with-me.2"
+            },
+            {
+              "at": 29,
+              "line": "a4.arm-raise.breath"
+            },
+            {
+              "at": 34,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 36,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 38,
+              "line": "a4.arm-raise.easier",
+              "notFor": [
+                "shoulders"
+              ]
+            },
+            {
+              "at": 38,
+              "line": "a4.arm-raise.var.shoulder",
+              "onlyFor": [
+                "shoulders"
+              ]
+            },
+            {
+              "at": 42,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 44,
+              "line": "a4.arm-raise.harder",
+              "notFor": [
+                "shoulders"
+              ]
+            },
+            {
+              "at": 44,
+              "line": "a4.arm-raise.form.2",
+              "onlyFor": [
+                "shoulders"
+              ]
+            },
+            {
+              "at": 48,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 50,
+              "line": "a4.arm-raise.form.1"
+            },
+            {
+              "at": 54,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 56,
+              "line": "a4.arm-raise.form.2"
+            },
+            {
+              "at": 60,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 62,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 66,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 72,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 78,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 84,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 86,
+              "line": "a5.last"
+            },
+            {
+              "at": 90,
+              "line": "a5.n.10"
+            },
+            {
+              "at": 96,
+              "line": "a4.arm-raise.done"
+            }
+          ],
+          "reps": 10
+        },
+        {
+          "kind": "move",
+          "seconds": 101,
+          "exerciseID": "mv.row",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.row.intro"
+            },
+            {
+              "at": 5,
+              "line": "a4.row.setup.1"
+            },
+            {
+              "at": 10,
+              "line": "a4.row.setup.2"
+            },
+            {
+              "at": 15,
+              "line": "a4.demo.3"
+            },
+            {
+              "at": 19,
+              "line": "a4.row.demo.1"
+            },
+            {
+              "at": 25,
+              "line": "a4.with-me.3"
+            },
+            {
+              "at": 29,
+              "line": "a4.row.breath"
+            },
+            {
+              "at": 34,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 36,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 38,
+              "line": "a4.row.easier"
+            },
+            {
+              "at": 43,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 45,
+              "line": "a4.row.harder"
+            },
+            {
+              "at": 49,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 51,
+              "line": "a4.row.form.1"
+            },
+            {
+              "at": 55,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 57,
+              "line": "a4.row.form.2"
+            },
+            {
+              "at": 61,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 63,
+              "line": "a4.slow.2"
+            },
+            {
+              "at": 67,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 73,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 79,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 85,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 87,
+              "line": "a5.last"
+            },
+            {
+              "at": 91,
+              "line": "a5.n.10"
+            },
+            {
+              "at": 97,
+              "line": "a4.row.done"
+            }
+          ],
+          "reps": 10
+        }
+      ]
+    },
+    {
+      "id": "ses.moves.strong",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 207,
+          "exerciseID": "mv.sit-to-stand",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v1.1"
+            },
+            {
+              "at": 5,
+              "line": "a4.v1.2",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 5,
+              "line": "a4.v1.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 10,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 14,
+              "line": "a4.v1.4",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 14,
+              "line": "a4.v1.var.joint-lean",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 21,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 25,
+              "line": "a4.v1.breath"
+            },
+            {
+              "at": 30,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 32,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 34,
+              "line": "a4.v1.3"
+            },
+            {
+              "at": 40,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 42,
+              "line": "a4.v1.7",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 42,
+              "line": "a4.v1.6",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 48,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 50,
+              "line": "a4.v1.top"
+            },
+            {
+              "at": 55,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 57,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 63,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 65,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 70,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 77,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 79,
+              "line": "a5.last"
+            },
+            {
+              "at": 84,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 91,
+              "line": "a4.v1.rest"
+            },
+            {
+              "at": 145,
+              "line": "a4.v1.set2"
+            },
+            {
+              "at": 151,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 158,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 165,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 172,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 179,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 186,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 193,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 195,
+              "line": "a4.v1.8"
+            },
+            {
+              "at": 200,
+              "line": "a5.n.8"
+            }
+          ],
+          "reps": 8,
+          "sets": 2
+        },
+        {
+          "kind": "move",
           "seconds": 45,
           "exerciseID": "mv.knee-lift",
           "cues": [
@@ -9058,7 +9367,7 @@
         },
         {
           "kind": "move",
-          "seconds": 86,
+          "seconds": 110,
           "exerciseID": "mv.wall-push",
           "cues": [
             {
@@ -9158,15 +9467,31 @@
               "line": "a5.n.7"
             },
             {
-              "at": 75,
+              "at": 79,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 85,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 91,
+              "line": "a5.n.10"
+            },
+            {
+              "at": 97,
+              "line": "a5.n.11"
+            },
+            {
+              "at": 99,
               "line": "a5.last"
             },
             {
-              "at": 79,
-              "line": "a5.n.8"
+              "at": 103,
+              "line": "a5.n.12"
             }
           ],
-          "reps": 8
+          "reps": 12
         },
         {
           "kind": "move",
@@ -9219,7 +9544,7 @@
         },
         {
           "kind": "move",
-          "seconds": 95,
+          "seconds": 119,
           "exerciseID": "mv.side-leg",
           "cues": [
             {
@@ -9297,51 +9622,71 @@
               "line": "a5.n.3"
             },
             {
+              "at": 52,
+              "line": "a4.side-leg.form.1"
+            },
+            {
               "at": 56,
               "line": "a5.n.4"
             },
             {
-              "at": 62,
-              "line": "a5.side"
-            },
-            {
-              "at": 66,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 68,
-              "line": "a4.side-leg.form.1"
-            },
-            {
-              "at": 72,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 74,
+              "at": 58,
               "line": "a4.side-leg.form.2"
             },
             {
+              "at": 62,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 68,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 74,
+              "line": "a5.side"
+            },
+            {
               "at": 78,
-              "line": "a5.n.3"
+              "line": "a5.n.1"
             },
             {
               "at": 80,
-              "line": "a5.last"
+              "line": "a4.slow.1"
             },
             {
               "at": 84,
-              "line": "a5.n.4"
+              "line": "a5.n.2"
             },
             {
               "at": 90,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 96,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 102,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 104,
+              "line": "a5.last"
+            },
+            {
+              "at": 108,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 114,
               "line": "a4.side-leg.done"
             }
           ],
-          "reps": 8
+          "reps": 12
         },
         {
           "kind": "move",
-          "seconds": 93,
+          "seconds": 117,
           "exerciseID": "mv.back-leg",
           "cues": [
             {
@@ -9417,51 +9762,71 @@
               "line": "a5.n.3"
             },
             {
+              "at": 51,
+              "line": "a4.back-leg.form.1"
+            },
+            {
               "at": 55,
               "line": "a5.n.4"
             },
             {
-              "at": 61,
-              "line": "a5.side"
-            },
-            {
-              "at": 65,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 67,
-              "line": "a4.back-leg.form.1"
-            },
-            {
-              "at": 71,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 73,
+              "at": 57,
               "line": "a4.back-leg.form.2"
             },
             {
+              "at": 61,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 67,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 73,
+              "line": "a5.side"
+            },
+            {
               "at": 77,
-              "line": "a5.n.3"
+              "line": "a5.n.1"
             },
             {
               "at": 79,
-              "line": "a5.last"
+              "line": "a4.slow.2"
             },
             {
               "at": 83,
-              "line": "a5.n.4"
+              "line": "a5.n.2"
             },
             {
               "at": 89,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 95,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 101,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 103,
+              "line": "a5.last"
+            },
+            {
+              "at": 107,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 113,
               "line": "a4.back-leg.done"
             }
           ],
-          "reps": 8
+          "reps": 12
         },
         {
           "kind": "move",
-          "seconds": 93,
+          "seconds": 117,
           "exerciseID": "mv.knee-curl",
           "cues": [
             {
@@ -9543,51 +9908,71 @@
               "line": "a5.n.3"
             },
             {
+              "at": 50,
+              "line": "a4.knee-curl.form.1"
+            },
+            {
               "at": 54,
               "line": "a5.n.4"
             },
             {
-              "at": 60,
-              "line": "a5.side"
-            },
-            {
-              "at": 64,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 66,
-              "line": "a4.knee-curl.form.1"
-            },
-            {
-              "at": 70,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 72,
+              "at": 56,
               "line": "a4.knee-curl.form.2"
             },
             {
+              "at": 60,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 66,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 72,
+              "line": "a5.side"
+            },
+            {
               "at": 76,
-              "line": "a5.n.3"
+              "line": "a5.n.1"
             },
             {
               "at": 78,
-              "line": "a5.last"
+              "line": "a4.slow.1"
             },
             {
               "at": 82,
-              "line": "a5.n.4"
+              "line": "a5.n.2"
             },
             {
               "at": 88,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 94,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 100,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 102,
+              "line": "a5.last"
+            },
+            {
+              "at": 106,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 112,
               "line": "a4.knee-curl.done"
             }
           ],
-          "reps": 8
+          "reps": 12
         },
         {
           "kind": "move",
-          "seconds": 86,
+          "seconds": 110,
           "exerciseID": "mv.mini-squat",
           "cues": [
             {
@@ -9701,23 +10086,39 @@
               "line": "a5.n.7"
             },
             {
-              "at": 71,
-              "line": "a5.last"
-            },
-            {
               "at": 75,
               "line": "a5.n.8"
             },
             {
               "at": 81,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 87,
+              "line": "a5.n.10"
+            },
+            {
+              "at": 93,
+              "line": "a5.n.11"
+            },
+            {
+              "at": 95,
+              "line": "a5.last"
+            },
+            {
+              "at": 99,
+              "line": "a5.n.12"
+            },
+            {
+              "at": 105,
               "line": "a4.mini-squat.done"
             }
           ],
-          "reps": 8
+          "reps": 12
         },
         {
           "kind": "move",
-          "seconds": 89,
+          "seconds": 113,
           "exerciseID": "mv.arm-raise",
           "cues": [
             {
@@ -9821,23 +10222,39 @@
               "line": "a5.n.7"
             },
             {
-              "at": 74,
-              "line": "a5.last"
-            },
-            {
               "at": 78,
               "line": "a5.n.8"
             },
             {
               "at": 84,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 90,
+              "line": "a5.n.10"
+            },
+            {
+              "at": 96,
+              "line": "a5.n.11"
+            },
+            {
+              "at": 98,
+              "line": "a5.last"
+            },
+            {
+              "at": 102,
+              "line": "a5.n.12"
+            },
+            {
+              "at": 108,
               "line": "a4.arm-raise.done"
             }
           ],
-          "reps": 8
+          "reps": 12
         },
         {
           "kind": "move",
-          "seconds": 89,
+          "seconds": 113,
           "exerciseID": "mv.row",
           "cues": [
             {
@@ -9921,19 +10338,35 @@
               "line": "a5.n.7"
             },
             {
-              "at": 75,
-              "line": "a5.last"
-            },
-            {
               "at": 79,
               "line": "a5.n.8"
             },
             {
               "at": 85,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 91,
+              "line": "a5.n.10"
+            },
+            {
+              "at": 97,
+              "line": "a5.n.11"
+            },
+            {
+              "at": 99,
+              "line": "a5.last"
+            },
+            {
+              "at": 103,
+              "line": "a5.n.12"
+            },
+            {
+              "at": 109,
               "line": "a4.row.done"
             }
           ],
-          "reps": 8
+          "reps": 12
         }
       ]
     },
@@ -10368,6 +10801,50 @@
           ]
         },
         {
+          "kind": "stretch",
+          "seconds": 44,
+          "exerciseID": "st.back-ext",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.back-ext.intro"
+            },
+            {
+              "at": 6,
+              "line": "a11.back-ext.move"
+            },
+            {
+              "at": 12,
+              "line": "a11.back-ext.small"
+            },
+            {
+              "at": 18,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 23,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 28,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 33,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 38,
+              "line": "a5.n.5"
+            }
+          ],
+          "hold": 0,
+          "notFor": [
+            "dizzy",
+            "unsteady"
+          ]
+        },
+        {
           "kind": "rest",
           "seconds": 10,
           "cues": [
@@ -10627,7 +11104,8 @@
               "at": 25,
               "line": "a11.side-walk.easy",
               "onlyFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
@@ -10814,6 +11292,50 @@
           ]
         },
         {
+          "kind": "stretch",
+          "seconds": 44,
+          "exerciseID": "st.back-ext",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.back-ext.intro"
+            },
+            {
+              "at": 6,
+              "line": "a11.back-ext.move"
+            },
+            {
+              "at": 12,
+              "line": "a11.back-ext.small"
+            },
+            {
+              "at": 18,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 23,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 28,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 33,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 38,
+              "line": "a5.n.5"
+            }
+          ],
+          "hold": 0,
+          "notFor": [
+            "dizzy",
+            "unsteady"
+          ]
+        },
+        {
           "kind": "rest",
           "seconds": 10,
           "cues": [
@@ -10866,7 +11388,8 @@
               "at": 30,
               "line": "a11.sts.one",
               "notFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
@@ -10911,14 +11434,16 @@
               "at": 5,
               "line": "a11.hands.one",
               "notFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
               "at": 5,
               "line": "a11.hands.two",
               "onlyFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
@@ -10994,7 +11519,7 @@
         },
         {
           "kind": "move",
-          "seconds": 93,
+          "seconds": 99,
           "exerciseID": "mv.single-leg",
           "cues": [
             {
@@ -11018,35 +11543,39 @@
               "line": "a4.v6.4"
             },
             {
-              "at": 23,
+              "at": 22,
+              "line": "a11.recover"
+            },
+            {
+              "at": 29,
               "line": "a4.v6.breath"
             },
             {
-              "at": 32,
+              "at": 38,
               "line": "a4.v6.5"
             },
             {
-              "at": 37,
+              "at": 43,
               "line": "a5.side"
             },
             {
-              "at": 50,
+              "at": 56,
               "line": "a4.v6.5"
             },
             {
-              "at": 55,
+              "at": 61,
               "line": "a10.again"
             },
             {
-              "at": 69,
+              "at": 75,
               "line": "a4.v6.5"
             },
             {
-              "at": 74,
+              "at": 80,
               "line": "a5.side"
             },
             {
-              "at": 87,
+              "at": 93,
               "line": "a4.v6.5"
             }
           ]
@@ -11074,14 +11603,16 @@
               "at": 6,
               "line": "a11.hands.one",
               "notFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
               "at": 6,
               "line": "a11.hands.two",
               "onlyFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
@@ -11100,7 +11631,8 @@
               "at": 26,
               "line": "a11.side-walk.easy",
               "onlyFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
@@ -11113,6 +11645,47 @@
             },
             {
               "at": 67,
+              "line": "a5.half"
+            }
+          ]
+        },
+        {
+          "kind": "rest",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.hands.back"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 52,
+          "exerciseID": "bl.back-walk",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.back-walk.intro"
+            },
+            {
+              "at": 6,
+              "line": "a11.hands.two"
+            },
+            {
+              "at": 9,
+              "line": "a11.back-walk.move"
+            },
+            {
+              "at": 16,
+              "line": "a11.back-walk.count"
+            },
+            {
+              "at": 22,
+              "line": "a11.back-walk.easy"
+            },
+            {
+              "at": 35,
               "line": "a5.half"
             }
           ]
@@ -11280,20 +11853,66 @@
               "at": 43,
               "line": "a11.hands.one",
               "notFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
               "at": 43,
               "line": "a11.hands.two",
               "onlyFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
               "at": 47,
               "line": "a11.balance.shift"
             }
+          ]
+        },
+        {
+          "kind": "stretch",
+          "seconds": 44,
+          "exerciseID": "st.back-ext",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.back-ext.intro"
+            },
+            {
+              "at": 6,
+              "line": "a11.back-ext.move"
+            },
+            {
+              "at": 12,
+              "line": "a11.back-ext.small"
+            },
+            {
+              "at": 18,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 23,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 28,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 33,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 38,
+              "line": "a5.n.5"
+            }
+          ],
+          "hold": 0,
+          "notFor": [
+            "dizzy",
+            "unsteady"
           ]
         },
         {
@@ -11333,14 +11952,16 @@
               "at": 9,
               "line": "a11.sts.one",
               "notFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
               "at": 9,
               "line": "a11.sts.two",
               "onlyFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
@@ -11397,14 +12018,16 @@
               "at": 5,
               "line": "a11.hands.tips",
               "notFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
               "at": 5,
               "line": "a11.hands.two",
               "onlyFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
@@ -11480,7 +12103,7 @@
         },
         {
           "kind": "move",
-          "seconds": 98,
+          "seconds": 104,
           "exerciseID": "mv.single-leg",
           "cues": [
             {
@@ -11491,14 +12114,16 @@
               "at": 6,
               "line": "a11.hands.one",
               "notFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
               "at": 6,
               "line": "a11.hands.two",
               "onlyFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
@@ -11514,42 +12139,47 @@
               "line": "a4.v6.4"
             },
             {
-              "at": 24,
+              "at": 23,
+              "line": "a11.recover"
+            },
+            {
+              "at": 30,
               "line": "a4.v6.breath"
             },
             {
-              "at": 33,
+              "at": 39,
               "line": "a4.v6.5"
             },
             {
-              "at": 38,
+              "at": 44,
               "line": "a5.side"
             },
             {
-              "at": 51,
+              "at": 57,
               "line": "a4.v6.5"
             },
             {
-              "at": 56,
+              "at": 62,
               "line": "a10.again"
             },
             {
-              "at": 60,
+              "at": 66,
               "line": "a4.v6.7",
               "notFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
-              "at": 74,
+              "at": 80,
               "line": "a4.v6.5"
             },
             {
-              "at": 79,
+              "at": 85,
               "line": "a5.side"
             },
             {
-              "at": 92,
+              "at": 98,
               "line": "a4.v6.5"
             }
           ]
@@ -11566,58 +12196,149 @@
         },
         {
           "kind": "move",
-          "seconds": 82,
-          "exerciseID": "bl.side-walk",
+          "seconds": 55,
+          "exerciseID": "bl.walk-turn",
           "cues": [
             {
               "at": 0,
-              "line": "a11.side-walk.intro"
+              "line": "a11.walk-turn.intro"
+            },
+            {
+              "at": 5,
+              "line": "a11.hands.one",
+              "notFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 5,
+              "line": "a11.hands.two",
+              "onlyFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 9,
+              "line": "a11.walk-turn.move"
+            },
+            {
+              "at": 15,
+              "line": "a11.walk-turn.easy",
+              "onlyFor": [
+                "unsteady"
+              ]
+            },
+            {
+              "at": 35,
+              "line": "a11.walk-turn.back"
+            }
+          ]
+        },
+        {
+          "kind": "rest",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.hands.back"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 53,
+          "exerciseID": "bl.back-walk",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.back-walk.intro"
             },
             {
               "at": 6,
               "line": "a11.hands.one",
               "notFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
               "at": 6,
               "line": "a11.hands.two",
               "onlyFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
               "at": 10,
-              "line": "a11.side-walk.move"
+              "line": "a11.back-walk.move"
             },
             {
-              "at": 15,
-              "line": "a11.side-walk.count"
+              "at": 17,
+              "line": "a11.back-walk.count"
             },
             {
-              "at": 19,
-              "line": "a11.side-walk.nocounter"
+              "at": 23,
+              "line": "a11.back-walk.easy"
             },
             {
-              "at": 26,
-              "line": "a11.side-walk.easy",
-              "onlyFor": [
-                "dizzy"
+              "at": 36,
+              "line": "a5.half"
+            }
+          ]
+        },
+        {
+          "kind": "rest",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.hands.back"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 56,
+          "exerciseID": "bl.heel-toe-walking",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.heel-walk.intro"
+            },
+            {
+              "at": 6,
+              "line": "a11.hands.one",
+              "notFor": [
+                "dizzy",
+                "unsteady"
               ]
             },
             {
-              "at": 37,
-              "line": "a5.half"
+              "at": 6,
+              "line": "a11.hands.two",
+              "onlyFor": [
+                "dizzy",
+                "unsteady"
+              ]
             },
             {
-              "at": 51,
-              "line": "a10.again"
+              "at": 10,
+              "line": "a11.heel-walk.heels"
             },
             {
-              "at": 67,
-              "line": "a5.half"
+              "at": 30,
+              "line": "a11.heel-walk.toes"
+            },
+            {
+              "at": 50,
+              "line": "a11.heel-walk.easy"
             }
+          ],
+          "notFor": [
+            "unsteady"
           ]
         },
         {
@@ -11643,14 +12364,16 @@
               "at": 5,
               "line": "a11.hands.one",
               "notFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
               "at": 5,
               "line": "a11.hands.two",
               "onlyFor": [
-                "dizzy"
+                "dizzy",
+                "unsteady"
               ]
             },
             {
@@ -11745,6 +12468,1310 @@
             },
             {
               "at": 13,
+              "line": "a11.balance.close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.steady-set.gentle.a",
+      "kind": "balance",
+      "level": "inplace",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 12,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.steady.open"
+            },
+            {
+              "at": 6,
+              "line": "a11.balance.posture"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 47,
+          "exerciseID": "bl.tandem",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.tandem.intro"
+            },
+            {
+              "at": 5,
+              "line": "a11.hands.two"
+            },
+            {
+              "at": 8,
+              "line": "a11.tandem.move"
+            },
+            {
+              "at": 13,
+              "line": "a11.tandem.jr",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 18,
+              "line": "a4.v6.4"
+            },
+            {
+              "at": 22,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 27,
+              "line": "a5.5s"
+            },
+            {
+              "at": 32,
+              "line": "a11.tandem.switch"
+            },
+            {
+              "at": 42,
+              "line": "a5.5s"
+            }
+          ]
+        },
+        {
+          "kind": "rest",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.hands.back"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 57,
+          "exerciseID": "mv.sit-to-stand",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.sts.intro"
+            },
+            {
+              "at": 4,
+              "line": "a4.v1.2",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 4,
+              "line": "a4.v1.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 9,
+              "line": "a11.sts.two"
+            },
+            {
+              "at": 15,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 21,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 28,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 35,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 42,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 44,
+              "line": "a5.last"
+            },
+            {
+              "at": 49,
+              "line": "a5.n.5"
+            }
+          ],
+          "reps": 5
+        },
+        {
+          "kind": "outro",
+          "seconds": 18,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.balance.sit"
+            },
+            {
+              "at": 4,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 13,
+              "line": "a11.balance.close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.steady-set.gentle.b",
+      "kind": "balance",
+      "level": "inplace",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 12,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.steady.open"
+            },
+            {
+              "at": 6,
+              "line": "a11.balance.posture"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 47,
+          "exerciseID": "bl.tandem",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.tandem.intro"
+            },
+            {
+              "at": 5,
+              "line": "a11.hands.two"
+            },
+            {
+              "at": 8,
+              "line": "a11.tandem.move"
+            },
+            {
+              "at": 13,
+              "line": "a11.tandem.jr",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 18,
+              "line": "a4.v6.4"
+            },
+            {
+              "at": 22,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 27,
+              "line": "a5.5s"
+            },
+            {
+              "at": 32,
+              "line": "a11.tandem.switch"
+            },
+            {
+              "at": 42,
+              "line": "a5.5s"
+            }
+          ]
+        },
+        {
+          "kind": "rest",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.hands.back"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 56,
+          "exerciseID": "mv.single-leg",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.single-leg.intro"
+            },
+            {
+              "at": 6,
+              "line": "a11.hands.two"
+            },
+            {
+              "at": 9,
+              "line": "a11.hands.keep"
+            },
+            {
+              "at": 13,
+              "line": "a4.v6.2"
+            },
+            {
+              "at": 18,
+              "line": "a4.v6.4"
+            },
+            {
+              "at": 23,
+              "line": "a4.v6.breath"
+            },
+            {
+              "at": 32,
+              "line": "a4.v6.5"
+            },
+            {
+              "at": 37,
+              "line": "a5.side"
+            },
+            {
+              "at": 50,
+              "line": "a4.v6.5"
+            }
+          ],
+          "notFor": [
+            "dizzy",
+            "unsteady"
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 57,
+          "exerciseID": "mv.sit-to-stand",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.sts.intro"
+            },
+            {
+              "at": 4,
+              "line": "a4.v1.2",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 4,
+              "line": "a4.v1.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 9,
+              "line": "a11.sts.two"
+            },
+            {
+              "at": 15,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 21,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 28,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 35,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 42,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 44,
+              "line": "a5.last"
+            },
+            {
+              "at": 49,
+              "line": "a5.n.5"
+            }
+          ],
+          "reps": 5,
+          "onlyFor": [
+            "dizzy",
+            "unsteady"
+          ]
+        },
+        {
+          "kind": "outro",
+          "seconds": 18,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.balance.sit"
+            },
+            {
+              "at": 4,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 13,
+              "line": "a11.balance.close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.steady-set.steady.a",
+      "kind": "balance",
+      "level": "inplace",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 12,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.steady.open"
+            },
+            {
+              "at": 6,
+              "line": "a11.balance.posture"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 48,
+          "exerciseID": "bl.tandem",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.tandem.intro"
+            },
+            {
+              "at": 5,
+              "line": "a11.hands.one",
+              "notFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 5,
+              "line": "a11.hands.two",
+              "onlyFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 9,
+              "line": "a11.tandem.move"
+            },
+            {
+              "at": 14,
+              "line": "a11.tandem.jr",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 19,
+              "line": "a4.v6.4"
+            },
+            {
+              "at": 23,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 28,
+              "line": "a5.5s"
+            },
+            {
+              "at": 33,
+              "line": "a11.tandem.switch"
+            },
+            {
+              "at": 43,
+              "line": "a5.5s"
+            }
+          ]
+        },
+        {
+          "kind": "rest",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.hands.back"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 57,
+          "exerciseID": "mv.sit-to-stand",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.sts.intro"
+            },
+            {
+              "at": 4,
+              "line": "a4.v1.2",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 4,
+              "line": "a4.v1.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 9,
+              "line": "a11.sts.two"
+            },
+            {
+              "at": 15,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 21,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 28,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 30,
+              "line": "a11.sts.one",
+              "notFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 35,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 42,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 44,
+              "line": "a5.last"
+            },
+            {
+              "at": 49,
+              "line": "a5.n.5"
+            }
+          ],
+          "reps": 5
+        },
+        {
+          "kind": "outro",
+          "seconds": 18,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.balance.sit"
+            },
+            {
+              "at": 4,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 13,
+              "line": "a11.balance.close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.steady-set.steady.b",
+      "kind": "balance",
+      "level": "inplace",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 12,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.steady.open"
+            },
+            {
+              "at": 6,
+              "line": "a11.balance.posture"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 48,
+          "exerciseID": "bl.tandem",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.tandem.intro"
+            },
+            {
+              "at": 5,
+              "line": "a11.hands.one",
+              "notFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 5,
+              "line": "a11.hands.two",
+              "onlyFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 9,
+              "line": "a11.tandem.move"
+            },
+            {
+              "at": 14,
+              "line": "a11.tandem.jr",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 19,
+              "line": "a4.v6.4"
+            },
+            {
+              "at": 23,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 28,
+              "line": "a5.5s"
+            },
+            {
+              "at": 33,
+              "line": "a11.tandem.switch"
+            },
+            {
+              "at": 43,
+              "line": "a5.5s"
+            }
+          ]
+        },
+        {
+          "kind": "rest",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.hands.back"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 62,
+          "exerciseID": "mv.single-leg",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.single-leg.intro"
+            },
+            {
+              "at": 6,
+              "line": "a11.hands.two"
+            },
+            {
+              "at": 9,
+              "line": "a11.hands.keep"
+            },
+            {
+              "at": 13,
+              "line": "a4.v6.3"
+            },
+            {
+              "at": 18,
+              "line": "a4.v6.4"
+            },
+            {
+              "at": 22,
+              "line": "a11.recover"
+            },
+            {
+              "at": 29,
+              "line": "a4.v6.breath"
+            },
+            {
+              "at": 38,
+              "line": "a4.v6.5"
+            },
+            {
+              "at": 43,
+              "line": "a5.side"
+            },
+            {
+              "at": 56,
+              "line": "a4.v6.5"
+            }
+          ],
+          "notFor": [
+            "dizzy",
+            "unsteady"
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 57,
+          "exerciseID": "mv.sit-to-stand",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.sts.intro"
+            },
+            {
+              "at": 4,
+              "line": "a4.v1.2",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 4,
+              "line": "a4.v1.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 9,
+              "line": "a11.sts.two"
+            },
+            {
+              "at": 15,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 21,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 28,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 30,
+              "line": "a11.sts.one",
+              "notFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 35,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 42,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 44,
+              "line": "a5.last"
+            },
+            {
+              "at": 49,
+              "line": "a5.n.5"
+            }
+          ],
+          "reps": 5,
+          "onlyFor": [
+            "dizzy",
+            "unsteady"
+          ]
+        },
+        {
+          "kind": "outro",
+          "seconds": 18,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.balance.sit"
+            },
+            {
+              "at": 4,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 13,
+              "line": "a11.balance.close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.steady-set.strong.a",
+      "kind": "balance",
+      "level": "inplace",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 12,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.steady.open"
+            },
+            {
+              "at": 6,
+              "line": "a11.balance.posture"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 48,
+          "exerciseID": "bl.tandem",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.tandem.intro"
+            },
+            {
+              "at": 5,
+              "line": "a11.hands.tips",
+              "notFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 5,
+              "line": "a11.hands.two",
+              "onlyFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 9,
+              "line": "a11.tandem.move"
+            },
+            {
+              "at": 14,
+              "line": "a11.tandem.jr",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 19,
+              "line": "a4.v6.4"
+            },
+            {
+              "at": 23,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 28,
+              "line": "a5.5s"
+            },
+            {
+              "at": 33,
+              "line": "a11.tandem.switch"
+            },
+            {
+              "at": 43,
+              "line": "a5.5s"
+            }
+          ]
+        },
+        {
+          "kind": "rest",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.hands.back"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 57,
+          "exerciseID": "mv.sit-to-stand",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.sts.intro"
+            },
+            {
+              "at": 4,
+              "line": "a4.v1.2",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 4,
+              "line": "a4.v1.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 9,
+              "line": "a11.sts.one",
+              "notFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 9,
+              "line": "a11.sts.two",
+              "onlyFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 15,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 21,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 28,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 35,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 42,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 44,
+              "line": "a5.last"
+            },
+            {
+              "at": 49,
+              "line": "a5.n.5"
+            }
+          ],
+          "reps": 5
+        },
+        {
+          "kind": "outro",
+          "seconds": 18,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.balance.sit"
+            },
+            {
+              "at": 4,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 13,
+              "line": "a11.balance.close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.steady-set.strong.b",
+      "kind": "balance",
+      "level": "inplace",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 12,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.steady.open"
+            },
+            {
+              "at": 6,
+              "line": "a11.balance.posture"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 48,
+          "exerciseID": "bl.tandem",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.tandem.intro"
+            },
+            {
+              "at": 5,
+              "line": "a11.hands.tips",
+              "notFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 5,
+              "line": "a11.hands.two",
+              "onlyFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 9,
+              "line": "a11.tandem.move"
+            },
+            {
+              "at": 14,
+              "line": "a11.tandem.jr",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 19,
+              "line": "a4.v6.4"
+            },
+            {
+              "at": 23,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 28,
+              "line": "a5.5s"
+            },
+            {
+              "at": 33,
+              "line": "a11.tandem.switch"
+            },
+            {
+              "at": 43,
+              "line": "a5.5s"
+            }
+          ]
+        },
+        {
+          "kind": "rest",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.hands.back"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 63,
+          "exerciseID": "mv.single-leg",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.single-leg.intro"
+            },
+            {
+              "at": 6,
+              "line": "a11.hands.one",
+              "notFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 6,
+              "line": "a11.hands.two",
+              "onlyFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 10,
+              "line": "a11.hands.keep"
+            },
+            {
+              "at": 14,
+              "line": "a4.v6.3"
+            },
+            {
+              "at": 19,
+              "line": "a4.v6.4"
+            },
+            {
+              "at": 23,
+              "line": "a11.recover"
+            },
+            {
+              "at": 30,
+              "line": "a4.v6.breath"
+            },
+            {
+              "at": 39,
+              "line": "a4.v6.5"
+            },
+            {
+              "at": 44,
+              "line": "a5.side"
+            },
+            {
+              "at": 57,
+              "line": "a4.v6.5"
+            }
+          ],
+          "notFor": [
+            "dizzy",
+            "unsteady"
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 57,
+          "exerciseID": "mv.sit-to-stand",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.sts.intro"
+            },
+            {
+              "at": 4,
+              "line": "a4.v1.2",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 4,
+              "line": "a4.v1.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 9,
+              "line": "a11.sts.one",
+              "notFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 9,
+              "line": "a11.sts.two",
+              "onlyFor": [
+                "dizzy",
+                "unsteady"
+              ]
+            },
+            {
+              "at": 15,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 21,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 28,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 35,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 42,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 44,
+              "line": "a5.last"
+            },
+            {
+              "at": 49,
+              "line": "a5.n.5"
+            }
+          ],
+          "reps": 5,
+          "onlyFor": [
+            "dizzy",
+            "unsteady"
+          ]
+        },
+        {
+          "kind": "outro",
+          "seconds": 18,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.balance.sit"
+            },
+            {
+              "at": 4,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 13,
+              "line": "a11.balance.close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ses.steady-set.seated",
+      "kind": "chair",
+      "level": "seated",
+      "segments": [
+        {
+          "kind": "intro",
+          "seconds": 6,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a11.steady.seated"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 40,
+          "exerciseID": "mv.knee-lift",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v2.1"
+            },
+            {
+              "at": 5,
+              "line": "a4.v2.2"
+            },
+            {
+              "at": 9,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 13,
+              "line": "a4.v2.3"
+            },
+            {
+              "at": 18,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 22,
+              "line": "a4.v2.4"
+            },
+            {
+              "at": 28,
+              "line": "a4.v2.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 33,
+              "line": "a4.v2.7"
+            }
+          ]
+        },
+        {
+          "kind": "rest",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.rest.1"
+            }
+          ]
+        },
+        {
+          "kind": "move",
+          "seconds": 40,
+          "exerciseID": "mv.heel-toe",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v4.1"
+            },
+            {
+              "at": 5,
+              "line": "a4.v4.2"
+            },
+            {
+              "at": 9,
+              "line": "a4.demo.2"
+            },
+            {
+              "at": 13,
+              "line": "a4.v4.5"
+            },
+            {
+              "at": 17,
+              "line": "a4.with-me.2"
+            },
+            {
+              "at": 21,
+              "line": "a4.v4.3"
+            },
+            {
+              "at": 25,
+              "line": "a4.v4.var.dizzy",
+              "onlyFor": [
+                "dizzy"
+              ]
+            },
+            {
+              "at": 30,
+              "line": "a5.10s.change"
+            }
+          ]
+        },
+        {
+          "kind": "outro",
+          "seconds": 10,
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 5,
               "line": "a11.balance.close"
             }
           ]
@@ -11935,7 +13962,7 @@
         },
         {
           "kind": "stretch",
-          "seconds": 38,
+          "seconds": 43,
           "exerciseID": "st.chest",
           "cues": [
             {
@@ -11969,19 +13996,55 @@
               "line": "a10.hold.start.2"
             },
             {
-              "at": 29,
-              "line": "a5.5s"
+              "at": 27,
+              "line": "a10.hold.4"
             },
             {
               "at": 34,
+              "line": "a5.5s"
+            },
+            {
+              "at": 39,
               "line": "a10.release.1"
             }
           ],
-          "hold": 15
+          "hold": 20
         },
         {
           "kind": "stretch",
-          "seconds": 66,
+          "seconds": 32,
+          "exerciseID": "st.chest",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.again"
+            },
+            {
+              "at": 4,
+              "line": "a10.into.2"
+            },
+            {
+              "at": 8,
+              "line": "a10.hold.start.1"
+            },
+            {
+              "at": 16,
+              "line": "a10.hold.5"
+            },
+            {
+              "at": 23,
+              "line": "a5.5s"
+            },
+            {
+              "at": 28,
+              "line": "a10.release.2"
+            }
+          ],
+          "hold": 20
+        },
+        {
+          "kind": "stretch",
+          "seconds": 76,
           "exerciseID": "st.twist",
           "cues": [
             {
@@ -12006,38 +14069,98 @@
             },
             {
               "at": 24,
-              "line": "a10.into.2"
+              "line": "a10.into.1"
             },
             {
               "at": 28,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 38,
-              "line": "a5.5s"
-            },
-            {
-              "at": 43,
-              "line": "a10.switch.1"
-            },
-            {
-              "at": 47,
               "line": "a10.hold.start.2"
             },
             {
-              "at": 57,
+              "at": 36,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 43,
               "line": "a5.5s"
             },
             {
-              "at": 62,
-              "line": "a10.release.3"
+              "at": 48,
+              "line": "a10.switch.2"
+            },
+            {
+              "at": 52,
+              "line": "a10.hold.start.1"
+            },
+            {
+              "at": 60,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 67,
+              "line": "a5.5s"
+            },
+            {
+              "at": 72,
+              "line": "a10.release.1"
             }
           ],
-          "hold": 15
+          "hold": 20
         },
         {
           "kind": "stretch",
-          "seconds": 64,
+          "seconds": 60,
+          "exerciseID": "st.twist",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.round2.1"
+            },
+            {
+              "at": 5,
+              "line": "a10.left"
+            },
+            {
+              "at": 8,
+              "line": "a10.into.1"
+            },
+            {
+              "at": 12,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 20,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 27,
+              "line": "a5.5s"
+            },
+            {
+              "at": 32,
+              "line": "a10.switch.2"
+            },
+            {
+              "at": 36,
+              "line": "a10.hold.start.1"
+            },
+            {
+              "at": 44,
+              "line": "a10.hold.4"
+            },
+            {
+              "at": 51,
+              "line": "a5.5s"
+            },
+            {
+              "at": 56,
+              "line": "a10.release.3"
+            }
+          ],
+          "hold": 20
+        },
+        {
+          "kind": "stretch",
+          "seconds": 74,
           "exerciseID": "st.thigh",
           "cues": [
             {
@@ -12079,34 +14202,94 @@
             },
             {
               "at": 22,
-              "line": "a10.into.2"
+              "line": "a10.into.1"
             },
             {
               "at": 26,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 36,
-              "line": "a5.5s"
-            },
-            {
-              "at": 41,
-              "line": "a10.switch.1"
-            },
-            {
-              "at": 45,
               "line": "a10.hold.start.2"
             },
             {
-              "at": 55,
+              "at": 34,
+              "line": "a10.hold.5"
+            },
+            {
+              "at": 41,
               "line": "a5.5s"
             },
             {
-              "at": 60,
+              "at": 46,
+              "line": "a10.switch.2"
+            },
+            {
+              "at": 50,
+              "line": "a10.hold.start.1"
+            },
+            {
+              "at": 58,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 65,
+              "line": "a5.5s"
+            },
+            {
+              "at": 70,
               "line": "a10.release.2"
             }
           ],
-          "hold": 15
+          "hold": 20
+        },
+        {
+          "kind": "stretch",
+          "seconds": 60,
+          "exerciseID": "st.thigh",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.round2.1"
+            },
+            {
+              "at": 5,
+              "line": "a10.left"
+            },
+            {
+              "at": 8,
+              "line": "a10.into.1"
+            },
+            {
+              "at": 12,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 20,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 27,
+              "line": "a5.5s"
+            },
+            {
+              "at": 32,
+              "line": "a10.switch.2"
+            },
+            {
+              "at": 36,
+              "line": "a10.hold.start.1"
+            },
+            {
+              "at": 44,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 51,
+              "line": "a5.5s"
+            },
+            {
+              "at": 56,
+              "line": "a10.release.1"
+            }
+          ],
+          "hold": 20
         },
         {
           "kind": "stretch",
@@ -12148,70 +14331,6 @@
           "onlyFor": [
             "jointReplacement"
           ]
-        },
-        {
-          "kind": "stretch",
-          "seconds": 58,
-          "exerciseID": "st.side",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.side.intro"
-            },
-            {
-              "at": 2,
-              "line": "a10.side.setup"
-            },
-            {
-              "at": 7,
-              "line": "a10.left"
-            },
-            {
-              "at": 10,
-              "line": "a10.side.move",
-              "notFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 10,
-              "line": "a10.side.easy",
-              "onlyFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 16,
-              "line": "a10.into.2"
-            },
-            {
-              "at": 20,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 30,
-              "line": "a5.5s"
-            },
-            {
-              "at": 35,
-              "line": "a10.switch.1"
-            },
-            {
-              "at": 39,
-              "line": "a10.hold.start.2"
-            },
-            {
-              "at": 49,
-              "line": "a5.5s"
-            },
-            {
-              "at": 54,
-              "line": "a10.release.1"
-            }
-          ],
-          "hold": 15
         },
         {
           "kind": "cooldown",
@@ -12379,78 +14498,6 @@
         },
         {
           "kind": "stretch",
-          "seconds": 70,
-          "exerciseID": "st.neck-tilt",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.neck-tilt.intro"
-            },
-            {
-              "at": 3,
-              "line": "a10.neck-tilt.setup",
-              "notFor": [
-                "dizzy",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 3,
-              "line": "a10.neck-tilt.easy",
-              "onlyFor": [
-                "dizzy",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 9,
-              "line": "a10.left"
-            },
-            {
-              "at": 12,
-              "line": "a10.neck-tilt.move"
-            },
-            {
-              "at": 18,
-              "line": "a10.into.2"
-            },
-            {
-              "at": 22,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 30,
-              "line": "a10.hold.3"
-            },
-            {
-              "at": 37,
-              "line": "a5.5s"
-            },
-            {
-              "at": 42,
-              "line": "a10.switch.1"
-            },
-            {
-              "at": 46,
-              "line": "a10.hold.start.2"
-            },
-            {
-              "at": 54,
-              "line": "a10.hold.4"
-            },
-            {
-              "at": 61,
-              "line": "a5.5s"
-            },
-            {
-              "at": 66,
-              "line": "a10.release.1"
-            }
-          ],
-          "hold": 20
-        },
-        {
-          "kind": "stretch",
           "seconds": 66,
           "exerciseID": "st.chin-tuck",
           "cues": [
@@ -12512,64 +14559,6 @@
             },
             {
               "at": 62,
-              "line": "a10.release.2"
-            }
-          ],
-          "hold": 0
-        },
-        {
-          "kind": "stretch",
-          "seconds": 48,
-          "exerciseID": "st.shoulder-roll",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.shoulder-roll.intro"
-            },
-            {
-              "at": 5,
-              "line": "a10.shoulder-roll.setup"
-            },
-            {
-              "at": 9,
-              "line": "a10.shoulder-roll.move",
-              "notFor": [
-                "shoulders"
-              ]
-            },
-            {
-              "at": 9,
-              "line": "a10.shoulder-roll.easy",
-              "onlyFor": [
-                "shoulders"
-              ]
-            },
-            {
-              "at": 15,
-              "line": "a10.reps"
-            },
-            {
-              "at": 19,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 24,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 29,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 34,
-              "line": "a5.n.4"
-            },
-            {
-              "at": 39,
-              "line": "a5.n.5"
-            },
-            {
-              "at": 44,
               "line": "a10.release.3"
             }
           ],
@@ -12577,7 +14566,7 @@
         },
         {
           "kind": "stretch",
-          "seconds": 43,
+          "seconds": 53,
           "exerciseID": "st.chest",
           "cues": [
             {
@@ -12604,114 +14593,70 @@
             },
             {
               "at": 15,
-              "line": "a10.into.2"
-            },
-            {
-              "at": 19,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 27,
-              "line": "a10.hold.2"
-            },
-            {
-              "at": 34,
-              "line": "a5.5s"
-            },
-            {
-              "at": 39,
-              "line": "a10.release.1"
-            }
-          ],
-          "hold": 20
-        },
-        {
-          "kind": "stretch",
-          "seconds": 33,
-          "exerciseID": "st.chest",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.round2.1"
-            },
-            {
-              "at": 5,
               "line": "a10.into.1"
             },
             {
-              "at": 9,
+              "at": 19,
               "line": "a10.hold.start.2"
             },
             {
-              "at": 17,
-              "line": "a10.hold.3"
-            },
-            {
-              "at": 24,
-              "line": "a5.5s"
-            },
-            {
-              "at": 29,
-              "line": "a10.release.2"
-            }
-          ],
-          "hold": 20
-        },
-        {
-          "kind": "stretch",
-          "seconds": 46,
-          "exerciseID": "st.upper-back",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.upper-back.intro"
-            },
-            {
-              "at": 5,
-              "line": "a10.upper-back.setup"
-            },
-            {
-              "at": 11,
-              "line": "a10.upper-back.move",
-              "notFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 11,
-              "line": "a10.upper-back.easy",
-              "onlyFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 18,
-              "line": "a10.into.2"
-            },
-            {
-              "at": 22,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 30,
+              "at": 27,
               "line": "a10.hold.4"
             },
             {
               "at": 37,
-              "line": "a5.5s"
+              "line": "a10.hold.1"
             },
             {
               "at": 42,
-              "line": "a10.release.3"
+              "line": "a5.10s"
+            },
+            {
+              "at": 49,
+              "line": "a10.release.1"
             }
           ],
-          "hold": 20
+          "hold": 30
         },
         {
           "kind": "stretch",
-          "seconds": 72,
+          "seconds": 42,
+          "exerciseID": "st.chest",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.again"
+            },
+            {
+              "at": 4,
+              "line": "a10.into.2"
+            },
+            {
+              "at": 8,
+              "line": "a10.hold.start.1"
+            },
+            {
+              "at": 16,
+              "line": "a10.hold.5"
+            },
+            {
+              "at": 26,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 31,
+              "line": "a5.10s"
+            },
+            {
+              "at": 38,
+              "line": "a10.release.2"
+            }
+          ],
+          "hold": 30
+        },
+        {
+          "kind": "stretch",
+          "seconds": 92,
           "exerciseID": "st.twist",
           "cues": [
             {
@@ -12750,90 +14695,46 @@
             },
             {
               "at": 32,
-              "line": "a10.hold.5"
-            },
-            {
-              "at": 39,
-              "line": "a5.5s"
-            },
-            {
-              "at": 44,
-              "line": "a10.switch.2"
-            },
-            {
-              "at": 48,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 56,
               "line": "a10.hold.1"
             },
             {
-              "at": 63,
-              "line": "a5.5s"
-            },
-            {
-              "at": 68,
-              "line": "a10.release.2"
-            }
-          ],
-          "hold": 20
-        },
-        {
-          "kind": "stretch",
-          "seconds": 60,
-          "exerciseID": "st.twist",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.round2.1"
-            },
-            {
-              "at": 5,
-              "line": "a10.left"
-            },
-            {
-              "at": 8,
-              "line": "a10.into.1"
-            },
-            {
-              "at": 12,
-              "line": "a10.hold.start.2"
-            },
-            {
-              "at": 20,
-              "line": "a10.hold.2"
-            },
-            {
-              "at": 27,
-              "line": "a5.5s"
-            },
-            {
-              "at": 32,
-              "line": "a10.switch.2"
-            },
-            {
-              "at": 36,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 44,
+              "at": 42,
               "line": "a10.hold.3"
             },
             {
-              "at": 51,
-              "line": "a5.5s"
+              "at": 46,
+              "line": "a5.10s"
             },
             {
-              "at": 56,
+              "at": 54,
+              "line": "a10.switch.2"
+            },
+            {
+              "at": 58,
+              "line": "a10.hold.start.1"
+            },
+            {
+              "at": 66,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 76,
+              "line": "a10.hold.4"
+            },
+            {
+              "at": 80,
+              "line": "a5.10s"
+            },
+            {
+              "at": 88,
               "line": "a10.release.1"
             }
           ],
-          "hold": 20
+          "hold": 30
         },
         {
           "kind": "stretch",
-          "seconds": 74,
+          "seconds": 94,
           "exerciseID": "st.thigh",
           "cues": [
             {
@@ -12883,38 +14784,46 @@
             },
             {
               "at": 34,
-              "line": "a10.hold.4"
+              "line": "a10.hold.3"
             },
             {
-              "at": 41,
-              "line": "a5.5s"
-            },
-            {
-              "at": 46,
-              "line": "a10.switch.2"
-            },
-            {
-              "at": 50,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 58,
+              "at": 44,
               "line": "a10.hold.5"
             },
             {
-              "at": 65,
-              "line": "a5.5s"
+              "at": 48,
+              "line": "a5.10s"
             },
             {
-              "at": 70,
+              "at": 56,
+              "line": "a10.switch.2"
+            },
+            {
+              "at": 60,
+              "line": "a10.hold.start.1"
+            },
+            {
+              "at": 68,
+              "line": "a10.hold.4"
+            },
+            {
+              "at": 78,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 83,
+              "line": "a5.10s"
+            },
+            {
+              "at": 90,
               "line": "a10.release.3"
             }
           ],
-          "hold": 20
+          "hold": 30
         },
         {
           "kind": "stretch",
-          "seconds": 60,
+          "seconds": 80,
           "exerciseID": "st.thigh",
           "cues": [
             {
@@ -12935,34 +14844,42 @@
             },
             {
               "at": 20,
-              "line": "a10.hold.1"
+              "line": "a10.hold.5"
             },
             {
-              "at": 27,
-              "line": "a5.5s"
-            },
-            {
-              "at": 32,
-              "line": "a10.switch.2"
-            },
-            {
-              "at": 36,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 44,
+              "at": 30,
               "line": "a10.hold.2"
             },
             {
-              "at": 51,
-              "line": "a5.5s"
+              "at": 35,
+              "line": "a5.10s"
             },
             {
-              "at": 56,
+              "at": 42,
+              "line": "a10.switch.2"
+            },
+            {
+              "at": 46,
+              "line": "a10.hold.start.1"
+            },
+            {
+              "at": 54,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 64,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 68,
+              "line": "a5.10s"
+            },
+            {
+              "at": 76,
               "line": "a10.release.2"
             }
           ],
-          "hold": 20
+          "hold": 30
         },
         {
           "kind": "stretch",
@@ -13004,78 +14921,6 @@
           "onlyFor": [
             "jointReplacement"
           ]
-        },
-        {
-          "kind": "stretch",
-          "seconds": 68,
-          "exerciseID": "st.side",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.side.intro"
-            },
-            {
-              "at": 2,
-              "line": "a10.side.setup"
-            },
-            {
-              "at": 7,
-              "line": "a10.left"
-            },
-            {
-              "at": 10,
-              "line": "a10.side.move",
-              "notFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 10,
-              "line": "a10.side.easy",
-              "onlyFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 16,
-              "line": "a10.into.1"
-            },
-            {
-              "at": 20,
-              "line": "a10.hold.start.2"
-            },
-            {
-              "at": 28,
-              "line": "a10.hold.3"
-            },
-            {
-              "at": 35,
-              "line": "a5.5s"
-            },
-            {
-              "at": 40,
-              "line": "a10.switch.2"
-            },
-            {
-              "at": 44,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 52,
-              "line": "a10.hold.4"
-            },
-            {
-              "at": 59,
-              "line": "a5.5s"
-            },
-            {
-              "at": 64,
-              "line": "a10.release.1"
-            }
-          ],
-          "hold": 20
         },
         {
           "kind": "cooldown",
@@ -13243,212 +15088,6 @@
         },
         {
           "kind": "stretch",
-          "seconds": 90,
-          "exerciseID": "st.neck-tilt",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.neck-tilt.intro"
-            },
-            {
-              "at": 3,
-              "line": "a10.neck-tilt.setup",
-              "notFor": [
-                "dizzy",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 3,
-              "line": "a10.neck-tilt.easy",
-              "onlyFor": [
-                "dizzy",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 9,
-              "line": "a10.left"
-            },
-            {
-              "at": 12,
-              "line": "a10.neck-tilt.move"
-            },
-            {
-              "at": 18,
-              "line": "a10.into.2"
-            },
-            {
-              "at": 22,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 30,
-              "line": "a10.hold.3"
-            },
-            {
-              "at": 40,
-              "line": "a10.hold.5"
-            },
-            {
-              "at": 44,
-              "line": "a5.10s"
-            },
-            {
-              "at": 52,
-              "line": "a10.switch.1"
-            },
-            {
-              "at": 56,
-              "line": "a10.hold.start.2"
-            },
-            {
-              "at": 64,
-              "line": "a10.hold.4"
-            },
-            {
-              "at": 74,
-              "line": "a10.hold.1"
-            },
-            {
-              "at": 79,
-              "line": "a5.10s"
-            },
-            {
-              "at": 86,
-              "line": "a10.release.1"
-            }
-          ],
-          "hold": 30
-        },
-        {
-          "kind": "stretch",
-          "seconds": 66,
-          "exerciseID": "st.chin-tuck",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.chin-tuck.intro"
-            },
-            {
-              "at": 5,
-              "line": "a10.chin-tuck.setup"
-            },
-            {
-              "at": 11,
-              "line": "a10.chin-tuck.move"
-            },
-            {
-              "at": 18,
-              "line": "a10.reps"
-            },
-            {
-              "at": 22,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 26,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 30,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 34,
-              "line": "a5.n.4"
-            },
-            {
-              "at": 38,
-              "line": "a5.n.5"
-            },
-            {
-              "at": 42,
-              "line": "a5.n.6"
-            },
-            {
-              "at": 46,
-              "line": "a5.n.7"
-            },
-            {
-              "at": 50,
-              "line": "a5.n.8"
-            },
-            {
-              "at": 54,
-              "line": "a5.n.9"
-            },
-            {
-              "at": 58,
-              "line": "a5.n.10"
-            },
-            {
-              "at": 62,
-              "line": "a10.release.2"
-            }
-          ],
-          "hold": 0
-        },
-        {
-          "kind": "stretch",
-          "seconds": 48,
-          "exerciseID": "st.shoulder-roll",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.shoulder-roll.intro"
-            },
-            {
-              "at": 5,
-              "line": "a10.shoulder-roll.setup"
-            },
-            {
-              "at": 9,
-              "line": "a10.shoulder-roll.move",
-              "notFor": [
-                "shoulders"
-              ]
-            },
-            {
-              "at": 9,
-              "line": "a10.shoulder-roll.easy",
-              "onlyFor": [
-                "shoulders"
-              ]
-            },
-            {
-              "at": 15,
-              "line": "a10.reps"
-            },
-            {
-              "at": 19,
-              "line": "a5.n.1"
-            },
-            {
-              "at": 24,
-              "line": "a5.n.2"
-            },
-            {
-              "at": 29,
-              "line": "a5.n.3"
-            },
-            {
-              "at": 34,
-              "line": "a5.n.4"
-            },
-            {
-              "at": 39,
-              "line": "a5.n.5"
-            },
-            {
-              "at": 44,
-              "line": "a10.release.3"
-            }
-          ],
-          "hold": 0
-        },
-        {
-          "kind": "stretch",
           "seconds": 53,
           "exerciseID": "st.chest",
           "cues": [
@@ -13484,11 +15123,11 @@
             },
             {
               "at": 27,
-              "line": "a10.hold.2"
+              "line": "a10.hold.3"
             },
             {
               "at": 37,
-              "line": "a10.hold.4"
+              "line": "a10.hold.5"
             },
             {
               "at": 41,
@@ -13496,7 +15135,7 @@
             },
             {
               "at": 49,
-              "line": "a10.release.1"
+              "line": "a10.release.3"
             }
           ],
           "hold": 30
@@ -13520,75 +15159,19 @@
             },
             {
               "at": 17,
-              "line": "a10.hold.3"
+              "line": "a10.hold.4"
             },
             {
               "at": 27,
-              "line": "a10.hold.5"
+              "line": "a10.hold.1"
             },
             {
-              "at": 31,
+              "at": 32,
               "line": "a5.10s"
             },
             {
               "at": 39,
-              "line": "a10.release.2"
-            }
-          ],
-          "hold": 30
-        },
-        {
-          "kind": "stretch",
-          "seconds": 56,
-          "exerciseID": "st.upper-back",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.upper-back.intro"
-            },
-            {
-              "at": 5,
-              "line": "a10.upper-back.setup"
-            },
-            {
-              "at": 11,
-              "line": "a10.upper-back.move",
-              "notFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 11,
-              "line": "a10.upper-back.easy",
-              "onlyFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 18,
-              "line": "a10.into.2"
-            },
-            {
-              "at": 22,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 30,
-              "line": "a10.hold.4"
-            },
-            {
-              "at": 40,
-              "line": "a10.hold.1"
-            },
-            {
-              "at": 45,
-              "line": "a5.10s"
-            },
-            {
-              "at": 52,
-              "line": "a10.release.3"
+              "line": "a10.release.1"
             }
           ],
           "hold": 30
@@ -13616,7 +15199,7 @@
             },
             {
               "at": 20,
-              "line": "a10.into.1",
+              "line": "a10.into.2",
               "notFor": [
                 "lowerBack"
               ]
@@ -13630,7 +15213,7 @@
             },
             {
               "at": 24,
-              "line": "a10.hold.start.2"
+              "line": "a10.hold.start.1"
             },
             {
               "at": 32,
@@ -13646,11 +15229,11 @@
             },
             {
               "at": 54,
-              "line": "a10.switch.2"
+              "line": "a10.switch.1"
             },
             {
               "at": 58,
-              "line": "a10.hold.start.1"
+              "line": "a10.hold.start.2"
             },
             {
               "at": 66,
@@ -13666,67 +15249,67 @@
             },
             {
               "at": 88,
-              "line": "a10.release.2"
+              "line": "a10.release.3"
             }
           ],
           "hold": 30
         },
         {
           "kind": "stretch",
-          "seconds": 80,
+          "seconds": 79,
           "exerciseID": "st.twist",
           "cues": [
             {
               "at": 0,
-              "line": "a10.round2.1"
+              "line": "a10.again"
             },
             {
-              "at": 5,
+              "at": 4,
               "line": "a10.left"
             },
             {
-              "at": 8,
-              "line": "a10.into.1"
+              "at": 7,
+              "line": "a10.into.2"
             },
             {
-              "at": 12,
-              "line": "a10.hold.start.2"
-            },
-            {
-              "at": 20,
-              "line": "a10.hold.2"
-            },
-            {
-              "at": 30,
-              "line": "a10.hold.4"
-            },
-            {
-              "at": 34,
-              "line": "a5.10s"
-            },
-            {
-              "at": 42,
-              "line": "a10.switch.2"
-            },
-            {
-              "at": 46,
+              "at": 11,
               "line": "a10.hold.start.1"
             },
             {
-              "at": 54,
-              "line": "a10.hold.3"
+              "at": 19,
+              "line": "a10.hold.2"
             },
             {
-              "at": 64,
-              "line": "a10.hold.5"
+              "at": 29,
+              "line": "a10.hold.4"
             },
             {
-              "at": 68,
+              "at": 33,
               "line": "a5.10s"
             },
             {
-              "at": 76,
-              "line": "a10.release.1"
+              "at": 41,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 45,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 53,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 63,
+              "line": "a10.hold.5"
+            },
+            {
+              "at": 67,
+              "line": "a5.10s"
+            },
+            {
+              "at": 75,
+              "line": "a10.release.2"
             }
           ],
           "hold": 30
@@ -13775,11 +15358,11 @@
             },
             {
               "at": 22,
-              "line": "a10.into.1"
+              "line": "a10.into.2"
             },
             {
               "at": 26,
-              "line": "a10.hold.start.2"
+              "line": "a10.hold.start.1"
             },
             {
               "at": 34,
@@ -13795,11 +15378,11 @@
             },
             {
               "at": 56,
-              "line": "a10.switch.2"
+              "line": "a10.switch.1"
             },
             {
               "at": 60,
-              "line": "a10.hold.start.1"
+              "line": "a10.hold.start.2"
             },
             {
               "at": 68,
@@ -13815,67 +15398,67 @@
             },
             {
               "at": 90,
-              "line": "a10.release.3"
+              "line": "a10.release.1"
             }
           ],
           "hold": 30
         },
         {
           "kind": "stretch",
-          "seconds": 80,
+          "seconds": 79,
           "exerciseID": "st.thigh",
           "cues": [
             {
               "at": 0,
-              "line": "a10.round2.1"
+              "line": "a10.again"
             },
             {
-              "at": 5,
+              "at": 4,
               "line": "a10.left"
             },
             {
-              "at": 8,
-              "line": "a10.into.1"
+              "at": 7,
+              "line": "a10.into.2"
             },
             {
-              "at": 12,
-              "line": "a10.hold.start.2"
-            },
-            {
-              "at": 20,
-              "line": "a10.hold.1"
-            },
-            {
-              "at": 30,
-              "line": "a10.hold.3"
-            },
-            {
-              "at": 34,
-              "line": "a5.10s"
-            },
-            {
-              "at": 42,
-              "line": "a10.switch.2"
-            },
-            {
-              "at": 46,
+              "at": 11,
               "line": "a10.hold.start.1"
             },
             {
-              "at": 54,
-              "line": "a10.hold.2"
+              "at": 19,
+              "line": "a10.hold.1"
             },
             {
-              "at": 64,
-              "line": "a10.hold.4"
+              "at": 29,
+              "line": "a10.hold.3"
             },
             {
-              "at": 68,
+              "at": 33,
               "line": "a5.10s"
             },
             {
-              "at": 76,
-              "line": "a10.release.2"
+              "at": 41,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 45,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 53,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 63,
+              "line": "a10.hold.4"
+            },
+            {
+              "at": 67,
+              "line": "a5.10s"
+            },
+            {
+              "at": 75,
+              "line": "a10.release.3"
             }
           ],
           "hold": 30
@@ -13920,86 +15503,6 @@
           "onlyFor": [
             "jointReplacement"
           ]
-        },
-        {
-          "kind": "stretch",
-          "seconds": 88,
-          "exerciseID": "st.side",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.side.intro"
-            },
-            {
-              "at": 2,
-              "line": "a10.side.setup"
-            },
-            {
-              "at": 7,
-              "line": "a10.left"
-            },
-            {
-              "at": 10,
-              "line": "a10.side.move",
-              "notFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 10,
-              "line": "a10.side.easy",
-              "onlyFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 16,
-              "line": "a10.into.1"
-            },
-            {
-              "at": 20,
-              "line": "a10.hold.start.2"
-            },
-            {
-              "at": 28,
-              "line": "a10.hold.3"
-            },
-            {
-              "at": 38,
-              "line": "a10.hold.5"
-            },
-            {
-              "at": 42,
-              "line": "a5.10s"
-            },
-            {
-              "at": 50,
-              "line": "a10.switch.2"
-            },
-            {
-              "at": 54,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 62,
-              "line": "a10.hold.4"
-            },
-            {
-              "at": 72,
-              "line": "a10.hold.1"
-            },
-            {
-              "at": 77,
-              "line": "a5.10s"
-            },
-            {
-              "at": 84,
-              "line": "a10.release.1"
-            }
-          ],
-          "hold": 30
         },
         {
           "kind": "cooldown",
@@ -14115,7 +15618,7 @@
         },
         {
           "kind": "stretch",
-          "seconds": 64,
+          "seconds": 74,
           "exerciseID": "st.calf",
           "cues": [
             {
@@ -14153,27 +15656,87 @@
               "line": "a10.hold.start.2"
             },
             {
-              "at": 36,
-              "line": "a5.5s"
+              "at": 34,
+              "line": "a10.hold.2"
             },
             {
               "at": 41,
-              "line": "a10.switch.2"
-            },
-            {
-              "at": 45,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 55,
               "line": "a5.5s"
             },
             {
-              "at": 60,
+              "at": 46,
+              "line": "a10.switch.2"
+            },
+            {
+              "at": 50,
+              "line": "a10.hold.start.1"
+            },
+            {
+              "at": 58,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 65,
+              "line": "a5.5s"
+            },
+            {
+              "at": 70,
               "line": "a10.release.3"
             }
           ],
-          "hold": 15
+          "hold": 20
+        },
+        {
+          "kind": "stretch",
+          "seconds": 60,
+          "exerciseID": "st.calf",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.round2.1"
+            },
+            {
+              "at": 5,
+              "line": "a10.left"
+            },
+            {
+              "at": 8,
+              "line": "a10.into.1"
+            },
+            {
+              "at": 12,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 20,
+              "line": "a10.hold.4"
+            },
+            {
+              "at": 27,
+              "line": "a5.5s"
+            },
+            {
+              "at": 32,
+              "line": "a10.switch.2"
+            },
+            {
+              "at": 36,
+              "line": "a10.hold.start.1"
+            },
+            {
+              "at": 44,
+              "line": "a10.hold.5"
+            },
+            {
+              "at": 51,
+              "line": "a5.5s"
+            },
+            {
+              "at": 56,
+              "line": "a10.release.2"
+            }
+          ],
+          "hold": 20
         },
         {
           "kind": "rest",
@@ -14187,7 +15750,7 @@
         },
         {
           "kind": "stretch",
-          "seconds": 43,
+          "seconds": 48,
           "exerciseID": "st.overhead",
           "cues": [
             {
@@ -14234,15 +15797,19 @@
               "line": "a10.hold.start.2"
             },
             {
-              "at": 34,
-              "line": "a5.5s"
+              "at": 32,
+              "line": "a10.hold.1"
             },
             {
               "at": 39,
-              "line": "a10.release.1"
+              "line": "a5.5s"
+            },
+            {
+              "at": 44,
+              "line": "a10.release.3"
             }
           ],
-          "hold": 15
+          "hold": 20
         },
         {
           "kind": "rest",
@@ -14256,7 +15823,7 @@
         },
         {
           "kind": "stretch",
-          "seconds": 58,
+          "seconds": 68,
           "exerciseID": "st.side",
           "cues": [
             {
@@ -14296,31 +15863,39 @@
               "line": "a10.hold.start.1"
             },
             {
-              "at": 30,
-              "line": "a5.5s"
+              "at": 28,
+              "line": "a10.hold.2"
             },
             {
               "at": 35,
-              "line": "a10.switch.1"
-            },
-            {
-              "at": 39,
-              "line": "a10.hold.start.2"
-            },
-            {
-              "at": 49,
               "line": "a5.5s"
             },
             {
-              "at": 54,
-              "line": "a10.release.3"
+              "at": 40,
+              "line": "a10.switch.1"
+            },
+            {
+              "at": 44,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 52,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 59,
+              "line": "a5.5s"
+            },
+            {
+              "at": 64,
+              "line": "a10.release.2"
             }
           ],
-          "hold": 15
+          "hold": 20
         },
         {
           "kind": "stretch",
-          "seconds": 38,
+          "seconds": 43,
           "exerciseID": "st.chest",
           "cues": [
             {
@@ -14354,15 +15929,51 @@
               "line": "a10.hold.start.1"
             },
             {
-              "at": 29,
-              "line": "a5.5s"
+              "at": 27,
+              "line": "a10.hold.4"
             },
             {
               "at": 34,
+              "line": "a5.5s"
+            },
+            {
+              "at": 39,
+              "line": "a10.release.3"
+            }
+          ],
+          "hold": 20
+        },
+        {
+          "kind": "stretch",
+          "seconds": 33,
+          "exerciseID": "st.chest",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a10.round2.1"
+            },
+            {
+              "at": 5,
+              "line": "a10.into.1"
+            },
+            {
+              "at": 9,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 17,
+              "line": "a10.hold.5"
+            },
+            {
+              "at": 24,
+              "line": "a5.5s"
+            },
+            {
+              "at": 29,
               "line": "a10.release.1"
             }
           ],
-          "hold": 15
+          "hold": 20
         },
         {
           "kind": "stretch",
@@ -14538,7 +16149,7 @@
         },
         {
           "kind": "stretch",
-          "seconds": 74,
+          "seconds": 94,
           "exerciseID": "st.calf",
           "cues": [
             {
@@ -14580,35 +16191,43 @@
               "line": "a10.hold.2"
             },
             {
-              "at": 41,
-              "line": "a5.5s"
+              "at": 44,
+              "line": "a10.hold.4"
             },
             {
-              "at": 46,
+              "at": 48,
+              "line": "a5.10s"
+            },
+            {
+              "at": 56,
               "line": "a10.switch.2"
             },
             {
-              "at": 50,
+              "at": 60,
               "line": "a10.hold.start.1"
             },
             {
-              "at": 58,
+              "at": 68,
               "line": "a10.hold.3"
             },
             {
-              "at": 65,
-              "line": "a5.5s"
+              "at": 78,
+              "line": "a10.hold.5"
             },
             {
-              "at": 70,
+              "at": 82,
+              "line": "a5.10s"
+            },
+            {
+              "at": 90,
               "line": "a10.release.3"
             }
           ],
-          "hold": 20
+          "hold": 30
         },
         {
           "kind": "stretch",
-          "seconds": 60,
+          "seconds": 80,
           "exerciseID": "st.calf",
           "cues": [
             {
@@ -14632,31 +16251,39 @@
               "line": "a10.hold.4"
             },
             {
-              "at": 27,
-              "line": "a5.5s"
+              "at": 30,
+              "line": "a10.hold.1"
             },
             {
-              "at": 32,
+              "at": 35,
+              "line": "a5.10s"
+            },
+            {
+              "at": 42,
               "line": "a10.switch.2"
             },
             {
-              "at": 36,
+              "at": 46,
               "line": "a10.hold.start.1"
             },
             {
-              "at": 44,
+              "at": 54,
               "line": "a10.hold.5"
             },
             {
-              "at": 51,
-              "line": "a5.5s"
+              "at": 64,
+              "line": "a10.hold.2"
             },
             {
-              "at": 56,
+              "at": 69,
+              "line": "a5.10s"
+            },
+            {
+              "at": 76,
               "line": "a10.release.2"
             }
           ],
-          "hold": 20
+          "hold": 30
         },
         {
           "kind": "rest",
@@ -14670,7 +16297,7 @@
         },
         {
           "kind": "stretch",
-          "seconds": 48,
+          "seconds": 58,
           "exerciseID": "st.overhead",
           "cues": [
             {
@@ -14721,15 +16348,19 @@
               "line": "a10.hold.1"
             },
             {
-              "at": 39,
-              "line": "a5.5s"
+              "at": 42,
+              "line": "a10.hold.3"
             },
             {
-              "at": 44,
+              "at": 46,
+              "line": "a5.10s"
+            },
+            {
+              "at": 54,
               "line": "a10.release.3"
             }
           ],
-          "hold": 20
+          "hold": 30
         },
         {
           "kind": "rest",
@@ -14743,7 +16374,7 @@
         },
         {
           "kind": "stretch",
-          "seconds": 68,
+          "seconds": 88,
           "exerciseID": "st.side",
           "cues": [
             {
@@ -14787,35 +16418,43 @@
               "line": "a10.hold.2"
             },
             {
-              "at": 35,
-              "line": "a5.5s"
+              "at": 38,
+              "line": "a10.hold.4"
             },
             {
-              "at": 40,
+              "at": 42,
+              "line": "a5.10s"
+            },
+            {
+              "at": 50,
               "line": "a10.switch.1"
             },
             {
-              "at": 44,
+              "at": 54,
               "line": "a10.hold.start.2"
             },
             {
-              "at": 52,
+              "at": 62,
               "line": "a10.hold.3"
             },
             {
-              "at": 59,
-              "line": "a5.5s"
+              "at": 72,
+              "line": "a10.hold.5"
             },
             {
-              "at": 64,
+              "at": 76,
+              "line": "a5.10s"
+            },
+            {
+              "at": 84,
               "line": "a10.release.2"
             }
           ],
-          "hold": 20
+          "hold": 30
         },
         {
           "kind": "stretch",
-          "seconds": 43,
+          "seconds": 53,
           "exerciseID": "st.chest",
           "cues": [
             {
@@ -14853,19 +16492,23 @@
               "line": "a10.hold.4"
             },
             {
-              "at": 34,
-              "line": "a5.5s"
+              "at": 37,
+              "line": "a10.hold.1"
             },
             {
-              "at": 39,
+              "at": 42,
+              "line": "a5.10s"
+            },
+            {
+              "at": 49,
               "line": "a10.release.3"
             }
           ],
-          "hold": 20
+          "hold": 30
         },
         {
           "kind": "stretch",
-          "seconds": 33,
+          "seconds": 43,
           "exerciseID": "st.chest",
           "cues": [
             {
@@ -14885,19 +16528,23 @@
               "line": "a10.hold.5"
             },
             {
-              "at": 24,
-              "line": "a5.5s"
+              "at": 27,
+              "line": "a10.hold.2"
             },
             {
-              "at": 29,
+              "at": 32,
+              "line": "a5.10s"
+            },
+            {
+              "at": 39,
               "line": "a10.release.1"
             }
           ],
-          "hold": 20
+          "hold": 30
         },
         {
           "kind": "stretch",
-          "seconds": 46,
+          "seconds": 56,
           "exerciseID": "st.upper-back",
           "cues": [
             {
@@ -14937,123 +16584,19 @@
               "line": "a10.hold.1"
             },
             {
-              "at": 37,
-              "line": "a5.5s"
-            },
-            {
-              "at": 42,
-              "line": "a10.release.2"
-            }
-          ],
-          "hold": 20
-        },
-        {
-          "kind": "stretch",
-          "seconds": 72,
-          "exerciseID": "st.twist",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.twist.intro"
-            },
-            {
-              "at": 5,
-              "line": "a10.twist.setup"
-            },
-            {
-              "at": 10,
-              "line": "a10.left"
-            },
-            {
-              "at": 13,
-              "line": "a10.twist.move"
-            },
-            {
-              "at": 20,
-              "line": "a10.into.1",
-              "notFor": [
-                "lowerBack"
-              ]
-            },
-            {
-              "at": 20,
-              "line": "a10.twist.easy",
-              "onlyFor": [
-                "lowerBack"
-              ]
-            },
-            {
-              "at": 24,
-              "line": "a10.hold.start.2"
-            },
-            {
-              "at": 32,
-              "line": "a10.hold.2"
-            },
-            {
-              "at": 39,
-              "line": "a5.5s"
-            },
-            {
-              "at": 44,
-              "line": "a10.switch.2"
-            },
-            {
-              "at": 48,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 56,
+              "at": 40,
               "line": "a10.hold.3"
             },
             {
-              "at": 63,
-              "line": "a5.5s"
+              "at": 44,
+              "line": "a5.10s"
             },
             {
-              "at": 68,
-              "line": "a10.release.1"
+              "at": 52,
+              "line": "a10.release.2"
             }
           ],
-          "hold": 20
-        },
-        {
-          "kind": "stretch",
-          "seconds": 64,
-          "exerciseID": "st.ankle",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.ankle.intro"
-            },
-            {
-              "at": 4,
-              "line": "a10.ankle.setup"
-            },
-            {
-              "at": 9,
-              "line": "a10.ankle.move",
-              "notFor": [
-                "knees"
-              ]
-            },
-            {
-              "at": 9,
-              "line": "a10.ankle.easy",
-              "onlyFor": [
-                "knees"
-              ]
-            },
-            {
-              "at": 36,
-              "line": "a10.switch.1"
-            },
-            {
-              "at": 60,
-              "line": "a10.release.1"
-            }
-          ],
-          "hold": 0
+          "hold": 30
         },
         {
           "kind": "stretch",
@@ -15110,7 +16653,7 @@
             },
             {
               "at": 45,
-              "line": "a10.release.2"
+              "line": "a10.release.3"
             }
           ],
           "hold": 0
@@ -15443,96 +16986,6 @@
           "hold": 30
         },
         {
-          "kind": "rest",
-          "seconds": 6,
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.to-sit"
-            }
-          ]
-        },
-        {
-          "kind": "stretch",
-          "seconds": 88,
-          "exerciseID": "st.side",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.side.intro"
-            },
-            {
-              "at": 2,
-              "line": "a10.side.setup"
-            },
-            {
-              "at": 7,
-              "line": "a10.left"
-            },
-            {
-              "at": 10,
-              "line": "a10.side.move",
-              "notFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 10,
-              "line": "a10.side.easy",
-              "onlyFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 16,
-              "line": "a10.into.2"
-            },
-            {
-              "at": 20,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 28,
-              "line": "a10.hold.2"
-            },
-            {
-              "at": 38,
-              "line": "a10.hold.4"
-            },
-            {
-              "at": 42,
-              "line": "a5.10s"
-            },
-            {
-              "at": 50,
-              "line": "a10.switch.1"
-            },
-            {
-              "at": 54,
-              "line": "a10.hold.start.2"
-            },
-            {
-              "at": 62,
-              "line": "a10.hold.3"
-            },
-            {
-              "at": 72,
-              "line": "a10.hold.5"
-            },
-            {
-              "at": 76,
-              "line": "a5.10s"
-            },
-            {
-              "at": 84,
-              "line": "a10.release.2"
-            }
-          ],
-          "hold": 30
-        },
-        {
           "kind": "stretch",
           "seconds": 53,
           "exerciseID": "st.chest",
@@ -15569,19 +17022,19 @@
             },
             {
               "at": 27,
-              "line": "a10.hold.4"
+              "line": "a10.hold.2"
             },
             {
               "at": 37,
-              "line": "a10.hold.1"
+              "line": "a10.hold.4"
             },
             {
-              "at": 42,
+              "at": 41,
               "line": "a5.10s"
             },
             {
               "at": 49,
-              "line": "a10.release.3"
+              "line": "a10.release.1"
             }
           ],
           "hold": 30
@@ -15605,74 +17058,18 @@
             },
             {
               "at": 17,
-              "line": "a10.hold.5"
+              "line": "a10.hold.3"
             },
             {
               "at": 27,
-              "line": "a10.hold.2"
+              "line": "a10.hold.5"
             },
             {
-              "at": 32,
+              "at": 31,
               "line": "a5.10s"
             },
             {
               "at": 39,
-              "line": "a10.release.1"
-            }
-          ],
-          "hold": 30
-        },
-        {
-          "kind": "stretch",
-          "seconds": 56,
-          "exerciseID": "st.upper-back",
-          "cues": [
-            {
-              "at": 0,
-              "line": "a10.upper-back.intro"
-            },
-            {
-              "at": 5,
-              "line": "a10.upper-back.setup"
-            },
-            {
-              "at": 11,
-              "line": "a10.upper-back.move",
-              "notFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 11,
-              "line": "a10.upper-back.easy",
-              "onlyFor": [
-                "lowerBack",
-                "shoulders"
-              ]
-            },
-            {
-              "at": 18,
-              "line": "a10.into.2"
-            },
-            {
-              "at": 22,
-              "line": "a10.hold.start.1"
-            },
-            {
-              "at": 30,
-              "line": "a10.hold.1"
-            },
-            {
-              "at": 40,
-              "line": "a10.hold.3"
-            },
-            {
-              "at": 44,
-              "line": "a5.10s"
-            },
-            {
-              "at": 52,
               "line": "a10.release.2"
             }
           ],
@@ -15701,7 +17098,7 @@
             },
             {
               "at": 20,
-              "line": "a10.into.1",
+              "line": "a10.into.2",
               "notFor": [
                 "lowerBack"
               ]
@@ -15715,38 +17112,38 @@
             },
             {
               "at": 24,
-              "line": "a10.hold.start.2"
+              "line": "a10.hold.start.1"
             },
             {
               "at": 32,
-              "line": "a10.hold.2"
-            },
-            {
-              "at": 42,
               "line": "a10.hold.4"
             },
             {
-              "at": 46,
+              "at": 42,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 47,
               "line": "a5.10s"
             },
             {
               "at": 54,
-              "line": "a10.switch.2"
+              "line": "a10.switch.1"
             },
             {
               "at": 58,
-              "line": "a10.hold.start.1"
+              "line": "a10.hold.start.2"
             },
             {
               "at": 66,
-              "line": "a10.hold.3"
-            },
-            {
-              "at": 76,
               "line": "a10.hold.5"
             },
             {
-              "at": 80,
+              "at": 76,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 81,
               "line": "a5.10s"
             },
             {
@@ -15758,41 +17155,63 @@
         },
         {
           "kind": "stretch",
-          "seconds": 64,
-          "exerciseID": "st.ankle",
+          "seconds": 79,
+          "exerciseID": "st.twist",
           "cues": [
             {
               "at": 0,
-              "line": "a10.ankle.intro"
+              "line": "a10.again"
             },
             {
               "at": 4,
-              "line": "a10.ankle.setup"
+              "line": "a10.left"
             },
             {
-              "at": 9,
-              "line": "a10.ankle.move",
-              "notFor": [
-                "knees"
-              ]
+              "at": 7,
+              "line": "a10.into.2"
             },
             {
-              "at": 9,
-              "line": "a10.ankle.easy",
-              "onlyFor": [
-                "knees"
-              ]
+              "at": 11,
+              "line": "a10.hold.start.1"
             },
             {
-              "at": 36,
+              "at": 19,
+              "line": "a10.hold.1"
+            },
+            {
+              "at": 29,
+              "line": "a10.hold.3"
+            },
+            {
+              "at": 33,
+              "line": "a5.10s"
+            },
+            {
+              "at": 41,
               "line": "a10.switch.1"
             },
             {
-              "at": 60,
-              "line": "a10.release.1"
+              "at": 45,
+              "line": "a10.hold.start.2"
+            },
+            {
+              "at": 53,
+              "line": "a10.hold.2"
+            },
+            {
+              "at": 63,
+              "line": "a10.hold.4"
+            },
+            {
+              "at": 67,
+              "line": "a5.10s"
+            },
+            {
+              "at": 75,
+              "line": "a10.release.3"
             }
           ],
-          "hold": 0
+          "hold": 30
         },
         {
           "kind": "stretch",
@@ -15849,7 +17268,7 @@
             },
             {
               "at": 45,
-              "line": "a10.release.2"
+              "line": "a10.release.1"
             }
           ],
           "hold": 0

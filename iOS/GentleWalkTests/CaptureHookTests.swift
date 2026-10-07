@@ -1,5 +1,6 @@
 import Foundation
 import SwiftData
+import SwiftUI
 import Testing
 @testable import GentleWalk
 
@@ -15,8 +16,14 @@ struct CaptureHookTests {
         #expect(CaptureHook.state(from: ["GentleWalk"]) == nil)
     }
 
+    /// Review M10: only "-xxl" states pin a text size; the rest follow the simulator (for @xxl).
+    @Test func onlyXxlStatesPinTheTextSize() {
+        #expect(CaptureRouter.pinnedTypeSize(for: .todayXxl) == .accessibility3)
+        #expect(CaptureRouter.pinnedTypeSize(for: .today) == nil)
+    }
+
     @Test func coversEveryPlannedState() {
-        #expect(CaptureState.allCases.count == 95)
+        #expect(CaptureState.allCases.count == 99)
     }
 
     @Test func seedsMargaretFixture() throws {

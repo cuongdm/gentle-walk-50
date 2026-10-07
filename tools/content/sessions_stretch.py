@@ -5,8 +5,10 @@
   ses.cooldown / ses.cooldown.stand cool-down after a walk with chair moves (A10 §3.2)
   ses.morning                       Morning stretch 6
 
-Holds: Gentle 15 s, Steady 20 s, Strong 30 s, once per side; a second round for the key poses at
-Steady and Strong (plan decision 2). Neck turn, chin tuck, shoulder rolls and ankles are slow repeated
+Holds (changed 06/10/2026 for women 58–75, review docs/reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md
+Q4/Q6): Gentle 20 s, Steady and Strong 30 s; a second round for the key poses at every intensity (Strong: every
+held pose), so the main muscle groups get 40–60 s. Steady drops neck tilt and shoulder rolls, Strong also the
+upper back, to keep sessions near 12 minutes (measured with --report: 9–12:15). Neck turn, chin tuck, shoulder rolls and ankles are slow repeated
 moves without a hold (segment hold 0). Every held pose ends its hold with the "switch" or "release"
 line, which the stretch player reads to show the countdown.
 Python 3.9, standard library only.
@@ -15,7 +17,7 @@ from timing import Seg, template
 
 JR, KNEES, DIZZY, SHOULDERS, BACK, STANDING = ("jointReplacement", "knees", "dizzy", "shoulders", "lowerBack",
                                               "standingIsHard")
-HOLD = {"gentle": 15, "steady": 20, "strong": 30}
+HOLD = {"gentle": 20, "steady": 30, "strong": 30}
 BILATERAL = {"st.neck-turn", "st.neck-tilt", "st.twist", "st.side", "st.thigh", "st.ankle", "st.calf"}
 
 # How each held pose is entered: setup and move lines, with the safer line for body limits.
@@ -38,22 +40,28 @@ POSES = {
     "st.overhead": dict(setup=[("a10.overhead.setup", None, [STANDING]), ("a10.overhead.seated", [STANDING], None)],
                         move=[("a10.overhead.move", None, [STANDING])], after=[("a10.overhead.easy", [SHOULDERS], None)]),
 }
-ROUND_TWO = {"seated": {"st.chest", "st.twist", "st.thigh"}, "standing": {"st.calf", "st.chest"}}
+ROUND_TWO = {  # key poses held twice (06/10/2026: every intensity; sessions kept near 12 minutes)
+    "seated": {"gentle": {"st.chest", "st.twist", "st.thigh"}, "steady": {"st.chest", "st.thigh"},
+               "strong": {"st.chest", "st.twist", "st.thigh"}},
+    "standing": {"gentle": {"st.calf", "st.chest"}, "steady": {"st.calf", "st.chest"},
+                 "strong": {"st.calf", "st.chest", "st.twist"}},
+}
 SEATED = {
-    "gentle": ["st.neck-turn", "st.chin-tuck", "st.chest", "st.twist", "st.thigh", "st.side"],
-    "full": ["st.neck-turn", "st.neck-tilt", "st.chin-tuck", "st.shoulder-roll", "st.chest", "st.upper-back",
-             "st.twist", "st.thigh", "st.side"],
+    "gentle": ["st.neck-turn", "st.chin-tuck", "st.chest", "st.twist", "st.thigh"],
+    "steady": ["st.neck-turn", "st.chin-tuck", "st.chest", "st.twist", "st.thigh"],
+    "strong": ["st.neck-turn", "st.chest", "st.twist", "st.thigh"],
 }
 STANDING_ORDER = {
     "gentle": ["st.calf", "st.overhead", "st.side", "st.chest", "st.neck-turn"],
-    "full": ["st.calf", "st.overhead", "st.side", "st.chest", "st.upper-back", "st.twist", "st.ankle", "st.neck-turn"],
+    "steady": ["st.calf", "st.overhead", "st.side", "st.chest", "st.upper-back", "st.neck-turn"],
+    "strong": ["st.calf", "st.overhead", "st.chest", "st.twist", "st.neck-turn"],
 }
 
 
 class Stretch:
     def __init__(self, voice, level, intensity):
         self.voice, self.level, self.intensity = voice, level, intensity
-        self.hold = HOLD.get(intensity, 15)
+        self.hold = HOLD.get(intensity, 20)
         self.k = 0  # variant counter so neighbouring poses say different words
 
     def next_k(self):
@@ -171,8 +179,8 @@ class Stretch:
 
     def session(self, standing):
         full = self.intensity != "gentle"
-        order = (STANDING_ORDER if standing else SEATED)["full" if full else "gentle"]
-        twice = ROUND_TWO["standing" if standing else "seated"] if full else set()
+        order = (STANDING_ORDER if standing else SEATED)[self.intensity]
+        twice = ROUND_TWO["standing" if standing else "seated"][self.intensity]
         s = Seg("intro")
         s.line("a10.open.stand" if standing else "a10.open.1", at=0).line("a10.open.2").line("a7.dizzy")
         segments = [self.build(s, "open"), self.warm_up(90 if full else 60, standing)]

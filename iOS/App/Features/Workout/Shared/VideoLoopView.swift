@@ -1,5 +1,6 @@
 import AVFoundation
 import SwiftUI
+import UIKit
 
 /// Muted, seamless loop of an exercise clip (task 3.10). Stops when the app is not active, restarts
 /// on the move being done; Reduce Motion or a broken file shows a still frame from the same clip.
@@ -7,6 +8,8 @@ struct ExerciseVideo: View {
     let fileName: String?
     /// Stop on the hold frame (stretch: after the move into the pose).
     var isHolding = false
+    /// Painted still (asset name) shown when the exercise has no clip.
+    var picture: String? = nil
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.forceStillFrames) private var forceStillFrames
@@ -28,6 +31,9 @@ struct ExerciseVideo: View {
                     VideoLoopView(url: url, isPlaying: scenePhase == .active && !isHolding && !videoPaused,
                                   direction: clipDirection, onFailure: { failed = true })
                 }
+            } else if let picture, UIImage(named: picture) != nil {
+                Palette.artPaper
+                Image(picture).resizable().scaledToFit().padding(8)
             } else {
                 IllustrationPlaceholder(symbol: "figure.seated.side", tint: Palette.secondary, height: 200)
             }

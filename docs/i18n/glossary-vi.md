@@ -110,3 +110,13 @@ Tên riêng (địa danh, Central Park, Times Square, Camino de Santiago…) gi�
 | bl.tandem | Tandem stance | Đứng nối gót | Cho lối đi hẹp và hành lang |
 | bl.side-walk | Sideways walking | Đi ngang | Để đi qua phòng đông người |
 | bl.heel-toe-walk | Heel-to-toe walk | Đi nối gót | Cho đường trong vườn và đường mòn |
+
+### Thêm 06/10/2026 (rà soát bài tập 58–75)
+| Mã | Tiếng Anh | Tiếng Việt | Mục đích |
+|---|---|---|---|
+| bl.back-walk | Walking backwards | Đi lùi | Để lùi lại khỏi bàn bếp |
+| bl.walk-turn | Walk and turn | Đi rồi quay lại | Để quay người trong nhà |
+| bl.heel-toe-walking | Heel and toe walking | Đi bằng gót và mũi chân | Cho lối đi gồ ghề và bãi cỏ |
+| st.back-ext | Standing back extension | Ngả lưng khi đứng | Để đứng thẳng người |
+| (khối) | Steady set | Bài vững chân | 2 phút thăng bằng cuối mỗi ngày tập |
+| chip | I feel unsteady on my feet | Tôi đứng không vững | tóm tắt: Hai tay vịn ghế |

@@ -1,25 +1,28 @@
 # App context — Gentle Walk 50+ (tên làm việc)
 
-_Updated: 28/09/2026 (thêm giãn cơ, rà soát tài liệu) · by: manh-skill-idea · Brief: docs/idea/gentle-walk-voice.md · Spec màn hình: docs/design/gentle-walk-screen-spec.html · Kế hoạch nội dung: docs/content-plan.md_
+_Updated: 03/10/2026 (khách mục tiêu 58–75, định vị, tìm tên mới, quảng cáo năm đầu) · trước đó 28/09/2026 · by: manh-skill-idea · Brief: docs/idea/gentle-walk-voice.md · Spec màn hình: docs/design/gentle-walk-screen-spec.html · Kế hoạch nội dung: docs/content-plan.md_
 
 ## Identity
-- App name (store): chưa chốt, cần kiểm tra trademark · Bundle ID (iOS): chưa có · Package (Android): chưa có
+- App name (store): chưa chốt. "Gentle Walk" là tên làm việc, kéo app về thể loại đi bộ; đang tìm tên mới: docs/research/2026-10-03-ten-app-moi.md · Bundle ID (iOS): chưa có · Package (Android): chưa có
 - App Store ID: chưa có · Website / Support / Privacy / Terms URL: chưa có
 - Category: Health & Fitness · Age rating: chưa trả lời
 - Platforms: iOS trước (iPhone + iPad) · Android để sau, tính như sản phẩm thứ hai
 - Kế thừa spec PawSteps v3, đã bỏ mascot chó và thư viện video dài; có clip ngắn không tiếng cho 6 động tác ghế (từ 28/09/2026)
 
 ## Positioning
-- One-sentence pitch: đi bộ trong nhà và động tác ghế cho phụ nữ 50+ mới bắt đầu, theo giọng HLV, không cần nhìn màn hình.
-- Problem: muốn vận động lại nhưng đau khớp, sợ ngã, không theo kịp video; app hiện có trừ tiền bất ngờ và "cá nhân hoá" chung chung.
-- Target user: phụ nữ Mỹ 50–64 (trước tuổi Medicare), thừa cân hoặc đau khớp, thường chăm người khác; phần lớn thế hệ X. Hiện dùng YouTube Leslie Sansone, WalkFit, LazyFit hoặc ChatGPT.
+- One-sentence pitch: bài tập nhẹ tại nhà dẫn bằng giọng HLV (đi bộ trong nhà, động tác ghế, giãn cơ) cho phụ nữ 58–75 mới bắt đầu hoặc quay lại; không cần nhìn màn hình, không phải xuống sàn.
+- Loại app (03/10/2026): **app tập nhẹ tại nhà dẫn bằng giọng**, đi bộ trong nhà là bài mặc định mỗi ngày; không định vị là app đi bộ hay app đếm bước.
+- Nỗi đau dẫn đầu thông điệp: bớt cứng người, đi lại vững hơn, không phải xuống sàn. Giảm cân xếp sau (nhóm này nhạy giá nhất, hay chê tiền nhất).
+- Problem: muốn vận động lại nhưng cứng người, đau khớp, sợ ngã, không theo kịp video; app hiện có trừ tiền bất ngờ và "cá nhân hoá" chung chung.
+- Target user (đổi 03/10/2026): phụ nữ Mỹ **58–75, lõi 60–72**, mới tập hoặc quay lại sau thời gian dài; cứng người, đau gối/hông/lưng nhẹ hoặc thừa cân; nhiều người đã nghỉ hưu hoặc làm bán thời gian, thường chăm chồng, cha mẹ hoặc cháu; thế hệ baby boomer muộn và X sớm. Nhóm phụ: 50–57, không loại. Hiện dùng YouTube Leslie Sansone, LazyFit, Bend, WalkFit hoặc ChatGPT. Cơ sở: người tự nói tuổi trong review của 12 app doanh thu cao nhất ngách có trung vị 68 tuổi, 75% ở 60–79 (docs/research/2026-10-03-kiem-tien-dinh-vi-doi-thu.md).
 - Differentiators:
   1. Không cần nhìn màn hình: giọng dẫn từng pha, chuông trầm, phụ đề.
   2. Mọi bài có bản ngồi; giới hạn cơ thể lọc bài; "This hurts" và "Break" trên mọi player.
   3. Minh bạch tiền: ngày và số tiền ở paywall, nhắc trước khi hết trial, huỷ một chạm.
 - Bồi thêm, không lên listing: hành trình địa danh tính theo phút tập; tự đếm ngồi–đứng khi áp ngực (mặc định tính giờ, luôn có đếm tay); chế độ đi ngoài trời.
-- Not for: người chạy bộ và tập gym · phục hồi sau phẫu thuật · người 65+ đã có Bold/SilverSneakers qua bảo hiểm (không chặn, không nhắm) · trẻ em.
-- Two-sentence definition: Gentle Walk 50+ là app iPhone hướng dẫn đi bộ trong nhà và động tác trên ghế bằng giọng nói cho phụ nữ 50–64 mới tập. Mỗi phút tập đưa người dùng qua hành trình địa danh thật như Central Park hay Camino de Santiago.
+- Not for: người chạy bộ và tập gym · phục hồi sau phẫu thuật · người hạn chế vận động nặng (xe lăn, nằm giường; vẫn dùng được bản ngồi nhưng không nhắm) · người chỉ dùng app miễn phí qua bảo hiểm (Bold/SilverSneakers; không chặn, không nhắm riêng) · trẻ em.
+- Không gọi người dùng là "senior", "elderly" hay "60+" ở bất cứ đâu người dùng thấy (app gọi thẳng "senior" có doanh thu thấp dù cùng khách). Nhãn tuổi tối đa là "50+".
+- Two-sentence definition: Gentle Walk 50+ (tên làm việc) là app iPhone dẫn bài tập nhẹ tại nhà bằng giọng nói, gồm đi bộ trong nhà, động tác trên ghế và giãn cơ, cho phụ nữ 58–75 mới bắt đầu hoặc quay lại. Mỗi phút tập đưa người dùng qua hành trình địa danh thật như Central Park hay Camino de Santiago.
 
 ## Market
 | Name | Link/ID | Model | They win at | We win at |
@@ -28,19 +31,20 @@ _Updated: 28/09/2026 (thêm giãn cơ, rà soát tài liệu) · by: manh-skill-
 | LazyFit | 1669413773 | subscription, trial 7 ngày | chair/tai chi/pilates, HLV lớn tuổi | không cần nhìn màn hình, không lặp sau 28 ngày |
 | ChillFit | 6754075317 | subscription | tăng nhanh | huỷ được trong app, minh bạch |
 | Walk at Home | 1535065182 | subscription | video Leslie, thương hiệu | audio-first, tập theo giới hạn cơ thể |
-| Bold / SilverSneakers GO | 6478184749 / 1410437380 | miễn phí qua bảo hiểm 65+ | miễn phí, nhiều lớp | nhóm 50–64 chưa có bảo hiểm này |
+| Bold / SilverSneakers GO | 6478184749 / 1410437380 | miễn phí qua bảo hiểm 65+ | miễn phí, nhiều lớp | 46% người hưởng Medicare không có Medicare Advantage; bài dẫn bằng giọng; doanh thu trong app gần 0 nên không tranh tệp trả tiền |
 | Aaptiv | 869058995 | subscription | audio-first, thư viện lớn | làm riêng cho 50+ và khớp đau; đang cập nhật |
 | Bend | 1513988468 | subscription | giãn cơ, thư viện lớn | làm riêng cho 50+ đau khớp, bản ngồi |
 | Tai chi cho người lớn tuổi (nhiều app 2025–2026) | 6751329158 · 6759260204 | subscription, quảng cáo mạnh | bắt trend tai chi | chậm, dẫn bằng giọng, minh bạch tiền |
 | The Conqueror | 1539543704 | trả một lần mỗi thử thách | tuyến thật, medal | tuyến rút gọn cho người mới, gắn với bài tập |
 - Đối thủ thật: YouTube miễn phí và ChatGPT.
+- Doanh thu, xu hướng và mức đe doạ của từng đối thủ (cập nhật 03/10/2026, 107 app, 15.756 review): docs/research/2026-10-03-kiem-tien-dinh-vi-doi-thu.md. Đe doạ lớn nhất: LazyFit (đúng khách, đang lên), Bend (giãn cơ), ChillFit (mới, lên nhanh nhờ quảng cáo); Fast Builder phủ kín từ khoá "senior / chair / tai chi".
 - Saturated-category exposure: adjacent — simple timers. Mitigation: ba trụ thấy trong 2 phút; ngoài trời là chế độ trong app, không tách app; review notes nêu khác biệt.
 - Portfolio overlap: không có app cùng mảng trên tài khoản.
 
 ## Locales & markets
 - Locales: en-US · Thị trường: Mỹ; sau đó UK, CA, AU · RTL: không
 - Đơn vị mặc định theo vùng iPhone (Mỹ ft/lb/dặm), đổi trong Me → Ngôn ngữ và đơn vị (cm/kg/km).
-- Dữ liệu mẫu cho screenshot: người dùng Margaret, 58 tuổi; hành trình New York đang ở Times Square; không dùng tên hay ảnh người thật.
+- Dữ liệu mẫu cho screenshot: người dùng Margaret, 64 tuổi (đổi từ 58 ngày 03/10/2026 theo khách mục tiêu mới); hành trình New York đang ở Times Square; không dùng tên hay ảnh người thật.
 
 ## Price model (words only)
 - Model: subscription tháng và năm, cộng trả một lần dùng mãi. Không gói tuần.
@@ -49,6 +53,7 @@ _Updated: 28/09/2026 (thêm giãn cơ, rà soát tài liệu) · by: manh-skill-
 - Trial: 14 ngày trên gói năm (chọn sẵn), nhắc ngày 12 bằng thông báo **và** thẻ trên Today từ ngày 10 tới khi hết trial (không cần quyền thông báo); kiểm tra điều kiện bằng StoreKit 2. Trả một lần ở vị trí thứ ba, không chọn sẵn; người đang có gói tự gia hạn mua trả một lần được cảnh báo trước và dẫn tới hướng dẫn huỷ gói ngay sau khi mua.
 - Mời nâng cấp: onboarding · hoàn thành New York · bấm nội dung khoá. Không hiện mỗi lần mở app.
 - Store fee assumption: 15%.
+- Giá (03/10/2026): giá trong `GentleWalk.storekit` (năm 39,99 · tháng 7,99 · trả một lần 79,99 USD) chỉ là giá test. **Giá gói năm và gói trả một lần chờ chốt** (docs/todo.md, mục Giá). Lý do cần xem lại: ở 39,99 USD/năm, quảng cáo khó hoà vốn (docs/research/2026-10-03-quang-cao-nam-dau.md).
 
 ## Tone & copy rules
 - Voice: ấm, chậm, tôn trọng. Không hype, không so với người khác, chỉ so với chính mình.
@@ -71,12 +76,14 @@ _Updated: 28/09/2026 (thêm giãn cơ, rà soát tài liệu) · by: manh-skill-
 - Bundle ID `com.kmd.gentlewalk`; sản phẩm `com.kmd.gentlewalk.pro.yearly` (trial 2 tuần), `.pro.monthly`, `.pro.lifetime`. iOS 18+, iPhone + iPad, dự án tạo bằng XcodeGen.
 - Thông báo local, lên lịch trên máy theo từng đợt ngắn: nhắc tập theo mốc sinh hoạt (có nút Start walk / Rest today), ngày 2, gần địa danh, tổng kết tuần, quay lại ngày 3 và 10, hết trial ngày 12, tin tuyến mới (tắt mặc định). Giảm dần khi người dùng tự tập 5 ngày liền trước giờ nhắc.
 - Quyền dự kiến: Motion & Fitness · HealthKit (đọc bước, ghi workout và tuyến) · thông báo sau buổi đầu · vị trí "When In Use" chỉ khi đi ngoài trời · background audio; background location chỉ trong buổi ngoài trời.
-- Ràng buộc: không tài khoản, không backend, không quảng cáo; offline; dữ liệu sức khoẻ không lên iCloud.
+- Ràng buộc: không tài khoản, không backend, không quảng cáo **trong app**; offline; dữ liệu sức khoẻ không lên iCloud.
 
 ## Risks
 - Đi tại chỗ có đếm được bằng CMPedometer không, rung có chạy khi khoá màn hình không → đo trên máy thật.
 - Người quen video thấy bản giọng "mỏng" → test prototype trước khi code.
-- 65+ có app miễn phí → nhắm 50–64 trong metadata và onboarding.
+- Người 65+ có app miễn phí qua bảo hiểm → không cạnh tranh bằng giá; nhắm người tự trả tiền bằng thông điệp "bớt cứng người, dẫn bằng giọng, không xuống sàn".
+- Nhiều người dùng 65+ (khách mục tiêu 58–75) → chuẩn tập phải theo nguyên tắc cho người lớn tuổi (thăng bằng, tăng chậm, cường độ tương đối); rà lại docs/research/2026-09-30-exercise-standards.md (hiện viết cho 50–64).
+- Quảng cáo lỗ nếu thu ròng mỗi lượt tải thấp hơn chi phí mỗi lượt tải (2–5,5 USD ở Mỹ) → chỉ tăng ngân sách khi qua ngưỡng (docs/research/2026-10-03-quang-cao-nam-dau.md).
 - Tranh AI lệch nhân vật → bảng nhân vật, hướng dẫn phong cách, huấn luyện viên duyệt tư thế.
 - 1.4.1 → không tuyên bố y khoa.
 - Video AI người thật sai kỹ thuật hoặc lệch HLV giữa các clip → làm 2 động tác trước, huấn luyện viên duyệt; không watermark, kiểm tra điều khoản thương mại; không đặt tên hay chứng chỉ cho HLV AI.
@@ -116,3 +123,36 @@ _Updated: 28/09/2026 (thêm giãn cơ, rà soát tài liệu) · by: manh-skill-
 - 02/10/2026 — Đa ngôn ngữ (chủ app giao 01/10): tiếng Việt là ngôn ngữ thứ hai, mặc định English kể cả máy đặt tiếng Việt, đổi ở Me → Language (mở lại app để áp dụng). Xưng "bạn", HLV xưng "mình" khi cần; thuật ngữ cố định ở docs/i18n/glossary-vi.md; quy trình và cách thêm ngôn ngữ ở docs/i18n/README.md. Giọng HLV tiếng Việt chưa tạo (hết ký tự ElevenLabs Creator tới 21/10); bản Release chỉ cho chọn ngôn ngữ đã đủ giọng, chưa đủ thì HLV nói tiếng Anh. Kiểm thử toàn app đêm 01→02/10: docs/reviews/2026-10-02-da-ngon-ngu-va-kiem-thu-toan-app.md.
 - 02/10/2026 — Chủ app chốt sau review sáng: (1) giọng HLV tiếng Việt = Bella (ElevenLabs v4, cùng giọng HLV tiếng Anh); đã thu 2 câu màn Đứng sau ghế, 591 câu còn lại chờ ký tự (reset 21/10). (2) Sau "Chưa" ở buổi đầu: màn hỏi giờ nhắc + xin quyền thông báo, chỉ một lần. (3) Đi bộ có Quay lại/Bỏ qua như ghế và giãn cơ; giọng HLV/nhạc bật tắt trong bảng Âm thanh; Bị đau → Bỏ qua chỉ ghi báo đau khi chọn vùng đau. (4) Đứng sau ghế: HLV nói + chuông + đếm 10 giây rồi tự chạy; "Chờ đã" giữ lại. (5) Ngôn ngữ: **mặc định theo ngôn ngữ iPhone, app không có thì tiếng Anh** (thay quyết định 01/10 "mặc định English"); đổi ở Me. (6) Đơn vị: khoảng cách dặm/km, cân nặng lb/kg, chiều cao ft/cm, mặc định theo vùng iPhone (Mỹ: dặm/lb/ft; Anh: dặm/kg/cm; còn lại: km/kg/cm), đổi ở Me; app vẫn không hỏi cân nặng/chiều cao. (7) Me xếp theo nhóm: Gói · Kế hoạch của bạn (cơ thể, tuần, lời nhắc) · Trong buổi tập (âm thanh và phụ đề) · Ứng dụng (ngôn ngữ và đơn vị, hiển thị) · Điện thoại và sức khoẻ · Trợ giúp.
 - 02/10/2026 — Giọng HLV tiếng Việt tạo qua **Vibi** (vibi.pro, đối tác ElevenLabs, cùng giọng Bella/eleven_v4), không dùng ký tự gói ElevenLabs (chủ app để dành ~700 ký tự để thử). Thời điểm từng chữ lấy từ speech to text của Vibi (sai TB 0,05 s), không dùng forced alignment ElevenLabs. Đủ 593/593 câu, qua QC (`tools/voice/qc_lines.py`) và cổng phát hành → bản Release cho chọn Tiếng Việt.
+- 02/10/2026 — Review theo mẫu Mobbin (Fable 5.1 kiểm tra và lập kế hoạch; Opus 5.5 sửa và test; docs/reviews/2026-10-02-mobbin-patterns.md). Chủ app chốt 4 việc chờ quyết:
+  - **S1**: ô thứ ba trên bản đồ ngoài trời là **số bước** thay "min per mile". Chỉ đếm khi quyền Motion đã có sẵn, không hỏi quyền giữa buổi; chưa có quyền thì chỉ hiện 2 ô.
+  - **S2 (vượt luật "không hype")**: nhãn "Lowest monthly cost" trên gói năm, chỉ hiện khi giá StoreKit cho thấy đúng như vậy.
+  - **S3 (vượt luật "chỉ đếm xuôi")**: dòng tuần ở Today ghi "4 of 5 active days so far · 2 rest days are part of the plan". Chỉ hiện khi đã có ít nhất 1 ngày và chưa vượt số ngày trong kế hoạch; nếu không thì đếm xuôi như cũ.
+  - **S4 bỏ**: không thêm nút thử đi 2 phút ở Welcome.
+- 03/10/2026 — Thiết kế lại onboarding (bản thiết kế Claude Design "Gentle Walk onboarding redesign"; toàn bộ do Opus 5.5 làm theo yêu cầu chủ app). Chủ app chốt:
+  - **Phong cách:** hướng A "màu nước đồng hành", tiêu đề lấy từ hướng B. Ghi đè spec: tiêu đề màn hình dùng **New York** (serif hệ thống) thay SF Pro Rounded.
+  - **Bảng màu "Pigment" cho cả app**, lấy màu từ chính tranh của app: paper #F8F1E6, ink #2A241F, Hooker green #2E4A33, sap #5E7F3A, ochre #D9A441, sky #7FA3C0, sienna #A9512C. Bo góc 14/16. Nền icon là vệt màu nước, không phải vòng tròn.
+  - **Welcome:** video lặp 3,3 giây làm từ tranh (Higgsfield, Kling 3.0 pro, 17,5 credit; nhịp chân chỉnh đều bằng cắt khung).
+  - **Chuyển động onboarding:**
+    - Lối đi có người bước ở đầu màn.
+    - HLV đáp một câu sau mỗi câu trả lời.
+    - Hình người phát sáng vùng đã chọn ở Your body.
+    - Your plan tự dựng, không có thanh tải giả.
+    - Dòng thời gian paywall hiện dần.
+    - Tất cả dưới 0,6 giây, không tự chuyển màn; Reduce Motion chỉ còn hiệu ứng mờ dần.
+- 03/10/2026 — Nghiên cứu thị trường mở rộng (docs/research/2026-10-03-van-de-va-chan-dung-khach-hang.md, docs/research/2026-10-03-kiem-tien-dinh-vi-doi-thu.md: 107 app, 15.756 review, doanh thu Sensor Tower/AppMagic). Chủ app chốt:
+  - **Khách mục tiêu đổi sang phụ nữ Mỹ 58–75, lõi 60–72** (thay 50–64); 50–57 là nhóm phụ, không loại. Mẫu người dùng Margaret đổi sang 64 tuổi.
+  - **Tìm tên mới**, rộng hơn "đi bộ" (docs/research/2026-10-03-ten-app-moi.md). App định vị là tập nhẹ tại nhà dẫn bằng giọng, đi bộ là bài mặc định.
+  - **Năm đầu chạy quảng cáo kéo người dùng** (đề xuất: docs/research/2026-10-03-quang-cao-nam-dau.md). App vẫn không có quảng cáo bên trong.
+  - **Giá gói năm và gói trả một lần: ghi lại, chốt sau** (docs/todo.md).
+  - **Chưa mua** Sensor Tower hay AppMagic gói trả phí.
+- 04/10/2026 — Tên app: chủ app chọn **Good Footing** và **Kind Pace** (cùng dạng "<Tên>: Gentle Workouts", phụ đề "Chair Yoga, Walks & Stretches") để test với người dùng trong buổi test prototype; tên thắng mới đưa luật sư nhãn hiệu kiểm tra. Báo cáo tóm tắt: docs/research/2026-10-04-tom-tat-thi-truong.md.
+- 06/10/2026 — Rà soát bài tập cho phụ nữ 58–75 (docs/reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md; Fable 5.1 rà soát, Opus 5.5 làm). Chủ app chốt phương án **Đề xuất** và đề xuất câu 2–7; đã làm:
+  - **Steady set** khoảng 2 phút thăng bằng sau phần chính của **mọi ngày tập**, **miễn phí** (bản Gentle, hai tay); Pro theo cường độ; bản ngồi khi "Standing for long is hard". Không có ở buổi chọn ngoài kế hoạch, ngoài trời, buổi đầu.
+  - Giãn cơ: giữ Gentle 20 s, Steady/Strong 30 s, vòng 2 cho tư thế chính ở mọi cấp; buổi giãn cơ 9–12:15 phút (bớt tư thế ở Steady/Strong).
+  - Bài ghế: 8 / 10 / 12 lần; Sit-to-stand 6 / 8 / Strong 2 hiệp × 8 nghỉ 1 phút.
+  - Chip mới S06 **"I feel unsteady on my feet"** (tóm tắt "Both hands on the chair"): hai tay mọi bài thăng bằng, ẩn Walking backwards và Heel and toe walking, đi bộ bắt đầu Seated. Dòng nhắc hỏi bác sĩ thêm "a fall or fainting in the past year". Chỉ lưu trên máy.
+  - Balance: thêm Standing back extension (clip S13) ở khởi động; Steady thêm Walking backwards; Strong thêm Walk and turn, Walking backwards, Heel and toe walking. Hai bài đi lùi / đi rồi quay dùng **tranh** (Higgsfield GPT Image, khớp nhân vật HLV); Heel and toe raises đứng dùng clip mới V4-3 (V4-alt rút khỏi app, giữ ở assets).
+  - **Thang vịn** theo bài (Pro): hai tay → một tay → đầu ngón tay (đầu ngón tay chỉ ở Tandem), lên bậc sau 2 buổi vững, xuống bậc khi This hurts/Break; cường độ và chip Dizzy/Unsteady giới hạn bậc. Lưu bằng UserDefaults (giống Favourites), không thêm schema; "Delete all my data" xoá.
+  - 25 câu thoại mới (EN + VI) thu qua **Vibi** (chủ app chốt: giọng tiếng Anh qua Vibi trước), khoảng 2.924 credit Vibi. Video: 74,24 credit Higgsfield + 4 tranh 1 credit (hạn mức 110).
+  - Infographic: dùng brief v2 (docs/design/infographic-nguon-bai-tap-brief-v2.md); luật sư nhãn hiệu xem dòng nguồn cùng lúc với tên app.
+

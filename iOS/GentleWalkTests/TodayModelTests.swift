@@ -138,4 +138,14 @@ import GentleWalkCore
         #expect(model.journeyTitle == "New York City")
         #expect(model.week.count == 7)
     }
+
+    /// Owner S3 (02/10/2026): once a day is done, "x of y so far"; more than planned counts up.
+    @Test func weekLineIsASoftTarget() {
+        let monday = [28].map { TodayInput.Workout(date: at($0, hour: 8), feeling: .justRight, breakCount: 0, level: .seated) }
+        #expect(model(input(workouts: monday)).weekLine == "1 of 5 active days so far · 2 rest days are part of the plan")
+        let everyDay = [27, 28, 29, 30].map { TodayInput.Workout(date: at($0, hour: 8), feeling: .justRight, breakCount: 0, level: .seated) }
+            + [1, 2, 3].map { TodayInput.Workout(date: at($0, 10, hour: 8), feeling: .justRight, breakCount: 0, level: .seated) }
+        let late = input(now: at(3, 10, hour: 18), workouts: everyDay)
+        #expect(model(late).weekLine == "7 active days this week · 2 rest days are part of the plan")
+    }
 }

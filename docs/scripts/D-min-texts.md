@@ -81,7 +81,17 @@ D-min-texts trước ngày này **chưa có** chữ theo từng động tác đi
 | bl.tandem | Tandem stance · For narrow aisles and hallways | Hold the chair the whole time · Front heel touches your back toes · Knees soft, eyes straight ahead | Front foot a little to the side | Just your fingertips on the chair |
 | bl.side-walk | Sideways walking · For getting through crowded rooms | Step to the side, feet together · Toes point forward, hips level · Stay near a counter or wall | Smaller steps, one hand on the counter | Slightly bigger steps, same slow pace |
 | bl.heel-toe-walk | Heel-to-toe walk · For garden paths and trails | Fingertips on the wall beside you · Heel lands right in front of toes · Eyes ahead, one slow step at a time | Leave a small gap between steps | A few more steps, same slow pace |
+| bl.back-walk | Walking backwards · For stepping back from a counter | Hands slide along the counter · Toes first, then the heel · Eyes ahead, small slow steps | Fewer, smaller steps | Ten steps, one hand on the counter |
+| bl.walk-turn | Walk and turn · For turning around at home | Walk along your counter · Turn in tiny steps · A hand within reach the whole time | Both hands on the counter for the turn | Five steps each way |
+| bl.heel-toe-walking | Heel and toe walking · For uneven paths and lawns | One hand on the counter · Toes up for the heel steps · Heels up for the toe steps | Raise heels and toes standing still | A few more steps, same slow pace |
 - `bl.heel-toe-walk`: đợt B (clip B3), chỉ buổi Strong.
+- Thêm 06/10/2026 (rà soát docs/reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md, Otago levels B–D [S16 p.30]): `bl.back-walk`, `bl.walk-turn`, `bl.heel-toe-walking` có vịn mặt bếp; không có clip riêng (AI không làm được di chuyển, cùng lý do Sideways walking) → tranh minh hoạ; `bl.heel-toe-walking` dùng clip Heel and toe raises đứng. Ẩn với "Standing for long is hard"; `bl.back-walk` và `bl.heel-toe-walking` ẩn với "I feel unsteady on my feet"; `bl.back-walk` và `bl.walk-turn` ẩn với "I get dizzy easily".
+
+### Giãn cơ — bài mới 06/10/2026
+| Mã | Tên · mục đích | 3 gợi ý | Easier version | Harder version |
+|---|---|---|---|---|
+| st.back-ext | Standing back extension · For standing tall | Hands on your hips · Lean back only a little · Chin level, eyes ahead | Hold the chair, a smaller lean | — |
+- `st.back-ext`: Otago warm-up Back extension 5 lần [S16 p.29]; "Straight" trong Strong, Steady and Straight 2022 (cơ duỗi lưng; biên nhỏ, không ngửa cổ). Clip S13. Dùng ở phần khởi động Balance.
 - `bl.side-walk`: không có video riêng (chốt 30/09) → màn hiện clip **W2-2 side step**; gợi ý viết để khớp hình (bước sang – khép, tay chống hông, hông ngang), giọng A11 dẫn đi ngang 10 bước. Không có "không vịn" ở mọi bài thăng bằng.
 - **Dùng lại, không thêm dòng:** one-leg stand của buổi Balance **là cùng bài `mv.single-leg`** (STD C7 = Otago #9 = NIA Stand on One Foot, vịn ghế 2 tay → 1 tay) → dùng dòng `mv.single-leg` ở trên, không tạo `bl.one-leg`. Cũng dùng lại: sit-to-stand (`mv.sit-to-stand`), heel raises + toe raises đứng vịn (`mv.heel-toe`, hình bản khó "Stand behind your chair…"), weight shift (`wk.shift`).
 
@@ -107,6 +117,11 @@ Bảng D5 trên không có cột biến thể → bảng riêng. Nhãn chip đú
 | bl.tandem | Joint replacement | Feet stay in line, never crossing over |
 | bl.tandem | I get dizzy easily | Both hands on the chair |
 | bl.side-walk | I get dizzy easily | Small steps, one hand on the counter |
+| bl.tandem | I feel unsteady on my feet | Both hands on the chair |
+| mv.single-leg | I feel unsteady on my feet | Both hands, lift just your heel |
+| bl.side-walk | I feel unsteady on my feet | Both hands on the counter, small steps |
+| bl.walk-turn | I feel unsteady on my feet | Both hands on the counter |
+| st.back-ext | Lower back | A small lean, back long |
 - Plan ghi "Knee replacement" cho `wk.heel-back`, `mv.knee-curl`; S06 không có chip riêng → gắn vào "Joint replacement".
 - `bl.tandem` + Joint replacement: STD §5.1 chấp nhận vì chân đặt thẳng hàng, không bắt chéo; khó chịu → đổi sang side step.
 

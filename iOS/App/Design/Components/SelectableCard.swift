@@ -31,6 +31,8 @@ struct SelectableCard: View {
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                     .typeRole(.cardTitle)
                     .foregroundStyle(isSelected ? Palette.primary : Palette.textMuted)
+                    // The tick draws itself in (redesign 03/10/2026).
+                    .contentTransition(.symbolEffect(.replace))
                     .accessibilityHidden(true)
             }
             .foregroundStyle(Palette.text)
@@ -51,7 +53,8 @@ struct SelectableCard: View {
             }
             .contentShape(.rect(cornerRadius: Metrics.cardRadius))
         }
-        .buttonStyle(.plain)
+        .buttonStyle(PressableCardStyle())
+        .animation(.easeOut(duration: 0.25), value: isSelected)
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }

@@ -1,7 +1,8 @@
 #!/bin/zsh
 # Captures screenshot states with the single capture hook (-ScreenshotMode <state>).
 # Usage: iOS/scripts/capture_states.sh <out-dir> <device-name> <state> [state ...]
-#   Suffixes: "<state>@dark" switches to dark mode, "<state>@xxl" to the largest accessibility text.
+#   Suffixes: "<state>@dark" switches to dark mode, "<state>@xxl" to the largest accessibility text
+#   (the simulator content size; the app pins a size only for "-xxl" states, RootView CaptureRouter).
 # The app must already be built into /tmp/gw-dd (see the BUILD command in the plan).
 set -u
 out="$1"; device="$2"; shift 2

@@ -191,17 +191,23 @@ import Testing
         }
     }
 
-    @Test func countedMovesCountSixToTwelveReps() throws {
+    /// 06/10/2026 (review Q1, Otago 10 / NIA 10–15): Gentle 8, Steady 10, Strong 12; sit-to-stand 6 / 8 /
+    /// two sets of 8 with a minute's rest between them.
+    @Test func countedMovesCountSixToTwelveRepsASet() throws {
         for intensity in Intensity.allCases {
-            let plan = try build(chairDay, .seated, intensity)
+            let plan = try build(chairDay, .inPlace, intensity)
             for segment in plan.segments where segment.kind == .move {
                 let exercise = TestSupport.exercise(try #require(segment.exerciseID))
                 guard exercise.counting == .reps else { continue }
                 let reps = try #require(segment.reps)
                 #expect((exercise.id == "mv.sit-to-stand" ? 5...12 : 6...12).contains(reps))
-                #expect(segment.cues.filter { $0.line.hasPrefix("a5.n.") }.count == reps)
+                #expect(segment.cues.filter { $0.line.hasPrefix("a5.n.") }.count == reps * (segment.sets ?? 1))
             }
         }
+        let strong = try build(chairDay, .inPlace, .strong)
+        let sts = try #require(strong.segments.first { $0.exerciseID == "mv.sit-to-stand" })
+        #expect(sts.sets == 2 && sts.reps == 8)
+        #expect(sts.cues.contains { $0.line == "a4.v1.rest" } && sts.cues.contains { $0.line == "a4.v1.set2" })
     }
 
     @Test func easierVersionsFollowBodyLimits() throws {
@@ -212,16 +218,20 @@ import Testing
 
     // MARK: Stretches (plan §2.3, A10 §3)
 
-    @Test(arguments: [(Intensity.gentle, 15), (.steady, 20), (.strong, 30)])
+    /// 06/10/2026 (review Q4): Gentle 20 s, Steady and Strong 30 s; the key poses twice at every intensity;
+    /// every session at most about 12 minutes.
+    @Test(arguments: [(Intensity.gentle, 20), (.steady, 30), (.strong, 30)])
     func stretchDayHoldsPerIntensity(_ intensity: Intensity, _ hold: Int) throws {
         let plan = try build(stretchDay, .seated, intensity)
         #expect(plan.holdSeconds == hold)
         let held = plan.segments.filter { ($0.hold ?? 0) > 0 }
         #expect(!held.isEmpty)
         #expect(held.allSatisfy { $0.hold == hold })
-        // Round two for the key poses only at Steady and Strong.
         let chest = plan.segments.filter { $0.exerciseID == "st.chest" }.count
-        #expect(chest == (intensity == .gentle ? 1 : 2))
+        #expect(chest == 2)
+        for level in [WalkLevel.seated, .inPlace] {
+            #expect(try build(stretchDay, level, intensity).totalSeconds <= 12 * 60 + 30)
+        }
         #expect(plan.segments.last?.kind == .outro)
         #expect(plan.segments.contains { $0.kind == .cooldown && $0.seconds >= 50 })
     }
@@ -229,7 +239,7 @@ import Testing
     @Test func stretchPosesFollowThePlan() throws {
         let gentle = try build(stretchDay, .seated, .gentle)
         #expect(firstSeen(gentle.segments.filter(\.isExercise).compactMap(\.exerciseID))
-                == ["st.neck-turn", "st.chin-tuck", "st.chest", "st.twist", "st.thigh", "st.side"])
+                == ["st.neck-turn", "st.chin-tuck", "st.chest", "st.twist", "st.thigh"])
         let standing = try build(stretchDay, .inPlace, .gentle)
         #expect(firstSeen(standing.segments.filter(\.isExercise).compactMap(\.exerciseID))
                 == ["st.calf", "st.overhead", "st.side", "st.chest", "st.neck-turn"])
@@ -250,8 +260,16 @@ import Testing
             let plan = try build(chairDay, .seated, intensity, variant: SessionBuilder.Variant.balance)
             #expect(plan.blocks.map(\.kind) == [.chair])
             let exercises = plan.segments.filter { $0.kind == .move }
-            #expect(exercises.compactMap(\.exerciseID)
-                    == ["wk.shift", "mv.sit-to-stand", "bl.tandem", "mv.single-leg", "bl.side-walk", "mv.heel-toe"])
+            let expected: [String] = switch intensity {
+            case .gentle: ["wk.shift", "mv.sit-to-stand", "bl.tandem", "mv.single-leg", "bl.side-walk", "mv.heel-toe"]
+            case .steady: ["wk.shift", "mv.sit-to-stand", "bl.tandem", "mv.single-leg", "bl.side-walk", "bl.back-walk",
+                           "mv.heel-toe"]
+            case .strong: ["wk.shift", "mv.sit-to-stand", "bl.tandem", "mv.single-leg", "bl.walk-turn", "bl.back-walk",
+                           "bl.heel-toe-walking", "mv.heel-toe"]
+            }
+            #expect(exercises.compactMap(\.exerciseID) == expected)
+            // The Otago back extension warms up every level (06/10/2026).
+            #expect(plan.exerciseIDs.contains("st.back-ext"))
             for segment in exercises {
                 #expect(segment.cues.contains { $0.line.hasPrefix("a11.hands.") || $0.line.hasPrefix("a11.sts.") })
             }
@@ -260,6 +278,62 @@ import Testing
         let dizzy = try build(chairDay, .seated, .strong, limits: [.dizzy], variant: SessionBuilder.Variant.balance)
         #expect(!dizzy.lineIDs.contains("a11.hands.one"))
         #expect(!dizzy.lineIDs.contains("a11.hands.tips"))
+        // Feeling unsteady: both hands, no walking backwards or heel and toe walking, no back extension.
+        let unsteady = try build(chairDay, .seated, .strong, limits: [.unsteady], variant: SessionBuilder.Variant.balance)
+        #expect(!unsteady.lineIDs.contains("a11.hands.one") && !unsteady.lineIDs.contains("a11.hands.tips"))
+        #expect(!unsteady.exerciseIDs.contains("bl.back-walk"))
+        #expect(!unsteady.exerciseIDs.contains("bl.heel-toe-walking"))
+        #expect(!unsteady.exerciseIDs.contains("st.back-ext"))
+        #expect(unsteady.exerciseIDs.contains("bl.walk-turn"))
+    }
+
+    // MARK: Steady set (review 06/10/2026 Q2)
+
+    @Test func plannedDaysEndWithASteadySetOfAboutTwoMinutes() throws {
+        let free = PlannedDay(main: .walk, chairMoves: 1, cooldown: true, steadySet: .gentle)
+        for rotation in 0..<2 {
+            let plan = try build(free, .seated, .strong, rotation: rotation)
+            #expect(plan.blocks.last?.kind == .steady)
+            let steady = try #require(plan.blocks.last)
+            #expect((90...170).contains(steady.seconds), "\(steady.seconds) s")
+            #expect(steady.segments.contains { $0.exerciseID == "bl.tandem" })
+            #expect(steady.segments.contains { $0.exerciseID == (rotation == 0 ? "mv.sit-to-stand" : "mv.single-leg") })
+            // Free is the gentle set: both hands on the chair, even on a strong day.
+            let lines = steady.segments.flatMap { $0.cues.map(\.line) }
+            #expect(lines.contains("a11.hands.two"))
+            #expect(!lines.contains("a11.hands.one") && !lines.contains("a11.hands.tips"))
+        }
+    }
+
+    @Test func steadySetFollowsBodyLimits() throws {
+        let day = PlannedDay(main: .chair, chairMoves: 0, cooldown: true, steadySet: .matchingIntensity)
+        for limit in [BodyLimit.unsteady, .dizzy] {
+            let plan = try build(day, .inPlace, .strong, limits: [limit], rotation: 1)
+            let steady = try #require(plan.blocks.last)
+            #expect(!steady.segments.contains { $0.exerciseID == "mv.single-leg" }, "\(limit)")
+            #expect(steady.segments.contains { $0.exerciseID == "mv.sit-to-stand" }, "\(limit)")
+            let lines = steady.segments.flatMap { $0.cues.map(\.line) }
+            #expect(!lines.contains("a11.hands.one") && !lines.contains("a11.hands.tips"), "\(limit)")
+        }
+        // Standing is hard: the seated set, no standing exercise.
+        let seated = try build(day, .seated, .steady, limits: [.standingIsHard])
+        let steady = try #require(seated.blocks.last)
+        let standing = Set(content.exercises.filter(\.standing).map(\.id))
+        #expect(steady.kind == .steady)
+        #expect(steady.segments.compactMap(\.exerciseID).allSatisfy { !standing.contains($0) })
+    }
+
+    @Test func sessionsPickedOutsideThePlanHaveNoSteadySet() throws {
+        let plan = try build(chairDay, .seated, .gentle, variant: SessionBuilder.Variant.balance)
+        #expect(!plan.blocks.contains { $0.kind == .steady })
+        #expect(!(try build(walkOnly, .seated, .gentle)).blocks.contains { $0.kind == .steady })
+    }
+
+    @Test func shorteningNeverCutsTheSteadySet() throws {
+        let day = PlannedDay(main: .chair, chairMoves: 0, cooldown: true, steadySet: .matchingIntensity)
+        let plan = try build(day, .inPlace, .strong)
+        let short = plan.shortened(byMinutes: 10)
+        #expect(short.blocks.last?.segments == plan.blocks.last?.segments)
     }
 
     @Test func morningStretchIsSeatedAndEndsStandingSlowly() throws {

@@ -1,8 +1,8 @@
 import SwiftUI
 import GentleWalkCore
 
-/// S15 Workout complete. Fixed order: leaves (2 s), title, three numbers, self comparison,
-/// journey bar, new postcard, "How did that feel?", Done and Share with family.
+/// S15 Workout complete. Fixed order: leaves (2 s), title, three numbers, "How did that feel?",
+/// tree line, self comparison, journey bar, new postcard, Done and Share with family.
 struct CompleteView: View {
     let content: CompleteContent
     let onFeeling: (Feeling) -> Void
@@ -33,6 +33,14 @@ struct CompleteView: View {
                                  isCalm: content.variant == .stoppedForPain)
                     CompleteStats(minutes: content.minutes, milesText: content.milesText, milesLabel: content.milesLabel,
                                   activeDays: content.activeDays)
+                    // Right under the numbers, so a postcard never pushes it below Done (review M3).
+                    // After stopping for pain the answer is already known: no "too easy?" question.
+                    if content.variant != .stoppedForPain {
+                        FeelingQuestion(selection: feeling) { value in
+                            feeling = value
+                            onFeeling(value)
+                        }
+                    }
                     TreeMilestoneLine(activeDays: content.activeDays)
                         .cardStyle()
                     if route.count > 1 {
@@ -55,13 +63,6 @@ struct CompleteView: View {
                     }
                     if let chairMovesMinutes {
                         ChairMovesWaitingCard(minutes: chairMovesMinutes, onDoNow: onChairMoves)
-                    }
-                    // After stopping for pain the answer is already known: no "too easy?" question.
-                    if content.variant != .stoppedForPain {
-                        FeelingQuestion(selection: feeling) { value in
-                            feeling = value
-                            onFeeling(value)
-                        }
                     }
                     if !pinsDone {
                         Button("Done", action: onDone).buttonStyle(.primaryAction)

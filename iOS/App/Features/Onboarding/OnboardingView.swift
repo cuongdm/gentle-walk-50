@@ -9,6 +9,7 @@ struct OnboardingView: View {
     let onFinished: () -> Void
 
     @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     /// "See my options" stays in view on the long plan screen (not at accessibility sizes).
     private var pinsPlanButton: Bool { flow.step == .plan && !typeSize.isAccessibilitySize }
     /// Short steps (a picture and a line) keep Continue at the bottom like the question steps,
@@ -20,10 +21,16 @@ struct OnboardingView: View {
     var body: some View {
         VStack(spacing: 0) {
             if flow.step != .welcome {
-                OnboardingProgressHeader(label: flow.progressLabel, onBack: flow.back)
+                OnboardingProgressHeader(label: flow.progressLabel, progress: flow.progress, onBack: flow.back)
             }
             ScrollView {
                 screen
+                    // One screen slides in as the last one leaves: from the right going on, from the
+                    // left going Back; a cross-fade only with Reduce Motion.
+                    .id(flow.step)
+                    .transition(reduceMotion ? .opacity
+                                : .asymmetric(insertion: .move(edge: flow.movedForward ? .trailing : .leading).combined(with: .opacity),
+                                              removal: .opacity))
                     .padding(.horizontal, Metrics.screenMargin)
                     .padding(.bottom, 24)
                     .frame(maxWidth: 640)
@@ -41,6 +48,7 @@ struct OnboardingView: View {
                 ContinueButton(action: flow.next)
             }
         }
+        .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.45, dampingFraction: 0.9), value: flow.step)
         .screenBackground()
         .onChange(of: flow.step) { _, step in if step == .paywall { onFinished() } }
     }
@@ -61,21 +69,28 @@ struct OnboardingView: View {
     }
 }
 
-/// "Part 2 of 3 · About you" with a Back button that has a word, not just an arrow.
+/// "Part 2 of 3 · About you" with a Back button that has a word, not just an arrow, and the walked
+/// path under it.
 struct OnboardingProgressHeader: View {
     let label: String?
+    /// 0...1 along the path; the label already says where she is to VoiceOver.
+    var progress: Double = 0
     let onBack: () -> Void
 
     var body: some View {
-        HStack {
-            Button(action: onBack) {
-                Label("Back", systemImage: "chevron.left")
+        VStack(alignment: .leading, spacing: 6) {
+            HStack {
+                Button(action: onBack) {
+                    Label("Back", systemImage: "chevron.left")
+                }
+                .buttonStyle(.smallTextLink)
+                Spacer()
+                if let label {
+                    Text(verbatim: label).typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)
+                }
             }
-            .buttonStyle(.smallTextLink)
-            Spacer()
-            if let label {
-                Text(verbatim: label).typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)
-            }
+            // A winding path with a walker at the front (redesign 03/10/2026), instead of a bar.
+            WalkingPathProgress(progress: progress)
         }
         .padding(.horizontal, Metrics.screenMargin)
         .padding(.top, 4)

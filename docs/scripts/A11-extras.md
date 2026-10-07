@@ -187,6 +187,47 @@ Chin tuck · Chest · Upper back reach · Seated row · Overhead reach at the wa
 | a11.posture.to-wall | Last one at the wall. Stand up slowly, take a breath, then walk over. |
 | a11.posture.close | That's your reset. Notice how your shoulders feel, then carry on with your day. |
 
+## 8. Steady set 2 (thêm 06/10/2026)
+Theo rà soát chuyên gia [docs/reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md](../reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md) Q2: khoảng 2 phút thăng bằng **sau phần chính của mọi ngày tập** (World Falls Guidelines 2022: thăng bằng ≥3 buổi/tuần; đi bộ đơn thuần không đủ). **Miễn phí**: bản Gentle, hai tay. Pro: mức vịn theo cường độ (§2.2). Không có ở buổi chọn ngoài kế hoạch, buổi ngoài trời và buổi đầu.
+
+| Bản | Bài | Liều |
+|---|---|---|
+| `.a` (ngày chẵn) | Tandem stance → Sit-to-stand | 10 s mỗi chân ×1 · ×5, hai tay đẩy ghế |
+| `.b` (ngày lẻ) | Tandem stance → Single-leg stand | 10 s mỗi chân ×1 · 10 s mỗi chân ×1; chip Dizzy / Unsteady: Sit-to-stand thay Single-leg |
+| `.seated` (chip Standing for long is hard) | Seated knee lift → Heel and toe raises ngồi | 40 s · 40 s |
+
+Chip "I feel unsteady on my feet": hai tay ở mọi bài như chip Dizzy.
+
+## 9. Bài Otago mới và các câu thêm (06/10/2026)
+Balance thêm Standing back extension ở phần khởi động (mọi cấp); Steady thêm Walking backwards; Strong thêm Walk and turn, Walking backwards và Heel and toe walking (thay Heel and toe raises). Thang vịn theo bài (Pro, chương trình sau): câu `a11.ladder.*`.
+
+| ID | Câu thoại | Ghi chú |
+|---|---|---|
+| a11.steady.open | Two more minutes now, for steadier feet. Stand behind your chair. | mở Steady set đứng |
+| a11.steady.seated | Two more minutes now, right in your chair, for steadier feet. | mở Steady set ngồi |
+| a11.recover | If you wobble, a quick step to catch yourself is fine. That's part of the practice. | Otago: bước điều chỉnh [S16 p.25] |
+| a4.v1.rest | Sit and rest for a minute. Breathe easy, and sip some water if you like. | Sit-to-stand Strong, giữa hai hiệp [S18] |
+| a4.v1.set2 | Second set now. Same as before, slow and steady. | |
+| a11.back-ext.intro | Standing back extension. Stand tall, hands on your hips. | clip S13 |
+| a11.back-ext.move | Lean back just a little, chin level, eyes ahead… then come back up tall. | biên nhỏ, không ngửa cổ [S16 p.29] |
+| a11.back-ext.small | Only a small lean. You should feel your chest lift, not your neck. | |
+| a11.back-ext.reps | Five slow times. | |
+| a11.back-walk.intro | Walking backwards. Stand at your kitchen counter, hands resting on it. | Otago level B [S16 p.30] |
+| a11.back-walk.move | Step back slowly, toes first, then the heel. Keep looking ahead. | |
+| a11.back-walk.count | Ten small steps back, then ten steps forward. | |
+| a11.back-walk.easy | Keep your steps small, and slide your hands along the counter. | |
+| a11.walk-turn.intro | Walk and turn. Start at one end of your kitchen counter. | Otago level C [S16 p.30] |
+| a11.walk-turn.move | Walk four steps along it, then turn around slowly, in small steps. | |
+| a11.walk-turn.back | Now walk back, and turn again at the start. | |
+| a11.walk-turn.easy | Take the turn in tiny steps, and keep a hand on the counter. | |
+| a11.heel-walk.intro | Heel and toe walking. Stand at your counter, one hand resting on it. | Otago level C/D [S16 p.30] |
+| a11.heel-walk.heels | Lift your toes, and take ten small steps on your heels. | |
+| a11.heel-walk.toes | Now rise onto your toes, and take ten small steps back. | |
+| a11.heel-walk.easy | Too much? Do the raises standing still instead. That still counts. | |
+| a11.ladder.one | Last time you were steady with both hands. Try one hand today, if it feels right. | thang vịn (Pro) |
+| a11.ladder.tips | Last time one hand felt steady. Try just your fingertips today, if it feels right. | thang vịn (Pro) |
+| a11.ladder.down | Let's keep both hands on today. That's a smart choice. | thang vịn (Pro) |
+
 ## 7. Tổng và cần kiểm tra
 | Mục | Câu mới |
 |---|---|
@@ -196,7 +237,8 @@ Chin tuck · Chest · Upper back reach · Seated row · Overhead reach at the wa
 | Commercial break walk 5 | 5 |
 | Wind-down 5 (B) | 9 |
 | Posture reset 3 (B) | 4 |
-| **Cộng** | **62** |
+| Steady set và bài Otago mới (06/10) | 25 |
+| **Cộng** | **87** |
 
 - **Thời lượng thật thà:** Balance Strong thêm Heel-to-toe walk → khoảng 6:30, không phải 6:00; Posture reset ước 3:20. Thẻ lấy số phút từ `build_content.py`.
 - **Clip lệch giọng:** Heel and toe raises trong Balance là bản đứng, clip V4 là bản ngồi; B1 tandem cho thấy hai tay, trong khi Steady/Strong nói một tay/đầu ngón tay; Weight shift chưa có clip đợt A (W2-7 đợt B). Sideways walking: clip W2-2 bước tại chỗ, giọng dẫn đi ngang dọc mặt bếp (chốt 30/09 (a)); `a11.side-walk.nocounter` khớp đúng hình.

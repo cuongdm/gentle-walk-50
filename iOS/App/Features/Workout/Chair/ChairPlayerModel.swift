@@ -47,8 +47,14 @@ import GentleWalkCore
         nextExercise.flatMap { ExerciseVideo.firstBundled($0.videoCandidates(level: walkLevel, pace: .easy, alternate: isBalance)) }
     }
 
-    /// Balance stands throughout: heel and toe raises use their standing clip.
-    private var isBalance: Bool { session.request.variant == SessionBuilder.Variant.balance }
+    /// Balance and the steady set stand throughout: heel and toe raises use their standing clip.
+    private var isBalance: Bool {
+        session.request.variant == SessionBuilder.Variant.balance
+            || (phase?.block == .steady && !session.request.limits.contains(.standingIsHard))
+    }
+
+    /// Painted still for a move without a clip of its own (walking backwards, walk and turn).
+    var picture: String? { exercise?.picture }
 
     /// Where she is among this block's moves (segmented bar).
     var moveProgress: SessionTimeline.MoveProgress? { player.timeline.moveProgress(at: player.currentTime) }
@@ -57,9 +63,7 @@ import GentleWalkCore
     var followingName: String? {
         guard let progress = moveProgress else { return nil }
         let moves = player.timeline.phases.filter { $0.block == phase?.block && $0.isExercise }
-        let after = progress.index + 1
-        guard moves.indices.contains(after), let id = moves[after].exerciseID else { return nil }
-        return session.exercisesByID[id]?.name
+        return FollowingMove.label(ids: moves.map(\.exerciseID), index: progress.index) { session.exercisesByID[$0]?.name }
     }
 
     var usesEasier: Bool {

@@ -107,6 +107,7 @@ struct AppCaptureScene: View {
             app.renewalOverride = (ProductID.yearly, Date.now.addingTimeInterval(12 * 86_400))
         }
         if state == .todayTrialEnded { app.defaults.set(Date.now.addingTimeInterval(-3 * 86_400), forKey: "lastTrialEnds") }
+        if state == .todayRest { app.defaults.set(Date.now, forKey: AppModel.restTodayKey) }
         app.reload()
         prepare(app)
         return app

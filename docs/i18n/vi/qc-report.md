@@ -1,8 +1,10 @@
-# QC giọng vi — 593/593 câu đã thu
+# QC giọng vi — 617/617 câu đã thu
 
-Tổng thời lượng: 33.8 phút (tiếng Anh cùng các câu: 35.8 phút).
-Chưa thu: 0. Cờ khác: 6 câu; cần thu lại (phát âm / im lặng / mức âm): 2.
+Tổng thời lượng: 35.4 phút (tiếng Anh cùng các câu: 37.6 phút).
+Chưa thu: 0. Cờ khác: 7 câu; cần thu lại (phát âm / im lặng / mức âm): 2.
 
+- `a11.heel-walk.easy` — Thấy khó quá? Đứng yên nhón gót và mũi chân cũng được. Vẫn tính nhé.
+  - fit: pushes the next line 0.1s more than English; runs past its part
 - `a2.move.side-step.intro` — Bước sang ngang.
   - length 2.2s vs English 1.0s (2.29×)
 - `a4.arm-raise.form.1` — Khuỷu hơi cong, lòng tay úp.

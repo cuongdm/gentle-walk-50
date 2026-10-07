@@ -52,6 +52,12 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
         }
     }
 
+    /// The thin bar under the header: never 0 on the first question (goal gradient, review M6,
+    /// 02/10/2026), full on the plan.
+    var progress: Double {
+        min(1, Double(step.rawValue) / Double(OnboardingStep.plan.rawValue))
+    }
+
     var profile: OnboardingProfile {
         var answers = answers
         answers.name = nameText
@@ -65,13 +71,18 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
             return
         }
         hint = nil
+        movedForward = true
         if let next = OnboardingStep(rawValue: step.rawValue + 1) { step = next }
     }
 
     func back() {
         hint = nil
+        movedForward = false
         if let previous = OnboardingStep(rawValue: step.rawValue - 1) { step = previous }
     }
+
+    /// Which way the last step went: the next screen slides in from the right, Back from the left.
+    private(set) var movedForward = true
 
     /// Screenshots and tests.
     func jump(to step: OnboardingStep) {
@@ -86,6 +97,11 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
         showsGoalLimit = false
         if let index = answers.goals.firstIndex(of: goal) {
             answers.goals.remove(at: index)
+        } else if goal == .notSure {
+            // "Not sure yet" stands alone, like "None of these" on the body screen.
+            answers.goals = [.notSure]
+        } else if answers.goals.contains(.notSure) {
+            answers.goals = [goal]
         } else if answers.goals.count < Self.maxGoals {
             answers.goals.append(goal)
         } else {

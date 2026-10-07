@@ -79,9 +79,17 @@ struct CaptureRouter: View {
     let state: CaptureState
 
     var body: some View {
-        scene
-            // "-xxl" states show the largest accessibility text (they rendered at the normal size).
-            .dynamicTypeSize(state.rawValue.hasSuffix("-xxl") ? .accessibility3 : .large)
+        // "-xxl" states show the largest accessibility text; every other state keeps the simulator's
+        // own text size, so "<state>@xxl" in capture_states.sh is captured large (review M10).
+        if let size = Self.pinnedTypeSize(for: state) {
+            scene.dynamicTypeSize(size)
+        } else {
+            scene
+        }
+    }
+
+    static func pinnedTypeSize(for state: CaptureState) -> DynamicTypeSize? {
+        state.rawValue.hasSuffix("-xxl") ? .accessibility3 : nil
     }
 
     @ViewBuilder private var scene: some View {

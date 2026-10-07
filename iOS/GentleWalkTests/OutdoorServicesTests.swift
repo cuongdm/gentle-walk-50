@@ -88,6 +88,7 @@ import GentleWalkCore
 @MainActor final class FakePedometer: PedometerProviding {
     var available = true
     var denied = false
+    var isAuthorized = false
     private(set) var started: Date?
     private var handler: ((Int, Double?) -> Void)?
     func start(from date: Date, onUpdate: @escaping (Int, Double?) -> Void, onDenied: @escaping () -> Void) {
@@ -117,5 +118,19 @@ import GentleWalkCore
         service.start(at: Date())
         #expect(service.isDenied)
         #expect(service.miles == nil)
+        #expect(!service.isRunning)
+    }
+
+    /// Owner S1 (02/10/2026): steps on the live map only while this walk is counted.
+    @Test func runningOnlyBetweenStartAndStop() {
+        let pedometer = FakePedometer()
+        pedometer.isAuthorized = true
+        let service = PedometerService(pedometer: pedometer)
+        #expect(service.isAuthorized)
+        #expect(!service.isRunning)
+        service.start(at: Date())
+        #expect(service.isRunning)
+        service.stop()
+        #expect(!service.isRunning)
     }
 }

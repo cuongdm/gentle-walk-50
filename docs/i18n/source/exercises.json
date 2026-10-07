@@ -169,7 +169,10 @@
    "Lift your foot just a little"
   ],
   "easier": "Lift only your heel, toes stay down",
-  "harder": "Hold on with just one hand"
+  "harder": "Hold on with just one hand",
+  "limitNotes": {
+   "unsteady": "Both hands, lift just your heel"
+  }
  },
  "mv.side-leg": {
   "name": "Side leg raise",
@@ -370,6 +373,19 @@
    "standingIsHard": "Sit tall and reach up instead"
   }
  },
+ "st.back-ext": {
+  "name": "Standing back extension",
+  "purpose": "For standing tall",
+  "tips": [
+   "Hands on your hips",
+   "Lean back only a little",
+   "Chin level, eyes ahead"
+  ],
+  "easier": "Hold the chair, a smaller lean",
+  "limitNotes": {
+   "lowerBack": "A small lean, back long"
+  }
+ },
  "bl.tandem": {
   "name": "Tandem stance",
   "purpose": "For narrow aisles and hallways",
@@ -382,7 +398,8 @@
   "harder": "Just your fingertips on the chair",
   "limitNotes": {
    "jointReplacement": "Feet stay in line, never crossing over",
-   "dizzy": "Both hands on the chair"
+   "dizzy": "Both hands on the chair",
+   "unsteady": "Both hands on the chair"
   }
  },
  "bl.side-walk": {
@@ -396,7 +413,8 @@
   "easier": "Smaller steps, one hand on the counter",
   "harder": "Slightly bigger steps, same slow pace",
   "limitNotes": {
-   "dizzy": "Small steps, one hand on the counter"
+   "dizzy": "Small steps, one hand on the counter",
+   "unsteady": "Both hands on the counter, small steps"
   }
  },
  "bl.heel-toe-walk": {
@@ -408,6 +426,42 @@
    "Eyes ahead, one slow step at a time"
   ],
   "easier": "Leave a small gap between steps",
+  "harder": "A few more steps, same slow pace"
+ },
+ "bl.back-walk": {
+  "name": "Walking backwards",
+  "purpose": "For stepping back from a counter",
+  "tips": [
+   "Hands slide along the counter",
+   "Toes first, then the heel",
+   "Eyes ahead, small slow steps"
+  ],
+  "easier": "Fewer, smaller steps",
+  "harder": "Ten steps, one hand on the counter"
+ },
+ "bl.walk-turn": {
+  "name": "Walk and turn",
+  "purpose": "For turning around at home",
+  "tips": [
+   "Walk along your counter",
+   "Turn in tiny steps",
+   "A hand within reach the whole time"
+  ],
+  "easier": "Both hands on the counter for the turn",
+  "harder": "Five steps each way",
+  "limitNotes": {
+   "unsteady": "Both hands on the counter"
+  }
+ },
+ "bl.heel-toe-walking": {
+  "name": "Heel and toe walking",
+  "purpose": "For uneven paths and lawns",
+  "tips": [
+   "One hand on the counter",
+   "Toes up for the heel steps",
+   "Heels up for the toe steps"
+  ],
+  "easier": "Raise heels and toes standing still",
   "harder": "A few more steps, same slow pace"
  }
 }

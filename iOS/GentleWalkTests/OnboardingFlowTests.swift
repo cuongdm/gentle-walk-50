@@ -31,6 +31,19 @@ import GentleWalkCore
                                     .plan, .paywall])
     }
 
+    /// Review M6 (02/10/2026): the bar never starts at 0 and grows to full on the plan.
+    @Test func progressNeverStartsAtZero() {
+        let flow = OnboardingFlow()
+        var values: [Double] = []
+        for step in [OnboardingStep.goal, .barriers, .understanding, .name, .activity, .chair, .body, .plan] {
+            flow.jump(to: step)
+            values.append(flow.progress)
+        }
+        #expect(values.first! > 0)
+        #expect(values.last == 1)
+        #expect(values == values.sorted())
+    }
+
     @Test func progressLabelNamesThePartAndStep() {
         let flow = OnboardingFlow()
         flow.jump(to: .name)
@@ -75,6 +88,16 @@ import GentleWalkCore
         #expect(flow.showsGoalLimit)
         flow.toggleGoal(.lessPain)
         #expect(!flow.showsGoalLimit)
+        #expect(flow.answers.goals == [.steadier])
+    }
+
+    /// Review M7 (02/10/2026): "Not sure yet" is the way out and stands alone.
+    @Test func notSureStandsAlone() {
+        let flow = OnboardingFlow()
+        flow.toggleGoal(.lessPain)
+        flow.toggleGoal(.notSure)
+        #expect(flow.answers.goals == [.notSure])
+        flow.toggleGoal(.steadier)
         #expect(flow.answers.goals == [.steadier])
     }
 

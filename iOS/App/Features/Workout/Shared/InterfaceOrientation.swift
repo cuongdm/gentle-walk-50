@@ -51,6 +51,9 @@ struct VideoCornerButton: View {
                 .foregroundStyle(Palette.text)
                 .frame(width: 44, height: 44)
                 .background(Palette.surface.opacity(0.92), in: .circle)
+                // A thin edge and a soft shadow keep it visible on a white wall too (review M2).
+                .overlay { Circle().strokeBorder(Palette.textMuted.opacity(0.35), lineWidth: 1) }
+                .shadow(color: .black.opacity(0.14), radius: 4, y: 1)
                 .frame(width: Metrics.minTouchTarget, height: Metrics.minTouchTarget)
                 .contentShape(.rect)
         }

@@ -18,7 +18,7 @@ struct WorkoutCaptureScene: View {
             switch state {
             case .phonePlacement:
                 PhonePlacementView(onDone: { _ in })
-            case .previewIndoor, .previewOutdoor, .previewStretch, .previewChair, .previewWalkingPad:
+            case .previewIndoor, .previewOutdoor, .previewStretch, .previewChair, .previewWalkingPad, .previewSteady:
                 if let preview {
                     WorkoutPreviewView(model: preview, onStart: { _ in }, onRemindLater: {})
                 }
@@ -47,6 +47,8 @@ struct WorkoutCaptureScene: View {
             preview = previewModel(PlannedDay(main: .stretch, chairMoves: 0, cooldown: false), checkIn: .okay)
         case .previewChair:
             preview = previewModel(PlannedDay(main: .chair, chairMoves: 0, cooldown: true), checkIn: .okay)
+        case .previewSteady:
+            preview = previewModel(PlannedDay(main: .walk, chairMoves: 1, cooldown: true, steadySet: .gentle), checkIn: .okay)
         default:
             session = await sessionScene()
         }
@@ -124,6 +126,7 @@ struct WorkoutCaptureScene: View {
             model.tracksRoute = state != .outdoorPlayerNoGps
             model.outdoorDistance = { gps ? 0.6 : state == .outdoorPlayerFinding ? 0 : 0.5 }
             model.locationOn = { gps }
+            model.outdoorSteps = { gps ? 1_240 : nil }
             model.routeProvider = { gps ? Self.sampleRoute : [] }
             model.player.tick(200)
             return model
@@ -147,6 +150,23 @@ struct WorkoutCaptureScene: View {
                 for _ in 0..<4 { model.addRep() }
                 model.forceCountedForYou = state == .chairCounted
             }
+            return model
+        case .steadySet:
+            let day = PlannedDay(main: .walk, chairMoves: 1, cooldown: true, steadySet: .gentle)
+            let model = await make(request(day, intensity: .steady))
+            if let tandem = model.player.timeline.phases.first(where: { $0.block == .steady && $0.exerciseID == "bl.tandem" }) {
+                model.player.tick(tandem.start + 14)
+            }
+            model.confirmStanding()
+            return model
+        case .balanceBackWalk:
+            var balance = SessionCatalog.preset(id: "extra.balance")!.request(limits: [.knees], rotationIndex: 0)
+            balance.intensity = .strong
+            let model = await make(balance)
+            if let back = model.player.timeline.phases.first(where: { $0.exerciseID == "bl.back-walk" }) {
+                model.player.tick(back.start + 12)
+            }
+            model.confirmStanding()
             return model
         case .stretchPlayer, .stretchSwitchSide:
             let model = await make(request(PlannedDay(main: .stretch, chairMoves: 0, cooldown: false)))

@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-01",
+ "updated": "2026-10-06",
  "notes": "Hand-edited catalog for assets/video/video-manager.html. Rebuild: python3 tools/video/build_video_manager.py. Quality (Tốt / Trung bình / Thấp / Chưa có) is computed from the app clip's metrics + 'form' (ok | minor | wrong). 'pattern' = expected action logic for tools/video/motion_logic.py (alternate | sides | symmetric | hold).",
  "sources": {
   "flow-main": {
@@ -1766,6 +1766,33 @@
    "logic_waive": {
     "nối vòng lặp nhảy tư thế": "bài đi tiến 4 bước: mỗi vòng bắt đầu lại từ bên trái (cắt cảnh), không nối liền được"
    }
+  },
+  {
+   "id": "S13",
+   "name": "Standing back extension",
+   "group": "Giãn cơ",
+   "cat": "stretch",
+   "angle": "Nghiêng",
+   "frame": "NB2 (mới 06/10)",
+   "src": "gemini-360-1080",
+   "tries": 1,
+   "note": "06/10/2026: Otago back extension (rà soát 58–75 Q5). Một lần ngả sau (khoảng 16°), retime ×0,8, vòng lặp cắt thẳng 2,17 s; lượt 720p có xen cúi trước nên chỉ giữ một lần ngả đúng. 33,66 credit. Log: P-production-prompts §9.3.",
+   "form": "ok",
+   "pattern": "symmetric"
+  },
+  {
+   "id": "V4-3",
+   "name": "Heel and toe raises (standing)",
+   "group": "Ghế",
+   "cat": "move",
+   "angle": "Nghiêng",
+   "frame": "MF-04c",
+   "src": "gemini-360-1080",
+   "tries": 1,
+   "note": "06/10/2026 (bản 2): MỘT lần tạo Gemini Omni 1.1 360p 6 s (job 9dbc44b6, 6 credit; ảnh đầu = khung nghỉ V4-alt, ảnh cuối = ảnh mũi chân nhấc) → upscale 1080p (a534ec74) → ghim gót đoạn nhấc mũi (V4-3_feet_pin.py … 124 110:122; mẫu trượt 18 px) → làm lại nhịp V4-3c_smooth.py (mỗi động tác theo đường cong êm, khung xen bằng luồng quang học, mũi chân đo trên ảnh vì điểm pose bỏ sót cú vọt 21 px/6 khung; nối vòng bằng 8 khung chuyển tiếp bù chuyển động), 5,54 s. Bản cắt thẳng trước đó: V4-3c_hardcut.mp4. Bản 1 ghép hai clip khác lần tạo bị nhảy ánh sáng/tư thế ở mối nối: V4-3_twoclip-pinned.mp4, V4-3_before-feet-pin.mp4.",
+   "form": "minor",
+   "pattern": "symmetric",
+   "form_note": "chủ app 06/10: tạm được, chưa ok lắm — chuyển nhịp nhón gót → nhấc mũi vẫn chưa thật mượt; vệt mờ AI sau gót và trước mũi giày; mép chân tường lệch ~2 px trước mũi giày"
   }
  ]
 }

@@ -28,12 +28,13 @@ public enum Intensity: String, CaseIterable, Codable, Sendable {
         }
     }
 
-    /// Stretch hold per side, once per side (A10 §1, changed 30/09/2026: Gentle 15 s).
+    /// Stretch hold per side (A10 §1). Changed 06/10/2026 for women 58–75 (review
+    /// docs/reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md Q4): Gentle 20 s, Steady and Strong 30 s,
+    /// with a second round for the key poses so each main muscle group gets 40–60 s.
     public var stretchHoldSeconds: Int {
         switch self {
-        case .gentle: 15
-        case .steady: 20
-        case .strong: 30
+        case .gentle: 20
+        case .steady, .strong: 30
         }
     }
 }

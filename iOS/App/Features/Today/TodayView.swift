@@ -149,11 +149,14 @@ struct CheckInRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("How do your joints feel today?").typeRole(.caption).foregroundStyle(Palette.textMuted)
+            // A question she answers: body text, not a muted caption; the line under it says why
+            // (clarity review D6, restored by review M1, 02/10/2026).
+            Text("How do your joints feel today?").typeRole(.body).foregroundStyle(Palette.text)
             ViewThatFits(in: .horizontal) {
                 HStack(spacing: 8) { buttons }
                 VStack(spacing: 8) { buttons }
             }
+            Text("We'll set today's session to match.").typeRole(.caption).foregroundStyle(Palette.textMuted)
         }
     }
 
@@ -205,7 +208,11 @@ struct TodaySessionCard: View {
                 .foregroundStyle(session.kind == .done ? Palette.onStrongFill : Palette.text)
                 Spacer(minLength: 0)
                 // At accessibility sizes the title needs the width (it broke word by word).
-                if !typeSize.isAccessibilitySize {
+                if session.kind == .rest, !typeSize.isAccessibilitySize {
+                    // A rest day is a good day: the coach resting, not a moon icon (review M15,
+                    // pattern of Gentler Streak's "Day to Rest and Recover").
+                    ArtImage(art: .walkerRest, height: 96, fallbackSymbol: "moon.zzz.fill").frame(width: 84)
+                } else if !typeSize.isAccessibilitySize {
                     Image(systemName: symbol)
                         .typeRole(.stat)
                         .fontWeight(.regular)
@@ -234,7 +241,7 @@ struct TodaySessionCard: View {
             }
             if let onPickAnother {
                 // Done for today: All sessions stays one tap away (it was only at the foot of Today).
-                Button(session.kind == .done ? "See all sessions" : "Pick a different session", action: onPickAnother)
+                Button(pickAnotherTitle, action: onPickAnother)
                     .buttonStyle(.smallTextLink)
                     .foregroundStyle(session.kind == .done ? Palette.onStrongFill : Palette.text)
                     .frame(maxWidth: .infinity)
@@ -246,6 +253,15 @@ struct TodaySessionCard: View {
         .padding(20)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(session.kind == .done ? Palette.secondary : Palette.surface, in: .rect(cornerRadius: Metrics.cardRadius))
+    }
+
+    private var pickAnotherTitle: LocalizedStringResource {
+        switch session.kind {
+        case .done: "See all sessions"
+        // Rest is the plan; moving a little is an invitation, never a task.
+        case .rest: "Like to move a little? Pick a short session"
+        default: "Pick a different session"
+        }
     }
 
     private var symbol: String {

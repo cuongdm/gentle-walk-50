@@ -33676,6 +33676,1568 @@
           "end": 5.28
         }
       ]
+    },
+    {
+      "id": "a11.steady.open",
+      "text": "Two more minutes now, for steadier feet. Stand behind your chair.",
+      "file": "a11.steady.open.m4a",
+      "duration": 4.474,
+      "words": [
+        {
+          "word": "Two",
+          "start": 0.22,
+          "end": 0.38
+        },
+        {
+          "word": "more",
+          "start": 0.46,
+          "end": 0.62
+        },
+        {
+          "word": "minutes",
+          "start": 0.66,
+          "end": 0.96
+        },
+        {
+          "word": "now,",
+          "start": 1.0,
+          "end": 1.24
+        },
+        {
+          "word": "for",
+          "start": 1.6,
+          "end": 1.7
+        },
+        {
+          "word": "steadier",
+          "start": 1.84,
+          "end": 2.16
+        },
+        {
+          "word": "feet.",
+          "start": 2.3,
+          "end": 2.6
+        },
+        {
+          "word": "Stand",
+          "start": 3.14,
+          "end": 3.4
+        },
+        {
+          "word": "behind",
+          "start": 3.44,
+          "end": 3.7
+        },
+        {
+          "word": "your",
+          "start": 3.74,
+          "end": 3.84
+        },
+        {
+          "word": "chair.",
+          "start": 3.88,
+          "end": 4.2
+        }
+      ]
+    },
+    {
+      "id": "a11.steady.seated",
+      "text": "Two more minutes now, right in your chair, for steadier feet.",
+      "file": "a11.steady.seated.m4a",
+      "duration": 4.383,
+      "words": [
+        {
+          "word": "Two",
+          "start": 0.08,
+          "end": 0.36
+        },
+        {
+          "word": "more",
+          "start": 0.36,
+          "end": 0.6
+        },
+        {
+          "word": "minutes",
+          "start": 0.6,
+          "end": 0.94
+        },
+        {
+          "word": "now,",
+          "start": 0.94,
+          "end": 1.8
+        },
+        {
+          "word": "right",
+          "start": 1.8,
+          "end": 2.04
+        },
+        {
+          "word": "in",
+          "start": 2.04,
+          "end": 2.2
+        },
+        {
+          "word": "your",
+          "start": 2.2,
+          "end": 2.32
+        },
+        {
+          "word": "chair,",
+          "start": 2.32,
+          "end": 3.08
+        },
+        {
+          "word": "for",
+          "start": 3.08,
+          "end": 3.22
+        },
+        {
+          "word": "steadier",
+          "start": 3.22,
+          "end": 3.76
+        },
+        {
+          "word": "feet.",
+          "start": 3.76,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a11.recover",
+      "text": "If you wobble, a quick step to catch yourself is fine. That's part of the practice.",
+      "file": "a11.recover.m4a",
+      "duration": 5.322,
+      "words": [
+        {
+          "word": "If",
+          "start": 0.18,
+          "end": 0.28
+        },
+        {
+          "word": "you",
+          "start": 0.32,
+          "end": 0.4
+        },
+        {
+          "word": "wobble,",
+          "start": 0.5,
+          "end": 0.9
+        },
+        {
+          "word": "a",
+          "start": 1.3,
+          "end": 1.36
+        },
+        {
+          "word": "quick",
+          "start": 1.42,
+          "end": 1.58
+        },
+        {
+          "word": "step",
+          "start": 1.7,
+          "end": 1.92
+        },
+        {
+          "word": "to",
+          "start": 1.96,
+          "end": 2.06
+        },
+        {
+          "word": "catch",
+          "start": 2.1,
+          "end": 2.3
+        },
+        {
+          "word": "yourself",
+          "start": 2.34,
+          "end": 2.78
+        },
+        {
+          "word": "is",
+          "start": 2.82,
+          "end": 2.98
+        },
+        {
+          "word": "fine.",
+          "start": 3.04,
+          "end": 3.4
+        },
+        {
+          "word": "That's",
+          "start": 3.96,
+          "end": 4.18
+        },
+        {
+          "word": "part",
+          "start": 4.22,
+          "end": 4.4
+        },
+        {
+          "word": "of",
+          "start": 4.44,
+          "end": 4.48
+        },
+        {
+          "word": "the",
+          "start": 4.52,
+          "end": 4.58
+        },
+        {
+          "word": "practice.",
+          "start": 4.62,
+          "end": 5.24
+        }
+      ]
+    },
+    {
+      "id": "a4.v1.rest",
+      "text": "Sit and rest for a minute. Breathe easy, and sip some water if you like.",
+      "file": "a4.v1.rest.m4a",
+      "duration": 5.236,
+      "words": [
+        {
+          "word": "Sit",
+          "start": 0.1,
+          "end": 0.44
+        },
+        {
+          "word": "and",
+          "start": 0.44,
+          "end": 0.62
+        },
+        {
+          "word": "rest",
+          "start": 0.62,
+          "end": 0.9
+        },
+        {
+          "word": "for",
+          "start": 0.9,
+          "end": 1.08
+        },
+        {
+          "word": "a",
+          "start": 1.08,
+          "end": 1.26
+        },
+        {
+          "word": "minute.",
+          "start": 1.26,
+          "end": 1.9
+        },
+        {
+          "word": "Breathe",
+          "start": 1.9,
+          "end": 2.56
+        },
+        {
+          "word": "easy,",
+          "start": 2.56,
+          "end": 3.06
+        },
+        {
+          "word": "and",
+          "start": 3.06,
+          "end": 3.74
+        },
+        {
+          "word": "sip",
+          "start": 3.74,
+          "end": 4.0
+        },
+        {
+          "word": "some",
+          "start": 4.0,
+          "end": 4.2
+        },
+        {
+          "word": "water",
+          "start": 4.2,
+          "end": 4.54
+        },
+        {
+          "word": "if",
+          "start": 4.54,
+          "end": 4.72
+        },
+        {
+          "word": "you",
+          "start": 4.72,
+          "end": 4.8
+        },
+        {
+          "word": "like.",
+          "start": 4.8,
+          "end": 4.98
+        }
+      ]
+    },
+    {
+      "id": "a4.v1.set2",
+      "text": "Second set now. Same as before, slow and steady.",
+      "file": "a4.v1.set2.m4a",
+      "duration": 4.179,
+      "words": [
+        {
+          "word": "Second",
+          "start": 0.1,
+          "end": 0.46
+        },
+        {
+          "word": "set",
+          "start": 0.46,
+          "end": 0.72
+        },
+        {
+          "word": "now.",
+          "start": 0.72,
+          "end": 1.3
+        },
+        {
+          "word": "Same",
+          "start": 1.3,
+          "end": 1.84
+        },
+        {
+          "word": "as",
+          "start": 1.84,
+          "end": 2.02
+        },
+        {
+          "word": "before,",
+          "start": 2.02,
+          "end": 2.76
+        },
+        {
+          "word": "slow",
+          "start": 2.76,
+          "end": 3.32
+        },
+        {
+          "word": "and",
+          "start": 3.32,
+          "end": 3.5
+        },
+        {
+          "word": "steady.",
+          "start": 3.5,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a11.back-ext.intro",
+      "text": "Standing back extension. Stand tall, hands on your hips.",
+      "file": "a11.back-ext.intro.m4a",
+      "duration": 4.729,
+      "words": [
+        {
+          "word": "Standing",
+          "start": 0.24,
+          "end": 0.58
+        },
+        {
+          "word": "back",
+          "start": 0.68,
+          "end": 0.86
+        },
+        {
+          "word": "extension.",
+          "start": 0.9,
+          "end": 1.56
+        },
+        {
+          "word": "Stand",
+          "start": 2.34,
+          "end": 2.62
+        },
+        {
+          "word": "tall,",
+          "start": 2.74,
+          "end": 3.14
+        },
+        {
+          "word": "hands",
+          "start": 3.56,
+          "end": 3.88
+        },
+        {
+          "word": "on",
+          "start": 3.92,
+          "end": 4.019
+        },
+        {
+          "word": "your",
+          "start": 4.059,
+          "end": 4.14
+        },
+        {
+          "word": "hips.",
+          "start": 4.22,
+          "end": 4.58
+        }
+      ]
+    },
+    {
+      "id": "a11.back-ext.move",
+      "text": "Lean back just a little, chin level, eyes ahead… then come back up tall.",
+      "file": "a11.back-ext.move.m4a",
+      "duration": 5.234,
+      "words": [
+        {
+          "word": "Lean",
+          "start": 0.18,
+          "end": 0.4
+        },
+        {
+          "word": "back",
+          "start": 0.48,
+          "end": 0.64
+        },
+        {
+          "word": "just",
+          "start": 0.7,
+          "end": 0.86
+        },
+        {
+          "word": "a",
+          "start": 0.92,
+          "end": 0.96
+        },
+        {
+          "word": "little,",
+          "start": 1.02,
+          "end": 1.3
+        },
+        {
+          "word": "chin",
+          "start": 1.84,
+          "end": 2.06
+        },
+        {
+          "word": "level,",
+          "start": 2.12,
+          "end": 2.42
+        },
+        {
+          "word": "eyes",
+          "start": 2.84,
+          "end": 3.04
+        },
+        {
+          "word": "ahead…",
+          "start": 3.1,
+          "end": 3.44
+        },
+        {
+          "word": "then",
+          "start": 3.94,
+          "end": 4.12
+        },
+        {
+          "word": "come",
+          "start": 4.18,
+          "end": 4.32
+        },
+        {
+          "word": "back",
+          "start": 4.38,
+          "end": 4.54
+        },
+        {
+          "word": "up",
+          "start": 4.58,
+          "end": 4.68
+        },
+        {
+          "word": "tall.",
+          "start": 4.74,
+          "end": 5.04
+        }
+      ]
+    },
+    {
+      "id": "a11.back-ext.small",
+      "text": "Only a small lean. You should feel your chest lift, not your neck.",
+      "file": "a11.back-ext.small.m4a",
+      "duration": 5.324,
+      "words": [
+        {
+          "word": "Only",
+          "start": 0.18,
+          "end": 0.44
+        },
+        {
+          "word": "a",
+          "start": 0.48,
+          "end": 0.5
+        },
+        {
+          "word": "small",
+          "start": 0.66,
+          "end": 0.94
+        },
+        {
+          "word": "lean.",
+          "start": 1.04,
+          "end": 1.38
+        },
+        {
+          "word": "You",
+          "start": 2.28,
+          "end": 2.38
+        },
+        {
+          "word": "should",
+          "start": 2.4,
+          "end": 2.52
+        },
+        {
+          "word": "feel",
+          "start": 2.66,
+          "end": 2.9
+        },
+        {
+          "word": "your",
+          "start": 2.96,
+          "end": 3.08
+        },
+        {
+          "word": "chest",
+          "start": 3.16,
+          "end": 3.44
+        },
+        {
+          "word": "lift,",
+          "start": 3.54,
+          "end": 3.84
+        },
+        {
+          "word": "not",
+          "start": 4.4,
+          "end": 4.6
+        },
+        {
+          "word": "your",
+          "start": 4.64,
+          "end": 4.76
+        },
+        {
+          "word": "neck.",
+          "start": 4.8,
+          "end": 5.1
+        }
+      ]
+    },
+    {
+      "id": "a11.back-ext.reps",
+      "text": "Five slow times.",
+      "file": "a11.back-ext.reps.m4a",
+      "duration": 1.765,
+      "words": [
+        {
+          "word": "Five",
+          "start": 0.28,
+          "end": 0.66
+        },
+        {
+          "word": "slow",
+          "start": 0.82,
+          "end": 1.06
+        },
+        {
+          "word": "times.",
+          "start": 1.16,
+          "end": 1.66
+        }
+      ]
+    },
+    {
+      "id": "a11.back-walk.intro",
+      "text": "Walking backwards. Stand at your kitchen counter, hands resting on it.",
+      "file": "a11.back-walk.intro.m4a",
+      "duration": 4.727,
+      "words": [
+        {
+          "word": "Walking",
+          "start": 0.2,
+          "end": 0.52
+        },
+        {
+          "word": "backwards.",
+          "start": 0.6,
+          "end": 1.2
+        },
+        {
+          "word": "Stand",
+          "start": 1.9,
+          "end": 2.14
+        },
+        {
+          "word": "at",
+          "start": 2.16,
+          "end": 2.22
+        },
+        {
+          "word": "your",
+          "start": 2.26,
+          "end": 2.36
+        },
+        {
+          "word": "kitchen",
+          "start": 2.4,
+          "end": 2.68
+        },
+        {
+          "word": "counter,",
+          "start": 2.78,
+          "end": 3.18
+        },
+        {
+          "word": "hands",
+          "start": 3.54,
+          "end": 3.84
+        },
+        {
+          "word": "resting",
+          "start": 3.88,
+          "end": 4.26
+        },
+        {
+          "word": "on",
+          "start": 4.3,
+          "end": 4.4
+        },
+        {
+          "word": "it.",
+          "start": 4.46,
+          "end": 4.6
+        }
+      ]
+    },
+    {
+      "id": "a11.back-walk.move",
+      "text": "Step back slowly, toes first, then the heel. Keep looking ahead.",
+      "file": "a11.back-walk.move.m4a",
+      "duration": 5.775,
+      "words": [
+        {
+          "word": "Step",
+          "start": 0.18,
+          "end": 0.44
+        },
+        {
+          "word": "back",
+          "start": 0.5,
+          "end": 0.7
+        },
+        {
+          "word": "slowly,",
+          "start": 0.82,
+          "end": 1.3
+        },
+        {
+          "word": "toes",
+          "start": 1.84,
+          "end": 2.16
+        },
+        {
+          "word": "first,",
+          "start": 2.26,
+          "end": 2.66
+        },
+        {
+          "word": "then",
+          "start": 3.1,
+          "end": 3.26
+        },
+        {
+          "word": "the",
+          "start": 3.3,
+          "end": 3.4
+        },
+        {
+          "word": "heel.",
+          "start": 3.46,
+          "end": 3.78
+        },
+        {
+          "word": "Keep",
+          "start": 4.74,
+          "end": 4.96
+        },
+        {
+          "word": "looking",
+          "start": 5.0,
+          "end": 5.24
+        },
+        {
+          "word": "ahead.",
+          "start": 5.3,
+          "end": 5.66
+        }
+      ]
+    },
+    {
+      "id": "a11.back-walk.count",
+      "text": "Ten small steps back, then ten steps forward.",
+      "file": "a11.back-walk.count.m4a",
+      "duration": 3.845,
+      "words": [
+        {
+          "word": "Ten",
+          "start": 0.2,
+          "end": 0.44
+        },
+        {
+          "word": "small",
+          "start": 0.58,
+          "end": 0.82
+        },
+        {
+          "word": "steps",
+          "start": 0.94,
+          "end": 1.2
+        },
+        {
+          "word": "back,",
+          "start": 1.28,
+          "end": 1.62
+        },
+        {
+          "word": "then",
+          "start": 2.18,
+          "end": 2.48
+        },
+        {
+          "word": "ten",
+          "start": 2.56,
+          "end": 2.76
+        },
+        {
+          "word": "steps",
+          "start": 2.88,
+          "end": 3.14
+        },
+        {
+          "word": "forward.",
+          "start": 3.24,
+          "end": 3.7
+        }
+      ]
+    },
+    {
+      "id": "a11.back-walk.easy",
+      "text": "Keep your steps small, and slide your hands along the counter.",
+      "file": "a11.back-walk.easy.m4a",
+      "duration": 3.846,
+      "words": [
+        {
+          "word": "Keep",
+          "start": 0.18,
+          "end": 0.36
+        },
+        {
+          "word": "your",
+          "start": 0.42,
+          "end": 0.5
+        },
+        {
+          "word": "steps",
+          "start": 0.6,
+          "end": 0.86
+        },
+        {
+          "word": "small,",
+          "start": 0.96,
+          "end": 1.36
+        },
+        {
+          "word": "and",
+          "start": 1.76,
+          "end": 1.86
+        },
+        {
+          "word": "slide",
+          "start": 1.98,
+          "end": 2.32
+        },
+        {
+          "word": "your",
+          "start": 2.36,
+          "end": 2.48
+        },
+        {
+          "word": "hands",
+          "start": 2.52,
+          "end": 2.82
+        },
+        {
+          "word": "along",
+          "start": 2.88,
+          "end": 3.1
+        },
+        {
+          "word": "the",
+          "start": 3.14,
+          "end": 3.2
+        },
+        {
+          "word": "counter.",
+          "start": 3.26,
+          "end": 3.62
+        }
+      ]
+    },
+    {
+      "id": "a11.walk-turn.intro",
+      "text": "Walk and turn. Start at one end of your kitchen counter.",
+      "file": "a11.walk-turn.intro.m4a",
+      "duration": 3.5,
+      "words": [
+        {
+          "word": "Walk",
+          "start": 0.2,
+          "end": 0.44
+        },
+        {
+          "word": "and",
+          "start": 0.48,
+          "end": 0.58
+        },
+        {
+          "word": "turn.",
+          "start": 0.68,
+          "end": 1.04
+        },
+        {
+          "word": "Start",
+          "start": 1.62,
+          "end": 1.82
+        },
+        {
+          "word": "at",
+          "start": 1.84,
+          "end": 1.96
+        },
+        {
+          "word": "one",
+          "start": 2.06,
+          "end": 2.18
+        },
+        {
+          "word": "end",
+          "start": 2.24,
+          "end": 2.36
+        },
+        {
+          "word": "of",
+          "start": 2.4,
+          "end": 2.46
+        },
+        {
+          "word": "your",
+          "start": 2.48,
+          "end": 2.58
+        },
+        {
+          "word": "kitchen",
+          "start": 2.6,
+          "end": 2.88
+        },
+        {
+          "word": "counter.",
+          "start": 2.98,
+          "end": 3.3
+        }
+      ]
+    },
+    {
+      "id": "a11.walk-turn.move",
+      "text": "Walk four steps along it, then turn around slowly, in small steps.",
+      "file": "a11.walk-turn.move.m4a",
+      "duration": 5.07,
+      "words": [
+        {
+          "word": "Walk",
+          "start": 0.06,
+          "end": 0.4
+        },
+        {
+          "word": "four",
+          "start": 0.4,
+          "end": 0.68
+        },
+        {
+          "word": "steps",
+          "start": 0.68,
+          "end": 1.02
+        },
+        {
+          "word": "along",
+          "start": 1.02,
+          "end": 1.34
+        },
+        {
+          "word": "it,",
+          "start": 1.34,
+          "end": 1.98
+        },
+        {
+          "word": "then",
+          "start": 1.98,
+          "end": 2.28
+        },
+        {
+          "word": "turn",
+          "start": 2.28,
+          "end": 2.56
+        },
+        {
+          "word": "around",
+          "start": 2.56,
+          "end": 2.84
+        },
+        {
+          "word": "slowly,",
+          "start": 2.84,
+          "end": 3.4
+        },
+        {
+          "word": "in",
+          "start": 3.4,
+          "end": 3.96
+        },
+        {
+          "word": "small",
+          "start": 3.96,
+          "end": 4.3
+        },
+        {
+          "word": "steps.",
+          "start": 4.3,
+          "end": 4.98
+        }
+      ]
+    },
+    {
+      "id": "a11.walk-turn.back",
+      "text": "Now walk back, and turn again at the start.",
+      "file": "a11.walk-turn.back.m4a",
+      "duration": 3.074,
+      "words": [
+        {
+          "word": "Now",
+          "start": 0.24,
+          "end": 0.4
+        },
+        {
+          "word": "walk",
+          "start": 0.48,
+          "end": 0.68
+        },
+        {
+          "word": "back,",
+          "start": 0.78,
+          "end": 1.1
+        },
+        {
+          "word": "and",
+          "start": 1.58,
+          "end": 1.7
+        },
+        {
+          "word": "turn",
+          "start": 1.76,
+          "end": 1.96
+        },
+        {
+          "word": "again",
+          "start": 2.0,
+          "end": 2.22
+        },
+        {
+          "word": "at",
+          "start": 2.24,
+          "end": 2.32
+        },
+        {
+          "word": "the",
+          "start": 2.34,
+          "end": 2.42
+        },
+        {
+          "word": "start.",
+          "start": 2.48,
+          "end": 2.84
+        }
+      ]
+    },
+    {
+      "id": "a11.walk-turn.easy",
+      "text": "Take the turn in tiny steps, and keep a hand on the counter.",
+      "file": "a11.walk-turn.easy.m4a",
+      "duration": 3.754,
+      "words": [
+        {
+          "word": "Take",
+          "start": 0.18,
+          "end": 0.36
+        },
+        {
+          "word": "the",
+          "start": 0.4,
+          "end": 0.48
+        },
+        {
+          "word": "turn",
+          "start": 0.54,
+          "end": 0.76
+        },
+        {
+          "word": "in",
+          "start": 0.8,
+          "end": 0.9
+        },
+        {
+          "word": "tiny",
+          "start": 0.96,
+          "end": 1.26
+        },
+        {
+          "word": "steps,",
+          "start": 1.38,
+          "end": 1.78
+        },
+        {
+          "word": "and",
+          "start": 2.16,
+          "end": 2.24
+        },
+        {
+          "word": "keep",
+          "start": 2.34,
+          "end": 2.48
+        },
+        {
+          "word": "a",
+          "start": 2.54,
+          "end": 2.58
+        },
+        {
+          "word": "hand",
+          "start": 2.64,
+          "end": 2.9
+        },
+        {
+          "word": "on",
+          "start": 2.94,
+          "end": 3.0
+        },
+        {
+          "word": "the",
+          "start": 3.04,
+          "end": 3.1
+        },
+        {
+          "word": "counter.",
+          "start": 3.16,
+          "end": 3.5
+        }
+      ]
+    },
+    {
+      "id": "a11.heel-walk.intro",
+      "text": "Heel and toe walking. Stand at your counter, one hand resting on it.",
+      "file": "a11.heel-walk.intro.m4a",
+      "duration": 5.06,
+      "words": [
+        {
+          "word": "Heel",
+          "start": 0.1,
+          "end": 0.48
+        },
+        {
+          "word": "and",
+          "start": 0.48,
+          "end": 0.62
+        },
+        {
+          "word": "toe",
+          "start": 0.62,
+          "end": 0.86
+        },
+        {
+          "word": "walking.",
+          "start": 0.86,
+          "end": 1.66
+        },
+        {
+          "word": "Stand",
+          "start": 1.66,
+          "end": 2.28
+        },
+        {
+          "word": "at",
+          "start": 2.28,
+          "end": 2.44
+        },
+        {
+          "word": "your",
+          "start": 2.44,
+          "end": 2.54
+        },
+        {
+          "word": "counter,",
+          "start": 2.54,
+          "end": 3.54
+        },
+        {
+          "word": "one",
+          "start": 3.54,
+          "end": 3.72
+        },
+        {
+          "word": "hand",
+          "start": 3.72,
+          "end": 4.04
+        },
+        {
+          "word": "resting",
+          "start": 4.04,
+          "end": 4.42
+        },
+        {
+          "word": "on",
+          "start": 4.42,
+          "end": 4.68
+        },
+        {
+          "word": "it.",
+          "start": 4.68,
+          "end": 4.98
+        }
+      ]
+    },
+    {
+      "id": "a11.heel-walk.heels",
+      "text": "Lift your toes, and take ten small steps on your heels.",
+      "file": "a11.heel-walk.heels.m4a",
+      "duration": 3.924,
+      "words": [
+        {
+          "word": "Lift",
+          "start": 0.18,
+          "end": 0.38
+        },
+        {
+          "word": "your",
+          "start": 0.42,
+          "end": 0.54
+        },
+        {
+          "word": "toes,",
+          "start": 0.6,
+          "end": 1.04
+        },
+        {
+          "word": "and",
+          "start": 1.36,
+          "end": 1.44
+        },
+        {
+          "word": "take",
+          "start": 1.52,
+          "end": 1.72
+        },
+        {
+          "word": "ten",
+          "start": 1.72,
+          "end": 2.26
+        },
+        {
+          "word": "small",
+          "start": 2.26,
+          "end": 2.52
+        },
+        {
+          "word": "steps",
+          "start": 2.68,
+          "end": 2.96
+        },
+        {
+          "word": "on",
+          "start": 3.02,
+          "end": 3.12
+        },
+        {
+          "word": "your",
+          "start": 3.16,
+          "end": 3.24
+        },
+        {
+          "word": "heels.",
+          "start": 3.32,
+          "end": 3.78
+        }
+      ]
+    },
+    {
+      "id": "a11.heel-walk.toes",
+      "text": "Now rise onto your toes, and take ten small steps back.",
+      "file": "a11.heel-walk.toes.m4a",
+      "duration": 3.934,
+      "words": [
+        {
+          "word": "Now",
+          "start": 0.22,
+          "end": 0.34
+        },
+        {
+          "word": "rise",
+          "start": 0.4,
+          "end": 0.7
+        },
+        {
+          "word": "onto",
+          "start": 0.74,
+          "end": 0.94
+        },
+        {
+          "word": "your",
+          "start": 1.0,
+          "end": 1.1
+        },
+        {
+          "word": "toes,",
+          "start": 1.16,
+          "end": 1.62
+        },
+        {
+          "word": "and",
+          "start": 1.92,
+          "end": 2.04
+        },
+        {
+          "word": "take",
+          "start": 2.1,
+          "end": 2.3
+        },
+        {
+          "word": "ten",
+          "start": 2.38,
+          "end": 2.66
+        },
+        {
+          "word": "small",
+          "start": 2.8,
+          "end": 3.04
+        },
+        {
+          "word": "steps",
+          "start": 3.14,
+          "end": 3.4
+        },
+        {
+          "word": "back.",
+          "start": 3.48,
+          "end": 3.84
+        }
+      ]
+    },
+    {
+      "id": "a11.heel-walk.easy",
+      "text": "Too much? Do the raises standing still instead. That still counts.",
+      "file": "a11.heel-walk.easy.m4a",
+      "duration": 4.979,
+      "words": [
+        {
+          "word": "Too",
+          "start": 0.16,
+          "end": 0.3
+        },
+        {
+          "word": "much?",
+          "start": 0.36,
+          "end": 0.7
+        },
+        {
+          "word": "Do",
+          "start": 1.44,
+          "end": 1.52
+        },
+        {
+          "word": "the",
+          "start": 1.54,
+          "end": 1.62
+        },
+        {
+          "word": "raises",
+          "start": 1.66,
+          "end": 2.02
+        },
+        {
+          "word": "standing",
+          "start": 2.08,
+          "end": 2.42
+        },
+        {
+          "word": "still",
+          "start": 2.54,
+          "end": 2.7
+        },
+        {
+          "word": "instead.",
+          "start": 2.74,
+          "end": 3.28
+        },
+        {
+          "word": "That",
+          "start": 3.9,
+          "end": 4.04
+        },
+        {
+          "word": "still",
+          "start": 4.14,
+          "end": 4.32
+        },
+        {
+          "word": "counts.",
+          "start": 4.42,
+          "end": 4.84
+        }
+      ]
+    },
+    {
+      "id": "a11.ladder.one",
+      "text": "Last time you were steady with both hands. Try one hand today, if it feels right.",
+      "file": "a11.ladder.one.m4a",
+      "duration": 6.031,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.12,
+          "end": 0.5
+        },
+        {
+          "word": "time",
+          "start": 0.5,
+          "end": 0.74
+        },
+        {
+          "word": "you",
+          "start": 0.74,
+          "end": 0.9
+        },
+        {
+          "word": "were",
+          "start": 0.9,
+          "end": 1.04
+        },
+        {
+          "word": "steady",
+          "start": 1.04,
+          "end": 1.4
+        },
+        {
+          "word": "with",
+          "start": 1.4,
+          "end": 1.62
+        },
+        {
+          "word": "both",
+          "start": 1.62,
+          "end": 1.88
+        },
+        {
+          "word": "hands.",
+          "start": 1.88,
+          "end": 2.84
+        },
+        {
+          "word": "Try",
+          "start": 2.84,
+          "end": 3.56
+        },
+        {
+          "word": "one",
+          "start": 3.56,
+          "end": 3.86
+        },
+        {
+          "word": "hand",
+          "start": 3.86,
+          "end": 4.16
+        },
+        {
+          "word": "today,",
+          "start": 4.16,
+          "end": 4.78
+        },
+        {
+          "word": "if",
+          "start": 4.78,
+          "end": 5.06
+        },
+        {
+          "word": "it",
+          "start": 5.06,
+          "end": 5.14
+        },
+        {
+          "word": "feels",
+          "start": 5.14,
+          "end": 5.42
+        },
+        {
+          "word": "right.",
+          "start": 5.42,
+          "end": 5.98
+        }
+      ]
+    },
+    {
+      "id": "a11.ladder.tips",
+      "text": "Last time one hand felt steady. Try just your fingertips today, if it feels right.",
+      "file": "a11.ladder.tips.m4a",
+      "duration": 5.774,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.08,
+          "end": 0.4
+        },
+        {
+          "word": "time",
+          "start": 0.4,
+          "end": 0.66
+        },
+        {
+          "word": "one",
+          "start": 0.66,
+          "end": 0.92
+        },
+        {
+          "word": "hand",
+          "start": 0.92,
+          "end": 1.24
+        },
+        {
+          "word": "felt",
+          "start": 1.24,
+          "end": 1.5
+        },
+        {
+          "word": "steady.",
+          "start": 1.5,
+          "end": 2.32
+        },
+        {
+          "word": "Try",
+          "start": 2.32,
+          "end": 2.98
+        },
+        {
+          "word": "just",
+          "start": 2.98,
+          "end": 3.3
+        },
+        {
+          "word": "your",
+          "start": 3.3,
+          "end": 3.48
+        },
+        {
+          "word": "fingertips",
+          "start": 3.48,
+          "end": 3.92
+        },
+        {
+          "word": "today,",
+          "start": 3.92,
+          "end": 4.64
+        },
+        {
+          "word": "if",
+          "start": 4.64,
+          "end": 4.84
+        },
+        {
+          "word": "it",
+          "start": 4.84,
+          "end": 4.94
+        },
+        {
+          "word": "feels",
+          "start": 4.94,
+          "end": 4.98
+        },
+        {
+          "word": "right.",
+          "start": 4.98,
+          "end": 4.99
+        }
+      ]
+    },
+    {
+      "id": "a11.ladder.down",
+      "text": "Let's keep both hands on today. That's a smart choice.",
+      "file": "a11.ladder.down.m4a",
+      "duration": 3.42,
+      "words": [
+        {
+          "word": "Let's",
+          "start": 0.2,
+          "end": 0.38
+        },
+        {
+          "word": "keep",
+          "start": 0.42,
+          "end": 0.6
+        },
+        {
+          "word": "both",
+          "start": 0.64,
+          "end": 0.86
+        },
+        {
+          "word": "hands",
+          "start": 0.9,
+          "end": 1.18
+        },
+        {
+          "word": "on",
+          "start": 1.22,
+          "end": 1.34
+        },
+        {
+          "word": "today.",
+          "start": 1.38,
+          "end": 1.72
+        },
+        {
+          "word": "That's",
+          "start": 2.18,
+          "end": 2.32
+        },
+        {
+          "word": "a",
+          "start": 2.36,
+          "end": 2.46
+        },
+        {
+          "word": "smart",
+          "start": 2.52,
+          "end": 2.78
+        },
+        {
+          "word": "choice.",
+          "start": 2.84,
+          "end": 3.24
+        }
+      ]
     }
   ]
 }

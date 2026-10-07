@@ -14,8 +14,10 @@ public struct SessionTemplate: Codable, Equatable, Identifiable, Sendable {
         /// Stretch: seconds of each hold (per side), ending at the "switch" and "release" lines;
         /// 0 = a slow repeated move with no hold.
         public var hold: Int?
-        /// Counted reps (all sides together), when the coach counts them.
+        /// Counted reps (all sides together), when the coach counts them; per set when `sets` is given.
         public var reps: Int?
+        /// Rounds of the counted reps with a rest between them (Strong sit-to-stand: 2 sets, 06/10/2026).
+        public var sets: Int?
         /// Played only for someone with one of these limits (e.g. the seated ankle stretch that
         /// replaces the calf stretch when standing is hard).
         public var onlyFor: [BodyLimit]?
@@ -23,9 +25,9 @@ public struct SessionTemplate: Codable, Equatable, Identifiable, Sendable {
         public var notFor: [BodyLimit]?
 
         public init(kind: Kind, seconds: Int, exerciseID: String? = nil, cues: [Cue] = [], hold: Int? = nil,
-                    reps: Int? = nil, onlyFor: [BodyLimit]? = nil, notFor: [BodyLimit]? = nil) {
+                    reps: Int? = nil, sets: Int? = nil, onlyFor: [BodyLimit]? = nil, notFor: [BodyLimit]? = nil) {
             self.kind = kind; self.seconds = seconds; self.exerciseID = exerciseID; self.cues = cues
-            self.hold = hold; self.reps = reps; self.onlyFor = onlyFor; self.notFor = notFor
+            self.hold = hold; self.reps = reps; self.sets = sets; self.onlyFor = onlyFor; self.notFor = notFor
         }
 
         public func applies(to limits: Set<BodyLimit>) -> Bool {

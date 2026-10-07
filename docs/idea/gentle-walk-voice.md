@@ -2,6 +2,8 @@
 _Ngày: 27/09/2026, cập nhật 28/09/2026 · Mode: Full + 4 lượt Feature (đi ngoài trời · hành trình & paywall · nhân vật & onboarding · thông báo) · Stage: manh-skill-idea · Tên làm việc, chưa phải tên store_
 _Spec màn hình cho designer: docs/design/gentle-walk-screen-spec.html · Kế hoạch nội dung: docs/content-plan.md_
 
+> **03/10/2026:** khách mục tiêu đổi sang phụ nữ 58–75 (lõi 60–72) và app định vị là tập nhẹ tại nhà dẫn bằng giọng; tên store đang tìm. Bản brief dưới đây giữ nguyên lịch sử với nhóm 50–64; sự thật hiện hành ở app-context.md.
+
 ## 1. Ý tưởng một câu
 App đi bộ trong nhà và động tác ghế cho phụ nữ Mỹ 50–64 mới bắt đầu: **giọng HLV dẫn bài, không cần nhìn màn hình**, mọi bài có bản ngồi, thu tiền minh bạch. Phút tập đưa người dùng qua hành trình địa danh thật. Có thể đi ngoài trời khi muốn.
 

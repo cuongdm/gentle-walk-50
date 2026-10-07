@@ -1,7 +1,8 @@
 import Foundation
 
 /// S02 "What would you like to feel?"
-public enum Goal: String, CaseIterable, Codable, Sendable { case lessPain, steadier, loseWeight, moreEnergy, chairs, grandkids }
+/// `notSure` is the way out for someone who just wants to start (review M7, 02/10/2026).
+public enum Goal: String, CaseIterable, Codable, Sendable { case lessPain, steadier, loseWeight, moreEnergy, chairs, grandkids, notSure }
 
 /// S03 "What's made it hard before?" — raw values are the D2/D3 keys in docs/scripts/D-min-texts.md.
 public enum Barrier: String, CaseIterable, Codable, Sendable {
@@ -48,7 +49,8 @@ public struct OnboardingProfile: Equatable, Sendable {
 
     public static func make(answers: OnboardingAnswers) -> OnboardingProfile {
         let active = answers.activity == .walkMostDays || answers.activity == .exerciseRegularly
-        let startLevel: WalkLevel = active && answers.chair == .easy && !answers.limits.contains(.standingIsHard) ? .inPlace : .seated
+        let canStand = answers.limits.isDisjoint(with: [.standingIsHard, .unsteady])
+        let startLevel: WalkLevel = active && answers.chair == .easy && canStand ? .inPlace : .seated
         let barriers = answers.barriers.isEmpty ? [Barrier.notSure] : answers.barriers
         var why = barriers.prefix(maxWhyLines).map(WhyKey.barrier)
         if why.count < minWhyLines { why.append(.pocket) }

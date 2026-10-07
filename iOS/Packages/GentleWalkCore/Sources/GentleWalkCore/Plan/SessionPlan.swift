@@ -4,7 +4,8 @@ public struct SessionPlan: Equatable, Sendable {
     public typealias Segment = SessionTemplate.Segment
 
     public struct Block: Equatable, Sendable {
-        public enum Kind: Equatable, Sendable { case walk, chair, stretch, cooldown }
+        /// `steady`: the two-minute balance set that closes a planned day; played by the chair player.
+        public enum Kind: Equatable, Sendable { case walk, chair, stretch, cooldown, steady }
         public var kind: Kind
         public var segments: [Segment]
         public var seconds: Int { segments.reduce(0) { $0 + $1.seconds } }
@@ -26,7 +27,7 @@ public struct SessionPlan: Equatable, Sendable {
 
     /// A copy shorter by up to `minutes`, never under five minutes. Walks lose time from the middle
     /// of warm-up and cool-down (keeping every phase and its opening and closing lines); chair and
-    /// stretch blocks drop their last exercise.
+    /// stretch blocks drop their last exercise. The steady set is never shortened.
     public func shortened(byMinutes minutes: Int) -> SessionPlan {
         var remaining = min(minutes * 60, max(0, totalSeconds - Self.minimumSeconds))
         var copy = self
@@ -41,7 +42,7 @@ public struct SessionPlan: Equatable, Sendable {
                 remaining -= cut
             }
         }
-        for b in copy.blocks.indices.reversed() where remaining > 0 && copy.blocks[b].kind != .walk {
+        for b in copy.blocks.indices.reversed() where remaining > 0 && ![.walk, .steady].contains(copy.blocks[b].kind) {
             while remaining > 0, let last = copy.blocks[b].segments.lastIndex(where: \.isExercise),
                   copy.blocks[b].segments.filter(\.isExercise).count > 1 {
                 remaining -= copy.blocks[b].segments[last].seconds

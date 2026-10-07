@@ -1,6 +1,8 @@
 import SwiftUI
 
 /// Type roles from the screen spec: SF Pro Rounded, no Light weight, body 19 pt (never under 17).
+/// Screen titles are set in New York, the system serif (owner 03/10/2026: "A + the titles of B"), so
+/// headings read like a notebook rather than a stock app; everything else stays rounded.
 ///
 /// Each role is anchored to a system text style, so it scales with Dynamic Type exactly like that
 /// style; the spec size is the value at the default content size.
@@ -43,13 +45,17 @@ enum TypeRole: CaseIterable {
 
     var weight: Font.Weight {
         switch self {
-        case .screenTitle, .phaseLabel, .transition, .stat: .bold
+        case .screenTitle: .semibold
+        case .phaseLabel, .transition, .stat: .bold
         case .cardTitle, .button: .semibold
         case .body, .caption, .timer, .wallClock: .regular
         }
     }
 
     /// The system text style this role scales with.
+    /// New York for screen titles, SF Pro Rounded for the rest.
+    var design: Font.Design { self == .screenTitle ? .serif : .rounded }
+
     var anchor: Font.TextStyle {
         switch self {
         case .screenTitle: .title
@@ -73,7 +79,7 @@ private struct TypeRoleModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .font(.system(size: size, weight: role.weight, design: .rounded))
+            .font(.system(size: size, weight: role.weight, design: role.design))
             .monospacedDigit()
             .tracking(role == .phaseLabel || role == .transition ? 1.5 : 0)
     }

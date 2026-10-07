@@ -33,7 +33,8 @@ struct WalkPlayerView: View {
 
     private func liveMap(height: CGFloat) -> some View {
         OutdoorLiveMap(route: session.routeProvider?() ?? [], hasFix: session.locationOn?() ?? false,
-                       miles: session.outdoorDistance?() ?? 0, seconds: model.player.currentTime, height: height)
+                       miles: session.outdoorDistance?() ?? 0, seconds: model.player.currentTime,
+                       steps: session.outdoorSteps?() ?? nil, height: height)
     }
 
     var body: some View {
@@ -111,7 +112,7 @@ struct WalkPlayerView: View {
                         Spacer(minLength: 0)
                         PhaseBlock(label: model.phaseLabel, levelNote: levelNote, tone: model.tone, clock: model.clock,
                                    clockCaption: model.clockCaption, distance: distanceText, isLarge: true)
-                        NextUpRow(next: model.nextLine, progress: model.phaseProgress, tone: model.tone)
+                        NextUpRow(next: model.nextLine, progress: model.isWalkingHome ? nil : model.phaseProgress, tone: model.tone)
                         CaptionBar(caption: model.captionText, style: .plain(.center))
                         Spacer(minLength: 0)
                     }
@@ -170,7 +171,7 @@ struct WalkPlayerView: View {
             }
             PhaseBlock(label: model.phaseLabel, levelNote: levelNote, tone: model.tone, clock: model.clock,
                        clockCaption: model.clockCaption, distance: showsLiveMap ? nil : distanceText)
-            NextUpRow(next: model.nextLine, progress: model.phaseProgress, tone: model.tone)
+            NextUpRow(next: model.nextLine, progress: model.isWalkingHome ? nil : model.phaseProgress, tone: model.tone)
             CaptionBar(caption: model.captionText, style: .plain(.center))
             Spacer(minLength: 0)
         }
@@ -328,12 +329,15 @@ struct PhaseClock: View {
 /// Phase progress bar and "Next: easy walk · 3:00".
 struct NextUpRow: View {
     let next: String?
-    let progress: Double
+    /// Nil while walking home: that part has no end, so a bar would only ever look stuck (review M13).
+    let progress: Double?
     let tone: PhaseTone
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            PhaseProgressBar(progress: progress, tint: tone == .brisk ? Palette.sun : Palette.secondary)
+            if let progress {
+                PhaseProgressBar(progress: progress, tint: tone == .brisk ? Palette.sun : Palette.secondary)
+            }
             if let next {
                 Text(verbatim: next).typeRole(.body).foregroundStyle(Palette.text)
             }

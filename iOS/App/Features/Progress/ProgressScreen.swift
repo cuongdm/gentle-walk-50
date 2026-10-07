@@ -94,6 +94,9 @@ struct MonthCalendar: View {
         let days = monthDays
         VStack(alignment: .leading, spacing: 10) {
             Text(verbatim: now.formatted(.dateTime.month(.wide).year()).capitalizedFirstLetter).typeRole(.cardTitle).foregroundStyle(Palette.text)
+            // The grid in words, so nobody has to count dots (review M14, 02/10/2026).
+            Text(verbatim: Self.summary(activeDates: activeDates, now: now, calendar: calendar))
+                .typeRole(.body).foregroundStyle(Palette.text)
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 7), spacing: 6) {
                 // Grid positions are fixed for the month, so the position is a stable identity
                 // (blank lead cells would otherwise share one).
@@ -116,6 +119,13 @@ struct MonthCalendar: View {
             legend
         }
         .cardStyle()
+    }
+
+    /// "3 active days so far this month", or what fills the grid when there are none yet.
+    static func summary(activeDates: Set<Date>, now: Date, calendar: Calendar) -> String {
+        let count = activeDates.filter { calendar.isDate($0, equalTo: now, toGranularity: .month) }.count
+        return count > 0 ? String(localized: "\(Plural.activeDays(count)) so far this month")
+            : String(localized: "Your first active day this month will show here.")
     }
 
     private func dayCell(_ day: Date, active: Bool, rest: Bool) -> some View {

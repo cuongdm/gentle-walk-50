@@ -4,7 +4,7 @@ import Foundation
 /// checked on every template:
 /// 1. no brisk part before 2:00 of warm-up (so 5-minute walks have none);
 /// 2. Seated never hears "brisk" or "moderate", nor a line written for standing levels;
-/// 3. counted chair moves do 6–12 reps (sit-to-stand 5–12), and the coach counts each one;
+/// 3. counted chair moves do 6–12 reps a set (sit-to-stand 5–12), and the coach counts each one;
 /// 4. no single stretch hold over 30 seconds;
 /// 5. every balance exercise says where the hands go, and nobody is asked to close their eyes;
 /// 6. walks of 5 minutes or more cool down for at least 1:00, of 8 minutes or more for 2:00.
@@ -65,7 +65,7 @@ enum SessionRules {
                 if segment.kind == .move, let exercise, exercise.counting == .reps {
                     let counted = segment.cues.filter { $0.line.hasPrefix("a5.n.") }.count
                     let range = exercise.id == "mv.sit-to-stand" ? sitToStandRange : repRange
-                    if let reps = segment.reps, range.contains(reps), counted == reps { continue }
+                    if let reps = segment.reps, range.contains(reps), counted == reps * (segment.sets ?? 1) { continue }
                     findings.append(Finding(code: .repsOutOfRange,
                                             detail: "\(session.id) → \(exercise.id): \(segment.reps ?? 0) reps, \(counted) counted"))
                 }

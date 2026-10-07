@@ -12,6 +12,7 @@ enum OnboardingCopy {
         case .moreEnergy: "Have more energy"
         case .chairs: "Get up from chairs more easily"
         case .grandkids: "Keep up with the grandkids"
+        case .notSure: "Not sure yet, I just want to start"
         }
     }
 
@@ -23,6 +24,7 @@ enum OnboardingCopy {
         case .moreEnergy: "sun.max"
         case .chairs: "chair"
         case .grandkids: "figure.2.and.child.holdinghands"
+        case .notSure: "sparkles"
         }
     }
 
@@ -30,7 +32,7 @@ enum OnboardingCopy {
     static func tint(_ goal: Goal) -> Color {
         switch goal {
         case .lessPain: Palette.dangerSoft
-        case .steadier: Palette.sky
+        case .steadier, .notSure: Palette.sky
         case .moreEnergy, .grandkids: Palette.accent
         case .loseWeight, .chairs: Palette.secondary
         }
@@ -114,6 +116,7 @@ enum OnboardingCopy {
         case .noFloor: "I can't get down on the floor"
         case .standingIsHard: "Standing for long is hard"
         case .dizzy: "I get dizzy easily"
+        case .unsteady: "I feel unsteady on my feet"
         case .jointReplacement: "Joint replacement"
         case .noJumping: "No jumping"
         }
@@ -129,13 +132,14 @@ enum OnboardingCopy {
         case .noFloor: "No floor moves"
         case .standingIsHard: "Short standing parts"
         case .dizzy: "Steady, no quick turns"
+        case .unsteady: "Both hands on the chair"
         case .jointReplacement: "Gentle on replaced joints"
         case .noJumping: "No jumping"
         }
     }
 
     static let limitOrder: [BodyLimit] = [.knees, .hips, .lowerBack, .shoulders, .noFloor, .standingIsHard, .dizzy,
-                                         .jointReplacement, .noJumping]
+                                         .unsteady, .jointReplacement, .noJumping]
 
     static func title(_ moment: DailyMoment) -> LocalizedStringResource {
         switch moment {
@@ -145,4 +149,36 @@ enum OnboardingCopy {
         case .custom: "Pick a time"
         }
     }
+
+    // The coach's short reply under each answer (redesign 03/10/2026): warm, plain, never a promise
+    // about health. One line, so it never pushes Continue far down.
+
+    /// After a goal is picked (the last one tapped).
+    static func note(_ goal: Goal) -> LocalizedStringResource {
+        switch goal {
+        case .lessPain: "Got it. Every move starts seated, and one tap swaps anything that hurts."
+        case .steadier: "Steadier it is. Balance moves always come with a chair beside you."
+        case .loseWeight: "Noted. Short daily walks add up, at your pace."
+        case .moreEnergy: "Nice. Even 5 minutes a day is a good start."
+        case .chairs: "Good one. Sit-to-stands start with your hands on the chair."
+        case .grandkids: "Love that. We build steady stamina, one walk at a time."
+        case .notSure: "That works. We start gentle, and you can change anything later."
+        }
+    }
+
+    /// After the first barrier is picked.
+    static func note(_ barrier: Barrier) -> LocalizedStringResource {
+        switch barrier {
+        case .joints: "Thanks for telling us. Every move has a seated version."
+        case .tooFast: "We hear you. Here a calm voice sets the pace."
+        case .busy: "Sessions fit around your day, from 5 minutes."
+        case .bored: "Your walks move you along real places, so there's always somewhere new."
+        case .charged: "We'll always show the exact date before any charge."
+        case .notSure: "That's what we're here for. We pick each day for you."
+        }
+    }
+
+    static let activityNote: LocalizedStringResource = "Thanks. We start you at a comfortable level and grow from there."
+    static let chairNote: LocalizedStringResource = "Noted. We'll start you somewhere comfortable."
+
 }

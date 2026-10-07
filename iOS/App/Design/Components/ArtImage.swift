@@ -64,6 +64,9 @@ enum Art: String, CaseIterable, Sendable {
 extension String {
     /// Figures keep their paper margin; everything else is a full painting that fills its card.
     fileprivate var isFigureArt: Bool { hasPrefix("walker-") || hasPrefix("phone-") || hasPrefix("tree-") }
+    /// The tree paintings carry their own paper, lighter than the card in dark mode: multiplied onto
+    /// the card's paper they read as one picture (review M16, 02/10/2026).
+    fileprivate var blendsIntoPaper: Bool { hasPrefix("tree-") }
     /// Scenes with people keep their top when cropped to a wider card, so heads never get cut;
     /// landscapes crop from the middle.
     fileprivate var cropAnchor: Alignment { hasPrefix("scene-") || hasPrefix("moment-") ? .top : .center }
@@ -117,6 +120,7 @@ struct ArtImage: View {
                         Image(name)
                             .resizable()
                             .aspectRatio(contentMode: name.isFigureArt ? .fit : .fill)
+                            .blendMode(name.blendsIntoPaper ? .multiply : .normal)
                             .padding(name.isFigureArt ? 6 : 0)
                             .frame(width: proxy.size.width, height: proxy.size.height, alignment: name.cropAnchor)
                     }

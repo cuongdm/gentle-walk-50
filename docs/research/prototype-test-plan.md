@@ -6,9 +6,10 @@ _28/09/2026, sửa 29/09/2026 · Bước 4 trong docs/content-plan.md §8 · **T
 2. **Giọng** nào (Bella hay ứng viên khác), nhịp 8–10 giây mỗi câu có vội không, "heel taps" có hiểu khi chỉ nghe không?
 3. **Giãn cơ dẫn bằng giọng** có theo được mà không nhìn màn hình không (tư thế, đổi bên, thở)?
 4. **Nhân vật** trông giống họ không; muốn đi hành trình nào sau New York; có dùng tai nghe khi đi ngoài trời không?
+5. **Tên app** (thêm 03/10/2026; 04/10 chốt 2 tên: **Good Footing**, **Kind Pace**): đọc to 2 tên, đổi thứ tự giữa các người tham gia, hỏi tên nào nghe như app dành cho mình, tên nào nghe như app cho "người già".
 
 ## Người tham gia
-- 6–8 phụ nữ Mỹ **50–64 tuổi** (đúng nhóm mục tiêu; cho phép tối đa 2 người 65–68 để so sánh), tự nhận là mới hoặc đã bỏ tập lâu, có đau gối/hông/lưng hoặc thừa cân; không tuyển người tập gym hay chạy bộ. Ưu tiên 2–3 người đang hoặc từng dùng WalkFit, LazyFit, Walk at Home, Leslie Sansone trên YouTube.
+- 6–8 phụ nữ Mỹ **58–75 tuổi** (khách mục tiêu đổi 03/10/2026; ít nhất 3 người 65+, tối đa 1 người 50–57 để so sánh), tự nhận là mới hoặc đã bỏ tập lâu, có đau gối/hông/lưng hoặc thừa cân; không tuyển người tập gym hay chạy bộ. Ưu tiên 2–3 người đang hoặc từng dùng WalkFit, LazyFit, Walk at Home, Leslie Sansone trên YouTube.
 - Tuyển qua UserInterviews.com hoặc Respondent (lọc tuổi, giới, bang), dự phòng nhóm Facebook đi bộ cho phụ nữ 50+. Thù lao theo mức thường của nền tảng; không ghi số trong tài liệu.
 - Không thu dữ liệu sức khoẻ ngoài câu tự kể; có đồng ý ghi hình; xoá bản ghi sau 90 ngày.
 

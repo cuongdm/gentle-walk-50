@@ -1,4 +1,4 @@
-"""exercises.json: 8 walking moves, 12 chair moves, 12 stretch poses and 3 balance exercises.
+"""exercises.json: 8 walking moves, 12 chair moves, 13 stretch poses and 6 balance exercises.
 
 Copy (name, purpose, tips, easier, harder, chip notes) comes from D-min-texts.md §D5 (old table and
 "D5 — bài mới 30/09/2026") and A10-stretch.md §2; sources from the content plan tables (§2.1–§2.3).
@@ -15,6 +15,7 @@ CHIP = {  # S06 chip labels (D5 chip table, A10 §2) -> BodyLimit raw values
     "knees": "knees", "hips": "hips", "lower back": "lowerBack", "shoulders": "shoulders",
     "i can't get down on the floor": "noFloor", "standing for long is hard": "standingIsHard",
     "i get dizzy easily": "dizzy", "joint replacement": "jointReplacement", "no jumping": "noJumping",
+    "i feel unsteady on my feet": "unsteady",
 }
 
 # id: (counting, standing, hiddenFor, easierFor, clips) -- clips: file keys of Exercise
@@ -36,10 +37,10 @@ CHAIR = {
     "mv.sit-to-stand": ("reps", False, [], ["knees", "jointReplacement"], {"videoFile": "V1-1.mp4", "videoEasy": "V1-alt.mp4"}),
     "mv.knee-lift": ("timed", False, [], ["hips", "jointReplacement"], {"videoFile": "V2-1.mp4"}),
     "mv.leg-ext": ("timed", False, [], ["knees"], {"videoFile": "V3-1.mp4"}),
-    # V4-alt: standing behind the chair (the harder version, and Balance's heel and toe raises).
-    "mv.heel-toe": ("timed", False, [], [], {"videoFile": "V4-1.mp4", "videoAlt": "V4-alt.mp4"}),
+    # V4-3: heel then toe raises standing behind the chair (06/10/2026; was V4-alt, heels only).
+    "mv.heel-toe": ("timed", False, [], [], {"videoFile": "V4-1.mp4", "videoAlt": "V4-3.mp4"}),
     "mv.wall-push": ("reps", True, ["standingIsHard"], ["shoulders"], {"videoFile": "V5-1.mp4"}),
-    "mv.single-leg": ("timed", True, ["standingIsHard"], ["dizzy"], {"videoFile": "V6-1.mp4"}),
+    "mv.single-leg": ("timed", True, ["standingIsHard"], ["dizzy", "unsteady"], {"videoFile": "V6-1.mp4"}),
     "mv.side-leg": ("reps", True, ["standingIsHard"], ["jointReplacement"], {"videoFile": "V8-1.mp4", "videoEasy": "V8-1-easy.mp4"}),
     "mv.back-leg": ("reps", True, ["standingIsHard"], ["lowerBack"], {"videoFile": "V9-1.mp4"}),
     "mv.knee-curl": ("reps", True, ["standingIsHard"], ["jointReplacement", "knees"], {"videoFile": "V10-1.mp4"}),
@@ -55,11 +56,14 @@ STRETCH = {  # counting, standing, clip number (plan §2.3, PROMPTS §0.1); hold
     "st.ankle": ("timed", False, 10), "st.calf": ("hold", True, 11),
     # At the wall (or seated when standing is hard): the "to the wall" line leads her there.
     "st.overhead": ("hold", False, 12),
+    # Added 06/10/2026: Otago back extension, a slow repeat (Balance warm-up).
+    "st.back-ext": ("reps", True, 13),
 }
 NEW_STRETCH_EASIER_FOR = {  # A10 §8.1 "Bản dễ khi"
     "st.chin-tuck": [], "st.shoulder-roll": ["shoulders"], "st.upper-back": ["lowerBack", "shoulders"],
-    "st.overhead": ["shoulders", "standingIsHard"],
+    "st.overhead": ["shoulders", "standingIsHard"], "st.back-ext": ["lowerBack"],
 }
+NEW_STRETCH_HIDDEN_FOR = {"st.back-ext": ["standingIsHard"]}
 STRETCH_PURPOSE = {  # everyday purpose line of the 8 poses of 29/09 (A10 intro lines carry the same idea)
     "st.neck-turn": "For looking over your shoulder", "st.neck-tilt": "For a looser neck",
     "st.chest": "For sitting tall", "st.twist": "For turning to reach for things",
@@ -67,11 +71,17 @@ STRETCH_PURPOSE = {  # everyday purpose line of the 8 poses of 29/09 (A10 intro 
     "st.ankle": "For steadier steps", "st.calf": "For comfortable walking",
 }
 
+# id: (clips, videoLater, easierFor, source, hidden beyond "Standing for long is hard")
 BALANCE = {
-    "bl.tandem": ({"videoFile": "B1.mp4", "videoHold": "B1-hold.mp4"}, [], ["dizzy"], "S16 p.18"),
+    "bl.tandem": ({"videoFile": "B1.mp4", "videoHold": "B1-hold.mp4"}, [], ["dizzy", "unsteady"], "S16 p.18", []),
     # No sideways-walking clip (owner 30/09/2026 (a)): the side step clip illustrates it.
-    "bl.side-walk": ({"videoFile": "W2-2.mp4"}, [], ["dizzy"], "S16 p.21, S13"),
-    "bl.heel-toe-walk": ({"videoFile": "B3.mp4"}, [], [], "S13, S9 p.66, S16 p.23"),
+    "bl.side-walk": ({"videoFile": "W2-2.mp4"}, [], ["dizzy", "unsteady"], "S16 p.21, S13", []),
+    "bl.heel-toe-walk": ({"videoFile": "B3.mp4"}, [], [], "S13, S9 p.66, S16 p.23", ["unsteady"]),
+    # Added 06/10/2026 (Otago levels B–D, review 06/10/2026): no clip of their own (AI video cannot walk
+    # backwards or turn), a still picture instead; heel and toe walking shows the standing raises clip.
+    "bl.back-walk": ({"picture": "ex-back-walk"}, [], [], "S16 p.30, S7", ["dizzy", "unsteady"]),
+    "bl.walk-turn": ({"picture": "ex-walk-turn"}, [], ["unsteady"], "S16 p.30", ["dizzy"]),
+    "bl.heel-toe-walking": ({"videoFile": "V4-3.mp4"}, [], [], "S16 p.30", ["unsteady"]),
 }
 
 
@@ -155,6 +165,7 @@ def build(d_texts, a10, plan):
         e.update(clips)
         finish(e, hiddenFor=hidden, easierFor=easy_for)
 
+    src.setdefault("st.back-ext", "S16 p.29, S50")
     a10_rows = {}
     for table in md_tables.tables(a10):
         if table.column("Tên hiển thị (D5)") is not None:
@@ -167,17 +178,17 @@ def build(d_texts, a10, plan):
             hidden, easy_for = limits(hidden), limits(easy_for)
         else:  # the 4 new poses: D5 — bài mới
             e = from_d5(d5[sid])
-            hidden, easy_for = [], NEW_STRETCH_EASIER_FOR[sid]
+            hidden, easy_for = NEW_STRETCH_HIDDEN_FOR.get(sid, []), NEW_STRETCH_EASIER_FOR[sid]
         e.update({"kind": "stretch", "counting": counting, "standing": standing,
                   "videoFile": "S%d.mp4" % number})
         # A two-sided pose's hold clip shows the first side (the app plays it for that side only).
         e["videoHold"] = "S%d-hold.mp4" % number
         finish(e, hiddenFor=hidden, easierFor=easy_for)
 
-    for sid, (clips, later, easy_for, source) in BALANCE.items():
+    for sid, (clips, later, easy_for, source, hidden) in BALANCE.items():
         e = from_d5(d5[sid])
         e.update({"kind": "balance", "counting": "timed", "standing": True})
         e.update(clips)
         src.setdefault(sid, source)
-        finish(e, videoLater=later, hiddenFor=["standingIsHard"], easierFor=easy_for)
+        finish(e, videoLater=later, hiddenFor=["standingIsHard"] + hidden, easierFor=easy_for)
     return out

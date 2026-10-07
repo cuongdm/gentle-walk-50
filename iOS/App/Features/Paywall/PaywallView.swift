@@ -29,7 +29,7 @@ struct PaywallView: View {
                 // What Pro adds comes first, then the dates and prices (clarity review D4).
                 IncludedList()
                 if model.showsTrial, let yearly = model.yearly {
-                    TrialTimelineView(billingDate: model.billingDateText, price: yearly.price)
+                    TrialTimelineView(reminderDate: model.reminderDateText, billingDate: model.billingDateText, price: yearly.price)
                 }
                 VStack(spacing: 8) {
                     ForEach(model.options) { option in
@@ -67,17 +67,23 @@ struct PaywallView: View {
     }
 }
 
-/// Today · Full access, no charge → Day 12 · We'll remind you → Oct 11 · Billed $39.99 unless you cancel.
+/// Today · Full access, no charge → Oct 9 · We'll remind you → Oct 11 · Billed $39.99 unless you
+/// cancel. The reminder is a calendar date like the charge (review M11, 02/10/2026).
 struct TrialTimelineView: View {
+    let reminderDate: String
     let billingDate: String
     let price: String
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            TimelineStep(symbol: "lock.open.fill", title: "Today", detail: "Full access, no charge", isLast: false)
-            TimelineStep(symbol: "bell.fill", title: "Day 12", detail: "We'll remind you", isLast: false)
+            // The trial reads top to bottom, one step after another (redesign 03/10/2026).
+            TimelineStep(symbol: "lock.open.fill", title: Text("Today"), detail: Text("Full access, no charge"), isLast: false)
+                .reveal(delay: 0.2)
+            TimelineStep(symbol: "bell.fill", title: Text(verbatim: reminderDate), detail: Text("We'll remind you"), isLast: false)
+                .reveal(delay: 0.55)
             TimelineStepText(symbol: "creditcard.fill", title: billingDate,
                              detail: String(localized: "Billed \(price) unless you cancel"))
+                .reveal(delay: 0.9)
         }
         .cardStyle(padding: 12)
     }
@@ -85,8 +91,8 @@ struct TrialTimelineView: View {
 
 private struct TimelineStep: View {
     let symbol: String
-    let title: LocalizedStringResource
-    let detail: LocalizedStringResource
+    let title: Text
+    let detail: Text
     let isLast: Bool
 
     var body: some View {
@@ -104,7 +110,7 @@ private struct TimelineStep: View {
             }
             .accessibilityHidden(true)
             // "Today  Full access, no charge" on one line where it fits.
-            Text("\(Text(title).bold())  \(Text(detail))")
+            Text("\(title.bold())  \(detail)")
                 .typeRole(.body)
                 .foregroundStyle(Palette.text)
                 .frame(minHeight: 32)
@@ -157,6 +163,14 @@ struct PlanOptionCard: View {
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(option.title).typeRole(.body).fontWeight(.semibold)
+                    if option.isLowestMonthly {
+                        Text("Lowest monthly cost")
+                            .typeRole(.caption).fontWeight(.semibold)
+                            .foregroundStyle(Palette.text)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 2)
+                            .background(Palette.secondary.opacity(0.15), in: .capsule)
+                    }
                     if showsTrialNote {
                         Text("Includes 14 days free").typeRole(.caption).foregroundStyle(Palette.text)
                     }

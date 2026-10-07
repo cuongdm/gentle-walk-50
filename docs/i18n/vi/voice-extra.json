@@ -1,3 +1,27 @@
 {
- "a7.stand.wait": "Mình bắt đầu sau mười giây. Cần thêm thời gian thì chạm Chờ đã."
+ "a7.stand.wait": "Mình bắt đầu sau mười giây. Cần thêm thời gian thì chạm Chờ đã.",
+ "a11.steady.open": "Thêm hai phút nữa nhé, cho đôi chân vững hơn. Bạn đứng sau ghế.",
+ "a11.steady.seated": "Thêm hai phút nữa nhé, ngồi ngay trên ghế, cho đôi chân vững hơn.",
+ "a11.recover": "Nếu hơi lảo đảo, bước nhanh một bước để giữ người là được. Đó cũng là một phần của bài tập.",
+ "a4.v1.rest": "Ngồi nghỉ một phút nhé. Thở thoải mái, uống chút nước nếu muốn.",
+ "a4.v1.set2": "Giờ là hiệp hai. Làm như lúc nãy, chậm và đều.",
+ "a11.back-ext.intro": "Ngả lưng khi đứng. Đứng thẳng, hai tay chống hông.",
+ "a11.back-ext.move": "Ngả ra sau một chút thôi, cằm giữ ngang, mắt nhìn phía trước… rồi đứng thẳng lại.",
+ "a11.back-ext.small": "Chỉ ngả nhẹ thôi. Bạn thấy ngực nâng lên, chứ không phải cổ.",
+ "a11.back-ext.reps": "Năm lần, thật chậm.",
+ "a11.back-walk.intro": "Đi lùi. Đứng cạnh bàn bếp, hai tay đặt lên mặt bàn.",
+ "a11.back-walk.move": "Lùi chậm từng bước, mũi chân chạm trước rồi đến gót. Mắt vẫn nhìn phía trước.",
+ "a11.back-walk.count": "Mười bước nhỏ lùi lại, rồi mười bước đi lên.",
+ "a11.back-walk.easy": "Bước nhỏ thôi, tay trượt dọc theo mặt bàn.",
+ "a11.walk-turn.intro": "Đi rồi quay lại. Bắt đầu ở một đầu bàn bếp.",
+ "a11.walk-turn.move": "Đi bốn bước dọc mặt bàn, rồi quay người thật chậm bằng những bước nhỏ.",
+ "a11.walk-turn.back": "Giờ đi ngược lại, và quay người lần nữa ở chỗ bắt đầu.",
+ "a11.walk-turn.easy": "Quay người bằng những bước thật nhỏ, và giữ một tay trên mặt bàn.",
+ "a11.heel-walk.intro": "Đi bằng gót và mũi chân. Đứng cạnh bàn bếp, một tay đặt lên mặt bàn.",
+ "a11.heel-walk.heels": "Nhấc mũi chân lên, và đi mười bước nhỏ bằng gót.",
+ "a11.heel-walk.toes": "Giờ nhón lên mũi chân, và đi mười bước nhỏ quay về.",
+ "a11.heel-walk.easy": "Thấy khó quá? Đứng yên nhón gót và mũi chân cũng được. Vẫn tính nhé.",
+ "a11.ladder.one": "Lần trước bạn đã vững khi vịn hai tay. Hôm nay thử vịn một tay nhé, nếu thấy ổn.",
+ "a11.ladder.tips": "Lần trước vịn một tay đã thấy vững. Hôm nay thử chỉ đặt đầu ngón tay nhé, nếu thấy ổn.",
+ "a11.ladder.down": "Hôm nay mình giữ cả hai tay trên ghế nhé. Như vậy là lựa chọn khôn ngoan."
 }

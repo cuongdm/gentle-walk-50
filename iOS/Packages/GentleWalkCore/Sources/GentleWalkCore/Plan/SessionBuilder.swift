@@ -11,14 +11,26 @@ public enum SessionBuilder {
         public static let morning = "morning"
     }
 
+    /// The steady set's template: seated when standing is hard; otherwise by intensity, with tandem stance
+    /// and then sit-to-stand (`.a`) or single-leg stand (`.b`) on alternate days.
+    public static func steadySetID(intensity: Intensity, limits: Set<BodyLimit>, rotationIndex: Int) -> String {
+        if limits.contains(.standingIsHard) { return "ses.steady-set.seated" }
+        return "ses.steady-set.\(intensity.rawValue).\(rotationIndex.isMultiple(of: 2) ? "a" : "b")"
+    }
+
     /// Chair move library for an intensity: one ready segment per move (`ses.moves.<intensity>`).
     public static func moveLibraryID(for intensity: Intensity) -> String { "ses.moves.\(intensity.rawValue)" }
 
+    /// - Parameter support: Pro's support ladder: today's hands level per balance exercise, and the changes
+    ///   to announce (`SupportLadder.plan`). Empty: the hands lines written for the intensity.
     public static func build(kind day: PlannedDay, level: WalkLevel, intensity: Intensity, limits: Set<BodyLimit>,
-                             rotationIndex: Int, content: ContentBundle, variant: String? = nil) throws -> SessionPlan {
+                             rotationIndex: Int, content: ContentBundle, variant: String? = nil,
+                             support: (levels: [String: SupportLevel], announce: [String: SupportLadder.Change]) = ([:], [:]))
+        throws -> SessionPlan {
         let allowed = Set(BodyLimitFilter.allowed(content.exercises, limits: limits).map(\.id))
         let context = Context(limits: limits, rotationIndex: rotationIndex, allowed: allowed, content: content,
-                              table: VoiceRotation.Table(lines: content.voiceLines))
+                              table: VoiceRotation.Table(lines: content.voiceLines), support: support.levels,
+                              announce: support.announce)
         var plan = SessionPlan()
 
         switch day.main {
@@ -57,6 +69,12 @@ public enum SessionBuilder {
             }
         }
 
+        if let steady = day.steadySet, variant == nil {
+            let id = steadySetID(intensity: steady == .gentle ? .gentle : intensity, limits: limits,
+                                 rotationIndex: max(0, rotationIndex))
+            plan.blocks.append(.init(kind: .steady, segments: try context.segments(of: id)))
+        }
+
         plan.easierExerciseIDs = Set(BodyLimitFilter.allowed(content.exercises, limits: limits)
             .filter { plan.exerciseIDs.contains($0.id) && BodyLimitFilter.startsEasier($0, limits: limits) }.map(\.id))
         return plan
@@ -74,6 +92,8 @@ public enum SessionBuilder {
         let allowed: Set<String>
         let content: ContentBundle
         let table: VoiceRotation.Table
+        var support: [String: SupportLevel] = [:]
+        var announce: [String: SupportLadder.Change] = [:]
 
         /// A template's segments for her: limits applied, lines rotated for the day.
         func segments(of id: String) throws -> [SessionTemplate.Segment] {
@@ -100,8 +120,12 @@ public enum SessionBuilder {
             var copy = segment
             copy.cues = segment.cues.compactMap { cue in
                 guard cue.applies(to: limits) else { return nil }
-                let line = table.rotate(cue.line, by: rotationIndex, level: level, limits: limits)
+                var line = table.rotate(cue.line, by: rotationIndex, level: level, limits: limits)
                 if let known = table.lines[line], !known.fits(level: level, limits: limits) { return nil }
+                // Support ladder: her own level replaces the hands line; a change is said in its place.
+                if SupportLevel.handsLines.contains(line), let id = segment.exerciseID, let earned = support[id] {
+                    line = announce[id].map { SupportLadder.announcement($0, to: earned) } ?? earned.handsLine
+                }
                 return SessionTemplate.Cue(at: cue.at, line: line)
             }
             return copy
