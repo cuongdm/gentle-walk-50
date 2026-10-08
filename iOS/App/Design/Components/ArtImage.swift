@@ -118,28 +118,42 @@ struct ArtImage: View {
         [name, fallbackName].compactMap(\.self).first { UIImage(named: $0) != nil }
     }
 
+    @Environment(\.colorScheme) private var scheme
+
+    /// Figures in dark mode: painted on the light paper they were cut from, then the whole card dimmed.
+    /// On the darker paper the cut-out's paper grain showed as white specks and the card glared on the
+    /// dark screen (review A/C, 09/10/2026); dimming the finished card keeps the grain invisible.
+    private static let darkFigureDim = Color(white: 0.7)
+
     var body: some View {
         if let name = resolvedName {
-            RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
-                .fill(Palette.artPaper)
-                .frame(maxWidth: .infinity)
-                .frame(minHeight: minHeight ?? height, maxHeight: height)
-                .overlay {
-                    // A fixed frame the size of the card, so a filled picture overflows from its
-                    // anchor (top for people) before the card clips it.
-                    GeometryReader { proxy in
-                        Image(name)
-                            .resizable()
-                            .aspectRatio(contentMode: name.isFigureArt ? .fit : .fill)
-                            .blendMode(name.blendsIntoPaper ? .multiply : .normal)
-                            .padding(name.isFigureArt ? 6 : 0)
-                            .frame(width: proxy.size.width, height: proxy.size.height, alignment: name.cropAnchor)
-                    }
-                }
-                .clipShape(.rect(cornerRadius: Metrics.cardRadius, style: .continuous))
-                .accessibilityHidden(true)
+            let dims = scheme == .dark && name.isFigureArt
+            card(name)
+                .environment(\.colorScheme, dims ? .light : scheme)
+                .colorMultiply(dims ? Self.darkFigureDim : .white)
         } else {
             IllustrationPlaceholder(symbol: fallbackSymbol, height: height)
         }
+    }
+
+    private func card(_ name: String) -> some View {
+        RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
+            .fill(Palette.artPaper)
+            .frame(maxWidth: .infinity)
+            .frame(minHeight: minHeight ?? height, maxHeight: height)
+            .overlay {
+                // A fixed frame the size of the card, so a filled picture overflows from its
+                // anchor (top for people) before the card clips it.
+                GeometryReader { proxy in
+                    Image(name)
+                        .resizable()
+                        .aspectRatio(contentMode: name.isFigureArt ? .fit : .fill)
+                        .blendMode(name.blendsIntoPaper ? .multiply : .normal)
+                        .padding(name.isFigureArt ? 6 : 0)
+                        .frame(width: proxy.size.width, height: proxy.size.height, alignment: name.cropAnchor)
+                }
+            }
+            .clipShape(.rect(cornerRadius: Metrics.cardRadius, style: .continuous))
+            .accessibilityHidden(true)
     }
 }
