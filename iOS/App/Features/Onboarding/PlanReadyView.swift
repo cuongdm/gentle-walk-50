@@ -22,12 +22,30 @@ struct PlanReadyView: View {
                 ScreenHeader(title: "Your plan")
             }
             PlanCard(startLevel: profile.startLevel, limits: flow.answers.limits).reveal(delay: 0.05)
+            ProgramPromiseCard().reveal(delay: 0.65)
             DayOneCard().reveal(delay: 0.85)
             WhyThisWorks(keys: profile.whyKeys).reveal(delay: 1.05)
             if showsContinue {
                 ContinueButton(title: "See my options", action: flow.next)
             }
         }
+    }
+}
+
+/// The 12 weeks in two lines: when week 1 starts, and the 2-week check (steady program task 4.13).
+struct ProgramPromiseCard: View {
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            IconChip(symbol: "calendar")
+            VStack(alignment: .leading, spacing: 4) {
+                Text("12 weeks, at your own pace").typeRole(.body).fontWeight(.semibold)
+                Text("Week 1 starts with your first session. Every two weeks, a 30-second check shows how you're doing, compared only with yourself.")
+                    .typeRole(.caption)
+            }
+        }
+        .foregroundStyle(Palette.text)
+        .cardStyle()
+        .accessibilityElement(children: .combine)
     }
 }
 

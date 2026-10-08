@@ -2,8 +2,8 @@ import SwiftUI
 import UIKit
 import GentleWalkCore
 
-/// Me → Notifications (task 7.11): the reminder moment and time, how often, and the three
-/// switches. "New journeys" is off until the user turns it on (4.5.4).
+/// Me → Notifications (task 7.11): the reminder moment and time, how often, and the four
+/// switches (self-check reminders: steady program task 4.15). "New journeys" is off until the user turns it on (4.5.4).
 struct NotificationSection: View {
     let app: AppModel
     @State private var changingTime = false
@@ -29,6 +29,8 @@ struct NotificationSection: View {
             }
             Toggle("When I reach a new postcard", isOn: binding(\.journeyMilestones)).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
             Toggle("Weekly recap", isOn: binding(\.weeklyRecap)).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
+            // On by default; the reminder says nothing about health on the lock screen (task 4.15).
+            Toggle("Self-check reminders", isOn: binding(\.selfCheckReminders)).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
             Toggle(isOn: binding(\.newJourneys)) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("New journeys").typeRole(.body)

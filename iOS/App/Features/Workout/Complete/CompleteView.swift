@@ -17,8 +17,18 @@ struct CompleteView: View {
     var onChairMoves: () -> Void = {}
     /// "Do it again" (milestone 10); nil when this session cannot be replayed on her plan.
     var onAgain: (() -> Void)?
+    /// "Next time: Sit-to-stand, 1 × 10." after a ladder step up (Pro, steady program task 4.12).
+    var levelUpLine: String?
+    /// Week 0: "Want to see where you start? 30 seconds." until she does it or taps Later.
+    var selfCheckInvite: SelfCheckInvite?
+
+    struct SelfCheckInvite {
+        let onStart: () -> Void
+        let onLater: () -> Void
+    }
 
     @State private var feeling: Feeling?
+    @State private var inviteDismissed = false
     @Environment(\.dynamicTypeSize) private var typeSize
     /// Done stays in view at the bottom: an outdoor Complete runs two screens, and Done was only at
     /// the end (owner 01/10/2026). In the list at accessibility sizes, where a pinned bar would take
@@ -54,6 +64,15 @@ struct CompleteView: View {
                     }
                     if let comparison = content.comparison {
                         Text(verbatim: comparison).typeRole(.body).foregroundStyle(Palette.text)
+                    }
+                    if let levelUpLine {
+                        LevelUpLine(text: levelUpLine)
+                    }
+                    if let invite = selfCheckInvite, !inviteDismissed {
+                        SelfCheckInviteCard(onStart: invite.onStart, onLater: {
+                            inviteDismissed = true
+                            invite.onLater()
+                        })
                     }
                     if let line = content.journeyLine {
                         JourneyProgressBar(line: line, progress: content.journeyProgress)
@@ -119,6 +138,36 @@ private struct StatTile: View {
         .frame(maxWidth: .infinity, minHeight: 80)
         .background(Palette.surface, in: .rect(cornerRadius: Metrics.cardRadius))
         .accessibilityElement(children: .combine)
+    }
+}
+
+/// A ladder step up, said as a hint for next time (never a task).
+struct LevelUpLine: View {
+    let text: String
+
+    var body: some View {
+        Label { Text(verbatim: text) } icon: { Image(systemName: "arrow.up.circle.fill").foregroundStyle(Palette.secondary) }
+            .typeRole(.body)
+            .foregroundStyle(Palette.text)
+            .cardStyle()
+    }
+}
+
+/// "Want to see where you start? 30 seconds." · Let's do it · Later (week 0, after the first session).
+struct SelfCheckInviteCard: View {
+    let onStart: () -> Void
+    let onLater: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Want to see where you start?").typeRole(.cardTitle)
+            Text("Thirty seconds with your chair. Next time, you compare with yourself.").typeRole(.body)
+            Button("Let's do it", action: onStart).buttonStyle(.secondaryAction)
+            Button("Later", action: onLater).buttonStyle(.smallTextLink).frame(maxWidth: .infinity)
+        }
+        .foregroundStyle(Palette.text)
+        .cardStyle()
+        .overlay { RoundedRectangle(cornerRadius: Metrics.cardRadius).strokeBorder(Palette.sky, lineWidth: 2) }
     }
 }
 

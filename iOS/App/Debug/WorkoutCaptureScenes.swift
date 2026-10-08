@@ -26,7 +26,8 @@ struct WorkoutCaptureScene: View {
                 if let session {
                     WorkoutView(session: session, name: "Margaret", showsMusic: true, healthConnected: true,
                                 onChairMoves: session.request.place == .outdoors ? {} : nil,
-                                onAgain: session.request.canReplay(isPro: true) ? {} : nil, onClose: { _ in })
+                                onAgain: session.request.canReplay(isPro: true) ? {} : nil,
+                                onSelfCheck: {}, onSelfCheckLater: {}, onClose: { _ in })
                         .environment(\.forceStillFrames, state == .chairPlayerReduceMotion)
                         .environment(\.startsFullScreen, state == .chairFullscreen || state == .walkFullscreen)
                 } else {
@@ -181,7 +182,8 @@ struct WorkoutCaptureScene: View {
             let poses = model.player.timeline.phases.filter { $0.block == .cooldown && $0.isExercise }
             if poses.count > 1 { model.player.tick(poses[1].start + 24) }
             return model
-        case .complete, .completeXxl, .completeFirstWalk, .completeLevelUp, .completeStretch, .completeOutdoor, .completeStopped:
+        case .complete, .completeXxl, .completeFirstWalk, .completeLevelUp, .completeStretch, .completeOutdoor, .completeStopped,
+             .completeCheckInvite, .completeRepsUp:
             return await completeScene()
         default:
             return nil
@@ -200,6 +202,14 @@ struct WorkoutCaptureScene: View {
             result = CompletionResult(sessionMiles: 0.25, journeyID: "jr.ny", routeMiles: 0.25, unlockedStops: [ny.stops[0]],
                                       nextStop: ny.stops[1], milesToNext: 0.75, activeDays: 1, isFirstWorkout: true)
             seconds = 300
+        case .completeCheckInvite:
+            req = request(PlannedDay(main: .walk, chairMoves: 0, cooldown: false), firstWalk: true)
+            result = CompletionResult(sessionMiles: 0.25, journeyID: "jr.ny", routeMiles: 0.25, unlockedStops: [],
+                                      nextStop: ny.stops[0], milesToNext: 0.1, activeDays: 1, isFirstWorkout: true)
+            seconds = 300
+        case .completeRepsUp:
+            req = request(PlannedDay(main: .chair, chairMoves: 0, cooldown: true))
+            result.unlockedStops = []
         case .completeLevelUp:
             result.activeDays = 7
             result.reachedLevel = .sprout
@@ -227,6 +237,11 @@ struct WorkoutCaptureScene: View {
             })
         }
         if state == .completeStopped { model.markStoppedForPain() }
+        // Week 0: the first session's Complete invites her to see where she starts (task 4.12).
+        model.offersSelfCheck = state == .completeCheckInvite || state == .completeFirstWalk
+        if state == .completeRepsUp {
+            model.levelUpLine = String(localized: "You did these in full twice in a row. Next time: \("Sit-to-stand"), \(RepText.step(RepStep(sets: 1, reps: 10))).")
+        }
         model.show(result, seconds: seconds)
         return model
     }

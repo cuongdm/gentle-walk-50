@@ -63,11 +63,17 @@ import GentleWalkCore
     @ObservationIgnored var tracksRoute = false
     /// Called once when the session ends (stops location and pedometer).
     @ObservationIgnored var onEnded: (() -> Void)?
-    /// Called when a saved session ends: balance exercises held through, and those with This hurts or a
-    /// Break (the support ladder, Pro).
+    /// Called when a saved session ends: ladder exercises held through, and those with This hurts or a
+    /// Break (the support ladder and the rep ladder, Pro).
     @ObservationIgnored var onBalanceResult: ((_ steady: Set<String>, _ troubled: Set<String>) -> Void)?
-    /// Balance exercises where she tapped This hurts or took a Break.
+    /// Ladder exercises where she tapped This hurts or took a Break.
     @ObservationIgnored private var troubledExercises: Set<String> = []
+    /// Exercises on a ladder: balance (hands) and the counted leg-strength moves (reps).
+    static let ladderExercises = SupportLadder.exercises.union(RepLadder.exercises)
+    /// "Next time: …" on Complete after a ladder step up (set by the app from `onBalanceResult`).
+    var levelUpLine: String?
+    /// Complete invites her to the first self-check (week 0) until she does it or taps Later.
+    var offersSelfCheck = false
     /// Sit-to-stand counting when the phone is held to the chest (task 8.9).
     var motion: MotionService?
     /// Route kept for Complete after the outdoor services stop.
@@ -277,12 +283,12 @@ import GentleWalkCore
     }
 
     private func noteTrouble() {
-        if let id = player.currentPhase?.exerciseID, SupportLadder.exercises.contains(id) { troubledExercises.insert(id) }
+        if let id = player.currentPhase?.exerciseID, Self.ladderExercises.contains(id) { troubledExercises.insert(id) }
     }
 
-    /// Balance exercises whose every part was played, without This hurts or a Break.
+    /// Ladder exercises whose every part was played, without This hurts or a Break.
     private var balanceHeldThrough: Set<String> {
-        let phases = player.timeline.phases.filter { $0.exerciseID.map(SupportLadder.exercises.contains) ?? false }
+        let phases = player.timeline.phases.filter { $0.exerciseID.map(Self.ladderExercises.contains) ?? false }
         let ids = Set(phases.compactMap(\.exerciseID))
         return ids.filter { id in phases.filter { $0.exerciseID == id }.allSatisfy { $0.end <= player.currentTime + 0.5 } }
             .subtracting(troubledExercises)

@@ -87,53 +87,65 @@ struct JourneySnapshot: Equatable {
     var isComplete: Bool { completedJourneys.contains(journeyID) }
 }
 
+/// One 2-week self-check on the Progress chart.
+struct SelfCheckPoint: Equatable, Identifiable {
+    var id: UUID
+    var date: Date
+    var count: Int
+    var usedHands: Bool
+    /// Program week when it was done (0 = the first check).
+    var week: Int
+}
+
 /// What Progress (S19) shows.
 struct ProgressSnapshot: Equatable {
-    struct WeekBar: Equatable, Identifiable {
-        var id: Date { weekStart }
-        var weekStart: Date
-        var best: Int
-    }
-
     var activeDays: Int
     var activeDates: Set<Date>
     var restDays: Set<Weekday>
-    var sitToStand: [WeekBar]
+    /// 2-week self-checks, oldest first (steady program task 4.10; replaces "most sit-to-stands in one
+    /// session", which depended on the session she was given).
+    var selfChecks: [SelfCheckPoint]
     /// Longest walk with no Break, in minutes.
     var longestWalkMinutes: Int?
     var checkedWins: Set<String>
     /// Every finished session, newest first (history, owner 01/10/2026).
     var sessions: [SessionHistoryItem]
+    /// Pro: today's hands level per balance exercise (`SupportLadder`); empty for free.
+    var supportLevels: [String: SupportLevel] = [:]
 
-    static let empty = ProgressSnapshot(activeDays: 0, activeDates: [], restDays: [], sitToStand: [], longestWalkMinutes: nil,
+    static let empty = ProgressSnapshot(activeDays: 0, activeDates: [], restDays: [], selfChecks: [], longestWalkMinutes: nil,
                                         checkedWins: [])
 
-    init(activeDays: Int, activeDates: Set<Date>, restDays: Set<Weekday>, sitToStand: [WeekBar], longestWalkMinutes: Int?,
-         checkedWins: Set<String>, sessions: [SessionHistoryItem] = []) {
-        self.activeDays = activeDays; self.activeDates = activeDates; self.restDays = restDays; self.sitToStand = sitToStand
+    init(activeDays: Int, activeDates: Set<Date>, restDays: Set<Weekday>, selfChecks: [SelfCheckPoint], longestWalkMinutes: Int?,
+         checkedWins: Set<String>, sessions: [SessionHistoryItem] = [], supportLevels: [String: SupportLevel] = [:]) {
+        self.activeDays = activeDays; self.activeDates = activeDates; self.restDays = restDays; self.selfChecks = selfChecks
         self.longestWalkMinutes = longestWalkMinutes; self.checkedWins = checkedWins; self.sessions = sessions
+        self.supportLevels = supportLevels
     }
 
-    init(records: [WorkoutRecord], wins: [EverydayWin], restDays: Set<Weekday>, calendar: Calendar, now: Date) {
+    init(records: [WorkoutRecord], wins: [EverydayWin], checks: [SelfCheckRecord] = [], supportLevels: [String: SupportLevel] = [:],
+         restDays: Set<Weekday>, calendar: Calendar, now: Date) {
         let activity = ActivityCalendar(records: records.map(\.date), restDays: restDays, calendar: calendar)
         activeDays = activity.activeDays
         activeDates = Set(records.map { calendar.startOfDay(for: $0.date) })
         self.restDays = restDays
-        var bars: [WeekBar] = []
-        for back in (0..<6).reversed() {
-            guard let date = calendar.date(byAdding: .weekOfYear, value: -back, to: now),
-                  let week = calendar.dateInterval(of: .weekOfYear, for: date) else { continue }
-            let best = records.filter { week.contains($0.date) }.compactMap(\.sitToStandCount).max() ?? 0
-            bars.append(WeekBar(weekStart: week.start, best: best))
-        }
-        sitToStand = bars
+        selfChecks = checks.sorted { $0.date < $1.date }
+            .map { SelfCheckPoint(id: $0.id, date: $0.date, count: $0.count, usedHands: $0.usedHands, week: $0.week) }
         let walks = records.filter { ($0.kind == "walk" || $0.kind == "firstWalk") && $0.breakCount == 0 }
         longestWalkMinutes = walks.map(\.activeSeconds).max().map { max(1, Int((Double($0) / 60).rounded())) }
         checkedWins = Set(wins.map(\.key))
         sessions = SessionHistoryItem.list(records)
+        self.supportLevels = supportLevels
     }
 
     var tree: TreeLevel { TreeLevel.level(activeDays: activeDays) }
     var daysToNext: Int { TreeLevel.daysToNext(activeDays: activeDays) }
     var rings: Int { TreeLevel.rings(activeDays: activeDays) }
+
+    /// Change since the first check done the same way as the latest; nil with nothing to compare.
+    var selfCheckDelta: SelfCheckDelta? {
+        guard let latest = selfChecks.last else { return nil }
+        let result = { (point: SelfCheckPoint) in SelfCheckResult(date: point.date, count: point.count, usedHands: point.usedHands) }
+        return SelfCheckComparison.delta(latest: result(latest), history: selfChecks.map(result))
+    }
 }

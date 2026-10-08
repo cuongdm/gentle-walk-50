@@ -30,6 +30,19 @@ import GentleWalkCore
         #expect(start == 1)
     }
 
+    /// The 2-week self-check (steady program task 4.7): voice and bells only, the done bell at the end of
+    /// the 30 seconds, no music, at most 40 s.
+    @Test func selfCheckCompositionIs30sWithCues() async throws {
+        let timeline = SessionTimeline.selfCheck(voice: TestFixtures.content.voiceLines)
+        let voices = Dictionary(uniqueKeysWithValues: SessionTimeline.selfCheckLineIDs.map { ($0, TestFixtures.url("voice-1s", "m4a")) })
+        let (composition, mix) = try await SessionAudioComposer.compose(
+            timeline: timeline, voiceURL: voices, bellURL: TestFixtures.url("bell-1s", "m4a"), musicURL: nil)
+        #expect(composition.tracks(withMediaType: .audio).count == 2)
+        #expect(mix.inputParameters.isEmpty)
+        #expect(composition.duration.seconds <= 40.05)
+        #expect(timeline.bells.last?.at == SessionTimeline.selfCheckGoAt + SessionTimeline.selfCheckSeconds)
+    }
+
     @Test func musicOffMeansTwoTracks() async throws {
         let (composition, mix) = try await SessionAudioComposer.compose(
             timeline: timeline, voiceURL: voices, bellURL: TestFixtures.url("bell-1s", "m4a"), musicURL: nil)

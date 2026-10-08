@@ -12,6 +12,7 @@ struct MainTabView: View {
                     .navigationDestination(for: TodayRoute.self) { route in
                         switch route {
                         case .allSessions: AllSessionsScreen(app: app)
+                        case .program: ProgramScreen(app: app)
                         }
                     }
             }
@@ -68,7 +69,12 @@ struct TodayTab: View {
                 onSeeAllSessions: { app.todayPath.append(.allSessions) },
                 onConnectHealth: { Task { _ = await app.health.requestAuthorization(); app.reload() } },
                 onDismissCard: app.dismissHealthCard,
-                onFewerReminders: app.answerFewerReminders))
+                onFewerReminders: app.answerFewerReminders,
+                onOpenProgram: { app.todayPath.append(.program) },
+                onSelfCheck: app.openSelfCheck,
+                onSelfCheckLater: app.selfCheckLater,
+                onPickUpProgram: app.pickUpProgram,
+                onProgramFinished: { app.cover = .programFinished }))
         } else {
             ProgressView()
         }
@@ -102,7 +108,8 @@ struct ProgressTab: View {
         ProgressScreen(snapshot: app.progress, wins: app.everydayWins, steps: steps, healthConnected: app.health.isConnected,
                        calendar: app.calendar, now: app.now(), isPro: app.isPro, onToggleWin: app.toggleWin,
                        onSeeAllSessions: { app.isPro ? app.progressPath.append(.sessions) : app.offerPlans(.lockedContent) },
-                       onConnectHealth: { Task { _ = await app.health.requestAuthorization(); app.reload() } })
+                       onConnectHealth: { Task { _ = await app.health.requestAuthorization(); app.reload() } },
+                       content: app.content, onSeePlans: { app.offerPlans(.lockedContent) })
             .task {
                 if let result = await app.health.weeklySteps(now: app.now(), calendar: app.calendar) {
                     steps = StepsSummary(thisWeek: result.thisWeek, lastWeek: result.lastWeek)

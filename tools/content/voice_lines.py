@@ -1,6 +1,6 @@
 """Every coach line from the scripts, with the level and body-limit restrictions written in their notes.
 
-Sources (docs/scripts): A1 (numbered table), A2-walk.md, A4-chair-moves.md, A10-stretch.md, A11-extras.md,
+Sources (docs/scripts): A1 (numbered table), A2-walk.md, A4-chair-moves.md, A10-stretch.md, A11-extras.md, A12,
 A-min-support.md (A3, A5–A9). A line is a table row whose first cell is its id (a2.move.march.intro)
 in a table with a "Câu thoại" column; the "Ghi chú" column may restrict it:
   "chỉ Seated", "chỉ In place / Pad", "chỉ đứng" ... -> "levels"
@@ -12,7 +12,8 @@ import re
 import md_tables
 
 LINE_ID = re.compile(r"^a\d+(?:\.[\w\-]+)+$")
-SCRIPT_FILES = ["A2-walk.md", "A-min-support.md", "A4-chair-moves.md", "A10-stretch.md", "A11-extras.md"]
+SCRIPT_FILES = ["A2-walk.md", "A-min-support.md", "A4-chair-moves.md", "A10-stretch.md", "A11-extras.md",
+                "A12-steady-program.md"]
 LEVEL_WORDS = {"seated": "seated", "in place": "inplace", "pad": "pad", "walking pad": "pad", "đứng": None}
 
 

@@ -117,6 +117,26 @@
       "text": "Whenever you're ready, a gentle restart is waiting."
     },
     {
+      "id": "nt.check.1",
+      "kind": "selfCheck",
+      "text": "Your 2-week check is ready when you are."
+    },
+    {
+      "id": "nt.check.2",
+      "kind": "selfCheck",
+      "text": "Thirty seconds and a chair: your 2-week check is today."
+    },
+    {
+      "id": "nt.check.3",
+      "kind": "selfCheck",
+      "text": "Time for your 2-week check. Only you see the number."
+    },
+    {
+      "id": "nt.check.4",
+      "kind": "selfCheck",
+      "text": "Your 2-week check is here. Same chair, same way as last time."
+    },
+    {
       "id": "nt.trial",
       "kind": "trialEnd",
       "text": "Your free trial ends on {date}. You'll be billed {price} unless you cancel. Manage it in Settings."

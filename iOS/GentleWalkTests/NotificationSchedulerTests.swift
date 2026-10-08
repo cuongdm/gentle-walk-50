@@ -93,6 +93,31 @@ import GentleWalkCore
         #expect(history.count == 11)
     }
 
+    /// The 2-week check day: one reminder, the self-check words (no health words), and none when the
+    /// switch is off (steady program task 4.15).
+    @Test func selfCheckReminderOnItsDay() async throws {
+        let bank = try PhraseBank.load(bundle: .main)
+        let due = calendar.date(from: DateComponents(year: 2026, month: 9, day: 29))!
+        let lastWalk = calendar.date(from: DateComponents(year: 2026, month: 9, day: 25, hour: 9))!
+        for enabled in [true, false] {
+            var settings = NotificationSettings()
+            settings.selfCheckReminders = enabled
+            let input = PlannerInput(calendar: calendar, restDays: [.saturday, .sunday], reminderMinutes: 510, frequency: .daily,
+                                     workouts: [lastWalk], trialReminder: nil, landmark: nil, settings: settings, newJourneyName: nil,
+                                     selfCheckDue: due)
+            let center = FakeNotificationCenter()
+            let scheduler = NotificationScheduler(center: center, bank: bank, context: container.mainContext,
+                                                  input: { input }, now: { [now] in now })
+            await scheduler.reschedule()
+            let checks = center.pending.filter { $0.identifier.hasPrefix("gw.selfCheck.") }
+            #expect(checks.count == (enabled ? 1 : 0))
+            if let check = checks.first {
+                #expect(bank.ids(for: .selfCheck).contains { bank.text(for: $0) == check.content.body })
+                #expect((check.trigger as? UNCalendarNotificationTrigger)?.dateComponents.day == 29)
+            }
+        }
+    }
+
     /// Review I9: after a last walk on Friday 25/09 the second comeback (10 planned days later,
     /// Friday 09/10) is already booked; she will not open the app to book it.
     @Test func theSecondComebackIsBookedAheadOfTime() async throws {

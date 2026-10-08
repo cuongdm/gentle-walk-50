@@ -2,6 +2,7 @@ import Foundation
 import SwiftData
 import SwiftUI
 import Testing
+import GentleWalkCore
 @testable import GentleWalk
 
 @Suite(.serialized) @MainActor
@@ -23,7 +24,7 @@ struct CaptureHookTests {
     }
 
     @Test func coversEveryPlannedState() {
-        #expect(CaptureState.allCases.count == 99)
+        #expect(CaptureState.allCases.count == 109)
     }
 
     @Test func seedsMargaretFixture() throws {
@@ -53,5 +54,20 @@ struct CaptureHookTests {
         #expect(journey.miles == 1.8)
         #expect(journey.isCurrent)
         #expect(try context.fetchCount(FetchDescriptor<PostcardUnlock>()) == 2)
+
+        // Steady program: week 3, two self-checks done with her hands (task 4.1).
+        let program = try #require(try context.fetch(FetchDescriptor<ProgramState>()).first)
+        #expect(ProgramCalendar.position(program.programRound, on: now, calendar: calendar) == .week(3, .base))
+        let checks = try context.fetch(FetchDescriptor<SelfCheckRecord>(sortBy: [SortDescriptor(\.date)]))
+        #expect(checks.map(\.count) == [7, 8])
+        #expect(checks.allSatisfy(\.usedHands))
+    }
+
+    /// Every steady-program state parses (task 4.1).
+    @Test func steadyProgramStatesParse() {
+        for name in ["today-program", "today-check-due", "program", "selfcheck-intro", "selfcheck-timer", "selfcheck-count",
+                     "progress-checks", "complete-check-invite", "complete-reps-up", "program-finished"] {
+            #expect(CaptureHook.state(from: ["GentleWalk", "-ScreenshotMode", name]) != nil, "\(name)")
+        }
     }
 }

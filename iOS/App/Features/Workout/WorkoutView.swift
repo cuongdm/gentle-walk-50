@@ -20,6 +20,10 @@ struct WorkoutView: View {
     var onAgain: (() -> Void)?
     /// "Not yet" on Up next: closes the session; the app may offer a reminder (First Walk).
     var onNotYet: (() -> Void)?
+    /// Complete's week-0 invite: "Let's do it" closes this session (recording it), then opens the self-check;
+    /// "Later" asks again in two days (steady program task 4.12).
+    var onSelfCheck: (() -> Void)?
+    var onSelfCheckLater: (() -> Void)?
     let onClose: (CompletionResult?) -> Void
     @State private var standCue = SpokenCue()
 
@@ -90,7 +94,13 @@ struct WorkoutView: View {
                         .minutes(content: session.content)
                     : nil,
                 onChairMoves: { onChairMoves?() },
-                onAgain: session.stoppedForPain ? nil : onAgain.map { again in { onClose(result); again() } })
+                onAgain: session.stoppedForPain ? nil : onAgain.map { again in { onClose(result); again() } },
+                levelUpLine: session.stoppedForPain ? nil : session.levelUpLine,
+                selfCheckInvite: session.offersSelfCheck && !session.stoppedForPain
+                    ? onSelfCheck.map { open in
+                        CompleteView.SelfCheckInvite(onStart: { onClose(result); open() }, onLater: { onSelfCheckLater?() })
+                    }
+                    : nil)
             .reviewPrompt(reviewMilestone(result), onAsked: onReviewAsked)
         case .notSaved:
             NotSavedView { onClose(nil) }

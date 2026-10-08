@@ -14,6 +14,10 @@ enum AppCover: Identifiable {
     /// "Not yet" on the First Walk: offer a daily reminder.
     case reminderOffer
     case cancelGuide(afterLifetime: Bool)
+    /// The 2-week self-check: safety, 30 seconds, her count (steady program task 4.6).
+    case selfCheck(SelfCheckFlowModel)
+    /// The 12 weeks are done: compare with week 0, start again or keep the routine (task 4.14).
+    case programFinished
 
     var id: String {
         switch self {
@@ -26,6 +30,8 @@ enum AppCover: Identifiable {
         case .permissions: "permissions"
         case .reminderOffer: "reminder-offer"
         case .cancelGuide: "cancel"
+        case .selfCheck(let model): "selfcheck-\(model.id)"
+        case .programFinished: "program-finished"
         }
     }
 }
@@ -35,6 +41,8 @@ enum AppTab: Hashable { case today, journey, progress, me }
 /// Navigation routes inside the tabs (one `navigationDestination(for:)` per type).
 enum TodayRoute: Hashable {
     case allSessions
+    /// "Your 12-week plan", from the program strip (option A: pushed from Today, tabs unchanged).
+    case program
 }
 
 enum ProgressRoute: Hashable {

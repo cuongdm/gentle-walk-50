@@ -21,6 +21,10 @@ struct TodayView: View {
                 if let welcome = model.welcomeBack {
                     Text(verbatim: welcome).typeRole(.body).foregroundStyle(Palette.text)
                 }
+                if let strip = model.programStrip {
+                    ProgramStripCard(strip: strip, onOpen: strip.kind == .finished ? actions.onProgramFinished : actions.onOpenProgram,
+                                     onPickUp: actions.onPickUpProgram)
+                }
                 TodaySessionCard(session: model.session, detail: model.sessionDetail, trialEnded: model.showsTrialEndedNote,
                                  isSeated: model.isSeatedWalk,
                                  checkIn: model.showsCheckIn && model.session.kind != .rest
@@ -29,6 +33,9 @@ struct TodayView: View {
                                  onSeePlans: actions.onSeePlans,
                                  onPickAnother: model.swapOptions.isEmpty ? actions.onSeeAllSessions : { showsSwap = true },
                                  onStillOpen: model.stillOpenRequest.map { request in { actions.onStart(request) } })
+                if let status = model.checkCard, let title = model.checkTitle {
+                    SelfCheckCard(status: status, title: title, onStart: actions.onSelfCheck, onLater: actions.onSelfCheckLater)
+                }
                 if let ends = model.trialEndingDate {
                     TrialEndingCard(date: ends, price: actions.yearlyPrice, onManage: actions.onManagePlan)
                 }
@@ -85,6 +92,12 @@ struct TodayActions {
     var onConnectHealth: () -> Void
     var onDismissCard: () -> Void
     var onFewerReminders: (Bool) -> Void
+    /// Steady program: the 12-week plan, the 2-week self-check, "Pick up at week N", the finish screen.
+    var onOpenProgram: () -> Void = {}
+    var onSelfCheck: () -> Void = {}
+    var onSelfCheckLater: () -> Void = {}
+    var onPickUpProgram: () -> Void = {}
+    var onProgramFinished: () -> Void = {}
 }
 
 /// "Good morning, Margaret" and a small line with the tree ring and "13 active days · Sprout". No

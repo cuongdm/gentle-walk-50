@@ -1,5 +1,12 @@
 # Việc cần làm — Good Footing
-_Cập nhật 03/10/2026 (trước đó 28/09/2026). Mỗi việc có người làm, đầu ra và trạng thái. Xong thì gạch và ghi ngày; quyết định sản phẩm ghi thêm vào decisions log của app-context.md._
+_Cập nhật 08/10/2026 (trước đó 03/10/2026). Mỗi việc có người làm, đầu ra và trạng thái. Xong thì gạch và ghi ngày; quyết định sản phẩm ghi thêm vào decisions log của app-context.md._
+
+## Chương trình vững chân (08/10/2026) — đang làm
+Kế hoạch: [plans/2026-10-08-steady-program.md](plans/2026-10-08-steady-program.md). Bàn giao cho phiên Mac: [handoff/2026-10-08-steady-program-local.md](handoff/2026-10-08-steady-program-local.md).
+- [x] Nhóm 1–2 (lint, core) xanh trên cloud; nhóm 6 (tài liệu phát hành) xong.
+- [ ] **Claude (Mac)** — build, sửa lỗi, chạy test nhóm 3–4, chụp 10 trạng thái mới, trích khoá và áp bản Việt (handoff mục 2–5).
+- [ ] **Chủ app** — duyệt 3 câu HLV mới trong [scripts/A12-steady-program.md](scripts/A12-steady-program.md), rồi thu EN + VI qua Vibi.
+- [ ] **Chủ app** — xem các quyết định nhỏ đã tự chốt (handoff mục 6), merge vào `main` khi xanh.
 
 ## Chủ app quyết định (đề xuất mặc định đã ghi, chưa chốt)
 | # | Việc | Đề xuất mặc định | Trạng thái |

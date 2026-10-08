@@ -4,7 +4,7 @@
 The Markdown scripts are the single source of truth for every spoken line and every exercise;
 this tool turns them into the files the app loads (plan task 1.5, content plan 30/09/2026 §5 step 7):
 
-    iOS/App/Resources/Content/voice-lines.json   every coach line (A1, A2, A3, A4, A5-A11)
+    iOS/App/Resources/Content/voice-lines.json   every coach line (A1, A2, A3, A4, A5-A12)
     iOS/App/Resources/Content/exercises.json     8 walk moves, 12 chair moves, 12 stretches, 3 balance (exercises.py)
     iOS/App/Resources/Content/journeys.json      5 journeys x 6 postcards
     iOS/App/Resources/Content/sessions.json      First Walk, walks (sessions_walk.py), chair moves and Balance
@@ -92,7 +92,8 @@ def journeys(d_texts):
 
 
 NOTIFICATION_KIND = [("nt.remind.", "reminder"), ("nt.day2.", "dayTwo"), ("nt.week.", "weeklyRecap"),
-                     ("nt.back.", "comeback"), ("nt.trial", "trialEnd"), ("nt.newjourney", "newJourney"),
+                     ("nt.back.", "comeback"), ("nt.check.", "selfCheck"), ("nt.trial", "trialEnd"),
+                     ("nt.newjourney", "newJourney"),
                      ("card.fewer", "card")]
 PLACEHOLDERS = [("[stop name]", "{stop}"), ("[n]", "{n}"), ("[date]", "{date}"), ("[price]", "{price}"),
                 ("[journey name]", "{journey}")]

@@ -142,11 +142,14 @@ extension AppModel {
     private func prepareAndPlay(_ request: WorkoutRequest, showsReady: Bool) async {
         var request = request
         let ladder = SupportLadderStore(defaults: defaults)
-        // Pro: the support ladder sets the hands for each balance exercise (free keeps both hands).
+        let repLadder = RepLadderStore(defaults: defaults)
+        // Pro: the support ladder sets the hands for each balance exercise (free keeps both hands), and
+        // the rep ladder the reps of the counted leg moves (free keeps the day's own reps).
         if isPro, !request.isFirstWalk {
             let support = SupportLadder.plan(progress: ladder.progress, intensity: request.intensity, limits: request.limits)
             request.supportLevels = support.levels
             request.supportAnnouncements = support.announce
+            request.reps = repLadder.today(intensity: request.intensity, limits: request.limits, isPro: true)
         }
         guard var plan = try? request.plan(content: content) else { cover = nil; return }
         let levels = AudioLevels.saved(in: defaults)
@@ -168,10 +171,25 @@ extension AppModel {
                                           painRecorder: painRecorder, now: now)
         if isPro {
             let announced = Set(request.supportAnnouncements.keys)
-            session.onBalanceResult = { steady, troubled in
+            let reps = request.reps
+            // Changes Complete said last time ("Next time: …") are said; a new one may replace them.
+            let shownReps = Set(repLadder.progress.filter { $0.value.pendingChange != nil }.keys)
+            let content = content
+            session.onBalanceResult = { [weak session] steady, troubled in
+                let supportBefore = ladder.progress
+                let repsBefore = repLadder.progress
                 ladder.record(steady: steady, troubled: troubled, announced: announced)
+                let done = Dictionary(uniqueKeysWithValues: reps.compactMap { id, step in
+                    RepLadder.steps(for: id).firstIndex(of: step).map { (id, $0) }
+                })
+                repLadder.record(done: done, steady: steady, troubled: troubled, shown: shownReps)
+                session?.levelUpLine = LevelUpText.line(supportBefore: supportBefore, supportAfter: ladder.progress,
+                                                        repsBefore: repsBefore, repsAfter: repLadder.progress,
+                                                        content: content)
             }
         }
+        // Week 0: Complete invites her to see where she starts, until she does it or taps Later.
+        session.offersSelfCheck = selfCheckResults().isEmpty && selfCheckDismissedAt == nil
         do {
             try await session.load(timeline: media.timeline)
         } catch {

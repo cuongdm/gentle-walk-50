@@ -45,6 +45,11 @@ public enum SelfCheckSchedule {
         if days < intervalDays - earlyDays { return .dueIn(days: intervalDays - days) }
         return days <= intervalDays + lateDays ? .due : .overdue
     }
+
+    /// The day the next check is due (two weeks after the latest), for the reminder; nil before the first.
+    public static func dueDate(results: [Date], calendar: Calendar) -> Date? {
+        results.max().flatMap { calendar.date(byAdding: .day, value: intervalDays, to: calendar.startOfDay(for: $0)) }
+    }
 }
 
 /// Change in count against her own earlier checks done the same way; nil when there is nothing to compare.

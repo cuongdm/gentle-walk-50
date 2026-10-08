@@ -35985,6 +35985,15 @@
      "end": 3.98
     }
    ]
+  },
+  "a12.check.setup": {
+   "text": "Ngồi lên phía trước ghế, bàn chân đặt phẳng. Sẵn sàng chưa?"
+  },
+  "a12.check.go": {
+   "text": "Bắt đầu. Đứng thẳng lên hẳn, rồi ngồi xuống. Theo nhịp của bạn."
+  },
+  "a12.check.stop": {
+   "text": "Dừng lại. Nghỉ một chút, rồi nhập số lần bạn đã đứng lên."
   }
  },
  "notifications": {
@@ -36013,7 +36022,11 @@
   "nt.back.10": "Khi nào bạn sẵn sàng, buổi bắt đầu lại nhẹ nhàng đang chờ bạn.",
   "nt.trial": "Thời gian dùng thử miễn phí của bạn kết thúc vào {date}. Nếu không huỷ, bạn sẽ bị tính phí {price}. Quản lý trong Cài đặt.",
   "nt.newjourney": "Có hành trình mới cho bạn: {journey}.",
-  "card.fewer": "Giờ bạn đã tự tập đều rồi. Bạn có muốn nhận ít lời nhắc hơn không?"
+  "card.fewer": "Giờ bạn đã tự tập đều rồi. Bạn có muốn nhận ít lời nhắc hơn không?",
+  "nt.check.1": "Lần tự kiểm tra 2 tuần đã sẵn sàng, lúc nào bạn muốn cũng được.",
+  "nt.check.2": "Ba mươi giây và một chiếc ghế: hôm nay là ngày tự kiểm tra 2 tuần.",
+  "nt.check.3": "Đến lúc tự kiểm tra 2 tuần rồi. Con số chỉ mình bạn thấy.",
+  "nt.check.4": "Đến lần tự kiểm tra 2 tuần. Cùng chiếc ghế, cùng cách như lần trước."
  },
  "wins": {
   "win.1": "Đứng dậy khỏi ghế sofa mà không cần chống tay",

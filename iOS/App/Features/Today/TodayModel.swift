@@ -29,6 +29,44 @@ struct TodayInput: Equatable {
     var journeyMiles: Double
     /// "Rest today" was tapped on today's reminder: today is a rest day (review 02/10/2026).
     var restedToday = false
+    /// Steady program: the current round (nil before the first session), and when she chose to keep her
+    /// routine after the 12 weeks.
+    var program: ProgramRound? = nil
+    var programFinishedAt: Date? = nil
+    /// Dates of her 2-week self-checks, and "Later" on the week-0 invite.
+    var selfChecks: [Date] = []
+    var selfCheckDismissedAt: Date? = nil
+}
+
+/// "Week 3 of 12 · Steady base" above today's session (steady program task 4.2).
+struct ProgramStripState: Equatable {
+    enum Kind: Equatable {
+        case week(Int, ProgramStage)
+        /// Past week 12, not answered yet: "See how far you've come".
+        case finished
+        /// "Keep my routine" was chosen: the weekly plan and the 2-week checks go on.
+        case routine
+    }
+
+    var kind: Kind
+    /// Away for two weeks or more: "Pick up at week 5".
+    var pickUpWeek: Int?
+
+    var title: String {
+        switch kind {
+        case .week(let week, _): String(localized: "Week \(week) of \(ProgramCalendar.weeks)")
+        case .finished: String(localized: "12 weeks done")
+        case .routine: String(localized: "Your routine")
+        }
+    }
+
+    var detail: String {
+        switch kind {
+        case .week(_, let stage): String(localized: "Stage \(stage.rawValue) · \(String(localized: stage.title))")
+        case .finished: String(localized: "See how far you've come")
+        case .routine: String(localized: "Your weekly plan and 2-week checks go on")
+        }
+    }
 }
 
 /// At most one of these shows at a time, in this order of priority.
@@ -88,6 +126,9 @@ struct TodaySwapOption: Equatable, Identifiable {
     @ObservationIgnored private let restart: WelcomeBackState?
     @ObservationIgnored private let painAlert: PainAlert?
     @ObservationIgnored private let plannedDay: PlannedDay
+    /// Worked out once from the input (never in `body`).
+    @ObservationIgnored let programStrip: ProgramStripState?
+    @ObservationIgnored private let checkStatus: SelfCheckStatus
 
     init(input: TodayInput, content: ContentBundle) {
         self.input = input
@@ -103,6 +144,38 @@ struct TodaySwapOption: Equatable, Identifiable {
         painAlert = PainRules.evaluate(reports: input.pains, now: input.now)
         plannedDay = input.restedToday ? .rest
             : WeeklyPlanner.day(for: input.now, restDays: restDays, entitlement: input.entitlement, calendar: input.calendar)
+        programStrip = Self.strip(input)
+        checkStatus = SelfCheckSchedule.status(firstWorkout: input.workouts.map(\.date).min(), results: input.selfChecks,
+                                               dismissedAt: input.selfCheckDismissedAt, now: input.now, calendar: input.calendar)
+    }
+
+    private static func strip(_ input: TodayInput) -> ProgramStripState? {
+        guard let round = input.program else { return nil }
+        if input.programFinishedAt != nil { return ProgramStripState(kind: .routine) }
+        let pickUp: Int? = switch ProgramCalendar.resumeOffer(round, lastWorkout: input.workouts.map(\.date).max(), now: input.now,
+                                                               calendar: input.calendar) {
+        case .pickUp(let week)?: week
+        case nil: nil
+        }
+        switch ProgramCalendar.position(round, on: input.now, calendar: input.calendar) {
+        case .week(let week, let stage): return ProgramStripState(kind: .week(week, stage), pickUpWeek: pickUp)
+        case .finished: return ProgramStripState(kind: .finished, pickUpWeek: pickUp)
+        }
+    }
+
+    /// The 2-week self-check card; nil when there is nothing to show (steady program task 4.2).
+    var checkCard: SelfCheckStatus? { checkStatus == .none ? nil : checkStatus }
+
+    /// "Your 2-week check is in 5 days" and the like, for the card's first line.
+    var checkTitle: String? {
+        switch checkCard {
+        case .invite?: String(localized: "Want to see where you start?")
+        case .dueIn(let days)?: String(localized: "Your 2-week check is in \(Plural.days(days))")
+        case .due?: String(localized: "Your 2-week check is ready")
+        // Past the window: no "late", no "missed".
+        case .overdue?: String(localized: "Your 2-week check is ready whenever you are")
+        default: nil
+        }
     }
 
     var isPro: Bool { input.entitlement.isPro }

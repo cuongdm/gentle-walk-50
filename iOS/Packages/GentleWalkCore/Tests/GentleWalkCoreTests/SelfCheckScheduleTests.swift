@@ -31,4 +31,13 @@ import Testing
         // The latest check counts, whatever order they come in.
         #expect(status(first: first, results: [day(10, 22), check], now: day(10, 24)) == .dueIn(days: 12))
     }
+
+    /// The reminder goes out two weeks after the latest check; none before the first.
+    @Test func dueDateIsTwoWeeksAfterLatest() {
+        #expect(SelfCheckSchedule.dueDate(results: [], calendar: ny) == nil)
+        let due = SelfCheckSchedule.dueDate(results: [day(10, 1), TestSupport.local(ny, 2026, 10, 8, 19, 30)], calendar: ny)
+        #expect(due == ny.startOfDay(for: day(10, 22)))
+        // Across the end of daylight saving (Nov 1 in New York) it is still a calendar day.
+        #expect(SelfCheckSchedule.dueDate(results: [day(10, 25)], calendar: ny) == ny.startOfDay(for: day(11, 8)))
+    }
 }

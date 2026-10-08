@@ -122,3 +122,15 @@ Tên riêng (địa danh, Central Park, Times Square, Camino de Santiago…) gi�
 | st.back-ext | Standing back extension | Ngả lưng khi đứng | Để đứng thẳng người |
 | (khối) | Steady set | Bài vững chân | 2 phút thăng bằng cuối mỗi ngày tập |
 | chip | I feel unsteady on my feet | Tôi đứng không vững | tóm tắt: Hai tay vịn ghế |
+
+## Chương trình vững chân (08/10/2026, kế hoạch steady-program Task 5.4)
+| Tiếng Anh | Tiếng Việt | Ghi chú |
+|---|---|---|
+| Your 12-week plan | Kế hoạch 12 tuần của bạn | màn Kế hoạch |
+| Stage | Chặng | "Chặng 1 · Nền vững" |
+| Steady base / Building strength / Gentle challenge / Your routine | Nền vững / Thêm sức / Thử thách nhẹ / Thói quen của bạn | tên 4 chặng |
+| 2-week check | Tự kiểm tra 2 tuần | không dịch "test" thành "bài kiểm tra"; chỉ câu "Đây không phải bài kiểm tra y tế." dùng chữ đó |
+| This is not a medical test. | Đây không phải bài kiểm tra y tế. | nguyên văn, mọi màn tự kiểm tra |
+| You compare only with yourself. | Bạn chỉ so với chính mình. | nguyên văn |
+| Two hands / One hand / Fingertips on the chair | Hai tay vịn ghế / Một tay vịn ghế / Đầu ngón tay chạm ghế | nhãn mức vịn |
+| Pick up at week N | Tiếp tục từ tuần N | không bao giờ "mất", "bắt đầu lại từ đầu" |

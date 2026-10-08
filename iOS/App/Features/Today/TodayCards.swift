@@ -251,3 +251,77 @@ struct ExtraTile: View {
         return parts.joined(separator: ", ")
     }
 }
+
+/// "Week 3 of 12 · Stage 1 · Steady base" with "Plan ›" (steady program task 4.3, design screen 2). After a
+/// long break: "Pick up at week 5" (never "lost" or "start over").
+struct ProgramStripCard: View {
+    let strip: ProgramStripState
+    let onOpen: () -> Void
+    let onPickUp: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Button(action: onOpen) {
+                HStack(spacing: 12) {
+                    Image(systemName: "figure.stand").typeRole(.cardTitle).foregroundStyle(Palette.secondary)
+                        .accessibilityHidden(true)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(verbatim: strip.title).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
+                        Text(verbatim: strip.detail).typeRole(.caption).foregroundStyle(Palette.textMuted)
+                    }
+                    Spacer(minLength: 0)
+                    HStack(spacing: 4) {
+                        Text("Plan")
+                        Image(systemName: "chevron.right").accessibilityHidden(true)
+                    }
+                    .typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
+                }
+                .frame(minHeight: Metrics.minTouchTarget)
+                .contentShape(.rect)
+            }
+            .buttonStyle(.plain)
+            .accessibilityElement(children: .combine)
+            .accessibilityHint(Text("Opens your 12-week plan"))
+            if let week = strip.pickUpWeek {
+                Button(String(localized: "Pick up at week \(week)"), action: onPickUp)
+                    .buttonStyle(PillButtonStyle(isSelected: true))
+            }
+        }
+        .cardStyle(padding: 12)
+    }
+}
+
+/// The 2-week self-check on Today: coming up (one quiet line), or ready with "Start" (task 4.3).
+struct SelfCheckCard: View {
+    let status: SelfCheckStatus
+    let title: String
+    let onStart: () -> Void
+    let onLater: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 12) {
+                Image(systemName: "chair.fill").typeRole(.cardTitle).foregroundStyle(Palette.secondary).accessibilityHidden(true)
+                Text(verbatim: title).typeRole(.body).fontWeight(.semibold)
+            }
+            switch status {
+            case .dueIn:
+                Text("30 seconds of sit-to-stands. You compare only with yourself.").typeRole(.caption)
+                    .foregroundStyle(Palette.textMuted)
+            case .invite:
+                Text("Thirty seconds with your chair. Next time, you compare with yourself.").typeRole(.body)
+                HStack(spacing: Metrics.touchSpacing) {
+                    Button("Let's do it", action: onStart).buttonStyle(PillButtonStyle(isSelected: true))
+                    Button("Later", action: onLater).buttonStyle(.textLink)
+                }
+            case .due, .overdue:
+                Text("30 seconds of sit-to-stands. You compare only with yourself.").typeRole(.body)
+                Button("Start my check", action: onStart).buttonStyle(.secondaryAction)
+            case .none:
+                EmptyView()
+            }
+        }
+        .foregroundStyle(Palette.text)
+        .cardStyle()
+    }
+}

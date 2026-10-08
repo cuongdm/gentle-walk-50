@@ -106,6 +106,18 @@ enum CaptureState: String, CaseIterable, Sendable {
     case outdoorPlayer = "outdoor-player"
     case outdoorPlayerNoGps = "outdoor-player-no-gps"
     case outdoorPlayerFinding = "outdoor-player-finding"
+    // Steady program (docs/plans/2026-10-08-steady-program.md, task 4.1).
+    case todayProgram = "today-program"
+    case todayCheckDue = "today-check-due"
+    case program = "program"
+    case selfcheckIntro = "selfcheck-intro"
+    case selfcheckTimer = "selfcheck-timer"
+    case selfcheckCount = "selfcheck-count"
+    case progressChecks = "progress-checks"
+    case completeCheckInvite = "complete-check-invite"
+    /// The rep ladder's "Next time: …" line (the tree's level-up already owns complete-level-up).
+    case completeRepsUp = "complete-reps-up"
+    case programFinished = "program-finished"
 }
 
 enum CaptureHook {
@@ -149,6 +161,15 @@ enum CaptureHook {
         for stop in fixture.unlockedStops {
             context.insert(PostcardUnlock(journeyID: fixture.journey.journeyID, stopID: stop, unlockedAt: started, opened: true))
         }
+        let today = calendar.startOfDay(for: now)
+        if let daysAgo = fixture.programStartDaysAgo {
+            context.insert(ProgramState(start: try require(calendar.date(byAdding: .day, value: -daysAgo, to: today))))
+        }
+        for check in fixture.selfChecks ?? [] {
+            let day = try require(calendar.date(byAdding: .day, value: -check.daysAgo, to: today))
+            let at = try require(calendar.date(byAdding: .minute, value: p.reminderMinutes + 20, to: day))
+            context.insert(SelfCheckRecord(date: at, count: check.count, usedHands: check.usedHands, week: check.week))
+        }
         try context.save()
     }
 
@@ -158,7 +179,8 @@ enum CaptureHook {
     }
 }
 
-/// Screenshot persona (App/Debug/Fixtures/en-US.json): Margaret, 58, New York at 1.8 mi, 13 active days.
+/// Screenshot persona (App/Debug/Fixtures/en-US.json): Margaret, 58, New York at 1.8 mi, 13 active days,
+/// week 3 of the steady program with two self-checks (7, then 8, with her hands).
 struct CaptureFixture: Decodable {
     struct Profile: Decodable {
         var name: String
@@ -178,10 +200,21 @@ struct CaptureFixture: Decodable {
         var miles: Double
     }
 
+    /// A 2-week self-check, `daysAgo` before the capture day.
+    struct SelfCheck: Decodable {
+        var daysAgo: Int
+        var count: Int
+        var usedHands: Bool
+        var week: Int
+    }
+
     var profile: Profile
     var journey: JourneyProgress
     var activeDays: Int
     var unlockedStops: [String]
+    /// Steady program: week 1 began this many days ago (week 3 on the capture day).
+    var programStartDaysAgo: Int?
+    var selfChecks: [SelfCheck]?
 
     static func load(bundle: Bundle, locale: String = "en-US") throws -> CaptureFixture {
         guard let url = bundle.url(forResource: locale, withExtension: "json") else {

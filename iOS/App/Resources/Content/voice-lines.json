@@ -35238,6 +35238,18 @@
           "end": 3.24
         }
       ]
+    },
+    {
+      "id": "a12.check.setup",
+      "text": "Sit near the front of your chair, feet flat. Ready?"
+    },
+    {
+      "id": "a12.check.go",
+      "text": "Go. Stand up all the way, then sit back down. At your own pace."
+    },
+    {
+      "id": "a12.check.stop",
+      "text": "And stop. Rest a moment, then enter how many times you stood up."
     }
   ]
 }

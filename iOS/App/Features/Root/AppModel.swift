@@ -169,8 +169,14 @@ import GentleWalkCore
         let states = (try? context.fetch(FetchDescriptor<JourneyState>())) ?? []
         let unlocks = (try? context.fetch(FetchDescriptor<PostcardUnlock>())) ?? []
         let wins = (try? context.fetch(FetchDescriptor<EverydayWin>())) ?? []
+        let checks = selfCheckRecords()
+        let program = ensureProgram(firstWorkout: records.first?.date)
         journey = JourneySnapshot(states: states, unlocks: unlocks, content: content, entitlement: entitlement)
-        progress = ProgressSnapshot(records: records, wins: wins, restDays: restDays, calendar: calendar, now: now())
+        // Pro: the hands level each balance exercise is at today (Progress, task 4.10).
+        let support = isPro ? SupportLadder.plan(progress: SupportLadderStore(defaults: defaults).progress, intensity: .steady,
+                                                 limits: profile?.limits ?? []).levels : [:]
+        progress = ProgressSnapshot(records: records, wins: wins, checks: checks, supportLevels: support, restDays: restDays,
+                                    calendar: calendar, now: now())
         guard let profile else { today = nil; return }
         let pains = painRecorder.snapshots(since: now().addingTimeInterval(-14 * 86_400))
         let input = TodayInput(
@@ -182,7 +188,9 @@ import GentleWalkCore
                 || healthAskedRecently,
             suggestFewerReminders: suggestsFewerReminders(records.map(\.date), profile: profile),
             journeyID: journey.journeyID, journeyMiles: journey.totalMiles,
-            restedToday: (defaults.object(forKey: Self.restTodayKey) as? Date).map { calendar.isDate($0, inSameDayAs: now()) } ?? false)
+            restedToday: (defaults.object(forKey: Self.restTodayKey) as? Date).map { calendar.isDate($0, inSameDayAs: now()) } ?? false,
+            program: program?.programRound, programFinishedAt: program?.finishedAt, selfChecks: checks.map(\.date),
+            selfCheckDismissedAt: selfCheckDismissedAt)
         today = TodayModel(input: input, content: content)
     }
 
@@ -245,6 +253,7 @@ import GentleWalkCore
         }
         return PlannerInput(calendar: calendar, restDays: restDays, reminderMinutes: profile.reminderMinutes,
                             frequency: profile.frequency, workouts: records.map(\.date), trialReminder: nil,
-                            landmark: journey.landmarkSoon, settings: notificationSettings, newJourneyName: nil)
+                            landmark: journey.landmarkSoon, settings: notificationSettings, newJourneyName: nil,
+                            selfCheckDue: SelfCheckSchedule.dueDate(results: selfCheckRecords().map(\.date), calendar: calendar))
     }
 }

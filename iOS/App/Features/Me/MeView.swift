@@ -19,6 +19,12 @@ struct MeView: View {
                                     onSeePlans: { app.cover = .paywall(.lockedContent) },
                                     onHowToCancel: { app.cover = .cancelGuide(afterLifetime: false) })
                 SettingsGroupHeader(title: "Your plan")
+                if let strip = app.today?.programStrip {
+                    ProgramSection(strip: strip, onOpen: {
+                        app.tab = .today
+                        app.todayPath = [.program]
+                    }, onRestart: app.restartProgram)
+                }
                 BodySection(limits: app.profile?.limits ?? [], onEdit: { editingBody = true })
                 WeekSection(restDays: app.isPro ? (app.profile?.restDays ?? RestDays.freeTier) : RestDays.freeTier,
                             isPro: app.isPro, onSeePlans: { app.offerPlans(.lockedContent) }) { days in

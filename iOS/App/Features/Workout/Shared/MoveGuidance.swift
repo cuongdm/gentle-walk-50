@@ -63,6 +63,34 @@ struct SegmentedMoveBar: View {
     }
 }
 
+/// "One hand on the chair" on a sky label and "2 × 8" beside it: today's step on the support and rep
+/// ladders (steady program task 4.11). Dark ink on sky in both appearances ("label on sky" pair).
+struct LadderLabels: View {
+    let support: LocalizedStringResource?
+    let reps: String?
+
+    var body: some View {
+        HStack(spacing: 8) {
+            if let support {
+                Label { Text(support) } icon: { Image(systemName: "hand.raised.fill") }
+                    .typeRole(.body).fontWeight(.semibold)
+                    .foregroundStyle(Palette.onLightFill)
+                    .padding(.horizontal, 12).padding(.vertical, 6)
+                    .background(Palette.sky, in: .capsule)
+            }
+            if let reps {
+                Text(verbatim: reps)
+                    .typeRole(.body).fontWeight(.semibold)
+                    .foregroundStyle(Palette.onLightFill)
+                    .padding(.horizontal, 12).padding(.vertical, 6)
+                    .background(Palette.sky, in: .capsule)
+                    .accessibilityLabel(Text(verbatim: String(localized: "Today: \(reps)")))
+            }
+        }
+        .accessibilityElement(children: .combine)
+    }
+}
+
 /// Speaker button opening the Sound sheet (56 pt target).
 struct SoundButton: View {
     let action: () -> Void

@@ -148,4 +148,46 @@ import GentleWalkCore
         let late = input(now: at(3, 10, hour: 18), workouts: everyDay)
         #expect(model(late).weekLine == "7 active days this week · 2 rest days are part of the plan")
     }
+
+    // MARK: Steady program (task 4.2)
+
+    /// Started Sep 14: Monday Sep 28 is week 3, stage 1.
+    @Test func programStripShowsWeekAndStage() {
+        var value = input()
+        #expect(model(value).programStrip == nil)
+        value.program = ProgramRound(start: at(14, hour: 0))
+        let strip = model(value).programStrip
+        #expect(strip?.kind == .week(3, .base))
+        #expect(strip?.title == "Week 3 of 12")
+        #expect(strip?.detail == "Stage 1 · Steady base")
+        #expect(strip?.pickUpWeek == nil)
+        value.programFinishedAt = at(27)
+        #expect(model(value).programStrip?.kind == .routine)
+    }
+
+    /// Two weeks or more without a session: "Pick up at week N", the week she stopped in.
+    @Test func longBreakOffersToPickUp() {
+        var value = input(now: at(12, 10), workouts: [TodayInput.Workout(date: at(22), feeling: nil, breakCount: 0, level: .seated)])
+        value.program = ProgramRound(start: at(14, hour: 0))
+        #expect(model(value).programStrip?.pickUpWeek == 2)
+    }
+
+    @Test func checkCardFollowsSchedule() {
+        var value = input()
+        // After the first session, before any check: the week-0 invite.
+        #expect(model(value).checkCard == .invite)
+        value.selfChecks = [at(19)]
+        let soon = model(value)
+        #expect(soon.checkCard == .dueIn(days: 5))
+        #expect(soon.checkTitle == "Your 2-week check is in 5 days")
+        value.selfChecks = [at(14)]
+        #expect(model(value).checkCard == .due)
+        // "Later" on the invite: nothing for two days.
+        value.selfChecks = []
+        value.selfCheckDismissedAt = at(28, hour: 8)
+        #expect(model(value).checkCard == nil)
+        // No session yet: nothing.
+        #expect(model(input(workouts: [])).checkCard == nil)
+    }
 }
+

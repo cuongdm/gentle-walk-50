@@ -2,9 +2,9 @@ import Charts
 import SwiftUI
 import GentleWalkCore
 
-/// S19 Progress: tree level, month calendar (no red days), sit-to-stands by week, longest walk,
-/// Everyday wins, all-day steps from Apple Health. No weight, no calories. The "Coming soon"
-/// Fitness Check card was removed until it exists (clarity review D42).
+/// S19 Progress: tree level, month calendar (no red days), 2-week self-checks (steady program task
+/// 4.10), balance support levels, longest walk, Everyday wins, all-day steps from Apple Health. No
+/// weight, no calories, no norms.
 struct ProgressScreen: View {
     let snapshot: ProgressSnapshot
     let wins: [EverydayWinItem]
@@ -16,6 +16,9 @@ struct ProgressScreen: View {
     let onToggleWin: (String) -> Void
     var onSeeAllSessions: () -> Void = {}
     let onConnectHealth: () -> Void
+    /// Exercise names for the support levels card.
+    var content: ContentBundle? = nil
+    var onSeePlans: () -> Void = {}
 
     @State private var selectedDay: SelectedDay?
 
@@ -27,7 +30,8 @@ struct ProgressScreen: View {
                 MonthCalendar(activeDates: snapshot.activeDates, restDays: snapshot.restDays, calendar: calendar, now: now,
                               onSelect: { selectedDay = SelectedDay(date: $0) })
                 RecentSessionsCard(sessions: snapshot.sessions, isPro: isPro, onSeeAll: onSeeAllSessions)
-                SitToStandChart(bars: snapshot.sitToStand)
+                SelfCheckChart(checks: snapshot.selfChecks, delta: snapshot.selfCheckDelta)
+                SupportLevelsCard(levels: snapshot.supportLevels, isPro: isPro, content: content, onSeePlans: onSeePlans)
                 if let minutes = snapshot.longestWalkMinutes {
                     LongestWalkCard(minutes: minutes)
                 }
@@ -166,27 +170,101 @@ struct MonthCalendar: View {
     }
 }
 
-/// Best sit-to-stands in a session, by week.
-struct SitToStandChart: View {
-    let bars: [ProgressSnapshot.WeekBar]
+/// The 2-week self-checks: one bar per check ("Week 0", "Week 2" …), "+2 since your first check" only
+/// against a check done the same way, and the counts read out for VoiceOver (task 4.10).
+struct SelfCheckChart: View {
+    let checks: [SelfCheckPoint]
+    let delta: SelfCheckDelta?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Most sit-to-stands in one session, by week").typeRole(.cardTitle).foregroundStyle(Palette.text)
-            if bars.allSatisfy({ $0.best == 0 }) {
-                // Empty chart looked broken (clarity review D42).
-                Text("Do a chair session to see this grow.").typeRole(.body).foregroundStyle(Palette.textMuted)
+            Text("Your 2-week checks").typeRole(.cardTitle).foregroundStyle(Palette.text)
+            if checks.isEmpty {
+                Text("Your first check comes after your first session.").typeRole(.body).foregroundStyle(Palette.textMuted)
             } else {
-                Chart(bars) { bar in
-                    BarMark(x: .value("Week", bar.weekStart, unit: .weekOfYear), y: .value("Sit-to-stands", bar.best))
+                if let line = deltaLine {
+                    Text(verbatim: line).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
+                }
+                Chart(checks) { check in
+                    BarMark(x: .value("Check", label(check)), y: .value("Sit-to-stands", check.count))
                         .foregroundStyle(Palette.secondary)
                         .cornerRadius(6)
+                        .annotation(position: .top) {
+                            Text(verbatim: "\(check.count)").typeRole(.caption).foregroundStyle(Palette.text)
+                        }
                 }
-                .frame(height: 160)
-                .chartXAxis { AxisMarks(values: .stride(by: .weekOfYear)) { _ in AxisValueLabel(format: .dateTime.month(.abbreviated).day()) } }
+                .chartYAxis(.hidden)
+                .frame(height: 170)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(Text(verbatim: spoken))
+                Text("Sit-to-stands in 30 seconds, counted by you. You compare only with yourself.")
+                    .typeRole(.caption).foregroundStyle(Palette.textMuted)
             }
         }
         .cardStyle()
+    }
+
+    private var deltaLine: String? {
+        guard let sinceFirst = delta?.sinceFirst, sinceFirst > 0 else { return nil }
+        return String(localized: "+\(sinceFirst) since your first check")
+    }
+
+    /// "Week 2", or "Week 2 · Oct 6" when two checks fell in the same week (bars must not stack).
+    private func label(_ check: SelfCheckPoint) -> String {
+        let week = String(localized: "Week \(check.week)")
+        guard checks.filter({ $0.week == check.week }).count > 1 else { return week }
+        return "\(week) · \(check.date.formatted(.dateTime.month(.abbreviated).day()))"
+    }
+
+    /// "Week 0: 7. Week 2: 8. Week 4: 9."
+    private var spoken: String {
+        checks.map { "\(label($0)): \($0.count)" }.joined(separator: ". ")
+    }
+}
+
+/// How much hand on the chair each balance exercise takes now (Pro support ladder); free shows
+/// "Two hands" with one line about Pro (task 4.10).
+struct SupportLevelsCard: View {
+    let levels: [String: SupportLevel]
+    let isPro: Bool
+    let content: ContentBundle?
+    let onSeePlans: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Hands on the chair").typeRole(.cardTitle).foregroundStyle(Palette.text)
+            if isPro, !rows.isEmpty {
+                ForEach(rows, id: \.id) { row in
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(verbatim: row.name).typeRole(.body).foregroundStyle(Palette.text)
+                        Spacer(minLength: 8)
+                        Text(row.level.label).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    .accessibilityElement(children: .combine)
+                }
+                Text("Less hand on the chair once you've held steady twice in a row.")
+                    .typeRole(.caption).foregroundStyle(Palette.textMuted)
+            } else {
+                Text(SupportLevel.twoHands.label).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
+                HStack {
+                    Text("With Pro, less hand on the chair as you get steadier.").typeRole(.caption)
+                        .foregroundStyle(Palette.textMuted)
+                    Spacer(minLength: 8)
+                    Button("See Pro plans", action: onSeePlans).buttonStyle(.smallTextLink)
+                }
+            }
+        }
+        .cardStyle()
+    }
+
+    private struct Row { let id: String; let name: String; let level: SupportLevel }
+
+    private var rows: [Row] {
+        levels.keys.sorted().compactMap { id in
+            guard let level = levels[id], let name = content?.exercises.first(where: { $0.id == id })?.name else { return nil }
+            return Row(id: id, name: name, level: level)
+        }
     }
 }
 

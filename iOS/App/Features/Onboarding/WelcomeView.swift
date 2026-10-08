@@ -23,9 +23,10 @@ struct WelcomeView: View {
                 .accessibilityAddTraits(.isHeader)
                 .reveal(delay: 0.18)
             VStack(alignment: .leading, spacing: 12) {
-                WelcomeLine(symbol: "chair.fill", text: "Every move has a seated version").reveal(delay: 0.32)
-                WelcomeLine(symbol: "ear", text: "Follow the voice, no need to watch").reveal(delay: 0.42)
-                WelcomeLine(symbol: "clock", text: "5 minutes is enough to start").reveal(delay: 0.52)
+                // The one promise first (steady program task 4.13), then how: seated, by voice.
+                WelcomeLine(symbol: "calendar", text: "A 12-week plan for stronger legs and better balance").reveal(delay: 0.32)
+                WelcomeLine(symbol: "chair.fill", text: "Every move has a seated version").reveal(delay: 0.42)
+                WelcomeLine(symbol: "ear", text: "Follow the voice, no need to watch").reveal(delay: 0.52)
             }
             Button("Let's begin", action: onBegin).buttonStyle(.primaryAction).reveal(delay: 0.7)
             Button("Restore purchase", action: onRestore)

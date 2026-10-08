@@ -106,6 +106,30 @@ struct BodySection: View {
     }
 }
 
+/// "Your 12 weeks": where she is, the plan, and "Start a new 12 weeks" (steady program task 4.14). Starting
+/// again keeps her 2-week checks.
+struct ProgramSection: View {
+    let strip: ProgramStripState
+    let onOpen: () -> Void
+    let onRestart: () -> Void
+
+    @State private var confirming = false
+
+    var body: some View {
+        SettingsCard(title: "Your 12 weeks", actionTitle: "See plan", action: onOpen) {
+            Text(verbatim: strip.title).typeRole(.body).fontWeight(.semibold)
+            Text(verbatim: strip.detail).typeRole(.caption).foregroundStyle(Palette.textMuted)
+            Button("Start a new 12 weeks") { confirming = true }.buttonStyle(.secondaryAction)
+        }
+        .confirmationDialog("Start a new 12 weeks?", isPresented: $confirming, titleVisibility: .visible) {
+            Button("Start from week 1", action: onRestart)
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Your 2-week checks and your progress stay.")
+        }
+    }
+}
+
 /// Pick two rest days from a list (no drag and drop). Pro only; free is Saturday and Sunday.
 struct WeekSection: View {
     let restDays: Set<Weekday>

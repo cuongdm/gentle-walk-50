@@ -15,6 +15,10 @@ enum Plural {
         String(AttributedString(localized: "^[\(count) session](inflect: true)").characters)
     }
 
+    static func days(_ count: Int) -> String {
+        String(AttributedString(localized: "^[\(count) day](inflect: true)").characters)
+    }
+
     static func minutes(_ count: Int) -> String {
         String(AttributedString(localized: "^[\(count) minute](inflect: true)").characters)
     }

@@ -78,6 +78,18 @@ import GentleWalkCore
     /// How many the coach counts in this move.
     var repTarget: Int { phase?.reps ?? Self.repTarget }
 
+    /// A balance exercise on the support ladder: how many hands on the chair today (free: both hands).
+    var supportLabel: LocalizedStringResource? {
+        guard let id = exercise?.id, SupportLadder.exercises.contains(id) else { return nil }
+        return (session.request.supportLevels[id] ?? .twoHands).label
+    }
+
+    /// A counted move on the rep ladder (Pro): today's "2 × 8" (steady program task 4.11).
+    var repsLabel: String? {
+        guard let id = exercise?.id, let step = session.request.reps[id] else { return nil }
+        return RepText.step(step)
+    }
+
     /// "00:40" for timed moves and rests.
     var timerText: String { WalkPlayerModel.clock(player.remainingInPhase) }
 

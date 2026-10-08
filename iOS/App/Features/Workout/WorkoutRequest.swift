@@ -21,6 +21,8 @@ struct WorkoutRequest: Identifiable, Equatable, Sendable {
     /// Pro: today's hands level per balance exercise and the changes to announce (`SupportLadder.plan`).
     var supportLevels: [String: SupportLevel] = [:]
     var supportAnnouncements: [String: SupportLadder.Change] = [:]
+    /// Pro: today's reps per counted move (`RepLadder.today`); empty plays the day's own reps.
+    var reps: [String: RepStep] = [:]
 
     static func firstWalk(limits: Set<BodyLimit>) -> WorkoutRequest {
         WorkoutRequest(day: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), level: .seated, intensity: .gentle,
@@ -84,7 +86,7 @@ struct WorkoutRequest: Identifiable, Equatable, Sendable {
         }
         var plan = try SessionBuilder.build(kind: day, level: place == .pad ? .pad : level, intensity: intensity,
                                             limits: limits, rotationIndex: rotationIndex, content: content, variant: variant,
-                                            support: (supportLevels, supportAnnouncements))
+                                            support: (supportLevels, supportAnnouncements), reps: reps)
         let libraryID = SessionBuilder.moveLibraryID(for: day.main == .chair ? intensity : .steady)
         if !swaps.isEmpty, let library = content.sessions.first(where: { $0.id == libraryID }) {
             for b in plan.blocks.indices where plan.blocks[b].kind == .chair {

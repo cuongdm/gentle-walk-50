@@ -147,7 +147,7 @@ Chỉ nêu điều dễ kiểm chứng, không ngày tháng hay con số lịch 
 | pc.ny.bridge | The bridge crosses the East River to Brooklyn, with a wide walkway above the traffic. | You walked all of New York. I'm so proud of you. |
 Cần kiểm trước khi phát hành: lịch chợ Union Square, "green chairs" Bryant Park (chi tiết hình ảnh, không thương hiệu).
 
-## D8. Kho thông báo tối thiểu (28 câu)
+## D8. Kho thông báo tối thiểu (32 câu)
 Luật (spec mục Thông báo, plan 7.1–7.8): tối đa 1/ngày, không ghi sức khoẻ trên màn khoá (không "knee", "pain", "weight", "joints"), không lặp trong 14 ngày, không "streak". Plan 7.10 tính 42 câu nhắc (14 × 3 mốc); **demo dùng 14 câu trung tính cho mọi mốc** — đủ để không lặp 14 ngày với một người (mỗi người chọn một mốc). Bản đầy đủ viết thêm câu theo mốc sau.
 | Loại | ID | Câu |
 |---|---|---|
@@ -174,6 +174,10 @@ Luật (spec mục Thông báo, plan 7.1–7.8): tối đa 1/ngày, không ghi s
 | | nt.week.less | [n] active days this week. A new week starts tomorrow. |
 | Quay lại | nt.back.3 | Your journey is right where you left it. Want an easy 5 minutes? |
 | | nt.back.10 | Whenever you're ready, a gentle restart is waiting. |
+| Tự kiểm tra 2 tuần (08/10/2026) | nt.check.1 | Your 2-week check is ready when you are. |
+| | nt.check.2 | Thirty seconds and a chair: your 2-week check is today. |
+| | nt.check.3 | Time for your 2-week check. Only you see the number. |
+| | nt.check.4 | Your 2-week check is here. Same chair, same way as last time. |
 | Hết trial | nt.trial | Your free trial ends on [date]. You'll be billed [price] unless you cancel. Manage it in Settings. |
 | Tuyến mới | nt.newjourney | A new journey is ready: [journey name]. |
 | Thẻ ít nhắc hơn (Today) | card.fewer | You're doing this on your own now. Want fewer reminders? |

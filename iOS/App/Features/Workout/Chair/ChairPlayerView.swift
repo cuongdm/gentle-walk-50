@@ -84,6 +84,9 @@ struct ChairPlayerView: View {
                         // The clock beside the name, not on a row of its own (owner 01/10).
                         MoveHeaderWithClock(exercise: model.exercise) { MoveTimer(text: model.timerText) }
                     }
+                    if model.supportLabel != nil || model.repsLabel != nil {
+                        LadderLabels(support: model.supportLabel, reps: model.repsLabel)
+                    }
                     MoveOptionsRow(usesEasier: model.usesEasier, showsHarder: model.showsHarder,
                                    hasHarder: model.exercise?.harder != nil, showsTips: $showsTips,
                                    onEasier: { Task { await model.chooseEasier() } }, onHarder: model.chooseHarder)

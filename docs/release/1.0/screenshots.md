@@ -5,7 +5,21 @@ _29/09/2026. Mọi màn chụp bằng hook `-ScreenshotMode <state>` (dữ liệ
 iOS/scripts/capture_states.sh docs/release/1.0/shots "iPhone 17 Pro Max" walk-player chair-player paywall-eligible today journey complete stretch-player progress
 ```
 
-## Thứ tự (iPhone 6.9" và iPad 13")
+## Thứ tự mới theo chương trình vững chân (08/10/2026, kế hoạch steady-program Task 6.1) — dùng bảng này
+```bash
+iOS/scripts/capture_states.sh docs/release/1.0/shots "iPhone 17 Pro Max" onboarding-welcome today-program chair-player progress-checks journey
+```
+| # | Trạng thái (`-ScreenshotMode`) | Nói gì | Ghi chú |
+|---|---|---|---|
+| 1 | `onboarding-welcome` | Kế hoạch 12 tuần cho đôi chân khoẻ hơn, đứng vững hơn | Lời hứa một vấn đề. Tranh: một người ngồi, một người đứng cạnh ghế (todo yes2next) |
+| 2 | `today-program` | Tuần 3/12 trên Hôm nay, buổi tập theo cảm giác | Thẻ "Week 3 of 12 · Plan ›" ngay dưới lời chào |
+| 3 | `chair-player` | Bản ngồi, có nhãn mức vịn và số lần | Pro: nhãn "One hand on the chair" / "2 × 8" |
+| 4 | `progress-checks` | Tự kiểm tra 2 tuần, chỉ so với chính mình | Số mẫu 7 → 8 → 9; không bảng chuẩn, không chữ "fall" |
+| 5 | `journey` | Hành trình địa danh theo phút tập | Giữ từ bản cũ |
+Ảnh thêm nếu cần: `program` (4 chặng), `selfcheck-intro` (an toàn + "This is not a medical test."), `paywall-eligible` (minh bạch tiền).
+Chữ quảng cáo trên ảnh không được hứa phòng ngã, xương hay giảm đau (docs/design/steady-claims.md; lint `tools/lint/copy_lint.py`).
+
+## Thứ tự cũ (29/09/2026, giữ để đối chiếu) (iPhone 6.9" và iPad 13")
 | # | Trạng thái | Nói gì | Ghi chú |
 |---|---|---|---|
 | 1 | `walk-player` | Giọng dẫn, không cần nhìn màn hình | Trụ 1. Phụ đề hiện, nút Break/This hurts thấy rõ |

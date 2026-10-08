@@ -245,7 +245,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 2. RED: `error: cannot find 'SchemaV2' in scope`
 3. `SchemaV2` gồm mọi model V1 (copy nguyên) + 2 model mới; `GentleWalkMigrationPlan.schemas = [SchemaV1.self, SchemaV2.self]`, `stages = [.lightweight(fromVersion: SchemaV1.self, toVersion: SchemaV2.self)]`; không xoá `SchemaV1`.
 **Command:** `APP PersistenceTests` → expected: `** TEST SUCCEEDED **`
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD (cloud 08/10): `SchemaV2.swift`, `MigrationPlan.swift`, test `v2HasProgramAndSelfCheck` — chạy `APP PersistenceTests` trên Mac
 **Commit point:** `feat(data): schema v2 for program and self-checks`
 
 ### Task 3.2 — Migration V1 → V2 giữ nguyên dữ liệu [DATA]
@@ -254,7 +254,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. `@Test func migratesV1StoreKeepingRows()`: tạo store V1 ở URL tạm, ghi 1 `UserProfile`, 5 `WorkoutRecord`, 1 `JourneyState`; mở lại bằng plan V2; đếm: 1 / 5 / 1, `ProgramState` = 0.
 2. RED trước khi có stage → GREEN sau Task 3.1.
 **Command:** `APP PersistenceTests` → expected: `** TEST SUCCEEDED **` + số dòng trước/sau trong log test
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: test `migratesV1StoreKeepingRows` (store V1 ở URL tạm, mở lại bằng plan V2) — chạy `APP PersistenceTests`
 **Commit point:** `test(data): v1 to v2 migration keeps rows`
 
 ### Task 3.3 — Lưu thang số lần [DATA]
@@ -263,7 +263,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. `@Test func roundTripsProgress()`, `@Test func eraseClearsRepLadder()`.
 2. RED → implement `@MainActor struct RepLadderStore { init(defaults:); func load() -> [String: RepProgress]; func save(_:) }`, khoá vào `AppDefaultsKeys`.
 **Command:** `APP RepLadderStoreTests` → expected: `** TEST SUCCEEDED **`
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: `RepLadderStore.swift` (+ `today(intensity:limits:isPro:)`), `RepLadderStoreTests.swift` — chạy `APP RepLadderStoreTests`
 **Commit point:** `feat(data): rep ladder store`
 
 ### Task 3.4 — "Xoá dữ liệu" xoá cả chương trình và tự kiểm tra [DATA]
@@ -272,7 +272,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. `@Test func eraseRemovesProgramAndChecks()`: sau xoá, `ProgramState` = 0, `SelfCheckRecord` = 0.
 2. RED → thêm hai model vào danh sách xoá.
 **Command:** `APP DataEraserTests` → expected: `** TEST SUCCEEDED **`
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: `DataEraser` xoá `ProgramState`, `SelfCheckRecord`, khoá `repLadder`, `selfCheckDismissedAt` — chạy `APP DataEraserTests`
 **Commit point:** `fix(data): erase program and self-check data`
 
 ### Milestone 4 — Giao diện
@@ -283,7 +283,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. Margaret bắt đầu 17/09/2026 (tuần 3 chặng 1 vào 08/10), 2 lần tự kiểm tra (7 rồi 8, có chống tay), `mv.sit-to-stand` ở bậc 2×6.
 2. Test: mỗi trạng thái mới có trong `CaptureState.allCases` và seed được.
 **Command:** `APP CaptureHookTests` → expected: `** TEST SUCCEEDED **`
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: 10 trạng thái (`complete-reps-up` thay `complete-level-up` vì tên cũ đã có), fixture `programStartDaysAgo` + `selfChecks`, test `steadyProgramStatesParse`, số trạng thái 99 → 109 — chạy `APP CaptureHookTests`
 **Commit point:** `chore(debug): capture states for steady program`
 
 ### Task 4.2 — Today: dữ liệu thẻ chương trình và thẻ tự kiểm tra [TDD]
@@ -292,7 +292,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. `@Test func programStripShowsWeekAndStage()` ("Week 3 of 12", "Stage 1 · Steady base"); `@Test func checkCardFollowsSchedule()` (`.dueIn(5)` → "Your 2-week check is in 5 days"; `.none` → không có thẻ).
 2. RED → thêm `programStrip: ProgramStripState?`, `checkCard: SelfCheckStatus?` (kiểu `Equatable`, tính khi tải, không tính trong `body`).
 **Command:** `APP TodayModelTests` → expected: `** TEST SUCCEEDED **`
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: `ProgramStripState`, `checkCard`, `checkTitle`; test `programStripShowsWeekAndStage`, `longBreakOffersToPickUp`, `checkCardFollowsSchedule` — chạy `APP TodayModelTests`
 **Commit point:** `feat(today): program strip and self-check card state`
 
 ### Task 4.3 — Today: hai thẻ mới [UI]
@@ -301,7 +301,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. Đặt thẻ chương trình dưới dòng lời chào, thẻ tự kiểm tra dưới thẻ buổi tập, thẻ hành trình giữ nguyên (theo bản vẽ màn 2).
 2. `BUILD` → 3. `SHOT today-program`, `SHOT today-check-due` → 4. inspect.
 **Command:** `BUILD`; `SHOT today-program` → expected: ảnh có "Week 3 of 12", "Plan ›", thẻ buổi tập với Achy/Okay/Great, thẻ hành trình; vùng chạm ≥ 56 pt
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: `ProgramStripCard`, `SelfCheckCard` — cần `SHOT today-program`, `SHOT today-check-due`
 **Commit point:** `feat(today): program strip and self-check cards`
 
 ### Task 4.4 — Màn Kế hoạch 12 tuần [UI]
@@ -310,7 +310,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. 4 chặng (tên, tuần, mô tả), chặng hiện tại viền xanh, 7 mốc tự kiểm tra, dòng "general fitness, not medical advice".
 2. `BUILD` → `SHOT program` → inspect.
 **Command:** `SHOT program` → expected: ảnh khớp màn 3 của bản vẽ; nhãn "Back", "Your 12-week plan"
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: `Features/Program/ProgramView.swift`; dùng `TodayRoute.program` (không tạo kiểu `ProgramRoute` riêng, cùng stack Hôm nay) — cần `SHOT program`
 **Commit point:** `feat(program): 12-week plan screen`
 
 ### Task 4.5 — Mô hình luồng tự kiểm tra [TDD]
@@ -319,7 +319,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. `@Test func flowIntroTimerCountSave()`: intro → timer (30 s, đồng hồ tiêm vào) → count (mặc định = lần trước cùng cách, hoặc 8) → save tạo 1 `SelfCheckRecord`; `@Test func notTodayDismisses()`; `@Test func countStaysInRange()`.
 2. RED → implement `@Observable @MainActor final class SelfCheckFlowModel { var step: Step; var count: Int; var usedHands: Bool; func save(in: ModelContext) }`.
 **Command:** `APP SelfCheckFlowModelTests` → expected: `** TEST SUCCEEDED **`
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: `SelfCheckFlowModel.swift`, 6 test trong `SelfCheckFlowModelTests.swift` — chạy `APP SelfCheckFlowModelTests`
 **Commit point:** `feat(selfcheck): flow model`
 
 ### Task 4.6 — Màn chuẩn bị (an toàn) [UI]
@@ -328,7 +328,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. 4 lời dặn an toàn, 3 bước, "I'm ready", "Not today", dòng "This is not a medical test." (nguyên văn Task 1.3).
 2. `SHOT selfcheck-intro` → inspect.
 **Command:** `SHOT selfcheck-intro` → expected: ảnh khớp màn 5 bản vẽ; nhãn đủ 4 lời dặn
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: `SelfCheckIntroView` (trong `SelfCheckViews.swift`), `AppCover.selfCheck` — cần `SHOT selfcheck-intro`
 **Commit point:** `feat(selfcheck): safety intro`
 
 ### Task 4.7 — Âm thanh 30 giây [TDD]
@@ -337,7 +337,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. `@Test func selfCheckCompositionIs30sWithCues()`: composition có câu dặn, đếm ngược 3-2-1, "Go" ở 0 s, chuông ở 15 s, "Stop" ở 30 s; tổng ≤ 40 s; một track giọng, một track chuông.
 2. RED → implement bằng `SessionTimeline` có sẵn.
 **Command:** `APP SessionAudioComposerTests` → expected: `** TEST SUCCEEDED **`
-**Evidence:**
+**Evidence:** Core XANH (cloud 08/10, Docker swift 6.2): `SessionTimeline.selfCheck` + `SelfCheckTimelineTests` (3 test). App VIẾT XONG, CHƯA BUILD: `SelfCheckAudioPlayer.swift`, test `selfCheckCompositionIs30sWithCues` — chạy `APP SessionAudioComposerTests`. Chưa thu giọng thì chuông + chữ (tự động)
 **STOP AND ASK:** bản 1.0 dùng câu HLV thu sẵn hay chỉ chuông + chữ trên màn? (mặc định: câu HLV; nếu chưa thu kịp thì chuông + chữ, cờ trong `ReleaseContentTests`)
 **Commit point:** `feat(audio): self-check timeline`
 
@@ -347,7 +347,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. Đồng hồ lớn 0:30 → 0:00 (`Text(timerInterval:)` hoặc giá trị từ model), nút "Stop early", "This hurts" luôn hiện; Reduce Motion: không hiệu ứng.
 2. `SHOT selfcheck-timer` → inspect.
 **Command:** `SHOT selfcheck-timer` → expected: ảnh có đồng hồ, "Stop early", "This hurts"
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: `SelfCheckTimerView` — cần `SHOT selfcheck-timer` (đồng hồ chạy thật, bắt đầu lùi 20 s)
 **Commit point:** `feat(selfcheck): timer screen`
 
 ### Task 4.9 — Màn nhập số [UI]
@@ -356,7 +356,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. Nút − / + 72 pt, số lớn có `accessibilityValue`, hai lựa chọn "Yes, with my hands" / "No" (`accessibilityAddTraits(.isSelected)`), "Last time: 8", "Save", "Do the 30 seconds again".
 2. `SHOT selfcheck-count` → inspect (VoiceOver đọc được số và lựa chọn).
 **Command:** `SHOT selfcheck-count` → expected: ảnh khớp màn 6 bản vẽ; vùng chạm ≥ 56 pt
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: `SelfCheckCountView` (+ `CountStepper` 72 pt, adjustable) — cần `SHOT selfcheck-count`
 **Commit point:** `feat(selfcheck): count entry`
 
 ### Task 4.10 — Tiến bộ: biểu đồ tự kiểm tra thay biểu đồ cũ [UI]
@@ -366,7 +366,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 2. Thêm `struct SupportLevelsCard: View` (bậc vịn từng bài thăng bằng) — Pro thấy bậc, free thấy "Two hands" + một dòng Pro.
 3. `SHOT progress-checks`.
 **Command:** `SHOT progress-checks` → expected: ảnh khớp màn 7 bản vẽ (số mẫu 7, 8, 9)
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: `SelfCheckChart`, `SupportLevelsCard`; `ProgressSnapshot.sitToStand` → `selfChecks` — cần `SHOT progress-checks`
 **Commit point:** `feat(progress): self-check chart and support levels`
 
 ### Task 4.11 — Màn đang tập: nhãn bậc vịn và số lần [UI]
@@ -375,7 +375,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. Nhãn trên nền `sky` "One hand on the chair" cho bài trong `SupportLadder.exercises`; dòng "2 × 8" cho bài trong `RepLadder.exercises`; thêm cặp chữ-trên-nền vào `Palette.textPairs` nếu mới.
 2. `SHOT chair-player` và `SHOT chair-player-dark` → inspect; `APP DesignTokenTests`.
 **Command:** `APP DesignTokenTests` → expected: `** TEST SUCCEEDED **`; ảnh có nhãn bậc vịn
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: `LadderLabels` (chữ `onLightFill` trên `sky`, cặp đã có trong `Palette.textPairs`), `ChairPlayerModel.supportLabel/repsLabel`; `WorkoutRequest.reps` → `SessionBuilder.build(reps:)` — cần `SHOT chair-player`, `APP DesignTokenTests`
 **Commit point:** `feat(player): show support level and reps`
 
 ### Task 4.12 — Màn Hoàn thành: mời tự kiểm tra tuần 0, báo lên bậc [UI]
@@ -385,7 +385,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 2. Khi `RepLadder`/`SupportLadder` có `pendingChange == .up` hoặc sang chặng mới: một dòng gợi ý, không ép.
 3. `SHOT complete-check-invite`, `SHOT complete-level-up`.
 **Command:** ảnh có đúng thẻ mời và dòng lên bậc
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: `SelfCheckInviteCard`, `LevelUpLine`, `LevelUpText`; mời sau màn xin quyền (`afterOneTimeScreens`) — cần `SHOT complete-check-invite`, `SHOT complete-reps-up`
 **Commit point:** `feat(complete): week-0 check invite and level-up line`
 
 ### Task 4.13 — Welcome và màn Kế hoạch sẵn sàng nói lời hứa mới [UI]
@@ -394,7 +394,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. Giữ 3 dòng: kế hoạch 12 tuần · bản ngồi · giọng dẫn; PlanReady nhắc "Week 1 starts with your first session".
 2. `SHOT onboarding-welcome`, `SHOT onboarding-plan`.
 **Command:** ảnh khớp màn 1 bản vẽ
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: Welcome dòng đầu là lời hứa 12 tuần; `ProgramPromiseCard` trên PlanReady — cần `SHOT onboarding-welcome`, `SHOT onboarding-plan`
 **Commit point:** `feat(onboarding): steady program promise`
 
 ### Task 4.14 — Hết 12 tuần và tạm dừng / làm lại trong Tôi [UI]
@@ -403,7 +403,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. Màn kết thúc: so lần kiểm tra cuối với tuần 0 (cùng cách), hai nút "Start a new 12 weeks" / "Keep my routine".
 2. `SHOT program-finished`; ảnh Tôi có mục kế hoạch.
 **Command:** ảnh có hai nút và con số so với tuần 0
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: `ProgramFinishedView.swift`, `AppCover.programFinished`, `ProgramSection` trong Tôi — cần `SHOT program-finished`, `SHOT me`
 **Commit point:** `feat(program): finish and restart`
 
 ### Task 4.15 — Thông báo: công tắc và lên lịch [UI]
@@ -412,7 +412,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. Công tắc "Self-check reminders" (mặc định bật); scheduler truyền `selfCheckDue` vào `PlannerInput`; nội dung không nhắc sức khoẻ ("Your 2-week check is ready when you are.").
 2. `APP NotificationSchedulerTests`.
 **Command:** `APP NotificationSchedulerTests` → expected: `** TEST SUCCEEDED **`
-**Evidence:**
+**Evidence:** VIẾT XONG, CHƯA BUILD: công tắc "Self-check reminders"; `plannerInput()` truyền `selfCheckDue`; core có `SelfCheckSchedule.dueDate` (XANH trên cloud); test `selfCheckReminderOnItsDay` — chạy `APP NotificationSchedulerTests`
 **Commit point:** `feat(notifications): self-check reminder toggle`
 
 ### Milestone 5 — Nội dung, giọng, ngôn ngữ
@@ -423,7 +423,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. Câu (EN): giới thiệu chương trình (2), sang chặng (4), tự kiểm tra: dặn an toàn, 3-2-1, Go, giữa chừng, Stop, cảm ơn (7), lên số lần (3), kết thúc 12 tuần (2) ≈ 18 câu; theo luật giọng (không gọi tên, bản dễ trước, không chữ "fall").
 2. Bản VI theo glossary.
 **Command:** `python3 tools/lint/copy_lint.py` → expected: `0 findings`
-**Evidence:**
+**Evidence:** Bản nháp xong: `docs/scripts/A12-steady-program.md` (3 câu mới + dùng lại `a5.n.1–3`, `a5.half`); câu chương trình/chặng/lên số lần để ở mục "đề xuất" (bản 1.0 nói bằng chữ). CHỜ CHỦ APP DUYỆT
 **STOP AND ASK:** chủ app duyệt kịch bản trước khi thu (mặc định: duyệt trong 1 lượt đọc)
 **Commit point:** `docs(scripts): A12 steady program lines`
 
@@ -433,7 +433,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 1. `@Test func steadyProgramLinesExist()`: mọi id câu dùng trong `ProgramStage`, tự kiểm tra, `RepLadder` có trong `voice-lines.json` (en) và `content.vi.json`.
 2. RED → build content từ A12.
 **Command:** `CORE ContentValidatorTests` → expected: `passed`
-**Evidence:**
+**Evidence:** XANH trên cloud: `voice_lines.py` đọc A12, `build_content.py --check` stale: none, test core `steadyProgramLinesExist` (EN + VI)
 **Commit point:** `feat(content): steady program voice lines`
 
 ### Task 5.3 — Thu giọng EN và VI [DATA]
@@ -441,7 +441,7 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 **Steps:**
 1. Thu EN và VI qua Vibi (quyết định 06/10: giọng tiếng Anh qua Vibi trước); chạy QC `tools/voice/qc_lines.py`.
 **Command:** `python3 tools/voice/qc_lines.py` → expected: 0 lỗi
-**Evidence:**
+**Evidence:** CHỜ CHỦ APP: thu 3 câu `a12.check.*` EN + VI (Vibi), rồi `build_content_overlay.py vi --cache …`
 **STOP AND ASK:** chi phí credit Vibi cho khoảng 18 câu × 2 ngôn ngữ (mặc định: dùng hạn mức hiện có)
 **Commit point:** `feat(voice): A12 recordings`
 
@@ -450,21 +450,21 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 **Steps:**
 1. Trên Mac: build với `SWIFT_EMIT_LOC_STRINGS=YES`, `tools/i18n/extract_sources.py`, thêm bản Việt, `apply_catalog.py vi`.
 **Command:** `L10N` → expected: `0 missing; 0 problems`, coverage 0 cho en và vi, `0 findings`
-**Evidence:**
+**Evidence:** Bản Việt sẵn: `docs/i18n/vi/ui-extra-8.json` (101 câu, khoá đã có dạng %lld/%@), glossary đã thêm mục. CẦN MAC: build trích khoá, `extract_sources.py`, `apply_catalog.py vi`, rồi `L10N`
 **Commit point:** `feat(l10n): steady program strings en and vi`
 
 ### Task 5.5 — Thông báo EN + VI [DATA]
 **Files:** Modify `iOS/App/Resources/Content/notifications.json`, `content.vi.json`
 **Steps:** thêm 3–4 câu `selfCheck` không lặp trong 14 ngày; `ContentValidator` kiểm.
 **Command:** `CORE ContentValidatorTests` → expected: `passed`
-**Evidence:**
+**Evidence:** XANH trên cloud: `nt.check.1–4` trong D8, `notifications.json` 30 câu, bản Việt trong `docs/i18n/vi/content.json` + `content.vi.json`; `copy_lint` 0 findings
 **Commit point:** `feat(content): self-check notification phrases`
 
 ### Task 5.6 — Kiểm tra nội dung phát hành [TDD]
 **Files:** Modify `iOS/GentleWalkTests/ReleaseContentTests.swift`
 **Steps:** thêm kiểm tra: mọi câu A12 có file âm thanh EN và VI.
 **Command:** `APP ReleaseContentTests` → expected: `** TEST SUCCEEDED **` (sau Task 5.3)
-**Evidence:**
+**Evidence:** Không cần sửa test: `ReleaseContentTests` đã kiểm mọi câu trong `voice-lines.json` có file (gồm A12) — đỏ cho tới khi thu xong 5.3
 **Commit point:** `test(release): A12 audio present`
 
 ### Milestone 6 — Release skeleton
@@ -473,27 +473,27 @@ _Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu �
 **Files:** Modify `docs/release/1.0/screenshots.md`, `docs/release/1.0/asset-checklist.md`
 **Steps:** thứ tự ảnh: (1) Welcome lời hứa, (2) Hôm nay có thẻ Tuần x/12, (3) đang tập bản ngồi + bậc vịn, (4) biểu đồ tự kiểm tra, (5) hành trình; ảnh 1 có cảnh một người ngồi một người đứng (todo yes2next). Trạng thái chụp dùng tên ở Task 4.1.
 **Command:** `grep -c "SHOT\|ScreenshotMode" docs/release/1.0/screenshots.md` → expected: ≥ 5
-**Evidence:**
+**Evidence:** XONG: bảng thứ tự mới trong `docs/release/1.0/screenshots.md`
 **Commit point:** `docs(release): screenshots for steady program`
 
 ### Task 6.2 — Ghi chú cho người duyệt [DATA]
 **Files:** Modify `docs/release/1.0/checklist.md`
 **Steps:** thêm câu: "The 2-week check is a self-counted 30-second chair stand, compared only with the user's own earlier results. It is general fitness, not a medical test, and shows no norms or risk levels."
 **Command:** `python3 tools/lint/copy_lint.py` → expected: `0 findings`
-**Evidence:**
+**Evidence:** XONG: câu review notes trong `docs/release/1.0/checklist.md` §5
 **Commit point:** `docs(release): review notes for self-check`
 
 ### Task 6.3 — Trang privacy [DATA]
 **Files:** Modify `site/privacy.html`
 **Steps:** thêm "Your 2-week check results stay on this phone." vào mục dữ liệu.
 **Command:** `grep -n "2-week check" site/privacy.html` → expected: 1 dòng
-**Evidence:**
+**Evidence:** XONG: `site/privacy.html` dòng 24
 **Commit point:** `docs(site): self-check data stays on device`
 
 ### Task 6.4 — app-context và todo [DATA]
 **Files:** Modify `app-context.md` (Positioning: lời hứa một vấn đề; Price model: chương trình + tự kiểm tra miễn phí, thang số lần Pro; decisions log), `docs/todo.md`
 **Command:** `grep -n "Steady program\|chương trình vững chân" app-context.md` → expected: ≥ 2 dòng
-**Evidence:**
+**Evidence:** XONG: app-context (Positioning, Price model, decisions log) và `docs/todo.md`
 **Commit point:** `docs: record steady program decision`
 
 ## Trạng thái chụp mới (thêm vào danh sách chụp của kế hoạch MVP)

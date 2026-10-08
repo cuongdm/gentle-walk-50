@@ -1,18 +1,51 @@
 {
   "profile": {
     "name": "Margaret",
-    "goals": ["lessPain", "steadier"],
-    "barriers": ["joints", "charged"],
+    "goals": [
+      "lessPain",
+      "steadier"
+    ],
+    "barriers": [
+      "joints",
+      "charged"
+    ],
     "activityLevel": "shortWalks",
     "stairsAnswer": "tiredCanTalk",
     "chairAnswer": "hardButCan",
-    "bodyLimits": ["knees", "noFloor"],
+    "bodyLimits": [
+      "knees",
+      "noFloor"
+    ],
     "startLevel": "seated",
     "reminderMoment": "coffee",
     "reminderMinutes": 510,
-    "restDays": [7, 1]
+    "restDays": [
+      7,
+      1
+    ]
   },
-  "journey": { "journeyID": "jr.ny", "miles": 1.8 },
+  "journey": {
+    "journeyID": "jr.ny",
+    "miles": 1.8
+  },
   "activeDays": 13,
-  "unlockedStops": ["pc.ny.zoo", "pc.ny.bethesda"]
+  "unlockedStops": [
+    "pc.ny.zoo",
+    "pc.ny.bethesda"
+  ],
+  "programStartDaysAgo": 17,
+  "selfChecks": [
+    {
+      "daysAgo": 16,
+      "count": 7,
+      "usedHands": true,
+      "week": 0
+    },
+    {
+      "daysAgo": 2,
+      "count": 8,
+      "usedHands": true,
+      "week": 3
+    }
+  ]
 }

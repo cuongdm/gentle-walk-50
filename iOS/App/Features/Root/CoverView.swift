@@ -49,6 +49,9 @@ struct CoverView: View {
                             app.workoutClosed(nil)
                             if session.request.isFirstWalk { Task { await app.offerReminderAfterNotYet() } }
                         },
+                        // After "Two quick things" (S16) when that shows: the invite never blocks the permissions.
+                        onSelfCheck: { app.afterOneTimeScreens { app.openSelfCheck() } },
+                        onSelfCheckLater: app.selfCheckLater,
                         onClose: app.workoutClosed)
         case .permissions:
             PermissionsCover(app: app)
@@ -57,6 +60,12 @@ struct CoverView: View {
         case .cancelGuide(let afterLifetime):
             CancelGuideView(accessUntil: app.store.renewalDate?.formatted(.dateTime.month(.abbreviated).day()),
                             isAfterLifetimePurchase: afterLifetime, onBack: app.oneTimeScreenClosed)
+        case .selfCheck(let model):
+            SelfCheckFlowView(model: model, onNotToday: app.selfCheckLater, onSave: { app.saveSelfCheck(model) },
+                              onClose: app.closeSelfCheck)
+        case .programFinished:
+            ProgramFinishedView(summary: app.programFinishedSummary(), name: app.profile?.name,
+                                onRestart: app.restartProgram, onKeepRoutine: app.keepRoutine)
         }
     }
 }
