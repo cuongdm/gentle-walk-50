@@ -195,8 +195,9 @@ struct CompleteTreeLine: View {
             let level = TreeLevel.level(activeDays: activeDays)
             HStack(spacing: 12) {
                 Group {
-                    if UIImage(named: Art.treeName(level: level)) != nil {
-                        Image(Art.treeName(level: level)).resizable().scaledToFit().blendMode(.multiply)
+                    if let image = UIImage(named: Art.treeName(level: level)) {
+                        TreeBadge(name: Art.treeName(level: level), imageSize: image.size,
+                                  content: Art.treeContentRect(level: level), side: treeSize)
                     } else {
                         AppIcon.sprout.image.resizable().scaledToFit().foregroundStyle(Palette.secondary)
                     }
@@ -214,6 +215,42 @@ struct CompleteTreeLine: View {
                     .fill(LinearGradient(colors: [Palette.secondary.opacity(0.16), Palette.secondary.opacity(0.07)],
                                          startPoint: .top, endPoint: .bottom))
             }
+        }
+    }
+}
+
+/// The tree painting cropped to the plant itself and centred in a square, so a seed or sprout is not
+/// a speck at the foot of a tall sheet of paper. In light mode it multiplies into the green wash; in
+/// dark mode it sits on its own paper tile, since multiplied onto a dark fill it turns black (review M5-D).
+private struct TreeBadge: View {
+    let name: String
+    let imageSize: CGSize
+    /// The painted part of the image, as a share of its width and height.
+    let content: CGRect
+    let side: CGFloat
+
+    @Environment(\.colorScheme) private var scheme
+
+    var body: some View {
+        let inset: CGFloat = scheme == .dark ? 6 : 0
+        let box = side - inset * 2
+        let aspect = imageSize.height > 0 ? imageSize.width / imageSize.height : 1
+        // Rendered image height that makes the painted part fill the box on its longer side.
+        let height = min(box / max(content.height, 0.01), box / max(content.width * aspect, 0.01))
+        let width = height * aspect
+        let art = Image(name)
+            .resizable()
+            .frame(width: width, height: height)
+            .offset(x: (0.5 - content.midX) * width, y: (0.5 - content.midY) * height)
+            .frame(width: box, height: box)
+            .clipped()
+        if scheme == .dark {
+            art.blendMode(.multiply)
+                .padding(inset)
+                .background(Palette.artPaper, in: .rect(cornerRadius: 12, style: .continuous))
+                .compositingGroup()
+        } else {
+            art.blendMode(.multiply)
         }
     }
 }

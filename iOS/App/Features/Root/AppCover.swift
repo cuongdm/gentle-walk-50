@@ -19,7 +19,7 @@ enum AppCover: Identifiable {
     case selfCheck(SelfCheckFlowModel)
     /// The 12 weeks are done: compare with week 0, start again or keep the routine (task 4.14).
     case programFinished
-    /// "This week felt…" on the first open from Sunday to Tuesday (P6, D11).
+    /// "Last week felt…" on the first open from Sunday to Tuesday (P6, D11).
     case weeklyCheckIn
 
     var id: String {

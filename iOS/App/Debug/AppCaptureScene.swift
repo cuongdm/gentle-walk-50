@@ -194,8 +194,10 @@ struct AppCaptureScene: View {
         case .lockedStop:
             let states = (try? context.fetch(FetchDescriptor<JourneyState>())) ?? []
             states.forEach { $0.isCurrent = false }
-            context.insert(JourneyState(journeyID: "jr.smoky", miles: 1.4, isCurrent: true, startedAt: now))
+            // Free leg walked: at Laurel Falls (mile 2.4, the free leg's end), so Clingmans Dome is locked ahead.
+            context.insert(JourneyState(journeyID: "jr.smoky", miles: 2.4, isCurrent: true, startedAt: now))
             context.insert(PostcardUnlock(journeyID: "jr.smoky", stopID: "pc.smoky.1", unlockedAt: now))
+            context.insert(PostcardUnlock(journeyID: "jr.smoky", stopID: "pc.smoky.2", unlockedAt: now))
         case .todayCheckDue:
             // The last check two weeks and a day ago: due today.
             for check in (try? context.fetch(FetchDescriptor<SelfCheckRecord>())) ?? [] {

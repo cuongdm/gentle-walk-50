@@ -68,11 +68,18 @@ struct JourneyCard: View {
     @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
-        Button(action: onChoose) {
-            if typeSize.isAccessibilitySize { stacked } else { overlaid }
+        // A finished route is not a button, but keeps full colour: `.disabled` greyed the
+        // "Done" pill and title below readable contrast (review M5-D).
+        if status == .done {
+            card.accessibilityElement(children: .combine)
+        } else {
+            Button(action: onChoose) { card }
+                .buttonStyle(.plain)
         }
-        .buttonStyle(.plain)
-        .disabled(status == .done)
+    }
+
+    @ViewBuilder private var card: some View {
+        if typeSize.isAccessibilitySize { stacked } else { overlaid }
     }
 
     /// Accessibility text sizes: the words below the cover, where they can grow.
@@ -116,7 +123,14 @@ struct JourneyCard: View {
 
     @ViewBuilder private var statusLabel: some View {
         switch status {
-        case .done: Label("Done", systemImage: "checkmark.circle.fill").typeRole(.caption).foregroundStyle(Palette.secondary)
+        case .done:
+            // Words in text ink (a checked pair on the surface pill), the tick in sap green.
+            Label {
+                Text("Done").fontWeight(.semibold).foregroundStyle(Palette.text)
+            } icon: {
+                Image(systemName: "checkmark.circle.fill").foregroundStyle(Palette.secondary)
+            }
+            .typeRole(.caption)
         case .inProgress: Text("In progress").typeRole(.caption).fontWeight(.semibold)
         case .start: Text("Start this journey").typeRole(.caption).fontWeight(.semibold)
         case .firstLegFree:
