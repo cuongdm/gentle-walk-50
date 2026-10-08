@@ -232,6 +232,29 @@ struct WalkPlayerView: View {
     }
 }
 
+/// "Round 2 of 6 · 7:13 left in total" on one line where it fits; otherwise broken at the dot, one part
+/// per line, so a narrow phone never leaves "in total" alone on the second line (review A, 09/10/2026).
+private struct StatusText: View {
+    let status: String
+
+    var body: some View {
+        let parts = status.components(separatedBy: " · ")
+        if parts.count == 2 {
+            ViewThatFits(in: .horizontal) {
+                Text(verbatim: status).lineLimit(1).fixedSize()
+                VStack(alignment: .trailing, spacing: 0) {
+                    Text(verbatim: parts[0]).fixedSize(horizontal: false, vertical: true)
+                    Text(verbatim: parts[1]).fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text(verbatim: status))
+        } else {
+            Text(verbatim: status)
+        }
+    }
+}
+
 /// End on the left, where the session is on the right (15 pt).
 struct WalkTopBar: View {
     /// "Round 2 of 6 · 7:13 left in total"; nil when the screen shows it elsewhere (largest text sizes).
@@ -250,7 +273,7 @@ struct WalkTopBar: View {
             }
             Spacer()
             if let status {
-                Text(verbatim: status)
+                StatusText(status: status)
                     .typeRole(.caption)
                     .foregroundStyle(Palette.text)
                     .multilineTextAlignment(.trailing)

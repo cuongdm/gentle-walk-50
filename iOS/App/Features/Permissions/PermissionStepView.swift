@@ -140,15 +140,21 @@ private struct HealthSheetCallout: View {
 /// "Reminders on" / "Apple Health connected" in green once granted.
 private struct GrantedLine: View {
     let ask: PermissionAsk
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
-        Label {
+        // At accessibility sizes the check goes above the words ("connecte / d" broke mid-word beside it
+        // on an iPhone SE, review A 09/10/2026).
+        let layout = typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 4))
+            : AnyLayout(HStackLayout(spacing: 10))
+        layout {
+            Image(systemName: "checkmark.circle.fill").accessibilityHidden(true)
             Text(ask == .reminders ? "Reminders on" : "Apple Health connected")
-        } icon: {
-            Image(systemName: "checkmark.circle.fill")
+                .fixedSize(horizontal: false, vertical: true)
         }
         .typeRole(.body).fontWeight(.semibold)
         .foregroundStyle(Palette.text)
+        .padding(.vertical, typeSize.isAccessibilitySize ? 10 : 0)
         .padding(.horizontal, 16)
         .frame(maxWidth: .infinity, minHeight: Metrics.minTouchTarget, alignment: .leading)
         .background(Palette.secondary.opacity(0.15), in: .rect(cornerRadius: Metrics.buttonRadius))

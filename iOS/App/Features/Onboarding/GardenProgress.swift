@@ -11,6 +11,7 @@ struct GardenProgress: View {
     var total = 7
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.colorScheme) private var scheme
 
     var body: some View {
         Canvas { context, size in
@@ -28,8 +29,10 @@ struct GardenProgress: View {
                     Plant.draw(stage: stage, at: center, scale: 1.0, ink: Palette.secondary, in: &context)
                 } else if stage == step {
                     let halo = CGRect(x: center.x - 17, y: center.y - 33, width: 34, height: 34)
-                    context.fill(Path(ellipseIn: halo), with: .color(Palette.sun.opacity(0.3)))
-                    Plant.draw(stage: stage, at: center, scale: 1.3, ink: Palette.primary, in: &context)
+                    // Deep green vanished on the dim halo in dark: cream ink and a stronger halo there (review A).
+                    context.fill(Path(ellipseIn: halo), with: .color(Palette.sun.opacity(scheme == .dark ? 0.45 : 0.3)))
+                    Plant.draw(stage: stage, at: center, scale: 1.3, ink: scheme == .dark ? Palette.text : Palette.primary,
+                               in: &context)
                 } else {
                     Plant.mound(at: center, in: &context)
                 }

@@ -36,15 +36,11 @@ struct PaywallView: View {
                 } else if model.showsTrial {
                     TrialTimelineView(reminderDate: model.reminderDateText, billingDate: model.billingDateText)
                 }
-                VStack(spacing: 10) {
-                    ForEach(model.visibleOptions) { option in
-                        PlanOptionCard(option: option, isSelected: model.selectedID == option.id,
-                                       note: model.note(for: option),
-                                       renewingWarning: option.kind == .lifetime && model.showsRenewingWarning) {
-                            model.selectedID = option.id
-                        }
-                        .transition(.opacity.combined(with: .move(edge: .top)))
-                    }
+                // Every card the same way: price beside the name when all of them fit so, otherwise under the
+                // name on every card, so the prices line up down the list (review A, 09/10/2026).
+                ViewThatFits(in: .horizontal) {
+                    planCards(stacksPrice: false)
+                    planCards(stacksPrice: true)
                 }
                 OtherPlansToggle(showsAll: model.showsAllPlans) { model.showsAllPlans.toggle() }
                 CancelNote()
@@ -71,6 +67,20 @@ struct PaywallView: View {
         .screenBackground()
         .sheet(isPresented: $showsPrivacy) { PrivacyPolicyView() }
     }
+
+    private func planCards(stacksPrice: Bool) -> some View {
+        VStack(spacing: 10) {
+            ForEach(model.visibleOptions) { option in
+                PlanOptionCard(option: option, isSelected: model.selectedID == option.id,
+                               note: model.note(for: option),
+                               renewingWarning: option.kind == .lifetime && model.showsRenewingWarning,
+                               stacksPrice: stacksPrice) {
+                    model.selectedID = option.id
+                }
+                .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+        }
+    }
 }
 
 /// "GOOD FOOTING PRO" with the coach, the title, and a Close button that is the same as Maybe later.
@@ -94,6 +104,8 @@ private struct PaywallHeader: View {
                 }
                 Spacer(minLength: 0)
             }
+            // Room for Close, so a two-line label at the largest sizes never runs under it (review A).
+            .padding(.trailing, Metrics.minTouchTarget - 8)
             .frame(minHeight: 40)
             // Close sits over the row's end: a 56 pt target without making the row taller.
             .overlay(alignment: .trailing) {
@@ -194,25 +206,34 @@ struct PlanOptionCard: View {
     let isSelected: Bool
     var note: String?
     var renewingWarning = false
+    /// The price under the name instead of beside it; the list picks one way for every card.
+    var stacksPrice = false
     let action: () -> Void
     @Environment(\.colorScheme) private var scheme
 
     private static let shape = RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
 
-    @ViewBuilder private var radio: some View {
-        if isSelected {
-            ChosenCheck()
-        } else {
-            Circle().strokeBorder(Palette.textMuted.opacity(0.6), lineWidth: 2)
-                .frame(width: 28, height: 28).accessibilityHidden(true)
+    /// Held at xxxLarge: at the largest sizes a 70 pt check left "One paymen / t" breaking mid-word (review A).
+    private var radio: some View {
+        Group {
+            if isSelected {
+                ChosenCheck()
+            } else {
+                Circle().strokeBorder(Palette.textMuted.opacity(0.6), lineWidth: 2)
+                    .frame(width: 28, height: 28).accessibilityHidden(true)
+            }
         }
+        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
     }
 
     private var details: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(option.title).typeRole(.body).fontWeight(isSelected ? .bold : .regular)
+                .fixedSize(horizontal: false, vertical: true)
             if let note {
+                // Wraps, never "$3.33 a…" at the largest sizes (review A, 09/10/2026).
                 Text(verbatim: note).typeRole(.caption)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             if renewingWarning {
                 Text("Your current plan keeps renewing until you cancel it.")
@@ -231,22 +252,25 @@ struct PlanOptionCard: View {
 
     var body: some View {
         Button(action: action) {
-            // Price beside the name where the name keeps one line; under it otherwise (long names in
+            // Price beside the name where every name keeps one line; under it otherwise (long names in
             // Vietnamese, accessibility sizes), so the row never squeezes or runs off the screen.
-            ViewThatFits(in: .horizontal) {
-                HStack(alignment: .center, spacing: 12) {
-                    radio
-                    details.fixedSize()
-                    Spacer(minLength: 8)
-                    price.fixedSize()
-                }
-                HStack(alignment: .top, spacing: 12) {
-                    radio
-                    VStack(alignment: .leading, spacing: 2) {
-                        details
-                        price
+            Group {
+                if !stacksPrice {
+                    HStack(alignment: .center, spacing: 12) {
+                        radio
+                        details.fixedSize()
+                        Spacer(minLength: 8)
+                        price.fixedSize()
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                } else {
+                    HStack(alignment: .top, spacing: 12) {
+                        radio
+                        VStack(alignment: .leading, spacing: 2) {
+                            details
+                            price
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
             }
             .padding(.horizontal, 14)

@@ -111,13 +111,14 @@ struct SoreSpotsView: View {
 }
 
 /// Step 7 "Anything else we should know?": the everyday limits, with the doctor note pinned right above
-/// Continue so it is always in view (1.4.1, D4).
+/// Continue so it is always in view (1.4.1, D4). On an iPhone SE it sits right under the answers instead,
+/// so "None of these", the safe choice, is not cut in half by the pinned note (review A, 09/10/2026).
 struct AnythingElseView: View {
     let flow: OnboardingFlow
 
     var body: some View {
         OnboardingStepScaffold(title: OnboardingCopy.title(.anythingElse), coach: flow.coachLine,
-                               onContinue: flow.next) {
+                               onContinue: flow.next, footerScrollsWhenShort: true) {
             BodyLimitChips(limits: BodyLimitChips.everyday, selected: flow.answers.limits, onToggle: flow.toggleLimit,
                            noneChosen: flow.noOtherLimits, onNone: flow.chooseNoOtherLimits)
         } aboveContinue: {

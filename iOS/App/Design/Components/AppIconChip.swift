@@ -92,21 +92,32 @@ struct ChosenCheck: View {
 }
 
 /// An ochre highlighter stroke under the words of the chosen answer, like a marker in a notebook.
+/// Drawn line by line under the text itself, so a two-line answer ("After my morning / coffee") is
+/// marked on both lines and the stroke stops at the last letter (review A, 09/10/2026: one block sat
+/// under line 2 only and ran past the words).
 struct HighlighterStroke: ViewModifier {
     let isOn: Bool
 
     func body(content: Content) -> some View {
-        content.background(alignment: .bottom) {
+        content.textRenderer(HighlighterRenderer(isOn: isOn))
+    }
+}
+
+/// Fills the lower part of each line's typographic bounds (from just under the x-height middle to just
+/// below the baseline), then draws the line on top.
+private struct HighlighterRenderer: TextRenderer {
+    let isOn: Bool
+
+    func draw(layout: Text.Layout, in context: inout GraphicsContext) {
+        for line in layout {
             if isOn {
-                GeometryReader { proxy in
-                    Palette.sun.opacity(0.45)
-                        .frame(height: proxy.size.height * 0.4)
-                        .offset(y: proxy.size.height * 0.52)
-                }
-                .padding(.horizontal, -3)
-                .transition(.opacity)
-                .accessibilityHidden(true)
+                let bounds = line.typographicBounds
+                let height = bounds.ascent + bounds.descent
+                let rect = CGRect(x: bounds.rect.minX - 2, y: bounds.rect.minY + height * 0.45,
+                                  width: bounds.width + 4, height: height * 0.4)
+                context.fill(Path(roundedRect: rect, cornerRadius: 2), with: .color(Palette.sun.opacity(0.45)))
             }
+            context.draw(line)
         }
     }
 }

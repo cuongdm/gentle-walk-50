@@ -96,6 +96,7 @@ private struct PlacementCard: View {
     let action: () -> Void
 
     @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.colorScheme) private var scheme
 
     var body: some View {
         Button(action: action) {
@@ -118,7 +119,7 @@ private struct PlacementCard: View {
             }
             .overlay {
                 RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
-                    .strokeBorder(isSelected ? Palette.primary : Palette.textMuted.opacity(0.25), lineWidth: isSelected ? 3 : 1)
+                    .strokeBorder(isSelected ? ChoiceInk.chosen(scheme) : Palette.textMuted.opacity(0.25), lineWidth: isSelected ? 3 : 1)
             }
             .contentShape(.rect(cornerRadius: Metrics.cardRadius))
         }
@@ -132,12 +133,19 @@ private struct PlacementCard: View {
         ArtImage(art: placement.art, height: 80, fallbackSymbol: placement.symbol)
             .frame(width: 110)
             .overlay(alignment: .topTrailing) {
-                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                    .typeRole(.cardTitle)
-                    .foregroundStyle(isSelected ? Palette.primary : Palette.textMuted)
-                    .background(Palette.surface, in: .circle)
-                    .padding(6)
-                    .dynamicTypeSize(...DynamicTypeSize.xxLarge)
+                // The shared chosen check (ochre on dark, where green on green was hard to see, review A).
+                Group {
+                    if isSelected {
+                        ChosenCheck()
+                    } else {
+                        Image(systemName: "circle")
+                            .typeRole(.cardTitle)
+                            .foregroundStyle(Palette.textMuted)
+                            .background(Palette.surface, in: .circle)
+                    }
+                }
+                .padding(6)
+                .dynamicTypeSize(...DynamicTypeSize.xxLarge)
             }
             .accessibilityHidden(true)
     }
