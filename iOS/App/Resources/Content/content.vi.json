@@ -11975,7 +11975,91 @@
    ]
   },
   "a3.open.route": {
-   "text": "Chọn đoạn đường bằng phẳng, quen thuộc, và đi ở nhịp bạn vẫn nói chuyện được."
+   "text": "Chọn đoạn đường bằng phẳng, quen thuộc, và đi ở nhịp bạn vẫn nói chuyện được.",
+   "file": "a3.open.route.vi.m4a",
+   "duration": 4.726,
+   "words": [
+    {
+     "word": "Chọn",
+     "start": 0.0,
+     "end": 0.18
+    },
+    {
+     "word": "đoạn",
+     "start": 0.18,
+     "end": 0.38
+    },
+    {
+     "word": "đường",
+     "start": 0.38,
+     "end": 0.58
+    },
+    {
+     "word": "bằng",
+     "start": 0.58,
+     "end": 0.8
+    },
+    {
+     "word": "phẳng,",
+     "start": 0.8,
+     "end": 1.62
+    },
+    {
+     "word": "quen",
+     "start": 1.62,
+     "end": 1.8
+    },
+    {
+     "word": "thuộc,",
+     "start": 1.8,
+     "end": 2.12
+    },
+    {
+     "word": "và",
+     "start": 2.12,
+     "end": 2.96
+    },
+    {
+     "word": "đi",
+     "start": 2.96,
+     "end": 3.14
+    },
+    {
+     "word": "ở",
+     "start": 3.14,
+     "end": 3.3
+    },
+    {
+     "word": "nhịp",
+     "start": 3.3,
+     "end": 3.58
+    },
+    {
+     "word": "bạn",
+     "start": 3.58,
+     "end": 3.78
+    },
+    {
+     "word": "vẫn",
+     "start": 3.78,
+     "end": 3.98
+    },
+    {
+     "word": "nói",
+     "start": 3.98,
+     "end": 3.99
+    },
+    {
+     "word": "chuyện",
+     "start": 3.98,
+     "end": 3.99
+    },
+    {
+     "word": "được.",
+     "start": 3.98,
+     "end": 3.99
+    }
+   ]
   },
   "a3.open.1": {
    "text": "Mình ra ngoài nào. Bắt đầu bằng đi dạo nhẹ.",

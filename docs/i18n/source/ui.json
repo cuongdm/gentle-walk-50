@@ -191,6 +191,13 @@
   ]
  },
  {
+  "key": "Use both hands, even where the video shows one.",
+  "comment": "",
+  "files": [
+   "ChairPlayerModel"
+  ]
+ },
+ {
   "key": "Count one",
   "comment": "A label for a button that counts one.",
   "files": [
@@ -6657,7 +6664,7 @@
   ]
  },
  {
-  "key": "Seated, with a chair to hold on to.",
+  "key": "Seated in a sturdy chair.",
   "comment": "",
   "files": [
    "WorkoutPreviewModel"

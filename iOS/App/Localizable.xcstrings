@@ -6895,6 +6895,16 @@
         }
       }
     },
+    "Seated in a sturdy chair." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ngồi trên một chiếc ghế chắc chắn."
+          }
+        }
+      }
+    },
     "Seated stretch" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -6912,17 +6922,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ngồi · bước tại chỗ trên ghế"
-          }
-        }
-      }
-    },
-    "Seated, with a chair to hold on to." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ngồi, có ghế để vịn."
           }
         }
       }
@@ -8976,6 +8975,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pop sôi động"
+          }
+        }
+      }
+    },
+    "Use both hands, even where the video shows one." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vịn cả hai tay, kể cả khi video chỉ vịn một tay."
           }
         }
       }
