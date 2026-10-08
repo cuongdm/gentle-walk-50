@@ -15,6 +15,7 @@ struct WalkPlayerView: View {
     @Environment(\.startsFullScreen) private var startsFullScreen
     @Environment(\.horizontalSizeClass) private var sizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     private var isOutdoors: Bool { session.request.place == .outdoors }
     /// Outdoors: "0.6 mi" under the clock, from GPS or steps.
@@ -134,6 +135,9 @@ struct WalkPlayerView: View {
                 // The picture shrinks first, then hides (it left an empty gap when it hid inside its frame;
                 // review C); the largest text sizes scroll the words, never the controls, the clock or the
                 // safety buttons.
+                // Indoors at the largest text sizes the crowded layout always: the other two could claim to
+                // fit and then cut "Seated · Side step" above the controls on an iPhone SE (Mac 09/10/2026).
+                let crowdedOnly = typeSize.isAccessibilitySize && !showsLiveMap
                 ViewThatFits(in: .vertical) {
                     if showsLiveMap {
                         // The map shrinks on an iPhone SE, so the clock, Next and the spoken line stay in view.
@@ -142,10 +146,10 @@ struct WalkPlayerView: View {
                         portrait(.map(180))
                         // iPhone SE: a shorter map, with the clock at stat size and tighter spacing.
                         portrait(.map(150), isCompact: true)
-                    } else {
+                    } else if !crowdedOnly {
                         portrait(.picture)
                     }
-                    portrait(.none)
+                    if !crowdedOnly { portrait(.none) }
                     crowdedPortrait
                 }
                 .padding(.horizontal, Metrics.screenMargin)

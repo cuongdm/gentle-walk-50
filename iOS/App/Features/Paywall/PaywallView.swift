@@ -29,8 +29,8 @@ struct PaywallView: View {
                            onMaybeLater: onMaybeLater, onRestore: onRestore, onPrivacy: { showsPrivacy = true })
     }
 
-    /// The end of the plan list: "See other plans" scrolls here, so the last plan and "Fewer plans" are
-    /// not left under the pinned footer on an iPhone SE (review A, 09/10/2026).
+    /// The end of the plan list: "See other plans" scrolls here once the list has opened, so the last plan
+    /// and "Fewer plans" sit above the pinned footer on an iPhone SE (review A, 09/10/2026).
     private static let plansEnd = "plans-end"
 
     var body: some View {
@@ -51,8 +51,9 @@ struct PaywallView: View {
                         planCards(stacksPrice: true)
                     }
                     OtherPlansToggle(showsAll: model.showsAllPlans) { model.showsAllPlans.toggle() }
-                        .id(Self.plansEnd)
                     if !(pinsFooter && isShort) { CancelNote() }
+                    // Below the last plan and its toggle, with a little air above the pinned footer.
+                    Color.clear.frame(height: 8).id(Self.plansEnd)
                     if !pinsFooter { footer }
                 }
                 .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: model.showsAllPlans)
@@ -75,7 +76,14 @@ struct PaywallView: View {
             }
             .onChange(of: model.showsAllPlans) { _, showsAll in
                 guard showsAll else { return }
-                withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.25)) { proxy.scrollTo(Self.plansEnd, anchor: .bottom) }
+                // After the cards' 0.25 s insert animation: scrolling at once used the old, shorter list and
+                // left the third plan half under the footer in Vietnamese on an iPhone SE (Mac 09/10/2026).
+                Task { @MainActor in
+                    try? await Task.sleep(for: .milliseconds(reduceMotion ? 50 : 320))
+                    withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.25)) {
+                        proxy.scrollTo(Self.plansEnd, anchor: .bottom)
+                    }
+                }
             }
         }
         .onShortHeightChange { isShort = $0 }

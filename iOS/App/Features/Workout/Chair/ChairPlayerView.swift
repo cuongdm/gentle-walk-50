@@ -60,9 +60,18 @@ struct ChairPlayerView: View {
             onPause: model.session.togglePause, onSkip: model.skip,
             onBreak: model.session.takeBreak, onHurts: model.session.openHurts
         ) { maxHeight in
-            ExerciseVideo(fileName: model.videoFile, picture: model.picture)
-                .overlay(alignment: .topTrailing) { VideoCornerButton.expand(enterFullScreen).padding(4) }
-                .frame(maxHeight: maxHeight)
+            VStack(spacing: 4) {
+                ExerciseVideo(fileName: model.videoFile, picture: model.picture)
+                    .overlay(alignment: .topTrailing) { VideoCornerButton.expand(enterFullScreen).padding(4) }
+                    .frame(maxHeight: maxHeight)
+                // Right under the clip it is about, outside the scrolling details, so it is never cut on an
+                // iPhone SE (Mac 09/10/2026: it sat half under the edge of the details).
+                if let note = model.supportNote {
+                    Text(note).typeRole(.caption).foregroundStyle(Palette.text)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
         } details: {
             if model.countsReps {
                 MoveHeaderWithClock(exercise: model.exercise, clockWidth: 190) {
@@ -82,10 +91,6 @@ struct ChairPlayerView: View {
             }
             if model.supportLabel != nil || model.repsLabel != nil {
                 LadderLabels(support: model.supportLabel, reps: model.repsLabel)
-            }
-            if let note = model.supportNote {
-                Text(note).typeRole(.caption).foregroundStyle(Palette.text)
-                    .fixedSize(horizontal: false, vertical: true)
             }
             MoveOptionsRow(usesEasier: model.usesEasier, showsHarder: model.showsHarder,
                            hasHarder: model.exercise?.harder != nil, showsTips: $showsTips,
