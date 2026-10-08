@@ -99,7 +99,7 @@ struct PreviewRow: Identifiable, Equatable {
 
     var subtitle: String? {
         if day.main == .stretch {
-            return standingStretch ? String(localized: "Standing, holding the chair.") : String(localized: "Seated, with a chair to hold on to.")
+            return standingStretch ? String(localized: "Standing, holding the chair.") : String(localized: "Seated in a sturdy chair.")
         }
         switch checkIn {
         case .achy: return String(localized: "Picked for an “Achy” day.")
@@ -160,15 +160,18 @@ struct PreviewRow: Identifiable, Equatable {
                                            swappableExerciseID: swappable && exercise.kind == .move ? id : nil))
                 }
             case .stretch:
-                var seen = Set<String>()
-                for segment in block.segments where segment.isExercise {
-                    guard let id = segment.exerciseID, let exercise = exercises[id], seen.insert(id).inserted else { continue }
+                // One row per stretch, both sides together, counted as the player counts them (`MoveRuns`).
+                let poses = block.segments.filter(\.isExercise)
+                let runs = MoveRuns.positions(poses.map(\.exerciseID))
+                for (index, segment) in poses.enumerated() where index == 0 || runs[index] != runs[index - 1] {
+                    guard let id = segment.exerciseID, let exercise = exercises[id] else { continue }
                     let hold = segment.hold ?? plan.holdSeconds ?? 20
                     let bilateral = segment.cues.contains { $0.line.hasPrefix("a10.switch") }
                     // A pose without a set hold shows its time to the nearest 5 s ("49 sec" read like a bug; review C).
                     let detail = hold == 0 ? Self.secondsText(max(5, Int((Double(segment.seconds) / 5).rounded()) * 5))
                         : bilateral ? String(localized: "\(hold) sec each side") : String(localized: "\(hold) sec")
-                    rows.append(PreviewRow(id: "pose-\(id)", title: exercise.name, detail: detail, symbol: "figure.flexibility"))
+                    rows.append(PreviewRow(id: "pose-\(runs[index])-\(id)", title: exercise.name, detail: detail,
+                                           symbol: "figure.flexibility"))
                 }
             case .cooldown:
                 rows.append(PreviewRow(id: "cooldown", title: String(localized: "Cool-down stretch"),

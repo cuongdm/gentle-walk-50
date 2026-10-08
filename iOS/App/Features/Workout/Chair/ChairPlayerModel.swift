@@ -86,6 +86,14 @@ import GentleWalkCore
         return (session.request.supportLevels[id] ?? .twoHands).label
     }
 
+    /// At two hands, a line under the label: the balance clips show one hand on the chair, and she follows
+    /// the words, not the picture (review C, 09/10/2026).
+    var supportNote: LocalizedStringResource? {
+        guard let id = exercise?.id, SupportLadder.exercises.contains(id),
+              (session.request.supportLevels[id] ?? .twoHands) == .twoHands else { return nil }
+        return "Use both hands, even where the video shows one."
+    }
+
     /// A counted move on the rep ladder (Pro): today's "2 × 8" (steady program task 4.11).
     var repsLabel: String? {
         guard let id = exercise?.id, let step = session.request.reps[id] else { return nil }

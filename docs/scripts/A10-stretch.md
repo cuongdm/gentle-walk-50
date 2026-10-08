@@ -25,7 +25,7 @@ Mã tư thế dùng cho `exercises.json` (`kind: stretch`), clip V2b và voice l
 | st.chest | Chest and shoulders | ngồi, xa lưng ghế | không | NHS-SIT | — | Shoulders | Shoulders back and down · Chest forward and up, gently | Hands resting on your hips instead of arms out |
 | st.twist | Upper back twist | ngồi | có | NHS-SIT, NHS-LPT | — | Lower back | Arms crossed, hands on shoulders · Turn from the chest, hips stay still | Turn a small way, head in line with your body |
 | st.side | Side stretch | ngồi | có | NHS-LPT | — | Lower back, Shoulders | Sit tall, feet flat · Reach up and over, or slide your hand down | Arm by your side, lean a little |
-| st.thigh | Back of the thigh | ngồi, mép ghế | có | NHS-LPT | Joint replacement | Lower back, Knees | Heel down, toes up · Lean forward from the hips, back long | Keep the knee a little bent, lean only a little |
+| st.thigh | Back of the thigh | ngồi, mép ghế | có | NHS-LPT | Joint replacement | Lower back, Knees | Heel down, toes up · Lean forward from the hips, back long | Keep the knee soft, lean only slightly |
 | st.ankle | Ankle circles and points | ngồi | có | NHS-SIT | — | Knees | Hold the side of the seat · Point your toes away, then back | Keep your heel on the floor, just lift and lower your toes |
 | st.calf | Calf stretch | đứng sau ghế, hai tay vịn lưng ghế | có | NHS-FLEX, NIA-CALF | Standing for long is hard | Knees | Both feet flat, back heel down · Hold the chair the whole time | Shorter step back, back knee a little bent |
 

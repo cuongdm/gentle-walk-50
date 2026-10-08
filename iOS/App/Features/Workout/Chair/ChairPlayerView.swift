@@ -83,6 +83,10 @@ struct ChairPlayerView: View {
             if model.supportLabel != nil || model.repsLabel != nil {
                 LadderLabels(support: model.supportLabel, reps: model.repsLabel)
             }
+            if let note = model.supportNote {
+                Text(note).typeRole(.caption).foregroundStyle(Palette.text)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
             MoveOptionsRow(usesEasier: model.usesEasier, showsHarder: model.showsHarder,
                            hasHarder: model.exercise?.harder != nil, showsTips: $showsTips,
                            onEasier: { Task { await model.chooseEasier() } }, onHarder: model.chooseHarder)
