@@ -225,6 +225,16 @@ struct WorkoutCaptureScene: View {
         default:
             break
         }
+        // The cheer of the session (task 3.6): ordinary on a usual day, special words on the others.
+        let cheer: CheerContext = switch state {
+        case .completeFirstWalk, .completeCheckInvite: .firstSession
+        case .completeLevelUp: .weekDone
+        case .completeStretch: .cameBack
+        default: .ordinary
+        }
+        result.cheerContext = cheer
+        result.cheer = CompleteCheer.pick(cheer, sessionIndex: result.activeDays, lastID: nil)
+        result.sessionNumber = cheer == .firstSession ? 1 : 13
         let model = WorkoutSessionModel(request: req, content: content, engine: SilentPlaybackEngine(), completion: nil,
                                         prepareMedia: false)
         if state == .completeOutdoor {

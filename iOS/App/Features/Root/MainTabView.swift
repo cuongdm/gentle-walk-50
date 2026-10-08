@@ -131,6 +131,8 @@ struct JourneyTab: View {
 
 struct ProgressTab: View {
     let app: AppModel
+    /// The bottom for the lower-half screenshots (`progress-lower*`), otherwise the top.
+    var initialAnchor: UnitPoint = .top
     @State private var steps: StepsSummary?
 
     var body: some View {
@@ -139,7 +141,9 @@ struct ProgressTab: View {
                        onSeeAllSessions: { app.isPro ? app.progressPath.append(.sessions) : app.offerPlans(.lockedContent) },
                        onConnectHealth: { Task { _ = await app.health.requestAuthorization(); app.reload() } },
                        content: app.content, onSeePlans: { app.offerPlans(.lockedContent) },
-                       goal: GoalText.main(of: app.profile?.goals ?? []))
+                       goal: GoalText.main(of: app.profile?.goals ?? []),
+                       onStartToday: app.today.flatMap { $0.doneToday || $0.request == nil ? nil : { app.openTodaySession() } },
+                       initialAnchor: initialAnchor)
             .task {
                 if let result = await app.health.weeklySteps(now: app.now(), calendar: app.calendar) {
                     steps = StepsSummary(thisWeek: result.thisWeek, lastWeek: result.lastWeek)

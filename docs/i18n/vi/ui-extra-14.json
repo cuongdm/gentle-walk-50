@@ -1,0 +1,14 @@
+{
+  "Session %lld · done": "Buổi %lld · xong",
+  "Next postcard: %@.": "Bưu thiếp kế tiếp: %@.",
+  "%@ to go. Every minute you move takes you there.": "Còn %@. Mỗi phút vận động đưa bạn tới đó.",
+  "Each move": "Từng bài",
+  "All %lld balance moves: two hands for now.": "Cả %lld bài thăng bằng: hiện vịn hai tay.",
+  "%lld of %lld moves need less hand on the chair now.": "%lld trên %lld bài giờ đã vịn ghế ít hơn.",
+  "You move up a step after holding steady twice in a row.": "Đứng vững hai buổi liền là bạn lên một bậc.",
+  "Tap the ones you can do now.": "Chạm vào những việc bạn làm được bây giờ.",
+  "%lld of %lld so far. They're yours to keep.": "Đã có %lld trên %lld việc. Chúng mãi là của bạn.",
+  "See your everyday steps here. Your journey moves either way.": "Xem số bước mỗi ngày ở đây. Hành trình vẫn đi tiếp dù có kết nối hay không.",
+  "Your first one comes after your first session. 30 seconds with your chair.": "Lần đầu đến sau buổi tập đầu tiên. 30 giây với chiếc ghế.",
+  "Your first session will show up here.": "Buổi tập đầu tiên của bạn sẽ hiện ở đây."
+}

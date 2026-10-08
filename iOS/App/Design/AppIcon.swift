@@ -187,6 +187,24 @@ enum AppIcon: String, CaseIterable, Sendable {
     case limitUnsteady = "limit-unsteady"
     /// Limit: "No jumping". Custom `limit-no-jumping`, tint sienna.
     case limitNoJumping = "limit-no-jumping"
+    /// Everyday win: up from the sofa, no hands. Phosphor `couch`, tint sap.
+    case winSofa = "win-sofa"
+    /// Everyday win: groceries in one trip. Phosphor `shopping-bag`, tint ochre.
+    case winGroceries = "win-groceries"
+    /// Everyday win: walked the whole store. Phosphor `storefront`, tint sky.
+    case winStore = "win-store"
+    /// Everyday win: stairs without stopping. Phosphor `stairs`, tint sap.
+    case winStairs = "win-stairs"
+    /// Everyday win: top shelf, no stool. Phosphor `books`, tint ochre.
+    case winShelf = "win-shelf"
+    /// Everyday win: to the mailbox and back. Phosphor `mailbox`, tint sky.
+    case winMailbox = "win-mailbox"
+    /// Everyday win: stood through a whole show. Phosphor `ticket`, tint ochre.
+    case winShow = "win-show"
+    /// Hands on the chair: one hand (two mirrored = two hands). Phosphor `hand-grabbing`, tint sky.
+    case supportHand = "support-hand"
+    /// Hands on the chair: fingertips. Phosphor `hand-tap`, tint sky.
+    case supportFingertips = "support-fingertips"
 
     /// Colour role of the glyph (and its wash). Mapped to Palette colours by the view layer.
     enum Tint: String, Sendable {
@@ -304,6 +322,15 @@ enum AppIcon: String, CaseIterable, Sendable {
         case .limitDizzy: "custom:limit-dizzy"
         case .limitUnsteady: "custom:limit-unsteady"
         case .limitNoJumping: "custom:limit-no-jumping"
+        case .winSofa: "phosphor:couch"
+        case .winGroceries: "phosphor:shopping-bag"
+        case .winStore: "phosphor:storefront"
+        case .winStairs: "phosphor:stairs"
+        case .winShelf: "phosphor:books"
+        case .winMailbox: "phosphor:mailbox"
+        case .winShow: "phosphor:ticket"
+        case .supportHand: "phosphor:hand-grabbing"
+        case .supportFingertips: "phosphor:hand-tap"
         }
     }
 
@@ -324,9 +351,11 @@ enum AppIcon: String, CaseIterable, Sendable {
              .program, .levelUp, .levelDown, .rest, .done, .countdown, .payment, .unlock, .pro, .reminder,
              .newJourneys, .language, .textSize, .appearance, .yourBody, .sound, .coachVoice, .music, .captions,
              .listen, .help, .contact, .terms, .privacy, .acknowledgements, .restore, .info, .shoes, .phoneCharged,
-             .motion: .sap
-        case .stretch, .balance, .outdoors, .journey, .videosFast, .water: .sky
-        case .time, .selfCheck, .new, .energy, .bored, .coffee, .lunch, .eveningTV, .hotDay: .ochre
+             .motion, .winSofa, .winStairs: .sap
+        case .stretch, .balance, .outdoors, .journey, .videosFast, .water, .winStore, .winMailbox, .supportHand,
+             .supportFingertips: .sky
+        case .time, .selfCheck, .new, .energy, .bored, .coffee, .lunch, .eveningTV, .hotDay, .winGroceries,
+             .winShelf, .winShow: .ochre
         case .grandkids, .busy, .bodyKnees, .bodyHips, .bodyLowerBack, .bodyShoulders, .bodyJointReplacement,
              .limitFloor, .limitStandingLong, .limitDizzy, .limitUnsteady, .limitNoJumping: .sienna
         case .lessPain, .jointsHurt, .health, .hurts, .warning, .deleteData: .danger

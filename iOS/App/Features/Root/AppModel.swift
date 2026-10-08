@@ -89,7 +89,8 @@ import GentleWalkCore
 
     @ObservationIgnored private(set) lazy var completion = SessionCompletionService(
         context: container.mainContext, content: content, entitlement: { [unowned self] in self.entitlement },
-        health: health, notifications: notifications, levels: walkLevels, calendar: calendar)
+        health: health, notifications: notifications, levels: walkLevels,
+        cheers: CheerMemoryStore(defaults: defaults), calendar: calendar)
     /// Her current walking level (plan 08/10/2026 decision D1).
     var walkLevels: WalkLevelStore { WalkLevelStore(defaults: defaults) }
 

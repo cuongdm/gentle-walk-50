@@ -61,3 +61,60 @@ import Testing
         }
     }
 }
+
+/// Which cheer a finished session gets, worked out from her own sessions (plan 3.6): the app passes the
+/// saved sessions, her rest days and the program week; nothing here compares her with anyone else.
+@Suite struct CompleteCheerFactsTests {
+    let calendar = TestSupport.newYork
+    /// Saturday and Sunday off: five planned days, Monday to Friday.
+    let restDays: Set<Weekday> = [.saturday, .sunday]
+
+    func at(_ day: Int, _ hour: Int = 10) -> Date { TestSupport.local(calendar, 2026, 10, day, hour) }
+
+    func walk(_ day: Int, minutes: Int = 10, unbroken: Bool = true, hour: Int = 10) -> CheerSession {
+        CheerSession(date: at(day, hour), seconds: minutes * 60, isUnbrokenWalk: unbroken)
+    }
+
+    func context(_ session: CheerSession, after previous: [CheerSession], week: Int? = 2) -> CheerContext {
+        CompleteCheer.context(session: session, previous: previous, restDays: restDays, programWeek: week, calendar: calendar)
+    }
+
+    @Test func firstSessionAndOrdinary() {
+        #expect(context(walk(5), after: []) == .firstSession)
+        #expect(context(walk(6), after: [walk(5)]) == .ordinary)
+    }
+
+    /// Three calendar days or more since her last session (not 72 hours: an evening then a morning).
+    @Test func cameBackAfterThreeDays() {
+        #expect(context(walk(5, hour: 8), after: [walk(2, hour: 20)]) == .cameBack)
+        #expect(context(walk(5), after: [walk(3)]) == .ordinary)
+    }
+
+    /// Her longest unbroken walk by a whole minute or more, once she has two walks to beat.
+    @Test func personalBestNeedsTwoWalksAndAWholeMinute() {
+        #expect(context(walk(7, minutes: 14), after: [walk(5, minutes: 10)]) == .ordinary)
+        #expect(context(walk(7, minutes: 14), after: [walk(5, minutes: 10), walk(6, minutes: 12)]) == .personalBest)
+        #expect(context(walk(7, minutes: 12), after: [walk(5, minutes: 10), walk(6, minutes: 12)]) == .ordinary)
+        // A walk with a break, or a chair session, is never a best walk.
+        #expect(context(walk(7, minutes: 20, unbroken: false), after: [walk(5), walk(6)]) == .ordinary)
+        // Long sessions that were not unbroken walks do not set the bar.
+        #expect(context(walk(7, minutes: 12), after: [walk(5), walk(6), walk(2, minutes: 30, unbroken: false)]) == .personalBest)
+    }
+
+    /// The session that completes every planned day of this week (Mon–Fri here); a second session the
+    /// same day does not finish it again.
+    @Test func weekDoneOnTheDayItCompletes() {
+        let monToThu = [walk(5), walk(6), walk(7), walk(8)]
+        #expect(context(walk(9), after: monToThu) == .weekDone)
+        #expect(context(walk(9, hour: 18), after: monToThu + [walk(9)]) == .ordinary)
+        #expect(context(walk(9), after: [walk(5), walk(6), walk(7)]) == .ordinary)
+    }
+
+    /// Week 3, 6, 9 or 12 of the program done: the stage is behind her.
+    @Test func stageDoneAtTheEndOfAStageWeek() {
+        let monToThu = [walk(5), walk(6), walk(7), walk(8)]
+        #expect(context(walk(9), after: monToThu, week: 3) == .stageDone)
+        #expect(context(walk(9), after: monToThu, week: 4) == .weekDone)
+        #expect(context(walk(9), after: monToThu, week: nil) == .weekDone)
+    }
+}

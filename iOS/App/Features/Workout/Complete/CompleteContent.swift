@@ -20,6 +20,15 @@ struct CompleteContent: Equatable {
     var newPostcard: Journey.Stop?
     var reachedLevel: TreeLevel?
     var shareLine: String
+    /// "Session 13 · done" above the title (Claude Design Complete); nil when the count is unknown.
+    var sessionLine: String?
+    /// Why this session is special (task 3.6): picks the season's touch and a fuller fall of leaves.
+    var cheerContext: CheerContext?
+    /// The next postcard ahead and the miles to it ("Next postcard: Times Square." · "0.4 mi to go…").
+    var nextStop: String?
+    var milesToNext: String?
+    /// The last postcard she has reached on this route: the small tilted postcard beside "Next postcard".
+    var lastStop: Journey.Stop?
 
     /// - Parameter stoppedForPain: ended from This hurts → Stop for today: a calm screen, no cheer
     ///   (it celebrated a session she stopped because it hurt; review 02/10/2026).
@@ -30,6 +39,12 @@ struct CompleteContent: Equatable {
         reachedLevel = result.reachedLevel
         newPostcard = result.unlockedStops.last
         self.comparison = request.day.main == .stretch ? nil : comparison
+        sessionLine = result.sessionNumber > 0 ? String(localized: "Session \(result.sessionNumber) · done") : nil
+        cheerContext = stoppedForPain ? nil : result.cheerContext
+        if let next = result.nextStop, !result.journeyComplete, !result.isLockedAhead, result.milesToNext > 0 {
+            nextStop = next.name
+            milesToNext = Self.miles(result.milesToNext)
+        }
 
         if stoppedForPain {
             variant = .stoppedForPain
@@ -51,6 +66,14 @@ struct CompleteContent: Equatable {
             title = name.map { String(localized: "You did it, \($0)!") } ?? String(localized: "You did it!")
         }
 
+        // Varied words (task 3.6): a special moment says its own title; an ordinary one keeps her name
+        // (or the walk's own flavour outdoors and on a stretch day); the line always turns.
+        if variant != .stoppedForPain, let cheer = result.cheer, let context = result.cheerContext {
+            let ownTitle = context != .ordinary || (variant == .regular && name == nil) || variant == .firstWalk
+            if ownTitle { title = String(localized: String.LocalizationValue(cheer.title)) }
+            subtitle = String(localized: String.LocalizationValue(cheer.line))
+        }
+
         let miles = Self.miles(result.sessionMiles)
         if variant == .outdoors || (variant == .stoppedForPain && request.place == .outdoors) {
             milesText = miles
@@ -63,6 +86,7 @@ struct CompleteContent: Equatable {
         let journey = content.journeys.first { $0.id == result.journeyID }
         if let journey, let last = journey.stops.last, last.mile > 0 {
             destination = last.name
+            lastStop = journey.stops.last { $0.mile <= result.routeMiles + 0.000_001 }
             journeyProgress = min(1, result.routeMiles / last.mile)
             journeyLine = result.journeyComplete
                 ? String(localized: "You made it to \(last.name)!")

@@ -712,6 +712,78 @@
         "base",
         "mark"
       ]
+    },
+    {
+      "concept": "win.sofa",
+      "asset": "win-sofa",
+      "source": "phosphor",
+      "glyph": "couch",
+      "tint": "sap",
+      "meaning": "Everyday win: up from the sofa, no hands"
+    },
+    {
+      "concept": "win.groceries",
+      "asset": "win-groceries",
+      "source": "phosphor",
+      "glyph": "shopping-bag",
+      "tint": "ochre",
+      "meaning": "Everyday win: groceries in one trip"
+    },
+    {
+      "concept": "win.store",
+      "asset": "win-store",
+      "source": "phosphor",
+      "glyph": "storefront",
+      "tint": "sky",
+      "meaning": "Everyday win: walked the whole store"
+    },
+    {
+      "concept": "win.stairs",
+      "asset": "win-stairs",
+      "source": "phosphor",
+      "glyph": "stairs",
+      "tint": "sap",
+      "meaning": "Everyday win: stairs without stopping"
+    },
+    {
+      "concept": "win.shelf",
+      "asset": "win-shelf",
+      "source": "phosphor",
+      "glyph": "books",
+      "tint": "ochre",
+      "meaning": "Everyday win: top shelf, no stool"
+    },
+    {
+      "concept": "win.mailbox",
+      "asset": "win-mailbox",
+      "source": "phosphor",
+      "glyph": "mailbox",
+      "tint": "sky",
+      "meaning": "Everyday win: to the mailbox and back"
+    },
+    {
+      "concept": "win.show",
+      "asset": "win-show",
+      "source": "phosphor",
+      "glyph": "ticket",
+      "tint": "ochre",
+      "meaning": "Everyday win: stood through a whole show"
+    },
+    {
+      "concept": "support.hand",
+      "asset": "support-hand",
+      "source": "phosphor",
+      "glyph": "hand-grabbing",
+      "tint": "sky",
+      "meaning": "Hands on the chair: one hand (two mirrored = two hands)"
+    },
+    {
+      "concept": "support.fingertips",
+      "asset": "support-fingertips",
+      "source": "phosphor",
+      "glyph": "hand-tap",
+      "tint": "sky",
+      "meaning": "Hands on the chair: fingertips"
     }
   ]
 }

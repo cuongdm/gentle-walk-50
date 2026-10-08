@@ -147,6 +147,13 @@ enum CaptureState: String, CaseIterable, Sendable {
     // Icons and anti-boredom (milestone 3, task 3.4).
     /// Me → Help → Acknowledgements: the Phosphor icon licence.
     case meAcknowledgements = "me-acknowledgements"
+    // Progress lower half (task 3.7), opened further down; and a new user.
+    /// The hands ladder with three moves on one hand (Pro).
+    case progressLower = "progress-lower"
+    /// Free, opened at the bottom: the wins grid with two chosen, steps not connected.
+    case progressLowerFree = "progress-lower-free"
+    /// No session yet: the empty Recent sessions and 2-week checks cards (opened in the middle).
+    case progressEmpty = "progress-empty"
 }
 
 enum CaptureHook {

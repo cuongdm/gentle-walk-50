@@ -9,6 +9,7 @@ Kế hoạch: [plans/2026-10-08-steady-program.md](plans/2026-10-08-steady-progr
 - [ ] **Chủ app** — xem các quyết định nhỏ đã tự chốt (handoff mục 6). Code đã ở `main`.
 
 - [ ] **Chủ app quyết (nghiên cứu độc lập 08/10, [research/2026-10-08-kha-nang-chi-tra-va-kiem-tien.md](research/2026-10-08-kha-nang-chi-tra-va-kiem-tien.md)):** nhóm 58–75 trả được $39,99/năm, nhưng chưa có bằng chứng quảng cáo hoàn vốn (mô hình cơ sở: mỗi $1 quảng cáo thu về ~$0,24–0,30). (1) mức lỗ tối đa chấp nhận năm đầu; (2) cho phép Meta SDK hoặc đối tác đo lường không (đang trái luật "không SDK"); (3) thu nhỏ bản miễn phí không; (4) giá: tháng $9,99, trọn đời $99,99, thử năm $49,99 song song; (5) kiểm chứng rẻ trước (~$5–8K: test trang đích Meta $300–500, rồi Apple Ads tới ~1.000–1.500 cài).
+  - Chốt 08/10: tạm GIỮ NGUYÊN không SDK (đo bằng Apple Search Ads/AdServices trước, Meta chỉ test trang đích) và GIỮ nhắc trước khi hết dùng thử. Còn mở: mức lỗ tối đa năm đầu, thu nhỏ bản miễn phí, giá.
 
 - [ ] **Chủ app xem (code 08/10, kế hoạch [plans/2026-10-08-ui-onboarding-personalization.md](plans/2026-10-08-ui-onboarding-personalization.md)):**
   - Today trên iPhone SE: nút Start nằm ở ~60% chiều cao màn (mục tiêu 55%); có bỏ/dời dòng "We'll set today's session to match." không.

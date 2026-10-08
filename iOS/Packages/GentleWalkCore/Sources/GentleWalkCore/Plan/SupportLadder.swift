@@ -134,3 +134,24 @@ public enum SupportLadder {
         }
     }
 }
+
+/// "Hands on the chair" on Progress (plan 08/10/2026 task 3.7): how many of the balance moves sit on each
+/// step of the ladder. A move with no level yet (free, or never done) is on two hands.
+public struct SupportLadderSummary: Equatable, Sendable {
+    public let levels: [String: SupportLevel]
+
+    public init(levels: [String: SupportLevel]) {
+        self.levels = levels.filter { SupportLadder.exercises.contains($0.key) }
+    }
+
+    /// Every balance move of the ladder.
+    public var total: Int { SupportLadder.exercises.count }
+
+    /// Moves on this step.
+    public func count(_ level: SupportLevel) -> Int {
+        SupportLadder.exercises.filter { (levels[$0] ?? .twoHands) == level }.count
+    }
+
+    /// The highest step any move has reached.
+    public var highest: SupportLevel { levels.values.max() ?? .twoHands }
+}
