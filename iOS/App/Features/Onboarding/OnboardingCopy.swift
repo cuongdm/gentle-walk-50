@@ -7,7 +7,7 @@ import GentleWalkCore
 enum OnboardingCopy {
     static func title(_ goal: Goal) -> LocalizedStringResource {
         switch goal {
-        case .lessPain: "Move with less pain"
+        case .lessPain: "Move more comfortably"
         case .steadier: "Feel steadier on my feet"
         case .loseWeight: "Lose some weight"
         case .moreEnergy: "Have more energy"
