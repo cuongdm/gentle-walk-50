@@ -229,10 +229,10 @@ Làm theo thứ tự, trong một nhánh, một commit. `<Tên>` = Good Footing 
 
 | Mục | Giá trị | Vì sao |
 |---|---|---|
-| Bundle ID | `com.kmd.gentlewalk` (app), `com.kmd.gentlewalk.tests` (test) | Người dùng không thấy; đổi sau khi tạo app trên ASC là app mới, mất review và người dùng |
-| Product ID | `com.kmd.gentlewalk.pro.yearly`, `.pro.monthly`, `.pro.lifetime` | Không đổi được sau khi tạo trên ASC; người đã mua mất quyền |
-| Log subsystem | `com.kmd.gentlewalk` (`SessionPlayer.swift:49`) | Gắn với bundle ID, lệnh `log stream` trong tài liệu |
-| App Group | Hiện không có (entitlements chỉ có HealthKit). Nếu thêm widget sau: `group.com.kmd.gentlewalk` | Theo bundle ID, không theo tên store |
+| Bundle ID | `com.kmd.goodfooting` (app), `com.kmd.goodfooting.tests` (test) | Đổi ngày 09/10/2026 từ `com.kmd.gentlewalk` (chủ app quyết, chưa có app trên ASC). Từ lúc tạo app trên ASC thì không đổi: đổi là app mới, mất review và người dùng |
+| Product ID | `com.kmd.goodfooting.pro.yearly`, `.pro.monthly`, `.pro.lifetime` | Đổi cùng bundle ID ngày 09/10/2026 (chưa tạo trên ASC). Sau khi tạo thì không đổi được; người đã mua mất quyền |
+| Log subsystem | `com.kmd.goodfooting` (`SessionPlayer.swift:49`) | Gắn với bundle ID, lệnh `log stream` trong tài liệu |
+| App Group | Hiện không có (entitlements chỉ có HealthKit). Nếu thêm widget sau: `group.com.kmd.goodfooting` | Theo bundle ID, không theo tên store |
 | Project, target, scheme, `PRODUCT_NAME` | `GentleWalk`, `GentleWalkTests`, package `GentleWalkCore` | Đổi làm vỡ build, đường dẫn, lệnh test, `import` ở 172 dòng |
 | Tên file | `GentleWalk.storekit`, `GentleWalk.entitlements`, `GentleWalkApp.swift`, `GentleWalk.xcodeproj`, `docs/idea/gentle-walk-voice.md`, `docs/design/gentle-walk-screen-spec.html` | Nhiều tài liệu và test trỏ tới; `SKTestSession(configurationFileNamed: "GentleWalk")` |
 | Tên type Swift | `GentleWalkApp`, `GentleWalkMigrationPlan` | Nội bộ; đổi migration plan không có lợi, dễ rủi ro dữ liệu |

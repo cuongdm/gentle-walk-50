@@ -46,7 +46,7 @@ enum MoveDirection: Equatable, Sendable { case forward, backward }
     @ObservationIgnored private let cleanup = DeinitCleanup()
     @ObservationIgnored private let notificationCenter: NotificationCenter
     @ObservationIgnored private var lastLoggedLine: String?
-    static let log = Logger(subsystem: "com.kmd.gentlewalk", category: "cue")
+    static let log = Logger(subsystem: "com.kmd.goodfooting", category: "cue")
 
     init(engine: PlaybackEngine, notificationCenter: NotificationCenter = .default) {
         self.engine = engine

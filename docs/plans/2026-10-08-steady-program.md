@@ -24,7 +24,7 @@
 | `CORE <Suite>` | `swift test --package-path Packages/GentleWalkCore --filter <Suite>` (trong `iOS/`) | RED: `error: cannot find '<Type>' in scope` hoặc `Expectation failed:` · GREEN: `Test run with N tests in M suites passed` |
 | `APP <Suite>` | `xcodebuild test -project GentleWalk.xcodeproj -scheme GentleWalk -destination 'platform=iOS Simulator,name=iPhone 17' -only-testing:GentleWalkTests/<Suite>` | `** TEST SUCCEEDED **` |
 | `BUILD` | `xcodegen generate && xcodebuild build -project GentleWalk.xcodeproj -scheme GentleWalk -destination 'platform=iOS Simulator,name=iPhone 17'` | `** BUILD SUCCEEDED **`, 0 error |
-| `SHOT <state>` | `xcrun simctl launch --terminate-running-process booted com.kmd.gentlewalk -ScreenshotMode <state> && xcrun simctl io booted screenshot /tmp/gf-<state>.png` | file PNG + inspect: nhãn, vùng chạm ≥ 56 pt |
+| `SHOT <state>` | `xcrun simctl launch --terminate-running-process booted com.kmd.goodfooting -ScreenshotMode <state> && xcrun simctl io booted screenshot /tmp/gf-<state>.png` | file PNG + inspect: nhãn, vùng chạm ≥ 56 pt |
 | `L10N` | `python3 tools/i18n/apply_catalog.py vi --check && python3 iOS/scripts/xcstrings_coverage.py iOS/App/Localizable.xcstrings en,vi && python3 tools/lint/copy_lint.py` | `0 missing; 0 problems` · `missing: 0 needs_review/new: 0` (en, vi) · `0 findings` |
 | `PY <file>` | `python3 -m unittest <file>` | `OK` |
 

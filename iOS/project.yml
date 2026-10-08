@@ -32,7 +32,7 @@ targets:
       - package: GentleWalkCore
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.kmd.gentlewalk
+        PRODUCT_BUNDLE_IDENTIFIER: com.kmd.goodfooting
         PRODUCT_NAME: GentleWalk
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
@@ -79,7 +79,7 @@ targets:
       - target: GentleWalk
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.kmd.gentlewalk.tests
+        PRODUCT_BUNDLE_IDENTIFIER: com.kmd.goodfooting.tests
         GENERATE_INFOPLIST_FILE: YES
 schemes:
   GentleWalk:

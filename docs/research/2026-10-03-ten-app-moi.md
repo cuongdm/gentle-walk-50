@@ -96,7 +96,7 @@ Ba cách kiểm tra:
 - `CFBundleDisplayName` (tên dưới icon, ≤ 12–13 ký tự để không bị cắt): "Good Footing" (12) hoặc "Kind Pace" (9).
 - Chữ trong app có tên "Gentle Walk": Welcome ("GENTLE WALK"), paywall "Gentle Walk Pro", thông báo, câu HLV nhắc tên app (nếu có).
 - Icon, ảnh store, trang pháp lý và trang hỗ trợ, bản dịch tiếng Việt.
-- Bundle ID `com.kmd.gentlewalk` và mã sản phẩm `com.kmd.gentlewalk.pro.*` **giữ nguyên**: người dùng không thấy, và đổi sau khi tạo sản phẩm trên App Store Connect là không được.
+- Bundle ID `com.kmd.goodfooting` và mã sản phẩm `com.kmd.goodfooting.pro.*` **đã đổi ngày 09/10/2026** từ `com.kmd.gentlewalk` sang `com.kmd.goodfooting` (chủ app quyết, vì chưa tạo app và sản phẩm trên App Store Connect). Sau khi tạo trên ASC thì không đổi được nữa.
 
 ## Câu hỏi còn mở
 - Có cho thêm `seniors` vào trường keywords ẩn không?

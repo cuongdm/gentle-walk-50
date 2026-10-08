@@ -6,7 +6,7 @@ import Testing
 /// Prices in that file are test values only; real prices come from App Store Connect.
 @Suite(.serialized) @MainActor
 struct StoreConfigTests {
-    static let ids = ["com.kmd.gentlewalk.pro.yearly", "com.kmd.gentlewalk.pro.monthly", "com.kmd.gentlewalk.pro.lifetime"]
+    static let ids = ["com.kmd.goodfooting.pro.yearly", "com.kmd.goodfooting.pro.monthly", "com.kmd.goodfooting.pro.lifetime"]
 
     @Test func loadsThreeProducts() async throws {
         let session = try SKTestSession(configurationFileNamed: "GentleWalk")
@@ -17,9 +17,9 @@ struct StoreConfigTests {
         #expect(products.count == 3)
 
         let byID = Dictionary(uniqueKeysWithValues: products.map { ($0.id, $0) })
-        let yearly = try #require(byID["com.kmd.gentlewalk.pro.yearly"])
-        let monthly = try #require(byID["com.kmd.gentlewalk.pro.monthly"])
-        let lifetime = try #require(byID["com.kmd.gentlewalk.pro.lifetime"])
+        let yearly = try #require(byID["com.kmd.goodfooting.pro.yearly"])
+        let monthly = try #require(byID["com.kmd.goodfooting.pro.monthly"])
+        let lifetime = try #require(byID["com.kmd.goodfooting.pro.lifetime"])
 
         #expect(yearly.type == .autoRenewable)
         #expect(monthly.type == .autoRenewable)

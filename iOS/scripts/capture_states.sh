@@ -14,7 +14,7 @@ xcrun simctl boot "$device" 2>/dev/null
 xcrun simctl bootstatus "$device" -b >/dev/null
 xcrun simctl install "$device" "$app"
 # The first launch after an install is slow (blank shot): warm the app up once.
-xcrun simctl launch --terminate-running-process "$device" com.kmd.gentlewalk -ScreenshotMode journey >/dev/null; sleep 6
+xcrun simctl launch --terminate-running-process "$device" com.kmd.goodfooting -ScreenshotMode journey >/dev/null; sleep 6
 xcrun simctl status_bar "$device" override --time "9:41" --batteryState charged --batteryLevel 100 --cellularBars 4 2>/dev/null
 for item in "$@"; do
   state="${item%@*}"; variant=""
@@ -23,7 +23,7 @@ for item in "$@"; do
   xcrun simctl ui "$device" content_size large
   [[ "$variant" == "dark" ]] && xcrun simctl ui "$device" appearance dark
   [[ "$variant" == "xxl" ]] && xcrun simctl ui "$device" content_size accessibility-extra-extra-extra-large
-  xcrun simctl launch --terminate-running-process "$device" com.kmd.gentlewalk -ScreenshotMode "$state" -AppleLanguages "($lang)" -AppleLocale "$locale" >/dev/null
+  xcrun simctl launch --terminate-running-process "$device" com.kmd.goodfooting -ScreenshotMode "$state" -AppleLanguages "($lang)" -AppleLocale "$locale" >/dev/null
   sleep 8
   name="$state"; [[ -n "$variant" ]] && name="$state-$variant"
   xcrun simctl io "$device" screenshot "$out/$name.png" >/dev/null 2>&1 && echo "$out/$name.png"

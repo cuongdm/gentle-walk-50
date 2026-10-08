@@ -3,9 +3,9 @@ _Khung 29/09/2026. Người chịu trách nhiệm: **Chủ app** (App Store Conn
 
 ## 1. In-App Purchases (App Store Connect → Monetization)
 - [ ] **Chủ app** — Tạo nhóm subscription "Good Footing Pro" (một nhóm, 3.1.2(b)).
-- [ ] **Chủ app** — `com.kmd.gentlewalk.pro.yearly`: 1 năm, level 1, intro offer **Free trial 2 weeks**; giá thật (file .storekit đang là giá test).
-- [ ] **Chủ app** — `com.kmd.gentlewalk.pro.monthly`: 1 tháng, level 1 (đổi qua lại với yearly là crossgrade).
-- [ ] **Chủ app** — `com.kmd.gentlewalk.pro.lifetime`: non-consumable.
+- [ ] **Chủ app** — `com.kmd.goodfooting.pro.yearly`: 1 năm, level 1, intro offer **Free trial 2 weeks**; giá thật (file .storekit đang là giá test).
+- [ ] **Chủ app** — `com.kmd.goodfooting.pro.monthly`: 1 tháng, level 1 (đổi qua lại với yearly là crossgrade).
+- [ ] **Chủ app** — `com.kmd.goodfooting.pro.lifetime`: non-consumable.
 - [ ] **Chủ app** — Tên hiển thị, mô tả, ảnh review cho từng IAP; gắn cả 3 IAP vào bản build nộp.
 - [ ] **Claude** — `StoreServiceTests` xanh với file `App/GentleWalk.storekit` (9 test, 29/09/2026).
 

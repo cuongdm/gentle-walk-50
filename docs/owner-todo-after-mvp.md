@@ -5,7 +5,7 @@ _Cập nhật 29/09/2026, sau khi code xong Milestone 1–9. Mỗi mục ghi vi�
 Cài bản DEBUG từ Xcode lên iPhone (cần Team ID đúng, xem mục 3).
 - [ ] **3.5 Khoá màn hình:** bắt đầu First Walk, khoá màn hình, để túi 5 phút, nhạc tắt. Mở Console trên Mac hoặc chạy lệnh dưới: đủ 30 câu và 7 chuông, lệch ≤ 0.5 s. Ghi thêm: khoá màn hình có còn rung không.
   ```bash
-  log stream --device --predicate 'subsystem == "com.kmd.gentlewalk" AND category == "cue"'
+  log stream --device --predicate 'subsystem == "com.kmd.goodfooting" AND category == "cue"'
   ```
 - [ ] **3.6 Rung khi đổi pha:** hai nhịp rung khi màn hình đang mở.
 - [ ] **3.7 Màn khoá:** hiện "Good Footing · First walk"; bấm Pause/Play trên màn khoá; mở lại app vẫn đúng chỗ.
