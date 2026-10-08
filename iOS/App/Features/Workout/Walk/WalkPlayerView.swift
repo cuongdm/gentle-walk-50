@@ -263,23 +263,47 @@ struct WalkTopBar: View {
     let onEnd: () -> Void
     var onSound: (() -> Void)? = nil
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
-        HStack {
-            EndSessionButton(action: onEnd)
-            if locationOn {
-                Label("Location on", systemImage: "location.fill")
-                    .typeRole(.caption)
-                    .foregroundStyle(Palette.text)
+        // At accessibility sizes End and Sound keep the row; the status and "Location on" get the full
+        // width on the lines below, never squeezed between them (review A, 09/10/2026: the status ran to
+        // five lines under the speaker on an iPhone SE).
+        if typeSize.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    EndSessionButton(action: onEnd)
+                    Spacer()
+                    if let onSound { SoundButton(action: onSound).dynamicTypeSize(...PlayerChrome.typeLimit) }
+                }
+                if locationOn { locationLabel }
+                if let status {
+                    Text(verbatim: status)
+                        .typeRole(.caption)
+                        .foregroundStyle(Palette.text)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
-            Spacer()
-            if let status {
-                StatusText(status: status)
-                    .typeRole(.caption)
-                    .foregroundStyle(Palette.text)
-                    .multilineTextAlignment(.trailing)
+        } else {
+            HStack {
+                EndSessionButton(action: onEnd)
+                if locationOn { locationLabel }
+                Spacer()
+                if let status {
+                    StatusText(status: status)
+                        .typeRole(.caption)
+                        .foregroundStyle(Palette.text)
+                        .multilineTextAlignment(.trailing)
+                }
+                if let onSound { SoundButton(action: onSound).dynamicTypeSize(...PlayerChrome.typeLimit) }
             }
-            if let onSound { SoundButton(action: onSound).dynamicTypeSize(...PlayerChrome.typeLimit) }
         }
+    }
+
+    private var locationLabel: some View {
+        Label("Location on", systemImage: "location.fill")
+            .typeRole(.caption)
+            .foregroundStyle(Palette.text)
     }
 }
 
