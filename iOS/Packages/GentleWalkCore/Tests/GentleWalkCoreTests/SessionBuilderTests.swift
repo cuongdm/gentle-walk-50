@@ -1,3 +1,4 @@
+import Foundation
 import Testing
 @testable import GentleWalkCore
 
@@ -364,6 +365,27 @@ import Testing
         #expect(plan.blocks.map(\.kind) == [.stretch])
         #expect(plan.segments.last?.exerciseID == "mv.sit-to-stand")
         #expect(plan.lineIDs.contains("a11.morning.lightheaded"))
+    }
+
+    // MARK: P3 (plan 4.5)
+
+    /// A move set aside never plays (a seated move takes its place); a move that hurt once starts easier.
+    @Test func setAsideMovesAreReplacedAndHurtMovesStartEasier() throws {
+        let day = PlannedDay(main: .chair, chairMoves: 0, cooldown: true)
+        let usual = try SessionBuilder.build(kind: day, level: .seated, intensity: .steady, limits: [], rotationIndex: 0,
+                                             content: content)
+        #expect(usual.exerciseIDs.contains("mv.sit-to-stand"))
+        let rules = ExerciseRules(easier: ["mv.leg-ext"], setAside: ["mv.sit-to-stand": Date.distantFuture])
+        let plan = try SessionBuilder.build(kind: day, level: .seated, intensity: .steady, limits: [], rotationIndex: 0,
+                                            content: content, exerciseRules: rules)
+        #expect(!plan.exerciseIDs.contains("mv.sit-to-stand"))
+        #expect(plan.exerciseIDs.filter { $0.hasPrefix("mv.") }.count == usual.exerciseIDs.filter { $0.hasPrefix("mv.") }.count)
+        #expect(plan.easierExerciseIDs.contains("mv.leg-ext"))
+        // Easier only for moves in today's session.
+        let walk = try SessionBuilder.build(kind: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), level: .seated,
+                                            intensity: .steady, limits: [], rotationIndex: 0, content: content,
+                                            exerciseRules: rules)
+        #expect(!walk.easierExerciseIDs.contains("mv.leg-ext"))
     }
 }
 
