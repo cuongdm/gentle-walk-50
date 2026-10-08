@@ -40,6 +40,9 @@ public struct AdaptationResult: Equatable, Sendable {
     /// Minutes to add to the next session (negative = shorter); apply with `SessionPlan.shortened`.
     public var minutesDelta: Int
     public var card: AdaptationCard?
+    /// The check-in chosen in advance on Today (she can change it with one tap; P2, D16): Achy after two
+    /// "Too hard" in a row, Great after two "Too easy" at a level with no automatic step up.
+    public var suggestedCheckIn: CheckIn? = nil
 }
 
 /// Level and length changes from feedback (task 2.9).
@@ -49,6 +52,8 @@ public enum Adaptation {
     /// Break pressed this many times in one session shortens the next one.
     public static let breaksForShorter = 2
     public static let shorterByMinutes = 2
+    /// Same answer this many times in a row at the current level: a gentler (or stronger) day first.
+    public static let suggestLength = 2
 
     /// `history` is oldest first. Same as `next(state:history:)` for a level that never changed.
     public static func next(level: WalkLevel, history: [SessionFeedback]) -> AdaptationResult {
@@ -70,9 +75,24 @@ public enum Adaptation {
             return date > changedAt
         }.compactMap(\.feeling)
         let streak = answers.reversed().prefix { $0 == answers.last }
+        // Two in a row (P2): the next day starts gentler and a little shorter, or stronger where the level
+        // cannot go up by itself. A third one moves the level (below).
+        let movesDown = streak.count >= streakLength && answers.last == .tooHard && level.easier != nil
+        if streak.count >= suggestLength, !movesDown, let feeling = answers.last {
+            switch feeling {
+            case .tooHard:
+                result.suggestedCheckIn = .achy
+                result.minutesDelta = -shorterByMinutes
+            case .tooEasy where level.harder == nil:
+                result.suggestedCheckIn = .great
+            case .tooEasy, .justRight:
+                break
+            }
+        }
         guard streak.count >= streakLength, let feeling = answers.last else { return result }
         switch feeling {
         case .tooHard:
+            // A new, easier level is the change: no gentler, shorter day on top of it.
             if let easier = level.easier { result.level = easier; result.card = .movedDown(to: easier) }
         case .tooEasy:
             if let harder = level.harder { result.level = harder; result.card = .movedUp(to: harder) }

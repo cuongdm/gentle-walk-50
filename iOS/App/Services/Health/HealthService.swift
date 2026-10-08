@@ -68,6 +68,18 @@ import GentleWalkCore
         }
         return (average(thisWeek.start..<now), average(lastStart..<thisWeek.start))
     }
+
+    /// She has been on her feet a lot today (P11, plan 4.12): before her reminder, today's steps are over
+    /// 1.5 × her own usual (`BusyDay`). Only after Apple Health was asked from S16; nothing is stored.
+    func isBusyDay(now: Date, reminderMinutes: Int, calendar: Calendar) async -> Bool {
+        let today = calendar.startOfDay(for: now)
+        guard store.isAvailable, hasAskedForAuthorization,
+              let start = calendar.date(byAdding: .day, value: -BusyDay.historyDays, to: today),
+              let days = try? await store.dailySteps(from: start, to: now, calendar: calendar) else { return false }
+        let stepsToday = days.filter { $0.key >= today }.reduce(0) { $0 + $1.value }
+        return BusyDay.isBusy(stepsToday: stepsToday, dailySteps: days, now: now, reminderMinutes: reminderMinutes,
+                              calendar: calendar)
+    }
 }
 
 /// The real HealthKit store.

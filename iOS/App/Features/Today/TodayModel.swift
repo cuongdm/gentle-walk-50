@@ -9,6 +9,8 @@ struct TodayInput: Equatable {
         var feeling: Feeling?
         var breakCount: Int
         var level: WalkLevel
+        /// `SessionTemplate.Kind` raw value (walks count for the coach's "Third walk this week").
+        var kind = "walk"
     }
 
     var now: Date
@@ -39,6 +41,24 @@ struct TodayInput: Equatable {
     var selfCheckDismissedAt: Date? = nil
     /// The card that explains the last level change, until her next session or 7 days (task 0.4).
     var levelCard: AdaptationCard? = nil
+    // Personalisation (plan 08/10/2026 milestone 4).
+    /// When the current level last changed: only answers after it count (task 0.1).
+    var levelChangedAt: Date? = nil
+    /// Her goals as stored (one from the new onboarding, maybe several from the old one).
+    var goals: [Goal] = []
+    var activity: ActivityAnswer? = nil
+    /// Moves set aside or started easier (P3, P5) and preview swaps (P12), for today's sessions.
+    var exerciseRules = ExerciseRules()
+    var swapMemory: [String: String] = [:]
+    /// Her latest 2-week check against the one before (P9).
+    var checkTrend: SelfCheckTrend = .flat
+    var weeklyNotes: [WeeklyNote] = []
+    /// "Move your reminder to 9:15?" (P10): the suggested time, minutes after midnight.
+    var reminderSuggestion: Int? = nil
+    var reminderMinutes = 510
+    var lengthSignal: LengthSignal? = nil
+    /// She has been on her feet a lot today, by her own Apple Health steps (P11).
+    var busyDay = false
 }
 
 /// "Week 3 of 12 · Steady base" above today's session (steady program task 4.2).
@@ -79,6 +99,14 @@ enum TodaySpecialCard: Equatable, Sendable {
     case movedDown(to: WalkLevel)
     /// "You're ready for a little more" (plan 08/10/2026 task 0.5).
     case movedUp(to: WalkLevel)
+    /// "We've set Mini-squat aside for now. Bring it back in Me." (P3).
+    case setAside(name: String)
+    /// "You've been on your feet a lot today. A gentle stretch fits." (P11).
+    case busyDay
+    /// "Move your reminder to 9:15?" (P10).
+    case moveReminder(minutes: Int)
+    /// "You often add an extra after your session. Try the longer walk today?" (P10).
+    case longerWalk
     case connectHealth
     case fewerReminders
 }
@@ -127,8 +155,10 @@ struct TodaySwapOption: Equatable, Identifiable {
     @ObservationIgnored private let content: ContentBundle
     @ObservationIgnored private let activity: ActivityCalendar
     @ObservationIgnored private let restDays: Set<Weekday>
-    /// Two Breaks last time: today is a little shorter (negative minutes, or 0).
+    /// Shorter (two Breaks, two "Too hard", a hard week, a gentle start) or longer (an easier week).
     @ObservationIgnored private let minutesDelta: Int
+    /// What her answers and habits change today (milestone 4).
+    @ObservationIgnored let personal: TodayPersonalisation
     @ObservationIgnored private let restart: WelcomeBackState?
     @ObservationIgnored private let painAlert: PainAlert?
     @ObservationIgnored private let plannedDay: PlannedDay
@@ -142,8 +172,8 @@ struct TodaySwapOption: Equatable, Identifiable {
         restDays = RestDays.effective(chosen: input.restDays, entitlement: input.entitlement)
         activity = ActivityCalendar(records: input.workouts.map(\.date), restDays: restDays, calendar: input.calendar)
         // The level itself changes when "How did that feel?" is saved (`SessionCompletionService`).
-        let last = input.workouts.max { $0.date < $1.date }
-        minutesDelta = (last?.breakCount ?? 0) >= Adaptation.breaksForShorter ? -Adaptation.shorterByMinutes : 0
+        personal = TodayPersonalisation(input: input, content: content)
+        minutesDelta = personal.minutesDelta
         let done = activity.isActive(input.now)
         restart = done ? nil : WelcomeBack.state(lastWorkout: input.workouts.map(\.date).max(), restDays: restDays,
                                                  now: input.now, calendar: input.calendar)
@@ -153,6 +183,11 @@ struct TodaySwapOption: Equatable, Identifiable {
         programStrip = Self.strip(input)
         checkStatus = SelfCheckSchedule.status(firstWorkout: input.workouts.map(\.date).min(), results: input.selfChecks,
                                                dismissedAt: input.selfCheckDismissedAt, now: input.now, calendar: input.calendar)
+        // Chosen in advance after her last answers, her last check or last week (P2, P9, P6); one tap changes it.
+        if let suggested = personal.suggestedCheckIn {
+            checkedIn = suggested
+            intensity = Intensity(checkIn: suggested)
+        }
     }
 
     private static func strip(_ input: TodayInput) -> ProgramStripState? {
@@ -185,6 +220,7 @@ struct TodaySwapOption: Equatable, Identifiable {
     }
 
     var isPro: Bool { input.entitlement.isPro }
+    var reminderMinutes: Int { input.reminderMinutes }
     var activeDays: Int { activity.activeDays }
 
     /// How far the active days are towards the next tree level (0...1), for the ring on Today.
@@ -302,22 +338,59 @@ struct TodaySwapOption: Equatable, Identifiable {
         if isNew { return .firstWalk(limits: input.limits) }
         if input.restedToday { return nil }
         if case .gentleRestart? = restart {
-            return WorkoutRequest(day: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), level: .seated, intensity: .gentle,
-                                  place: .indoors, limits: input.limits, rotationIndex: activeDays)
+            var request = WorkoutRequest(day: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), level: .seated,
+                                         intensity: .gentle, place: .indoors, limits: input.limits, rotationIndex: activeDays)
+            request.opening = OpeningContext(intensity: .gentle, restart: true)
+            return personalised(request)
         }
         guard !plannedDay.isRest else { return nil }
-        return WorkoutRequest(day: plannedDay, level: level, intensity: intensity, place: .indoors, limits: input.limits,
-                              rotationIndex: activeDays, minutesDelta: minutesDelta)
+        var request = WorkoutRequest(day: plannedDay, level: level, intensity: intensity, place: .indoors, limits: input.limits,
+                                     rotationIndex: activeDays, minutesDelta: minutesDelta)
+        let isWalk = plannedDay.main == .walk || plannedDay.main == .longWalk
+        let levelChange: AdaptationCard? = switch input.levelCard {
+        case .movedUp?, .movedDown?: input.levelCard
+        default: nil
+        }
+        request.opening = OpeningContext(intensity: intensity, shortened: minutesDelta < 0, levelChange: levelChange,
+                                         history: TodayPersonalisation.historyLine(input: input, isWalk: isWalk, doneToday: doneToday))
+        return personalised(request)
+    }
+
+    /// Her remembered rules and swaps on any session she starts from Today.
+    private func personalised(_ request: WorkoutRequest) -> WorkoutRequest {
+        var request = request
+        request.exerciseRules = input.exerciseRules
+        request.swapMemory = input.swapMemory
+        return request
+    }
+
+    /// One line under the check-in: why a choice is made in advance (D16).
+    var checkInNote: String? { showsCheckIn && session.kind != .rest ? personal.checkInNote : nil }
+
+    /// "Last week you said stairs felt a bit better…" on Monday and Tuesday (P6).
+    var lastWeekLine: String? { doneToday ? nil : personal.lastWeekLine }
+
+    /// Her goal, when today's session serves it (P4).
+    var goalLine: String? {
+        guard session.kind == .planned, !isNew, let request, let plan = try? request.plan(content: content) else { return nil }
+        let fit = GoalText.SessionFit(isWalk: plannedDay.main == .walk || plannedDay.main == .longWalk,
+                                      hasSitToStand: plan.exerciseIDs.contains("mv.sit-to-stand"),
+                                      hasSteadySet: plan.blocks.contains { $0.kind == .steady })
+        return GoalText.todayLine(GoalText.main(of: input.goals), session: fit)
     }
 
     var specialCard: TodaySpecialCard? {
         if let painAlert { return .pain(area: painAlert.area) }
-        if minutesDelta < 0 { return .shorter }
+        if personal.showsShorterCard, minutesDelta < 0 { return .shorter }
         switch input.levelCard {
         case .movedDown(let to)?: return .movedDown(to: to)
         case .movedUp(let to)?: return .movedUp(to: to)
         case .shorter?, nil: break
         }
+        if let name = personal.setAsideName { return .setAside(name: name) }
+        if input.busyDay, !doneToday, !plannedDay.isRest, plannedDay.main != .stretch, !isNew { return .busyDay }
+        if let minutes = input.reminderSuggestion { return .moveReminder(minutes: minutes) }
+        if input.lengthSignal == .longer, !doneToday, plannedDay.main == .walk { return .longerWalk }
         // Not before a first session: Apple Health is asked after it (S16), never before.
         if !input.healthConnected, !isNew { return .connectHealth }
         if input.suggestFewerReminders { return .fewerReminders }
@@ -334,7 +407,7 @@ struct TodaySwapOption: Equatable, Identifiable {
         }
         let planned: PlannedDay.Main = restart != nil ? .walk : (plannedDay.main ?? .walk)
         return SessionCatalog.swapOptions(planned: planned).map { preset in
-            let request = preset.request(limits: input.limits, rotationIndex: activeDays)
+            let request = personalised(preset.request(limits: input.limits, rotationIndex: activeDays))
             let minutes = minutes(of: request)
             let title = preset.id == SessionCatalog.justFiveMinutesID
                 ? String(localized: "Just \(minutes) minutes: a gentle seated walk")
@@ -349,7 +422,7 @@ struct TodaySwapOption: Equatable, Identifiable {
     var extras: [TodayExtra] {
         let filmed = SessionVideo.filmed(in: content)
         return SessionCatalog.presets(in: .extras).map { preset in
-            let request = preset.request(limits: input.limits, rotationIndex: activeDays + 1)
+            let request = personalised(preset.request(limits: input.limits, rotationIndex: activeDays + 1))
             return TodayExtra(id: preset.id, title: String(localized: preset.title), minutes: minutes(of: request),
                               art: preset.art, hasVideo: SessionVideo.has(request, filmed: filmed, content: content),
                               request: request)

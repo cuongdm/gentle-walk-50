@@ -91,6 +91,12 @@ struct ChairPlayerView: View {
                     MoveOptionsRow(usesEasier: model.usesEasier, showsHarder: model.showsHarder,
                                    hasHarder: model.exercise?.harder != nil, showsTips: $showsTips,
                                    onEasier: { Task { await model.chooseEasier() } }, onHarder: model.chooseHarder)
+                    if let remembered = model.rememberedEasierNote {
+                        RememberedEasierLine(note: remembered, onUsual: model.tryUsualVersion)
+                    }
+                    if model.showsHarderProNote {
+                        Text("With Pro, more reps when you're ready").typeRole(.caption).foregroundStyle(Palette.textMuted)
+                    }
                     MoveTips(tips: showsTips ? model.exercise?.tips ?? [] : [], note: model.versionNote)
                 }
             }
@@ -352,5 +358,24 @@ struct StandBehindChairView: View {
             withAnimation { remaining -= 1 }
         }
         onReady()
+    }
+}
+
+/// "Easier version, as you chose" with "Try the usual one" (P5), or why a move that hurt starts easier (P3).
+struct RememberedEasierLine: View {
+    let note: LocalizedStringResource
+    let onUsual: () -> Void
+
+    var body: some View {
+        ViewThatFits(in: .horizontal) {
+            HStack(spacing: 8) { content }
+            VStack(alignment: .leading, spacing: 4) { content }
+        }
+    }
+
+    @ViewBuilder private var content: some View {
+        Label { Text(note) } icon: { Image(systemName: "checkmark.circle.fill").foregroundStyle(Palette.secondary) }
+            .typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)
+        Button("Try the usual one", action: onUsual).buttonStyle(.smallTextLink)
     }
 }

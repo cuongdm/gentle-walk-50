@@ -31,11 +31,13 @@ struct PreviewRow: Identifiable, Equatable {
     @ObservationIgnored private let rotationIndex: Int
     @ObservationIgnored private let minutesDelta: Int
     @ObservationIgnored private let defaults: UserDefaults
+    /// Her rules, remembered swaps and the coach's opening (P1, P3, P5, P7, P12) from the request it opened with.
+    @ObservationIgnored private let carried: WorkoutRequest?
     static let placeKey = "lastWorkoutPlace"
 
     init(day: PlannedDay, intensity: Intensity, checkIn: CheckIn?, suggestedLevel: WalkLevel, limits: Set<BodyLimit>,
          rotationIndex: Int, minutesDelta: Int = 0, content: ContentBundle, defaults: UserDefaults = .standard,
-         presetID: String? = nil, standing: Bool = false) {
+         presetID: String? = nil, standing: Bool = false, carrying: WorkoutRequest? = nil) {
         self.day = day
         self.intensity = intensity
         self.checkIn = checkIn
@@ -49,6 +51,7 @@ struct PreviewRow: Identifiable, Equatable {
         level = suggestedLevel == .pad ? .seated : suggestedLevel
         self.presetID = presetID
         standingStretch = standing
+        carried = carrying
     }
 
     var isWalkDay: Bool { day.main == .walk || day.main == .longWalk }
@@ -64,6 +67,11 @@ struct PreviewRow: Identifiable, Equatable {
                                      rotationIndex: rotationIndex, minutesDelta: minutesDelta)
         request.swaps = swaps
         request.presetID = presetID
+        if let carried {
+            request.exerciseRules = carried.exerciseRules
+            request.swapMemory = carried.swapMemory
+            request.opening = carried.opening
+        }
         return request
     }
 
@@ -165,7 +173,9 @@ struct PreviewRow: Identifiable, Equatable {
     func swap(_ exerciseID: String) {
         guard let plan else { return }
         let used = Set(plan.exerciseIDs)
-        let moves = BodyLimitFilter.allowed(content.exercises, limits: limits).filter { $0.kind == .move }.map(\.id)
+        let aside = carried?.exerciseRules.setAsideIDs ?? []
+        let moves = BodyLimitFilter.allowed(content.exercises, limits: limits).filter { $0.kind == .move && !aside.contains($0.id) }
+            .map(\.id)
         guard let start = moves.firstIndex(of: exerciseID) else { return }
         let candidates = (moves[(start + 1)...] + moves[..<start]).filter { !used.contains($0) }
         guard let replacement = candidates.first else { return }

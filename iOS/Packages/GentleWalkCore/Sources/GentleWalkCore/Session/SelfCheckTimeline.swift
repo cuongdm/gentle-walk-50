@@ -14,6 +14,27 @@ public extension SessionTimeline {
     static let selfCheckLineIDs = ["a12.check.setup", "a5.n.3", "a5.n.2", "a5.n.1", "a12.check.go", "a5.half",
                                    "a12.check.stop"]
 
+    /// Silence between the history line and the setup line.
+    static let selfCheckLeadGap = 0.6
+
+    /// - Parameter previousCount: her last check done the same way: from the second check the coach first
+    ///   says "Last check, you stood up eight times. Let's see today." (P7). The rest keeps its timing after
+    ///   `leadIn`, so the screen's clock starts there.
+    static func selfCheck(voice lines: [VoiceLine], previousCount: Int?) -> SessionTimeline {
+        var timeline = selfCheck(voice: lines)
+        let book = Dictionary(lines.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        guard let count = previousCount, let id = CoachHistory.checkLine(previousCount: count), book[id] != nil else {
+            return timeline
+        }
+        let history = cue(for: id, at: 0, book: book)
+        let lead = ((history.duration + selfCheckLeadGap) * 10).rounded(.up) / 10
+        timeline.voice = [history] + timeline.voice.map { var moved = $0; moved.start += lead; return moved }
+        timeline.bells = timeline.bells.map { var moved = $0; moved.at += lead; return moved }
+        timeline.total += lead
+        timeline.leadIn = lead
+        return timeline
+    }
+
     static func selfCheck(voice lines: [VoiceLine]) -> SessionTimeline {
         let book = Dictionary(lines.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         let go = selfCheckGoAt

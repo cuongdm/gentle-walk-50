@@ -7,7 +7,14 @@ import GentleWalkCore
 /// clock on screen and the voice share one start.
 @MainActor protocol SelfCheckAudioPlaying: AnyObject {
     func start(onPlaying: @escaping @MainActor () -> Void)
+    /// From the second check the coach first recalls her last count done the same way (P7); `onPlaying`
+    /// comes when the program's own clock starts, after that line.
+    func start(previousCount: Int?, onPlaying: @escaping @MainActor () -> Void)
     func stop()
+}
+
+extension SelfCheckAudioPlaying {
+    func start(previousCount: Int?, onPlaying: @escaping @MainActor () -> Void) { start(onPlaying: onPlaying) }
 }
 
 /// The 2-week self-check (steady program tasks 4.5–4.9): safety intro → 30 seconds → her count → saved.
@@ -64,7 +71,7 @@ import GentleWalkCore
         step = .timer
         startedAt = nil
         if let audio {
-            audio.start { [weak self] in
+            audio.start(previousCount: lastTime) { [weak self] in
                 guard let self, self.step == .timer else { return }
                 self.startedAt = self.now()
             }

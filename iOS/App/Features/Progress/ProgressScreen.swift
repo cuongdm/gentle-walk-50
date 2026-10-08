@@ -19,6 +19,8 @@ struct ProgressScreen: View {
     /// Exercise names for the support levels card.
     var content: ContentBundle? = nil
     var onSeePlans: () -> Void = {}
+    /// Her main goal: the results that speak to it come first (P4).
+    var goal: Goal? = nil
 
     @State private var selectedDay: SelectedDay?
 
@@ -26,6 +28,8 @@ struct ProgressScreen: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 ScreenHeader(title: "Progress")
+                YourResultsCard(summary: snapshot.results, tandem: snapshot.supportLevels["bl.tandem"], isPro: isPro, goal: goal,
+                                onSeePlans: onSeePlans)
                 TreeCard(level: snapshot.tree, activeDays: snapshot.activeDays, rings: snapshot.rings)
                 MonthCalendar(activeDates: snapshot.activeDates, restDays: snapshot.restDays, calendar: calendar, now: now,
                               onSelect: { selectedDay = SelectedDay(date: $0) })
@@ -35,6 +39,8 @@ struct ProgressScreen: View {
                 if let minutes = snapshot.longestWalkMinutes {
                     LongestWalkCard(minutes: minutes)
                 }
+                let notes = snapshot.weeklyNotes.filter { $0.effort != nil }
+                if !notes.isEmpty { WeeklyNotesCard(notes: Array(notes.prefix(4))) }
                 EverydayWinsList(wins: wins, checked: snapshot.checkedWins, onToggle: onToggleWin)
                 AllDayStepsCard(steps: steps, connected: healthConnected, onConnect: onConnectHealth)
             }

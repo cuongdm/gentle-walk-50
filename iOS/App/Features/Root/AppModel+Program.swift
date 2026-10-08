@@ -82,6 +82,9 @@ extension AppModel {
               let last = (try? container.mainContext.fetch(FetchDescriptor<WorkoutRecord>()))?.map(\.date).max() else { return }
         state.apply(ProgramCalendar.pickUp(state.programRound, lastWorkout: last, now: now(), calendar: calendar))
         try? container.mainContext.save()
+        // P13: after a long break the ladders start one step lower; the coach says so next time.
+        SupportLadderStore(defaults: defaults).stepDownAll()
+        RepLadderStore(defaults: defaults).stepDownAll()
         reload()
     }
 

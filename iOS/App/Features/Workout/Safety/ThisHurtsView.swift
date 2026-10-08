@@ -1,4 +1,5 @@
 import SwiftUI
+import GentleWalkCore
 
 /// S13 This hurts: a full screen, not a sheet. One question, five chips, the easier version as the
 /// biggest button, and two links.
@@ -13,6 +14,12 @@ struct ThisHurtsView: View {
                 ScreenHeader(title: "Let's take care of that.")
                 Text("Where does it hurt? (optional)").typeRole(.cardTitle).foregroundStyle(Palette.text)
                 FlowChips(selection: $model.area)
+                if let limit = model.suggestedLimit {
+                    AddLimitRow(question: Self.question(limit), onAdd: model.addSuggestedLimit)
+                } else if model.addedLimit != nil {
+                    Label("Added to your plan.", systemImage: "checkmark.circle.fill")
+                        .typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
+                }
                 // On a walk there is no "move": the choices talk about the walk (clarity review D14).
                 Button(model.isWalk ? "Slow down to an easy walk" : "Show an easier version") {
                     Task { onDone(await model.showEasier()) }
@@ -39,6 +46,34 @@ struct ThisHurtsView: View {
             .readableColumn()
         }
         .screenBackground()
+    }
+}
+
+extension ThisHurtsView {
+    /// "Add “Easy on knees” to your plan?" (P3, plan 4.5).
+    static func question(_ limit: BodyLimit) -> LocalizedStringResource {
+        switch limit {
+        case .hips: "Add “Easy on hips” to your plan?"
+        case .lowerBack: "Add “Easy on lower back” to your plan?"
+        case .shoulders: "Add “Easy on shoulders” to your plan?"
+        default: "Add “Easy on knees” to your plan?"
+        }
+    }
+}
+
+/// The question with one button: her plan goes easy on that area from the next session.
+private struct AddLimitRow: View {
+    let question: LocalizedStringResource
+    let onAdd: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(question).typeRole(.body).foregroundStyle(Palette.text)
+            Button("Add it", action: onAdd).buttonStyle(PillButtonStyle(isSelected: true))
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Palette.sky.opacity(0.16), in: .rect(cornerRadius: 14))
     }
 }
 

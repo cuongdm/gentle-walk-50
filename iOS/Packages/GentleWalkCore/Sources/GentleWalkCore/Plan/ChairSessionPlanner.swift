@@ -37,7 +37,14 @@ enum ChairSessionPlanner {
         let library = try context.segments(of: SessionBuilder.moveLibraryID(for: .steady))
         let moves = library.filter { $0.exerciseID.map(context.allowed.contains) ?? false }
         guard !moves.isEmpty else { return [] }
-        let picked = (0..<min(count, moves.count)).map { moves[(context.rotationIndex + $0) % moves.count] }
+        var picked = (0..<min(count, moves.count)).map { moves[(context.rotationIndex + $0) % moves.count] }
+        // Her preview swap (P12) takes the place of the move she swapped away.
+        picked = picked.map { move in
+            guard let id = move.exerciseID, let swap = context.swapMemory[id],
+                  !picked.contains(where: { $0.exerciseID == swap }),
+                  let replacement = moves.first(where: { $0.exerciseID == swap }) else { return move }
+            return replacement
+        }
         var segments = [Segment(kind: .intro, seconds: 8, cues: [.init(at: 0, line: "a9.to-chair")])]
         for (index, move) in picked.enumerated() {
             if index > 0 { segments += try context.segments(of: "ses.chair.rest.15") }
@@ -74,7 +81,12 @@ enum ChairSessionPlanner {
                            ["mv.mini-squat", "mv.wall-push"][day % 2]]
             }
         }
-        // A move her limits hide gives way to a seated move not used yet.
+        // A move she swapped on a preview lately gives way to her choice (P12); a move her limits hide
+        // gives way to a seated move not used yet.
+        picked = picked.map { id in
+            guard let swap = context.swapMemory[id], context.allowed.contains(swap), !picked.contains(swap) else { return id }
+            return swap
+        }
         var used = Set<String>()
         return picked.compactMap { id in
             let choice = context.allowed.contains(id) && !used.contains(id)

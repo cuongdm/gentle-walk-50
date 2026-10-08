@@ -19,9 +19,13 @@ import GentleWalkCore
     }
 
     /// After a session: steps up or down, and marks the changes the coach has just announced as said.
-    func record(steady: Set<String>, troubled: Set<String>, announced: Set<String>) {
+    /// `holdRaises`: a hard week (P6) or a 2-week check down by two (P9): no step up yet.
+    func record(steady: Set<String>, troubled: Set<String>, announced: Set<String>, holdRaises: Bool = false) {
         var current = progress
         for id in announced { current[id]?.pendingChange = nil }
-        save(SupportLadder.update(current, steady: steady, troubled: troubled))
+        save(SupportLadder.update(current, steady: steady, troubled: troubled, holdRaises: holdRaises))
     }
+
+    /// Back after a long break (P13): every balance exercise one step down; the coach says so next time.
+    func stepDownAll() { save(SupportLadder.stepDownAll(progress)) }
 }

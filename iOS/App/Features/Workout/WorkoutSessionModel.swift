@@ -74,6 +74,25 @@ import GentleWalkCore
     var levelUpLine: String?
     /// Complete invites her to the first self-check (week 0) until she does it or taps Later.
     var offersSelfCheck = false
+
+    // Personalisation (plan 08/10/2026 milestone 4).
+    /// Why a move starts with its easier version: she chose Easier twice lately (P5), or it hurt (P3).
+    enum EasierReason: Equatable { case chosen, hurt }
+    var rememberedEasier: [String: EasierReason] = [:]
+    /// Counted moves where she chose Harder this session (P5; Pro counts them when done in full).
+    private(set) var harderChosen: Set<String> = []
+    var isPro = false
+    /// Her goal, one line on Complete (P4).
+    var goalLine: String?
+    /// Free plan: "With Pro, more reps when you're ready" not said yet (said once).
+    var offersHarderProNote = false
+    /// Easier tapped on a move, "Try the usual one", the Pro note said, and the session saved.
+    @ObservationIgnored var onEasierChosen: ((String) -> Void)?
+    @ObservationIgnored var onUsualVersion: ((String) -> Void)?
+    @ObservationIgnored var onHarderProNoteShown: (() -> Void)?
+    @ObservationIgnored var onSaved: ((CompletionResult) -> Void)?
+    /// This hurts → "Add “Easy on knees” to your plan?" (P3): the profile changes from the next session.
+    @ObservationIgnored var onAddLimit: ((BodyLimit) -> Void)?
     /// Sit-to-stand counting when the phone is held to the chest (task 8.9).
     var motion: MotionService?
     /// Route kept for Complete after the outdoor services stop.
@@ -165,7 +184,10 @@ import GentleWalkCore
     func openHurts() {
         noteTrouble()
         player.pause(.hurts)
-        if let painRecorder { hurtsModel = ThisHurtsModel(player: player, recorder: painRecorder, now: now) }
+        if let painRecorder {
+            hurtsModel = ThisHurtsModel(player: player, recorder: painRecorder, now: now, limits: request.limits,
+                                        onAddLimit: onAddLimit)
+        }
         stage = .hurts
     }
 
@@ -241,6 +263,22 @@ import GentleWalkCore
 
     func addRep() { sitToStandCount += 1 }
 
+    /// Harder chosen on a move (P5).
+    func noteHarder(_ exerciseID: String) { harderChosen.insert(exerciseID) }
+
+    /// "Try the usual one": the move shows its usual version again, and the memory forgets the Easier taps.
+    func useUsualVersion(_ exerciseID: String) {
+        easierExerciseIDs.remove(exerciseID)
+        rememberedEasier[exerciseID] = nil
+        onUsualVersion?(exerciseID)
+    }
+
+    /// "With Pro, more reps when you're ready" was shown: never again.
+    func harderProNoteShown() {
+        offersHarderProNote = false
+        onHarderProNoteShown?()
+    }
+
     /// Reps shown and saved: counted by hand, plus what the sensor counted when it is sure.
     var totalSitToStands: Int { sitToStandCount + ((motion?.confident ?? false) ? (motion?.count ?? 0) : 0) }
     var isCountedForYou: Bool { forceCountedForYou || (motion?.isRunning == true && motion?.confident == true) }
@@ -279,6 +317,7 @@ import GentleWalkCore
             route: route)
         let result = (try? await completion?.complete(summary)) ?? CompletionResult(activeDays: 1, isFirstWorkout: request.isFirstWalk)
         onBalanceResult?(balanceHeldThrough, troubledExercises)
+        onSaved?(result)
         stage = .complete(result)
     }
 

@@ -9,6 +9,8 @@ import GentleWalkCore
     /// Sit-to-stand target when the move does not say how many the coach counts.
     static let repTarget = 10
     private(set) var showsHarder = false
+    /// Free plan, first Harder ever: "With Pro, more reps when you're ready" (P5).
+    private(set) var showsHarderProNote = false
 
     init(session: WorkoutSessionModel) {
         self.session = session
@@ -116,11 +118,34 @@ import GentleWalkCore
         showsHarder = false
         guard let id = phase?.exerciseID, !usesEasier else { return }
         try? await player.apply(.easierVersion(exerciseID: id))
+        session.onEasierChosen?(id)
     }
 
     func chooseHarder() {
-        guard exercise?.harder != nil, !usesEasier else { return }
+        guard let id = exercise?.id, exercise?.harder != nil, !usesEasier else { return }
         showsHarder.toggle()
+        guard showsHarder else { return }
+        session.noteHarder(id)
+        if !session.isPro, session.offersHarderProNote, RepLadder.exercises.contains(id) {
+            showsHarderProNote = true
+            session.harderProNoteShown()
+        }
+    }
+
+    /// Why this move starts easier, when it was not tapped this session (P3, P5).
+    var rememberedEasierNote: LocalizedStringResource? {
+        guard let id = exercise?.id, usesEasier, phase?.isEasier != true else { return nil }
+        switch session.rememberedEasier[id] {
+        case .chosen?: return "Easier version, as you chose"
+        case .hurt?: return "Starting with the easier version, after last time."
+        case nil: return nil
+        }
+    }
+
+    /// "Try the usual one" (P5): back to the move's usual version.
+    func tryUsualVersion() {
+        guard let id = exercise?.id else { return }
+        session.useUsualVersion(id)
     }
 
     /// Back: to the start of this move, or the previous move if it just started.

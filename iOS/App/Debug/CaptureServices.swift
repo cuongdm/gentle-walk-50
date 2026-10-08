@@ -56,14 +56,15 @@ import GentleWalkCore
 
 extension AppModel {
     /// An in-memory app with the Margaret fixture (App/Debug/Fixtures/en-US.json).
-    static func capture(entitlement: Entitlement, healthConnected: Bool = true,
+    /// - Parameter day: the capture day (default today), always at 9:05.
+    static func capture(entitlement: Entitlement, healthConnected: Bool = true, day: Date = .now,
                         seed: (ModelContext, Date, Calendar) -> Void = { _, _, _ in }) -> AppModel {
         let container = try! ModelContainerFactory.make(inMemory: true)
         let defaults = UserDefaults(suiteName: "capture-app")!
         defaults.removePersistentDomain(forName: "capture-app")
         if healthConnected { defaults.set(true, forKey: HealthService.askedKey) }
         let calendar = Calendar.current
-        let now = calendar.date(bySettingHour: 9, minute: 5, second: 0, of: .now) ?? .now
+        let now = calendar.date(bySettingHour: 9, minute: 5, second: 0, of: day) ?? day
         if let fixture = try? CaptureFixture.load(bundle: .main) {
             try? CaptureHook.seed(fixture, into: container.mainContext, now: now, calendar: calendar)
         }

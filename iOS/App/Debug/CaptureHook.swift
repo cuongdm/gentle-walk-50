@@ -129,6 +129,21 @@ enum CaptureState: String, CaseIterable, Sendable {
     // UI, onboarding and personalisation (docs/plans/2026-10-08-ui-onboarding-personalization.md).
     /// "You're ready for a little more" after three "Too easy" at Seated (task 0.5).
     case todayMovedUp = "today-moved-up"
+    // Personalisation P1–P13 (milestone 4, task 4.16).
+    /// "For steadier feet" under today's session (P4).
+    case todayGoalLine = "today-goal-line"
+    /// "We've set Mini-squat aside for now. Bring it back in Me." (P3).
+    case todaySetAside = "today-set-aside"
+    /// "Move your reminder to 10:00 AM?" (P10).
+    case todayMoveReminder = "today-move-reminder"
+    /// Monday: "Last week you said stairs felt a bit better…" (P6).
+    case todayLastWeek = "today-last-week"
+    /// "This week felt…" (P6).
+    case weeklyCheckin = "weekly-checkin"
+    /// "Your results" with five weeks of sessions and three checks (P8).
+    case progressResults = "progress-results"
+    /// Me → "Moves set aside" with "Bring it back" (P3).
+    case meSetAside = "me-set-aside"
 }
 
 enum CaptureHook {

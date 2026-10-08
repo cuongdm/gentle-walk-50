@@ -1,17 +1,5 @@
 [
  {
-  "key": "%lld min",
-  "comment": "",
-  "files": [
-   "AllSessionsModel",
-   "ProgressScreen",
-   "TodayCards",
-   "CompleteView",
-   "WorkoutPreviewModel",
-   "SessionHistoryItem"
-  ]
- },
- {
   "key": "All sessions",
   "comment": "",
   "files": [
@@ -174,11 +162,25 @@
   ]
  },
  {
+  "key": "Easier version, as you chose",
+  "comment": "",
+  "files": [
+   "ChairPlayerModel"
+  ]
+ },
+ {
   "key": "Move %lld of %lld",
   "comment": "",
   "files": [
    "ChairPlayerModel",
    "MoveGuidance"
+  ]
+ },
+ {
+  "key": "Starting with the easier version, after last time.",
+  "comment": "",
+  "files": [
+   "ChairPlayerModel"
   ]
  },
  {
@@ -260,7 +262,21 @@
   ]
  },
  {
+  "key": "Try the usual one",
+  "comment": "",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
   "key": "Wait",
+  "comment": "",
+  "files": [
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "With Pro, more reps when you're ready",
   "comment": "",
   "files": [
    "ChairPlayerView"
@@ -654,6 +670,7 @@
    "GoalSection",
    "MeSections",
    "SelfCheckViews",
+   "WeeklyCheckInView",
    "NotificationSection"
   ]
  },
@@ -662,6 +679,83 @@
   "comment": "",
   "files": [
    "GoalSection"
+  ]
+ },
+ {
+  "key": "For getting up from chairs",
+  "comment": "",
+  "files": [
+   "GoalText"
+  ]
+ },
+ {
+  "key": "For more energy, one walk at a time",
+  "comment": "",
+  "files": [
+   "GoalText"
+  ]
+ },
+ {
+  "key": "For steadier feet",
+  "comment": "",
+  "files": [
+   "GoalText"
+  ]
+ },
+ {
+  "key": "Gentle movement, done your way.",
+  "comment": "",
+  "files": [
+   "GoalText"
+  ]
+ },
+ {
+  "key": "Gentle on your joints",
+  "comment": "",
+  "files": [
+   "GoalText"
+  ]
+ },
+ {
+  "key": "Minutes moved add up",
+  "comment": "",
+  "files": [
+   "GoalText"
+  ]
+ },
+ {
+  "key": "One more session for getting up from chairs.",
+  "comment": "",
+  "files": [
+   "GoalText"
+  ]
+ },
+ {
+  "key": "One more session for keeping up with the grandkids.",
+  "comment": "",
+  "files": [
+   "GoalText"
+  ]
+ },
+ {
+  "key": "One more session for your energy.",
+  "comment": "",
+  "files": [
+   "GoalText"
+  ]
+ },
+ {
+  "key": "One more session toward steadier feet.",
+  "comment": "",
+  "files": [
+   "GoalText"
+  ]
+ },
+ {
+  "key": "Your minutes keep adding up.",
+  "comment": "",
+  "files": [
+   "GoalText"
   ]
  },
  {
@@ -1574,7 +1668,8 @@
   "key": "Harder",
   "comment": "",
   "files": [
-   "MoveOptionsRow"
+   "MoveOptionsRow",
+   "WeeklyCheckInView"
   ]
  },
  {
@@ -2644,7 +2739,8 @@
   "comment": "",
   "files": [
    "PauseButton",
-   "QuestionViews"
+   "QuestionViews",
+   "WeeklyCheckInView"
   ]
  },
  {
@@ -3258,6 +3354,13 @@
   ]
  },
  {
+  "key": "^[%lld week](inflect: true)",
+  "comment": "",
+  "files": [
+   "Plural"
+  ]
+ },
+ {
   "key": "active day",
   "comment": "",
   "files": [
@@ -3370,6 +3473,14 @@
   "comment": "",
   "files": [
    "ProgramView"
+  ]
+ },
+ {
+  "key": "See how far you've come",
+  "comment": "",
+  "files": [
+   "ProgramView",
+   "TodayModel"
   ]
  },
  {
@@ -3514,13 +3625,6 @@
   ]
  },
  {
-  "key": "Longest walk without a break",
-  "comment": "A title for the longest walk without a break.",
-  "files": [
-   "ProgressScreen"
-  ]
- },
- {
   "key": "Progress",
   "comment": "",
   "files": [
@@ -3570,13 +3674,6 @@
   "files": [
    "ProgressScreen",
    "ProgramView"
-  ]
- },
- {
-  "key": "With Pro, less hand on the chair as you get steadier.",
-  "comment": "",
-  "files": [
-   "ProgressScreen"
   ]
  },
  {
@@ -4095,7 +4192,8 @@
   "key": "Longer walk",
   "comment": "",
   "files": [
-   "SessionPreset+Request"
+   "SessionPreset+Request",
+   "TodayCards"
   ]
  },
  {
@@ -4153,6 +4251,28 @@
   "comment": "",
   "files": [
    "SessionPreset+Request"
+  ]
+ },
+ {
+  "key": "Back on %@",
+  "comment": "",
+  "files": [
+   "SetAsideSection"
+  ]
+ },
+ {
+  "key": "Bring it back",
+  "comment": "",
+  "files": [
+   "SetAsideSection"
+  ]
+ },
+ {
+  "key": "Moves set aside",
+  "comment": "",
+  "files": [
+   "SetAsideSection",
+   "TodayCards"
   ]
  },
  {
@@ -4514,6 +4634,48 @@
   ]
  },
  {
+  "key": "Add it",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "Add “Easy on hips” to your plan?",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "Add “Easy on knees” to your plan?",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "Add “Easy on lower back” to your plan?",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "Add “Easy on shoulders” to your plan?",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
+  "key": "Added to your plan.",
+  "comment": "",
+  "files": [
+   "ThisHurtsView"
+  ]
+ },
+ {
   "key": "Chest pain, feeling faint or very short of breath? Stop now and call emergency services.",
   "comment": "",
   "files": [
@@ -4612,6 +4774,13 @@
   ]
  },
  {
+  "key": "Gentle stretch instead",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
   "key": "Grey dots are days still open.",
   "comment": "",
   "files": [
@@ -4620,6 +4789,13 @@
  },
  {
   "key": "Just on quiet days",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Keep %@",
   "comment": "",
   "files": [
    "TodayCards"
@@ -4645,6 +4821,20 @@
   "files": [
    "TodayCards",
    "CompleteView"
+  ]
+ },
+ {
+  "key": "Move it",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Move your reminder to %@?",
+  "comment": "",
+  "files": [
+   "TodayCards"
   ]
  },
  {
@@ -4693,6 +4883,27 @@
   ]
  },
  {
+  "key": "We've set %@ aside for now. Bring it back in Me.",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "You often add an extra after your session. Try the longer walk today?",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "You usually start around %@.",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
   "key": "You're doing this on your own now. Want fewer reminders?",
   "comment": "A prompt asking the user if they want fewer reminders.",
   "files": [
@@ -4701,6 +4912,13 @@
  },
  {
   "key": "You're ready for a little more",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "You've been on your feet a lot today. A gentle stretch fits.",
   "comment": "",
   "files": [
    "TodayCards"
@@ -4903,13 +5121,6 @@
   ]
  },
  {
-  "key": "See how far you've come",
-  "comment": "",
-  "files": [
-   "TodayModel"
-  ]
- },
- {
   "key": "Stage %lld · %@",
   "comment": "",
   "files": [
@@ -4970,6 +5181,83 @@
   "comment": "",
   "files": [
    "TodayModel"
+  ]
+ },
+ {
+  "key": "A gentle start for your first sessions. Change it if you like.",
+  "comment": "",
+  "files": [
+   "TodayPersonalisation"
+  ]
+ },
+ {
+  "key": "After last time, Great is picked. Change it if you like.",
+  "comment": "",
+  "files": [
+   "TodayPersonalisation"
+  ]
+ },
+ {
+  "key": "After last time, we'll keep it gentle. Change it if you like.",
+  "comment": "",
+  "files": [
+   "TodayPersonalisation"
+  ]
+ },
+ {
+  "key": "After last week, a little longer this week.",
+  "comment": "",
+  "files": [
+   "TodayPersonalisation"
+  ]
+ },
+ {
+  "key": "After last week, a little shorter this week.",
+  "comment": "",
+  "files": [
+   "TodayPersonalisation"
+  ]
+ },
+ {
+  "key": "Last week you said getting up from a chair felt a bit better. Let's keep the leg work going.",
+  "comment": "",
+  "files": [
+   "TodayPersonalisation"
+  ]
+ },
+ {
+  "key": "Last week you said mornings felt a bit less stiff. Let's keep moving gently.",
+  "comment": "",
+  "files": [
+   "TodayPersonalisation"
+  ]
+ },
+ {
+  "key": "Last week you said sleep felt a bit better. Let's keep it going.",
+  "comment": "",
+  "files": [
+   "TodayPersonalisation"
+  ]
+ },
+ {
+  "key": "Last week you said stairs felt a bit better. Let's keep the leg work going.",
+  "comment": "",
+  "files": [
+   "TodayPersonalisation"
+  ]
+ },
+ {
+  "key": "Last week you said walking outside felt a bit better. Let's keep it going.",
+  "comment": "",
+  "files": [
+   "TodayPersonalisation"
+  ]
+ },
+ {
+  "key": "Last week you said your energy felt a bit better. Let's keep it going.",
+  "comment": "",
+  "files": [
+   "TodayPersonalisation"
   ]
  },
  {
@@ -5375,6 +5663,97 @@
   "comment": "A label for the accessibility element representing the time left in the current phase. The argument is the time left in the current phase.",
   "files": [
    "WalkPlayerView"
+  ]
+ },
+ {
+  "key": "About last week. You can skip this.",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
+  ]
+ },
+ {
+  "key": "About right",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
+  ]
+ },
+ {
+  "key": "Easier than I expected",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
+  ]
+ },
+ {
+  "key": "Energy",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
+  ]
+ },
+ {
+  "key": "Getting up from a chair",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
+  ]
+ },
+ {
+  "key": "Nothing yet",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
+  ]
+ },
+ {
+  "key": "One thing that felt a bit better?",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
+  ]
+ },
+ {
+  "key": "Pick one to continue.",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
+  ]
+ },
+ {
+  "key": "Sleep",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
+  ]
+ },
+ {
+  "key": "Stairs",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
+  ]
+ },
+ {
+  "key": "Stiffness in the morning",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
+  ]
+ },
+ {
+  "key": "This week felt…",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
+  ]
+ },
+ {
+  "key": "Walking outside",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
   ]
  },
  {
@@ -5994,6 +6373,154 @@
   "comment": "",
   "files": [
    "WorkoutView"
+  ]
+ },
+ {
+  "key": "%lld min",
+  "comment": "",
+  "files": [
+   "YourResultsCard",
+   "AllSessionsModel",
+   "ProgressScreen",
+   "TodayCards",
+   "CompleteView",
+   "WorkoutPreviewModel",
+   "SessionHistoryItem"
+  ]
+ },
+ {
+  "key": "About %lld minutes in a usual week.",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "Counted on this phone from your own sessions and checks. %@ is for general fitness, not medical advice.",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "First check: %lld",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "First week: %lld min",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "From %lld to %lld minutes a week, at your own pace.",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "In a row with 3+ active days",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "Longest walk without a break",
+  "comment": "A title for the longest walk without a break.",
+  "files": [
+   "YourResultsCard",
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Minutes moving each week",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "On the chair in tandem stance",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "Rest days never break it",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "Sit-to-stands in 30 seconds",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "Started with two",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "The last 4 weeks, compared only with you.",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "This wk",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "Week of %@",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "With Pro, less hand on the chair as you get steadier.",
+  "comment": "",
+  "files": [
+   "YourResultsCard",
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Wk %lld",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "Your results",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
+  ]
+ },
+ {
+  "key": "Your weekly notes",
+  "comment": "",
+  "files": [
+   "YourResultsCard"
   ]
  }
 ]

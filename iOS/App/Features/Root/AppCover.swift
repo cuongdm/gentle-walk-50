@@ -19,6 +19,8 @@ enum AppCover: Identifiable {
     case selfCheck(SelfCheckFlowModel)
     /// The 12 weeks are done: compare with week 0, start again or keep the routine (task 4.14).
     case programFinished
+    /// "This week felt…" on the first open from Sunday to Tuesday (P6, D11).
+    case weeklyCheckIn
 
     var id: String {
         switch self {
@@ -34,6 +36,7 @@ enum AppCover: Identifiable {
         case .cancelGuide: "cancel"
         case .selfCheck(let model): "selfcheck-\(model.id)"
         case .programFinished: "program-finished"
+        case .weeklyCheckIn: "weekly-checkin"
         }
     }
 }
@@ -69,6 +72,10 @@ struct ProfileSnapshot: Equatable {
     var goal: Goal = .notSure
     /// What got in the way before, in the order she picked them.
     var barriers: [Barrier] = []
+    /// Her goals as stored: one from the new onboarding, maybe several from the old one (P4 reads the first).
+    var goals: [Goal] = []
+    /// "How active are you now?" (P2: a gentle start for "Mostly sitting").
+    var activity: ActivityAnswer? = nil
 
     static let empty = ProfileSnapshot(name: nil, limits: [], level: .seated, restDays: RestDays.freeTier,
                                        reminderMoment: .coffee, reminderMinutes: 510, frequency: .daily)
@@ -90,5 +97,7 @@ struct ProfileSnapshot: Equatable {
         // Profiles saved before 08/10/2026 may hold two goals: the first picked is the main one.
         goal = profile.goals.lazy.compactMap(Goal.init).first ?? .notSure
         barriers = profile.barriers.compactMap(Barrier.init)
+        goals = profile.goals.compactMap(Goal.init)
+        activity = ActivityAnswer(rawValue: profile.activityLevel)
     }
 }

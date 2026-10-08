@@ -55,6 +55,9 @@ public struct SessionTimeline: Equatable, Sendable {
     public var total: Double = 0
     /// True after "Walk home gently": the easy walk lasts until the user taps End.
     public var isOpenEnded = false
+    /// Seconds spoken before the program's own clock starts (the self-check's history line, P7): the
+    /// screen's clock counts from here.
+    public var leadIn: Double = 0
     /// Lines that edits insert (A7 safety lines, A3 walk home), resolved when the timeline is built.
     var editLines: [String: VoiceCue] = [:]
 

@@ -87,6 +87,11 @@ struct TodayTab: View {
                 onDismissCard: app.dismissHealthCard,
                 onFewerReminders: app.answerFewerReminders,
                 onKeepEasierLevel: app.keepEasierLevel,
+                onOpenMe: { app.tab = .me },
+                onStretchInstead: { app.startPreset("stretch.seated.gentle") },
+                onMoveReminder: app.moveReminder(to:),
+                onKeepReminder: app.keepReminder,
+                onLongerWalk: { app.startPreset("walk.long") },
                 onOpenProgram: { app.todayPath.append(.program) },
                 onSelfCheck: app.openSelfCheck,
                 onSelfCheckLater: app.selfCheckLater,
@@ -126,7 +131,8 @@ struct ProgressTab: View {
                        calendar: app.calendar, now: app.now(), isPro: app.isPro, onToggleWin: app.toggleWin,
                        onSeeAllSessions: { app.isPro ? app.progressPath.append(.sessions) : app.offerPlans(.lockedContent) },
                        onConnectHealth: { Task { _ = await app.health.requestAuthorization(); app.reload() } },
-                       content: app.content, onSeePlans: { app.offerPlans(.lockedContent) })
+                       content: app.content, onSeePlans: { app.offerPlans(.lockedContent) },
+                       goal: GoalText.main(of: app.profile?.goals ?? []))
             .task {
                 if let result = await app.health.weeklySteps(now: app.now(), calendar: app.calendar) {
                     steps = StepsSummary(thisWeek: result.thisWeek, lastWeek: result.lastWeek)
