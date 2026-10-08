@@ -59,13 +59,14 @@ import GentleWalkCore
     }
     var usesEasier: Bool { phase?.isEasier == true || (pose.map { session.easierExerciseIDs.contains($0.id) } ?? false) }
 
-    /// "Stretch 2 of 6", or "Cool-down · 2 of 3" after a walk (clarity review D34).
+    /// "Stretch 2 of 6", or "Cool-down · 2 of 3" after a walk (clarity review D34). Both sides of a stretch
+    /// count once, as the preview lists them (`MoveRuns`, review C 09/10/2026).
     var cooldownPosition: String? {
         let poses = player.timeline.phases.filter { $0.block == phase?.block && $0.isExercise }
-        guard !poses.isEmpty else { return nil }
         let index = poses.lastIndex { $0.start <= player.currentTime } ?? 0
-        return isCooldown ? String(localized: "Cool-down · \(index + 1) of \(poses.count)")
-            : String(localized: "Stretch \(index + 1) of \(poses.count)")
+        guard let at = MoveRuns.position(of: index, in: poses.map(\.exerciseID)) else { return nil }
+        return isCooldown ? String(localized: "Cool-down · \(at.number) of \(at.count)")
+            : String(localized: "Stretch \(at.number) of \(at.count)")
     }
 
     /// Seconds of each hold in this pose; 0 for a slow repeated move (neck turns, ankles).
