@@ -62,10 +62,10 @@ import GentleWalkCore
             Task { await notifications.reschedule() }
         }
     }
-    /// DEBUG screenshots pin the entitlement; the app always reads StoreKit.
+    /// DEBUG screenshots pin the entitlement; the app always reads the store.
     var entitlementOverride: Entitlement?
-    /// DEBUG screenshots: prices from the local StoreKit file when StoreKit is not attached.
-    @ObservationIgnored var priceOverride: [String: String] = [:]
+    /// DEBUG screenshots: prices from the local StoreKit file, since captures run with no store.
+    @ObservationIgnored var priceOverride: [PlanKind: String] = [:]
     /// D9 Everyday wins, without the ones hidden for the user's body limits.
     @ObservationIgnored private(set) lazy var allWins: [EverydayWinItem] = {
         struct File: Decodable { var wins: [EverydayWinItem] }
@@ -136,13 +136,13 @@ import GentleWalkCore
     /// The app as shipped.
     static func live() -> AppModel {
         let container = (try? ModelContainerFactory.make(inMemory: false)) ?? (try! ModelContainerFactory.make(inMemory: true))
-        return AppModel(container: container, content: AppContent.bundle, store: StoreService(),
+        return AppModel(container: container, content: AppContent.bundle, store: StoreService(backend: RevenueCatBackend.configured()),
                         health: HealthService(store: SystemHealthStore()), notificationCenter: SystemNotificationCenter(),
                         location: LocationService(manager: SystemLocationManager(), background: SystemBackgroundActivity()),
                         pedometer: PedometerService(pedometer: SystemPedometer()), motion: MotionService())
     }
 
-    /// Launch: StoreKit listener and products, data, notifications. No permission is asked here.
+    /// Launch: purchase listener and plans, data, notifications. No permission is asked here.
     func launch() async {
         // Her data and plan first, so a returning user never sees Welcome while products load and a
         // subscriber offline is not treated as free (review I3); products (prices) come after.
@@ -264,9 +264,9 @@ import GentleWalkCore
     var renewingProductID: String? { renewalOverride?.productID ?? store.activeRenewingProductID }
     var renewalDate: Date? { renewalOverride?.date ?? store.renewalDate }
 
-    /// Display price for a product (always from StoreKit in the app).
-    func price(_ productID: String) -> String? {
-        store.products[productID]?.displayPrice ?? priceOverride[productID]
+    /// Display price of a plan (always from the store in the app).
+    func price(_ kind: PlanKind) -> String? {
+        store.offer(kind)?.displayPrice ?? priceOverride[kind]
     }
 
     var restDays: Set<Weekday> {

@@ -70,13 +70,13 @@ extension AppModel {
         }
         seed(container.mainContext, now, calendar)
         try? container.mainContext.save()
-        let app = AppModel(container: container, content: AppContent.bundle, store: StoreService(),
+        let app = AppModel(container: container, content: AppContent.bundle, store: StoreService(backend: nil),
                            health: HealthService(store: CaptureHealthStore(connected: healthConnected), defaults: defaults),
                            notificationCenter: CaptureNotificationCenter(),
                            location: LocationService(manager: CaptureLocationManager(), background: CaptureBackgroundActivity()),
                            pedometer: PedometerService(pedometer: CapturePedometer()), motion: MotionService(), defaults: defaults)
         app.entitlementOverride = entitlement
-        app.priceOverride = [ProductID.yearly: "$39.99", ProductID.monthly: "$7.99", ProductID.lifetime: "$79.99"]
+        app.priceOverride = [.yearly: "$49.99", .monthly: "$9.99", .lifetime: "$99.99"]
         app.now = { now }
         app.calendar = calendar
         app.reload()
@@ -85,9 +85,9 @@ extension AppModel {
 
     /// Plan cards filled from the local StoreKit file's test prices.
     static let capturePlanOptions = [
-        PlanOption(id: ProductID.yearly, kind: .yearly, price: "$39.99", monthlyEquivalent: String(localized: "\("$3.33") a month")),
-        PlanOption(id: ProductID.monthly, kind: .monthly, price: "$7.99"),
-        PlanOption(id: ProductID.lifetime, kind: .lifetime, price: "$79.99"),
+        PlanOption(id: ProductID.yearly, kind: .yearly, price: "$49.99", monthlyEquivalent: String(localized: "\("$4.17") a month")),
+        PlanOption(id: ProductID.monthly, kind: .monthly, price: "$9.99"),
+        PlanOption(id: ProductID.lifetime, kind: .lifetime, price: "$99.99"),
     ]
     /// The yearly intro offer in GentleWalk.storekit (`P2W`, free).
     static let captureTrialDays = 14

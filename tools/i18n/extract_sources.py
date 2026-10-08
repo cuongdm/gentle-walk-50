@@ -16,10 +16,17 @@ CONTENT = APP / "Resources" / "Content"
 OUT = ROOT / "docs" / "i18n" / "source"
 
 
+# Third-party packages (RevenueCat, since 09/10/2026) emit their own debug-screen strings: not ours to translate.
+THIRD_PARTY = ("/RevenueCat.build/", "/RevenueCatUI.build/", "/SourcePackages/")
+
+
 def ui_strings(derived):
     keys = {}
-    for f in glob.glob(f"{derived}/**/*.stringsdata", recursive=True):
-        if "Shortcuts" in f or "Tests.build" in f:
+    # Only the build products, not the package checkouts next to them (slow, and not app strings).
+    root = Path(derived) / "Build" / "Intermediates.noindex"
+    base = root if root.is_dir() else Path(derived)
+    for f in glob.glob(f"{base}/**/*.stringsdata", recursive=True):
+        if "Shortcuts" in f or "Tests.build" in f or any(part in f for part in THIRD_PARTY):
             continue
         source = Path(f).stem
         for table, entries in json.load(open(f)).get("tables", {}).items():

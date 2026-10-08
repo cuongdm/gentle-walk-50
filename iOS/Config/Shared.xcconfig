@@ -1,4 +1,9 @@
 // Shared build settings for every configuration.
-// Signing (DEVELOPMENT_TEAM) lives in Local.xcconfig, which is git-ignored.
-// Copy Local.xcconfig.example to Local.xcconfig and fill in your Team ID.
+// Signing (DEVELOPMENT_TEAM) and the RevenueCat public SDK key live in Local.xcconfig, which is git-ignored.
+// Copy Local.xcconfig.example to Local.xcconfig and fill them in.
+
+// Empty until Local.xcconfig sets it: the app then runs with no store (free plan, "Plans aren't
+// available right now"), never crashes. The release gate (ReleaseContentTests) fails while it is empty.
+REVENUECAT_PUBLIC_KEY =
+
 #include? "Local.xcconfig"

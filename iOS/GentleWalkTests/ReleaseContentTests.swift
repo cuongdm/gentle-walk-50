@@ -16,6 +16,14 @@ struct ReleaseContentTests {
         #expect(errors.isEmpty, "\(errors.count) content errors, first: \(errors.prefix(5).map(\.detail))")
     }
 
+    /// Purchases need the RevenueCat public key (Config/Local.xcconfig `REVENUECAT_PUBLIC_KEY`); without it
+    /// the app ships with no store at all (owner 09/10/2026, docs/release/1.0/revenuecat-setup.md).
+    @Test func revenueCatKeyIsSet() {
+        let raw = Bundle.main.object(forInfoDictionaryKey: RevenueCatKey.infoPlistKey) as? String
+        #expect(RevenueCatKey.validated(raw)?.hasPrefix("appl_") == true,
+                "RevenueCatPublicKey is empty or not an App Store public key (appl_…): set it in Config/Local.xcconfig")
+    }
+
     /// A language whose coach is being recorded ships all of it: Release never speaks with the system
     /// voice. A language with no recordings at all keeps the English coach (AppContent.texts) and is
     /// not offered in Me, so it does not block an English release (i18n, 02/10/2026). Record with

@@ -20,7 +20,7 @@ struct MeView: View {
             VStack(alignment: .leading, spacing: 16) {
                 ScreenHeader(title: "Me")
                 SubscriptionSection(entitlement: app.entitlement, renewingProductID: app.renewingProductID,
-                                    renewalDate: app.renewalDate, yearlyPrice: app.price(ProductID.yearly),
+                                    renewalDate: app.renewalDate, yearlyPrice: app.price(.yearly),
                                     onSeePlans: { app.cover = .paywall(.lockedContent) },
                                     onHowToCancel: { app.cover = .cancelGuide(afterLifetime: false) })
                 SettingsGroupHeader(title: "Your plan")

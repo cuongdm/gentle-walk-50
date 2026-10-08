@@ -28,6 +28,8 @@
 	<string>Good Footing uses your location only during outdoor walks to measure distance and draw your route. It stays on this phone.</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Good Footing uses motion to count your sit-to-stands while your phone is held to your chest, and to measure outdoor walks without location.</string>
+	<key>RevenueCatPublicKey</key>
+	<string>$(REVENUECAT_PUBLIC_KEY)</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

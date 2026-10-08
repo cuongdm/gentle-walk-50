@@ -23,7 +23,7 @@ struct TodayInput: Equatable {
     var entitlement: Entitlement
     /// End of the free trial if one was ever started (for "Your trial has ended").
     var trialEnds: Date?
-    /// Free days of the yearly plan's trial as StoreKit offers it (`StoreService.trialDays`, review I-1);
+    /// Free days of the yearly plan's trial as the store offers it (`StoreService.trialDays`, review I-1);
     /// nil until the products load or when the store no longer offers a trial.
     var trialDays: Int? = nil
     var workouts: [Workout]
@@ -273,12 +273,12 @@ struct TodaySwapOption: Equatable, Identifiable {
         return input.now < ends.addingTimeInterval(7 * 86_400)
     }
 
-    /// The 2-week trial set in App Store Connect, used only until StoreKit's offer has loaded (or when a
+    /// The 2-week trial set in App Store Connect, used only until the store's offer has loaded (or when a
     /// running trial's offer was removed from the store).
     static let trialDaysUntilLoaded = 14
 
     /// Four days before billing until billing (day 10 of a 2-week trial, I1): shown whether or not notifications are allowed. Counted
-    /// back from the billing date with the trial length StoreKit offers, as the paywall counts it (I-1).
+    /// back from the billing date with the trial length the store offers, as the paywall counts it (I-1).
     var trialEndingDate: Date? {
         guard case .trial(let ends) = input.entitlement else { return nil }
         let length = input.trialDays ?? Self.trialDaysUntilLoaded

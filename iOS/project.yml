@@ -18,6 +18,11 @@ settings:
 packages:
   GentleWalkCore:
     path: Packages/GentleWalkCore
+  # Purchase layer (owner 09/10/2026). Pinned exactly: Package.resolved lives in the generated,
+  # uncommitted project, so a range would float between machines.
+  RevenueCat:
+    url: https://github.com/RevenueCat/purchases-ios-spm.git
+    exactVersion: 5.94.0
 targets:
   GentleWalk:
     type: application
@@ -30,6 +35,8 @@ targets:
           - "**/*.npz"
     dependencies:
       - package: GentleWalkCore
+      - package: RevenueCat
+        product: RevenueCat
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.kmd.gentlewalk
@@ -52,6 +59,8 @@ targets:
       properties:
         CFBundleDisplayName: Good Footing
         UILaunchScreen: {}
+        # RevenueCat public SDK key from Config/Local.xcconfig (REVENUECAT_PUBLIC_KEY); empty → no store.
+        RevenueCatPublicKey: $(REVENUECAT_PUBLIC_KEY)
         NSHealthShareUsageDescription: Good Footing reads your step count to show your everyday activity in Progress and to suggest a lighter session on busy days.
         NSHealthUpdateUsageDescription: Good Footing saves your walks and exercise sessions to Apple Health.
         NSMotionUsageDescription: Good Footing uses motion to count your sit-to-stands while your phone is held to your chest, and to measure outdoor walks without location.

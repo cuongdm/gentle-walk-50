@@ -2,8 +2,9 @@ import StoreKit
 import StoreKitTest
 import Testing
 
-/// Checks App/GentleWalk.storekit — the local StoreKit configuration used by tests and Xcode runs.
-/// Prices in that file are test values only; real prices come from App Store Connect.
+/// Checks App/GentleWalk.storekit — the local StoreKit configuration for Xcode runs and screenshots.
+/// It mirrors App Store Connect (owner 09/10/2026: 49.99 / 9.99 / 99.99 USD, 14-day trial on yearly);
+/// the app reads prices through RevenueCat, which reads them from the store.
 @Suite(.serialized) @MainActor
 struct StoreConfigTests {
     static let ids = ["com.kmd.gentlewalk.pro.yearly", "com.kmd.gentlewalk.pro.monthly", "com.kmd.gentlewalk.pro.lifetime"]
@@ -36,5 +37,20 @@ struct StoreConfigTests {
         #expect(intro.period.unit == .week)
         #expect(intro.period.value == 2)
         #expect(monthly.subscription?.introductoryOffer == nil)
+        // Prices chosen 09/10/2026 (research 2026-10-08 §7.1).
+        #expect(yearly.price == Decimal(string: "49.99"))
+        #expect(monthly.price == Decimal(string: "9.99"))
+        #expect(lifetime.price == Decimal(string: "99.99"))
+    }
+
+    /// RevenueCat collects purchase history (owner 09/10/2026): declared, never linked to her, never tracking.
+    @Test func privacyManifestDeclaresPurchaseHistoryOnly() throws {
+        let url = try #require(Bundle.main.url(forResource: "PrivacyInfo", withExtension: "xcprivacy"))
+        let plist = try #require(try PropertyListSerialization.propertyList(from: Data(contentsOf: url), format: nil) as? [String: Any])
+        #expect(plist["NSPrivacyTracking"] as? Bool == false)
+        let collected = try #require(plist["NSPrivacyCollectedDataTypes"] as? [[String: Any]])
+        #expect(collected.map { $0["NSPrivacyCollectedDataType"] as? String } == ["NSPrivacyCollectedDataTypePurchaseHistory"])
+        #expect(collected.first?["NSPrivacyCollectedDataTypeLinked"] as? Bool == false)
+        #expect(collected.first?["NSPrivacyCollectedDataTypeTracking"] as? Bool == false)
     }
 }

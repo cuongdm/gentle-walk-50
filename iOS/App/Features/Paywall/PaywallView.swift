@@ -254,7 +254,7 @@ struct PlanOptionCard: View {
             Text(option.title).typeRole(.body).fontWeight(isSelected ? .bold : .regular)
                 .fixedSize(horizontal: false, vertical: true)
             if let note {
-                // Wraps, never "$3.33 a…" at the largest sizes (review A, 09/10/2026).
+                // Wraps, never "$4.17 a…" at the largest sizes (review A, 09/10/2026).
                 Text(verbatim: note).typeRole(.caption)
                     .fixedSize(horizontal: false, vertical: true)
             }

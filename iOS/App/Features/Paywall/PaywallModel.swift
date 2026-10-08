@@ -1,18 +1,17 @@
 import Foundation
 import Observation
-import StoreKit
 import GentleWalkCore
 
-/// One plan card on S08. Every price and period comes from `Product` (3.1.2(c)); screenshots pass
-/// the same shape filled from the local StoreKit file.
+/// One plan card on S08. Every price and period comes from the store (`StoreOffer`, 3.1.2(c));
+/// screenshots pass the same shape filled from the local StoreKit file's prices.
 struct PlanOption: Identifiable, Equatable, Sendable {
-    enum Kind: Equatable, Sendable { case yearly, monthly, lifetime }
+    typealias Kind = PlanKind
 
     var id: String
     var kind: Kind
-    /// Billed amount, e.g. "$39.99". Always the most prominent price on the card.
+    /// Billed amount, e.g. "$49.99". Always the most prominent price on the card.
     var price: String
-    /// "$3.33 a month", yearly only, smaller than the price.
+    /// "$4.17 a month", yearly only, smaller than the price.
     var monthlyEquivalent: String?
 
     var title: LocalizedStringResource {
@@ -23,7 +22,7 @@ struct PlanOption: Identifiable, Equatable, Sendable {
         }
     }
 
-    /// "$39.99 a year" · "$7.99 a month" · "$79.99 once".
+    /// "$49.99 a year" · "$9.99 a month" · "$99.99 once".
     var priceWithPeriod: String {
         switch kind {
         case .yearly: String(localized: "\(price) a year")
@@ -40,9 +39,9 @@ struct PlanOption: Identifiable, Equatable, Sendable {
 @Observable @MainActor final class PaywallModel {
     private(set) var options: [PlanOption]
     var selectedID: String
-    /// StoreKit's eligibility and a free-trial offer on the yearly plan: without an offer there is no trial.
+    /// The store's eligibility and a free-trial offer on the yearly plan: without an offer there is no trial.
     let isEligibleForTrial: Bool
-    /// Free days of the yearly plan's introductory offer, from StoreKit (review I-1, 08/10/2026); nil
+    /// Free days of the yearly plan's introductory offer, from the store (review I-1, 08/10/2026); nil
     /// when the yearly plan has no free-trial offer.
     let trialDays: Int?
     /// A renewing plan the user already has: the one-payment card warns it keeps renewing (I2).
@@ -99,7 +98,7 @@ struct PlanOption: Identifiable, Equatable, Sendable {
     }
 
     /// "Start my free trial": a beginning she owns (uxpeak A/B, review M11); otherwise the button names
-    /// the plan and its billed price ("Subscribe for $7.99 a month").
+    /// the plan and its billed price ("Subscribe for $9.99 a month").
     var buttonTitle: LocalizedStringResource {
         guard let selected else { return "Continue" }
         switch selected.kind {
@@ -147,21 +146,22 @@ struct PlanOption: Identifiable, Equatable, Sendable {
         }
     }
 
-    /// Builds cards from StoreKit products (price text from `displayPrice`, never typed in code).
-    static func options(from products: [String: Product]) -> [PlanOption] {
-        var result: [PlanOption] = []
-        if let yearly = products[ProductID.yearly] {
-            let monthly = (yearly.price / 12).formatted(yearly.priceFormatStyle)
-            result.append(PlanOption(id: yearly.id, kind: .yearly, price: yearly.displayPrice,
-                                     monthlyEquivalent: String(localized: "\(monthly) a month")))
+    /// Builds cards from the store's plans (price text from the store, never typed in code). The yearly
+    /// card's "$4.17 a month" is its real billed price divided by 12, in the same currency.
+    static func options(from offers: [StoreOffer], locale: Locale = .autoupdatingCurrent) -> [PlanOption] {
+        offers.sorted { $0.kind < $1.kind }.map { offer in
+            var monthly: String?
+            if offer.kind == .yearly, let perMonth = monthlyPrice(of: offer, locale: locale) {
+                monthly = String(localized: "\(perMonth) a month")
+            }
+            return PlanOption(id: offer.id, kind: offer.kind, price: offer.displayPrice, monthlyEquivalent: monthly)
         }
-        if let monthly = products[ProductID.monthly] {
-            result.append(PlanOption(id: monthly.id, kind: .monthly, price: monthly.displayPrice))
-        }
-        if let lifetime = products[ProductID.lifetime] {
-            result.append(PlanOption(id: lifetime.id, kind: .lifetime, price: lifetime.displayPrice))
-        }
-        return result
+    }
+
+    /// A twelfth of the yearly price, rounded to the cent like the store rounds prices; nil without a currency.
+    static func monthlyPrice(of offer: StoreOffer, locale: Locale) -> String? {
+        guard let code = offer.currencyCode else { return nil }
+        return (offer.price / 12).formatted(.currency(code: code).locale(locale))
     }
 }
 

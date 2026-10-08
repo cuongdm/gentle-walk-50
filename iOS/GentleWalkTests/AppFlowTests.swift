@@ -6,9 +6,7 @@ import GentleWalkCore
 
 /// App-level flows (review 29/09/2026): an AppModel on the Margaret fixture with fake services.
 @MainActor @Suite(.serialized) struct AppFlowTests {
-    struct RestoreFailed: Error {}
-
-    func makeApp(entitlement: Entitlement, sync: @escaping () async throws -> Void = {}) -> AppModel {
+    func makeApp(entitlement: Entitlement, restoreFails: Bool = false) -> AppModel {
         let container = try! ModelContainerFactory.make(inMemory: true)
         let defaults = UserDefaults(suiteName: "app-flow-tests")!
         defaults.removePersistentDomain(forName: "app-flow-tests")
@@ -16,7 +14,9 @@ import GentleWalkCore
             try? CaptureHook.seed(fixture, into: container.mainContext, now: .now, calendar: .current)
         }
         try? container.mainContext.save()
-        let app = AppModel(container: container, content: TestFixtures.content, store: StoreService(sync: sync),
+        let backend = FakePurchaseBackend(now: .now)
+        backend.failsRestore = restoreFails
+        let app = AppModel(container: container, content: TestFixtures.content, store: StoreService(backend: backend),
                            health: HealthService(store: CaptureHealthStore(connected: true), defaults: defaults),
                            notificationCenter: CaptureNotificationCenter(),
                            location: LocationService(manager: CaptureLocationManager(), background: CaptureBackgroundActivity()),
@@ -53,7 +53,7 @@ import GentleWalkCore
 
     // I10
     @Test func restoreSaysWhatHappened() async {
-        let failing = makeApp(entitlement: .free, sync: { throw RestoreFailed() })
+        let failing = makeApp(entitlement: .free, restoreFails: true)
         await failing.restorePurchases()
         #expect(failing.storeNotice == .failed)
 

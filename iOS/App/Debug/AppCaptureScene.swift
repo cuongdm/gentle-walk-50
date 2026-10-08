@@ -41,6 +41,8 @@ struct AppCaptureScene: View {
                            playsCoachOnAppear: state == .onboardingPlanCoach, onRestore: {}, onFinished: {})
         case .paywallEligible, .paywallMonthly, .paywallLifetime, .paywallNotEligible, .paywallLifetimeWhileSubscribed:
             PaywallView(model: paywallModel, onPurchase: { _ in }, onRestore: {}, onMaybeLater: {})
+        case .paywallUnavailable:
+            PlansUnavailableView(onTryAgain: {}, onMaybeLater: {})
         case .permissionsReminder, .permissionsHealth, .permissionsHealthGranted:
             PermissionStepView(ask: state == .permissionsReminder ? .reminders : .health,
                                model: PermissionsModel(health: nil, notifications: nil,

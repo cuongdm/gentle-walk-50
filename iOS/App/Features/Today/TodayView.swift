@@ -391,7 +391,7 @@ struct TodaySessionCard: View {
     private var icon: AppIcon { AppIcon.session(session.main, seated: isSeated) }
 }
 
-/// "Your free trial ends on Oct 11. You'll be billed $39.99 unless you cancel." · Manage.
+/// "Your free trial ends on Oct 11. You'll be billed $49.99 unless you cancel." · Manage.
 struct TrialEndingCard: View {
     let date: Date
     let price: String?

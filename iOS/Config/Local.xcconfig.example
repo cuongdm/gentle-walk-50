@@ -1,3 +1,7 @@
-// Copy to Config/Local.xcconfig (git-ignored) and set your Apple Developer Team ID.
-// Simulator builds work without it; device builds and archives need it.
+// Copy to Config/Local.xcconfig (git-ignored) and fill in both values.
+// Simulator builds work without them; device builds and archives need the Team ID.
 DEVELOPMENT_TEAM = XXXXXXXXXX
+
+// RevenueCat → Project settings → API keys → the App Store app's PUBLIC SDK key (starts with "appl_").
+// Never the secret key ("sk_…"). Empty: the app runs with no store and the release gate fails.
+REVENUECAT_PUBLIC_KEY = appl_XXXXXXXXXXXXXXXXXXXXXXXXXXX

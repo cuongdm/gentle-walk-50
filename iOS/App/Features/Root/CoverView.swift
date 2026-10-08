@@ -77,12 +77,15 @@ struct CoverView: View {
     }
 }
 
-/// S08 in the app: plans from StoreKit, the "Apple will ask you" step, then purchase.
+/// S08 in the app: plans from the store (RevenueCat), the "Apple will ask you" step, then purchase.
+/// No plans (offline, or a build with no store): a calm note, "Try again" and "Maybe later", never an
+/// empty or broken screen.
 struct PaywallContainer: View {
     let app: AppModel
     let trigger: PaywallTrigger
     @State private var model: PaywallModel?
     @State private var confirming: PlanOption?
+    @State private var isLoading = true
 
     var body: some View {
         Group {
@@ -97,26 +100,55 @@ struct PaywallContainer: View {
                 PaywallView(model: model, onPurchase: { confirming = $0 },
                             onRestore: { Task { await app.restorePurchases(from: trigger) } },
                             onMaybeLater: { app.paywallMaybeLater(trigger) })
+            } else if isLoading {
+                ProgressView()
+                    .controlSize(.large)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .screenBackground()
             } else {
-                VStack(spacing: 18) {
-                    Spacer()
-                    Text("Plans aren't available right now.").typeRole(.cardTitle)
-                    Text("You can start with the free plan and look again later in Me.").typeRole(.body)
-                    Spacer()
-                    Button("Maybe later") { app.paywallMaybeLater(trigger) }.buttonStyle(.primaryAction)
-                }
-                .foregroundStyle(Palette.text)
-                .padding(Metrics.screenMargin)
-                .screenBackground()
+                PlansUnavailableView(onTryAgain: { Task { await load(retry: true) } },
+                                     onMaybeLater: { app.paywallMaybeLater(trigger) })
             }
         }
-        .task {
-            if app.store.products.isEmpty { try? await app.store.loadProducts() }
-            model = PaywallModel(options: PaywallModel.options(from: app.store.products),
-                                 isEligibleForTrial: app.store.isEligibleForTrial, trialDays: app.store.trialDays,
-                                 activeRenewingProductID: app.store.activeRenewingProductID, goal: app.profile?.goal ?? .notSure,
-                                 now: app.now(), calendar: app.calendar)
+        .task { await load(retry: false) }
+    }
+
+    /// Reads the plans (again on "Try again") and builds the paywall from them.
+    private func load(retry: Bool) async {
+        isLoading = true
+        if retry || app.store.offers.isEmpty { try? await app.store.loadProducts() }
+        model = PaywallModel(options: PaywallModel.options(from: app.store.offers),
+                             isEligibleForTrial: app.store.isEligibleForTrial, trialDays: app.store.trialDays,
+                             activeRenewingProductID: app.store.activeRenewingProductID, goal: app.profile?.goal ?? .notSure,
+                             now: app.now(), calendar: app.calendar)
+        isLoading = false
+    }
+}
+
+/// "Plans aren't available right now." with a way to try again and a way on: offline, the store not
+/// answering, or a build without a store. The free plan keeps working either way.
+struct PlansUnavailableView: View {
+    let onTryAgain: () -> Void
+    let onMaybeLater: () -> Void
+
+    var body: some View {
+        VStack(spacing: 18) {
+            Spacer()
+            Text("Plans aren't available right now.").typeRole(.cardTitle)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+            Text("You can start with the free plan and look again later in Me.").typeRole(.body)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+            Spacer()
+            Button("Try again", action: onTryAgain).buttonStyle(.secondaryAction)
+            Button("Maybe later", action: onMaybeLater).buttonStyle(.primaryAction)
         }
+        .foregroundStyle(Palette.text)
+        .padding(Metrics.screenMargin)
+        .readableColumn()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .screenBackground()
     }
 }
 

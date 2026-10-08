@@ -79,7 +79,7 @@ struct TodayTab: View {
     var body: some View {
         if let today = app.today {
             TodayView(model: today, actions: TodayActions(
-                yearlyPrice: app.price(ProductID.yearly),
+                yearlyPrice: app.price(.yearly),
                 onStart: { request in app.startFromToday(request, checkIn: today.checkedIn) },
                 onSeePlans: { app.offerPlans(.lockedContent) },
                 // Straight to the cancel steps: the card is about being billed (review 02/10/2026).

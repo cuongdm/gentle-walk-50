@@ -3,7 +3,7 @@
   "nonRenewingSubscriptions" : [ ],
   "products" : [
     {
-      "displayPrice" : "79.99",
+      "displayPrice" : "99.99",
       "familyShareable" : false,
       "internalID" : "6A0B2C11-0003-4000-8000-000000000003",
       "localizations" : [
@@ -14,7 +14,7 @@
         }
       ],
       "productID" : "com.kmd.gentlewalk.pro.lifetime",
-      "referenceName" : "Pro Lifetime (test price)",
+      "referenceName" : "Pro Lifetime",
       "type" : "NonConsumable"
     }
   ],
@@ -33,7 +33,7 @@
         {
           "adHocOffers" : [ ],
           "codeOffers" : [ ],
-          "displayPrice" : "39.99",
+          "displayPrice" : "49.99",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "6A0B2C11-0001-4000-8000-000000000001",
@@ -51,7 +51,7 @@
           ],
           "productID" : "com.kmd.gentlewalk.pro.yearly",
           "recurringSubscriptionPeriod" : "P1Y",
-          "referenceName" : "Pro Yearly (test price)",
+          "referenceName" : "Pro Yearly",
           "subscriptionGroupID" : "6A0B2C11-0100-4000-8000-000000000100",
           "type" : "RecurringSubscription",
           "winbackOffers" : [ ]
@@ -59,7 +59,7 @@
         {
           "adHocOffers" : [ ],
           "codeOffers" : [ ],
-          "displayPrice" : "7.99",
+          "displayPrice" : "9.99",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "6A0B2C11-0002-4000-8000-000000000002",
@@ -72,7 +72,7 @@
           ],
           "productID" : "com.kmd.gentlewalk.pro.monthly",
           "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : "Pro Monthly (test price)",
+          "referenceName" : "Pro Monthly",
           "subscriptionGroupID" : "6A0B2C11-0100-4000-8000-000000000100",
           "type" : "RecurringSubscription",
           "winbackOffers" : [ ]
