@@ -15,13 +15,13 @@ Chia việc: phần A và B là việc **bạn** làm trên web (khoá và tài 
 | `com.kmd.gentlewalk.pro.lifetime` | **Non-Consumable** (In-App Purchase) | — | 99,99 USD | |
 
    Mỗi sản phẩm cần tên hiển thị và mô tả tiếng Anh, và ảnh chụp màn paywall để duyệt (lấy từ bản chụp `paywall-eligible`).
-4. **Khoá API (tải về một lần, giữ file `.p8`):**
-   - Users and Access → Integrations → **App Store Connect API** → Team Keys → tạo khoá, quyền **App Manager**. Ghi lại Key ID và Issuer ID.
-   - Users and Access → Integrations → **In-App Purchase** → tạo khoá. Ghi lại Key ID.
+4. **Khoá (tải về một lần, giữ file `.p8`):**
+   - **Bắt buộc:** Users and Access → Integrations → **In-App Purchase** → tạo khoá. Ghi lại Key ID và **Issuer ID** (hiện ở đầu trang). RevenueCat dùng khoá này để xác nhận giao dịch của SDK mới; thiếu thì mua xong vẫn không được ghi nhận. Một khoá dùng được cho mọi app cùng tài khoản App Store Connect, nên bạn có thể dùng lại khoá đã tạo cho MeowBreathe.
+   - **Tuỳ chọn:** Integrations → **App Store Connect API** → Team Keys, quyền **App Manager**. Chỉ giúp RevenueCat tự nhập sản phẩm từ App Store Connect và đọc doanh thu. Hai khoá này khác loại, **không thay cho nhau được**. Nếu đầu trang In-App Purchase không hiện Issuer ID, tạo khoá App Store Connect API (tên và quyền nào cũng được) để lấy Issuer ID.
 
 ## B. RevenueCat (tài khoản mới)
 1. Tạo project **Good Footing**.
-2. Project settings → Apps → + New → **App Store**. Bundle ID `com.kmd.gentlewalk`. Tải lên khoá In-App Purchase (.p8, Key ID, Issuer ID) và khoá App Store Connect API (.p8, Key ID, Issuer ID, Vendor number). Làm giống như đã làm cho MeowBreathe.
+2. Project settings → Apps → + New → **App Store**. Bundle ID `com.kmd.gentlewalk`. Tải lên khoá In-App Purchase (.p8, Key ID, Issuer ID). Khoá App Store Connect API (.p8, Key ID, Issuer ID, Vendor number) tải thêm nếu bạn đã có, không bắt buộc.
 3. Project settings → **API keys** → + New secret API key → **V2**, quyền đọc và ghi cấu hình project (apps, products, entitlements, offerings, packages). Lưu vào file trên máy bạn, **không dán vào chat**:
    ```bash
    mkdir -p ~/.config/revenuecat && printf '%s' 'DÁN_KHOÁ_sk_Ở_ĐÂY' > ~/.config/revenuecat/good-footing.key && chmod 600 ~/.config/revenuecat/good-footing.key
