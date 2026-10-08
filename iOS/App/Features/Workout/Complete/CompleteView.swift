@@ -161,7 +161,7 @@ struct SelfCheckInviteCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Want to see where you start?").typeRole(.cardTitle)
-            Text("Thirty seconds with your chair. Next time, you compare with yourself.").typeRole(.body)
+            Text("Thirty seconds with your chair. In two weeks, do it again and compare with yourself.").typeRole(.body)
             Button("Let's do it", action: onStart).buttonStyle(.secondaryAction)
             Button("Later", action: onLater).buttonStyle(.smallTextLink).frame(maxWidth: .infinity)
         }

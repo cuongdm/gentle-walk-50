@@ -26,7 +26,7 @@ Chưa thu kịp thì chuông vẫn kêu và màn hình hiện chữ (đồng h�
 ## 4. Câu đề xuất, chưa nối vào buổi tập (không build, không thu ở 1.0)
 Các câu sau chỉ là đề xuất cho bản sau; bản 1.0 nói những điều này bằng chữ trên màn hình (Hôm nay, Hoàn thành, Kế hoạch). Không có cột ID nên `build_content.py` bỏ qua.
 - Bắt đầu chương trình: "This is your 12-week plan. A little steadier each week, at your own pace."
-- Sang chặng 2 / 3 / 4: "Stage two: building strength. Same moves, a little more." · "Stage three: a gentle challenge. Go up only when it feels right." · "Stage four: your routine. Keep what feels good."
+- Sang giai đoạn 2 / 3 / 4: "Stage two: building strength. Same moves, a little more." · "Stage three: a gentle challenge. Go up only when it feels right." · "Stage four: your routine. Keep what feels good."
 - Lên số lần: "You did all of these twice in a row. Next time, a few more."
 - Hết 12 tuần: "Twelve weeks. Look how far you've come, at your own pace."
 

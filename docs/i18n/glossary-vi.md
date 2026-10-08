@@ -127,8 +127,14 @@ Tên riêng (địa danh, Central Park, Times Square, Camino de Santiago…) gi�
 | Tiếng Anh | Tiếng Việt | Ghi chú |
 |---|---|---|
 | Your 12-week plan | Kế hoạch 12 tuần của bạn | màn Kế hoạch |
-| Stage | Chặng | "Chặng 1 · Nền vững" |
-| Steady base / Building strength / Gentle challenge / Your routine | Nền vững / Thêm sức / Thử thách nhẹ / Thói quen của bạn | tên 4 chặng |
+| Stage | Giai đoạn | "Giai đoạn 1 · Nền vững". Không dùng "chặng": chữ đó thuộc hành trình (chặng miễn phí) |
+| Steady base / Building strength / Gentle challenge / Your routine | Nền vững / Khoẻ dần / Thử thách nhẹ / Thói quen của bạn | tên 4 giai đoạn |
+| Week N of 12 | Tuần N/12 | "of" → "/" như mọi chỗ khác |
+| Hands on the chair (mức vịn) | Mức vịn ghế | không viết "Tay vịn ghế" (đọc thành tay vịn của ghế) |
+| Fingertips on the chair | Đầu ngón tay đặt lên ghế | khớp lời HLV a11.hands.tips |
+| Let's do it (lời mời) | Thử ngay | |
+| Yes, with my hands / No, without my hands | Có chống tay / Không chống tay | |
+| See how far you've come | Xem bạn đã tiến bộ thế nào | không "đi được bao xa" (lẫn với số dặm hành trình) |
 | 2-week check | Tự kiểm tra 2 tuần | không dịch "test" thành "bài kiểm tra"; chỉ câu "Đây không phải bài kiểm tra y tế." dùng chữ đó |
 | This is not a medical test. | Đây không phải bài kiểm tra y tế. | nguyên văn, mọi màn tự kiểm tra |
 | You compare only with yourself. | Bạn chỉ so với chính mình. | nguyên văn |

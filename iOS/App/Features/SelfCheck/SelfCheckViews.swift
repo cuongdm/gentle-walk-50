@@ -204,7 +204,7 @@ struct SelfCheckCountView: View {
 
     @ViewBuilder private var handsOptions: some View {
         option(true, "Yes, with my hands")
-        option(false, "No")
+        option(false, "No, without my hands")
     }
 
     private func option(_ value: Bool, _ title: LocalizedStringResource) -> some View {

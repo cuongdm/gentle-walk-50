@@ -62,7 +62,13 @@ enum LevelUpText {
         for id in SupportLadder.exercises.sorted() {
             guard let after = supportAfter[id], after.pendingChange == .up,
                   after.level > (supportBefore[id]?.level ?? .twoHands), let name = name(id) else { continue }
-            return String(localized: "You held steady twice in a row. Next time: \(name), \(String(localized: after.level.label)).")
+            // One sentence per level: a label dropped mid-sentence read "…, One hand on the chair." (review 08/10).
+            switch after.level {
+            case .oneHand: return String(localized: "You held steady twice in a row. Next time: \(name) with one hand on the chair.")
+            case .fingertips:
+                return String(localized: "You held steady twice in a row. Next time: \(name) with just your fingertips on the chair.")
+            case .twoHands: continue
+            }
         }
         return nil
     }

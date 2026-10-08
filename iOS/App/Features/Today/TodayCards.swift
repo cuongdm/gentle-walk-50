@@ -309,7 +309,7 @@ struct SelfCheckCard: View {
                 Text("30 seconds of sit-to-stands. You compare only with yourself.").typeRole(.caption)
                     .foregroundStyle(Palette.textMuted)
             case .invite:
-                Text("Thirty seconds with your chair. Next time, you compare with yourself.").typeRole(.body)
+                Text("Thirty seconds with your chair. In two weeks, do it again and compare with yourself.").typeRole(.body)
                 HStack(spacing: Metrics.touchSpacing) {
                     Button("Let's do it", action: onStart).buttonStyle(PillButtonStyle(isSelected: true))
                     Button("Later", action: onLater).buttonStyle(.textLink)

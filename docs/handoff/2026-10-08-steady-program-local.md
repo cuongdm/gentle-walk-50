@@ -77,7 +77,7 @@ iOS/scripts/capture_states.sh /tmp/gf-steady "iPhone 17" today-program today-che
 Mỗi trạng thái: sáng, tối (`<state>@dark`), cỡ chữ lớn nhất (`<state>@xxl`), và một lượt trên máy ảo iPad. Script cài app từ `/tmp/gw-dd` (bản build mục 2). Kiểm bằng mắt và accessibility tree:
 - `today-program`: "Week 3 of 12", "Stage 1 · Steady base", "Plan ›"; thẻ tự kiểm tra một dòng "is in 12 days".
 - `today-check-due`: thẻ "Your 2-week check is ready" + "Start my check".
-- `program`: 4 chặng, chặng 1 viền xanh, 7 mốc (0, 2 … 12), dòng "general fitness".
+- `program`: 4 giai đoạn, giai đoạn 1 viền xanh, 7 mốc (0, 2 … 12), dòng "general fitness".
 - `selfcheck-intro`: 4 lời dặn, 3 bước, "This is not a medical test.", "I'm ready" / "Not today".
 - `selfcheck-timer`: đồng hồ đang đếm (bắt đầu lùi 20 s), "Stop early", "This hurts".
 - `selfcheck-count`: − / + 72 pt, số lớn, "Yes, with my hands" / "No", "Last time: 8", "Save".
@@ -95,7 +95,7 @@ Ghi đường dẫn ảnh và kết quả vào dòng **Evidence** của từng t
 - Thẻ mời tuần 0 hiện ở **mọi** màn Hoàn thành cho tới khi làm hoặc bấm "Later" (Later ẩn 2 ngày, sau đó Hôm nay hiện "ready").
 - Thẻ tự kiểm tra trên Hôm nay hiện cả khi còn xa ("is in 12 days", một dòng nhỏ) theo test của kế hoạch; nếu thấy chật, đổi `TodayModel.checkCard` để chỉ hiện khi ≤ 3 ngày.
 - Tiến bộ hiện mức vịn ở cường độ Steady (thẻ chỉ để xem, không phải mức của hôm nay).
-- "Sang chặng mới" chưa có dòng riêng ở màn Hoàn thành (chỉ thẻ Hôm nay đổi chặng); câu HLV cho chặng để ở mục đề xuất của A12.
+- "Sang giai đoạn mới" chưa có dòng riêng ở màn Hoàn thành (chỉ thẻ Hôm nay đổi giai đoạn); câu HLV cho giai đoạn để ở mục đề xuất của A12.
 - Bản privacy trong app (`PaywallLegalFooter`) chưa thêm câu tự kiểm tra; trang web đã có.
 
 ## 7. Việc của chủ app (không làm thay)
