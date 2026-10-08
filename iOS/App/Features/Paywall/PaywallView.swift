@@ -12,6 +12,8 @@ struct PaywallView: View {
     let onRestore: () -> Void
     let onMaybeLater: () -> Void
     @State private var showsPrivacy = false
+    /// An iPhone SE: the cancel note moves into the pinned footer (`onShortHeightChange`).
+    @State private var isShort = false
     @Environment(\.dynamicTypeSize) private var typeSize
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -21,49 +23,62 @@ struct PaywallView: View {
     private var pinsFooter: Bool { !typeSize.isAccessibilitySize }
 
     private var footer: some View {
-        PaywallLegalFooter(disclosure: model.disclosure, buttonTitle: model.buttonTitle,
+        PaywallLegalFooter(disclosure: model.disclosure, showsCancelNote: pinsFooter && isShort,
+                           buttonTitle: model.buttonTitle,
                            onContinue: { if let selected = model.selected { onPurchase(selected) } },
                            onMaybeLater: onMaybeLater, onRestore: onRestore, onPrivacy: { showsPrivacy = true })
     }
 
+    /// The end of the plan list: "See other plans" scrolls here, so the last plan and "Fewer plans" are
+    /// not left under the pinned footer on an iPhone SE (review A, 09/10/2026).
+    private static let plansEnd = "plans-end"
+
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 10) {
-                PaywallHeader(title: model.title, showsAllPlans: model.showsAllPlans, onClose: onMaybeLater)
-                if model.showsAllPlans {
-                    Text("Every plan unlocks the same things.").typeRole(.body).foregroundStyle(Palette.text)
-                        .padding(.top, -8)
-                } else if model.showsTrial {
-                    TrialTimelineView(reminderDate: model.reminderDateText, billingDate: model.billingDateText)
-                }
-                // Every card the same way: price beside the name when all of them fit so, otherwise under the
-                // name on every card, so the prices line up down the list (review A, 09/10/2026).
-                ViewThatFits(in: .horizontal) {
-                    planCards(stacksPrice: false)
-                    planCards(stacksPrice: true)
-                }
-                OtherPlansToggle(showsAll: model.showsAllPlans) { model.showsAllPlans.toggle() }
-                CancelNote()
-                if !pinsFooter { footer }
-            }
-            .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: model.showsAllPlans)
-            .padding(.horizontal, Metrics.screenMargin)
-            .padding(.top, 4)
-            .padding(.bottom, Metrics.screenMargin)
-            .readableColumn()
-        }
-        .scrollBounceBehavior(.basedOnSize)
-        .safeAreaInset(edge: .bottom) {
-            if pinsFooter {
-                footer
-                    .padding(.horizontal, Metrics.screenMargin)
-                    .padding(.top, 10)
-                    .readableColumn()
-                    .background {
-                        Rectangle().fill(Palette.bg.shadow(.drop(color: .black.opacity(0.08), radius: 8, y: -2))).ignoresSafeArea()
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 10) {
+                    PaywallHeader(title: model.title, showsAllPlans: model.showsAllPlans, onClose: onMaybeLater)
+                    if model.showsAllPlans {
+                        Text("Every plan unlocks the same things.").typeRole(.body).foregroundStyle(Palette.text)
+                            .padding(.top, -8)
+                    } else if model.showsTrial {
+                        TrialTimelineView(reminderDate: model.reminderDateText, billingDate: model.billingDateText)
                     }
+                    // Every card the same way: price beside the name when all of them fit so, otherwise under the
+                    // name on every card, so the prices line up down the list (review A, 09/10/2026).
+                    ViewThatFits(in: .horizontal) {
+                        planCards(stacksPrice: false)
+                        planCards(stacksPrice: true)
+                    }
+                    OtherPlansToggle(showsAll: model.showsAllPlans) { model.showsAllPlans.toggle() }
+                        .id(Self.plansEnd)
+                    if !(pinsFooter && isShort) { CancelNote() }
+                    if !pinsFooter { footer }
+                }
+                .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: model.showsAllPlans)
+                .padding(.horizontal, Metrics.screenMargin)
+                .padding(.top, 4)
+                .padding(.bottom, Metrics.screenMargin)
+                .readableColumn()
+            }
+            .scrollBounceBehavior(.basedOnSize)
+            .safeAreaInset(edge: .bottom) {
+                if pinsFooter {
+                    footer
+                        .padding(.horizontal, Metrics.screenMargin)
+                        .padding(.top, 10)
+                        .readableColumn()
+                        .background {
+                            Rectangle().fill(Palette.bg.shadow(.drop(color: .black.opacity(0.08), radius: 8, y: -2))).ignoresSafeArea()
+                        }
+                }
+            }
+            .onChange(of: model.showsAllPlans) { _, showsAll in
+                guard showsAll else { return }
+                withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.25)) { proxy.scrollTo(Self.plansEnd, anchor: .bottom) }
             }
         }
+        .onShortHeightChange { isShort = $0 }
         .screenBackground()
         .sheet(isPresented: $showsPrivacy) { PrivacyPolicyView() }
     }

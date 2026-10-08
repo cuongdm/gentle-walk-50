@@ -2,9 +2,11 @@ import SwiftUI
 
 /// Main button, the plain terms under it (two lines on an iPhone SE), then "Maybe later" and
 /// Restore · Terms · Privacy on one row of 56 pt targets (3.1.1, 3.1.2; plan 08/10/2026 task 1.5).
-/// The cancel note sits on the page, under the plans.
+/// The cancel note sits on the page, under the plans; on a short screen (iPhone SE) it comes here, under
+/// the terms, where it was otherwise below the fold (review A, 09/10/2026).
 struct PaywallLegalFooter: View {
     let disclosure: String
+    var showsCancelNote = false
     let buttonTitle: LocalizedStringResource
     let onContinue: () -> Void
     let onMaybeLater: () -> Void
@@ -21,6 +23,7 @@ struct PaywallLegalFooter: View {
                 .foregroundStyle(Palette.text)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
+            if showsCancelNote { CancelNote() }
             ViewThatFits(in: .horizontal) {
                 HStack(spacing: 0) { maybeLater; Spacer(minLength: 4); links }
                 VStack(spacing: 0) { maybeLater; links }

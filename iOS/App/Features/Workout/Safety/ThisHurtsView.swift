@@ -9,7 +9,8 @@ struct ThisHurtsView: View {
 
     var body: some View {
         ScrollView {
-            // 12 pt gaps: with 64 pt buttons the urgent-signs note stays on an iPhone SE (plan 08/10/2026).
+            // 12 pt gaps. The urgent-signs note sits right under the main button, above the links, so it is
+            // in view on an iPhone SE without scrolling (review C, 09/10/2026: it ran off the bottom there).
             VStack(alignment: .leading, spacing: 12) {
                 ScreenHeader(title: "Let's take care of that.")
                 Text("Where does it hurt? (optional)").typeRole(.cardTitle).foregroundStyle(Palette.text)
@@ -25,6 +26,7 @@ struct ThisHurtsView: View {
                     Task { onDone(await model.showEasier()) }
                 }
                 .buttonStyle(.primaryAction)
+                UrgentSignsNote()
                 VStack(spacing: 0) {
                     if model.canSkip {
                         Button(model.isWalk ? "Skip this part" : "Skip this move") { Task { onDone(await model.skipMove()) } }
@@ -40,7 +42,6 @@ struct ThisHurtsView: View {
                 Text("We'll remember this and adjust your plan. Today still counts.")
                     .typeRole(.body)
                     .foregroundStyle(Palette.text)
-                UrgentSignsNote()
             }
             .padding(Metrics.screenMargin)
             .readableColumn()
