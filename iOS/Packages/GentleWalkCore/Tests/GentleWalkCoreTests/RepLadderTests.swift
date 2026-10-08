@@ -90,4 +90,14 @@ import Testing
         #expect(RepLadder.today(sts, progress: top, intensity: .strong, limits: [], trend: .up) == RepStep(sets: 2, reps: 10))
         #expect(RepLadder.today(sts, progress: top, intensity: .steady, limits: [.dizzy], trend: .up) == RepStep(sets: 1, reps: 8))
     }
+
+    /// A hard week (P6) or a check down (P9): full sessions still count, no step up; trouble still lowers.
+    @Test func holdRaisesKeepsTheStep() {
+        let start = [sts: RepProgress(step: 1, fullSessions: 1)]
+        let held = RepLadder.update(start, done: [sts: 1], steady: [sts], troubled: [], holdRaises: true)
+        #expect(held[sts]?.step == 1 && held[sts]?.pendingChange == nil)
+        let down = RepLadder.update(start, done: [sts: 1], steady: [], troubled: [sts], holdRaises: true)
+        #expect(down[sts]?.step == 0)
+        #expect(RepLadder.update(held, done: [sts: 1], steady: [sts], troubled: [])[sts]?.step == 2)
+    }
 }

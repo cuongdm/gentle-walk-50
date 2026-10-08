@@ -79,9 +79,10 @@ public enum RepLadder {
     }
 
     /// After a session: `done` is the step each move was done at; `steady` moves were done in full,
-    /// `troubled` had This hurts or a Break.
+    /// `troubled` had This hurts or a Break. `holdRaises` (a hard week P6, a check down P9): full sessions
+    /// still count but no step up yet.
     public static func update(_ progress: [String: RepProgress], done: [String: Int], steady: Set<String>,
-                              troubled: Set<String>) -> [String: RepProgress] {
+                              troubled: Set<String>, holdRaises: Bool = false) -> [String: RepProgress] {
         var result = progress
         for id in exercises where steady.contains(id) || troubled.contains(id) {
             let top = steps(for: id).count - 1
@@ -95,7 +96,7 @@ public enum RepLadder {
                 if doneStep > entry.step { entry.step = doneStep; entry.fullSessions = 0 }
                 entry.fullSessions += 1
                 entry.pendingChange = nil
-                if entry.fullSessions >= sessionsToRaise, entry.step < top {
+                if !holdRaises, entry.fullSessions >= sessionsToRaise, entry.step < top {
                     entry.step += 1
                     entry.fullSessions = 0
                     entry.pendingChange = .up
