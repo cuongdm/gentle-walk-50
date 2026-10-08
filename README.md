@@ -2,7 +2,7 @@
 
 *Steadier on your feet, at your own pace.*
 
-App iPhone/iPad dẫn bài tập nhẹ tại nhà bằng giọng (đi bộ trong nhà, động tác ghế, giãn cơ, thăng bằng) cho phụ nữ Mỹ 58–75 mới tập hoặc quay lại. Tên store: "Good Footing: Gentle Workouts" (chốt 07/10/2026); mã nội bộ vẫn là `GentleWalk` / `com.kmd.gentlewalk`. Đã code xong MVP iOS (113 task, 29/09/2026); việc chủ app còn làm ở [docs/owner-todo-after-mvp.md](docs/owner-todo-after-mvp.md).
+App iPhone/iPad dẫn bài tập nhẹ tại nhà bằng giọng (đi bộ trong nhà, động tác ghế, giãn cơ, thăng bằng) cho phụ nữ Mỹ 58–75 mới tập hoặc quay lại. Tên store: "Good Footing: Gentle Workouts" (chốt 07/10/2026); mã nội bộ vẫn là `GentleWalk` / `com.kmd.goodfooting`. Đã code xong MVP iOS (113 task, 29/09/2026); việc chủ app còn làm ở [docs/owner-todo-after-mvp.md](docs/owner-todo-after-mvp.md).
 
 ## Cấu trúc thư mục
 | Thư mục | Là gì |

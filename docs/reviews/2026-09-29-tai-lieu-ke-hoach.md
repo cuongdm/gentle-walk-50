@@ -90,7 +90,7 @@ M11 [Plan] [Minor] plan 1.8 — `CFBundleDisplayName` = "Gentle Walk" trong khi 
     Bằng chứng: plan dòng 183; app-context Identity.
 
 ## 4. Cần tự kiểm trong App Store Connect / dịch vụ ngoài
-- [ ] ASC: 3 IAP `com.kmd.gentlewalk.pro.yearly` (intro offer 2 tuần), `.pro.monthly`, `.pro.lifetime` tạo và "Ready to Submit" trước bản 1.0 (plan 9.4).
+- [ ] ASC: 3 IAP `com.kmd.goodfooting.pro.yearly` (intro offer 2 tuần), `.pro.monthly`, `.pro.lifetime` tạo và "Ready to Submit" trước bản 1.0 (plan 9.4).
 - [ ] ASC: Support URL, Privacy Policy URL, EULA (chuẩn Apple hay riêng — STOP AND ASK 5.10).
 - [ ] ASC: bảng age rating trả lời theo 9.4; App Privacy "Data Not Collected" chỉ đúng khi không có gì rời máy — xác nhận HealthKit đọc/ghi trên máy không tính là thu thập (verify hướng dẫn hiện hành).
 - [ ] ElevenLabs: gói có giấy phép thương mại (Creator hoặc trả theo lượt — verify PAYG có kèm quyền thương mại), lưu hoá đơn; tạo lại toàn bộ giọng.

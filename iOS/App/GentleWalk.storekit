@@ -13,7 +13,7 @@
           "locale" : "en_US"
         }
       ],
-      "productID" : "com.kmd.gentlewalk.pro.lifetime",
+      "productID" : "com.kmd.goodfooting.pro.lifetime",
       "referenceName" : "Pro Lifetime",
       "type" : "NonConsumable"
     }
@@ -49,7 +49,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "com.kmd.gentlewalk.pro.yearly",
+          "productID" : "com.kmd.goodfooting.pro.yearly",
           "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "Pro Yearly",
           "subscriptionGroupID" : "6A0B2C11-0100-4000-8000-000000000100",
@@ -70,7 +70,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "com.kmd.gentlewalk.pro.monthly",
+          "productID" : "com.kmd.goodfooting.pro.monthly",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Pro Monthly",
           "subscriptionGroupID" : "6A0B2C11-0100-4000-8000-000000000100",

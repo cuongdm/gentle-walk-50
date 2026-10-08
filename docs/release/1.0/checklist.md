@@ -3,9 +3,9 @@ _Khung 29/09/2026. Người chịu trách nhiệm: **Chủ app** (App Store Conn
 
 ## 1. In-App Purchases (App Store Connect → Monetization)
 - [ ] **Chủ app** — Tạo nhóm subscription "Good Footing Pro" (một nhóm, 3.1.2(b)).
-- [ ] **Chủ app** — `com.kmd.gentlewalk.pro.yearly`: 1 năm, level 1, intro offer **Free trial 2 weeks**, giá **49,99 USD** (chốt 09/10/2026; file `.storekit` đã theo giá này).
-- [ ] **Chủ app** — `com.kmd.gentlewalk.pro.monthly`: 1 tháng, level 1 (đổi qua lại với yearly là crossgrade), giá **9,99 USD**.
-- [ ] **Chủ app** — `com.kmd.gentlewalk.pro.lifetime`: non-consumable, giá **99,99 USD**.
+- [ ] **Chủ app** — `com.kmd.goodfooting.pro.yearly`: 1 năm, level 1, intro offer **Free trial 2 weeks**, giá **49,99 USD** (chốt 09/10/2026; file `.storekit` đã theo giá này).
+- [ ] **Chủ app** — `com.kmd.goodfooting.pro.monthly`: 1 tháng, level 1 (đổi qua lại với yearly là crossgrade), giá **9,99 USD**.
+- [ ] **Chủ app** — `com.kmd.goodfooting.pro.lifetime`: non-consumable, giá **99,99 USD**.
 - [ ] **Chủ app** — RevenueCat (từ 09/10/2026): làm theo `docs/release/1.0/revenuecat-setup.md` (khoá In-App Purchase tải lên RevenueCat, entitlement `pro`, offering `default`), rồi đặt public SDK key vào `iOS/Config/Local.xcconfig`: `REVENUECAT_PUBLIC_KEY = appl_…` (mẫu ở `Local.xcconfig.example`). Thiếu khoá: app chạy ở bản miễn phí, paywall báo "Plans aren't available right now", cổng phát hành đỏ.
 - [ ] **Chủ app** — Tên hiển thị, mô tả, ảnh review cho từng IAP; gắn cả 3 IAP vào bản build nộp.
 - [ ] **Claude** — `StoreServiceTests` (lớp mua giả, không mạng), `StoreConfigTests` (file `App/GentleWalk.storekit`: 3 sản phẩm, giá, trial 2 tuần) và core `CustomerRulesTests` xanh.
