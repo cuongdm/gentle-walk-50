@@ -33,6 +33,7 @@ App iPhone/iPad dẫn bài tập nhẹ tại nhà bằng giọng (đi bộ trong
 - Permissions are requested at the moment of need, never at launch: Health and notifications after the first workout (S16), location in Outdoor prep (S10b), motion when "Held to my chest" is chosen.
 - Background modes only `audio` (spoken guidance) and `location` (outdoor route); entitlements only HealthKit. No other platform names in strings or metadata; no prices or invented numbers in copy; no medical claims (1.4.1).
 - Review prompts only through `ReviewPromptPolicy`, never from a button (5.6.1).
+- Steady program (plan `docs/plans/2026-10-08-steady-program.md`): promise "steadier on your feet / easier getting up from a chair" only; never "prevent falls", "fall risk", "build bone", "relieve pain" (`docs/design/steady-claims.md`, enforced by `copy_lint.py`). The 2-week self-check is self-counted, compared only with the user's own earlier checks done the same way (hands or not); no age norms, no risk labels, always "not a medical test". Program frame and self-check are free; earned reps (`RepLadder`) and support ladder are Pro.
 
 ## Chụp màn hình / test hooks
 - Single capture hook: launch argument `-ScreenshotMode <state>` under `#if DEBUG`, seeding `iOS/App/Debug/Fixtures/en-US.json` and the named screen state (list in the plan's Localization section). Never add a second convention; revert other temporary hooks before a stage ends.

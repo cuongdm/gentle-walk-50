@@ -62,6 +62,11 @@ Sang manh-skill-plan với asset hiện có (6 clip, A1, giọng prototype). Nh�
 - [x] ~~Chốt gói Flow không watermark~~ Chốt 29/09/2026: tạm dùng Flow Pro hiện tại cho clip giãn cơ, nâng gói sau. Hệ quả: trước khi nộp phải tạo lại hoặc xuất lại toàn bộ clip trên gói không watermark (plan 9.2); giữ nguyên prompt, ảnh khung và mốc cắt để làm lại nhanh; không tự xoá dấu ✦.
 - [ ] V3 bản dễ/khó, V4 ảnh khung tĩnh cho Reduce Motion và VoiceOver.
 
+## Chương trình vững chân (duyệt 08/10/2026)
+- [ ] Code theo [plans/2026-10-08-steady-program.md](plans/2026-10-08-steady-program.md): 45 task, 6 milestone; bắt đầu Task 1.1 (milestone 1–2 làm được trên cloud, 3–4 cần Mac).
+- [ ] Chủ app: duyệt kịch bản A12 (Task 5.1), thu giọng EN/VI qua Vibi (5.3).
+- [ ] Song song: test thông điệp quảng cáo "steadier / getting up from a chair" so với "less stiff" (báo cáo chọn ngách mục kiểm chứng).
+
 ## Tài liệu và repo
 - [ ] Chép tranh mẫu phong cách từ `Idea-Fitness/docs/ai-test/` vào `docs/design/reference/`.
 - [ ] Tên store: **07/10/2026 chủ app chốt Good Footing** ("Good Footing: Gentle Workouts", phụ đề "Chair Yoga, Walks & Stretches"), trước khi test người dùng và luật sư. Còn: hỏi người test (câu 5, để bắt rủi ro "nghe như app cho người già" hoặc "chăm sóc bàn chân") → luật sư nhãn hiệu Mỹ (cả dòng nguồn infographic) → nộp đơn, đăng ký `goodfooting.app` / `getgoodfooting.com`, giữ tên trên App Store Connect. Nếu trượt: đổi `AppBrand.name` và các file ở checklist đổi tên.
