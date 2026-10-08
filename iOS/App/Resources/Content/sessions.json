@@ -13779,6 +13779,1960 @@
       ]
     },
     {
+      "id": "ses.reps.mv.sit-to-stand.1x6",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 76,
+          "exerciseID": "mv.sit-to-stand",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v1.1"
+            },
+            {
+              "at": 5,
+              "line": "a4.v1.2",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 5,
+              "line": "a4.v1.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 10,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 14,
+              "line": "a4.v1.4",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 14,
+              "line": "a4.v1.var.joint-lean",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 21,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 25,
+              "line": "a4.v1.breath"
+            },
+            {
+              "at": 30,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 32,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 34,
+              "line": "a4.v1.3"
+            },
+            {
+              "at": 40,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 42,
+              "line": "a4.v1.top"
+            },
+            {
+              "at": 47,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 49,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 55,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 57,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 62,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 64,
+              "line": "a4.v1.8"
+            },
+            {
+              "at": 69,
+              "line": "a5.n.6"
+            }
+          ],
+          "reps": 6
+        }
+      ]
+    },
+    {
+      "id": "ses.reps.mv.sit-to-stand.1x8",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 91,
+          "exerciseID": "mv.sit-to-stand",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v1.1"
+            },
+            {
+              "at": 5,
+              "line": "a4.v1.2",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 5,
+              "line": "a4.v1.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 10,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 14,
+              "line": "a4.v1.4",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 14,
+              "line": "a4.v1.var.joint-lean",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 21,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 25,
+              "line": "a4.v1.breath"
+            },
+            {
+              "at": 30,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 32,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 34,
+              "line": "a4.v1.3"
+            },
+            {
+              "at": 40,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 42,
+              "line": "a4.v1.7",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 42,
+              "line": "a4.v1.6",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 48,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 50,
+              "line": "a4.v1.top"
+            },
+            {
+              "at": 55,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 57,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 63,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 65,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 70,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 77,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 79,
+              "line": "a4.v1.8"
+            },
+            {
+              "at": 84,
+              "line": "a5.n.8"
+            }
+          ],
+          "reps": 8
+        }
+      ]
+    },
+    {
+      "id": "ses.reps.mv.sit-to-stand.1x10",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 105,
+          "exerciseID": "mv.sit-to-stand",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v1.1"
+            },
+            {
+              "at": 5,
+              "line": "a4.v1.2",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 5,
+              "line": "a4.v1.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 10,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 14,
+              "line": "a4.v1.4",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 14,
+              "line": "a4.v1.var.joint-lean",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 21,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 25,
+              "line": "a4.v1.breath"
+            },
+            {
+              "at": 30,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 32,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 34,
+              "line": "a4.v1.3"
+            },
+            {
+              "at": 40,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 42,
+              "line": "a4.v1.7",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 42,
+              "line": "a4.v1.6",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 48,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 50,
+              "line": "a4.v1.top"
+            },
+            {
+              "at": 55,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 57,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 63,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 65,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 70,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 77,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 84,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 91,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 93,
+              "line": "a4.v1.8"
+            },
+            {
+              "at": 98,
+              "line": "a5.n.10"
+            }
+          ],
+          "reps": 10
+        }
+      ]
+    },
+    {
+      "id": "ses.reps.mv.sit-to-stand.2x8",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 207,
+          "exerciseID": "mv.sit-to-stand",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v1.1"
+            },
+            {
+              "at": 5,
+              "line": "a4.v1.2",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 5,
+              "line": "a4.v1.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 10,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 14,
+              "line": "a4.v1.4",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 14,
+              "line": "a4.v1.var.joint-lean",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 21,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 25,
+              "line": "a4.v1.breath"
+            },
+            {
+              "at": 30,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 32,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 34,
+              "line": "a4.v1.3"
+            },
+            {
+              "at": 40,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 42,
+              "line": "a4.v1.7",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 42,
+              "line": "a4.v1.6",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 48,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 50,
+              "line": "a4.v1.top"
+            },
+            {
+              "at": 55,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 57,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 63,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 65,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 70,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 77,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 79,
+              "line": "a5.last"
+            },
+            {
+              "at": 84,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 91,
+              "line": "a4.v1.rest"
+            },
+            {
+              "at": 145,
+              "line": "a4.v1.set2"
+            },
+            {
+              "at": 151,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 158,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 165,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 172,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 179,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 186,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 193,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 195,
+              "line": "a4.v1.8"
+            },
+            {
+              "at": 200,
+              "line": "a5.n.8"
+            }
+          ],
+          "reps": 8,
+          "sets": 2
+        }
+      ]
+    },
+    {
+      "id": "ses.reps.mv.sit-to-stand.2x10",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 235,
+          "exerciseID": "mv.sit-to-stand",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.v1.1"
+            },
+            {
+              "at": 5,
+              "line": "a4.v1.2",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 5,
+              "line": "a4.v1.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 10,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 14,
+              "line": "a4.v1.4",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 14,
+              "line": "a4.v1.var.joint-lean",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 21,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 25,
+              "line": "a4.v1.breath"
+            },
+            {
+              "at": 30,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 32,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 34,
+              "line": "a4.v1.3"
+            },
+            {
+              "at": 40,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 42,
+              "line": "a4.v1.7",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 42,
+              "line": "a4.v1.6",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 48,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 50,
+              "line": "a4.v1.top"
+            },
+            {
+              "at": 55,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 57,
+              "line": "a4.v1.5"
+            },
+            {
+              "at": 63,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 65,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 70,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 77,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 84,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 91,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 93,
+              "line": "a5.last"
+            },
+            {
+              "at": 98,
+              "line": "a5.n.10"
+            },
+            {
+              "at": 105,
+              "line": "a4.v1.rest"
+            },
+            {
+              "at": 159,
+              "line": "a4.v1.set2"
+            },
+            {
+              "at": 165,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 172,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 179,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 186,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 193,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 200,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 207,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 214,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 221,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 223,
+              "line": "a4.v1.8"
+            },
+            {
+              "at": 228,
+              "line": "a5.n.10"
+            }
+          ],
+          "reps": 10,
+          "sets": 2
+        }
+      ]
+    },
+    {
+      "id": "ses.reps.mv.mini-squat.1x8",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 85,
+          "exerciseID": "mv.mini-squat",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.mini-squat.intro"
+            },
+            {
+              "at": 5,
+              "line": "a4.mini-squat.setup.1"
+            },
+            {
+              "at": 10,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 14,
+              "line": "a4.mini-squat.demo.1"
+            },
+            {
+              "at": 20,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 24,
+              "line": "a4.mini-squat.breath"
+            },
+            {
+              "at": 29,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 31,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 33,
+              "line": "a4.mini-squat.easier",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 33,
+              "line": "a4.mini-squat.var.knees.1",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 38,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 40,
+              "line": "a4.mini-squat.form.1",
+              "notFor": [
+                "knees"
+              ]
+            },
+            {
+              "at": 40,
+              "line": "a4.mini-squat.var.knees.2",
+              "onlyFor": [
+                "knees"
+              ]
+            },
+            {
+              "at": 44,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 46,
+              "line": "a4.mini-squat.form.2"
+            },
+            {
+              "at": 50,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 52,
+              "line": "a4.slow.2"
+            },
+            {
+              "at": 56,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 62,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 68,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 70,
+              "line": "a5.last"
+            },
+            {
+              "at": 74,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 80,
+              "line": "a4.mini-squat.done"
+            }
+          ],
+          "reps": 8
+        }
+      ]
+    },
+    {
+      "id": "ses.reps.mv.mini-squat.1x10",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 98,
+          "exerciseID": "mv.mini-squat",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.mini-squat.intro"
+            },
+            {
+              "at": 5,
+              "line": "a4.mini-squat.setup.1"
+            },
+            {
+              "at": 10,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 14,
+              "line": "a4.mini-squat.demo.1"
+            },
+            {
+              "at": 20,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 24,
+              "line": "a4.mini-squat.breath"
+            },
+            {
+              "at": 29,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 31,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 33,
+              "line": "a4.mini-squat.easier",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 33,
+              "line": "a4.mini-squat.var.knees.1",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 38,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 40,
+              "line": "a4.mini-squat.harder",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 40,
+              "line": "a4.mini-squat.form.2",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 45,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 47,
+              "line": "a4.mini-squat.form.1",
+              "notFor": [
+                "knees"
+              ]
+            },
+            {
+              "at": 47,
+              "line": "a4.mini-squat.var.knees.2",
+              "onlyFor": [
+                "knees"
+              ]
+            },
+            {
+              "at": 51,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 53,
+              "line": "a4.mini-squat.form.2"
+            },
+            {
+              "at": 57,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 59,
+              "line": "a4.slow.2"
+            },
+            {
+              "at": 63,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 69,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 75,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 81,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 83,
+              "line": "a5.last"
+            },
+            {
+              "at": 87,
+              "line": "a5.n.10"
+            },
+            {
+              "at": 93,
+              "line": "a4.mini-squat.done"
+            }
+          ],
+          "reps": 10
+        }
+      ]
+    },
+    {
+      "id": "ses.reps.mv.mini-squat.1x12",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 110,
+          "exerciseID": "mv.mini-squat",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.mini-squat.intro"
+            },
+            {
+              "at": 5,
+              "line": "a4.mini-squat.setup.1"
+            },
+            {
+              "at": 10,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 14,
+              "line": "a4.mini-squat.demo.1"
+            },
+            {
+              "at": 20,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 24,
+              "line": "a4.mini-squat.breath"
+            },
+            {
+              "at": 29,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 31,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 33,
+              "line": "a4.mini-squat.easier",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 33,
+              "line": "a4.mini-squat.var.knees.1",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 38,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 40,
+              "line": "a4.mini-squat.harder",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 40,
+              "line": "a4.mini-squat.form.2",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 45,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 47,
+              "line": "a4.mini-squat.form.1",
+              "notFor": [
+                "knees"
+              ]
+            },
+            {
+              "at": 47,
+              "line": "a4.mini-squat.var.knees.2",
+              "onlyFor": [
+                "knees"
+              ]
+            },
+            {
+              "at": 51,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 53,
+              "line": "a4.mini-squat.form.2"
+            },
+            {
+              "at": 57,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 59,
+              "line": "a4.slow.2"
+            },
+            {
+              "at": 63,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 69,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 75,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 81,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 87,
+              "line": "a5.n.10"
+            },
+            {
+              "at": 93,
+              "line": "a5.n.11"
+            },
+            {
+              "at": 95,
+              "line": "a5.last"
+            },
+            {
+              "at": 99,
+              "line": "a5.n.12"
+            },
+            {
+              "at": 105,
+              "line": "a4.mini-squat.done"
+            }
+          ],
+          "reps": 12
+        }
+      ]
+    },
+    {
+      "id": "ses.reps.mv.mini-squat.2x10",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 218,
+          "exerciseID": "mv.mini-squat",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.mini-squat.intro"
+            },
+            {
+              "at": 5,
+              "line": "a4.mini-squat.setup.1"
+            },
+            {
+              "at": 10,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 14,
+              "line": "a4.mini-squat.demo.1"
+            },
+            {
+              "at": 20,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 24,
+              "line": "a4.mini-squat.breath"
+            },
+            {
+              "at": 29,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 31,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 33,
+              "line": "a4.mini-squat.easier",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 33,
+              "line": "a4.mini-squat.var.knees.1",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 38,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 40,
+              "line": "a4.mini-squat.harder",
+              "notFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 40,
+              "line": "a4.mini-squat.form.2",
+              "onlyFor": [
+                "knees",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 45,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 47,
+              "line": "a4.mini-squat.form.1",
+              "notFor": [
+                "knees"
+              ]
+            },
+            {
+              "at": 47,
+              "line": "a4.mini-squat.var.knees.2",
+              "onlyFor": [
+                "knees"
+              ]
+            },
+            {
+              "at": 51,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 53,
+              "line": "a4.mini-squat.form.2"
+            },
+            {
+              "at": 57,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 59,
+              "line": "a4.slow.2"
+            },
+            {
+              "at": 63,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 69,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 75,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 81,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 83,
+              "line": "a5.last"
+            },
+            {
+              "at": 87,
+              "line": "a5.n.10"
+            },
+            {
+              "at": 93,
+              "line": "a4.v1.rest"
+            },
+            {
+              "at": 147,
+              "line": "a4.v1.set2"
+            },
+            {
+              "at": 153,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 159,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 165,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 171,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 177,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 183,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 189,
+              "line": "a5.n.7"
+            },
+            {
+              "at": 195,
+              "line": "a5.n.8"
+            },
+            {
+              "at": 201,
+              "line": "a5.n.9"
+            },
+            {
+              "at": 203,
+              "line": "a5.last"
+            },
+            {
+              "at": 207,
+              "line": "a5.n.10"
+            },
+            {
+              "at": 213,
+              "line": "a4.mini-squat.done"
+            }
+          ],
+          "reps": 10,
+          "sets": 2
+        }
+      ]
+    },
+    {
+      "id": "ses.reps.mv.side-leg.1x8",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 95,
+          "exerciseID": "mv.side-leg",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.side-leg.intro"
+            },
+            {
+              "at": 6,
+              "line": "a4.stand.setup"
+            },
+            {
+              "at": 11,
+              "line": "a4.side-leg.setup.1"
+            },
+            {
+              "at": 15,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 19,
+              "line": "a4.side-leg.demo.1"
+            },
+            {
+              "at": 26,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 30,
+              "line": "a4.side-leg.breath"
+            },
+            {
+              "at": 35,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 37,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 39,
+              "line": "a4.side-leg.easier",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 39,
+              "line": "a4.side-leg.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 44,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 46,
+              "line": "a4.side-leg.form.1"
+            },
+            {
+              "at": 50,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 56,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 62,
+              "line": "a5.side"
+            },
+            {
+              "at": 66,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 68,
+              "line": "a4.side-leg.form.2"
+            },
+            {
+              "at": 72,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 74,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 78,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 80,
+              "line": "a5.last"
+            },
+            {
+              "at": 84,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 90,
+              "line": "a4.side-leg.done"
+            }
+          ],
+          "reps": 8
+        }
+      ]
+    },
+    {
+      "id": "ses.reps.mv.side-leg.1x10",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 107,
+          "exerciseID": "mv.side-leg",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.side-leg.intro"
+            },
+            {
+              "at": 6,
+              "line": "a4.stand.setup"
+            },
+            {
+              "at": 11,
+              "line": "a4.side-leg.setup.1"
+            },
+            {
+              "at": 15,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 19,
+              "line": "a4.side-leg.demo.1"
+            },
+            {
+              "at": 26,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 30,
+              "line": "a4.side-leg.breath"
+            },
+            {
+              "at": 35,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 37,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 39,
+              "line": "a4.side-leg.easier",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 39,
+              "line": "a4.side-leg.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 44,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 46,
+              "line": "a4.side-leg.harder",
+              "notFor": [
+                "dizzy",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 46,
+              "line": "a4.side-leg.form.2",
+              "onlyFor": [
+                "dizzy",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 50,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 52,
+              "line": "a4.side-leg.form.1"
+            },
+            {
+              "at": 56,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 62,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 68,
+              "line": "a5.side"
+            },
+            {
+              "at": 72,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 74,
+              "line": "a4.side-leg.form.2"
+            },
+            {
+              "at": 78,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 80,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 84,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 90,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 92,
+              "line": "a5.last"
+            },
+            {
+              "at": 96,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 102,
+              "line": "a4.side-leg.done"
+            }
+          ],
+          "reps": 10
+        }
+      ]
+    },
+    {
+      "id": "ses.reps.mv.side-leg.1x12",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 119,
+          "exerciseID": "mv.side-leg",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.side-leg.intro"
+            },
+            {
+              "at": 6,
+              "line": "a4.stand.setup"
+            },
+            {
+              "at": 11,
+              "line": "a4.side-leg.setup.1"
+            },
+            {
+              "at": 15,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 19,
+              "line": "a4.side-leg.demo.1"
+            },
+            {
+              "at": 26,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 30,
+              "line": "a4.side-leg.breath"
+            },
+            {
+              "at": 35,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 37,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 39,
+              "line": "a4.side-leg.easier",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 39,
+              "line": "a4.side-leg.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 44,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 46,
+              "line": "a4.side-leg.harder",
+              "notFor": [
+                "dizzy",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 46,
+              "line": "a4.side-leg.form.2",
+              "onlyFor": [
+                "dizzy",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 50,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 52,
+              "line": "a4.side-leg.form.1"
+            },
+            {
+              "at": 56,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 58,
+              "line": "a4.side-leg.form.2"
+            },
+            {
+              "at": 62,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 68,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 74,
+              "line": "a5.side"
+            },
+            {
+              "at": 78,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 80,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 84,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 90,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 96,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 102,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 104,
+              "line": "a5.last"
+            },
+            {
+              "at": 108,
+              "line": "a5.n.6"
+            },
+            {
+              "at": 114,
+              "line": "a4.side-leg.done"
+            }
+          ],
+          "reps": 12
+        }
+      ]
+    },
+    {
+      "id": "ses.reps.mv.side-leg.2x10",
+      "kind": "chair",
+      "segments": [
+        {
+          "kind": "move",
+          "seconds": 231,
+          "exerciseID": "mv.side-leg",
+          "cues": [
+            {
+              "at": 0,
+              "line": "a4.side-leg.intro"
+            },
+            {
+              "at": 6,
+              "line": "a4.stand.setup"
+            },
+            {
+              "at": 11,
+              "line": "a4.side-leg.setup.1"
+            },
+            {
+              "at": 15,
+              "line": "a4.demo.1"
+            },
+            {
+              "at": 19,
+              "line": "a4.side-leg.demo.1"
+            },
+            {
+              "at": 26,
+              "line": "a4.with-me.1"
+            },
+            {
+              "at": 30,
+              "line": "a4.side-leg.breath"
+            },
+            {
+              "at": 35,
+              "line": "a4.count.1"
+            },
+            {
+              "at": 37,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 39,
+              "line": "a4.side-leg.easier",
+              "notFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 39,
+              "line": "a4.side-leg.var.joint",
+              "onlyFor": [
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 44,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 46,
+              "line": "a4.side-leg.harder",
+              "notFor": [
+                "dizzy",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 46,
+              "line": "a4.side-leg.form.2",
+              "onlyFor": [
+                "dizzy",
+                "jointReplacement"
+              ]
+            },
+            {
+              "at": 50,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 52,
+              "line": "a4.side-leg.form.1"
+            },
+            {
+              "at": 56,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 62,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 68,
+              "line": "a5.side"
+            },
+            {
+              "at": 72,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 74,
+              "line": "a4.side-leg.form.2"
+            },
+            {
+              "at": 78,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 80,
+              "line": "a4.slow.1"
+            },
+            {
+              "at": 84,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 90,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 92,
+              "line": "a5.last"
+            },
+            {
+              "at": 96,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 102,
+              "line": "a4.v1.rest"
+            },
+            {
+              "at": 156,
+              "line": "a4.v1.set2"
+            },
+            {
+              "at": 162,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 168,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 174,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 180,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 186,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 192,
+              "line": "a5.side"
+            },
+            {
+              "at": 196,
+              "line": "a5.n.1"
+            },
+            {
+              "at": 202,
+              "line": "a5.n.2"
+            },
+            {
+              "at": 208,
+              "line": "a5.n.3"
+            },
+            {
+              "at": 214,
+              "line": "a5.n.4"
+            },
+            {
+              "at": 216,
+              "line": "a5.last"
+            },
+            {
+              "at": 220,
+              "line": "a5.n.5"
+            },
+            {
+              "at": 226,
+              "line": "a4.side-leg.done"
+            }
+          ],
+          "reps": 10,
+          "sets": 2
+        }
+      ]
+    },
+    {
       "id": "ses.stretch.seated.gentle",
       "kind": "stretch",
       "level": "seated",

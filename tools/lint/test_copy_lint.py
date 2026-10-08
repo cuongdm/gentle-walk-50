@@ -37,6 +37,17 @@ class FindTests(unittest.TestCase):
         texts = [("x", "A gentle walk at your pace. Stretch to a gentle pull, never to pain.")]
         self.assertEqual(cl.find(texts, self.terms), [])
 
+    def test_flags_fall_prevention_claims(self):
+        # Steady program claims list (docs/design/steady-claims.md): no fall, bone or pain promises.
+        claims = ["Fall prevention made gentle.", "Lower your fall risk.", "This builds bone.",
+                  "Build bone density at home.", "Relieves knee pain.", "Fast pain relief."]
+        findings = cl.find([(str(i), text) for i, text in enumerate(claims)], self.terms)
+        self.assertEqual(sorted({f[0] for f in findings}), [str(i) for i in range(len(claims))])
+
+    def test_doctor_reminder_about_a_fall_is_allowed(self):
+        line = "Had a fall recently, or fainted or felt dizzy in the past year? Check with your doctor first."
+        self.assertEqual(cl.find([("s06", line)], self.terms), [])
+
     def test_whole_words_only(self):
         # "fat" must not match "fatigue", "burn" must not match "Burnham"
         self.assertEqual(cl.find([("y", "Fatigue is normal. Walk past Burnham Park.")], self.terms), [])

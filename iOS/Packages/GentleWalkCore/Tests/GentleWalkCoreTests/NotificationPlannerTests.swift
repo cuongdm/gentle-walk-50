@@ -21,6 +21,40 @@ import Testing
         NotificationPlanner.plan(input: input, now: now, days: 7)
     }
 
+    // Steady program 2.11: the 2-week self-check reminder.
+    @Test func selfCheckReminderOnDueDay() {
+        var due = input(now: at(5, 10), workouts: [at(5, 10, 6)])
+        due.selfCheckDue = at(7, 10)
+        let checks = plan(due, now: at(5, 10)).filter { $0.kind == .selfCheck }
+        #expect(checks.count == 1)
+        #expect(checks.first.map { cal.isDate($0.fireDate, inSameDayAs: at(7, 10)) } == true)
+        #expect(checks.first.map { cal.component(.hour, from: $0.fireDate) } == 8)
+    }
+
+    @Test func selfCheckNeverDoublesUp() {
+        // Wednesday Oct 7 also gets a walk reminder: one notification that day, the self-check.
+        var due = input(now: at(5, 10), workouts: [at(5, 10, 6)])
+        due.selfCheckDue = at(7, 10)
+        let onDueDay = plan(due, now: at(5, 10)).filter { cal.isDate($0.fireDate, inSameDayAs: at(7, 10)) }
+        #expect(onDueDay.map(\.kind) == [.selfCheck])
+    }
+
+    @Test func selfCheckRespectsSetting() {
+        var settings = NotificationSettings()
+        settings.selfCheckReminders = false
+        var due = input(now: at(5, 10), workouts: [at(5, 10, 6)], settings: settings)
+        due.selfCheckDue = at(7, 10)
+        #expect(!plan(due, now: at(5, 10)).contains { $0.kind == .selfCheck })
+    }
+
+    /// Settings saved before the self-check switch existed still decode, with the switch on.
+    @Test func oldSettingsWithoutSelfCheckStillDecode() throws {
+        let old = #"{"walkReminders":false,"journeyMilestones":true,"weeklyRecap":true,"newJourneys":false}"#
+        let settings = try JSONDecoder().decode(NotificationSettings.self, from: Data(old.utf8))
+        #expect(settings.walkReminders == false)
+        #expect(settings.selfCheckReminders == true)
+    }
+
     // 7.1
     @Test func remindsAtChosenMomentOnPlannedDays() {
         // Sunday Sep 27, 7 AM, before the first walk: a reminder every planned day.

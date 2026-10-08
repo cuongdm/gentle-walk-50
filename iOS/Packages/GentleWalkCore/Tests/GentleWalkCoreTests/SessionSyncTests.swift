@@ -60,6 +60,21 @@ import Testing
                 }
             }
         }
+        // Pro chair days at every rep ladder step (steady program 2.7a): the pre-built counts stay in time too.
+        let chair = PlannedDay(main: .chair, chairMoves: 0, cooldown: true)
+        let deepest = RepLadder.exercises.map { RepLadder.steps(for: $0).count }.max() ?? 0
+        for step in 0..<deepest {
+            let reps = Dictionary(uniqueKeysWithValues: RepLadder.exercises.map { id in
+                let steps = RepLadder.steps(for: id)
+                return (id, steps[min(step, steps.count - 1)])
+            })
+            for rotation in 0..<2 {
+                if let plan = try? SessionBuilder.build(kind: chair, level: .seated, intensity: .strong, limits: [],
+                                                         rotationIndex: rotation, content: content, reps: reps) {
+                    out.append(("chair strong reps step \(step) r\(rotation)", plan))
+                }
+            }
+        }
         for intensity in Intensity.allCases {
             let balance = PlannedDay(main: .chair, chairMoves: 0, cooldown: false)
             for limits in limitSets {

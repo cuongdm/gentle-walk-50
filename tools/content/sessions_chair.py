@@ -98,11 +98,12 @@ ORDER = ["mv.sit-to-stand", "mv.knee-lift", "mv.leg-ext", "mv.heel-toe", "mv.wal
          "mv.side-leg", "mv.back-leg", "mv.knee-curl", "mv.mini-squat", "mv.arm-raise", "mv.row"]
 
 
-def rep_move(voice, mid, intensity, k):
+def rep_move(voice, mid, intensity, k, reps=None, sets=None):
+    """A counted move; `reps`/`sets` override the intensity's amount (rep ladder steps)."""
     d = REP_MOVES[mid]
     sts = mid == "mv.sit-to-stand"
-    reps = (STS_REPS if sts else REPS)[intensity]
-    sets = STS_SETS[intensity] if sts else 1
+    reps = reps or (STS_REPS if sts else REPS)[intensity]
+    sets = sets or (STS_SETS[intensity] if sts else 1)
     tempo = STS_TEMPO if sts else TEMPO
     s = Seg("move", mid, reps=reps, sets=sets if sets > 1 else None)
     s.line(d["intro"], at=0)
@@ -169,6 +170,27 @@ def library(voice, intensity):
     for k, mid in enumerate(ORDER):
         segments.append(rep_move(voice, mid, intensity, k) if mid in REP_MOVES else timed_move(voice, mid, intensity, k))
     return template("ses.moves.%s" % intensity, "chair", segments)
+
+
+# Rep ladder steps (steady program, owner 08/10/2026); keep equal to RepLadder.steps(for:) in GentleWalkCore.
+REP_STEPS = {
+    "mv.sit-to-stand": [(1, 6), (1, 8), (1, 10), (2, 8), (2, 10)],
+    "mv.mini-squat": [(1, 8), (1, 10), (1, 12), (2, 10)],
+    "mv.side-leg": [(1, 8), (1, 10), (1, 12), (2, 10)],
+}
+
+
+def rep_variants(voice):
+    """One template per rep ladder step, the move alone with the coach's counts: ses.reps.<id>.<sets>x<reps>.
+    The first step speaks like a gentle day, the others like a steady day (they add the harder version)."""
+    out = []
+    for mid, steps in REP_STEPS.items():
+        k = ORDER.index(mid)
+        for index, (sets, reps) in enumerate(steps):
+            intensity = "gentle" if index == 0 else "steady"
+            seg = rep_move(voice, mid, intensity, k, reps=reps, sets=sets)
+            out.append(template("ses.reps.%s.%dx%d" % (mid, sets, reps), "chair", [seg]))
+    return out
 
 
 def opening(voice, intensity):
@@ -418,4 +440,5 @@ def templates(voice):
     out += [balance(voice, i) for i in INTENSITIES]
     out += [steady_set(voice, i, v) for i in INTENSITIES for v in ("a", "b")]
     out.append(steady_set_seated(voice))
+    out += rep_variants(voice)
     return out

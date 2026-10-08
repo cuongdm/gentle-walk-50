@@ -210,6 +210,29 @@ import Testing
         #expect(sts.cues.contains { $0.line == "a4.v1.rest" } && sts.cues.contains { $0.line == "a4.v1.set2" })
     }
 
+    // Steady program 2.7: Pro uses the reps she has earned (RepLadder.today), free keeps the day's own.
+    @Test func proChairDayUsesEarnedReps() throws {
+        let earned = ["mv.sit-to-stand": RepStep(sets: 2, reps: 10), "mv.side-leg": RepStep(sets: 2, reps: 10)]
+        let plan = try SessionBuilder.build(kind: chairDay, level: .seated, intensity: .strong, limits: [], rotationIndex: 0,
+                                            content: content, reps: earned)
+        let sts = try #require(plan.segments.first { $0.exerciseID == "mv.sit-to-stand" })
+        #expect(sts.reps == 10 && sts.sets == 2)
+        // The next move is standing, so she is still told to stay standing after the last rep.
+        #expect(sts.cues.contains { $0.line == "a4.to-stand.sts" })
+        let side = try #require(plan.segments.first { $0.exerciseID == "mv.side-leg" })
+        #expect(side.reps == 10 && side.sets == 2)
+        let squat = try #require(plan.segments.first { $0.exerciseID == "mv.mini-squat" })
+        #expect(squat.reps == 12)
+    }
+
+    @Test func freeChairDayUsesIntensityDefaults() throws {
+        let plan = try build(chairDay, .seated, .strong)
+        let sts = try #require(plan.segments.first { $0.exerciseID == "mv.sit-to-stand" })
+        #expect(sts.reps == 8 && sts.sets == 2)
+        let side = try #require(plan.segments.first { $0.exerciseID == "mv.side-leg" })
+        #expect(side.reps == 12 && side.sets == nil)
+    }
+
     @Test func easierVersionsFollowBodyLimits() throws {
         let plan = try build(chairDay, .seated, .steady, limits: [.knees])
         #expect(plan.easierExerciseIDs.contains("mv.sit-to-stand"))

@@ -62,7 +62,7 @@ Ghi chú môi trường: `CORE`, `L10N`, `PY` chạy được trên cloud (Linux
 | # | Tên | Task | Bằng chứng cuối |
 |---|---|---|---|
 | 1 | Tuân thủ và luật câu chữ | 1.1–1.4 | lint xanh, file claims, manifest không đổi |
-| 2 | Logic chương trình (core, TDD) | 2.1–2.12 | `swift test` xanh toàn bộ (cloud + Mac) |
+| 2 | Logic chương trình (core, TDD) | 2.1–2.12 (+2.7a) | `swift test` xanh toàn bộ (cloud + Mac) |
 | 3 | Dữ liệu SchemaV2 | 3.1–3.4 | migration V1→V2 giữ nguyên số dòng; Xoá dữ liệu xoá cả bảng mới |
 | 4 | Giao diện | 4.1–4.15 | ảnh chụp mọi trạng thái mới (danh sách cuối file), sáng/tối, cỡ chữ lớn, iPad |
 | 5 | Nội dung, giọng, ngôn ngữ | 5.1–5.6 | `L10N` xanh; `ReleaseContentTests` xanh; QC giọng |
@@ -80,7 +80,7 @@ Ghi chú môi trường: `CORE`, `L10N`, `PY` chạy được trên cloud (Linux
 3. Thêm các mẫu vào danh sách cấm (chỉ cụm từ, không cấm chữ "fall" đơn lẻ).
 4. Chạy lại cả lint trên repo.
 **Command:** `PY tools/lint/test_copy_lint.py` → expected: `OK`; `python3 tools/lint/copy_lint.py` → `0 findings`
-**Evidence:**
+**Evidence:** DONE 08/10 — RED `FAIL: test_flags_fall_prevention_claims` → GREEN `Ran 7 tests … OK`; `copy_lint.py` → `0 findings`
 **Commit point:** `test(lint): ban fall-prevention and treatment claims`
 
 ### Task 1.2 — Bảng câu được nói / không được nói (1.4.1) [DATA]
@@ -89,7 +89,7 @@ Ghi chú môi trường: `CORE`, `L10N`, `PY` chạy được trên cloud (Linux
 1. Hai cột "Được nói" (steadier, stronger legs, get up from a chair more easily, at your own pace, compared only with yourself) / "Không nói" (prevent falls, fall risk, reduce falls, build bone, treat/relieve pain, below normal for your age), mỗi dòng ghi nguồn trong `reports/Chọn ngách cho Good Footing.md` hoặc `research_notes/…/feasibility_risk_codefit.md`.
 2. Ghi rõ: chưa có luật sư duyệt; đưa luật sư nhãn hiệu xem cùng tên app.
 **Command:** `grep -c "|" docs/design/steady-claims.md` → expected: ≥ 12 dòng bảng
-**Evidence:**
+**Evidence:** DONE 08/10 — `docs/design/steady-claims.md`: 10 dòng bảng + câu cố định; nguồn: báo cáo mục 7, feasibility notes
 **Commit point:** `docs(design): steady program claims list`
 
 ### Task 1.3 — Văn bản minh bạch của tự kiểm tra (1.4.1) [DATA]
@@ -98,7 +98,7 @@ Ghi chú môi trường: `CORE`, `L10N`, `PY` chạy được trên cloud (Linux
 1. Viết 3 câu cố định: "This is not a medical test." · "You compare only with yourself." · "Stop if anything hurts or you feel dizzy." (EN) kèm bản VI theo `docs/i18n/glossary-vi.md`.
 2. Ghi vào D-min-texts mục Self-check để Task 4.6 dùng nguyên văn.
 **Command:** `python3 tools/lint/copy_lint.py` → expected: `0 findings`
-**Evidence:**
+**Evidence:** DONE 08/10 — 3 câu EN/VI trong `steady-claims.md` và `D-min-texts.md` §D10; lint `0 findings`
 **Commit point:** `docs(copy): self-check transparency lines`
 
 ### Task 1.4 — Privacy manifest không đổi (5.1.1) [DATA]
@@ -107,7 +107,7 @@ Ghi chú môi trường: `CORE`, `L10N`, `PY` chạy được trên cloud (Linux
 1. Xác nhận các API mới (SwiftData, UserDefaults cho `RepLadderStore`, AVFoundation) không thêm required-reason mới ngoài `CA92.1` đã có.
 2. Ghi một dòng bằng chứng (trích manifest) vào kế hoạch.
 **Command:** `grep -n "CA92.1" iOS/App/PrivacyInfo.xcprivacy` → expected: 1 dòng
-**Evidence:**
+**Evidence:** DONE 08/10 — `PrivacyInfo.xcprivacy:18` `CA92.1` (UserDefaults) đã có; không API required-reason mới, file không đổi
 **Commit point:** — (không đổi file)
 
 ### Milestone 2 — Logic chương trình (GentleWalkCore, TDD)
@@ -120,7 +120,7 @@ Ghi chú môi trường: `CORE`, `L10N`, `PY` chạy được trên cloud (Linux
 3. Implement `public enum ProgramStage: Int, CaseIterable { case base = 1, build, challenge, routine }` và `public enum ProgramCalendar { static func position(start: Date, on: Date, pausedDays: Int, calendar: Calendar) -> ProgramPosition }` với `ProgramPosition { case week(Int, ProgramStage), finished }`; chặng = tuần 1–3, 4–6, 7–9, 10–12.
 4. Chạy → GREEN.
 **Command:** `CORE ProgramCalendarTests` → expected: `Test weekAndStageFromStartDate() passed`
-**Evidence:**
+**Evidence:** DONE 08/10 — RED `cannot find type 'ProgramRound' in scope` → GREEN `Test weekAndStageFromStartDate() passed`
 **Commit point:** `feat(core): program calendar with four stages`
 
 ### Task 2.2 — Múi giờ và giờ mùa hè [TDD]
@@ -129,7 +129,7 @@ Ghi chú môi trường: `CORE`, `L10N`, `PY` chạy được trên cloud (Linux
 1. `@Test(arguments:)` với `America/New_York` qua 02/11/2026 (hết giờ mùa hè) và `America/Los_Angeles`; bắt đầu 23:30 vẫn tính cùng ngày lịch.
 2. Chạy → expected RED nếu tính theo giây; sửa thành `calendar.dateComponents([.day], from: startOfDay, to: startOfDay)`.
 **Command:** `CORE ProgramCalendarTests` → expected: `passed`
-**Evidence:**
+**Evidence:** DONE 08/10 — RED `Expectation failed … .week(2…) == .week(1…)` (NY, LA, bắt đầu 23:30) → GREEN sau khi đếm ngày lịch
 **Commit point:** `test(core): program weeks across DST`
 
 ### Task 2.3 — Nghỉ dài thì tiếp tục, không phạt [TDD]
@@ -138,7 +138,7 @@ Ghi chú môi trường: `CORE`, `L10N`, `PY` chạy được trên cloud (Linux
 1. `@Test func longGapOffersPickUp()`: không có buổi tập ≥ 14 ngày → `ProgramCalendar.resumeOffer(lastWorkout:now:)` trả về `.pickUp(atWeek: w)` với w = tuần của buổi cuối; < 14 ngày → `nil`.
 2. RED → implement `resumeOffer` và `pausedDays` cộng thêm khi người dùng chọn "Tiếp tục từ tuần w".
 **Command:** `CORE ProgramCalendarTests` → expected: `Test longGapOffersPickUp() passed`
-**Evidence:**
+**Evidence:** DONE 08/10 — RED `no member 'resumeOffer'` → GREEN `longGapOffersPickUp() passed`; dừng tuần 8 rồi quay lại sau 12 tuần vẫn được mời tuần 8 (sửa kỳ vọng test, hợp ý "không bao giờ mất")
 **STOP AND ASK:** nghỉ bao lâu thì hỏi "tiếp tục từ tuần đó"? (mặc định: 14 ngày; không tự lùi lịch, không bao giờ nói "mất")
 **Commit point:** `feat(core): pick up the program after a long break`
 
@@ -148,38 +148,47 @@ Ghi chú môi trường: `CORE`, `L10N`, `PY` chạy được trên cloud (Linux
 1. `@Test func restartKeepsHistory()`: sau `.finished`, `restart(on:)` trả về ngày bắt đầu mới, `round` tăng 1; lịch sử tự kiểm tra không bị đụng (kiểu thuần, không xoá gì).
 2. RED → implement `ProgramRound { start: Date; round: Int; pausedDays: Int }`.
 **Command:** `CORE ProgramCalendarTests` → expected: `passed`
-**Evidence:**
+**Evidence:** DONE 08/10 — GREEN `restartKeepsCountingRounds() passed` (round 2, pausedDays 0)
 **Commit point:** `feat(core): program rounds`
 
 ### Task 2.5 — Thang số lần theo khả năng (Pro) [TDD]
+_Sửa 08/10/2026 (chủ app chốt "dựng sẵn các bậc khi build"): câu đếm của HLV được dựng sẵn theo số lần, nên mỗi bậc là một đoạn nội dung riêng (Task 2.7a); bài Nhón gót là bài tính giờ nên không vào thang._
 **Files:** Create `Packages/GentleWalkCore/Sources/GentleWalkCore/Plan/RepLadder.swift` · Test `…/RepLadderTests.swift`
 **Steps:**
-1. `@Test func raisesAfterTwoFullSessions()`: `mv.sit-to-stand` ở 6 lần; 2 buổi làm đủ không bấm Bị đau/Nghỉ → 8; tiếp 2 buổi → 10; tiếp → 2 hiệp × 8; tiếp → 2 hiệp × 10 (trần).
-2. `@Test func dropsOneStepOnTrouble()`: bấm Bị đau hoặc Nghỉ trong bài đó → xuống một bậc, đếm lại từ 0.
-3. RED: `error: cannot find 'RepLadder' in scope`
-4. Implement `public struct RepStep: Codable, Equatable { sets: Int; reps: Int }`, `public enum RepLadder { static let exercises: Set<String>; static let steps: [RepStep]; static func update(_:steady:troubled:) -> [String: RepProgress] }` cùng hình dạng `SupportLadder.update`.
-**Command:** `CORE RepLadderTests` → expected: `Test raisesAfterTwoFullSessions() passed`, `Test dropsOneStepOnTrouble() passed`
-**Evidence:**
-**STOP AND ASK:** các bậc số lần (mặc định: 6 → 8 → 10 → 2×8 → 2×10, nghỉ 60 giây giữa hiệp; bài áp dụng: Ngồi xuống đứng lên, Nhón gót và nhón mũi, Khuỵu gối nhẹ, Nâng chân sang ngang)
+1. `@Test func raisesAfterTwoFullSessions()`: Ngồi xuống đứng lên 1×6 → 1×8 → 1×10 → 2×8 → 2×10 (trần), lên sau 2 buổi làm đủ không bấm Bị đau/Nghỉ; bậc đã làm trong buổi được ghi nhận (`done`).
+2. `@Test func dropsOneStepOnTrouble()`: bấm Bị đau hoặc Nghỉ trong bài đó → xuống một bậc so với bậc đã làm, đếm lại từ 0.
+3. RED → implement `RepStep(sets:reps:)`, `RepProgress(step:fullSessions:pendingChange:)`, `RepLadder.steps(for:)`, `RepLadder.update(_:done:steady:troubled:)`.
+**Command:** `CORE RepLadderTests` → expected: `passed`
+**Evidence:** DONE 08/10 — RED `cannot find 'RepStep' in scope` → GREEN 4 test `RepLadderTests` (lên sau 2 buổi, xuống khi Bị đau/Nghỉ, bỏ qua bài ngoài thang)
+**STOP AND ASK (đã chốt 08/10):** Ngồi xuống đứng lên 6 → 8 → 10 → 2×8 → 2×10; Khuỵu gối nhẹ và Nâng chân sang ngang 8 → 10 → 12 → 2×10; nghỉ 60 giây giữa hiệp.
 **Commit point:** `feat(core): rep ladder for leg-strength moves`
 
 ### Task 2.6 — Trần theo cường độ và giới hạn cơ thể [TDD]
 **Files:** Test `RepLadderTests.swift` · Modify `RepLadder.swift`
 **Steps:**
-1. `@Test func achyDayCapsReps()`: ngày Hơi nhức (gentle) tối đa 6–8 lần dù đã lên 2×10; chip "unsteady"/"dizzy" → giữ bậc của ngày gentle.
-2. RED → implement `RepLadder.today(_:progress:intensity:limits:)` = min(bậc đã đạt, trần cường độ) giống `SupportLadder.today`.
-**Command:** `CORE RepLadderTests` → expected: `Test achyDayCapsReps() passed`
-**Evidence:**
+1. `@Test func achyDayCapsReps()`: bậc hôm nay = max(bậc đã đạt, bậc mặc định của cường độ), không quá mặc định + 1 bậc; ngày Hơi nhức Ngồi xuống đứng lên tối đa 8. `@Test func unsteadyKeepsTheDefault()`: chip unsteady/dizzy → không lên quá trần của ngày Hơi nhức.
+2. RED → implement `RepLadder.today(_:progress:intensity:limits:) -> RepStep`.
+**Command:** `CORE RepLadderTests` → expected: `passed`
+**Evidence:** DONE 08/10 — RED `cannot infer contextual base … 'gentle'` → GREEN `achyDayCapsReps()`, `unsteadyKeepsTheDefault()` (6 test)
 **Commit point:** `feat(core): cap reps by intensity and limits`
 
+### Task 2.7a — Dựng sẵn các bậc số lần trong nội dung [TDD]
+**Files:** Modify `tools/content/sessions_chair.py` (`rep_move` nhận `reps`/`sets`; hàm `rep_variants(voice)` tạo template `ses.reps.<exerciseID>.<sets>x<reps>`), `iOS/App/Resources/Content/sessions.json` (sinh lại) · Test `Packages/GentleWalkCore/Tests/GentleWalkCoreTests/SessionCatalogTests.swift` (`@Test func everyRepStepHasAVariant()`)
+**Steps:**
+1. Test: mỗi `RepLadder.steps(for:)` của 3 bài có template `ses.reps.…` trong nội dung, segment đúng `reps`/`sets`.
+2. RED → sinh nội dung bằng câu đếm đã thu (`a5.n.1–15`, `a4.v1.rest`, `a4.v1.set2`); không thu giọng mới.
+3. `python3 tools/content/build_content.py` rồi `--check`.
+**Command:** `CORE SessionCatalogTests` + `SessionSyncTests` → expected: `passed`; `build_content.py --check` → exit 0
+**Evidence:** DONE 08/10 — RED `MissingTemplate(id: "ses.reps.mv.sit-to-stand.1x6")` → `build_content.py` (sessions.json 47 → 60, chỉ thêm) → GREEN `everyRepStepHasAVariant()`; `--check` exit 0; `SessionSyncTests` 325 plans, lệch xấu nhất không đổi (en 2,32 s, vi 2,91 s)
+**Commit point:** `feat(content): pre-built rep steps for leg moves`
+
 ### Task 2.7 — Buổi tập dùng số lần đã đạt (Pro), mặc định cho free [TDD]
-**Files:** Modify `Packages/GentleWalkCore/Sources/GentleWalkCore/Plan/ChairSessionPlanner.swift`, `SessionBuilder.swift` (thêm `repProgress` vào `SessionBuilder.Context`) · Test `SessionBuilderTests.swift`
+**Files:** Modify `Packages/GentleWalkCore/Sources/GentleWalkCore/Plan/ChairSessionPlanner.swift`, `SessionBuilder.swift` (`repProgress`, `entitlement` trong `SessionBuilder.Context`) · Test `SessionBuilderTests.swift`
 **Steps:**
 1. `@Test func proChairDayUsesEarnedReps()` và `@Test func freeChairDayUsesIntensityDefaults()`.
-2. RED: `Expectation failed: segment.reps == 10`
-3. Implement: segment của bài trong `RepLadder.exercises` lấy `RepLadder.today` khi `entitlement.isPro`, ngược lại giữ số trong `sessions.json`.
-**Command:** `CORE SessionBuilderTests` → expected: `passed` (toàn bộ test cũ vẫn xanh)
-**Evidence:**
+2. RED → Pro: segment của bài trong thang thay bằng segment của template `ses.reps.…` theo `RepLadder.today`; free giữ nguyên.
+**Command:** `CORE SessionBuilderTests` → expected: `passed` (test cũ vẫn xanh)
+**Evidence:** DONE 08/10 — RED `extra argument 'reps' in call` → GREEN `proChairDayUsesEarnedReps()`, `freeChairDayUsesIntensityDefaults()`; 27 test SessionBuilder xanh
 **Commit point:** `feat(core): sessions use earned reps for Pro`
 
 ### Task 2.8 — Lịch tự kiểm tra [TDD]
@@ -189,7 +198,7 @@ Ghi chú môi trường: `CORE`, `L10N`, `PY` chạy được trên cloud (Linux
 2. `@Test func everyTwoWeeksWithWindow()`: kết quả ngày D → lần sau D+14, cửa sổ D+12…D+17; quá hạn > 3 ngày → `.overdue` (không có chữ "trễ" trên giao diện, chỉ "khi nào bạn sẵn sàng").
 3. RED → implement `public enum SelfCheckSchedule { static func status(firstWorkout: Date?, results: [Date], dismissedAt: Date?, now: Date, calendar: Calendar) -> SelfCheckStatus }` với `.none, .invite, .dueIn(days:), .due, .overdue`.
 **Command:** `CORE SelfCheckScheduleTests` → expected: `Test run with 2 tests … passed`
-**Evidence:**
+**Evidence:** DONE 08/10 — RED `cannot find type 'SelfCheckStatus'` → GREEN `firstCheckAfterFirstWorkout()`, `everyTwoWeeksWithWindow()`
 **Commit point:** `feat(core): self-check schedule`
 
 ### Task 2.9 — So sánh chỉ với chính mình, cùng cách làm [TDD]
@@ -199,7 +208,7 @@ Ghi chú môi trường: `CORE`, `L10N`, `PY` chạy được trên cloud (Linux
 2. `@Test func rejectsOutOfRange()`: số < 0 hoặc > 40 không lưu.
 3. RED → implement `public struct SelfCheckResult: Codable, Equatable { date: Date; count: Int; usedHands: Bool }` và `SelfCheckComparison.delta(latest:history:)`.
 **Command:** `CORE SelfCheckComparisonTests` → expected: `passed`
-**Evidence:**
+**Evidence:** DONE 08/10 — GREEN `deltaOnlyAgainstSameMethod()`, `rejectsOutOfRange()` (so lần đầu và lần trước, cùng cách)
 **Commit point:** `feat(core): compare self-checks with yourself only`
 
 ### Task 2.10 — Không có bảng chuẩn, không nhãn nguy cơ [TDD]
@@ -207,7 +216,7 @@ Ghi chú môi trường: `CORE`, `L10N`, `PY` chạy được trên cloud (Linux
 **Steps:**
 1. `@Test func noNormsOrRiskLabels()`: kiểu `SelfCheckComparison` không có thuộc tính tuổi/chuẩn/nguy cơ (test bằng `Mirror` liệt kê thuộc tính), và chuỗi khoá nội dung không chứa "risk", "normal", "below average".
 **Command:** `CORE SelfCheckComparisonTests` → expected: `Test noNormsOrRiskLabels() passed`
-**Evidence:**
+**Evidence:** DONE 08/10 — GREEN `noNormsOrRiskLabels()`
 **Commit point:** `test(core): guard against norms and risk labels`
 
 ### Task 2.11 — Thông báo ngày tự kiểm tra [TDD]
@@ -217,14 +226,14 @@ Ghi chú môi trường: `CORE`, `L10N`, `PY` chạy được trên cloud (Linux
 2. RED: `error: type 'NotificationKind' has no member 'selfCheck'`
 3. Implement; `priority` đặt sau `trialEnd`, trước `reminder`.
 **Command:** `CORE NotificationPlannerTests` → expected: toàn bộ `passed`
-**Evidence:**
+**Evidence:** DONE 08/10 — RED `no member 'selfCheck'` → GREEN 4 test mới (đúng ngày, không trùng, tắt được, cài đặt cũ vẫn đọc được); 19 test thông báo xanh
 **Commit point:** `feat(core): self-check reminder`
 
 ### Task 2.12 — Toàn bộ core xanh [TDD]
 **Files:** —
 **Steps:** chạy toàn bộ test core; trên cloud dùng Docker `swift:6.2` (cách đã dùng 07/10).
 **Command:** `swift test --package-path Packages/GentleWalkCore` → expected: `Test run with N tests in M suites passed` (N ≥ 145 + test mới)
-**Evidence:**
+**Evidence:** DONE 08/10 — Docker `swift:6.2-noble`: `Test run with 187 tests in 39 suites passed` (mốc đầu 164)
 **Commit point:** —
 
 ### Milestone 3 — Dữ liệu SchemaV2

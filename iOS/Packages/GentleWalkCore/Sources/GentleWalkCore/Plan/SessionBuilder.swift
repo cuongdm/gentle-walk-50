@@ -23,14 +23,17 @@ public enum SessionBuilder {
 
     /// - Parameter support: Pro's support ladder: today's hands level per balance exercise, and the changes
     ///   to announce (`SupportLadder.plan`). Empty: the hands lines written for the intensity.
+    /// - Parameter reps: Pro's rep ladder: today's reps per counted move (`RepLadder.today`). Empty: the
+    ///   reps written for the intensity (the free plan).
     public static func build(kind day: PlannedDay, level: WalkLevel, intensity: Intensity, limits: Set<BodyLimit>,
                              rotationIndex: Int, content: ContentBundle, variant: String? = nil,
-                             support: (levels: [String: SupportLevel], announce: [String: SupportLadder.Change]) = ([:], [:]))
+                             support: (levels: [String: SupportLevel], announce: [String: SupportLadder.Change]) = ([:], [:]),
+                             reps: [String: RepStep] = [:])
         throws -> SessionPlan {
         let allowed = Set(BodyLimitFilter.allowed(content.exercises, limits: limits).map(\.id))
         let context = Context(limits: limits, rotationIndex: rotationIndex, allowed: allowed, content: content,
                               table: VoiceRotation.Table(lines: content.voiceLines), support: support.levels,
-                              announce: support.announce)
+                              announce: support.announce, reps: reps)
         var plan = SessionPlan()
 
         switch day.main {
@@ -94,6 +97,16 @@ public enum SessionBuilder {
         let table: VoiceRotation.Table
         var support: [String: SupportLevel] = [:]
         var announce: [String: SupportLadder.Change] = [:]
+        var reps: [String: RepStep] = [:]
+
+        /// A counted move at the reps she has earned: the pre-built step's segment (steady program 2.7),
+        /// else the library's own.
+        func move(_ libraryMove: SessionTemplate.Segment) throws -> SessionTemplate.Segment {
+            guard let id = libraryMove.exerciseID, let step = reps[id],
+                  step != RepStep(sets: libraryMove.sets ?? 1, reps: libraryMove.reps ?? 0),
+                  let index = RepLadder.steps(for: id).firstIndex(of: step) else { return libraryMove }
+            return try segments(of: RepLadder.templateID(id, step: index)).first { $0.exerciseID == id } ?? libraryMove
+        }
 
         /// A template's segments for her: limits applied, lines rotated for the day.
         func segments(of id: String) throws -> [SessionTemplate.Segment] {

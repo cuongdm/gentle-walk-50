@@ -2,7 +2,7 @@ import Foundation
 
 /// Local notification kinds, most important first (spec "Thông báo · Luật chung").
 public enum NotificationKind: String, CaseIterable, Codable, Sendable {
-    case trialEnd, dayTwo, landmark, comeback, reminder, weeklyRecap, newJourney
+    case trialEnd, dayTwo, landmark, comeback, selfCheck, reminder, weeklyRecap, newJourney
 
     /// Lower wins when two fall on the same day.
     var priority: Int { Self.allCases.firstIndex(of: self) ?? 0 }
@@ -17,7 +17,20 @@ public struct NotificationSettings: Equatable, Codable, Sendable {
     public var journeyMilestones = true
     public var weeklyRecap = true
     public var newJourneys = false
+    /// The 2-week self-check (steady program, 08/10/2026).
+    public var selfCheckReminders = true
     public init() {}
+
+    /// Settings saved before a switch existed keep that switch's default.
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let defaults = NotificationSettings()
+        walkReminders = try values.decodeIfPresent(Bool.self, forKey: .walkReminders) ?? defaults.walkReminders
+        journeyMilestones = try values.decodeIfPresent(Bool.self, forKey: .journeyMilestones) ?? defaults.journeyMilestones
+        weeklyRecap = try values.decodeIfPresent(Bool.self, forKey: .weeklyRecap) ?? defaults.weeklyRecap
+        newJourneys = try values.decodeIfPresent(Bool.self, forKey: .newJourneys) ?? defaults.newJourneys
+        selfCheckReminders = try values.decodeIfPresent(Bool.self, forKey: .selfCheckReminders) ?? defaults.selfCheckReminders
+    }
 }
 
 /// The next postcard is less than one session away.
@@ -38,12 +51,15 @@ public struct PlannerInput: Equatable, Sendable {
     public var landmark: LandmarkSoon?
     public var settings: NotificationSettings
     public var newJourneyName: String?
+    /// The day the next 2-week self-check is due (SelfCheckSchedule), if any.
+    public var selfCheckDue: Date?
 
     public init(calendar: Calendar, restDays: Set<Weekday>, reminderMinutes: Int, frequency: ReminderFrequency, workouts: [Date],
-                trialReminder: Date?, landmark: LandmarkSoon?, settings: NotificationSettings, newJourneyName: String?) {
+                trialReminder: Date?, landmark: LandmarkSoon?, settings: NotificationSettings, newJourneyName: String?,
+                selfCheckDue: Date? = nil) {
         self.calendar = calendar; self.restDays = restDays; self.reminderMinutes = reminderMinutes; self.frequency = frequency
         self.workouts = workouts; self.trialReminder = trialReminder; self.landmark = landmark; self.settings = settings
-        self.newJourneyName = newJourneyName
+        self.newJourneyName = newJourneyName; self.selfCheckDue = selfCheckDue
     }
 }
 
@@ -100,6 +116,10 @@ public enum NotificationPlanner {
                         candidates.append(.init(kind: kind, fireDate: remindAt, values: [:]))
                     }
                 }
+            }
+            if let due = input.selfCheckDue, cal.isDate(due, inSameDayAs: day), remindAt > now, !isRest,
+               input.settings.selfCheckReminders {
+                candidates.append(.init(kind: .selfCheck, fireDate: remindAt, values: [:]))
             }
             if let recap = weeklyRecap(on: day, now: now, first: first, input: input) {
                 candidates.append(recap)

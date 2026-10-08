@@ -3,7 +3,8 @@
 
 Rules (app-context.md "Tone & copy rules", App Review 1.4.1 and 2.3.10):
   - banned words: read from the "- Banned:" line of app-context.md, so the list has one owner;
-  - medical claims: cure, treat, prevent falls, reduce … risk, arthritis;
+  - medical claims: cure, treat, prevent falls, reduce … risk, arthritis, fall prevention / fall risk,
+    build bone, bone density, pain relief;
   - other platforms: Android, Google Play, APK.
 
 Scans iOS/App/*.xcstrings (every localized value, or the key when the source text lives in the key)
@@ -28,6 +29,11 @@ MEDICAL = [
     r"\bprevent\w*\s+(?:a\s+)?falls?\b",
     r"\breduc\w*\b[^.]{0,40}\brisk\b",
     r"\barthritis\b",
+    # Steady program claims list (docs/design/steady-claims.md): steadier yes, fall/bone/pain promises no.
+    r"\bfalls?[\s-]+(?:prevention|risk)\b",
+    r"\bbuild\w*\s+(?:\w+\s+)?bones?\b",
+    r"\bbone\s+density\b",
+    r"\brelie(?:f|ves?|ved|ving)\b[^.]{0,30}\bpain\b|\bpain\s+relief\b",
 ]
 PLATFORMS = [r"\bandroid\b", r"\bgoogle play\b", r"\bapk\b"]
 

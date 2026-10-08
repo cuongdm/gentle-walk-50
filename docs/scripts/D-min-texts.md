@@ -193,6 +193,14 @@ Got up from the sofa without using my hands · Carried the groceries in one trip
 | Me → Help | Good Footing is for general fitness. It isn't medical advice. |
 Câu thứ hai dựa trên NHS-HIP (xem A10 §1); không nói "safe", "prevents", "treats".
 
+### Tự kiểm tra 2 tuần (thêm 08/10/2026, Task 1.3 kế hoạch steady-program)
+Dùng nguyên văn trên mọi màn của luồng tự kiểm tra; bản Việt và lý do ở [design/steady-claims.md](../design/steady-claims.md).
+| Chỗ | Chữ |
+|---|---|
+| Màn chuẩn bị, cuối màn | This is not a medical test. |
+| Màn chuẩn bị, dòng mở đầu; màn nhập số | You compare only with yourself. |
+| Màn chuẩn bị, lời dặn an toàn; màn bấm giờ | Stop if anything hurts or you feel dizzy. |
+
 ## Tổng
 | Mục | Số mục tối thiểu | Ghi chú |
 |---|---|---|

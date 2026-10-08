@@ -51,4 +51,25 @@ import Testing
             #expect(SessionCatalog.swapOptions(planned: main).allSatisfy { $0.isFree })
         }
     }
+
+    /// Steady program 2.7a: every rep step is a pre-built segment with the coach's counts, and the
+    /// day's own amount in `ses.moves.<intensity>` is the ladder's default step.
+    @Test func everyRepStepHasAVariant() throws {
+        let content = TestSupport.appContent
+        for id in RepLadder.exercises {
+            for (index, step) in RepLadder.steps(for: id).enumerated() {
+                let template = try SessionBuilder.template(RepLadder.templateID(id, step: index), in: content)
+                let moves = template.segments.filter { $0.exerciseID == id }
+                #expect(moves.count == 1, "\(template.id)")
+                #expect(moves.first?.reps == step.reps, "\(template.id)")
+                #expect((moves.first?.sets ?? 1) == step.sets, "\(template.id)")
+            }
+            for intensity in Intensity.allCases {
+                let library = try SessionBuilder.template("ses.moves.\(intensity.rawValue)", in: content)
+                let move = try #require(library.segments.first { $0.exerciseID == id })
+                let base = RepLadder.steps(for: id)[RepLadder.defaultStep(id, intensity: intensity)]
+                #expect(move.reps == base.reps && (move.sets ?? 1) == base.sets, "\(id) \(intensity)")
+            }
+        }
+    }
 }

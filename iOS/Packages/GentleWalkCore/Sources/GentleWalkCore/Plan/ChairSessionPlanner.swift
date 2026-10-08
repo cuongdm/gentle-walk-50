@@ -14,7 +14,7 @@ enum ChairSessionPlanner {
         var segments = try context.segments(of: "ses.chair.\(intensity.rawValue).open")
         let rest = intensity == .strong ? "ses.chair.rest.10" : "ses.chair.rest.15"
         for (index, id) in ids.enumerated() {
-            guard var move = library.first(where: { $0.exerciseID == id }) else { continue }
+            guard var move = try library.first(where: { $0.exerciseID == id }).map(context.move) else { continue }
             let next = ids.indices.contains(index + 1) ? ids[index + 1] : nil
             let standsNext = next.map { isStanding($0, context) } ?? false
             if id == sitToStand && standsNext { move = staysStanding(move) }
@@ -41,7 +41,7 @@ enum ChairSessionPlanner {
         var segments = [Segment(kind: .intro, seconds: 8, cues: [.init(at: 0, line: "a9.to-chair")])]
         for (index, move) in picked.enumerated() {
             if index > 0 { segments += try context.segments(of: "ses.chair.rest.15") }
-            segments.append(move)
+            segments.append(try context.move(move))
         }
         return segments
     }
