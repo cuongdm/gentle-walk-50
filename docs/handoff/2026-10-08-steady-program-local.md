@@ -1,6 +1,16 @@
 # Bàn giao cho phiên Mac: Chương trình vững chân (Steady program)
 _08/10/2026 · Từ phiên cloud "Gentle Walk 50+ git setup - Cloud" sang phiên local "Gental Walk Main - Local" · Kế hoạch: [docs/plans/2026-10-08-steady-program.md](../plans/2026-10-08-steady-program.md)_
 
+## Kết quả phiên Mac (08/10/2026)
+- Làm trên `main` (chủ app chốt), không dùng nhánh ở mục 1.
+- Build xanh ngay lần đầu; 1 lỗi test (`CaptureHookTests`: `allSatisfy(\.usedHands)` trong `#expect`) đã sửa.
+- Test: core 191/191, app 198/198 (44 suite), `RELEASE_CHECK=1 ReleaseContentTests` xanh.
+- Chữ: 790 khoá trích từ build, VI 805/805, coverage 0, `copy_lint` 0. Lưu ý: chạy `extract_sources.py` ngay sau build **có** `SWIFT_EMIT_LOC_STRINGS=YES`; nếu `xcodebuild test` chạy xen giữa, file khoá mất và `apply_catalog` sẽ gỡ cả trăm khoá (đã gặp, đã khôi phục).
+- Giọng A12: 3 câu EN + VI qua Vibi, 620/620 câu có file.
+- Thêm câu tự kiểm tra vào màn Privacy trong app (mục 6, dòng cuối).
+- Ảnh sáng/tối/XXL đã xem; sửa ở cỡ chữ lớn: màn Kế hoạch tràn ngang (7 mốc → 2 hàng), màn nhập số tràn ngang (−/+ tối đa 88 pt, nút có/không xuống dòng), đồng hồ cắt chữ, thẻ chương trình Today xếp dọc, thẻ cây Progress xếp dọc; thẻ "Hands on the chair" dùng nhãn ngắn.
+- Chưa làm: ảnh iPad (giới hạn 2 máy ảo).
+
 ## 0. Đọc trước
 1. `CLAUDE.md`, `app-context.md`, kế hoạch ở trên (mỗi task có dòng **Evidence** ghi trạng thái hiện tại).
 2. File này: việc nào đã chạy được trên cloud, việc nào **chỉ mới viết, chưa từng build**, và lệnh để kiểm.

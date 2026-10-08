@@ -145,6 +145,7 @@ private struct SelfCheckClock: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
             Text(verbatim: caption).typeRole(.cardTitle).foregroundStyle(Palette.text).multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .accessibilityElement(children: .combine)
     }
@@ -209,8 +210,10 @@ struct SelfCheckCountView: View {
 
     private func option(_ value: Bool, _ title: LocalizedStringResource) -> some View {
         let isOn = model.usedHands == value
-        return Button { model.setUsedHands(value) } label: { Text(title) }
-            .buttonStyle(PillButtonStyle(isSelected: isOn, fills: true))
+        // One line side by side; at accessibility sizes stacked and free to wrap ("Yes, with my han…" was cut).
+        return Button { model.setUsedHands(value) } label: { Text(title).multilineTextAlignment(.center) }
+            .buttonStyle(PillButtonStyle(isSelected: isOn, fills: !typeSize.isAccessibilitySize))
+            .frame(maxWidth: typeSize.isAccessibilitySize ? .infinity : nil)
             .accessibilityAddTraits(isOn ? .isSelected : [])
     }
 
@@ -226,13 +229,16 @@ private struct CountStepper: View {
     let onMinus: () -> Void
     let onPlus: () -> Void
 
-    @ScaledMetric(relativeTo: .largeTitle) private var size: CGFloat = 72
+    @ScaledMetric(relativeTo: .largeTitle) private var scaled: CGFloat = 72
+    /// 72 pt, growing with the text size up to 88 pt: larger, − n + was wider than the screen.
+    private var size: CGFloat { min(scaled, 88) }
 
     var body: some View {
-        HStack(spacing: 24) {
+        HStack(spacing: 16) {
             round("minus", label: "One less", action: onMinus)
             Text(verbatim: "\(count)").typeRole(.timer).monospacedDigit().foregroundStyle(Palette.text)
-                .frame(minWidth: size * 1.4)
+                .lineLimit(1).minimumScaleFactor(0.5)
+                .frame(minWidth: size * 1.2)
             round("plus", label: "One more", action: onPlus)
         }
         .frame(maxWidth: .infinity)

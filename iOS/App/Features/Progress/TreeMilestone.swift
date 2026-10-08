@@ -12,6 +12,7 @@ struct TreeMilestoneLine: View {
         if let milestone = TreeLevel.milestone(activeDays: activeDays) {
             VStack(alignment: .leading, spacing: 6) {
                 Text(verbatim: Self.text(milestone)).typeRole(.body).foregroundStyle(Palette.text)
+                    .fixedSize(horizontal: false, vertical: true)
                 if milestone.done > 0 {
                     PhaseProgressBar(progress: Double(milestone.done) / Double(max(1, milestone.total)), tint: Palette.secondary)
                 }

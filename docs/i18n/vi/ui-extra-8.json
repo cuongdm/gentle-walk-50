@@ -100,5 +100,9 @@
   "Your first check done this way. Next time, you can compare.": "Lần đầu bạn làm theo cách này, nên chưa có gì để so. Lần sau sẽ so được.",
   "Your routine": "Thói quen của bạn",
   "Your weekly plan and 2-week checks go on": "Lịch tuần và tự kiểm tra 2 tuần vẫn tiếp tục",
-  "^[%lld day](inflect: true)": "%lld ngày"
+  "^[%lld day](inflect: true)": "%lld ngày",
+  "Your 2-week check results stay on this phone, too. They are compared only with your own earlier checks.": "Kết quả tự kiểm tra 2 tuần cũng chỉ lưu trên điện thoại này. Chúng chỉ được so với các lần tự kiểm tra trước của chính bạn.",
+  "Two hands": "Hai tay",
+  "One hand": "Một tay",
+  "Fingertips": "Đầu ngón tay"
 }

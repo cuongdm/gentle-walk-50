@@ -93,14 +93,21 @@ struct SelfCheckDots: View {
     let status: SelfCheckStatus
     let onStart: () -> Void
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     static let weeks = Array(stride(from: 0, through: ProgramCalendar.weeks, by: 2))
+
+    /// Seven in a row; two rows of four at accessibility sizes (one row was wider than the screen).
+    private var columns: [GridItem] {
+        Array(repeating: GridItem(.flexible(), spacing: 6), count: typeSize.isAccessibilitySize ? 4 : Self.weeks.count)
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Your 2-week checks").typeRole(.cardTitle).foregroundStyle(Palette.text)
             Text("30 seconds of sit-to-stands, counted by you. You compare only with yourself.")
                 .typeRole(.body).foregroundStyle(Palette.text)
-            HStack(spacing: 6) {
+            LazyVGrid(columns: columns, spacing: 10) {
                 ForEach(Self.weeks, id: \.self) { week in
                     let done = isDone(week)
                     VStack(spacing: 4) {

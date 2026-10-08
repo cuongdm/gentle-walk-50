@@ -31,6 +31,8 @@ struct PillButtonStyle: ButtonStyle {
     /// three options on one line instead of wrapping onto two).
     var fills = false
 
+    private static let shape = RoundedRectangle(cornerRadius: Metrics.minTouchTarget / 2, style: .continuous)
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .typeRole(.body)
@@ -39,10 +41,12 @@ struct PillButtonStyle: ButtonStyle {
             .minimumScaleFactor(fills ? 0.85 : 1)
             .foregroundStyle(isSelected ? Palette.onStrongFill : Palette.text)
             .padding(.horizontal, fills ? 10 : 18)
+            .padding(.vertical, 8)
             .frame(maxWidth: fills ? .infinity : nil, minHeight: Metrics.minTouchTarget)
-            .background(isSelected ? Palette.secondary : Palette.surface, in: .capsule)
-            .overlay { Capsule().strokeBorder(isSelected ? Palette.secondary : Palette.textMuted.opacity(0.4), lineWidth: 2) }
-            .contentShape(.capsule)
+            // A 56 pt pill looks the same as a capsule; a label that wraps at large text keeps room at the ends.
+            .background(isSelected ? Palette.secondary : Palette.surface, in: Self.shape)
+            .overlay { Self.shape.strokeBorder(isSelected ? Palette.secondary : Palette.textMuted.opacity(0.4), lineWidth: 2) }
+            .contentShape(Self.shape)
             .opacity(configuration.isPressed ? 0.75 : 1)
     }
 }

@@ -125,7 +125,7 @@
  },
  {
   "key": "Choose %@",
-  "comment": "",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
   "files": [
    "CancelGuideView"
   ]
@@ -238,13 +238,6 @@
   ]
  },
  {
-  "key": "Starting in",
-  "comment": "",
-  "files": [
-   "ChairPlayerView"
-  ]
- },
- {
   "key": "Starting in %lld seconds",
   "comment": "",
   "files": [
@@ -309,13 +302,6 @@
  },
  {
   "key": "A %@ walk today.",
-  "comment": "",
-  "files": [
-   "CompleteContent"
-  ]
- },
- {
-  "key": "Good call to stop.",
   "comment": "",
   "files": [
    "CompleteContent"
@@ -501,6 +487,14 @@
   ]
  },
  {
+  "key": "Want to see where you start?",
+  "comment": "",
+  "files": [
+   "CompleteView",
+   "TodayModel"
+  ]
+ },
+ {
   "key": "You reached %@. Your tree grows with every active day.",
   "comment": "",
   "files": [
@@ -660,15 +654,6 @@
   ]
  },
  {
-  "key": "Done",
-  "comment": "",
-  "files": [
-   "JourneyListView",
-   "PermissionsView",
-   "CompleteView"
-  ]
- },
- {
   "key": "First leg free · to %@",
   "comment": "",
   "files": [
@@ -677,7 +662,7 @@
  },
  {
   "key": "I walked to %@ with %@.",
-  "comment": "",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
   "files": [
    "JourneyListView"
   ]
@@ -754,7 +739,7 @@
  },
  {
   "key": "%@, part of %@ Pro",
-  "comment": "VoiceOver label for a locked stop on the map. The argument is the stop's name.",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
   "files": [
    "JourneyMapView"
   ]
@@ -854,7 +839,7 @@
  },
  {
   "key": "With %@ Pro · at %@",
-  "comment": "",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
   "files": [
    "JourneyRouteList"
   ]
@@ -900,7 +885,7 @@
  },
  {
   "key": "You walked the free leg. The rest of this route comes with %@ Pro, and your distance keeps counting.",
-  "comment": "",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
   "files": [
    "JourneyView"
   ]
@@ -910,6 +895,21 @@
   "comment": "",
   "files": [
    "MainTabView"
+  ]
+ },
+ {
+  "key": "%@ Pro · renews %@",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "%@ is for general fitness. It isn't medical advice.",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
+  "files": [
+   "MeSections",
+   "ProgramView"
   ]
  },
  {
@@ -936,6 +936,13 @@
  },
  {
   "key": "Auto follows your iPhone: light by day, dark at night if you've set it.",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Cancel",
   "comment": "",
   "files": [
    "MeSections"
@@ -1050,20 +1057,6 @@
   ]
  },
  {
-  "key": "%@ Pro · renews %@",
-  "comment": "A subscription that renews on a specific date.",
-  "files": [
-   "MeSections"
-  ]
- },
- {
-  "key": "%@ is for general fitness. It isn't medical advice.",
-  "comment": "A disclaimer for the Terms and Conditions page.",
-  "files": [
-   "MeSections"
-  ]
- },
- {
   "key": "Height",
   "comment": "",
   "files": [
@@ -1129,7 +1122,7 @@
  },
  {
   "key": "Location is off for %@ on this iPhone.",
-  "comment": "",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
   "files": [
    "MeSections"
   ]
@@ -1214,6 +1207,7 @@
   "comment": "",
   "files": [
    "MeSections",
+   "SelfCheckViews",
    "NotificationSection"
   ]
  },
@@ -1223,7 +1217,15 @@
   "files": [
    "MeSections",
    "TodayView",
+   "ProgressScreen",
    "JourneyView"
+  ]
+ },
+ {
+  "key": "See plan",
+  "comment": "",
+  "files": [
+   "MeSections"
   ]
  },
  {
@@ -1235,6 +1237,20 @@
  },
  {
   "key": "Sound and captions",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Start a new 12 weeks?",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Start from week 1",
   "comment": "",
   "files": [
    "MeSections"
@@ -1315,6 +1331,20 @@
  {
   "key": "Your %@ plan still renews on %@",
   "comment": "A sentence that describes a user's subscription to a product, including the product name and the date when the subscription will renew. The first argument is the product name. The second argument is the formatted date when the subscription will renew.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Your 12 weeks",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Your 2-week checks and your progress stay.",
+  "comment": "",
   "files": [
    "MeSections"
   ]
@@ -1456,6 +1486,13 @@
   ]
  },
  {
+  "key": "Today: %@",
+  "comment": "",
+  "files": [
+   "MoveGuidance"
+  ]
+ },
+ {
   "key": "Works with a TV that supports AirPlay. The coach's voice plays on the TV too.",
   "comment": "",
   "files": [
@@ -1590,6 +1627,13 @@
  },
  {
   "key": "Only if I haven't moved",
+  "comment": "",
+  "files": [
+   "NotificationSection"
+  ]
+ },
+ {
+  "key": "Self-check reminders",
   "comment": "",
   "files": [
    "NotificationSection"
@@ -2314,7 +2358,7 @@
  },
  {
   "key": "%@ keeps everything on this phone.",
-  "comment": "A description of the app's privacy policy.",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
   "files": [
    "PaywallLegalFooter"
   ]
@@ -2390,10 +2434,32 @@
   ]
  },
  {
+  "key": "Your 2-week check results stay on this phone, too. They are compared only with your own earlier checks.",
+  "comment": "",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
   "key": "Your answers, workouts, pain reports and journey progress are stored only on this phone and are not backed up to iCloud by the app.",
   "comment": "A description of the data that is stored on the user's device.",
   "files": [
    "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "%@ Pro",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
+  "files": [
+   "PaywallModel",
+   "MeSections"
+  ]
+ },
+ {
+  "key": "%@ Pro: free for 14 days",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
+  "files": [
+   "PaywallModel"
   ]
  },
  {
@@ -2447,21 +2513,6 @@
   ]
  },
  {
-  "key": "%@ Pro",
-  "comment": "The name of the subscription.",
-  "files": [
-   "PaywallModel",
-   "MeSections"
-  ]
- },
- {
-  "key": "%@ Pro: free for 14 days",
-  "comment": "",
-  "files": [
-   "PaywallModel"
-  ]
- },
- {
   "key": "Monthly",
   "comment": "",
   "files": [
@@ -2498,7 +2549,7 @@
  },
  {
   "key": "%@  %@",
-  "comment": "A title and detail for a step in a timeline. The argument is the title, the second argument is the detail.",
+  "comment": "Layout only: a bold timeline step title followed by its detail. Both parts are already localized strings; nothing here to translate.",
   "files": [
    "PaywallView"
   ]
@@ -2700,6 +2751,13 @@
   ]
  },
  {
+  "key": "12 weeks, at your own pace",
+  "comment": "",
+  "files": [
+   "PlanReadyView"
+  ]
+ },
+ {
   "key": "2 rest days a week · starting %@",
   "comment": "A description of the user's walking plan, including the number of minutes per day, the number of rest days, and the starting level.",
   "files": [
@@ -2736,6 +2794,13 @@
   ]
  },
  {
+  "key": "Week 1 starts with your first session. Every two weeks, a 30-second check shows how you're doing, compared only with yourself.",
+  "comment": "",
+  "files": [
+   "PlanReadyView"
+  ]
+ },
+ {
   "key": "Why this will work for you",
   "comment": "A heading for the reasons why the plan will work for the user.",
   "files": [
@@ -2744,7 +2809,7 @@
  },
  {
   "key": "With %@ Pro, your week mixes walks, chair moves and stretches.",
-  "comment": "",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
   "files": [
    "PlanReadyView"
   ]
@@ -2773,6 +2838,13 @@
  },
  {
   "key": "^[%lld active day](inflect: true)",
+  "comment": "",
+  "files": [
+   "Plural"
+  ]
+ },
+ {
+  "key": "^[%lld day](inflect: true)",
   "comment": "",
   "files": [
    "Plural"
@@ -2822,6 +2894,128 @@
   ]
  },
  {
+  "key": "+%lld since your first check",
+  "comment": "",
+  "files": [
+   "ProgramFinishedView",
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "12 weeks!",
+  "comment": "",
+  "files": [
+   "ProgramFinishedView"
+  ]
+ },
+ {
+  "key": "12 weeks, %@!",
+  "comment": "",
+  "files": [
+   "ProgramFinishedView"
+  ]
+ },
+ {
+  "key": "Keep my routine",
+  "comment": "",
+  "files": [
+   "ProgramFinishedView"
+  ]
+ },
+ {
+  "key": "Start a new 12 weeks",
+  "comment": "",
+  "files": [
+   "ProgramFinishedView",
+   "MeSections"
+  ]
+ },
+ {
+  "key": "What next? Start a new 12 weeks from week 1, or keep your weekly plan as it is. Your 2-week checks go on either way.",
+  "comment": "",
+  "files": [
+   "ProgramFinishedView"
+  ]
+ },
+ {
+  "key": "You kept going, at your own pace.",
+  "comment": "",
+  "files": [
+   "ProgramFinishedView"
+  ]
+ },
+ {
+  "key": "Your 2-week check: %lld at the start, %lld now.",
+  "comment": "",
+  "files": [
+   "ProgramFinishedView"
+  ]
+ },
+ {
+  "key": "30 seconds of sit-to-stands, counted by you. You compare only with yourself.",
+  "comment": "",
+  "files": [
+   "ProgramView"
+  ]
+ },
+ {
+  "key": "Stage %lld · Weeks %lld–%lld",
+  "comment": "",
+  "files": [
+   "ProgramView"
+  ]
+ },
+ {
+  "key": "Start my check",
+  "comment": "",
+  "files": [
+   "ProgramView",
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Stronger legs and better balance, at your own pace. Reps go up only when you're ready.",
+  "comment": "",
+  "files": [
+   "ProgramView"
+  ]
+ },
+ {
+  "key": "Week",
+  "comment": "",
+  "files": [
+   "ProgramView"
+  ]
+ },
+ {
+  "key": "Week %lld, done",
+  "comment": "",
+  "files": [
+   "ProgramView"
+  ]
+ },
+ {
+  "key": "You're here",
+  "comment": "",
+  "files": [
+   "ProgramView"
+  ]
+ },
+ {
+  "key": "You're in week %lld of %lld.",
+  "comment": "",
+  "files": [
+   "ProgramView"
+  ]
+ },
+ {
+  "key": "Your 12-week plan",
+  "comment": "",
+  "files": [
+   "ProgramView"
+  ]
+ },
+ {
   "key": "%@ a day this week",
   "comment": "A label that shows the average number of steps taken by the user each day this week. The number is formatted to a more readable number, e.g. 10,000.",
   "files": [
@@ -2864,14 +3058,14 @@
   ]
  },
  {
-  "key": "Connect Apple Health to see your everyday steps. Your journey doesn't need Health: it moves with your minutes here.",
+  "key": "Check",
   "comment": "",
   "files": [
    "ProgressScreen"
   ]
  },
  {
-  "key": "Do a chair session to see this grow.",
+  "key": "Connect Apple Health to see your everyday steps. Your journey doesn't need Health: it moves with your minutes here.",
   "comment": "",
   "files": [
    "ProgressScreen"
@@ -2885,6 +3079,13 @@
   ]
  },
  {
+  "key": "Hands on the chair",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
   "key": "Last week: %@ a day",
   "comment": "A label showing the average number of steps taken by a user on a given day in the past week.",
   "files": [
@@ -2892,15 +3093,15 @@
   ]
  },
  {
-  "key": "Longest walk without a break",
-  "comment": "A title for the longest walk without a break.",
+  "key": "Less hand on the chair once you've held steady twice in a row.",
+  "comment": "",
   "files": [
    "ProgressScreen"
   ]
  },
  {
-  "key": "Most sit-to-stands in one session, by week",
-  "comment": "",
+  "key": "Longest walk without a break",
+  "comment": "A title for the longest walk without a break.",
   "files": [
    "ProgressScreen"
   ]
@@ -2936,6 +3137,13 @@
   ]
  },
  {
+  "key": "Sit-to-stands in 30 seconds, counted by you. You compare only with yourself.",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
   "key": "Tick the ones you can do now.",
   "comment": "",
   "files": [
@@ -2943,14 +3151,37 @@
   ]
  },
  {
-  "key": "Week",
+  "key": "Week %lld",
+  "comment": "",
+  "files": [
+   "ProgressScreen",
+   "ProgramView"
+  ]
+ },
+ {
+  "key": "With Pro, less hand on the chair as you get steadier.",
   "comment": "",
   "files": [
    "ProgressScreen"
   ]
  },
  {
+  "key": "Your 2-week checks",
+  "comment": "",
+  "files": [
+   "ProgressScreen",
+   "ProgramView"
+  ]
+ },
+ {
   "key": "Your first active day this month will show here.",
+  "comment": "",
+  "files": [
+   "ProgressScreen"
+  ]
+ },
+ {
+  "key": "Your first check comes after your first session.",
   "comment": "",
   "files": [
    "ProgressScreen"
@@ -3086,7 +3317,9 @@
   "key": "Later",
   "comment": "",
   "files": [
-   "RouteMapView"
+   "RouteMapView",
+   "TodayCards",
+   "CompleteView"
   ]
  },
  {
@@ -3111,14 +3344,310 @@
   ]
  },
  {
+  "key": "%lld more than your first check.",
+  "comment": "",
+  "files": [
+   "SelfCheckFlowModel"
+  ]
+ },
+ {
+  "key": "Some days are like that. What counts is that you keep going.",
+  "comment": "",
+  "files": [
+   "SelfCheckFlowModel"
+  ]
+ },
+ {
+  "key": "The same as your first check. Steady is good.",
+  "comment": "",
+  "files": [
+   "SelfCheckFlowModel"
+  ]
+ },
+ {
+  "key": "This is where you start. In two weeks, you can compare.",
+  "comment": "",
+  "files": [
+   "SelfCheckFlowModel"
+  ]
+ },
+ {
+  "key": "Your first check done this way. Next time, you can compare.",
+  "comment": "",
+  "files": [
+   "SelfCheckFlowModel"
+  ]
+ },
+ {
+  "key": "1. Stand up all the way, then sit back down.",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "2. Keep going for 30 seconds, at your own pace.",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "3. Count each time you stand up. You'll enter the number.",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Before you start",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
   "key": "Close",
   "comment": "",
   "files": [
+   "SelfCheckViews",
    "ScreenHeader",
    "JourneyListView",
    "PaywallLegalFooter",
    "WorkoutView",
    "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "Cross your arms, or push up with your hands. Either is fine.",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Did you push up with your hands?",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Do the 30 seconds again",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Done",
+  "comment": "",
+  "files": [
+   "SelfCheckViews",
+   "JourneyListView",
+   "PermissionsView",
+   "CompleteView"
+  ]
+ },
+ {
+  "key": "Get ready",
+  "comment": "Title of the 3-2-1 countdown before a session starts.",
+  "files": [
+   "SelfCheckViews",
+   "WorkoutCountdownView"
+  ]
+ },
+ {
+  "key": "Good call to stop.",
+  "comment": "",
+  "files": [
+   "SelfCheckViews",
+   "CompleteContent"
+  ]
+ },
+ {
+  "key": "How it works",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "How many times can you stand up from your chair in 30 seconds?",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "How many times did you stand up?",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "I'm ready",
+  "comment": "",
+  "files": [
+   "SelfCheckViews",
+   "WorkoutReadyView"
+  ]
+ },
+ {
+  "key": "Last time: %lld",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "No, without my hands",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Not today",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Nothing was saved. Rest now, and try another day if you feel like it.",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "One less",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "One more",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Saved: %lld",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Sit near the front, feet flat on the floor.",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Stand up and sit down, at your own pace",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Starting in",
+  "comment": "",
+  "files": [
+   "SelfCheckViews",
+   "ChairPlayerView"
+  ]
+ },
+ {
+  "key": "Stop",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Stop early",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Stop if anything hurts or you feel dizzy.",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "This hurts",
+  "comment": "",
+  "files": [
+   "SelfCheckViews",
+   "WorkoutSafetyBar"
+  ]
+ },
+ {
+  "key": "This is not a medical test.",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Times you stood up",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Use a sturdy chair with no wheels, its back against a wall.",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "We only compare checks done the same way.",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Yes, with my hands",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "You compare only with yourself.",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "You'll find it on Progress.",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Your 2-week check",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
   ]
  },
  {
@@ -3197,7 +3726,7 @@
  },
  {
   "key": "See all sessions, with %@ Pro",
-  "comment": "A button label that opens the full list of sessions, with the Pro badge.",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
   "files": [
    "SessionHistoryViews"
   ]
@@ -3342,6 +3871,133 @@
   "comment": "Sound: explanation under Move introductions.",
   "files": [
    "SoundControls"
+  ]
+ },
+ {
+  "key": "%lld times",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "%lld × %lld",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "A few more reps when you're ready, and a little less hand on the chair.",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "Building strength",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "Fingertips",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "Fingertips on the chair",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "Gentle challenge",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "Keep what feels good, so it stays part of your week.",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "Learn the moves seated or with your chair. Short, easy sessions.",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "Longer holds and more reps, only when the last ones felt easy.",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "One hand",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "One hand on the chair",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "Steady base",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "Two hands",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "Two hands on the chair",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "You held steady twice in a row. Next time: %@ with just your fingertips on the chair.",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "You held steady twice in a row. Next time: %@ with one hand on the chair.",
+  "comment": "",
+  "files": [
+   "SteadyProgramText"
+  ]
+ },
+ {
+  "key": "Your routine",
+  "comment": "",
+  "files": [
+   "SteadyProgramText",
+   "TodayModel"
   ]
  },
  {
@@ -3604,6 +4260,13 @@
   ]
  },
  {
+  "key": "30 seconds of sit-to-stands. You compare only with yourself.",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
   "key": "Connect",
   "comment": "",
   "files": [
@@ -3639,8 +4302,37 @@
   ]
  },
  {
+  "key": "Let's do it",
+  "comment": "",
+  "files": [
+   "TodayCards",
+   "CompleteView"
+  ]
+ },
+ {
   "key": "Next, Apple asks what to share: tap “Turn On All”, then “Allow”. Or tap “Don’t Allow” to skip.",
   "comment": "A description of the next step in the user's health data consent process.",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Opens your 12-week plan",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Pick up at week %lld",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Plan",
+  "comment": "",
   "files": [
    "TodayCards"
   ]
@@ -3650,6 +4342,14 @@
   "comment": "",
   "files": [
    "TodayCards"
+  ]
+ },
+ {
+  "key": "Thirty seconds with your chair. In two weeks, do it again and compare with yourself.",
+  "comment": "",
+  "files": [
+   "TodayCards",
+   "CompleteView"
   ]
  },
  {
@@ -3774,6 +4474,13 @@
   ]
  },
  {
+  "key": "12 weeks done",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
   "key": "Done for today",
   "comment": "",
   "files": [
@@ -3865,7 +4572,28 @@
   ]
  },
  {
+  "key": "See how far you've come",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Stage %lld · %@",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
   "key": "Today counts as an active day.",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Week %lld of %lld",
   "comment": "",
   "files": [
    "TodayModel"
@@ -3880,6 +4608,34 @@
  },
  {
   "key": "Welcome back. Your journey is right where you left it.",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Your 2-week check is in %@",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Your 2-week check is ready",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Your 2-week check is ready whenever you are",
+  "comment": "",
+  "files": [
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "Your weekly plan and 2-week checks go on",
   "comment": "",
   "files": [
    "TodayModel"
@@ -4269,7 +5025,7 @@
   ]
  },
  {
-  "key": "5 minutes is enough to start",
+  "key": "A 12-week plan for stronger legs and better balance",
   "comment": "",
   "files": [
    "WelcomeView"
@@ -4290,13 +5046,6 @@
   ]
  },
  {
-  "key": "Steadier on your feet, at your own pace.",
-  "comment": "A description of the benefits of Gentle.",
-  "files": [
-   "WelcomeView"
-  ]
- },
- {
   "key": "Let's begin",
   "comment": "",
   "files": [
@@ -4304,10 +5053,18 @@
   ]
  },
  {
-  "key": "Get ready",
-  "comment": "Title of the 3-2-1 countdown before a session starts.",
+  "key": "Steadier on your feet, at your own pace.",
+  "comment": "Welcome title: the app's slogan, under the app name.",
   "files": [
-   "WorkoutCountdownView"
+   "WelcomeView"
+  ]
+ },
+ {
+  "key": "You did these in full twice in a row. Next time: %@, %@.",
+  "comment": "",
+  "files": [
+   "WorkoutCaptureScenes",
+   "SteadyProgramText"
   ]
  },
  {
@@ -4656,13 +5413,6 @@
   ]
  },
  {
-  "key": "I'm ready",
-  "comment": "",
-  "files": [
-   "WorkoutReadyView"
-  ]
- },
- {
   "key": "In pocket",
   "comment": "",
   "files": [
@@ -4833,13 +5583,6 @@
  {
   "key": "On",
   "comment": "A word that describes the state of a voice.",
-  "files": [
-   "WorkoutSafetyBar"
-  ]
- },
- {
-  "key": "This hurts",
-  "comment": "",
   "files": [
    "WorkoutSafetyBar"
   ]

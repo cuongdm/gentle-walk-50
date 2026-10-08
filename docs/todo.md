@@ -4,9 +4,9 @@ _Cập nhật 08/10/2026 (trước đó 03/10/2026). Mỗi việc có người l
 ## Chương trình vững chân (08/10/2026) — đang làm
 Kế hoạch: [plans/2026-10-08-steady-program.md](plans/2026-10-08-steady-program.md). Bàn giao cho phiên Mac: [handoff/2026-10-08-steady-program-local.md](handoff/2026-10-08-steady-program-local.md).
 - [x] Nhóm 1–2 (lint, core) xanh trên cloud; nhóm 6 (tài liệu phát hành) xong.
-- [ ] **Claude (Mac)** — build, sửa lỗi, chạy test nhóm 3–4, chụp 10 trạng thái mới, trích khoá và áp bản Việt (handoff mục 2–5).
-- [ ] **Chủ app** — duyệt 3 câu HLV mới trong [scripts/A12-steady-program.md](scripts/A12-steady-program.md), rồi thu EN + VI qua Vibi.
-- [ ] **Chủ app** — xem các quyết định nhỏ đã tự chốt (handoff mục 6), merge vào `main` khi xanh.
+- [x] ~~Claude (Mac) — build, sửa lỗi, test nhóm 3–4, chụp 10 trạng thái, trích khoá và áp bản Việt~~ Xong 08/10 trên `main` (kết quả ở đầu file bàn giao). Còn ảnh iPad.
+- [ ] **Chủ app** — nghe 3 câu HLV mới (`a12.check.*`, đã thu EN + VI qua Vibi 08/10: `assets/voice/cache-bella-v4`, `cache-vi-bella-v4`); muốn sửa lời thì sửa [scripts/A12-steady-program.md](scripts/A12-steady-program.md) rồi thu lại.
+- [ ] **Chủ app** — xem các quyết định nhỏ đã tự chốt (handoff mục 6). Code đã ở `main`.
 
 ## Chủ app quyết định (đề xuất mặc định đã ghi, chưa chốt)
 | # | Việc | Đề xuất mặc định | Trạng thái |
@@ -32,7 +32,8 @@ Kế hoạch: [plans/2026-10-08-steady-program.md](plans/2026-10-08-steady-progr
 
 **Việc khác:**
 - [x] ~~**Tên mới**~~ Đổi 07/10/2026 sang **Good Footing**, khẩu hiệu "Steadier on your feet, at your own pace.": tên dưới icon, câu xin quyền, Welcome, "Good Footing Pro", `.storekit`, trang privacy, bản Việt; tên gom ở `iOS/App/Design/AppBrand.swift`. Bundle ID và mã sản phẩm giữ nguyên.
-- [ ] **Sau khi đổi tên (cần Mac):** `xcodegen generate`, build, `LocalizationTests` `StoreConfigTests` `PaywallModelTests`; xem bằng mắt Welcome, paywall, Me, Journey, thẻ chia sẻ, 4 hộp xin quyền, tên dưới icon trên iPhone nhỏ nhất (checklist đổi tên mục 6 bước 11). Icon, ảnh store, video preview làm lại với tên mới.
+- [x] ~~Sau khi đổi tên (cần Mac): build, `LocalizationTests` `StoreConfigTests` `PaywallModelTests`, xem Welcome, paywall, Me, Journey, màn xin quyền~~ Xong 08/10 (Mac): build + 198/198 test xanh, ảnh đúng tên Good Footing.
+- [ ] **Còn sau khi đổi tên:** thẻ chia sẻ, 4 hộp xin quyền của hệ thống, tên dưới icon trên iPhone nhỏ nhất (checklist đổi tên mục 6 bước 11); một lượt ảnh trên iPad (giới hạn 2 máy ảo nên chưa chạy). Icon, ảnh store, video preview làm lại với tên mới.
 - [ ] **Quảng cáo:** chủ app đặt mức lỗ tối đa năm 1; quyết có cho app tự báo AdAttributionKit/SKAdNetwork (vượt luật nhẹ) trước giai đoạn Meta không; chọn cách làm video UGC. Kế hoạch: [research/2026-10-03-quang-cao-nam-dau.md](research/2026-10-03-quang-cao-nam-dau.md).
 - [x] ~~**Rà chuẩn tập theo nhóm 65+**~~ Xong 06/10/2026: docs/reviews/2026-10-06-chuyen-gia-ra-soat-bai-tap-58-75.md (Steady set miễn phí, liều mới, chip unsteady, 4 bài Otago, thang vịn Pro, 2 clip, 2 tranh); STD đã cập nhật.
 - [ ] **Nhân vật HLV và tranh (chốt 27/09: 55–58 tuổi):** có cần trông lớn hơn (khoảng 60–65) không? Hỏi trong test prototype (câu 4), chưa đổi asset.
@@ -70,8 +71,8 @@ Sang manh-skill-plan với asset hiện có (6 clip, A1, giọng prototype). Nh�
 - [ ] V3 bản dễ/khó, V4 ảnh khung tĩnh cho Reduce Motion và VoiceOver.
 
 ## Chương trình vững chân (duyệt 08/10/2026)
-- [ ] Code theo [plans/2026-10-08-steady-program.md](plans/2026-10-08-steady-program.md): 45 task, 6 milestone; bắt đầu Task 1.1 (milestone 1–2 làm được trên cloud, 3–4 cần Mac).
-- [ ] Chủ app: duyệt kịch bản A12 (Task 5.1), thu giọng EN/VI qua Vibi (5.3).
+- [x] ~~Code theo [plans/2026-10-08-steady-program.md](plans/2026-10-08-steady-program.md)~~ Xong 08/10: cloud (milestone 1–2, 5–6) + Mac (build, test 198/198, chữ EN/VI 805/805, giọng A12, ảnh sáng/tối/XXL, sửa 5 lỗi cỡ chữ lớn). Còn: ảnh iPad.
+- [x] ~~Thu giọng A12 EN/VI qua Vibi (5.3)~~ Xong 08/10; chủ app nghe lại (dòng đầu file).
 - [ ] Song song: test thông điệp quảng cáo "steadier / getting up from a chair" so với "less stiff" (báo cáo chọn ngách mục kiểm chứng).
 
 ## Tài liệu và repo
@@ -94,6 +95,6 @@ Plan đã duyệt nên không sửa thầm; các mục dưới đưa vào task t
 
 ## Kế hoạch code (đã duyệt 29/09/2026)
 - [x] ~~Gọi `manh-skill-plan`~~ → `docs/plans/2026-09-29-mvp.md`: 113 task / 9 milestone, duyệt toàn bộ. Đã chốt: 0,05 dặm mỗi phút tập, hook `-ScreenshotMode`, không đo hiệu quả thông báo trong v1.
-- [ ] Gọi `manh-skill-code` trên Mac (cần Xcode 27, `brew install xcodegen`), bắt đầu Task 1.1.
+- [x] ~~Gọi `manh-skill-code` trên Mac~~ Xong 08/10.
 - [ ] Trả lời 4 STOP AND ASK khi tới task: Team ID (1.1), mốc thang cây (2.5, mặc định 7 · 21 · 42), EULA Apple hay Terms riêng (5.10), hosting trang pháp lý (9.1, mặc định GitHub Pages).
 - [ ] Chuẩn bị iPhone thật cho 3.5 (chạy khi khoá màn hình), 8.6 (tuyến ngoài trời), 8.8–8.9 (ghi dữ liệu và thử tự đếm).

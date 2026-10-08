@@ -60,7 +60,7 @@ struct CaptureHookTests {
         #expect(ProgramCalendar.position(program.programRound, on: now, calendar: calendar) == .week(3, .base))
         let checks = try context.fetch(FetchDescriptor<SelfCheckRecord>(sortBy: [SortDescriptor(\.date)]))
         #expect(checks.map(\.count) == [7, 8])
-        #expect(checks.allSatisfy(\.usedHands))
+        #expect(checks.allSatisfy { $0.usedHands })
     }
 
     /// Every steady-program state parses (task 4.1).

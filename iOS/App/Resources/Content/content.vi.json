@@ -35987,13 +35987,205 @@
    ]
   },
   "a12.check.setup": {
-   "text": "Ngồi phía trước ghế, chân đặt phẳng. Sẵn sàng nhé."
+   "text": "Ngồi phía trước ghế, chân đặt phẳng. Sẵn sàng nhé.",
+   "file": "a12.check.setup.vi.m4a",
+   "duration": 3.841,
+   "words": [
+    {
+     "word": "Ngồi",
+     "start": 0.0,
+     "end": 0.24
+    },
+    {
+     "word": "phía",
+     "start": 0.24,
+     "end": 0.42
+    },
+    {
+     "word": "trước",
+     "start": 0.42,
+     "end": 0.62
+    },
+    {
+     "word": "ghế,",
+     "start": 0.62,
+     "end": 1.46
+    },
+    {
+     "word": "chân",
+     "start": 1.46,
+     "end": 1.6
+    },
+    {
+     "word": "đặt",
+     "start": 1.6,
+     "end": 1.78
+    },
+    {
+     "word": "phẳng.",
+     "start": 1.78,
+     "end": 2.58
+    },
+    {
+     "word": "Sẵn",
+     "start": 2.58,
+     "end": 2.98
+    },
+    {
+     "word": "sàng",
+     "start": 2.98,
+     "end": 2.99
+    },
+    {
+     "word": "nhé.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
   },
   "a12.check.go": {
-   "text": "Bắt đầu. Đứng thẳng lên hẳn, rồi ngồi xuống. Theo nhịp của bạn."
+   "text": "Bắt đầu. Đứng thẳng lên hẳn, rồi ngồi xuống. Theo nhịp của bạn.",
+   "file": "a12.check.go.vi.m4a",
+   "duration": 5.499,
+   "words": [
+    {
+     "word": "Bắt",
+     "start": 0.02,
+     "end": 0.32
+    },
+    {
+     "word": "đầu.",
+     "start": 0.32,
+     "end": 1.06
+    },
+    {
+     "word": "Đứng",
+     "start": 1.06,
+     "end": 1.62
+    },
+    {
+     "word": "thẳng",
+     "start": 1.62,
+     "end": 1.84
+    },
+    {
+     "word": "lên",
+     "start": 1.84,
+     "end": 2.04
+    },
+    {
+     "word": "hẳn,",
+     "start": 2.04,
+     "end": 2.36
+    },
+    {
+     "word": "rồi",
+     "start": 2.36,
+     "end": 2.98
+    },
+    {
+     "word": "ngồi",
+     "start": 2.98,
+     "end": 3.24
+    },
+    {
+     "word": "xuống.",
+     "start": 3.24,
+     "end": 4.2
+    },
+    {
+     "word": "Theo",
+     "start": 4.2,
+     "end": 4.78
+    },
+    {
+     "word": "nhịp",
+     "start": 4.78,
+     "end": 4.98
+    },
+    {
+     "word": "của",
+     "start": 4.98,
+     "end": 4.99
+    },
+    {
+     "word": "bạn.",
+     "start": 4.98,
+     "end": 4.99
+    }
+   ]
   },
   "a12.check.stop": {
-   "text": "Dừng lại. Nghỉ một chút, rồi nhập số lần bạn đã đứng lên."
+   "text": "Dừng lại. Nghỉ một chút, rồi nhập số lần bạn đã đứng lên.",
+   "file": "a12.check.stop.vi.m4a",
+   "duration": 4.006,
+   "words": [
+    {
+     "word": "Dừng",
+     "start": 0.0,
+     "end": 0.3
+    },
+    {
+     "word": "lại.",
+     "start": 0.3,
+     "end": 0.98
+    },
+    {
+     "word": "Nghỉ",
+     "start": 0.98,
+     "end": 1.44
+    },
+    {
+     "word": "một",
+     "start": 1.44,
+     "end": 1.6
+    },
+    {
+     "word": "chút,",
+     "start": 1.6,
+     "end": 1.92
+    },
+    {
+     "word": "rồi",
+     "start": 1.92,
+     "end": 2.38
+    },
+    {
+     "word": "nhập",
+     "start": 2.38,
+     "end": 2.58
+    },
+    {
+     "word": "số",
+     "start": 2.58,
+     "end": 2.8
+    },
+    {
+     "word": "lần",
+     "start": 2.8,
+     "end": 3.06
+    },
+    {
+     "word": "bạn",
+     "start": 3.06,
+     "end": 3.26
+    },
+    {
+     "word": "đã",
+     "start": 3.26,
+     "end": 3.4
+    },
+    {
+     "word": "đứng",
+     "start": 3.4,
+     "end": 3.58
+    },
+    {
+     "word": "lên.",
+     "start": 3.58,
+     "end": 3.98
+    }
+   ]
   }
  },
  "notifications": {

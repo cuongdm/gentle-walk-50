@@ -615,5 +615,8 @@
  "a11.heel-walk.easy": "Too much? Do the raises standing still instead. That still counts.",
  "a11.ladder.one": "Last time you were steady with both hands. Try one hand today, if it feels right.",
  "a11.ladder.tips": "Last time one hand felt steady. Try just your fingertips today, if it feels right.",
- "a11.ladder.down": "Let's keep both hands on today. That's a smart choice."
+ "a11.ladder.down": "Let's keep both hands on today. That's a smart choice.",
+ "a12.check.setup": "Sit near the front of your chair, feet flat. Ready?",
+ "a12.check.go": "Go. Stand up all the way, then sit back down. At your own pace.",
+ "a12.check.stop": "And stop. Rest a moment, then enter how many times you stood up."
 }

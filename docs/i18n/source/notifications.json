@@ -22,6 +22,10 @@
  "nt.week.less": "{n} active days this week. A new week starts tomorrow.",
  "nt.back.3": "Your journey is right where you left it. Want an easy 5 minutes?",
  "nt.back.10": "Whenever you're ready, a gentle restart is waiting.",
+ "nt.check.1": "Your 2-week check is ready when you are.",
+ "nt.check.2": "Thirty seconds and a chair: your 2-week check is today.",
+ "nt.check.3": "Time for your 2-week check. Only you see the number.",
+ "nt.check.4": "Your 2-week check is here. Same chair, same way as last time.",
  "nt.trial": "Your free trial ends on {date}. You'll be billed {price} unless you cancel. Manage it in Settings.",
  "nt.newjourney": "A new journey is ready: {journey}.",
  "card.fewer": "You're doing this on your own now. Want fewer reminders?"

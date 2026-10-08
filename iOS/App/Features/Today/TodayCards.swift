@@ -259,17 +259,25 @@ struct ProgramStripCard: View {
     let onOpen: () -> Void
     let onPickUp: () -> Void
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
+        // At accessibility sizes the text gets the full width and "Plan ›" moves under it (it wrapped to
+        // three narrow lines beside the link).
+        let row = typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8))
+                                               : AnyLayout(HStackLayout(spacing: 12))
         VStack(alignment: .leading, spacing: 10) {
             Button(action: onOpen) {
-                HStack(spacing: 12) {
-                    Image(systemName: "figure.stand").typeRole(.cardTitle).foregroundStyle(Palette.secondary)
-                        .accessibilityHidden(true)
+                row {
+                    if !typeSize.isAccessibilitySize {
+                        Image(systemName: "figure.stand").typeRole(.cardTitle).foregroundStyle(Palette.secondary)
+                            .accessibilityHidden(true)
+                    }
                     VStack(alignment: .leading, spacing: 2) {
                         Text(verbatim: strip.title).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
                         Text(verbatim: strip.detail).typeRole(.caption).foregroundStyle(Palette.textMuted)
                     }
-                    Spacer(minLength: 0)
+                    if !typeSize.isAccessibilitySize { Spacer(minLength: 0) }
                     HStack(spacing: 4) {
                         Text("Plan")
                         Image(systemName: "chevron.right").accessibilityHidden(true)

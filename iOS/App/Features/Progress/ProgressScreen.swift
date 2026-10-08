@@ -66,8 +66,14 @@ struct TreeCard: View {
     let activeDays: Int
     let rings: Int
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
-        HStack(spacing: 16) {
+        // At accessibility sizes the tree goes above the text: beside it the line "6 of 14 active days to…"
+        // was cut short.
+        let layout = typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12))
+                                                  : AnyLayout(HStackLayout(spacing: 16))
+        layout {
             ArtImage(name: Art.treeName(level: level), height: 140, fallbackSymbol: level.symbol)
                 .frame(width: 120)
             VStack(alignment: .leading, spacing: 6) {
@@ -238,7 +244,7 @@ struct SupportLevelsCard: View {
                     HStack(alignment: .firstTextBaseline) {
                         Text(verbatim: row.name).typeRole(.body).foregroundStyle(Palette.text)
                         Spacer(minLength: 8)
-                        Text(row.level.label).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
+                        Text(row.level.shortLabel).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
                             .multilineTextAlignment(.trailing)
                     }
                     .accessibilityElement(children: .combine)

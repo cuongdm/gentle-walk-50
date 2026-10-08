@@ -38,6 +38,15 @@ extension SupportLevel {
         case .fingertips: "Fingertips on the chair"
         }
     }
+
+    /// The same level in a list already titled "Hands on the chair" (Progress), so each row fits on one line.
+    var shortLabel: LocalizedStringResource {
+        switch self {
+        case .twoHands: "Two hands"
+        case .oneHand: "One hand"
+        case .fingertips: "Fingertips"
+        }
+    }
 }
 
 enum RepText {
