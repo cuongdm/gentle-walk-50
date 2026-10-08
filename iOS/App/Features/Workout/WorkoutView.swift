@@ -26,6 +26,7 @@ struct WorkoutView: View {
     var onSelfCheckLater: (() -> Void)?
     let onClose: (CompletionResult?) -> Void
     @State private var standCue = SpokenCue()
+    @State private var arrivalCue = SpokenCue()
 
     var body: some View {
         content
@@ -103,6 +104,12 @@ struct WorkoutView: View {
                     }
                     : nil)
             .reviewPrompt(reviewMilestone(result), onAsked: onReviewAsked)
+            // A new stop reached: the coach names it once, as the postcard opens (A8, plan 08/10/2026 #7).
+            .task(id: result.recordID) {
+                guard session.speaksOnComplete, let line = session.arrivalLineID else { return }
+                arrivalCue.play([line], from: session.content)
+            }
+            .onDisappear(perform: arrivalCue.stop)
         case .notSaved:
             NotSavedView { onClose(nil) }
         case .playing, .confirmEnd:

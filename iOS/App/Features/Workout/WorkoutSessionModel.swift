@@ -353,6 +353,17 @@ import GentleWalkCore
 
     var isComplete: Bool { if case .complete = stage { true } else { false } }
 
+    /// The coach's stop line (A8) said on Complete when this session reached a new stop: the furthest one,
+    /// as its postcard opens. None after stopping for pain (Complete stays calm).
+    var arrivalLineID: String? {
+        guard let result = completionResult, !stoppedForPain,
+              let journey = content.journeys.first(where: { $0.id == result.journeyID }) else { return nil }
+        return JourneyCoach.arrivalLineID(journey: journey, unlocked: result.unlockedStops.map(\.id), content: content)
+    }
+
+    /// Real sessions speak on Complete; screenshots and tests (no media prepared) stay silent.
+    var speaksOnComplete: Bool { prepareMedia }
+
     // MARK: Phase changes
 
     private func phaseChanged(to phase: SessionTimeline.Phase) {

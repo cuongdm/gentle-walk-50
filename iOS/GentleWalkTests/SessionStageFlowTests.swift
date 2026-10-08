@@ -65,3 +65,37 @@ import GentleWalkCore
         #expect(session.player.state == .playing)
     }
 }
+
+/// The coach's stop line (A8) on Complete: the session that reaches a stop names it, as its postcard opens.
+@MainActor @Suite struct JourneyArrivalLineTests {
+    func session() -> WorkoutSessionModel {
+        let request = WorkoutRequest(day: PlannedDay(main: .walk, chairMoves: 0, cooldown: true), level: .inPlace,
+                                     intensity: .steady, place: .indoors, limits: [], rotationIndex: 0)
+        return WorkoutSessionModel(request: request, content: TestFixtures.content, engine: SilentPlaybackEngine(),
+                                   completion: nil, prepareMedia: false)
+    }
+
+    @Test func completeSaysTheFurthestNewStop() throws {
+        let smoky = try #require(TestFixtures.content.journeys.first { $0.id == "jr.smoky" })
+        let model = session()
+        model.show(CompletionResult(journeyID: smoky.id, unlockedStops: [smoky.stops[1], smoky.stops[2]]), seconds: 600)
+        #expect(model.arrivalLineID == "a8.smoky.3")
+        let ny = try #require(TestFixtures.content.journeys.first { $0.id == "jr.ny" })
+        let first = session()
+        first.show(CompletionResult(journeyID: ny.id, unlockedStops: [ny.stops[0]]), seconds: 300)
+        #expect(first.arrivalLineID == "a8.ny.1")
+    }
+
+    @Test func noLineWithoutANewStopOrAfterStoppingForPain() throws {
+        let smoky = try #require(TestFixtures.content.journeys.first { $0.id == "jr.smoky" })
+        let none = session()
+        none.show(CompletionResult(journeyID: smoky.id, unlockedStops: []), seconds: 600)
+        #expect(none.arrivalLineID == nil)
+        let hurt = session()
+        hurt.markStoppedForPain()
+        hurt.show(CompletionResult(journeyID: smoky.id, unlockedStops: [smoky.stops[1]]), seconds: 600)
+        #expect(hurt.arrivalLineID == nil)
+        // Before Complete there is nothing to say.
+        #expect(session().arrivalLineID == nil)
+    }
+}

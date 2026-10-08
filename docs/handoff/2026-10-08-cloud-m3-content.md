@@ -28,3 +28,4 @@ Ghi chú: test core đọc `docs/i18n/vi/ui*.json` (`TestSupport.vietnameseUI()`
 - Mock `ProgressMore.dc.html` không có trên `origin` (chỉ có ở máy Mac), nên nhãn wins ngắn viết theo yêu cầu "một dòng trên SE"; nếu mock có câu khác thì sửa §D9 rồi chạy `build_content.py`.
 - Câu `a8.*` (kể cả New York) hiện chưa phát ở đâu trong app: cần Mac nối khi mở bưu thiếp mới.
 
+- Mac 08/10 (đã nối): câu `a8.*` phát trên màn Hoàn thành khi buổi tập mở bưu thiếp mới (điểm xa nhất mở trong buổi, `JourneyCoach.arrivalLineID`; không phát khi dừng vì đau; `SpokenCue` trong `WorkoutView`). Quãng hành trình chỉ được cộng lúc lưu buổi, nên "tới điểm dừng" = lúc Hoàn thành. `CompleteCheer`, `Greetings`, `WeekTheme.line` đã dùng trong app. Tiến bộ → "Hands on the chair" hiện mức đã đạt (`SupportLadder.earned`), không giới hạn theo ngày Okay; buổi hôm nay vẫn theo `SupportLadder.plan`.

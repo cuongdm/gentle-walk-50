@@ -65,6 +65,23 @@ import Testing
         #expect(SupportLadder.plan(progress: after, intensity: .strong, limits: []).announce["bl.tandem"] == .down)
     }
 
+    /// Progress "Hands on the chair" shows the step she has earned (fingertips in tandem stance), not the
+    /// steady-day cap that today's session uses; showing it changes nothing about today.
+    @Test func earnedLevelsAreTheStepsReachedNotTodaysCap() {
+        let progress = ["bl.tandem": SupportProgress(level: .fingertips, steadySessions: 1),
+                        "mv.single-leg": SupportProgress(level: .oneHand)]
+        let earned = SupportLadder.earned(progress)
+        #expect(earned["bl.tandem"] == .fingertips)
+        #expect(earned["mv.single-leg"] == .oneHand)
+        // Every ladder move has a level; one never done is on two hands.
+        #expect(Set(earned.keys) == SupportLadder.exercises)
+        #expect(earned["wk.shift"] == .twoHands)
+        // A stored step above a move's top (older data) never shows higher than the move allows.
+        #expect(SupportLadder.earned(["mv.single-leg": SupportProgress(level: .fingertips)])["mv.single-leg"] == .oneHand)
+        // Today's session on a steady day still holds one hand in tandem stance.
+        #expect(SupportLadder.plan(progress: progress, intensity: .steady, limits: []).levels["bl.tandem"] == .oneHand)
+    }
+
     /// P9: after a check down by two, held-through sessions still count but the hands level does not go up.
     @Test func checkDownHoldsTheHandsLevel() {
         let start = ["bl.tandem": SupportProgress(level: .twoHands, steadySessions: 1)]

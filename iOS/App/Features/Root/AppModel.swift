@@ -181,9 +181,9 @@ import GentleWalkCore
         let checks = selfCheckRecords()
         let program = ensureProgram(firstWorkout: records.first?.date)
         journey = JourneySnapshot(states: states, unlocks: unlocks, content: content, entitlement: entitlement)
-        // Pro: the hands level each balance exercise is at today (Progress, task 4.10).
-        let support = isPro ? SupportLadder.plan(progress: SupportLadderStore(defaults: defaults).progress, intensity: .steady,
-                                                 limits: profile?.limits ?? []).levels : [:]
+        // Pro: the hands level she has earned on each balance exercise (Progress, task 4.10). View only: today's
+        // session caps it by the day's intensity and her limits when it starts (`prepareAndPlay`).
+        let support = isPro ? SupportLadder.earned(SupportLadderStore(defaults: defaults).progress) : [:]
         progress = ProgressSnapshot(records: records, wins: wins, checks: checks, supportLevels: support, restDays: restDays,
                                     calendar: calendar, now: now())
         progress.weeklyNotes = weeklyNoteStore.notes.reversed()

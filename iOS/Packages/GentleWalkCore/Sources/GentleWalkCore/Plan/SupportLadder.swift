@@ -66,6 +66,12 @@ public enum SupportLadder {
         return min(earned, cap(intensity), highest(exerciseID))
     }
 
+    /// The step she has earned on every ladder exercise (Progress "Hands on the chair"): not capped by a
+    /// day's intensity or her limits, which only set today's session (`plan`). Never above a move's top.
+    public static func earned(_ progress: [String: SupportProgress]) -> [String: SupportLevel] {
+        Dictionary(uniqueKeysWithValues: exercises.map { id in (id, min(progress[id]?.level ?? .twoHands, highest(id))) })
+    }
+
     /// Levels for every ladder exercise today, and the changes the coach should announce.
     public static func plan(progress: [String: SupportProgress], intensity: Intensity, limits: Set<BodyLimit>)
         -> (levels: [String: SupportLevel], announce: [String: Change]) {

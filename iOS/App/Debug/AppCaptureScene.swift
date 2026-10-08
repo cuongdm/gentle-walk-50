@@ -161,9 +161,10 @@ struct AppCaptureScene: View {
                 SupportLadderStore(defaults: app.defaults).record(steady: ["bl.tandem"], troubled: [], announced: [])
             }
         case .progressLower:
-            // Three balance moves held steady twice: one hand now.
+            // Three balance moves held steady twice: one hand now; tandem stance twice more: fingertips earned.
             let ladder = SupportLadderStore(defaults: app.defaults)
             for _ in 0..<2 { ladder.record(steady: ["wk.shift", "bl.tandem", "bl.side-walk"], troubled: [], announced: []) }
+            for _ in 0..<2 { ladder.record(steady: ["bl.tandem"], troubled: [], announced: []) }
         default:
             break
         }

@@ -220,3 +220,23 @@ extension HealthServiceTests {
         #expect(ResultTile.order(for: .steadier).first == .hands)
     }
 }
+
+extension AppFlowTests {
+    /// Progress "Hands on the chair" shows the step she has earned (fingertips in tandem stance lights up
+    /// for Pro), while today's session keeps its own cap.
+    @Test func progressShowsTheEarnedHandsLevel() {
+        let app = makeApp(entitlement: .subscribed)
+        let support = SupportLadderStore(defaults: app.defaults)
+        for _ in 0..<4 { support.record(steady: ["bl.tandem"], troubled: [], announced: []) }
+        #expect(support.progress["bl.tandem"]?.level == .fingertips)
+        app.reload()
+        #expect(app.progress.supportLevels["bl.tandem"] == .fingertips)
+        #expect(SupportLadderSummary(levels: app.progress.supportLevels).highest == .fingertips)
+        // Viewing it changes nothing: the stored step stays, and a steady day still holds one hand.
+        #expect(support.progress["bl.tandem"]?.level == .fingertips)
+        #expect(SupportLadder.plan(progress: support.progress, intensity: .steady, limits: []).levels["bl.tandem"] == .oneHand)
+        // Free: the card stays on two hands (no ladder).
+        let free = makeApp(entitlement: .free)
+        #expect(free.progress.supportLevels.isEmpty)
+    }
+}

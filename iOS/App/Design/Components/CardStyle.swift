@@ -26,11 +26,26 @@ extension View {
 
     /// Standard screen body: bg colour, 20 pt side margins. The status bar keeps a band of the
     /// background colour, so text scrolling up never runs under the clock (real iPhone, 30/09/2026).
+    /// The band reads the top inset itself: a tab's scroll view reaches up under the status bar, where
+    /// a zero-height band that grows into the safe area stayed at zero (Progress scrolled, 08/10/2026).
     func screenBackground() -> some View {
         self.background(Palette.bg.ignoresSafeArea())
-            .overlay(alignment: .top) {
-                Palette.bg.frame(height: 0).ignoresSafeArea(edges: .top).allowsHitTesting(false)
-            }
+            .overlay(alignment: .top) { StatusBarBand() }
+    }
+}
+
+/// The background colour behind the status bar, over the content that scrolls under it. The reader sits
+/// just below the status bar and reports its height as the top inset; the band is drawn above itself.
+private struct StatusBarBand: View {
+    var body: some View {
+        GeometryReader { proxy in
+            Palette.bg
+                .frame(maxWidth: .infinity)
+                .frame(height: proxy.safeAreaInsets.top)
+                .offset(y: -proxy.safeAreaInsets.top)
+        }
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
     }
 }
 

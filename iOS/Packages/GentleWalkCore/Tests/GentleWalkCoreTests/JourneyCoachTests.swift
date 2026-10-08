@@ -22,4 +22,20 @@ import Testing
         }
         #expect(JourneyCoach.lineID(journeyID: "jr.ny", stopIndex: 6, content: content) == nil)
     }
+
+    /// The line said on Complete when a session reaches stops: the furthest stop reached this time, so
+    /// two postcards in one session get one line, not two in a row.
+    @Test func arrivalLineIsTheFurthestStopReached() throws {
+        let content = TestSupport.appContent
+        let smoky = try #require(content.journeys.first { $0.id == "jr.smoky" })
+        let ids = smoky.stops.map(\.id)
+        #expect(JourneyCoach.arrivalLineID(journey: smoky, unlocked: [ids[0]], content: content) == "a8.smoky.1")
+        #expect(JourneyCoach.arrivalLineID(journey: smoky, unlocked: [ids[2], ids[1]], content: content) == "a8.smoky.3")
+        #expect(JourneyCoach.arrivalLineID(journey: smoky, unlocked: [ids[5]], content: content) == "a8.smoky.6")
+        // No new stop: nothing to say. A stop from another route: nothing either.
+        #expect(JourneyCoach.arrivalLineID(journey: smoky, unlocked: [], content: content) == nil)
+        #expect(JourneyCoach.arrivalLineID(journey: smoky, unlocked: ["pc.ny.zoo"], content: content) == nil)
+        let ny = try #require(content.journeys.first { $0.id == "jr.ny" })
+        #expect(JourneyCoach.arrivalLineID(journey: ny, unlocked: [ny.stops[3].id], content: content) == "a8.ny.4")
+    }
 }
