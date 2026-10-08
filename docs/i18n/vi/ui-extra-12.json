@@ -15,7 +15,7 @@
   "One more session for keeping up with the grandkids.": "Thêm một buổi để theo kịp các cháu.",
   "Easier version, as you chose": "Bản dễ hơn, như bạn đã chọn",
   "Try the usual one": "Thử bản thường",
-  "With Pro, more reps when you're ready": "Với Pro, thêm lần tập khi bạn sẵn sàng",
+  "With Pro, more reps when you're ready": "Với bản Pro, tăng số lần tập khi bạn sẵn sàng",
   "Added to your plan.": "Đã thêm vào kế hoạch.",
   "Add it": "Thêm",
   "About last week. You can skip this.": "Về tuần trước. Bạn có thể bỏ qua.",
@@ -33,8 +33,8 @@
   "On the chair in tandem stance": "Vịn ghế khi đứng nối gót",
   "Started with two": "Lúc đầu vịn hai tay",
   "^[%lld week](inflect: true)": "%lld tuần",
-  "In a row with 3+ active days": "Liên tiếp có từ 3 ngày vận động",
+  "In a row with 3+ active days": "Tuần liên tiếp, mỗi tuần từ 3 ngày vận động",
   "Rest days never break it": "Ngày nghỉ không làm đứt chuỗi",
   "Your weekly notes": "Ghi chú hằng tuần của bạn",
-  "Week of %@": "Tuần từ %@"
+  "Week of %@": "Tuần bắt đầu %@"
 }
