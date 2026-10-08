@@ -551,7 +551,7 @@ _Tài liệu chưa có lúc lập kế hoạch (08/10). Task 3.1 đọc nó và 
 ### Task 4.11 — P10: giờ nhắc và độ dài theo hành vi thật [TDD]
 **Files:** Modify `NotificationPlanner.swift` hoặc Create `Progress/HabitSignals.swift` (core: `suggestedReminderMinutes(sessions:[(start, end)], reminderMinutes:)` — 5 buổi gần nhất lệch > 45 phút → đề xuất; `lengthSignal(records:)` — 2/3 buổi gần nhất kết thúc sớm 60–85 % không vì đau → `.shorter`; hay làm Extra ngay sau → `.longer`), `TodayModel` (`TodaySpecialCard.moveReminder(to:)` "Move your reminder to 9:15?" Yes/No → `updateProfile`; `.shorter` dùng cơ chế có sẵn; `.longer` → gợi Long walk) · Test `HabitSignalsTests.swift` (core), `TodayModelTests`
 **Command:** `CORE HabitSignalsTests` → `passed`
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: `CORE HabitSignalsTests` 4 tests passed (test viết cùng kiểu mới). Giờ nhắc: 5 buổi gần nhất, ≥ 4 buổi lệch > 45 phút cùng một phía → đề xuất trung vị làm tròn 15 phút (vd. 9:15); ít hơn 5 buổi hoặc lệch hai phía → nil. Độ dài: 3 buổi gần nhất, 2 buổi dừng ở 60–85 % kế hoạch (không vì đau) → `.shorter`; 2 buổi có Extra ngay sau → `.longer`; shorter thắng. Mac: map `WorkoutRecord` → `SessionTiming` (start = date − activeSeconds; plannedSeconds lưu thêm hoặc tính lại từ request; extraAfter = Extra bắt đầu ≤ 30 phút sau), thẻ `TodaySpecialCard.moveReminder(to:)` "Move your reminder to 9:15?" → `updateProfile`; `.shorter` → `minutesDelta −2` + thẻ shorter có sẵn; `.longer` → gợi Long walk. Chữ VI trong `ui-extra-10.json`.
 **Commit point:** `feat(personalisation): reminder time and length from real habits`
 
 ### Task 4.12 — P11: bước Apple Health → "đã đi nhiều hôm nay" [TDD]
