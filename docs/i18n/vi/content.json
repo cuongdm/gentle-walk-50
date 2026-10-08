@@ -637,13 +637,13 @@
   "nt.check.4": "Đến lần tự kiểm tra 2 tuần. Cùng chiếc ghế, cùng cách như lần trước."
  },
  "wins": {
-  "win.1": "Đứng dậy khỏi ghế sofa mà không cần chống tay",
-  "win.2": "Xách hết đồ đi chợ vào nhà chỉ trong một chuyến",
-  "win.3": "Đi hết một vòng cửa hàng",
-  "win.4": "Leo hết cầu thang mà không phải dừng lại",
-  "win.5": "Ngồi chơi dưới sàn với các cháu",
-  "win.6": "Với tới kệ cao nhất mà không cần ghế kê",
-  "win.7": "Đi ra hộp thư rồi quay về, thấy nhẹ nhàng",
-  "win.8": "Đứng suốt cả buổi hoà nhạc hay trận bóng"
+  "win.1": "Đứng dậy khỏi sofa, không chống tay",
+  "win.2": "Xách đồ chợ một chuyến",
+  "win.3": "Đi hết cửa hàng",
+  "win.4": "Lên cầu thang không dừng",
+  "win.5": "Ngồi dưới sàn với các cháu",
+  "win.6": "Với kệ cao, không cần ghế kê",
+  "win.7": "Ra hộp thư rồi về",
+  "win.8": "Đứng hết một buổi diễn"
  }
 }

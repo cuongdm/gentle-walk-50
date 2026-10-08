@@ -70,4 +70,25 @@ extension TestSupport {
     static func exercise(_ id: String) -> Exercise {
         appContent.exercises.first { $0.id == id }!
     }
+
+    /// The repository root (…/Tests/GentleWalkCoreTests/TestSupport.swift is six levels down).
+    static let repositoryRoot: URL = {
+        var url = URL(fileURLWithPath: #filePath)
+        for _ in 0..<6 { url.deleteLastPathComponent() }
+        return url
+    }()
+
+    /// Every Vietnamese UI translation the app will get (docs/i18n/vi/ui*.json, English key → Vietnamese).
+    static func vietnameseUI() throws -> [String: String] {
+        let folder = repositoryRoot.appendingPathComponent("docs/i18n/vi")
+        let files = try FileManager.default.contentsOfDirectory(atPath: folder.path)
+            .filter { $0.hasPrefix("ui") && $0.hasSuffix(".json") }
+        var all: [String: String] = [:]
+        for file in files {
+            let data = try Data(contentsOf: folder.appendingPathComponent(file))
+            all.merge(try JSONDecoder().decode([String: String].self, from: data)) { first, _ in first }
+        }
+        return all
+    }
 }
+

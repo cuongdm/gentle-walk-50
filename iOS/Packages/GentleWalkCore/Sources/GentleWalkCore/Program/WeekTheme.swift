@@ -46,6 +46,25 @@ public enum WeekTheme: String, CaseIterable, Codable, Sendable {
         }
     }
 
+    /// One line on what to notice this week (the Program screen and the "This week" card). Never promises
+    /// content that is not there: the same moves, a focus to try. English source; VI in ui-extra-11.json.
+    public var line: String {
+        switch self {
+        case .firstSteps: "Short, easy sessions to learn the moves. Seated is always fine."
+        case .findingYourRhythm: "The same moves as last week. Notice when they start to feel familiar."
+        case .standingTall: "Sit and stand tall between moves. Look ahead, not down."
+        case .aLittleMore: "Stage two starts. A little more, only when the last sessions felt easy."
+        case .upFromTheChair: "Sit-to-stands this week: slow down, slow up, hands on the chair if you like."
+        case .steadyFeet: "Balance moves: keep your chair close and look at one spot."
+        case .tryingTheNextStep: "Stage three starts. Try the harder version once, if it feels right."
+        case .turningWithEase: "Turn slowly, in small steps, with your chair or counter in reach."
+        case .heelAndToe: "Heel and toe raises: small and easy is perfect."
+        case .yourOwnRoutine: "Stage four starts. Keep the days and times that suit you."
+        case .keepingItGoing: "Your routine, your pace. Rest days are part of the plan."
+        case .lookingBack: "Your last week of the 12. Look back at your checks on Progress."
+        }
+    }
+
     public var newThisWeek: News? {
         switch week {
         case 1: .programStarts

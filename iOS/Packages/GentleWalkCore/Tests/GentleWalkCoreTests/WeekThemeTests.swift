@@ -39,4 +39,19 @@ import Testing
             }
         }
     }
+
+    /// Each week has one line, short, claim-free and translated (title and line).
+    @Test func everyWeekHasALineInBothLanguages() throws {
+        let vietnamese = try TestSupport.vietnameseUI()
+        #expect(Set(WeekTheme.allCases.map(\.line)).count == 12)
+        for theme in WeekTheme.allCases {
+            #expect(theme.line.split(separator: " ").count <= 16, "\(theme)")
+            #expect(vietnamese[theme.title]?.isEmpty == false, "VI \(theme.title)")
+            #expect(vietnamese[theme.line]?.isEmpty == false, "VI \(theme.line)")
+            for banned in ["fall", "risk", "pain", "bone", "new move", "new exercise", "guarantee"] {
+                #expect(!theme.line.lowercased().contains(banned), "\(theme): \(banned)")
+            }
+        }
+    }
 }
+

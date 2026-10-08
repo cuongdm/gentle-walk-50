@@ -3,12 +3,12 @@
   "wins": [
     {
       "id": "win.1",
-      "text": "Got up from the sofa without using my hands",
+      "text": "Up from the sofa, no hands",
       "hiddenFor": []
     },
     {
       "id": "win.2",
-      "text": "Carried the groceries in one trip",
+      "text": "Groceries in one trip",
       "hiddenFor": []
     },
     {
@@ -18,29 +18,29 @@
     },
     {
       "id": "win.4",
-      "text": "Climbed the stairs without stopping",
+      "text": "Stairs without stopping",
       "hiddenFor": []
     },
     {
       "id": "win.5",
-      "text": "Played on the floor with the grandkids",
+      "text": "On the floor with the grandkids",
       "hiddenFor": [
         "noFloor"
       ]
     },
     {
       "id": "win.6",
-      "text": "Reached the top shelf without a stool",
+      "text": "Top shelf, no stool",
       "hiddenFor": []
     },
     {
       "id": "win.7",
-      "text": "Walked to the mailbox and back, easily",
+      "text": "To the mailbox and back",
       "hiddenFor": []
     },
     {
       "id": "win.8",
-      "text": "Stood through a whole concert or ball game",
+      "text": "Stood through a whole show",
       "hiddenFor": []
     }
   ]
