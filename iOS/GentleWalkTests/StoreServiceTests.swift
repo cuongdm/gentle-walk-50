@@ -117,6 +117,69 @@ import GentleWalkCore
         #expect(store.activeRenewingProductID == ProductID.yearly)
     }
 
+    // MARK: Trial length from the offer (review I-1, 08/10/2026)
+
+    /// GentleWalk.storekit with the yearly intro offer changed (`P1W`) or removed (nil), in a temp file.
+    func storeKitFile(yearlyTrialPeriod period: String?) throws -> URL {
+        let source = TestFixtures.url("GentleWalk", "storekit")
+        var json = try #require(try JSONSerialization.jsonObject(with: Data(contentsOf: source)) as? [String: Any])
+        var groups = try #require(json["subscriptionGroups"] as? [[String: Any]])
+        for g in groups.indices {
+            var subscriptions = try #require(groups[g]["subscriptions"] as? [[String: Any]])
+            for s in subscriptions.indices where subscriptions[s]["productID"] as? String == ProductID.yearly {
+                if let period, var offer = subscriptions[s]["introductoryOffer"] as? [String: Any] {
+                    offer["subscriptionPeriod"] = period
+                    subscriptions[s]["introductoryOffer"] = offer
+                } else {
+                    subscriptions[s]["introductoryOffer"] = NSNull()
+                }
+            }
+            groups[g]["subscriptions"] = subscriptions
+        }
+        json["subscriptionGroups"] = groups
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("GentleWalk-\(UUID().uuidString).storekit")
+        try JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted]).write(to: url)
+        return url
+    }
+
+    @Test func trialDaysComeFromTheIntroOffer() async throws {
+        let store = try await store()
+        #expect(store.trialDays == 14)
+        #expect(store.isEligibleForTrial)
+    }
+
+    @Test func oneWeekOfferReadsSevenDays() async throws {
+        let weekSession = try SKTestSession(contentsOf: storeKitFile(yearlyTrialPeriod: "P1W"))
+        weekSession.disableDialogs = true
+        weekSession.resetToDefaultState()
+        weekSession.clearTransactions()
+        let reminders = FakeTrialReminders()
+        let store = StoreService(sync: {}, purchaser: { product in
+            .purchased(try await weekSession.buyProduct(identifier: product.id))
+        }, trialReminders: reminders)
+        try await store.loadProducts()
+        #expect(store.trialDays == 7)
+        #expect(store.isEligibleForTrial)
+        _ = try await store.purchase(ProductID.yearly)
+        guard case .trial(let ends) = store.entitlement else { Issue.record("no trial"); return }
+        let reminder = try #require(reminders.scheduled.last)
+        let expected = TrialTimeline(billingDate: ends, trialLength: 7, calendar: .current).reminderDate
+        #expect(abs(reminder.at.timeIntervalSince(expected)) < 86_400 * 0.5)
+    }
+
+    @Test func noIntroOfferMeansNoTrial() async throws {
+        let plainSession = try SKTestSession(contentsOf: storeKitFile(yearlyTrialPeriod: nil))
+        plainSession.disableDialogs = true
+        plainSession.resetToDefaultState()
+        plainSession.clearTransactions()
+        let store = StoreService(sync: {}, purchaser: { product in
+            .purchased(try await plainSession.buyProduct(identifier: product.id))
+        })
+        try await store.loadProducts()
+        #expect(store.trialDays == nil)
+        #expect(!store.isEligibleForTrial)
+    }
+
     // MARK: Trial reminder (task 5.12)
 
     @Test func trialPurchaseSchedulesTheDayTwelveReminder() async throws {
@@ -126,7 +189,8 @@ import GentleWalkCore
         let reminder = try #require(reminders.scheduled.last)
         guard case .trial(let ends) = store.entitlement else { Issue.record("no trial"); return }
         #expect(reminder.billing == ends)
-        let expected = TrialTimeline(start: ends.addingTimeInterval(-14 * 86_400), trialLength: 14, calendar: .current).reminderDate
+        #expect(store.trialDays == 14)
+        let expected = TrialTimeline(billingDate: ends, trialLength: 14, calendar: .current).reminderDate
         #expect(abs(reminder.at.timeIntervalSince(expected)) < 86_400 * 0.5)
         #expect(!reminder.price.isEmpty)
     }

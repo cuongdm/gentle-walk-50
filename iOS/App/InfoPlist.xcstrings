@@ -38,19 +38,19 @@
       }
     },
     "NSHealthShareUsageDescription" : {
-      "comment" : "Apple Health read permission (S16). Steps only feed the Progress card; the journey runs on active minutes.",
+      "comment" : "Apple Health read permission (S16). Steps feed the Progress card and the busy-day suggestion on Today; the journey runs on active minutes.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Good Footing reads your step count to show your everyday activity in Progress."
+            "value" : "Good Footing reads your step count to show your everyday activity in Progress and to suggest a lighter session on busy days."
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Good Footing đọc số bước chân của bạn để hiện mức vận động hằng ngày trong mục Tiến bộ."
+            "value" : "Good Footing đọc số bước để hiện mức vận động hằng ngày ở mục Tiến bộ và gợi ý buổi nhẹ hơn vào ngày bạn đi lại nhiều."
           }
         }
       }

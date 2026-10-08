@@ -52,7 +52,7 @@ targets:
       properties:
         CFBundleDisplayName: Good Footing
         UILaunchScreen: {}
-        NSHealthShareUsageDescription: Good Footing reads your step count to show your everyday activity in Progress.
+        NSHealthShareUsageDescription: Good Footing reads your step count to show your everyday activity in Progress and to suggest a lighter session on busy days.
         NSHealthUpdateUsageDescription: Good Footing saves your walks and exercise sessions to Apple Health.
         NSMotionUsageDescription: Good Footing uses motion to count your sit-to-stands while your phone is held to your chest, and to measure outdoor walks without location.
         NSLocationWhenInUseUsageDescription: Good Footing uses your location only during outdoor walks to measure distance and draw your route. It stays on this phone.

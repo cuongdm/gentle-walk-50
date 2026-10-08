@@ -113,7 +113,7 @@ struct PaywallContainer: View {
         .task {
             if app.store.products.isEmpty { try? await app.store.loadProducts() }
             model = PaywallModel(options: PaywallModel.options(from: app.store.products),
-                                 isEligibleForTrial: app.store.isEligibleForTrial,
+                                 isEligibleForTrial: app.store.isEligibleForTrial, trialDays: app.store.trialDays,
                                  activeRenewingProductID: app.store.activeRenewingProductID, goal: app.profile?.goal ?? .notSure,
                                  now: app.now(), calendar: app.calendar)
         }

@@ -1,7 +1,7 @@
 {
  "CFBundleDisplayName": "Good Footing",
  "CFBundleName": "Good Footing",
- "NSHealthShareUsageDescription": "Good Footing đọc số bước chân của bạn để hiện mức vận động hằng ngày trong mục Tiến bộ.",
+ "NSHealthShareUsageDescription": "Good Footing đọc số bước để hiện mức vận động hằng ngày ở mục Tiến bộ và gợi ý buổi nhẹ hơn vào ngày bạn đi lại nhiều.",
  "NSHealthUpdateUsageDescription": "Good Footing lưu các buổi đi bộ và buổi tập của bạn vào Apple Health.",
  "NSLocationWhenInUseUsageDescription": "Good Footing chỉ dùng vị trí của bạn khi đi bộ ngoài trời để đo quãng đường và vẽ lộ trình. Dữ liệu này chỉ nằm trên điện thoại này.",
  "NSMotionUsageDescription": "Good Footing dùng cảm biến chuyển động để đếm số lần bạn ngồi xuống đứng lên khi giữ điện thoại trước ngực, và để đo buổi đi bộ ngoài trời khi không dùng vị trí."

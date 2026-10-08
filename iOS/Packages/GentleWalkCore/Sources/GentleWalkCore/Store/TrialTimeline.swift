@@ -24,4 +24,10 @@ public struct TrialTimeline: Equatable, Sendable {
         let bannerStart = min(calendar.startOfDay(for: bannerDay), billing)
         bannerWindow = DateInterval(start: bannerStart, end: billing)
     }
+
+    /// The same timeline worked out back from the billing date StoreKit gives during a trial.
+    public init(billingDate: Date, trialLength: Int, calendar: Calendar) {
+        let start = calendar.date(byAdding: .day, value: -trialLength, to: billingDate) ?? billingDate
+        self.init(start: start, trialLength: trialLength, calendar: calendar)
+    }
 }

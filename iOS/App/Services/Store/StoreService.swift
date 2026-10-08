@@ -23,6 +23,9 @@ enum StoreError: Error { case productUnavailable, unverified }
     private(set) var activeRenewingProductID: String?
     private(set) var renewalDate: Date?
     private(set) var isEligibleForTrial = true
+    /// Free days of the yearly plan's introductory offer as App Store Connect sets it (review I-1,
+    /// 08/10/2026); nil when the yearly plan has no free-trial offer, which means no trial anywhere.
+    private(set) var trialDays: Int?
 
     @ObservationIgnored private let sync: () async throws -> Void
     @ObservationIgnored private let purchaser: Purchaser
@@ -60,6 +63,7 @@ enum StoreError: Error { case productUnavailable, unverified }
     func loadProducts() async throws {
         let list = try await Product.products(for: ProductID.all)
         products = Dictionary(list.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        trialDays = Self.freeTrialDays(products[ProductID.yearly]?.subscription?.introductoryOffer)
         await refresh()
     }
 
@@ -158,9 +162,26 @@ enum StoreError: Error { case productUnavailable, unverified }
         return result
     }
 
-    /// The free trial is offered once per subscription group: StoreKit's flag, and no earlier plan.
+    /// Days of an introductory offer that is a free trial; nil for a paid intro offer or none.
+    static func freeTrialDays(_ offer: Product.SubscriptionOffer?) -> Int? {
+        guard let offer, offer.paymentMode == .freeTrial else { return nil }
+        return TrialOffer.days(value: offer.period.value, unit: trialUnit(offer.period.unit))
+    }
+
+    static func trialUnit(_ unit: Product.SubscriptionPeriod.Unit) -> TrialOffer.Unit {
+        switch unit {
+        case .day: .day
+        case .week: .week
+        case .month: .month
+        case .year: .year
+        @unknown default: .day
+        }
+    }
+
+    /// The free trial is offered once per subscription group: a free-trial offer on the yearly plan,
+    /// StoreKit's flag, and no earlier plan.
     private func trialEligibility() async -> Bool {
-        guard let yearly = products[ProductID.yearly]?.subscription else { return false }
+        guard trialDays != nil, let yearly = products[ProductID.yearly]?.subscription else { return false }
         guard await yearly.isEligibleForIntroOffer else { return false }
         for await result in Transaction.all {
             if case .verified(let transaction) = result, ProductID.subscriptions.contains(transaction.productID) { return false }
@@ -174,7 +195,10 @@ enum StoreError: Error { case productUnavailable, unverified }
             trialReminders?.cancelTrialReminder()
             return
         }
-        let timeline = TrialTimeline(start: ends.addingTimeInterval(-14 * 86_400), trialLength: 14, calendar: .current)
+        // The reminder is counted back from the billing date, so a trial already running still gets it
+        // if the offer has since been removed from the store (its length then does not matter).
+        let length = trialDays ?? TrialTimeline.reminderDaysBefore
+        let timeline = TrialTimeline(billingDate: ends, trialLength: length, calendar: .current)
         trialReminders?.scheduleTrialReminder(at: timeline.reminderDate, billingDate: ends, price: price)
     }
 }

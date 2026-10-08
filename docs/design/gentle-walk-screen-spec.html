@@ -174,36 +174,39 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 <section id="tokens">
 <h2>Design tokens</h2>
-<p>Kế thừa bảng màu PawSteps v3, bỏ các màu dành cho chó. Designer được chỉnh sắc độ nhưng giữ vai trò của từng màu và đạt tương phản 4.5:1.</p>
+<p>Cập nhật 08/10/2026 theo code (<code>iOS/App/Design/Tokens.swift</code>, <code>Typography.swift</code>, <code>ButtonStyles.swift</code>, bộ màu trong asset catalog). Hướng Claude Design chủ app chốt 08/10: giấy ấm, xanh lá cho nút chính, chiều sâu mềm (không 3D). Mọi cặp chữ trên nền nằm trong <code>Palette.textPairs</code> và được <code>DesignTokenTests</code> kiểm 4.5:1 cả sáng lẫn tối.</p>
 <div class="tbl"><table>
 <thead><tr><th>Token</th><th>Light</th><th>Dark</th><th>Dùng cho</th></tr></thead>
 <tbody>
-<tr><td><code>bg</code></td><td><span class="sw" style="background:#FFF8EF"></span>#FFF8EF</td><td><span class="sw" style="background:#1E1B18"></span>#1E1B18</td><td>Nền toàn app</td></tr>
-<tr><td><code>surface</code></td><td><span class="sw" style="background:#FFFFFF"></span>#FFFFFF</td><td><span class="sw" style="background:#2A2622"></span>#2A2622</td><td>Thẻ</td></tr>
-<tr><td><code>primary</code></td><td><span class="sw" style="background:#C8612F"></span>#C8612F</td><td>giảm sáng 10%</td><td>Nút chính, chữ trắng. Chỉ một nút chính mỗi màn</td></tr>
-<tr><td><code>secondary</code></td><td><span class="sw" style="background:#5E8C6A"></span>#5E8C6A</td><td>giảm sáng 10%</td><td>Tiến độ, hành trình, "đã xong"</td></tr>
-<tr><td><code>sky</code></td><td><span class="sw" style="background:#7FA7C9"></span>#7FA7C9</td><td>giảm sáng 10%</td><td>Pha chậm (Easy), nút Break, check-in Achy</td></tr>
-<tr><td><code>sun</code></td><td><span class="sw" style="background:#F2B84B"></span>#F2B84B</td><td>giảm sáng 10%</td><td>Pha nhanh (Brisk), cột mốc</td></tr>
-<tr><td><code>text</code></td><td><span class="sw" style="background:#2E2A26"></span>#2E2A26</td><td>#F3EEE8</td><td>Chữ chính</td></tr>
-<tr><td><code>text-muted</code></td><td><span class="sw" style="background:#6B635B"></span>#6B635B</td><td>#B8AFA6</td><td>Chữ phụ thật sự. Không dùng cho hướng dẫn</td></tr>
-<tr><td><code>danger-soft</code></td><td><span class="sw" style="background:#C8574A"></span>#C8574A</td><td>giảm sáng 10%</td><td>Chỉ nút This hurts và xoá dữ liệu</td></tr>
+<tr><td><code>bg</code></td><td><span class="sw" style="background:#F8F1E6"></span>#F8F1E6</td><td><span class="sw" style="background:#1F1B17"></span>#1F1B17</td><td>Nền toàn app (giấy ấm)</td></tr>
+<tr><td><code>surface</code> (<code>surfaceTop</code> → <code>surfaceBottom</code>)</td><td><span class="sw" style="background:#FFFCF6"></span>#FFFCF6</td><td><span class="sw" style="background:#2A251F"></span>#2A251F</td><td>Thẻ giấy, chuyển sắc rất nhẹ, bóng mờ</td></tr>
+<tr><td><code>primary</code></td><td><span class="sw" style="background:#2E4A33"></span>#2E4A33</td><td><span class="sw" style="background:#4A7151"></span>#4A7151</td><td>Vai trò "đi tiếp"; nút chính dùng dải <code>primaryTop</code> #5A8052 → <code>primaryMid</code> #4A7044 → <code>primaryBottom</code> #3E6138, nhấn #34532F. Chữ trắng trên mọi điểm. Chỉ một nút chính mỗi màn</td></tr>
+<tr><td><code>secondary</code></td><td><span class="sw" style="background:#54722F"></span>#54722F</td><td><span class="sw" style="background:#557537"></span>#557537</td><td>Tiến độ, hành trình, "đã xong" (trắng trên nền ≈ 5,5:1)</td></tr>
+<tr><td><code>accent</code></td><td><span class="sw" style="background:#8F4323"></span>#8F4323</td><td><span class="sw" style="background:#E0915F"></span>#E0915F</td><td>Chữ nhỏ cần nhấn (tab, nhãn)</td></tr>
+<tr><td><code>sky</code></td><td><span class="sw" style="background:#7FA3C0"></span>#7FA3C0</td><td><span class="sw" style="background:#7296B5"></span>#7296B5</td><td>Pha chậm (Easy), Break, check-in Achy, nền gợi ý. Không làm màu nét icon</td></tr>
+<tr><td><code>sun</code></td><td><span class="sw" style="background:#D9A441"></span>#D9A441</td><td><span class="sw" style="background:#D2A04A"></span>#D2A04A</td><td>Pha nhanh (Brisk), cột mốc, nền mẹo nắng nóng. Không làm màu nét icon</td></tr>
+<tr><td><code>text</code></td><td><span class="sw" style="background:#2A241F"></span>#2A241F</td><td>#F2EBE1</td><td>Chữ chính</td></tr>
+<tr><td><code>textMuted</code></td><td><span class="sw" style="background:#655A50"></span>#655A50</td><td>#BDB2A5</td><td>Chữ phụ thật sự. Không dùng cho hướng dẫn</td></tr>
+<tr><td><code>dangerSoft</code></td><td><span class="sw" style="background:#BF5347"></span>#BF5347</td><td><span class="sw" style="background:#AC4B40"></span>#AC4B40</td><td>Chỉ nút This hurts và xoá dữ liệu (nền phẳng, không dải màu)</td></tr>
 </tbody></table></div>
 <div class="tbl"><table>
-<thead><tr><th>Chữ</th><th>Cỡ</th><th>Ghi chú</th></tr></thead>
+<thead><tr><th>Chữ (font A1, chủ app chốt 08/10/2026)</th><th>Cỡ ở cỡ chữ mặc định</th><th>Ghi chú</th></tr></thead>
 <tbody>
-<tr><td>Font</td><td>SF Pro Rounded</td><td>Dự phòng Nunito. Không dùng weight Light</td></tr>
-<tr><td>Tiêu đề màn</td><td>30pt bold</td><td>Tối đa 2 dòng</td></tr>
-<tr><td>Tiêu đề thẻ</td><td>22pt semibold</td><td></td></tr>
-<tr><td>Body</td><td>19pt</td><td>Tối thiểu 17pt ở mọi nơi</td></tr>
-<tr><td>Chú thích</td><td>15pt</td><td>Chỉ cho thông tin phụ</td></tr>
-<tr><td>Nhãn pha trong player</td><td>34pt</td><td>Ví dụ <q>BRISK WALK</q>, chữ hoa có letter-spacing</td></tr>
-<tr><td>Đồng hồ, số đếm trong player</td><td>64–96pt</td><td>Số to nhất màn hình, tabular figures</td></tr>
+<tr><td>Tiêu đề màn</td><td>30pt semibold, New York (serif)</td><td>Neo <code>.title</code>, giãn dòng 2. Tối đa 2 dòng</td></tr>
+<tr><td>Tiêu đề thẻ</td><td>22pt semibold, SF Pro</td><td>Neo <code>.title2</code></td></tr>
+<tr><td>Body</td><td>19pt, SF Pro</td><td>Tối thiểu 17pt ở mọi nơi; giãn dòng 2</td></tr>
+<tr><td>Nút</td><td>20pt semibold, SF Pro</td><td></td></tr>
+<tr><td>Chú thích</td><td>16pt, SF Pro</td><td>Neo <code>.callout</code>. Chỉ cho thông tin phụ</td></tr>
+<tr><td>Nhãn pha trong player</td><td>34pt bold, SF Pro Rounded</td><td>Ví dụ <q>BRISK WALK</q>, chữ hoa có letter-spacing</td></tr>
+<tr><td>Số: đồng hồ · chuyển pha · ô số · giờ lớn</td><td>80 · 52 · 40 · 160pt, SF Pro Rounded</td><td>SF Pro Rounded chỉ dùng cho số; đồng hồ weight medium; tabular figures</td></tr>
 </tbody></table></div>
 <ul>
-  <li><b>Nút chính:</b> cao 60pt, bo 18pt, full-width, chữ 20pt semibold.</li>
-  <li><b>Nút phụ:</b> viền 2pt, nền trong suốt, cùng chiều cao.</li>
-  <li><b>Vùng chạm:</b> tối thiểu 56×56pt, cách nhau tối thiểu 12pt. Lề màn hình 20pt.</li>
-  <li><b>Thẻ:</b> bo 20pt, không bóng đổ đậm.</li>
+  <li>Mọi cỡ chữ co giãn theo Dynamic Type (<code>@ScaledMetric</code> neo text style). Không dùng weight Light.</li>
+  <li><b>Nút chính:</b> cao tối thiểu 64pt (lớn theo cỡ chữ), bo 14pt, full-width, chữ trắng 20pt semibold. Chiều sâu mềm: dải xanh sáng → đậm, viền sáng 1pt ở mép trên, bóng xanh mềm; nhấn thì tối hơn, lún (bóng trong) và co 0,97; tắt thì phẳng.</li>
+  <li><b>Nút phụ:</b> viền, nền trong suốt, cùng chiều cao.</li>
+  <li><b>Vùng chạm:</b> tối thiểu 56×56pt, cách nhau tối thiểu 12pt. Lề màn hình 20pt; cột đọc tối đa 620pt trên iPad.</li>
+  <li><b>Thẻ:</b> bo 16pt, giấy sáng, bóng nhẹ.</li>
+  <li><b>Icon nội dung:</b> Phosphor Icons 2.1.1 (MIT, giấy phép trong <code>Resources/Licenses/Phosphor-MIT.txt</code>), Bold khi thường, Fill khi được chọn, cộng glyph vẽ riêng cùng độ đậm (<code>assets/icons/custom/</code>), đặt trên chip loang màu nước. Một hình một nghĩa (<code>AppIcon</code>, kiểm bằng <code>AppIconTests</code>); icon luôn đi cùng chữ và ẩn với VoiceOver. Điều khiển hệ thống (chevron, check, xmark, plus, play/pause) giữ SF Symbols. Nguồn: <code>tools/art/icons-manifest.json</code> → <code>tools/art/build_icons.py</code>.</li>
 </ul>
 </section>
 
@@ -516,6 +519,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   <li>Câu hỏi: <q>How did that feel?</q> · <q>Too easy</q> · <q>Just right</q> · <q>Too hard</q> → xác nhận <q>Got it. We'll adjust tomorrow.</q></li>
   <li>Nút chính <q>Done</q> · nút phụ <q>Share with family</q></li>
 </ol>
+<p class="meta">Lời khen dưới tiêu đề (08/10/2026, <code>CompleteCheer</code> trong core, chưa nối vào app): 21 câu cho 6 bối cảnh (buổi đầu · buổi thường · quay lại sau 3+ ngày · kỷ lục của chính mình · xong tuần · xong chặng), không lặp câu của lần trước. Buổi đầu có thẻ mời tự kiểm tra tuần 0 ngay sau <q>How did that feel?</q>.</p>
 <h4>Biến thể cần vẽ</h4>
 <ul>
   <li><b>First Walk:</b> tiêu đề <q>That's your first walk!</q> · phụ <q>Five minutes. You showed up, and that's the hardest part.</q> · bưu thiếp đầu tiên <q>Central Park Zoo</q>.</li>
@@ -530,13 +534,13 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <div class="screen" id="s16">
 <div class="screen-head"><span class="id">S16</span><h3>Permissions</h3></div>
 <div class="tags"><span class="tag">Chỉ lần đầu, sau S15. Không xin quyền trước buổi tập đầu.</span></div>
+<p>Từ 08/10/2026: hai màn, mỗi màn một quyền, nhắc nhở trước (task 1.6 của kế hoạch 2026-10-08-ui-onboarding-personalization). Góc phải <q>1 of 2</q> / <q>2 of 2</q>; màn 2 có <q>Back</q>.</p>
 <ol>
-  <li>Tiêu đề: <q>Two quick things</q></li>
-  <li>Thẻ 1: <q>See your everyday steps</q> · <q>We read your steps from Apple Health to show your all-day activity in Progress. Your journey moves with the minutes you spend here. Your data stays on this phone.</q> · nút <q>Connect Apple Health</q></li>
-  <li>Thẻ 2: <q>A gentle reminder after your morning coffee</q> (theo mốc đã chọn) · <q>One message a day at most. Never on days you've already walked or rest days.</q> · nút <q>Allow reminders</q></li>
-  <li>Link <q>Not now</q> cho cả màn.</li>
+  <li><b>S16a nhắc nhở:</b> <q>A nudge for your daily walk?</q> · <q>One message a day at most. Never on rest days.</q> · chọn mốc trong ngày và giờ (− / +) · nút chính <q>Set my reminder</q>.</li>
+  <li><b>S16b Apple Health:</b> <q>See your everyday steps?</q> · <q>Progress shows your all-day steps. Your journey moves either way.</q> · tranh · ô gợi ý <q>Next, Apple asks what to share: tap Turn On All, then Allow. Or tap Don't Allow to skip.</q> · <q>Your data stays on this phone.</q> · nút chính <q>Connect Apple Health</q>.</li>
+  <li>Dưới nút chính: link <q>Not now</q> (quyết định D5; xem rủi ro 5.1.1(iv) ở docs/reviews/2026-10-08-app-review-recheck.md mục I-2).</li>
 </ol>
-<p class="meta">Mỗi nút mở hộp thoại hệ thống của Apple. Vẽ trạng thái đã cho phép: dấu tick xanh thay cho nút. Quyền vị trí không xin ở đây mà ở S10b, chỉ khi người dùng chọn Outdoors.</p>
+<p class="meta">Nút chính mở hộp thoại của Apple; "Don't Allow" ở đó cũng đi tiếp, không hỏi lại. Đã cho phép thì hiện dòng xanh <q>Reminders on</q> / <q>Apple Health connected</q> và nút <q>Continue</q>. Quyền vị trí không xin ở đây mà ở S10b: chọn cách đo trước, rồi một màn một nút <q>Continue</q> trước hộp thoại iOS.</p>
 </div>
 
 <h2>Hằng ngày</h2>
@@ -544,7 +548,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <div class="screen" id="s17">
 <div class="screen-head"><span class="id">S17</span><h3>Today</h3></div>
 <ol>
-  <li>Hàng trên: <q>Good morning, Margaret</q> · góc phải <q>13 active days</q> với icon lá.</li>
+  <li>Hàng trên: lời chào đổi theo buổi trong ngày và mùa, mỗi ngày một câu khác (<q>Good morning, Margaret</q> · <q>An autumn morning, Margaret</q>; <code>Greetings</code> trong core, chưa nối vào app) · một dòng <q>13 active days · Week 3 · Plan ›</q> dẫn tới màn Kế hoạch (chương trình 12 tuần). Dòng chủ đề tuần <q>New this week</q> chỉ khi tuần có điều mới.</li>
+  <li>Khi đến hạn tự kiểm tra 2 tuần: thẻ tự kiểm tra lên trước với nút xanh duy nhất; nút Start của thẻ bài lùi thành nút viền. Chưa đến hạn thì thẻ nằm dưới thẻ bài.</li>
+  <li>Cá nhân hoá (P1–P13, chỉ khi có tín hiệu): <q>Welcome back</q> · dòng tuần trước từ check-in tuần (<q>Last week you said stairs felt a bit better…</q>) · mục tiêu nhắc lại trên thẻ bài · thẻ đặc biệt: check-in tuần (<q>This week felt…</q>), đề nghị dời giờ nhắc (<q>Move your reminder to 9:10 AM?</q>), ngày đi lại nhiều (<q>You've been on your feet a lot today. A gentle stretch fits.</q>), <q>You're ready for a little more</q>.</li>
   <li>Check-in, chỉ hiện khi chưa tập hôm nay: <q>How do your joints feel today?</q> · ba nút lớn <q>Achy</q> · <q>Okay</q> · <q>Great</q>. Achy dẫn tới Gentle, Okay tới Steady, Great tới Strong.</li>
   <li>Thẻ bài hôm nay, lớn nhất màn: tên bài, thời lượng, cấp, tranh nhỏ. Nút chính <q>Start</q>. Ba mẫu theo tuần: <q>Steady walk · 10 min · Seated</q> · <q>Chair moves · 9 min</q> · <q>Gentle stretch · 8 min</q>. Ngày giãn cơ, check-in vẫn hiện nhưng chỉ đổi thời gian giữ.</li>
   <li>Thẻ hành trình mini: bản đồ nhỏ, <q>1.8 of 5 mi to Brooklyn Bridge</q>.</li>
@@ -599,13 +605,17 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 <div class="screen" id="s19">
 <div class="screen-head"><span class="id">S19</span><h3>Progress</h3></div>
+<p>Thứ tự theo code ngày 08/10/2026 (<code>Features/Progress/ProgressScreen.swift</code>):</p>
 <ol>
-  <li>Cấp độ cây: minh hoạ cây ở cấp hiện tại, <q>Sprout · 8 days to Sapling</q> (13 ngày hoạt động ở S17; mốc 7 · 21 · 42 chốt 29/09/2026).</li>
-  <li>Lịch tháng: ngày có tập tô secondary, ngày nghỉ hợp lệ có ký hiệu riêng, không có ô đỏ.</li>
-  <li>Thẻ <q>Sit-to-stands in a session</q> với biểu đồ cột đơn giản theo tuần, và <q>Longest walk without a break</q>.</li>
-  <li>Khối <q>Everyday wins</q>: danh sách tự tick <q>Got up from the sofa without using my hands</q> · <q>Carried the groceries in one trip</q> · <q>Walked the whole store</q></li>
-  <li>Thẻ <q>All-day steps</q> từ Apple Health: số bước trung bình tuần này, so với tuần trước. Không kéo bản đồ hành trình.</li>
-  <li>Thẻ mờ <q>Fitness Check · coming soon</q> để giữ chỗ cho phase 2.</li>
+  <li><b><q>Your results</q></b> (P8): <q>The last 4 weeks, compared only with you.</q> · <q>Minutes moving each week</q> (4 cột, tuần này là <q>This wk</q>) · <q>Sit-to-stands in 30 seconds</q> (<q>First check: 8</q>, chỉ so cùng cách làm) · bậc vịn Tandem (<q>Started with two</q>, Pro) · <q>N weeks</q> <q>In a row with 3+ active days</q>, <q>Rest days never break it</q>. Mục tiêu của cô ấy nhắc lại trên thẻ. Dòng cuối: <q>Counted on this phone from your own sessions and checks. [App] is for general fitness, not medical advice.</q></li>
+  <li>Cấp độ cây: minh hoạ cây ở cấp hiện tại, <q>Sprout · 8 days to Sapling</q> (mốc 7 · 21 · 42 chốt 29/09/2026) · <q>An active day is any day you finish a session.</q></li>
+  <li>Lịch tháng: ngày có tập tô secondary, ngày nghỉ hợp lệ có ký hiệu riêng, không có ô đỏ; chạm một ngày mở danh sách buổi của ngày đó.</li>
+  <li>Các buổi gần đây (bản miễn phí xem ngắn, Pro xem hết).</li>
+  <li>Biểu đồ tự kiểm tra 2 tuần (thay thẻ <q>Sit-to-stands in a session</q> cũ): mỗi lần một cột, chỉ so với lần đầu cùng cách làm, kèm <q>This is not a medical test.</q></li>
+  <li>Thẻ bậc vịn theo bài (Pro) và <q>Longest walk without a break</q>.</li>
+  <li><b><q>Your weekly notes</q></b> (P6): tối đa 4 tuần gần nhất có ghi chú check-in (<q>Week of …</q>).</li>
+  <li>Khối <q>Everyday wins</q>: nhãn ngắn tự tick, ví dụ <q>Up from the sofa, no hands</q> · <q>Groceries in one trip</q> · <q>Walked the whole store</q> (8 mục, id ổn định <code>win.1</code>–<code>win.8</code>).</li>
+  <li>Thẻ <q>All-day steps</q> từ Apple Health: số bước trung bình tuần này, so với tuần trước; chưa kết nối thì có nút kết nối. Không kéo bản đồ hành trình.</li>
 </ol>
 <div class="note"><b>Không</b> có cân nặng, calo, "More energy / Better balance" chưa đo được.</div>
 </div>
@@ -615,7 +625,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <div class="tags"><span class="tag p">Trụ 3</span></div>
 <ol>
   <li><b>Subscription</b> đặt trên cùng: <q>Free trial · ends Oct 11, then [yearly price] a year</q>. Người mua một lần thấy <q>Lifetime access · no renewals</q> và không có link huỷ; nếu còn gói tự gia hạn thì hiện thêm dòng <q>Your yearly plan still renews on Oct 11 · Cancel it</q> dẫn tới S21 · link <q>How to cancel</q> dẫn tới S21.</li>
-  <li><b>Your body:</b> <q>Easy on: Knees · No floor moves</q> · <q>Edit</q></li>
+  <li><b>Your goal</b> (08/10/2026): mục tiêu chính chọn ở onboarding, đổi được ở đây.</li>
+  <li><b>Your body:</b> <q>Easy on: Knees · No floor moves</q> · <q>Edit</q> (sửa theo hai nhóm như onboarding).</li>
+  <li><b><q>Moves set aside</q></b> (P3, chỉ khi có): bài bị đau nhiều lần được tạm gác 4 tuần, <q>Back on [ngày]</q> · nút <q>Bring it back</q>.</li>
   <li><b>Your week:</b> <q>Rest days: Saturday, Sunday</q> · <q>Change</q> (chọn 2 ngày trong danh sách, không kéo thả). Bản miễn phí: ẩn.</li>
   <li><b>Workout:</b> <q>Voice</q> bật/tắt · <q>Voice louder than music</q> · <q>Music</q> chọn <q>Feel-good 70s and 80s</q> (mặc định, nhạc miễn bản quyền theo phong cách, cần test) · <q>Calm piano</q> · <q>Country</q> · <q>Off</q> · <q>Captions</q> bật mặc định</li>
   <li><b>Notifications:</b> <q>Walk reminder · After morning coffee, 8:30 AM</q> · <q>Change</q> · <q>How often</q>: <q>Daily</q> / <q>Just on quiet days</q> · công tắc riêng <q>Journey milestones</q>, <q>Weekly recap</q>, <q>New journeys</q> (tắt mặc định, dòng phụ <q>Occasional news about new routes.</q>)</li>

@@ -40,10 +40,15 @@ struct PlanOption: Identifiable, Equatable, Sendable {
 @Observable @MainActor final class PaywallModel {
     private(set) var options: [PlanOption]
     var selectedID: String
+    /// StoreKit's eligibility and a free-trial offer on the yearly plan: without an offer there is no trial.
     let isEligibleForTrial: Bool
+    /// Free days of the yearly plan's introductory offer, from StoreKit (review I-1, 08/10/2026); nil
+    /// when the yearly plan has no free-trial offer.
+    let trialDays: Int?
     /// A renewing plan the user already has: the one-payment card warns it keeps renewing (I2).
     let activeRenewingProductID: String?
-    let trial: TrialTimeline
+    /// Today → reminder → first charge, for the offered trial length; nil when there is no trial.
+    let trial: TrialTimeline?
     /// Her main goal from onboarding (owner 08/10/2026: one goal, said back on the paywall).
     let goal: Goal
     /// "See other plans" opened. Closing it ("Fewer plans") goes back to Yearly, the only plan then shown.
@@ -51,14 +56,15 @@ struct PlanOption: Identifiable, Equatable, Sendable {
         didSet { if !showsAllPlans, let yearly { selectedID = yearly.id } }
     }
 
-    init(options: [PlanOption], isEligibleForTrial: Bool, activeRenewingProductID: String? = nil, goal: Goal = .notSure,
-         now: Date = .now, calendar: Calendar = .current) {
+    init(options: [PlanOption], isEligibleForTrial: Bool, trialDays: Int?, activeRenewingProductID: String? = nil,
+         goal: Goal = .notSure, now: Date = .now, calendar: Calendar = .current) {
         self.options = options
-        self.isEligibleForTrial = isEligibleForTrial
+        self.trialDays = trialDays
+        self.isEligibleForTrial = isEligibleForTrial && trialDays != nil
         self.activeRenewingProductID = activeRenewingProductID
         self.goal = goal
         selectedID = options.first { $0.kind == .yearly }?.id ?? options.first?.id ?? ""
-        trial = TrialTimeline(start: now, trialLength: 14, calendar: calendar)
+        trial = trialDays.map { TrialTimeline(start: now, trialLength: $0, calendar: calendar) }
         // No yearly plan in the store: show every plan there is.
         if options.first(where: { $0.kind == .yearly }) == nil { showsAllPlans = true }
     }
@@ -75,8 +81,8 @@ struct PlanOption: Identifiable, Equatable, Sendable {
     /// "Your 12 weeks to feel steadier, free for 14 days"; "Pick what suits you" over all three plans.
     var title: LocalizedStringResource {
         if showsAllPlans { return "Pick what suits you" }
-        guard isEligibleForTrial else { return Self.goalTitle(goal) }
-        return "\(String(localized: Self.goalTitle(goal))), free for 14 days"
+        guard isEligibleForTrial, let trialDays else { return Self.goalTitle(goal) }
+        return "\(String(localized: Self.goalTitle(goal))), free for \(trialDays) days"
     }
 
     /// Her goal said back as the 12 weeks (no health promise: 1.4.1, steady-claims.md).
@@ -104,10 +110,10 @@ struct PlanOption: Identifiable, Equatable, Sendable {
         }
     }
 
-    var billingDateText: String { trial.billingDate.formatted(.dateTime.month(.abbreviated).day()) }
+    var billingDateText: String { trial?.billingDate.formatted(.dateTime.month(.abbreviated).day()) ?? "" }
 
     /// The day the trial reminder is sent, as a date like the billing day.
-    var reminderDateText: String { trial.reminderDate.formatted(.dateTime.month(.abbreviated).day()) }
+    var reminderDateText: String { trial?.reminderDate.formatted(.dateTime.month(.abbreviated).day()) ?? "" }
 
     /// Plain terms under the button: what is charged, when, and that it renews until she cancels at
     /// least 24 hours before (3.1.2(c)).
@@ -115,7 +121,8 @@ struct PlanOption: Identifiable, Equatable, Sendable {
         guard let selected else { return "" }
         switch selected.kind {
         case .yearly where showsTrial:
-            return String(localized: "Free for 14 days, then \(selected.price) a year. Renews until you cancel, at least 24 hours before renewal.")
+            let days = trialDays ?? 0
+            return String(localized: "Free for \(days) days, then \(selected.price) a year. Renews until you cancel, at least 24 hours before renewal.")
         case .yearly:
             return String(localized: "\(selected.price) charged today, then every year. Renews until you cancel, at least 24 hours before renewal.")
         case .monthly:
@@ -126,6 +133,19 @@ struct PlanOption: Identifiable, Equatable, Sendable {
     }
 
     var showsRenewingWarning: Bool { activeRenewingProductID != nil }
+
+    /// The small line under a plan's name: the free days and monthly cost on Yearly, "No free days" on
+    /// Monthly while the trial is on offer, "Yours to keep, no renewals" on One payment.
+    func note(for option: PlanOption) -> String? {
+        switch option.kind {
+        case .yearly:
+            let monthly = option.monthlyEquivalent
+            guard isEligibleForTrial, showsAllPlans, let days = trialDays else { return monthly }
+            return monthly.map { String(localized: "\(days) days free · \($0)") } ?? String(localized: "\(days) days free")
+        case .monthly: return isEligibleForTrial ? String(localized: "No free days") : nil
+        case .lifetime: return String(localized: "Yours to keep, no renewals")
+        }
+    }
 
     /// Builds cards from StoreKit products (price text from `displayPrice`, never typed in code).
     static func options(from products: [String: Product]) -> [PlanOption] {
