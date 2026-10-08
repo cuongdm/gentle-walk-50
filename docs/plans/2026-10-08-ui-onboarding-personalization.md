@@ -532,7 +532,7 @@ _Tài liệu chưa có lúc lập kế hoạch (08/10). Task 3.1 đọc nó và 
 ### Task 4.8 — P9: tự kiểm tra quay lại kế hoạch (Pro) [TDD]
 **Files:** Modify `SelfCheck.swift` (`SelfCheckComparison.trend(history:) -> .up/.down/.flat` chỉ cùng cách, chênh ≥ 2), `RepLadder.today(... trend:)` (up → trần `base + 2` trong 14 ngày; down → trần `base`, không lên bậc vịn), `AppModel+Flows.prepareAndPlay`, `TodayModel` (down → `suggestedCheckIn = .okay`) · Test `SelfCheckComparisonTests`, `RepLadderTests`
 **Command:** `CORE SelfCheckComparisonTests` + `CORE RepLadderTests` → `passed`
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: RED `extra argument 'trend' in call`, `extra argument 'holdRaises'` → GREEN `CORE LadderTests|SelfCheckComparisonTests` 19 tests passed. `SelfCheckComparison.trend`: lần mới nhất so với lần trước cùng cách (có/không chống tay), chênh ≥ 2 → .up/.down, quá 14 ngày → .flat. `RepLadder.today(trend:)`: up → trần base + 2, down → trần base (dizzy/unsteady vẫn chặn). `SupportLadder.update(holdRaises:)`: down → vẫn đếm buổi, chưa lên bậc. Mac: trong `prepareAndPlay` tính `trend` từ `selfCheckResults()` và truyền vào `RepLadderStore.today`; `onBalanceResult` truyền `holdRaises: trend == .down` cho `SupportLadderStore.record`; TodayModel: trend down → check-in gợi `.okay`.
 **Commit point:** `feat(selfcheck): results feed the rep ladder`
 
 ### Task 4.9 — P6: check-in tuần đổi tuần sau [TDD]

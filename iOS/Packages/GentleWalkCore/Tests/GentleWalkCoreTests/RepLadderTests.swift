@@ -78,4 +78,16 @@ import Testing
         #expect(after[squat] == RepProgress(step: 0, fullSessions: 0, pendingChange: nil))
         #expect(RepLadder.stepDownAll([:]).isEmpty)
     }
+
+    /// P9: a check up by two allows one more step for two weeks; a check down by two keeps the day's own
+    /// reps. Still earned the usual way (two full sessions); unsteady or dizzy still caps it.
+    @Test func selfCheckTrendMovesTheCap() {
+        let top = [sts: RepProgress(step: 4)]
+        #expect(RepLadder.today(sts, progress: top, intensity: .gentle, limits: [], trend: .flat) == RepStep(sets: 1, reps: 8))
+        #expect(RepLadder.today(sts, progress: top, intensity: .gentle, limits: [], trend: .up) == RepStep(sets: 1, reps: 10))
+        #expect(RepLadder.today(sts, progress: top, intensity: .gentle, limits: [], trend: .down) == RepStep(sets: 1, reps: 6))
+        #expect(RepLadder.today(sts, progress: [:], intensity: .steady, limits: [], trend: .up) == RepStep(sets: 1, reps: 8))
+        #expect(RepLadder.today(sts, progress: top, intensity: .strong, limits: [], trend: .up) == RepStep(sets: 2, reps: 10))
+        #expect(RepLadder.today(sts, progress: top, intensity: .steady, limits: [.dizzy], trend: .up) == RepStep(sets: 1, reps: 8))
+    }
 }

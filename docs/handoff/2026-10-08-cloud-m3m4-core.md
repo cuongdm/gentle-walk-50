@@ -5,8 +5,8 @@ _08/10/2026 · Nhánh `cloud/core-content-m3m4` (từ `main` c9769c6) · Kế ho
 | Task | Trạng thái | API lõi mới | Test |
 |---|---|---|---|
 | 4.7 P13 nghỉ dài → hạ một bậc | DONE | `RepLadder.stepDownAll(_:)`, `SupportLadder.stepDownAll(_:)` | `RepLadderTests.stepDownNeverBelowZero`, `SupportLadderTests.longBreakStepsEveryLevelDown` (13/13 xanh) |
-| 4.8 P9 tự kiểm tra → thang số lần | IN PROGRESS | | |
-| 4.5 P3 nhớ chỗ đau theo bài | NOT STARTED | | |
+| 4.8 P9 tự kiểm tra → thang số lần | DONE | `SelfCheckTrend` (.up/.flat/.down), `SelfCheckComparison.trend(history:now:calendar:)`, `RepLadder.today(…, trend:)`, `SupportLadder.update(…, holdRaises:)` | `trendComparesTheSameWayByTwoOrMore`, `selfCheckTrendMovesTheCap`, `checkDownHoldsTheHandsLevel` (19/19 xanh) |
+| 4.5 P3 nhớ chỗ đau theo bài | IN PROGRESS | | |
 | 3.9 Kho câu HLV xoay vòng | NOT STARTED | | |
 | 3.10 Chủ đề tuần | NOT STARTED | | |
 | 4.9 P6 check-in tuần | NOT STARTED | | |

@@ -61,12 +61,18 @@ public enum RepLadder {
     }
 
     /// Today's reps: never below the day's own amount, at most one step above it, and no more than an
-    /// achy day allows when she feels dizzy or unsteady.
+    /// achy day allows when she feels dizzy or unsteady. A 2-week check up by two allows two steps above
+    /// for two weeks; one down by two keeps the day's own amount (P9, `SelfCheckComparison.trend`).
     public static func today(_ exerciseID: String, progress: [String: RepProgress], intensity: Intensity,
-                             limits: Set<BodyLimit>) -> RepStep {
+                             limits: Set<BodyLimit>, trend: SelfCheckTrend = .flat) -> RepStep {
         let steps = steps(for: exerciseID)
         let base = defaultStep(exerciseID, intensity: intensity)
-        var cap = min(base + 1, steps.count - 1)
+        let above = switch trend {
+        case .up: 2
+        case .flat: 1
+        case .down: 0
+        }
+        var cap = min(base + above, steps.count - 1)
         if !limits.isDisjoint(with: [.dizzy, .unsteady]) { cap = min(cap, defaultStep(exerciseID, intensity: .gentle) + 1) }
         let earned = progress[exerciseID]?.step ?? 0
         return steps[min(max(earned, base), cap)]

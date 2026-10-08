@@ -83,8 +83,9 @@ public enum SupportLadder {
     }
 
     /// After a session: `steady` exercises were held through, `troubled` had This hurts or a Break.
-    public static func update(_ progress: [String: SupportProgress], steady: Set<String>, troubled: Set<String>)
-        -> [String: SupportProgress] {
+    /// `holdRaises`: her last 2-week check went down by two (P9): sessions still count, no step up yet.
+    public static func update(_ progress: [String: SupportProgress], steady: Set<String>, troubled: Set<String>,
+                              holdRaises: Bool = false) -> [String: SupportProgress] {
         var result = progress
         for id in exercises.intersection(steady.union(troubled)) {
             var entry = result[id] ?? SupportProgress()
@@ -96,7 +97,7 @@ public enum SupportLadder {
                 }
             } else {
                 entry.steadySessions += 1
-                if entry.steadySessions >= sessionsToRaise, entry.level < highest(id),
+                if !holdRaises, entry.steadySessions >= sessionsToRaise, entry.level < highest(id),
                    let higher = SupportLevel(rawValue: entry.level.rawValue + 1) {
                     entry.level = higher
                     entry.steadySessions = 0

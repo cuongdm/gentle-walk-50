@@ -64,4 +64,14 @@ import Testing
         #expect(after["wk.shift"] == SupportProgress(level: .twoHands, steadySessions: 0, pendingChange: nil))
         #expect(SupportLadder.plan(progress: after, intensity: .strong, limits: []).announce["bl.tandem"] == .down)
     }
+
+    /// P9: after a check down by two, held-through sessions still count but the hands level does not go up.
+    @Test func checkDownHoldsTheHandsLevel() {
+        let start = ["bl.tandem": SupportProgress(level: .twoHands, steadySessions: 1)]
+        let held = SupportLadder.update(start, steady: ["bl.tandem"], troubled: [], holdRaises: true)
+        #expect(held["bl.tandem"]?.level == .twoHands)
+        #expect(held["bl.tandem"]?.pendingChange == nil)
+        let later = SupportLadder.update(held, steady: ["bl.tandem"], troubled: [])
+        #expect(later["bl.tandem"]?.level == .oneHand)
+    }
 }
