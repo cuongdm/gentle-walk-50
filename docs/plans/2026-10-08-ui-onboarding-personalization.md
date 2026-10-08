@@ -601,7 +601,7 @@ _Tài liệu chưa có lúc lập kế hoạch (08/10). Task 3.1 đọc nó và 
 ### Task 4.18 — Thông báo: tổng kết tuần không ghi sức khoẻ, không trùng, ≤ 1/ngày [TDD]
 **Files:** Modify `NotificationPlanner.swift` (recap tuần chỉ số ngày/phút; không chèn chip P6), `NotificationScheduler.swift` · Test `NotificationPlannerTests.weeklyRecapNeverNamesHealth()`, `stillAtMostOneADay()` (với weekly check-in không tạo thông báo)
 **Command:** `CORE NotificationPlannerTests` → `passed`
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: Không phải sửa `NotificationPlanner.swift`: tổng kết tuần đã chỉ mang `thisWeek`/`lastWeek` (số ngày). Test mới khoá: (1) mọi câu thông báo EN (`notifications.json`) và VI (`content.vi.json`) không chứa từ cơ thể/triệu chứng/sức khoẻ (so nguyên từ, vì "hông" nằm trong "không"); (2) 16 ngày có đủ loại (tổng kết, tự kiểm tra, địa danh, nhắc) → mỗi ngày ≤ 1; `PlannerInput` không có trường chip check-in tuần. `CORE NotificationPlannerTests` 21 tests passed. Mac: `NotificationScheduler` không đổi; check-in tuần (4.9) không tạo thông báo.
 **Commit point:** `test(notifications): recap stays private`
 
 ### Milestone 5 — Kiểm chứng + tài liệu
