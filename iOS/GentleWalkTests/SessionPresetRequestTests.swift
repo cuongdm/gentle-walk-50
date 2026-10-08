@@ -81,6 +81,27 @@ import GentleWalkCore
         defaults.removePersistentDomain(forName: suite)
     }
 
+    /// Outdoors: no chair lines or chair stretches play, and the preview lists what plays (review C).
+    @Test(arguments: [Intensity.gentle, .steady, .strong])
+    func outdoorPreviewListsWhatPlays(_ intensity: Intensity) throws {
+        let suite = "outdoor-walk-rows-\(intensity.rawValue)"
+        let defaults = try #require(UserDefaults(suiteName: suite))
+        defaults.removePersistentDomain(forName: suite)
+        let model = WorkoutPreviewModel(day: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), intensity: intensity,
+                                        checkIn: nil, suggestedLevel: .inPlace, limits: [], rotationIndex: 1,
+                                        content: TestFixtures.content, defaults: defaults)
+        model.place = .outdoors
+        let plan = try model.request.plan(content: TestFixtures.content)
+        let texts = Dictionary(TestFixtures.content.voiceLines.map { ($0.id, $0.text) }, uniquingKeysWith: { a, _ in a })
+        #expect(!plan.lineIDs.contains { (texts[$0] ?? "").localizedCaseInsensitiveContains("chair") })
+        let stretches = plan.segments.compactMap(\.exerciseID).filter { $0.hasPrefix("st.") }
+        #expect(stretches.allSatisfy { OutdoorWalk.standingStretches.contains($0) })
+        let titles = model.rows.map(\.title)
+        #expect(!titles.contains("Cool-down and stretches"), "\(titles)")
+        #expect(titles.contains("Cool-down stretch") == !stretches.isEmpty, "\(titles)")
+        defaults.removePersistentDomain(forName: suite)
+    }
+
     @Test func doItAgainFollowsThePlan() {
         let planned = WorkoutRequest(day: PlannedDay(main: .walk, chairMoves: 1, cooldown: false), level: .seated,
                                      intensity: .steady, place: .indoors, limits: [], rotationIndex: 0)

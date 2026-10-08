@@ -105,6 +105,8 @@ struct WorkoutRequest: Identifiable, Equatable, Sendable {
                                             limits: limits, rotationIndex: rotationIndex, content: content, variant: variant,
                                             support: (supportLevels, supportAnnouncements), reps: reps,
                                             exerciseRules: exerciseRules, swapMemory: swapMemory, opening: spokenOpening)
+        // Outdoors: only the lines that fit a street walk, and no stretch that needs a chair (review C).
+        if place == .outdoors { plan = OutdoorWalk.adapt(plan) }
         let libraryID = SessionBuilder.moveLibraryID(for: day.main == .chair ? intensity : .steady)
         if !swaps.isEmpty, let library = content.sessions.first(where: { $0.id == libraryID }) {
             for b in plan.blocks.indices where plan.blocks[b].kind == .chair {

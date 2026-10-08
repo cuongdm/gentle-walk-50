@@ -129,10 +129,20 @@ struct PreviewRow: Identifiable, Equatable {
                 let movesTitle = quicker ? String(localized: "Easy and quicker rounds") : String(localized: "Walking moves")
                 rows.append(PreviewRow(id: "intervals", title: movesTitle,
                                        detail: Self.minutesText(intervals), symbol: "figure.walk.motion"))
-                let stretches = block.segments.contains { $0.kind == .cooldown && $0.exerciseID?.hasPrefix("st.") == true }
-                rows.append(PreviewRow(id: "cool", title: stretches ? String(localized: "Cool-down and stretches")
-                                       : String(localized: "Cool-down walk"), detail: Self.minutesText(cool),
-                                       symbol: "figure.cooldown"))
+                let isStretch: (SessionTemplate.Segment) -> Bool = { $0.kind == .cooldown && $0.exerciseID?.hasPrefix("st.") == true }
+                let stretches = block.segments.contains(where: isStretch)
+                if outdoors && stretches {
+                    // Outdoors the walk ends with a slow walk, then one standing stretch: listed as they play.
+                    let stretch = block.segments.filter(isStretch).reduce(0) { $0 + $1.seconds }
+                    rows.append(PreviewRow(id: "cool", title: String(localized: "Cool-down walk"),
+                                           detail: Self.minutesText(cool - stretch), symbol: "figure.cooldown"))
+                    rows.append(PreviewRow(id: "cool-stretch", title: String(localized: "Cool-down stretch"),
+                                           detail: Self.minutesText(stretch), symbol: "figure.flexibility"))
+                } else {
+                    rows.append(PreviewRow(id: "cool", title: stretches ? String(localized: "Cool-down and stretches")
+                                           : String(localized: "Cool-down walk"), detail: Self.minutesText(cool),
+                                           symbol: "figure.cooldown"))
+                }
             case .chair:
                 let warm = block.segments.filter { $0.kind == .warmup }.reduce(0) { $0 + $1.seconds }
                 if warm > 0 {
