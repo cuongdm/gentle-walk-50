@@ -48,6 +48,9 @@ enum Palette {
     /// Paper behind the painted figures (Assets.xcassets/Art). Same in dark mode: the art is a
     /// painting on paper, shown as a card. No text is ever drawn on it.
     static let artPaper = Color(Name.artPaper)
+    /// The stroke of every content icon (`AppIcon`) on its watercolour wash: deep green on paper, cream in
+    /// dark mode (Claude Design, owner 08/10/2026). Never sky or sun as a line colour (`nguon-icon.md` §4).
+    static let iconInk = Color(Name.iconInk)
 
     /// Asset catalog names, one per colour set.
     enum Name {
@@ -71,23 +74,29 @@ enum Palette {
         static let onStrongFill = "onStrongFill"
         static let onLightFill = "onLightFill"
         static let artPaper = "artPaper"
+        static let iconInk = "iconInk"
     }
 
     static let assetNames = [
         Name.bg, Name.surface, Name.primary, Name.accent, Name.secondary, Name.sky, Name.sun,
         Name.text, Name.textMuted, Name.dangerSoft, Name.onStrongFill, Name.onLightFill, Name.artPaper,
         Name.primaryTop, Name.primaryMid, Name.primaryBottom, Name.primaryPressed, Name.surfaceTop, Name.surfaceBottom, Name.shadow,
+        Name.iconInk,
     ]
 
     /// A text colour drawn on a fill colour somewhere in the app.
     struct TextPair: Sendable {
         /// Small text (chip labels, the tab word) keeps a margin over 4.5:1 (plan 08/10/2026 task 1.2).
         static let smallText = 5.0
+        /// Icons and other graphics need 3:1 (WCAG 1.4.11).
+        static let graphic = 3.0
 
         let name: String
         let foreground: String
         let background: String
         var minimum = 4.5
+        /// The background is a watercolour wash: `background` at this opacity over the card (`surface`).
+        var wash: Double? = nil
     }
 
     /// Every text-on-fill pairing the screens use; each must reach its minimum (4.5:1, small text 5:1)
@@ -112,6 +121,13 @@ enum Palette {
         TextPair(name: "button on dangerSoft", foreground: Name.onStrongFill, background: Name.dangerSoft),
         TextPair(name: "label on sky", foreground: Name.onLightFill, background: Name.sky),
         TextPair(name: "label on sun", foreground: Name.onLightFill, background: Name.sun),
+        // Icon chips (`AppIconChip`): the glyph on its tint's wash at the wash's deepest point (40 %).
+        TextPair(name: "icon ink on surface", foreground: Name.iconInk, background: Name.surface, minimum: TextPair.graphic),
+        TextPair(name: "icon ink on sap wash", foreground: Name.iconInk, background: Name.secondary, minimum: TextPair.graphic, wash: 0.4),
+        TextPair(name: "icon ink on sky wash", foreground: Name.iconInk, background: Name.sky, minimum: TextPair.graphic, wash: 0.4),
+        TextPair(name: "icon ink on ochre wash", foreground: Name.iconInk, background: Name.sun, minimum: TextPair.graphic, wash: 0.4),
+        TextPair(name: "icon ink on sienna wash", foreground: Name.iconInk, background: Name.accent, minimum: TextPair.graphic, wash: 0.4),
+        TextPair(name: "icon ink on danger wash", foreground: Name.iconInk, background: Name.dangerSoft, minimum: TextPair.graphic, wash: 0.4),
     ]
 }
 
@@ -136,6 +152,27 @@ enum Metrics {
 /// WCAG 2.x contrast ratio between two colour sets, resolved for an appearance.
 enum ContrastRatio {
     enum Failure: Error { case missingColour(String) }
+
+    /// The ratio of a pair as drawn: a wash pair blends its fill over the card first.
+    static func ratio(of pair: Palette.TextPair, style: UIUserInterfaceStyle) throws -> Double {
+        guard let wash = pair.wash else { return try between(pair.foreground, pair.background, style: style) }
+        let traits = UITraitCollection(userInterfaceStyle: style)
+        func colour(_ name: String) throws -> UIColor {
+            guard let value = UIColor(named: name, in: .main, compatibleWith: traits)?.resolvedColor(with: traits) else {
+                throw Failure.missingColour(name)
+            }
+            return value
+        }
+        let fg = try colour(pair.foreground), tint = try colour(pair.background), paper = try colour(Palette.Name.surface)
+        var (tr, tg, tb, ta): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
+        var (pr, pg, pb, pa): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
+        tint.getRed(&tr, green: &tg, blue: &tb, alpha: &ta)
+        paper.getRed(&pr, green: &pg, blue: &pb, alpha: &pa)
+        let a = CGFloat(wash)
+        let bg = UIColor(red: tr * a + pr * (1 - a), green: tg * a + pg * (1 - a), blue: tb * a + pb * (1 - a), alpha: 1)
+        let (high, low) = (max(luminance(fg), luminance(bg)), min(luminance(fg), luminance(bg)))
+        return (high + 0.05) / (low + 0.05)
+    }
 
     static func between(_ foreground: String, _ background: String, style: UIUserInterfaceStyle) throws -> Double {
         let traits = UITraitCollection(userInterfaceStyle: style)

@@ -39,7 +39,7 @@ _Khung 29/09/2026. Người chịu trách nhiệm: **Chủ app** (App Store Conn
 > HealthKit: step count is read for the Progress screen; workouts are written after each session. Permission is asked after the first workout, not at launch.
 > How it differs from a timer app (4.3(b)): voice-led interval walks at three levels, seated chair moves with looping demonstration clips, stretches held per intensity, landmark journeys unlocked by active minutes, a weekly plan that adapts to feedback and pain reports.
 > The 2-week check is a self-counted 30-second chair stand, compared only with the user's own earlier results. It is general fitness, not a medical test, and shows no norms or risk levels. Results stay on the device.
-> Every permission is optional; "Not now" or "Don't Allow" leaves the app fully usable. Reminders and Apple Health are asked one per screen after the first workout; location only after the user picks "Map and distance" for an outdoor walk.
+> Every permission is optional. Each screen before a system dialog has one button that opens the dialog; "Don't Allow" there leaves the app fully usable, and reminders, Apple Health and location can be turned on later in Me. Reminders and Apple Health are asked one per screen after the first workout; location only after the user picks "Map and distance" for an outdoor walk.
 > The coach preview on "Your plan" plays two bundled lines of the first session ("Hear your coach · 10 seconds"); it is the real recording, voice only, and stops when the screen closes.
 - [ ] **Chủ app** — Dán review notes; thêm số điện thoại/email liên hệ.
 

@@ -147,6 +147,9 @@ enum AppIcon: String, CaseIterable, Sendable {
     case terms
     /// Privacy. Phosphor `shield-check`, tint sap. Replaces SF `lock.shield.fill`.
     case privacy
+    /// Acknowledgements: the licences of the icon set and other credits (Me → Help). Phosphor `book-open-text`,
+    /// tint sap.
+    case acknowledgements
     /// Restore purchase. Phosphor `arrow-clockwise`, tint sap. Replaces SF `arrow.clockwise`.
     case restore
     /// Delete all my data. Phosphor `trash`, tint danger. Replaces SF `trash.fill`.
@@ -282,6 +285,7 @@ enum AppIcon: String, CaseIterable, Sendable {
         case .contact: "phosphor:envelope-simple"
         case .terms: "phosphor:file-text"
         case .privacy: "phosphor:shield-check"
+        case .acknowledgements: "phosphor:book-open-text"
         case .restore: "phosphor:arrow-clockwise"
         case .deleteData: "phosphor:trash"
         case .info: "phosphor:info"
@@ -319,7 +323,8 @@ enum AppIcon: String, CaseIterable, Sendable {
         case .walk, .longWalk, .chair, .seated, .activeDay, .sprout, .seed, .tree, .progress, .steps, .everydayWins,
              .program, .levelUp, .levelDown, .rest, .done, .countdown, .payment, .unlock, .pro, .reminder,
              .newJourneys, .language, .textSize, .appearance, .yourBody, .sound, .coachVoice, .music, .captions,
-             .listen, .help, .contact, .terms, .privacy, .restore, .info, .shoes, .phoneCharged, .motion: .sap
+             .listen, .help, .contact, .terms, .privacy, .acknowledgements, .restore, .info, .shoes, .phoneCharged,
+             .motion: .sap
         case .stretch, .balance, .outdoors, .journey, .videosFast, .water: .sky
         case .time, .selfCheck, .new, .energy, .bored, .coffee, .lunch, .eveningTV, .hotDay: .ochre
         case .grandkids, .busy, .bodyKnees, .bodyHips, .bodyLowerBack, .bodyShoulders, .bodyJointReplacement,

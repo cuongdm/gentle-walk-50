@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ +%lld" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ +%lld"
+          }
+        }
+      }
+    },
     "%@ Pro" : {
       "comment" : "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
       "localizations" : {
@@ -735,6 +745,16 @@
         }
       }
     },
+    "A little more" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thêm một chút"
+          }
+        }
+      }
+    },
     "A little tired, but I can talk" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -742,6 +762,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hơi mệt, nhưng vẫn nói chuyện được"
+          }
+        }
+      }
+    },
+    "A new morning" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi sáng mới"
+          }
+        }
+      }
+    },
+    "A new morning, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi sáng mới, %@"
           }
         }
       }
@@ -766,12 +806,192 @@
         }
       }
     },
+    "A spring afternoon" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi chiều mùa xuân"
+          }
+        }
+      }
+    },
+    "A spring afternoon, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi chiều mùa xuân, %@"
+          }
+        }
+      }
+    },
+    "A spring evening" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi tối mùa xuân"
+          }
+        }
+      }
+    },
+    "A spring evening, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi tối mùa xuân, %@"
+          }
+        }
+      }
+    },
+    "A spring morning" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi sáng mùa xuân"
+          }
+        }
+      }
+    },
+    "A spring morning, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi sáng mùa xuân, %@"
+          }
+        }
+      }
+    },
+    "A summer afternoon" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi chiều mùa hè"
+          }
+        }
+      }
+    },
+    "A summer afternoon, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi chiều mùa hè, %@"
+          }
+        }
+      }
+    },
+    "A summer evening" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi tối mùa hè"
+          }
+        }
+      }
+    },
+    "A summer evening, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi tối mùa hè, %@"
+          }
+        }
+      }
+    },
+    "A summer morning" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi sáng mùa hè"
+          }
+        }
+      }
+    },
+    "A summer morning, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi sáng mùa hè, %@"
+          }
+        }
+      }
+    },
     "A walk each weekday. Saturday and Sunday are rest days." : {
       "localizations" : {
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mỗi ngày trong tuần một buổi đi bộ. Thứ bảy và Chủ nhật là ngày nghỉ."
+          }
+        }
+      }
+    },
+    "A winter afternoon" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi chiều mùa đông"
+          }
+        }
+      }
+    },
+    "A winter afternoon, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi chiều mùa đông, %@"
+          }
+        }
+      }
+    },
+    "A winter evening" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi tối mùa đông"
+          }
+        }
+      }
+    },
+    "A winter evening, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi tối mùa đông, %@"
+          }
+        }
+      }
+    },
+    "A winter morning" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi sáng mùa đông"
+          }
+        }
+      }
+    },
+    "A winter morning, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi sáng mùa đông, %@"
           }
         }
       }
@@ -813,6 +1033,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hơi nhức"
+          }
+        }
+      }
+    },
+    "Acknowledgements" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ghi nhận"
           }
         }
       }
@@ -983,6 +1213,26 @@
         }
       }
     },
+    "Afternoon" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buổi chiều tốt lành"
+          }
+        }
+      }
+    },
+    "Afternoon, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buổi chiều tốt lành, %@"
+          }
+        }
+      }
+    },
     "All journeys" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1022,6 +1272,66 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ngày vận động là ngày bạn hoàn thành một buổi tập."
+          }
+        }
+      }
+    },
+    "An autumn afternoon" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi chiều mùa thu"
+          }
+        }
+      }
+    },
+    "An autumn afternoon, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi chiều mùa thu, %@"
+          }
+        }
+      }
+    },
+    "An autumn evening" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi tối mùa thu"
+          }
+        }
+      }
+    },
+    "An autumn evening, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi tối mùa thu, %@"
+          }
+        }
+      }
+    },
+    "An autumn morning" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi sáng mùa thu"
+          }
+        }
+      }
+    },
+    "An autumn morning, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi sáng mùa thu, %@"
           }
         }
       }
@@ -1170,6 +1480,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thăng bằng"
+          }
+        }
+      }
+    },
+    "Balance moves: keep your chair close and look at one spot." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Động tác thăng bằng: để ghế sát bên và nhìn vào một điểm."
           }
         }
       }
@@ -1352,6 +1672,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Phụ đề"
+          }
+        }
+      }
+    },
+    "Captions off" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phụ đề tắt"
+          }
+        }
+      }
+    },
+    "Captions on" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phụ đề bật"
           }
         }
       }
@@ -1742,6 +2082,16 @@
         }
       }
     },
+    "Daily reminder" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhắc hằng ngày"
+          }
+        }
+      }
+    },
     "Dark" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2109,6 +2459,26 @@
         }
       }
     },
+    "Evening" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buổi tối tốt lành"
+          }
+        }
+      }
+    },
+    "Evening, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buổi tối tốt lành, %@"
+          }
+        }
+      }
+    },
     "Every minute you move takes you further on your journey." : {
       "localizations" : {
         "vi" : {
@@ -2249,6 +2619,16 @@
         }
       }
     },
+    "Finding your rhythm" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tìm nhịp quen"
+          }
+        }
+      }
+    },
     "Fine" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2329,6 +2709,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chặng đầu miễn phí · đến %@"
+          }
+        }
+      }
+    },
+    "First steps" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Những bước đầu"
           }
         }
       }
@@ -2795,6 +3185,26 @@
         }
       }
     },
+    "Good afternoon to you" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chúc bạn buổi chiều vui"
+          }
+        }
+      }
+    },
+    "Good afternoon to you, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chúc %@ buổi chiều vui"
+          }
+        }
+      }
+    },
     "Good afternoon, %@" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2828,6 +3238,26 @@
         }
       }
     },
+    "Good evening to you" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chúc bạn buổi tối vui"
+          }
+        }
+      }
+    },
+    "Good evening to you, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chúc %@ buổi tối vui"
+          }
+        }
+      }
+    },
     "Good evening, %@" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2846,6 +3276,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chào buổi sáng"
+          }
+        }
+      }
+    },
+    "Good morning to you" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chúc bạn buổi sáng vui"
+          }
+        }
+      }
+    },
+    "Good morning to you, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chúc %@ buổi sáng vui"
           }
         }
       }
@@ -3093,6 +3543,26 @@
         }
       }
     },
+    "Heel and toe" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gót và mũi chân"
+          }
+        }
+      }
+    },
+    "Heel and toe raises: small and easy is perfect." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhón gót và nhón mũi chân: nhỏ và nhẹ là vừa."
+          }
+        }
+      }
+    },
     "Height" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -3111,6 +3581,146 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Giữ trước ngực"
+          }
+        }
+      }
+    },
+    "Hello %@, and good afternoon" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chào %@, chúc buổi chiều tốt lành"
+          }
+        }
+      }
+    },
+    "Hello %@, and good evening" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chào %@, chúc buổi tối tốt lành"
+          }
+        }
+      }
+    },
+    "Hello %@, and good morning" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chào %@, chúc buổi sáng tốt lành"
+          }
+        }
+      }
+    },
+    "Hello there" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xin chào"
+          }
+        }
+      }
+    },
+    "Hello there, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xin chào %@"
+          }
+        }
+      }
+    },
+    "Hello this afternoon" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xin chào chiều nay"
+          }
+        }
+      }
+    },
+    "Hello this afternoon, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chào %@ chiều nay"
+          }
+        }
+      }
+    },
+    "Hello this evening" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xin chào tối nay"
+          }
+        }
+      }
+    },
+    "Hello this evening, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chào %@ tối nay"
+          }
+        }
+      }
+    },
+    "Hello this morning" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xin chào sáng nay"
+          }
+        }
+      }
+    },
+    "Hello this morning, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chào %@ sáng nay"
+          }
+        }
+      }
+    },
+    "Hello, and good afternoon" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xin chào, chúc buổi chiều tốt lành"
+          }
+        }
+      }
+    },
+    "Hello, and good evening" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xin chào, chúc buổi tối tốt lành"
+          }
+        }
+      }
+    },
+    "Hello, and good morning" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xin chào, chúc buổi sáng tốt lành"
           }
         }
       }
@@ -3504,6 +4114,16 @@
         }
       }
     },
+    "It stays on this phone." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vị trí ở lại trên điện thoại này."
+          }
+        }
+      }
+    },
     "It still counts for today." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -3681,6 +4301,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Giữ lại những gì thấy dễ chịu, để nó thành một phần trong tuần của bạn."
+          }
+        }
+      }
+    },
+    "Keeping it going" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giữ nhịp đều"
           }
         }
       }
@@ -4030,6 +4660,16 @@
         }
       }
     },
+    "Looking back" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhìn lại 12 tuần"
+          }
+        }
+      }
+    },
     "Lose some weight" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -4204,6 +4844,16 @@
         }
       }
     },
+    "Morning" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buổi sáng tốt lành"
+          }
+        }
+      }
+    },
     "Morning stretch" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -4211,6 +4861,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Giãn cơ buổi sáng"
+          }
+        }
+      }
+    },
+    "Morning, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buổi sáng tốt lành, %@"
           }
         }
       }
@@ -4330,6 +4990,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bưu thiếp mới"
+          }
+        }
+      }
+    },
+    "New this week" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mới tuần này"
           }
         }
       }
@@ -4489,6 +5159,26 @@
         }
       }
     },
+    "Nice to see you this evening" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vui được gặp bạn tối nay"
+          }
+        }
+      }
+    },
+    "Nice to see you this evening, %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vui được gặp %@ tối nay"
+          }
+        }
+      }
+    },
     "Nice. Even 5 minutes a day is a good start." : {
       "localizations" : {
         "vi" : {
@@ -4547,6 +5237,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Không cần vị trí"
+          }
+        }
+      }
+    },
+    "No moves are set aside." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không có bài nào đang tạm để sang bên."
           }
         }
       }
@@ -4940,16 +5640,6 @@
         }
       }
     },
-    "One gentle reminder a day, at:" : {
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mỗi ngày một lời nhắc nhẹ nhàng, lúc:"
-          }
-        }
-      }
-    },
     "One hand" : {
       "localizations" : {
         "vi" : {
@@ -5093,12 +5783,12 @@
         }
       }
     },
-    "Only while you walk. It stays on this phone." : {
+    "Only while you walk." : {
       "localizations" : {
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chỉ khi bạn đang đi. Vị trí ở lại trên điện thoại này."
+            "value" : "Chỉ khi bạn đang đi."
           }
         }
       }
@@ -5712,6 +6402,16 @@
         }
       }
     },
+    "Reminder at" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhắc lúc"
+          }
+        }
+      }
+    },
     "Reminder time" : {
       "comment" : "The label of the time picker in the DailyMomentPicker.",
       "isCommentAutoGenerated" : true,
@@ -5773,6 +6473,16 @@
     "Rest day" : {
       "comment" : "A description of a day off from work.",
       "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ngày nghỉ"
+          }
+        }
+      }
+    },
+    "Rest days" : {
       "localizations" : {
         "vi" : {
           "stringUnit" : {
@@ -6204,6 +6914,16 @@
         }
       }
     },
+    "Short, easy sessions to learn the moves. Seated is always fine." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buổi tập ngắn, nhẹ để làm quen động tác. Ngồi tập lúc nào cũng được."
+          }
+        }
+      }
+    },
     "Shoulder" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -6260,6 +6980,16 @@
         }
       }
     },
+    "Sit and stand tall between moves. Look ahead, not down." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ngồi và đứng thẳng lưng giữa các động tác. Nhìn về phía trước, không nhìn xuống."
+          }
+        }
+      }
+    },
     "Sit down, sip some water, breathe slowly. Your progress is saved." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6308,6 +7038,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Số lần ngồi xuống đứng lên trong 30 giây, do bạn tự đếm. Bạn chỉ so với chính mình."
+          }
+        }
+      }
+    },
+    "Sit-to-stands this week: slow down, slow up, hands on the chair if you like." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuần này tập ngồi xuống đứng lên: xuống chậm, lên chậm, chống tay vào ghế nếu bạn muốn."
           }
         }
       }
@@ -6506,6 +7246,16 @@
         }
       }
     },
+    "Stage %lld starts this week: %@." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giai đoạn %lld bắt đầu tuần này: %@."
+          }
+        }
+      }
+    },
     "Stage %lld · %@" : {
       "localizations" : {
         "vi" : {
@@ -6522,6 +7272,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Giai đoạn %lld · Tuần %lld–%lld"
+          }
+        }
+      }
+    },
+    "Stage four starts. Keep the days and times that suit you." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giai đoạn bốn bắt đầu. Giữ những ngày và giờ hợp với bạn."
+          }
+        }
+      }
+    },
+    "Stage three starts. Try the harder version once, if it feels right." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giai đoạn ba bắt đầu. Thử bản khó hơn một lần, nếu thấy ổn."
+          }
+        }
+      }
+    },
+    "Stage two starts. A little more, only when the last sessions felt easy." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giai đoạn hai bắt đầu. Thêm một chút, chỉ khi các buổi trước thấy nhẹ."
           }
         }
       }
@@ -6564,6 +7344,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Giãn cơ khi đứng"
+          }
+        }
+      }
+    },
+    "Standing tall" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đứng thẳng lưng"
           }
         }
       }
@@ -6858,6 +7648,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nền vững"
+          }
+        }
+      }
+    },
+    "Steady feet" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bàn chân vững vàng"
           }
         }
       }
@@ -7401,6 +8201,16 @@
         }
       }
     },
+    "The icons in this app are Phosphor Icons, shared under the MIT License." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biểu tượng trong app là bộ Phosphor Icons, chia sẻ theo Giấy phép MIT."
+          }
+        }
+      }
+    },
     "The last 4 weeks, compared only with you." : {
       "localizations" : {
         "vi" : {
@@ -7428,6 +8238,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bằng lần đầu. Giữ đều là tốt rồi."
+          }
+        }
+      }
+    },
+    "The same moves as last week. Notice when they start to feel familiar." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vẫn các động tác tuần trước. Để ý xem lúc nào chúng bắt đầu thấy quen."
           }
         }
       }
@@ -7697,6 +8517,16 @@
         }
       }
     },
+    "Trying the next step" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thử bước tiếp theo"
+          }
+        }
+      }
+    },
     "Turn on in Settings" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -7704,6 +8534,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bật trong Cài đặt"
+          }
+        }
+      }
+    },
+    "Turn slowly, in small steps, with your chair or counter in reach." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xoay người chậm, bước nhỏ, ghế hoặc mặt bếp trong tầm tay."
+          }
+        }
+      }
+    },
+    "Turning with ease" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xoay người nhẹ nhàng"
           }
         }
       }
@@ -7734,6 +8584,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Đứng không vững"
+          }
+        }
+      }
+    },
+    "Up from the chair" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đứng dậy khỏi ghế"
           }
         }
       }
@@ -8253,6 +9113,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tuần %lld/%lld"
+          }
+        }
+      }
+    },
+    "Week %lld · %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuần %lld · %@"
           }
         }
       }
@@ -8983,6 +9853,16 @@
         }
       }
     },
+    "Your 12 weeks start today." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "12 tuần của bạn bắt đầu hôm nay."
+          }
+        }
+      }
+    },
     "Your 12 weeks to feel steadier" : {
       "localizations" : {
         "vi" : {
@@ -9307,6 +10187,26 @@
         }
       }
     },
+    "Your last week of the 12. Look back at your checks on Progress." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuần cuối của 12 tuần. Xem lại các lần tự kiểm tra ở mục Tiến bộ."
+          }
+        }
+      }
+    },
+    "Your last week of the 12. Look how far you've come." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuần cuối của 12 tuần. Nhìn lại xem bạn đã tiến bộ thế nào."
+          }
+        }
+      }
+    },
     "Your minutes keep adding up." : {
       "localizations" : {
         "vi" : {
@@ -9325,6 +10225,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tên của bạn"
+          }
+        }
+      }
+    },
+    "Your own routine" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thói quen của riêng bạn"
           }
         }
       }
@@ -9410,6 +10320,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thói quen của bạn"
+          }
+        }
+      }
+    },
+    "Your routine, your pace. Rest days are part of the plan." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thói quen của bạn, nhịp của bạn. Ngày nghỉ cũng nằm trong kế hoạch."
           }
         }
       }

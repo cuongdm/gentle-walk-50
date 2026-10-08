@@ -87,7 +87,7 @@ import GentleWalkCore
         app.afterOneTimeScreens { ranAfter = true }
         #expect(!ranAfter)
 
-        app.permissionStepDone(.reminders)  // "Not now" or "Continue"
+        app.permissionStepDone(.reminders)  // "Continue", or "Don't Allow" in Apple's dialog
         guard case .permissions(.health)? = app.cover else { Issue.record("second: \(String(describing: app.cover))"); return }
         #expect(!ranAfter)
 

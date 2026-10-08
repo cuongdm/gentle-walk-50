@@ -73,10 +73,11 @@ struct SelfCheckIntroView: View {
                     Text("3. Count each time you stand.")
                     Divider().padding(.vertical, 6)
                     Text("Before you start").typeRole(.cardTitle)
-                    SafetyPoint(symbol: "chair.fill", text: "Sturdy chair, no wheels, by a wall")
-                    SafetyPoint(symbol: "shoeprints.fill", text: "Sit near the front, feet flat")
-                    SafetyPoint(symbol: "hand.raised.fill", text: "Cross arms or push up, both fine")
-                    SafetyPoint(symbol: "exclamationmark.circle.fill", text: "Stop if it hurts or you feel dizzy")
+                    // Arms: the open-armed figure, never the "This hurts" hand (one picture, one meaning).
+                    SafetyPoint(icon: .chair, text: "Sturdy chair, no wheels, by a wall")
+                    SafetyPoint(icon: .steps, text: "Sit near the front, feet flat")
+                    SafetyPoint(icon: .yourBody, text: "Cross arms or push up, both fine")
+                    SafetyPoint(icon: .warning, text: "Stop if it hurts or you feel dizzy")
                 }
                 .typeRole(.body)
                 .foregroundStyle(Palette.text)
@@ -100,12 +101,12 @@ struct SelfCheckIntroView: View {
 }
 
 private struct SafetyPoint: View {
-    let symbol: String
+    let icon: AppIcon
     let text: LocalizedStringResource
 
     var body: some View {
         Label { Text(text).typeRole(.body) } icon: {
-            Image(systemName: symbol).foregroundStyle(Palette.secondary)
+            AppIconGlyph(icon: icon, size: 22, color: icon == .warning ? Palette.text : Palette.secondary)
         }
         .accessibilityElement(children: .combine)
     }
@@ -188,7 +189,10 @@ struct SelfCheckCountView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                ScreenHeader(title: "How many times did you stand up?")
+                HStack(alignment: .center, spacing: 12) {
+                    AppIconChip(icon: .selfCheck, size: 44)
+                    ScreenHeader(title: "How many times did you stand up?")
+                }
                 CountStepper(count: model.count, onMinus: model.decrement, onPlus: model.increment)
                 if let last = model.lastTime {
                     Text(verbatim: String(localized: "Last time: \(last)")).typeRole(.body).foregroundStyle(Palette.text)
@@ -314,7 +318,8 @@ struct SelfCheckSavedView: View {
                 if !line.isEmpty {
                     Text(verbatim: line).typeRole(.body).foregroundStyle(Palette.text).multilineTextAlignment(.center)
                 }
-                Text("You'll find it on Progress.").typeRole(.body).foregroundStyle(Palette.textMuted)
+                Label { Text("You'll find it on Progress.") } icon: { AppIconGlyph(icon: .progress, color: Palette.textMuted) }
+                    .typeRole(.body).foregroundStyle(Palette.textMuted)
             }
             Spacer()
             SelfCheckDisclaimer()

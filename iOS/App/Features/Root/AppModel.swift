@@ -32,6 +32,8 @@ import GentleWalkCore
     }
     var journeyPath: [JourneyRoute] = []
     var progressPath: [ProgressRoute] = []
+    /// Me's rows open their screens here (plan 08/10/2026 task 3.4).
+    var mePath: [MeRoute] = []
     /// "Rest today" from a reminder: the day it was tapped.
     nonisolated static let restTodayKey = "restTodayDate"
     /// Waits for the permission screens or the cancel guide to close (`afterOneTimeScreens`).

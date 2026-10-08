@@ -14,31 +14,25 @@ struct NotificationSection: View {
         // "Change time" on the title's line, like Edit and Change on the other cards (one row less).
         SettingsCard(title: "Notifications", actionTitle: "Change time", action: { changingTime = true }) {
             Toggle(isOn: binding(\.walkReminders)) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Walk reminder").typeRole(.body)
-                    Text(verbatim: "\(String(localized: OnboardingCopy.title(profile.reminderMoment))), \(DailyMomentPicker.time(profile.reminderMinutes))")
-                        .typeRole(.caption)
-                }
+                IconToggleLabel(icon: .reminder, title: "Walk reminder",
+                                detail: "\(String(localized: OnboardingCopy.title(profile.reminderMoment))), \(DailyMomentPicker.time(profile.reminderMinutes))")
             }
-            .frame(minHeight: Metrics.minTouchTarget)
             if permission == .blocked { BlockedRemindersNote() }
             Text("How often").typeRole(.body).fontWeight(.semibold)
             HStack(spacing: Metrics.touchSpacing) {
                 frequencyButton(.daily, "Daily", current: profile.frequency)
                 frequencyButton(.quietDays, "Only if I haven't moved", current: profile.frequency)
             }
-            Toggle("When I reach a new postcard", isOn: binding(\.journeyMilestones)).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
-            Toggle("Weekly recap", isOn: binding(\.weeklyRecap)).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
+            Toggle(isOn: binding(\.journeyMilestones)) { IconToggleLabel(icon: .journey, title: "When I reach a new postcard") }
+            Toggle(isOn: binding(\.weeklyRecap)) { IconToggleLabel(icon: .progress, title: "Weekly recap") }
             // On by default; the reminder says nothing about health on the lock screen (task 4.15).
-            Toggle("Self-check reminders", isOn: binding(\.selfCheckReminders)).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
+            Toggle(isOn: binding(\.selfCheckReminders)) { IconToggleLabel(icon: .selfCheck, title: "Self-check reminders") }
             Toggle(isOn: binding(\.newJourneys)) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("New journeys").typeRole(.body)
-                    Text("Occasional news about new routes.").typeRole(.caption)
-                }
+                IconToggleLabel(icon: .newJourneys, title: "New journeys", detail: String(localized: "Occasional news about new routes."))
             }
-            .frame(minHeight: Metrics.minTouchTarget)
         }
+        // Each switch says "On" or "Off" in words (control states, owner 08/10/2026).
+        .toggleStyle(.onOffWord)
         .tint(Palette.secondary)
         // Read again each time Me shows (she may have changed it in Settings).
         .task { permission = await SystemPermission.reminders() }

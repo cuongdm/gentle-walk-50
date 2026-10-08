@@ -8,22 +8,27 @@ import GentleWalkCore
 /// line, which saves a row per card (review U8); it drops below the title when the text is large.
 struct SettingsCard<Content: View>: View {
     let title: LocalizedStringResource
+    /// The card's icon chip before its title (the subscription card on Me).
+    var icon: AppIcon? = nil
     var actionTitle: LocalizedStringResource? = nil
     var action: (() -> Void)? = nil
     @ViewBuilder let content: Content
 
+    /// Off on a Me screen whose own title already names the card: only the link stays, on the right.
+    @Environment(\.settingsCardShowsTitle) private var showsTitle
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            ViewThatFits(in: .horizontal) {
-                HStack(alignment: .firstTextBaseline) {
-                    heading
-                    Spacer(minLength: 12)
-                    link
+            if !showsTitle {
+                // On its own line, free to wrap (a fixed-size link ran off the screen at XXL).
+                if let actionTitle, let action {
+                    Button(actionTitle, action: action).buttonStyle(.textLink)
+                        .multilineTextAlignment(.trailing)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                 }
-                VStack(alignment: .leading, spacing: 4) {
-                    heading
-                    link
-                }
+            } else {
+                titleRow
             }
             content
         }
@@ -31,8 +36,26 @@ struct SettingsCard<Content: View>: View {
         .cardStyle()
     }
 
+    private var titleRow: some View {
+        ViewThatFits(in: .horizontal) {
+            HStack(alignment: .firstTextBaseline) {
+                heading
+                Spacer(minLength: 12)
+                link
+            }
+            VStack(alignment: .leading, spacing: 4) {
+                heading
+                link
+            }
+        }
+    }
+
     private var heading: some View {
-        Text(title).typeRole(.cardTitle).accessibilityAddTraits(.isHeader)
+        HStack(spacing: 12) {
+            // At accessibility sizes the title needs the width ("Subscript-ion" broke).
+            if let icon, !typeSize.isAccessibilitySize { AppIconChip(icon: icon) }
+            Text(title).typeRole(.cardTitle).accessibilityAddTraits(.isHeader)
+        }
     }
 
     @ViewBuilder private var link: some View {
@@ -60,7 +83,8 @@ struct SubscriptionSection: View {
     }
 
     var body: some View {
-        SettingsCard(title: "Subscription", actionTitle: cancels ? "How to cancel" : nil, action: onHowToCancel) {
+        // "How to cancel" under what she has (beside the title with the icon it fell onto a line of its own).
+        SettingsCard(title: "Subscription", icon: .payment) {
             switch entitlement {
             case .trial(let ends):
                 let date = ends.formatted(.dateTime.month(.abbreviated).day())
@@ -86,6 +110,9 @@ struct SubscriptionSection: View {
             case .free:
                 Text("Free plan: a walk each weekday, the New York journey, and the first leg of every other journey.").typeRole(.body)
                 Button("See Pro plans", action: onSeePlans).buttonStyle(.secondaryAction)
+            }
+            if cancels {
+                Button("How to cancel", action: onHowToCancel).buttonStyle(.textLink)
             }
         }
     }
@@ -209,29 +236,26 @@ struct WorkoutAudioSection: View {
 
     var body: some View {
         SettingsCard(title: "Sound and captions") {
-            Toggle("Captions", isOn: $captionsOn).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
+            Toggle(isOn: $captionsOn) { IconToggleLabel(icon: .captions, title: "Captions") }
             SoundControls(showsMusic: !musicStyles.isEmpty && !musicOff)
             if let style = musicStyles.first {
                 Toggle(isOn: Binding(get: { !musicOff }, set: { musicOff = !$0 })) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Music").typeRole(.body)
-                        Text(verbatim: style.name).typeRole(.caption)
-                    }
+                    IconToggleLabel(icon: .music, title: "Music", detail: style.name)
                 }
-                .frame(minHeight: Metrics.minTouchTarget)
                 // Only with music there is something for the voice to be louder than (review D44).
                 if !musicOff {
-                    Toggle("Voice louder than music", isOn: $voiceLouder).typeRole(.body).frame(minHeight: Metrics.minTouchTarget)
+                    Toggle(isOn: $voiceLouder) { IconToggleLabel(icon: .coachVoice, title: "Voice louder than music") }
                 }
             } else {
                 HStack {
-                    Text("Music").typeRole(.body)
+                    IconToggleLabel(icon: .music, title: "Music")
                     Spacer()
                     Text("Coming soon").typeRole(.body)
                 }
                 .frame(minHeight: Metrics.minTouchTarget)
             }
         }
+        .toggleStyle(.onOffWord)
         .tint(Palette.secondary)
     }
 }
@@ -308,7 +332,7 @@ struct LanguageUnitsSection: View {
                     }
                 }
                 if picked != AppLanguage.current {
-                    Label { Text(verbatim: picked.reopenHint) } icon: { Image(systemName: "arrow.clockwise") }
+                    Text(verbatim: picked.reopenHint)
                         .typeRole(.caption).foregroundStyle(Palette.text)
                 }
                 Divider()
@@ -400,16 +424,15 @@ struct OutdoorSection: View {
                 choice = on ? "location" : "steps"
                 if on { Task { _ = await location.requestPermissionAndWait(); denied = location.isDenied } }
             })) {
-                VStack(alignment: .leading) {
-                    // The same choice as in Outdoor prep: map and distance, or steps only (task 1.17).
-                    Text("Map and distance").typeRole(.body)
-                    Text("Uses your location while you walk. Off: steps only.").typeRole(.caption)
-                }
+                // The same choice as in Outdoor prep: map and distance, or steps only (task 1.17).
+                IconToggleLabel(icon: .outdoors, title: "Map and distance",
+                                detail: String(localized: "Uses your location while you walk. Off: steps only."))
             }
+            .toggleStyle(.onOffWord)
             .tint(Palette.secondary)
             if choice == "location", denied {
                 VStack(alignment: .leading, spacing: 6) {
-                    Label("Location is off for \(AppBrand.name) on this iPhone.", systemImage: "location.slash.fill")
+                    Label { Text("Location is off for \(AppBrand.name) on this iPhone.") } icon: { AppIconGlyph(icon: .outdoors) }
                         .typeRole(.body).foregroundStyle(Palette.text)
                     Button("Turn on in Settings", action: SystemPermission.openSettings)
                         .buttonStyle(.smallTextLink)
@@ -435,13 +458,15 @@ struct HelpSection: View {
     var body: some View {
         SettingsCard(title: "Help") {
             VStack(spacing: 0) {
-                SettingsRow(title: "Restore purchase", symbol: "arrow.clockwise", action: onRestore)
+                MeNavigationRow(title: "Restore purchase", icon: MeRow.restore.icon, action: onRestore)
                 Divider()
-                SettingsLinkRow(title: "Contact us", symbol: "envelope", url: LegalLinks.contactUs)
+                MeLinkRow(title: "Contact us", icon: MeRow.contact.icon, url: LegalLinks.contactUs)
                 Divider()
-                SettingsLinkRow(title: "Terms of Use", symbol: "doc.text", url: LegalLinks.termsOfUse)
+                MeLinkRow(title: "Terms of Use", icon: MeRow.terms.icon, url: LegalLinks.termsOfUse)
                 Divider()
-                SettingsRow(title: "Privacy", symbol: "hand.raised", action: onPrivacy)
+                MeNavigationRow(title: "Privacy", icon: MeRow.privacy.icon, action: onPrivacy)
+                Divider()
+                MeNavigationRow(title: "Acknowledgements", icon: MeRow.acknowledgements.icon, route: .acknowledgements)
             }
             Text("\(AppBrand.name) is for general fitness. It isn't medical advice.")
                 .typeRole(.caption).foregroundStyle(Palette.textMuted)
@@ -501,58 +526,5 @@ struct BodyLimitsEditor: View {
 
     private func toggle(_ limit: BodyLimit) {
         if limits.contains(limit) { limits.remove(limit) } else { limits.insert(limit) }
-    }
-}
-
-/// One settings row: an icon in a soft circle, the words, and a chevron; the whole row is the target.
-struct SettingsRow: View {
-    let title: LocalizedStringResource
-    let symbol: String
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) { SettingsRowLabel(title: title, symbol: symbol, trailing: "chevron.right") }
-            .buttonStyle(.plain)
-    }
-}
-
-/// The same row opening a web page (arrow out instead of a chevron).
-struct SettingsLinkRow: View {
-    let title: LocalizedStringResource
-    let symbol: String
-    let url: URL
-
-    var body: some View {
-        Link(destination: url) { SettingsRowLabel(title: title, symbol: symbol, trailing: "arrow.up.right") }
-            .buttonStyle(.plain)
-    }
-}
-
-private struct SettingsRowLabel: View {
-    let title: LocalizedStringResource
-    let symbol: String
-    let trailing: String
-
-    @Environment(\.dynamicTypeSize) private var typeSize
-
-    var body: some View {
-        HStack(spacing: 14) {
-            if !typeSize.isAccessibilitySize {
-                Image(systemName: symbol)
-                    .typeRole(.body)
-                    .foregroundStyle(Palette.secondary)
-                    .frame(width: 36, height: 36)
-                    .background(Palette.secondary.opacity(0.12), in: .circle)
-                    .accessibilityHidden(true)
-            }
-            Text(title).typeRole(.body).foregroundStyle(Palette.text)
-            Spacer(minLength: 8)
-            Image(systemName: trailing)
-                .typeRole(.caption).fontWeight(.semibold)
-                .foregroundStyle(Palette.textMuted)
-                .accessibilityHidden(true)
-        }
-        .frame(minHeight: Metrics.minTouchTarget)
-        .contentShape(.rect)
     }
 }

@@ -102,7 +102,7 @@ extension AppModel {
         }
     }
 
-    /// A permission step is done (granted, "Not now" or "Don't Allow"): reminders lead to Apple Health,
+    /// A permission step is done (granted, or "Don't Allow" in Apple's dialog): reminders lead to Apple Health,
     /// Apple Health back to what was waiting (plan 08/10/2026 task 1.6).
     func permissionStepDone(_ ask: PermissionAsk) {
         switch ask {
@@ -369,6 +369,7 @@ extension AppModel {
         favourites = FavouriteSessions(defaults: defaults)
         onboarding = OnboardingFlow()
         cover = nil
+        mePath = []
         tab = .today
         reload()
         storeNotice = .dataDeleted

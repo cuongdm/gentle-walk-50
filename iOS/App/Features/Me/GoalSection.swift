@@ -1,22 +1,8 @@
 import SwiftUI
 import GentleWalkCore
 
-/// Me → "Your goal": her one main goal, changeable at any time (plan 08/10/2026 task 2.13; the goal
-/// step says "You can change it later in Me", and Program finished points here, D13).
-struct GoalSection: View {
-    let goal: Goal
-    let onChange: () -> Void
-
-    var body: some View {
-        SettingsCard(title: "Your goal", actionTitle: "Change", action: onChange) {
-            HStack(spacing: 12) {
-                AppIconChip(icon: OnboardingCopy.icon(goal))
-                Text(OnboardingCopy.title(goal)).typeRole(.body)
-            }
-            .accessibilityElement(children: .combine)
-        }
-    }
-}
+// Me → "Your goal" is a row of `MeView` (her goal's icon and words); it opens this editor. The goal step
+// says "You can change it later in Me", and Program finished points here (plan 08/10/2026 task 2.13, D13).
 
 /// The goal list from onboarding, in a sheet; Save keeps the new one.
 struct GoalEditor: View {

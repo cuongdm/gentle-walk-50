@@ -9,6 +9,13 @@ struct SpecialCard: View {
     var reminderMinutes = 510
 
     var body: some View {
+        IconCardRow(icon: AppIcon.special(card)) { content }
+            .foregroundStyle(Palette.text)
+            .cardStyle()
+            .overlay { RoundedRectangle(cornerRadius: Metrics.cardRadius).strokeBorder(Palette.sky, lineWidth: 2) }
+    }
+
+    private var content: some View {
         VStack(alignment: .leading, spacing: 12) {
             switch card {
             case .pain(let area):
@@ -61,9 +68,50 @@ struct SpecialCard: View {
                 }
             }
         }
-        .foregroundStyle(Palette.text)
+    }
+}
+
+/// A Today card's icon chip beside its words (icon doc §3c): the icon says what the card is about at a
+/// glance, the words carry the meaning. At accessibility sizes the words take the whole width.
+struct IconCardRow<Content: View>: View {
+    let icon: AppIcon
+    var alignment: VerticalAlignment = .top
+    @ViewBuilder let content: Content
+
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    var body: some View {
+        HStack(alignment: alignment, spacing: 12) {
+            if !typeSize.isAccessibilitySize {
+                AppIconChip(icon: icon)
+            }
+            content.frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+}
+
+/// The week's theme (plan 08/10/2026 tasks 3.5, 3.10): "Week 4 · A little more", then what is new this
+/// week (sparkle, only when something really is new) or what to notice (calendar). Same place every week;
+/// only the words change.
+struct WeekThemeCard: View {
+    let theme: WeekTheme
+
+    var body: some View {
+        IconCardRow(icon: theme.newsLine == nil ? .program : .new) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(verbatim: theme.kicker)
+                    .typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.accent)
+                if let news = theme.newsLine {
+                    Text("New this week").typeRole(.cardTitle).foregroundStyle(Palette.text)
+                        .accessibilityAddTraits(.isHeader)
+                    Text(verbatim: news).typeRole(.body).foregroundStyle(Palette.text)
+                } else {
+                    Text(theme.localizedLine).typeRole(.body).foregroundStyle(Palette.text)
+                }
+            }
+        }
         .cardStyle()
-        .overlay { RoundedRectangle(cornerRadius: Metrics.cardRadius).strokeBorder(Palette.sky, lineWidth: 2) }
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -129,10 +177,7 @@ struct WeekStrip: View {
                         Text(verbatim: label)
                             .typeRole(.caption).fontWeight(day.isToday ? .bold : .regular).foregroundStyle(Palette.text)
                             .lineLimit(1).minimumScaleFactor(0.7)
-                        Image(systemName: symbol(for: day))
-                            // Free plan: a small muted dot for days still open (the spec shows no session kind).
-                            .font(isPlainDot(day) ? .system(size: 8) : nil)
-                            .foregroundStyle(day.mark == .active ? Palette.onStrongFill : isPlainDot(day) ? Palette.textMuted : Palette.text)
+                        mark(for: day)
                             .frame(width: 36, height: 36)
                             .background(day.mark == .active ? Palette.secondary : Palette.surface, in: .circle)
                             .overlay {
@@ -155,15 +200,17 @@ struct WeekStrip: View {
 
     private func isPlainDot(_ day: TodayDay) -> Bool { !isPro && day.mark == .open }
 
-    private func symbol(for day: TodayDay) -> String {
-        if day.mark == .rest { return "moon.zzz" }
-        if day.mark == .active { return "checkmark" }
-        guard isPro else { return "circle.fill" }
-        switch day.main {
-        case .chair: return "chair.fill"
-        case .stretch: return "figure.flexibility"
-        case .walk, .longWalk: return "figure.walk"
-        case nil: return "moon.zzz"
+    /// Done: a tick (system control); rest: the moon; Pro: the kind of session; free: a small muted dot
+    /// for days still open (the spec shows no session kind).
+    @ViewBuilder private func mark(for day: TodayDay) -> some View {
+        if day.mark == .active {
+            Image(systemName: "checkmark").fontWeight(.bold).foregroundStyle(Palette.onStrongFill)
+        } else if isPlainDot(day) {
+            Circle().fill(Palette.textMuted).frame(width: 8, height: 8)
+        } else if day.mark == .rest || day.main == nil {
+            AppIconGlyph(icon: .rest, size: 20, color: Palette.text)
+        } else {
+            AppIconGlyph(icon: AppIcon.session(day.main, seated: false), size: 20, color: Palette.text)
         }
     }
 
@@ -242,8 +289,13 @@ struct ExtraTile: View {
                 ArtImage(art: extra.art, height: 84)
                     .overlay(alignment: .topTrailing) {
                         HStack(spacing: 4) {
-                            if extra.hasVideo { mark("play.fill", fill: Palette.secondary, ink: Palette.onStrongFill) }
-                            if isLocked { mark("lock.fill", fill: Palette.sun, ink: Palette.onLightFill) }
+                            if extra.hasVideo {
+                                mark(Image(systemName: "play.fill").font(.caption.weight(.bold)), fill: Palette.secondary, ink: Palette.onStrongFill)
+                            }
+                            if isLocked {
+                                mark(AppIcon.pro.image.resizable().scaledToFit().frame(width: 14, height: 14),
+                                     fill: Palette.sun, ink: Palette.onLightFill)
+                            }
                         }
                         .padding(6)
                     }
@@ -263,9 +315,8 @@ struct ExtraTile: View {
         .accessibilityAddTraits(.isButton)
     }
 
-    private func mark(_ symbol: String, fill: Color, ink: Color) -> some View {
-        Image(systemName: symbol)
-            .font(.caption.weight(.bold))
+    private func mark(_ glyph: some View, fill: Color, ink: Color) -> some View {
+        glyph
             .foregroundStyle(ink)
             .frame(width: 26, height: 26)
             .background(fill, in: .circle)
@@ -291,8 +342,9 @@ struct SelfCheckCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
+            // The stopwatch, not the chair of chair moves (one picture, one meaning; icon doc §2).
             HStack(spacing: 12) {
-                Image(systemName: "chair.fill").typeRole(.cardTitle).foregroundStyle(Palette.secondary).accessibilityHidden(true)
+                AppIconChip(icon: .selfCheck)
                 Text(verbatim: title).typeRole(.body).fontWeight(.semibold)
             }
             switch status {

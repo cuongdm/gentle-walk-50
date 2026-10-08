@@ -11,17 +11,27 @@ struct NotebookChoiceList<Item: Hashable>: View {
     var icon: ((Item) -> AppIcon)? = nil
     let isSelected: (Item) -> Bool
     let onTap: (Item) -> Void
+    /// Off when the list shares a sheet of paper with more lines (the reminder time under the moments).
+    var showsPaper = true
 
     var body: some View {
+        if showsPaper {
+            rows
+                .padding(.horizontal, 14)
+                .padding(.vertical, 2)
+                .background { CardPaper() }
+        } else {
+            rows
+        }
+    }
+
+    private var rows: some View {
         VStack(spacing: 0) {
             ForEach(items, id: \.self) { item in
                 NotebookRow(title: title(item), icon: icon?(item), isSelected: isSelected(item),
-                            showsRule: item != items.last) { onTap(item) }
+                            showsRule: showsPaper ? item != items.last : true) { onTap(item) }
             }
         }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 2)
-        .background { CardPaper() }
     }
 }
 

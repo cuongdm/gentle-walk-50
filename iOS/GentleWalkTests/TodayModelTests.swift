@@ -25,7 +25,8 @@ import GentleWalkCore
 
     @Test func notWalkedYetShowsCheckInAndAchyPicksGentle() {
         let model = model(input())
-        #expect(model.greeting == "Good morning, Margaret")
+        #expect(model.greeting == GreetingText.text(Greetings.pick(now: at(28), calendar: calendar), name: "Margaret"))
+        #expect(model.greeting.contains("Margaret"))
         #expect(model.showsCheckIn)
         #expect(model.session.kind == .planned)
         model.checkIn(.achy)
@@ -158,7 +159,18 @@ import GentleWalkCore
 
     @Test func noNameMeansNoNameInCopy() {
         let model = model(input(name: nil))
-        #expect(model.greeting == "Good morning")
+        #expect(model.greeting == Greetings.pick(now: at(28), calendar: calendar).text)
+    }
+
+    /// Plan 08/10/2026 task 3.11: a different greeting each morning of the week, by the part of the day.
+    @Test func greetingRotates() {
+        let mornings = (21...27).map { model(input(now: at($0))).greeting }
+        #expect(Set(mornings).count == 7)
+        #expect(mornings.allSatisfy { $0.contains("Margaret") })
+        let evening = model(input(now: at(28, hour: 19))).greeting
+        let evenings = Greetings.pool(.evening, season: .autumn).map { GreetingText.text($0, name: "Margaret") }
+        #expect(evenings.contains(evening))
+        #expect(!evenings.contains(model(input(now: at(28, hour: 9))).greeting))
     }
 
     @Test func weekAndJourneyLines() {
@@ -181,6 +193,19 @@ import GentleWalkCore
     }
 
     // MARK: Steady program (task 4.2)
+
+    /// Plan 08/10/2026 tasks 3.5 and 3.10: the week's theme while the 12 weeks run, nothing before or after.
+    @Test func weekThemeFollowsTheProgramWeek() {
+        var value = input()
+        #expect(model(value).weekTheme == nil)
+        value.program = ProgramRound(start: at(14, hour: 0))
+        #expect(model(value).weekTheme == .standingTall)
+        value.program = ProgramRound(start: at(28, hour: 0))
+        #expect(model(value).weekTheme == .firstSteps)
+        #expect(model(value).weekTheme?.newThisWeek == .programStarts)
+        value.programFinishedAt = at(27)
+        #expect(model(value).weekTheme == nil)
+    }
 
     /// Started Sep 14: Monday Sep 28 is week 3, stage 1.
     @Test func programStripShowsWeekAndStage() {

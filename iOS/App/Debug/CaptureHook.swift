@@ -144,6 +144,9 @@ enum CaptureState: String, CaseIterable, Sendable {
     case progressResults = "progress-results"
     /// Me → "Moves set aside" with "Bring it back" (P3).
     case meSetAside = "me-set-aside"
+    // Icons and anti-boredom (milestone 3, task 3.4).
+    /// Me → Help → Acknowledgements: the Phosphor icon licence.
+    case meAcknowledgements = "me-acknowledgements"
 }
 
 enum CaptureHook {

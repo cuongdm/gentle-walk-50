@@ -1,5 +1,12 @@
 [
  {
+  "key": "The icons in this app are Phosphor Icons, shared under the MIT License.",
+  "comment": "",
+  "files": [
+   "AcknowledgementsView"
+  ]
+ },
+ {
   "key": "All sessions",
   "comment": "",
   "files": [
@@ -604,7 +611,7 @@
   ]
  },
  {
-  "key": "One gentle reminder a day, at:",
+  "key": "Reminder at",
   "comment": "",
   "files": [
    "DailyMomentPicker"
@@ -649,14 +656,6 @@
   ]
  },
  {
-  "key": "Change",
-  "comment": "",
-  "files": [
-   "GoalSection",
-   "MeSections"
-  ]
- },
- {
   "key": "Pick the one that matters most.",
   "comment": "",
   "files": [
@@ -672,13 +671,6 @@
    "SelfCheckViews",
    "WeeklyCheckInView",
    "NotificationSection"
-  ]
- },
- {
-  "key": "Your goal",
-  "comment": "",
-  "files": [
-   "GoalSection"
   ]
  },
  {
@@ -756,6 +748,426 @@
   "comment": "",
   "files": [
    "GoalText"
+  ]
+ },
+ {
+  "key": "A new morning",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A new morning, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A spring afternoon",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A spring afternoon, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A spring evening",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A spring evening, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A spring morning",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A spring morning, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A summer afternoon",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A summer afternoon, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A summer evening",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A summer evening, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A summer morning",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A summer morning, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A winter afternoon",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A winter afternoon, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A winter evening",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A winter evening, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A winter morning",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "A winter morning, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Afternoon",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Afternoon, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "An autumn afternoon",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "An autumn afternoon, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "An autumn evening",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "An autumn evening, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "An autumn morning",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "An autumn morning, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Evening",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Evening, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Good afternoon",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Good afternoon to you",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Good afternoon to you, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Good afternoon, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Good evening",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Good evening to you",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Good evening to you, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Good evening, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Good morning",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Good morning to you",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Good morning to you, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Good morning, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello %@, and good afternoon",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello %@, and good evening",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello %@, and good morning",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello there",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello there, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello this afternoon",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello this afternoon, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello this evening",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello this evening, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello this morning",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello this morning, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello, and good afternoon",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello, and good evening",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Hello, and good morning",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Morning",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Morning, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Nice to see you this evening",
+  "comment": "",
+  "files": [
+   "GreetingText"
+  ]
+ },
+ {
+  "key": "Nice to see you this evening, %@",
+  "comment": "",
+  "files": [
+   "GreetingText"
   ]
  },
  {
@@ -998,7 +1410,6 @@
   "files": [
    "JourneyView",
    "JourneyListView",
-   "PermissionStepView",
    "TodayCards"
   ]
  },
@@ -1024,6 +1435,13 @@
   ]
  },
  {
+  "key": "No moves are set aside.",
+  "comment": "",
+  "files": [
+   "MeRows"
+  ]
+ },
+ {
   "key": "%@ Pro",
   "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
   "files": [
@@ -1043,6 +1461,14 @@
   "files": [
    "MeSections",
    "ProgramView"
+  ]
+ },
+ {
+  "key": "Acknowledgements",
+  "comment": "",
+  "files": [
+   "MeSections",
+   "AcknowledgementsView"
   ]
  },
  {
@@ -1070,7 +1496,10 @@
   "key": "Apple Health",
   "comment": "",
   "files": [
-   "MeSections"
+   "MeSections",
+   "MeView",
+   "PermissionStepView",
+   "MeRows"
   ]
  },
  {
@@ -1100,6 +1529,13 @@
   "files": [
    "MeSections",
    "SoundControls"
+  ]
+ },
+ {
+  "key": "Change",
+  "comment": "",
+  "files": [
+   "MeSections"
   ]
  },
  {
@@ -1150,7 +1586,9 @@
   "key": "Display",
   "comment": "",
   "files": [
-   "MeSections"
+   "MeSections",
+   "MeView",
+   "MeRows"
   ]
  },
  {
@@ -1235,7 +1673,9 @@
   "key": "Language and units",
   "comment": "",
   "files": [
-   "MeSections"
+   "MeSections",
+   "MeView",
+   "MeRows"
   ]
  },
  {
@@ -1264,6 +1704,7 @@
   "comment": "",
   "files": [
    "MeSections",
+   "MeView",
    "OutdoorPrepView"
   ]
  },
@@ -1287,7 +1728,8 @@
   "key": "Nothing to go easy on",
   "comment": "A message displayed when a user has no body limits.",
   "files": [
-   "MeSections"
+   "MeSections",
+   "MeView"
   ]
  },
  {
@@ -1302,7 +1744,9 @@
   "key": "Outdoor walks",
   "comment": "",
   "files": [
-   "MeSections"
+   "MeSections",
+   "MeView",
+   "MeRows"
   ]
  },
  {
@@ -1370,7 +1814,9 @@
   "key": "Sound and captions",
   "comment": "",
   "files": [
-   "MeSections"
+   "MeSections",
+   "MeView",
+   "MeRows"
   ]
  },
  {
@@ -1490,7 +1936,9 @@
   "key": "Your 12 weeks",
   "comment": "",
   "files": [
-   "MeSections"
+   "MeSections",
+   "MeView",
+   "MeRows"
   ]
  },
  {
@@ -1504,7 +1952,9 @@
   "key": "Your body",
   "comment": "",
   "files": [
-   "MeSections"
+   "MeSections",
+   "MeView",
+   "MeRows"
   ]
  },
  {
@@ -1518,7 +1968,8 @@
   "key": "Your week",
   "comment": "",
   "files": [
-   "MeSections"
+   "MeSections",
+   "MeRows"
   ]
  },
  {
@@ -1536,7 +1987,28 @@
   ]
  },
  {
+  "key": "%@ +%lld",
+  "comment": "",
+  "files": [
+   "MeView"
+  ]
+ },
+ {
   "key": "App",
+  "comment": "",
+  "files": [
+   "MeView"
+  ]
+ },
+ {
+  "key": "Captions off",
+  "comment": "",
+  "files": [
+   "MeView"
+  ]
+ },
+ {
+  "key": "Captions on",
   "comment": "",
   "files": [
    "MeView"
@@ -1565,7 +2037,38 @@
   ]
  },
  {
+  "key": "Notifications",
+  "comment": "",
+  "files": [
+   "MeView",
+   "NotificationSection",
+   "MeRows"
+  ]
+ },
+ {
   "key": "Phone and Health",
+  "comment": "",
+  "files": [
+   "MeView"
+  ]
+ },
+ {
+  "key": "Rest days",
+  "comment": "",
+  "files": [
+   "MeView"
+  ]
+ },
+ {
+  "key": "Steps only",
+  "comment": "",
+  "files": [
+   "MeView",
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "Your goal",
   "comment": "",
   "files": [
    "MeView"
@@ -1764,13 +2267,6 @@
   ]
  },
  {
-  "key": "Notifications",
-  "comment": "",
-  "files": [
-   "NotificationSection"
-  ]
- },
- {
   "key": "Occasional news about new routes.",
   "comment": "A description of the new journeys notification.",
   "files": [
@@ -1810,6 +2306,24 @@
   "comment": "",
   "files": [
    "NotificationSection"
+  ]
+ },
+ {
+  "key": "Off",
+  "comment": "A word that describes the state of a voice.",
+  "files": [
+   "OnOffToggleStyle",
+   "MeView",
+   "WorkoutSafetyBar"
+  ]
+ },
+ {
+  "key": "On",
+  "comment": "A word that describes the state of a voice.",
+  "files": [
+   "OnOffToggleStyle",
+   "MeView",
+   "WorkoutSafetyBar"
   ]
  },
  {
@@ -2632,6 +3146,13 @@
   ]
  },
  {
+  "key": "It stays on this phone.",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
   "key": "Next, iPhone asks about location",
   "comment": "",
   "files": [
@@ -2660,7 +3181,7 @@
   ]
  },
  {
-  "key": "Only while you walk. It stays on this phone.",
+  "key": "Only while you walk.",
   "comment": "",
   "files": [
    "OutdoorPrepView"
@@ -2668,13 +3189,6 @@
  },
  {
   "key": "Phone charged",
-  "comment": "",
-  "files": [
-   "OutdoorPrepView"
-  ]
- },
- {
-  "key": "Steps only",
   "comment": "",
   "files": [
    "OutdoorPrepView"
@@ -3101,6 +3615,13 @@
  },
  {
   "key": "Apple Health connected",
+  "comment": "",
+  "files": [
+   "PermissionStepView"
+  ]
+ },
+ {
+  "key": "Daily reminder",
   "comment": "",
   "files": [
    "PermissionStepView"
@@ -4272,7 +4793,9 @@
   "comment": "",
   "files": [
    "SetAsideSection",
-   "TodayCards"
+   "MeView",
+   "TodayCards",
+   "MeRows"
   ]
  },
  {
@@ -4838,6 +5361,13 @@
   ]
  },
  {
+  "key": "New this week",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
   "key": "Next, Apple asks what to share: tap “Turn On All”, then “Allow”. Or tap “Don’t Allow” to skip.",
   "comment": "A description of the next step in the user's health data consent process.",
   "files": [
@@ -5045,48 +5575,6 @@
  },
  {
   "key": "Gentle restart · %lld min",
-  "comment": "",
-  "files": [
-   "TodayModel"
-  ]
- },
- {
-  "key": "Good afternoon",
-  "comment": "",
-  "files": [
-   "TodayModel"
-  ]
- },
- {
-  "key": "Good afternoon, %@",
-  "comment": "",
-  "files": [
-   "TodayModel"
-  ]
- },
- {
-  "key": "Good evening",
-  "comment": "",
-  "files": [
-   "TodayModel"
-  ]
- },
- {
-  "key": "Good evening, %@",
-  "comment": "",
-  "files": [
-   "TodayModel"
-  ]
- },
- {
-  "key": "Good morning",
-  "comment": "",
-  "files": [
-   "TodayModel"
-  ]
- },
- {
-  "key": "Good morning, %@",
   "comment": "",
   "files": [
    "TodayModel"
@@ -5663,6 +6151,202 @@
   "comment": "A label for the accessibility element representing the time left in the current phase. The argument is the time left in the current phase.",
   "files": [
    "WalkPlayerView"
+  ]
+ },
+ {
+  "key": "A little more",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Balance moves: keep your chair close and look at one spot.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Finding your rhythm",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "First steps",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Heel and toe",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Heel and toe raises: small and easy is perfect.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Keeping it going",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Looking back",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Short, easy sessions to learn the moves. Seated is always fine.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Sit and stand tall between moves. Look ahead, not down.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Sit-to-stands this week: slow down, slow up, hands on the chair if you like.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Stage %lld starts this week: %@.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Stage four starts. Keep the days and times that suit you.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Stage three starts. Try the harder version once, if it feels right.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Stage two starts. A little more, only when the last sessions felt easy.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Standing tall",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Steady feet",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "The same moves as last week. Notice when they start to feel familiar.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Trying the next step",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Turn slowly, in small steps, with your chair or counter in reach.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Turning with ease",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Up from the chair",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Week %lld · %@",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Your 12 weeks start today.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Your last week of the 12. Look back at your checks on Progress.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Your last week of the 12. Look how far you've come.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Your own routine",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
+  ]
+ },
+ {
+  "key": "Your routine, your pace. Rest days are part of the plan.",
+  "comment": "",
+  "files": [
+   "WeekThemeText"
   ]
  },
  {
@@ -6301,20 +6985,6 @@
  {
   "key": "Break",
   "comment": "",
-  "files": [
-   "WorkoutSafetyBar"
-  ]
- },
- {
-  "key": "Off",
-  "comment": "A word that describes the state of a voice.",
-  "files": [
-   "WorkoutSafetyBar"
-  ]
- },
- {
-  "key": "On",
-  "comment": "A word that describes the state of a voice.",
   "files": [
    "WorkoutSafetyBar"
   ]

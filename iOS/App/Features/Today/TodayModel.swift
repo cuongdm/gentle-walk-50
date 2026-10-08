@@ -241,16 +241,16 @@ struct TodaySwapOption: Equatable, Identifiable {
     /// The First Walk is set (gentle, seated), so there is nothing to check in for.
     var showsCheckIn: Bool { !doneToday && !isNew }
 
+    /// "Good morning, Margaret", or one of its six cousins and the season's (task 3.11): a different one
+    /// each day of the week, by the part of the day.
     var greeting: String {
-        let hour = input.calendar.component(.hour, from: input.now)
-        switch (hour, input.name) {
-        case (..<12, let name?): return String(localized: "Good morning, \(name)")
-        case (..<12, nil): return String(localized: "Good morning")
-        case (12..<17, let name?): return String(localized: "Good afternoon, \(name)")
-        case (12..<17, nil): return String(localized: "Good afternoon")
-        case (_, let name?): return String(localized: "Good evening, \(name)")
-        case (_, nil): return String(localized: "Good evening")
-        }
+        GreetingText.text(Greetings.pick(now: input.now, calendar: input.calendar), name: input.name)
+    }
+
+    /// The theme of her program week while the 12 weeks run (tasks 3.5, 3.10); nil before and after.
+    var weekTheme: WeekTheme? {
+        guard case .week(let week, _)? = programStrip?.kind else { return nil }
+        return WeekTheme.forWeek(week)
     }
 
     func checkIn(_ value: CheckIn) {

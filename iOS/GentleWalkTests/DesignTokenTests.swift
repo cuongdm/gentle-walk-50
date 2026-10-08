@@ -13,7 +13,7 @@ import UIKit
     @Test(arguments: [UIUserInterfaceStyle.light, .dark])
     func textPairsReachFourPointFive(_ style: UIUserInterfaceStyle) throws {
         for pair in Palette.textPairs {
-            let ratio = try ContrastRatio.between(pair.foreground, pair.background, style: style)
+            let ratio = try ContrastRatio.ratio(of: pair, style: style)
             #expect(ratio >= pair.minimum, "\(pair.name) in \(style == .dark ? "dark" : "light"): \(ratio)")
         }
     }
@@ -27,6 +27,20 @@ import UIKit
         for pair in small {
             let ratio = try ContrastRatio.between(pair.foreground, pair.background, style: style)
             #expect(ratio >= 5.0, "\(pair.name) in \(style == .dark ? "dark" : "light"): \(ratio)")
+        }
+    }
+
+    /// Icon glyphs (`Palette.iconInk`) on the watercolour wash of every tint, at the wash's deepest point
+    /// over the card paper: graphics keep 3:1 (WCAG 1.4.11; plan 08/10/2026 task 3.2).
+    @Test(arguments: [UIUserInterfaceStyle.light, .dark])
+    func iconInkReadsOnEveryWash(_ style: UIUserInterfaceStyle) throws {
+        let washes = Palette.textPairs.filter { $0.wash != nil }
+        #expect(Set(washes.map(\.background)) == ["secondary", "sky", "sun", "accent", "dangerSoft"])
+        #expect(washes.allSatisfy { $0.foreground == Palette.Name.iconInk && $0.minimum >= Palette.TextPair.graphic })
+        #expect(Palette.textPairs.contains { $0.foreground == Palette.Name.iconInk && $0.background == Palette.Name.surface })
+        for pair in washes {
+            let ratio = try ContrastRatio.ratio(of: pair, style: style)
+            #expect(ratio >= Palette.TextPair.graphic, "\(pair.name) in \(style == .dark ? "dark" : "light"): \(ratio)")
         }
     }
 

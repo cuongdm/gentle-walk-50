@@ -513,6 +513,15 @@
       "replaces": "lock.shield.fill"
     },
     {
+      "concept": "help.acknowledgements",
+      "asset": "acknowledgements",
+      "source": "phosphor",
+      "glyph": "book-open-text",
+      "tint": "sap",
+      "meaning": "Acknowledgements: the licences of the icon set and other credits (Me → Help)",
+      "replaces": ""
+    },
+    {
       "concept": "help.restore",
       "asset": "restore",
       "source": "phosphor",

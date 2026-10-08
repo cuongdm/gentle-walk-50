@@ -6,6 +6,8 @@ struct SelectableCard: View {
     let title: LocalizedStringResource
     var subtitle: LocalizedStringResource? = nil
     var symbol: String? = nil
+    /// A content icon from the shared vocabulary (`AppIcon`); wins over `symbol`.
+    var icon: AppIcon? = nil
     /// Colour of the icon and its soft circle.
     var tint: Color = Palette.secondary
     let isSelected: Bool
@@ -17,8 +19,12 @@ struct SelectableCard: View {
         Button(action: action) {
             HStack(spacing: 14) {
                 // The icon is decoration: at accessibility sizes the words need the width (review U2).
-                if let symbol, !typeSize.isAccessibilitySize {
-                    IconChip(symbol: symbol, tint: tint)
+                if !typeSize.isAccessibilitySize {
+                    if let icon {
+                        AppIconChip(icon: icon, selected: isSelected)
+                    } else if let symbol {
+                        IconChip(symbol: symbol, tint: tint)
+                    }
                 }
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title).typeRole(.body).fontWeight(.semibold)

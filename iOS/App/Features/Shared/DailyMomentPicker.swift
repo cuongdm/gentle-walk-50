@@ -1,9 +1,9 @@
 import SwiftUI
 
-/// "What's a good moment for your daily walk?" Four moments as a 2 × 2 grid of tiles and the reminder
-/// time on one line (owner 01/10: four full-width cards and a two-line time block made the screen
-/// long). The time can be typed (tap it), while − / + go to the next quarter hour (owner 30/09/2026).
-/// One column at accessibility text sizes. Used on S16, beside "Allow reminders", and in Me.
+/// "What's a good moment for your daily walk?" Four moments on one sheet of notebook paper, each with its
+/// picture (coffee, plate, TV, clock; `claude-design/Reminder.dc.html`, plan 08/10/2026 task 3.8), and the
+/// reminder time on one line. The time can be typed (tap it), while − / + go to the next quarter hour
+/// (owner 30/09/2026). Used on S16 ("Set my reminder") and in Me.
 struct DailyMomentPicker: View {
     let moment: DailyMoment
     let minutes: Int
@@ -20,36 +20,50 @@ struct DailyMomentPicker: View {
             if showsQuestion {
                 Text("What's a good moment for your daily walk?").typeRole(.cardTitle).foregroundStyle(Palette.text)
             }
-            let columns = typeSize.isAccessibilitySize ? [GridItem(.flexible())] : [GridItem(.flexible(), spacing: 8), GridItem(.flexible())]
-            LazyVGrid(columns: columns, spacing: 8) {
-                ForEach(DailyMoment.allCases) { value in
-                    MomentTile(title: OnboardingCopy.title(value), isSelected: moment == value) { onChoose(value) }
-                }
-            }
-            // At accessibility sizes the words, the time and − / + each get a row (the one row ran off
-            // the screen at XXL, plan 08/10/2026 task 1.13).
-            Group {
-                if typeSize.isAccessibilitySize {
-                    VStack(alignment: .leading, spacing: 8) {
-                        timeLabel
-                        timePicker
-                        HStack(spacing: 12) { earlier; later }
+            // One sheet of paper: the four moments, then "Reminder at − 8:30 AM +" as its last line
+            // (`claude-design/Reminder.dc.html`; two cards did not fit an iPhone SE above "Set my reminder").
+            VStack(alignment: .leading, spacing: 0) {
+                NotebookChoiceList(items: DailyMoment.allCases, title: OnboardingCopy.title, icon: AppIcon.moment,
+                                   isSelected: { $0 == moment }, onTap: onChoose, showsPaper: false)
+                // At accessibility sizes the words, the time and − / + each get a row (the one row ran off
+                // the screen at XXL, plan 08/10/2026 task 1.13).
+                Group {
+                    if typeSize.isAccessibilitySize {
+                        VStack(alignment: .leading, spacing: 8) {
+                            timeLabel
+                            timePicker
+                            HStack(spacing: 12) { earlier; later }
+                        }
+                    } else {
+                        // "Reminder at" where it fits on the line; on a small phone the − time + alone
+                        // (the clock line above and the buttons' spoken labels say what it is).
+                        ViewThatFits(in: .horizontal) {
+                            HStack(spacing: 8) {
+                                timeLabel.fixedSize()
+                                Spacer(minLength: 4)
+                                earlier
+                                timePicker
+                                later
+                            }
+                            HStack(spacing: 12) {
+                                earlier
+                                timePicker
+                                later
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
                     }
-                } else {
-                    HStack(spacing: 10) {
-                        timeLabel.frame(maxWidth: .infinity, alignment: .leading)
-                        earlier
-                        timePicker
-                        later
-                    }
                 }
+                .padding(.vertical, 6)
             }
-            .cardStyle(padding: 10)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 2)
+            .background { CardPaper() }
         }
     }
 
     private var timeLabel: some View {
-        Text("One gentle reminder a day, at:").typeRole(.caption).foregroundStyle(Palette.textMuted)
+        Text("Reminder at").typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
     }
 
     private var earlier: some View { StepButton(symbol: "minus", label: "Earlier time") { onStep(-1) } }
@@ -77,40 +91,6 @@ struct DailyMomentPicker: View {
     static func time(_ minutes: Int) -> String {
         let date = Calendar.current.date(bySettingHour: minutes / 60, minute: minutes % 60, second: 0, of: .now) ?? .now
         return date.formatted(date: .omitted, time: .shortened)
-    }
-}
-
-/// A daily moment: a tile with a tick when chosen, two lines at most.
-private struct MomentTile: View {
-    let title: LocalizedStringResource
-    let isSelected: Bool
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            HStack(alignment: .top, spacing: 6) {
-                Text(title).typeRole(.body).fontWeight(.semibold)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                    .foregroundStyle(isSelected ? Palette.primary : Palette.textMuted)
-                    .accessibilityHidden(true)
-            }
-            .foregroundStyle(Palette.text)
-            .padding(12)
-            .frame(maxWidth: .infinity, minHeight: Metrics.rowHeight, alignment: .topLeading)
-            .background {
-                RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
-                    .fill(isSelected ? Palette.secondary.opacity(0.12) : Palette.surface)
-            }
-            .overlay {
-                RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
-                    .strokeBorder(isSelected ? Palette.primary : Palette.textMuted.opacity(0.3), lineWidth: isSelected ? 3 : 1.5)
-            }
-            .contentShape(.rect)
-        }
-        .buttonStyle(.plain)
-        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
     }
 }
 

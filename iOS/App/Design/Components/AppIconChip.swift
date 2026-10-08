@@ -18,7 +18,8 @@ extension AppIcon.Tint {
 /// paper, and in dark mode cream for glyphs and ochre for the chosen border and check, which keep 3:1
 /// against the dark card where the deep green would not.
 enum ChoiceInk {
-    static func glyph(_ scheme: ColorScheme) -> Color { scheme == .dark ? Palette.text : Palette.primary }
+    /// `Palette.iconInk`: the same two values as an asset, so `DesignTokenTests` checks it on every wash.
+    static func glyph(_ scheme: ColorScheme) -> Color { Palette.iconInk }
     static func chosen(_ scheme: ColorScheme) -> Color { scheme == .dark ? Palette.sun : Palette.primary }
     static func onChosen(_ scheme: ColorScheme) -> Color { scheme == .dark ? Palette.onLightFill : Palette.onStrongFill }
 }
@@ -30,6 +31,13 @@ struct AppIconChip: View {
     var selected = false
     @ScaledMetric(relativeTo: .body) private var size: CGFloat = 38
     @Environment(\.colorScheme) private var scheme
+
+    /// 38 pt for list rows and answers; 44 pt at the head of a Today card (icon doc §2).
+    init(icon: AppIcon, selected: Bool = false, size: CGFloat = 38) {
+        self.icon = icon
+        self.selected = selected
+        _size = ScaledMetric(wrappedValue: size, relativeTo: .body)
+    }
 
     var body: some View {
         icon.image(selected: selected)
@@ -43,6 +51,27 @@ struct AppIconChip: View {
                     .fill(RadialGradient(colors: [icon.tint.wash.opacity(0.12), icon.tint.wash.opacity(0.4)],
                                          center: UnitPoint(x: 0.34, y: 0.3), startRadius: 0, endRadius: size * 0.75))
             }
+            .accessibilityHidden(true)
+    }
+}
+
+/// An `AppIcon` without its wash, sized with the text beside it (a week-strip day, the leaf in a line of
+/// text). Decorative like the chip.
+struct AppIconGlyph: View {
+    let icon: AppIcon
+    var color: Color = Palette.iconInk
+    @ScaledMetric(relativeTo: .body) private var size: CGFloat = 20
+
+    init(icon: AppIcon, size: CGFloat = 20, color: Color = Palette.iconInk) {
+        self.icon = icon
+        self.color = color
+        _size = ScaledMetric(wrappedValue: size, relativeTo: .body)
+    }
+
+    var body: some View {
+        icon.image.resizable().scaledToFit()
+            .frame(width: size, height: size)
+            .foregroundStyle(color)
             .accessibilityHidden(true)
     }
 }

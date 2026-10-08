@@ -45,12 +45,21 @@ import UserNotifications
         healthConnected = await health?.requestAuthorization() ?? false
     }
 
-    /// Apple asks only once: after a "Don't Allow", the button opens Settings instead of doing nothing.
     func allowReminders() async {
-        if notifications is SystemNotificationAuthorizer, await SystemPermission.reminders() == .blocked {
-            SystemPermission.openSettings()
-            return
-        }
         remindersAllowed = await notifications?.requestAuthorization() ?? false
+    }
+
+    /// The one button of a permission screen (App Review I-2, owner 08/10/2026): asks Apple and says
+    /// whether it was granted. Not granted ("Don't Allow", or blocked earlier so Apple shows nothing): the
+    /// flow moves on with the feature off; she can turn it on later in Me.
+    func ask(_ ask: PermissionAsk) async -> Bool {
+        switch ask {
+        case .reminders:
+            await allowReminders()
+            return remindersAllowed
+        case .health:
+            await connectHealth()
+            return healthConnected
+        }
     }
 }

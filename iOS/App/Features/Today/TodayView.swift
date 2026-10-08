@@ -53,6 +53,9 @@ struct TodayView: View {
                 if let card = model.specialCard {
                     SpecialCard(card: card, actions: actions, reminderMinutes: model.reminderMinutes)
                 }
+                if let theme = model.weekTheme {
+                    WeekThemeCard(theme: theme)
+                }
                 JourneyMiniCard(title: model.journeyTitle, line: model.journeyLine, progress: model.journeyProgress,
                                 journeyID: model.journeyID, onOpen: actions.onOpenJourney)
                 WeekStrip(days: model.week, isPro: model.isPro, line: model.weekLine)
@@ -230,8 +233,8 @@ struct ActiveDaysRing: View {
                 .trim(from: 0, to: max(0.03, min(1, progress)))
                 .stroke(Palette.secondary, style: StrokeStyle(lineWidth: 4, lineCap: .round))
                 .rotationEffect(.degrees(-90))
-            Image(systemName: "leaf.fill")
-                .font(.system(size: size * 0.4))
+            AppIcon.activeDay.image.resizable().scaledToFit()
+                .frame(width: size * 0.45, height: size * 0.45)
                 .foregroundStyle(Palette.secondary)
         }
         .frame(width: size, height: size)
@@ -315,7 +318,7 @@ struct TodaySessionCard: View {
                     if let detail { Text(verbatim: detail).typeRole(.body) }
                     if let goalLine {
                         // Ink, with the leaf in green: only text-on-paper pairs are checked for contrast.
-                        Label { Text(verbatim: goalLine) } icon: { Image(systemName: "leaf.fill").foregroundStyle(Palette.secondary) }
+                        Label { Text(verbatim: goalLine) } icon: { AppIconGlyph(icon: .activeDay, size: 18, color: Palette.secondary) }
                             .typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)
                     }
                 }
@@ -327,11 +330,12 @@ struct TodaySessionCard: View {
                     // pattern of Gentler Streak's "Day to Rest and Recover").
                     ArtImage(art: .walkerRest, height: 96, fallbackSymbol: "moon.zzz.fill").frame(width: 84)
                 } else if !typeSize.isAccessibilitySize {
-                    Image(systemName: symbol)
-                        .typeRole(.stat)
-                        .fontWeight(.regular)
-                        .foregroundStyle(session.kind == .done ? Palette.onStrongFill : Palette.secondary)
-                        .accessibilityHidden(true)
+                    if session.kind == .done {
+                        // On the green card: the seal in the card's own white, no wash.
+                        AppIconGlyph(icon: .done, size: 40, color: Palette.onStrongFill)
+                    } else {
+                        AppIconChip(icon: icon, size: 52)
+                    }
                 }
             }
             if trialEnded {
@@ -382,15 +386,8 @@ struct TodaySessionCard: View {
         }
     }
 
-    private var symbol: String {
-        switch (session.kind, session.main) {
-        case (.done, _): "checkmark.seal.fill"
-        case (.rest, _): "moon.zzz.fill"
-        case (_, .chair): "chair.fill"
-        case (_, .stretch): "figure.flexibility"
-        default: isSeated ? "figure.seated.side" : "figure.walk"
-        }
-    }
+    /// The kind of today's session (`AppIcon.session`); a seated walk shows the armchair.
+    private var icon: AppIcon { AppIcon.session(session.main, seated: isSeated) }
 }
 
 /// "Your free trial ends on Oct 11. You'll be billed $39.99 unless you cancel." · Manage.
@@ -402,9 +399,13 @@ struct TrialEndingCard: View {
     var body: some View {
         let day = date.formatted(.dateTime.month(.abbreviated).day())
         VStack(alignment: .leading, spacing: 8) {
-            Text("Your free trial ends on \(day).").typeRole(.cardTitle)
-            if let price {
-                Text("You'll be billed \(price) unless you cancel.").typeRole(.body)
+            IconCardRow(icon: .payment) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Your free trial ends on \(day).").typeRole(.cardTitle)
+                    if let price {
+                        Text("You'll be billed \(price) unless you cancel.").typeRole(.body)
+                    }
+                }
             }
             Button("How to cancel", action: onManage).buttonStyle(.secondaryAction)
         }

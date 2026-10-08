@@ -47,7 +47,10 @@ struct MainTabView: View {
             }
                 .tabItem { Label("Progress", systemImage: "chart.bar.fill") }
                 .tag(AppTab.progress)
-            NavigationStack { MeView(app: app) }
+            NavigationStack(path: $app.mePath) {
+                MeView(app: app)
+                    .navigationDestination(for: MeRoute.self) { MeDetailView(route: $0, app: app) }
+            }
                 .tabItem { Label("Me", systemImage: "person.fill") }
                 .tag(AppTab.me)
         }
@@ -87,7 +90,11 @@ struct TodayTab: View {
                 onDismissCard: app.dismissHealthCard,
                 onFewerReminders: app.answerFewerReminders,
                 onKeepEasierLevel: app.keepEasierLevel,
-                onOpenMe: { app.tab = .me },
+                // "Bring it back" lives on Me → Moves set aside.
+                onOpenMe: {
+                    app.tab = .me
+                    app.mePath = [.setAside]
+                },
                 onStretchInstead: { app.startPreset("stretch.seated.gentle") },
                 onMoveReminder: app.moveReminder(to:),
                 onKeepReminder: app.keepReminder,

@@ -47,8 +47,10 @@ struct ProgramView: View {
                 if case .week(let week, _) = snapshot.position {
                     Text(verbatim: String(localized: "You're in week \(week) of \(ProgramCalendar.weeks).")).typeRole(.body)
                         .fontWeight(.semibold).foregroundStyle(Palette.text)
+                    // This week's theme, as on Today (plan 08/10/2026 task 3.10).
+                    WeekThemeCard(theme: WeekTheme.forWeek(week))
                 }
-                ProgramStageList(current: currentStage)
+                ProgramStageList(current: currentStage, currentWeek: currentWeek)
                 SelfCheckDots(doneWeeks: snapshot.checkWeeks, status: snapshot.checkStatus, onStart: onSelfCheck)
                 if let onSeeResults {
                     Button("See how far you've come", action: onSeeResults).buttonStyle(.textLink)
@@ -64,11 +66,18 @@ struct ProgramView: View {
         if case .week(_, let stage) = snapshot.position { return stage }
         return nil
     }
+
+    private var currentWeek: Int? {
+        if case .week(let week, _) = snapshot.position { return week }
+        return nil
+    }
 }
 
-/// Four stages: name, weeks and what happens; the current one outlined in green.
+/// Four stages: name, weeks and what happens, and the themes of its three weeks (this week in bold); the
+/// current stage outlined in green.
 struct ProgramStageList: View {
     let current: ProgramStage?
+    var currentWeek: Int? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -79,6 +88,15 @@ struct ProgramStageList: View {
                         .typeRole(.caption).foregroundStyle(Palette.textMuted)
                     Text(stage.title).typeRole(.cardTitle).foregroundStyle(Palette.text)
                     Text(stage.summary).typeRole(.body).foregroundStyle(Palette.text)
+                    VStack(alignment: .leading, spacing: 2) {
+                        ForEach(Array(stage.weeks), id: \.self) { week in
+                            Text(verbatim: WeekTheme.forWeek(week).kicker)
+                                .typeRole(.caption)
+                                .fontWeight(week == currentWeek ? .bold : .regular)
+                                .foregroundStyle(week == currentWeek ? Palette.text : Palette.textMuted)
+                        }
+                    }
+                    .padding(.top, 2)
                     if isCurrent {
                         Text("You're here").typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)
                     }

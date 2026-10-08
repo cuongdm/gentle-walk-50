@@ -6,11 +6,16 @@ enum PermissionAsk: String, Sendable {
 
     /// "1 of 2" in the corner.
     var number: Int { self == .reminders ? 1 : 2 }
+
+    /// The feature asked for, with its icon, over the title (plan 08/10/2026 task 3.8).
+    var kicker: LocalizedStringResource { self == .reminders ? "Daily reminder" : "Apple Health" }
+    var icon: AppIcon { self == .reminders ? .reminder : .health }
 }
 
 /// S16a / S16b: one permission per screen, right after the first session, never before (5.1.1). The
 /// reason in the app's own words first, then Apple's dialog. The main button names the feature, not
-/// "Allow" (decision D8); "Not now" stays (decision D5, Review Notes say every permission is optional).
+/// "Allow" (decision D8). One button only (App Review I-2, owner 08/10/2026, replaces D5's "Not now"): it
+/// always opens Apple's dialog, and "Don't Allow" there moves on with the feature off (Review Notes).
 /// Once granted: a green line and "Continue". At accessibility text sizes the buttons scroll with the page.
 struct PermissionStepView: View {
     let ask: PermissionAsk
@@ -18,7 +23,7 @@ struct PermissionStepView: View {
     let moment: DailyMoment
     let minutes: Int
     let onReminderTime: (DailyMoment, Int) -> Void
-    /// Goes on: "Not now", "Continue", or a "Don't Allow" in Apple's dialog.
+    /// Goes on: "Continue" once granted, or right after a "Don't Allow" in Apple's dialog.
     let onDone: () -> Void
     var onBack: (() -> Void)? = nil
 
@@ -42,9 +47,10 @@ struct PermissionStepView: View {
                                       onSet: { onReminderTime(moment, $0) },
                                       showsQuestion: false)
                 case .health:
+                    kicker
                     ScreenHeader(title: "See your everyday steps?",
                                  subtitle: "Progress shows your all-day steps. Your journey moves either way.")
-                    ArtImage(art: .momentFriends, height: 110, fallbackSymbol: "heart.fill")
+                    ArtImage(art: .momentFriends, height: 96, fallbackSymbol: "heart.fill")
                     if !isGranted { HealthSheetCallout() }
                     Text("Your data stays on this phone.").typeRole(.caption).foregroundStyle(Palette.textMuted)
                 }
@@ -60,16 +66,42 @@ struct PermissionStepView: View {
         .screenBackground()
     }
 
-    /// "Back" on the second step, "1 of 2" on the right.
+    /// "Back" on the second step, else the feature with its icon ("Daily reminder"); "1 of 2" on the right.
     private var header: some View {
-        HStack {
-            if let onBack {
-                Button(action: onBack) { Label("Back", systemImage: "chevron.left") }.buttonStyle(.smallTextLink)
+        // One line; at large sizes "1 of 2" goes under the words instead of squeezing them.
+        ViewThatFits(in: .horizontal) {
+            HStack {
+                leading.fixedSize()
+                Spacer()
+                stepCount
             }
-            Spacer()
-            Text("\(ask.number) of 2").typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)
-                .frame(minHeight: Metrics.minTouchTarget)
+            VStack(alignment: .leading, spacing: 0) {
+                leading
+                stepCount
+            }
         }
+    }
+
+    @ViewBuilder private var leading: some View {
+        if let onBack {
+            Button(action: onBack) { Label("Back", systemImage: "chevron.left") }.buttonStyle(.smallTextLink)
+        } else {
+            kicker
+        }
+    }
+
+    private var stepCount: some View {
+        Text("\(ask.number) of 2").typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)
+            .frame(minHeight: Metrics.minTouchTarget)
+    }
+
+    private var kicker: some View {
+        HStack(spacing: 10) {
+            // At accessibility sizes the words need the width ("Dail-y re-min-der" broke).
+            if !typeSize.isAccessibilitySize { AppIconChip(icon: ask.icon) }
+            Text(ask.kicker).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
+        }
+        .accessibilityElement(children: .combine)
     }
 
     @ViewBuilder private var actions: some View {
@@ -80,14 +112,13 @@ struct PermissionStepView: View {
                 guard !asking else { return }
                 asking = true
                 Task {
-                    if ask == .reminders { await model.allowReminders() } else { await model.connectHealth() }
+                    let granted = await model.ask(ask)
                     asking = false
                     // "Don't Allow" goes on to the next step: never ask twice.
-                    if !isGranted { onDone() }
+                    if !granted { onDone() }
                 }
             }
             .buttonStyle(.primaryAction)
-            Button("Not now", action: onDone).buttonStyle(.textLink).frame(maxWidth: .infinity)
         }
     }
 }
@@ -96,8 +127,8 @@ struct PermissionStepView: View {
 /// is a callout, not small grey print.
 private struct HealthSheetCallout: View {
     var body: some View {
-        Label("Next, Apple asks what to share: tap **Turn On All**, then **Allow**. Or tap **Don't Allow** to skip.",
-              systemImage: "hand.tap.fill")
+        Label { Text("Next, Apple asks what to share: tap **Turn On All**, then **Allow**. Or tap **Don't Allow** to skip.") }
+            icon: { AppIconGlyph(icon: .info) }
             .typeRole(.body)
             .foregroundStyle(Palette.text)
             .padding(12)

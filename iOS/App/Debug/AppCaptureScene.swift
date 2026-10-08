@@ -54,8 +54,6 @@ struct AppCaptureScene: View {
         case .cancelGuide:
             CancelGuideView(accessUntil: Date.now.addingTimeInterval(12 * 86_400).formatted(.dateTime.month(.abbreviated).day()),
                             onBack: {})
-        case .meNotifications:
-            ScrollView { NotificationSection(app: app).padding(Metrics.screenMargin) }.screenBackground()
         case .meDeleteConfirm:
             DeleteDataConfirmation(onDelete: {}, onCancel: {})
         case .outdoorPrep, .outdoorMeasureChoice, .outdoorLocationPrompt:
@@ -319,7 +317,17 @@ struct AppCaptureScene: View {
         case .journey, .lockedStop: app.tab = .journey
         case .whereNext: app.tab = .journey
         case .progress, .progressNoHealth, .progressFree, .progressResults: app.tab = .progress
-        case .me, .meLifetime, .meLifetimeAndSubscription, .meSetAside: app.tab = .me
+        case .me, .meLifetime, .meLifetimeAndSubscription: app.tab = .me
+        // Me's rows open their screens (plan 08/10/2026 task 3.4).
+        case .meNotifications:
+            app.tab = .me
+            app.mePath = [.notifications]
+        case .meSetAside:
+            app.tab = .me
+            app.mePath = [.setAside]
+        case .meAcknowledgements:
+            app.tab = .me
+            app.mePath = [.acknowledgements]
         case .weeklyCheckin: app.cover = .weeklyCheckIn
         default: app.tab = .today
         }
