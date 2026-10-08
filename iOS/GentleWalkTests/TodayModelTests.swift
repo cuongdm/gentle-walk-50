@@ -157,8 +157,9 @@ import GentleWalkCore
         #expect(model(input(now: at(7, 10), entitlement: .trial(ends: ends), healthConnected: false, trialEnds: ends)).specialCard == .connectHealth)
     }
 
-    /// Review I-1 leftover (08/10/2026): the banner counts its day 10 from the trial length StoreKit
-    /// offers, as the paywall does, not from a typed 14 days.
+    /// Review I-1 leftover (08/10/2026): the banner gives four days' notice before billing whatever the
+    /// trial length StoreKit offers (day 10 of a 2-week trial, day 3 of a week); a shorter trial shows it
+    /// all along.
     @Test func trialEndingCardUsesStoreKitTrialLength() {
         let ends = at(11, 10, hour: 19)
         func card(now: Date, trialDays: Int?) -> Date? {
@@ -166,10 +167,13 @@ import GentleWalkCore
             value.trialDays = trialDays
             return model(value).trialEndingDate
         }
-        // A 3-week trial started Sep 20: day 10 is Sep 30, a week before a 2-week trial's day 10.
-        #expect(card(now: at(30, 9), trialDays: 21) == ends)
-        #expect(card(now: at(29, 9), trialDays: 21) == nil)
-        #expect(card(now: at(30, 9), trialDays: 14) == nil)
+        // A 3-week or a 1-week trial: from Oct 7, four days before billing.
+        #expect(card(now: at(7, 10), trialDays: 21) == ends)
+        #expect(card(now: at(6, 10), trialDays: 21) == nil)
+        #expect(card(now: at(7, 10), trialDays: 7) == ends)
+        #expect(card(now: at(6, 10), trialDays: 7) == nil)
+        // A 3-day trial started Oct 8: shown from its first day.
+        #expect(card(now: at(8, 10), trialDays: 3) == ends)
         // Products not loaded yet (or the offer gone): the 2-week trial the store sells.
         #expect(card(now: at(7, 10), trialDays: nil) == ends)
         #expect(card(now: at(6, 10), trialDays: nil) == nil)
