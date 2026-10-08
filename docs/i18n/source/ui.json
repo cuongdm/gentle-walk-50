@@ -2758,8 +2758,8 @@
   ]
  },
  {
-  "key": "If you connect Apple Health, we read your step count to show it in Progress and save your workouts to Health. Health data never leaves your phone through us.",
-  "comment": "A description of how the app uses Apple Health.",
+  "key": "If you connect Apple Health, we read your step count to show it in Progress and to suggest a lighter session on busy days. We also save your workouts to Health. Health data never leaves your phone through us.",
+  "comment": "",
   "files": [
    "PaywallLegalFooter"
   ]
@@ -2878,7 +2878,21 @@
   ]
  },
  {
-  "key": "%@, free for 14 days",
+  "key": "%@, free for %lld days",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "%lld days free",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "%lld days free · %@",
   "comment": "",
   "files": [
    "PaywallModel"
@@ -2897,7 +2911,7 @@
   ]
  },
  {
-  "key": "Free for 14 days, then %@ a year. Renews until you cancel, at least 24 hours before renewal.",
+  "key": "Free for %lld days, then %@ a year. Renews until you cancel, at least 24 hours before renewal.",
   "comment": "",
   "files": [
    "PaywallModel"
@@ -2905,6 +2919,13 @@
  },
  {
   "key": "Monthly",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "No free days",
   "comment": "",
   "files": [
    "PaywallModel"
@@ -3009,17 +3030,10 @@
   ]
  },
  {
-  "key": "14 days free",
+  "key": "Yours to keep, no renewals",
   "comment": "",
   "files": [
-   "PaywallView"
-  ]
- },
- {
-  "key": "14 days free · %@",
-  "comment": "",
-  "files": [
-   "PaywallView"
+   "PaywallModel"
   ]
  },
  {
@@ -3051,13 +3065,6 @@
   ]
  },
  {
-  "key": "No free days",
-  "comment": "",
-  "files": [
-   "PaywallView"
-  ]
- },
- {
   "key": "See other plans",
   "comment": "",
   "files": [
@@ -3074,13 +3081,6 @@
  {
   "key": "Your current plan keeps renewing until you cancel it.",
   "comment": "A warning that appears when the user's current plan is set to renew.",
-  "files": [
-   "PaywallView"
-  ]
- },
- {
-  "key": "Yours to keep, no renewals",
-  "comment": "",
   "files": [
    "PaywallView"
   ]

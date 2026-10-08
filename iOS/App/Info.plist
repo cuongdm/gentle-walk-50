@@ -21,7 +21,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Good Footing reads your step count to show your everyday activity in Progress.</string>
+	<string>Good Footing reads your step count to show your everyday activity in Progress and to suggest a lighter session on busy days.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Good Footing saves your walks and exercise sessions to Apple Health.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

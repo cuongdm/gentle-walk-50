@@ -39,7 +39,7 @@ struct PaywallView: View {
                 VStack(spacing: 10) {
                     ForEach(model.visibleOptions) { option in
                         PlanOptionCard(option: option, isSelected: model.selectedID == option.id,
-                                       note: note(for: option),
+                                       note: model.note(for: option),
                                        renewingWarning: option.kind == .lifetime && model.showsRenewingWarning) {
                             model.selectedID = option.id
                         }
@@ -70,19 +70,6 @@ struct PaywallView: View {
         }
         .screenBackground()
         .sheet(isPresented: $showsPrivacy) { PrivacyPolicyView() }
-    }
-
-    /// The small line under a plan's name: the free days and monthly cost on Yearly, "No free days" on
-    /// Monthly while the trial is on offer, "Yours to keep, no renewals" on One payment.
-    private func note(for option: PlanOption) -> String? {
-        switch option.kind {
-        case .yearly:
-            let monthly = option.monthlyEquivalent
-            guard model.isEligibleForTrial && model.showsAllPlans else { return monthly }
-            return monthly.map { String(localized: "14 days free · \($0)") } ?? String(localized: "14 days free")
-        case .monthly: return model.isEligibleForTrial ? String(localized: "No free days") : nil
-        case .lifetime: return String(localized: "Yours to keep, no renewals")
-        }
     }
 }
 

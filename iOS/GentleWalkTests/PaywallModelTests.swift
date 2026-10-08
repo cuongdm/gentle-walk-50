@@ -13,12 +13,15 @@ import GentleWalkCore
         return calendar
     }
 
-    private func model(eligible: Bool, selected kind: PlanOption.Kind = .yearly, goal: Goal = .steadier) -> PaywallModel {
+    private var start: Date { calendar.date(from: DateComponents(year: 2026, month: 10, day: 2, hour: 9))! }
+
+    private func model(eligible: Bool, trialDays: Int? = 14, selected kind: PlanOption.Kind = .yearly,
+                       goal: Goal = .steadier) -> PaywallModel {
         let options = [PlanOption(id: "y", kind: .yearly, price: "$39.99", monthlyEquivalent: "$3.33 a month"),
                        PlanOption(id: "m", kind: .monthly, price: "$7.99", monthlyEquivalent: nil),
                        PlanOption(id: "l", kind: .lifetime, price: "$79.99", monthlyEquivalent: nil)]
-        let start = calendar.date(from: DateComponents(year: 2026, month: 10, day: 2, hour: 9))!
-        let model = PaywallModel(options: options, isEligibleForTrial: eligible, goal: goal, now: start, calendar: calendar)
+        let model = PaywallModel(options: options, isEligibleForTrial: eligible, trialDays: trialDays, goal: goal,
+                                 now: start, calendar: calendar)
         if kind != .yearly {
             model.showsAllPlans = true
             model.selectedID = kind == .monthly ? "m" : "l"
@@ -75,11 +78,55 @@ import GentleWalkCore
         }
     }
 
-    @Test func reminderIsTwoDaysBeforeBilling() {
+    @Test func reminderIsTwoDaysBeforeBilling() throws {
         let model = model(eligible: true)
-        let days = calendar.dateComponents([.day], from: calendar.startOfDay(for: model.trial.reminderDate),
-                                           to: calendar.startOfDay(for: model.trial.billingDate)).day
+        let trial = try #require(model.trial)
+        let days = calendar.dateComponents([.day], from: calendar.startOfDay(for: trial.reminderDate),
+                                           to: calendar.startOfDay(for: trial.billingDate)).day
         #expect(days == 2)
-        #expect(model.reminderDateText == model.trial.reminderDate.formatted(.dateTime.month(.abbreviated).day()))
+        #expect(model.reminderDateText == trial.reminderDate.formatted(.dateTime.month(.abbreviated).day()))
+    }
+
+    // MARK: Trial length from StoreKit (review I-1, 08/10/2026)
+
+    /// A one-week offer in App Store Connect: every phrase and date says 7 days, none says 14.
+    @Test func trialLengthFollowsTheOffer() throws {
+        let model = model(eligible: true, trialDays: 7)
+        #expect(String(localized: model.title) == "Your 12 weeks to feel steadier, free for 7 days")
+        #expect(model.disclosure.hasPrefix("Free for 7 days, then $39.99 a year."))
+        let trial = try #require(model.trial)
+        #expect(calendar.dateComponents([.day], from: start, to: trial.billingDate).day == 7)
+        model.showsAllPlans = true
+        let yearly = try #require(model.yearly)
+        #expect(model.note(for: yearly) == "7 days free · $3.33 a month")
+        for text in [String(localized: model.title), model.disclosure, model.note(for: yearly) ?? ""] {
+            #expect(!text.contains("14"), "\(text)")
+        }
+    }
+
+    /// No free-trial offer on the yearly plan: no trial title, timeline, free-days note or trial button.
+    @Test func noOfferMeansNoTrial() throws {
+        let model = model(eligible: true, trialDays: nil)
+        #expect(!model.isEligibleForTrial)
+        #expect(!model.showsTrial)
+        #expect(model.trial == nil)
+        #expect(String(localized: model.title) == "Your 12 weeks to feel steadier")
+        #expect(String(localized: model.buttonTitle) == "Subscribe for $39.99 a year")
+        #expect(model.disclosure.hasPrefix("$39.99 charged today"))
+        model.showsAllPlans = true
+        let yearly = try #require(model.yearly)
+        #expect(model.note(for: yearly) == "$3.33 a month")
+        let monthly = try #require(model.options.first { $0.kind == .monthly })
+        #expect(model.note(for: monthly) == nil)
+    }
+
+    /// The 14-day offer in GentleWalk.storekit reads as it did before.
+    @Test func fourteenDayOfferNotes() throws {
+        let model = model(eligible: true)
+        model.showsAllPlans = true
+        let yearly = try #require(model.yearly)
+        #expect(model.note(for: yearly) == "14 days free · $3.33 a month")
+        let monthly = try #require(model.options.first { $0.kind == .monthly })
+        #expect(model.note(for: monthly) == "No free days")
     }
 }

@@ -89,6 +89,7 @@ struct AppCaptureScene: View {
     private var paywallModel: PaywallModel {
         // Margaret's goal from the fixture: "Feel steadier on my feet".
         let model = PaywallModel(options: AppModel.capturePlanOptions, isEligibleForTrial: state != .paywallNotEligible,
+                                 trialDays: AppModel.captureTrialDays,
                                  activeRenewingProductID: state == .paywallLifetimeWhileSubscribed ? ProductID.yearly : nil,
                                  goal: .steadier)
         switch state {

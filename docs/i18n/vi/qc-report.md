@@ -1,8 +1,10 @@
 # QC giọng vi — 681/681 câu đã thu
 
 Tổng thời lượng: 39.7 phút (tiếng Anh cùng các câu: 41.6 phút).
-Chưa thu: 0. Cờ khác: 12 câu; cần thu lại (phát âm / im lặng / mức âm): 8.
+Chưa thu: 0. Cờ khác: 13 câu; cần thu lại (phát âm / im lặng / mức âm): 8.
 
+- `a12.check.setup` — Ngồi gần mép trước của ghế, hai chân đặt phẳng. Sẵn sàng nhé.
+  - length 4.9s vs English 3.8s (1.30×)
 - `a2.move.side-step.intro` — Bước sang ngang.
   - length 2.2s vs English 1.0s (2.29×)
 - `a4.arm-raise.form.1` — Khuỷu hơi cong, lòng tay úp.

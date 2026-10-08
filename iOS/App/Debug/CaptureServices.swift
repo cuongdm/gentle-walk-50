@@ -89,5 +89,7 @@ extension AppModel {
         PlanOption(id: ProductID.monthly, kind: .monthly, price: "$7.99"),
         PlanOption(id: ProductID.lifetime, kind: .lifetime, price: "$79.99"),
     ]
+    /// The yearly intro offer in GentleWalk.storekit (`P2W`, free).
+    static let captureTrialDays = 14
 }
 #endif

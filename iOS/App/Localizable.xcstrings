@@ -73,7 +73,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trừ %@ hôm nay, rồi mỗi năm. Tự gia hạn cho đến khi bạn huỷ, ít nhất 24 giờ trước kỳ gia hạn."
+            "value" : "Thanh toán %@ hôm nay, rồi mỗi năm. Tự gia hạn cho đến khi bạn huỷ, chậm nhất 24 giờ trước kỳ gia hạn."
           }
         }
       }
@@ -83,7 +83,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ mỗi tháng. Tự gia hạn cho đến khi bạn huỷ, ít nhất 24 giờ trước kỳ gia hạn."
+            "value" : "%@ mỗi tháng. Tự gia hạn cho đến khi bạn huỷ, chậm nhất 24 giờ trước kỳ gia hạn."
           }
         }
       }
@@ -264,12 +264,12 @@
         }
       }
     },
-    "%@, free for 14 days" : {
+    "%@, free for %lld days" : {
       "localizations" : {
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@, miễn phí 14 ngày"
+            "value" : "%@, miễn phí %lld ngày"
           }
         }
       }
@@ -326,6 +326,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@. Bạn đã bắt đầu, và đó là phần khó nhất."
+          }
+        }
+      }
+    },
+    "%lld days free" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Miễn phí %lld ngày"
+          }
+        }
+      }
+    },
+    "%lld days free · %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Miễn phí %lld ngày · %@"
           }
         }
       }
@@ -566,26 +586,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "12 tuần, mỗi ngày 5 đến 10 phút"
-          }
-        }
-      }
-    },
-    "14 days free" : {
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Miễn phí 14 ngày"
-          }
-        }
-      }
-    },
-    "14 days free · %@" : {
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Miễn phí 14 ngày · %@"
           }
         }
       }
@@ -1051,7 +1051,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Còn điều gì khác?"
+            "value" : "Còn điều gì app nên biết không?"
           }
         }
       }
@@ -2135,7 +2135,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gói nào cũng mở đủ mọi thứ như nhau."
+            "value" : "Gói nào cũng mở khoá đầy đủ như nhau."
           }
         }
       }
@@ -2308,7 +2308,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trừ tiền nếu chưa huỷ"
+            "value" : "Bắt đầu tính phí, nếu bạn chưa huỷ"
           }
         }
       }
@@ -2442,7 +2442,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Để thêm sức sống, từng buổi đi bộ một."
+            "value" : "Để có thêm sức lực, từng buổi đi bộ một."
           }
         }
       }
@@ -2467,12 +2467,12 @@
         }
       }
     },
-    "Free for 14 days, then %@ a year. Renews until you cancel, at least 24 hours before renewal." : {
+    "Free for %lld days, then %@ a year. Renews until you cancel, at least 24 hours before renewal." : {
       "localizations" : {
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Miễn phí 14 ngày, rồi %@ mỗi năm. Tự gia hạn đến khi bạn huỷ, ít nhất 24 giờ trước kỳ hạn."
+            "value" : "Miễn phí %lld ngày, rồi %@ mỗi năm. Tự gia hạn cho đến khi bạn huỷ, chậm nhất 24 giờ trước kỳ gia hạn."
           }
         }
       }
@@ -2866,7 +2866,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hay đấy. Ngồi–đứng bắt đầu với tay vịn ghế."
+            "value" : "Được rồi. Bài ngồi–đứng sẽ bắt đầu với tay vịn ghế."
           }
         }
       }
@@ -2937,7 +2937,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Đã rõ. Động tác gây mỏi vai sẽ được bỏ ra."
+            "value" : "Đã rõ. Động tác nặng cho vai sẽ được bỏ ra."
           }
         }
       }
@@ -2947,7 +2947,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Đã rõ. Động tác gây mỏi lưng dưới sẽ được bỏ ra."
+            "value" : "Đã rõ. Động tác nặng cho lưng dưới sẽ được bỏ ra."
           }
         }
       }
@@ -2991,7 +2991,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tuyệt. Bắt đầu đều đặn, muốn khoẻ khoắn hơn lúc nào cũng được."
+            "value" : "Tuyệt. Bắt đầu vừa sức, muốn tập mạnh hơn lúc nào cũng được."
           }
         }
       }
@@ -3302,7 +3302,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tôi thấy chán"
+            "value" : "Thấy chán"
           }
         }
       }
@@ -3373,14 +3373,12 @@
         }
       }
     },
-    "If you connect Apple Health, we read your step count to show it in Progress and save your workouts to Health. Health data never leaves your phone through us." : {
-      "comment" : "A description of how the app uses Apple Health.",
-      "isCommentAutoGenerated" : true,
+    "If you connect Apple Health, we read your step count to show it in Progress and to suggest a lighter session on busy days. We also save your workouts to Health. Health data never leaves your phone through us." : {
       "localizations" : {
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nếu bạn kết nối Apple Health, Good Footing đọc số bước để hiện trong mục Tiến bộ và lưu buổi tập vào ứng dụng Sức khỏe. Good Footing không bao giờ đưa dữ liệu sức khoẻ ra khỏi điện thoại của bạn."
+            "value" : "Nếu bạn kết nối Apple Health, Good Footing đọc số bước để hiện trong mục Tiến bộ và gợi ý buổi nhẹ hơn vào ngày bạn đi lại nhiều. Good Footing cũng lưu buổi tập vào ứng dụng Sức khỏe và không bao giờ đưa dữ liệu sức khoẻ ra khỏi điện thoại của bạn."
           }
         }
       }
@@ -3422,7 +3420,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Liên tiếp có từ 3 ngày vận động"
+            "value" : "Tuần liên tiếp, mỗi tuần từ 3 ngày vận động"
           }
         }
       }
@@ -3789,7 +3787,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tuần trước bạn nói đứng dậy khỏi ghế thấy dễ chịu hơn một chút. Mình cứ tiếp tục tập chân nhé."
+            "value" : "Tuần trước bạn nói đứng dậy khỏi ghế dễ hơn một chút. Mình cứ tiếp tục tập chân nhé."
           }
         }
       }
@@ -3809,7 +3807,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tuần trước bạn nói ngủ thấy dễ chịu hơn một chút. Mình cứ giữ nhịp nhé."
+            "value" : "Tuần trước bạn nói giấc ngủ khá hơn một chút. Mình cứ giữ nhịp nhé."
           }
         }
       }
@@ -3819,7 +3817,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tuần trước bạn nói leo cầu thang thấy dễ chịu hơn một chút. Mình cứ tiếp tục tập chân nhé."
+            "value" : "Tuần trước bạn nói leo cầu thang dễ hơn một chút. Mình cứ tiếp tục tập chân nhé."
           }
         }
       }
@@ -4284,7 +4282,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bài tạm để sang bên"
+            "value" : "Bài đang tạm gác"
           }
         }
       }
@@ -5067,7 +5065,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Có điều gì thấy dễ chịu hơn một chút không?"
+            "value" : "Có điều gì thấy khá hơn một chút không?"
           }
         }
       }
@@ -5098,7 +5096,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chỉ khi bạn đang đi. Vị trí ở lại trên điện thoại này."
+            "value" : "Chỉ khi bạn đang đi bộ. Vị trí chỉ lưu trên điện thoại này."
           }
         }
       }
@@ -5251,7 +5249,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trả %@ một lần"
+            "value" : "Thanh toán %@ một lần"
           }
         }
       }
@@ -6276,7 +6274,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ngồi gần mép ghế, chân đặt phẳng"
+            "value" : "Ngồi gần mép trước của ghế, hai chân đặt phẳng"
           }
         }
       }
@@ -6573,7 +6571,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Đứng lâu mệt"
+            "value" : "Đứng lâu là mệt"
           }
         }
       }
@@ -7088,7 +7086,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ghế chắc, không bánh, sát tường"
+            "value" : "Ghế chắc chắn, không có bánh xe, kê sát tường"
           }
         }
       }
@@ -7237,7 +7235,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chọn mọi mục đúng, hoặc Không có mục nào."
+            "value" : "Chọn tất cả mục đúng với bạn, hoặc Không có mục nào."
           }
         }
       }
@@ -7247,7 +7245,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chọn mọi chỗ đúng. Bài tập sẽ nhẹ ở đó."
+            "value" : "Chọn tất cả chỗ đúng với bạn. Bài tập sẽ nhẹ nhàng ở những chỗ đó."
           }
         }
       }
@@ -8167,7 +8165,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Luôn cho bạn biết ngày trước khi trừ tiền."
+            "value" : "App luôn báo ngày trước khi tính phí."
           }
         }
       }
@@ -8221,7 +8219,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tạm để bài %@ sang một bên. Bật lại trong Tôi."
+            "value" : "Tạm gác bài %@ lại. Bật lại trong mục Tôi."
           }
         }
       }
@@ -8272,7 +8270,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tuần từ %@"
+            "value" : "Tuần bắt đầu %@"
           }
         }
       }
@@ -8455,7 +8453,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Với Pro, thêm lần tập khi bạn sẵn sàng"
+            "value" : "Với bản Pro, tăng số lần tập khi bạn sẵn sàng"
           }
         }
       }
@@ -8855,7 +8853,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bạn sẽ thấy ngày trừ tiền trước khi bị trừ."
+            "value" : "Bạn sẽ thấy ngày thanh toán trước mỗi lần tính phí."
           }
         }
       }
@@ -8897,7 +8895,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bạn đã sẵn sàng cho thêm một chút"
+            "value" : "Bạn đã sẵn sàng tập thêm một chút"
           }
         }
       }
@@ -9185,7 +9183,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dữ liệu của bạn ở lại trên điện thoại này."
+            "value" : "Dữ liệu của bạn chỉ lưu trên điện thoại này."
           }
         }
       }
@@ -9259,7 +9257,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buổi đi bộ đầu tiên đang chờ bạn. App có thể nhắc mỗi ngày một lần."
+            "value" : "Buổi đi bộ đầu tiên đang chờ ở mục Hôm nay. App có thể nhắc mỗi ngày một lần."
           }
         }
       }

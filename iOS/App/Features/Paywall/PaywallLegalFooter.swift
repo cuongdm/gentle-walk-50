@@ -101,7 +101,7 @@ struct PrivacyPolicyView: View {
                     Text("We don't have accounts, servers, ads or tracking. We don't collect or sell your data.")
                     Text("Your answers, workouts, pain reports and journey progress are stored only on this phone and are not backed up to iCloud by the app.")
                     Text("Your 2-week check results stay on this phone, too. They are compared only with your own earlier checks.")
-                    Text("If you connect Apple Health, we read your step count to show it in Progress and save your workouts to Health. Health data never leaves your phone through us.")
+                    Text("If you connect Apple Health, we read your step count to show it in Progress and to suggest a lighter session on busy days. We also save your workouts to Health. Health data never leaves your phone through us.")
                     Text("Outdoor walks use your location only while you walk, to measure distance and draw your route. The route stays on this phone and in Apple Health if you allow it.")
                     Text("Purchases are handled by Apple. We never see your payment details.")
                     Text("You can delete everything at any time in Me → Delete all my data.")
