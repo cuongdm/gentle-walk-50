@@ -476,7 +476,7 @@ _Tài liệu chưa có lúc lập kế hoạch (08/10). Task 3.1 đọc nó và 
 
 ### Task 3.10 — Chủ đề buổi tập (session themes) theo tuần/chặng [TDD]
 **Files:** theo tài liệu (vd. tên buổi theo địa danh hành trình, nhạc theo chặng) — `SessionCatalog.swift`, `TodayModel.swift`
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: `WeekThemeTests` 4 tests passed (test viết cùng lúc với kiểu mới). 12 chủ đề 2–4 chữ gắn 4 giai đoạn; `newThisWeek` chỉ có ở tuần 1, 4, 7, 10, 12 (thẻ "Mới tuần này" ẩn các tuần khác — trung thực). `title` là nguồn tiếng Anh; bản Việt + chữ thẻ ở `docs/i18n/vi/ui-extra-10.json`, glossary đã thêm mục. Mac: `extension WeekTheme { var localizedTitle: LocalizedStringResource }` (switch với literal để Xcode trích khoá), dòng kicker "Week %lld · %@" trên Today/Program, thẻ "New this week" theo `newThisWeek`; nhạc theo giai đoạn và tên buổi theo địa danh để sau (cần asset).
 **Commit point:** `feat(sessions): weekly themes`
 
 ### Task 3.11 — Lời chào và tranh thay đổi (greetings/art variants) [UI]

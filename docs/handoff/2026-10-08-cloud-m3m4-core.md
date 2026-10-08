@@ -8,8 +8,8 @@ _08/10/2026 · Nhánh `cloud/core-content-m3m4` (từ `main` c9769c6) · Kế ho
 | 4.8 P9 tự kiểm tra → thang số lần | DONE | `SelfCheckTrend` (.up/.flat/.down), `SelfCheckComparison.trend(history:now:calendar:)`, `RepLadder.today(…, trend:)`, `SupportLadder.update(…, holdRaises:)` | `trendComparesTheSameWayByTwoOrMore`, `selfCheckTrendMovesTheCap`, `checkDownHoldsTheHandsLevel` (19/19 xanh) |
 | 4.5 P3 nhớ chỗ đau theo bài | DONE | `ExerciseRules` (easier, setAside, setAsideIDs, merging), `PainRules.exerciseRules(reports:now:restored:)`, `PainRules.suggestedLimit(for:)`, `SessionBuilder.build(…, exerciseRules:)` | `PainRulesTests` +4 (oneReportMakesItEasier, twoReportsSetItAside, restoredStaysAllowed, areaSuggestsALimit), `SessionBuilderTests.setAsideMovesAreReplacedAndHurtMovesStartEasier` (37/37 xanh) |
 | 3.9 Kho câu HLV xoay vòng | DONE | `VoiceRotation.pools` (a2.warm.2–8, a6 trừ .6/.9, a7.break, a3.open, a9.back), `VoiceRotation.rotates(family:number:)` | `CoachLinePoolTests` 5 test; toàn core 206/41 xanh (SessionSyncTests xanh) |
-| 3.10 Chủ đề tuần | IN PROGRESS | | |
-| 4.9 P6 check-in tuần | NOT STARTED | | |
+| 3.10 Chủ đề tuần | DONE | `WeekTheme` (12 case, `forWeek(_:)`, `of(_:)`, `week`, `stage`, `title`, `newThisWeek: News?` = .programStarts/.stageStarts/.lastWeek) | `WeekThemeTests` 4 test xanh |
+| 4.9 P6 check-in tuần | IN PROGRESS | | |
 | 4.11 P10 giờ nhắc và độ dài | NOT STARTED | | |
 | 4.12 P11 ngày đã đi nhiều | NOT STARTED | | |
 | 4.18 Thông báo tổng kết tuần | NOT STARTED | | |
