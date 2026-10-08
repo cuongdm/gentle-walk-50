@@ -22,7 +22,7 @@ import UserNotifications
         HealthService.askedKey, "paywallDismissedAt", "restTodayDate", "permissionsShownAt", "reminderOfferShown", UnitPreferences.distanceKey, UnitPreferences.weightKey,
         UnitPreferences.heightKey, "notificationSettings", "outdoorLocationChoice",
         "outdoorPrepSeen", "healthCardDismissed", "musicOff", "voiceLouder", "captionsOn", "reviewPromptMilestones", "lastSchedule",
-        FavouriteSessions.defaultsKey, SupportLadderStore.defaultsKey, "permissionsShown", "fewerRemindersAnswered", "lastTrialEnds",
+        FavouriteSessions.defaultsKey, SupportLadderStore.defaultsKey, RepLadderStore.defaultsKey, "permissionsShown", "fewerRemindersAnswered", "lastTrialEnds",
         AudioLevels.voiceKey, AudioLevels.musicKey, AudioLevels.introsKey,
     ]
 }
@@ -42,6 +42,8 @@ import UserNotifications
         try context.delete(model: PostcardUnlock.self)
         try context.delete(model: EverydayWin.self)
         try context.delete(model: NotificationHistory.self)
+        try context.delete(model: ProgramState.self)
+        try context.delete(model: SelfCheckRecord.self)
         try context.save()
         AppDefaultsKeys.all.forEach(defaults.removeObject(forKey:))
         notifications.removeAllPending()

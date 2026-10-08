@@ -1,13 +1,15 @@
 import Foundation
 import SwiftData
 
-/// Version 1 of the on-device store. Health-related data lives only here, never in iCloud (5.1.3).
-/// Never delete this version once the app ships. The app's model names point at SchemaV2 (the current version).
-enum SchemaV1: VersionedSchema {
-    static let versionIdentifier = Schema.Version(1, 0, 0)
+/// Version 2 of the on-device store (steady program, plan docs/plans/2026-10-08-steady-program.md task 3.1):
+/// every model of SchemaV1 unchanged, plus the 12-week program and the 2-week self-checks. Added before
+/// the first release so no real store has to change; V1 stays for the migration plan. Never delete a
+/// version once the app ships.
+enum SchemaV2: VersionedSchema {
+    static let versionIdentifier = Schema.Version(2, 0, 0)
     static var models: [any PersistentModel.Type] {
         [UserProfile.self, WorkoutRecord.self, PainReport.self, JourneyState.self,
-         PostcardUnlock.self, EverydayWin.self, NotificationHistory.self]
+         PostcardUnlock.self, EverydayWin.self, NotificationHistory.self, ProgramState.self, SelfCheckRecord.self]
     }
 
     /// Answers from onboarding (S02–S07) and settings chosen later (S20).
@@ -140,5 +142,44 @@ enum SchemaV1: VersionedSchema {
             self.id = id; self.kind = kind; self.phraseID = phraseID; self.date = date
         }
     }
+
+    /// The current round of the 12-week program (`ProgramRound` in GentleWalkCore). One row; a new round
+    /// replaces its values.
+    @Model final class ProgramState {
+        @Attribute(.unique) var id: UUID
+        var start: Date
+        var round: Int
+        /// Days she was away and chose to pick up where she stopped.
+        var pausedDays: Int
+        var finishedAt: Date?
+
+        init(id: UUID = UUID(), start: Date, round: Int = 1, pausedDays: Int = 0, finishedAt: Date? = nil) {
+            self.id = id; self.start = start; self.round = round; self.pausedDays = pausedDays; self.finishedAt = finishedAt
+        }
+    }
+
+    /// One 2-week self-check: 30 seconds of sit-to-stands, counted by her. Stays on the device.
+    @Model final class SelfCheckRecord {
+        @Attribute(.unique) var id: UUID
+        var date: Date
+        var count: Int
+        /// Pushed up from the chair with her hands; only checks done the same way are compared.
+        var usedHands: Bool
+        /// Program week when it was done (0 = the first check, after the first session).
+        var week: Int
+
+        init(id: UUID = UUID(), date: Date, count: Int, usedHands: Bool, week: Int) {
+            self.id = id; self.date = date; self.count = count; self.usedHands = usedHands; self.week = week
+        }
+    }
 }
 
+typealias UserProfile = SchemaV2.UserProfile
+typealias WorkoutRecord = SchemaV2.WorkoutRecord
+typealias PainReport = SchemaV2.PainReport
+typealias JourneyState = SchemaV2.JourneyState
+typealias PostcardUnlock = SchemaV2.PostcardUnlock
+typealias EverydayWin = SchemaV2.EverydayWin
+typealias NotificationHistory = SchemaV2.NotificationHistory
+typealias ProgramState = SchemaV2.ProgramState
+typealias SelfCheckRecord = SchemaV2.SelfCheckRecord
