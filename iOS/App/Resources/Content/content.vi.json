@@ -36188,127 +36188,2786 @@
    ]
   },
   "a13.check.n.3": {
-   "text": "Lần trước, bạn đứng lên được ba lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được ba lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.3.vi.m4a",
+   "duration": 4.102,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.06,
+     "end": 0.34
+    },
+    {
+     "word": "trước,",
+     "start": 0.34,
+     "end": 0.86
+    },
+    {
+     "word": "bạn",
+     "start": 0.86,
+     "end": 1.18
+    },
+    {
+     "word": "đứng",
+     "start": 1.18,
+     "end": 1.38
+    },
+    {
+     "word": "lên",
+     "start": 1.38,
+     "end": 1.52
+    },
+    {
+     "word": "được",
+     "start": 1.52,
+     "end": 1.7
+    },
+    {
+     "word": "ba",
+     "start": 1.7,
+     "end": 1.92
+    },
+    {
+     "word": "lần.",
+     "start": 1.92,
+     "end": 2.64
+    },
+    {
+     "word": "Hôm",
+     "start": 2.64,
+     "end": 3.08
+    },
+    {
+     "word": "nay",
+     "start": 3.08,
+     "end": 3.2
+    },
+    {
+     "word": "mình",
+     "start": 3.2,
+     "end": 3.32
+    },
+    {
+     "word": "thử",
+     "start": 3.32,
+     "end": 3.54
+    },
+    {
+     "word": "xem",
+     "start": 3.54,
+     "end": 3.78
+    },
+    {
+     "word": "nhé.",
+     "start": 3.78,
+     "end": 3.98
+    }
+   ]
   },
   "a13.check.n.4": {
-   "text": "Lần trước, bạn đứng lên được bốn lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được bốn lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.4.vi.m4a",
+   "duration": 4.468,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.06,
+     "end": 0.32
+    },
+    {
+     "word": "trước,",
+     "start": 0.32,
+     "end": 0.88
+    },
+    {
+     "word": "bạn",
+     "start": 0.88,
+     "end": 1.16
+    },
+    {
+     "word": "đứng",
+     "start": 1.16,
+     "end": 1.36
+    },
+    {
+     "word": "lên",
+     "start": 1.36,
+     "end": 1.5
+    },
+    {
+     "word": "được",
+     "start": 1.5,
+     "end": 1.68
+    },
+    {
+     "word": "bốn",
+     "start": 1.68,
+     "end": 1.9
+    },
+    {
+     "word": "lần.",
+     "start": 1.9,
+     "end": 2.64
+    },
+    {
+     "word": "Hôm",
+     "start": 2.64,
+     "end": 3.22
+    },
+    {
+     "word": "nay",
+     "start": 3.22,
+     "end": 3.36
+    },
+    {
+     "word": "mình",
+     "start": 3.36,
+     "end": 3.5
+    },
+    {
+     "word": "thử",
+     "start": 3.5,
+     "end": 3.74
+    },
+    {
+     "word": "xem",
+     "start": 3.74,
+     "end": 3.98
+    },
+    {
+     "word": "nhé.",
+     "start": 3.98,
+     "end": 3.99
+    }
+   ]
   },
   "a13.check.n.5": {
-   "text": "Lần trước, bạn đứng lên được năm lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được năm lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.5.vi.m4a",
+   "duration": 4.295,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.06,
+     "end": 0.34
+    },
+    {
+     "word": "trước,",
+     "start": 0.34,
+     "end": 0.88
+    },
+    {
+     "word": "bạn",
+     "start": 0.88,
+     "end": 1.18
+    },
+    {
+     "word": "đứng",
+     "start": 1.18,
+     "end": 1.38
+    },
+    {
+     "word": "lên",
+     "start": 1.38,
+     "end": 1.54
+    },
+    {
+     "word": "được",
+     "start": 1.54,
+     "end": 1.72
+    },
+    {
+     "word": "năm",
+     "start": 1.72,
+     "end": 1.94
+    },
+    {
+     "word": "lần.",
+     "start": 1.94,
+     "end": 2.64
+    },
+    {
+     "word": "Hôm",
+     "start": 2.64,
+     "end": 3.16
+    },
+    {
+     "word": "nay",
+     "start": 3.16,
+     "end": 3.28
+    },
+    {
+     "word": "mình",
+     "start": 3.28,
+     "end": 3.4
+    },
+    {
+     "word": "thử",
+     "start": 3.4,
+     "end": 3.64
+    },
+    {
+     "word": "xem",
+     "start": 3.64,
+     "end": 3.9
+    },
+    {
+     "word": "nhé.",
+     "start": 3.9,
+     "end": 3.98
+    }
+   ]
   },
   "a13.check.n.6": {
-   "text": "Lần trước, bạn đứng lên được sáu lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được sáu lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.6.vi.m4a",
+   "duration": 4.098,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.06,
+     "end": 0.32
+    },
+    {
+     "word": "trước,",
+     "start": 0.32,
+     "end": 0.8
+    },
+    {
+     "word": "bạn",
+     "start": 0.8,
+     "end": 1.1
+    },
+    {
+     "word": "đứng",
+     "start": 1.1,
+     "end": 1.28
+    },
+    {
+     "word": "lên",
+     "start": 1.28,
+     "end": 1.42
+    },
+    {
+     "word": "được",
+     "start": 1.42,
+     "end": 1.6
+    },
+    {
+     "word": "sáu",
+     "start": 1.6,
+     "end": 1.84
+    },
+    {
+     "word": "lần.",
+     "start": 1.84,
+     "end": 2.42
+    },
+    {
+     "word": "Hôm",
+     "start": 2.42,
+     "end": 2.94
+    },
+    {
+     "word": "nay",
+     "start": 2.94,
+     "end": 3.06
+    },
+    {
+     "word": "mình",
+     "start": 3.06,
+     "end": 3.2
+    },
+    {
+     "word": "thử",
+     "start": 3.2,
+     "end": 3.42
+    },
+    {
+     "word": "xem",
+     "start": 3.42,
+     "end": 3.68
+    },
+    {
+     "word": "nhé.",
+     "start": 3.68,
+     "end": 3.98
+    }
+   ]
   },
   "a13.check.n.7": {
-   "text": "Lần trước, bạn đứng lên được bảy lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được bảy lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.7.vi.m4a",
+   "duration": 4.098,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.06,
+     "end": 0.34
+    },
+    {
+     "word": "trước,",
+     "start": 0.34,
+     "end": 0.9
+    },
+    {
+     "word": "bạn",
+     "start": 0.9,
+     "end": 1.06
+    },
+    {
+     "word": "đứng",
+     "start": 1.06,
+     "end": 1.24
+    },
+    {
+     "word": "lên",
+     "start": 1.24,
+     "end": 1.38
+    },
+    {
+     "word": "được",
+     "start": 1.38,
+     "end": 1.56
+    },
+    {
+     "word": "bảy",
+     "start": 1.56,
+     "end": 1.76
+    },
+    {
+     "word": "lần.",
+     "start": 1.76,
+     "end": 2.44
+    },
+    {
+     "word": "Hôm",
+     "start": 2.44,
+     "end": 3.0
+    },
+    {
+     "word": "nay",
+     "start": 3.0,
+     "end": 3.12
+    },
+    {
+     "word": "mình",
+     "start": 3.12,
+     "end": 3.24
+    },
+    {
+     "word": "thử",
+     "start": 3.24,
+     "end": 3.46
+    },
+    {
+     "word": "xem",
+     "start": 3.46,
+     "end": 3.7
+    },
+    {
+     "word": "nhé.",
+     "start": 3.7,
+     "end": 3.98
+    }
+   ]
   },
   "a13.check.n.8": {
-   "text": "Lần trước, bạn đứng lên được tám lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được tám lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.8.vi.m4a",
+   "duration": 4.301,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.0,
+     "end": 0.22
+    },
+    {
+     "word": "trước,",
+     "start": 0.22,
+     "end": 0.74
+    },
+    {
+     "word": "bạn",
+     "start": 0.74,
+     "end": 1.12
+    },
+    {
+     "word": "đứng",
+     "start": 1.12,
+     "end": 1.3
+    },
+    {
+     "word": "lên",
+     "start": 1.3,
+     "end": 1.44
+    },
+    {
+     "word": "được",
+     "start": 1.44,
+     "end": 1.62
+    },
+    {
+     "word": "tám",
+     "start": 1.62,
+     "end": 1.84
+    },
+    {
+     "word": "lần.",
+     "start": 1.84,
+     "end": 2.64
+    },
+    {
+     "word": "Hôm",
+     "start": 2.64,
+     "end": 3.12
+    },
+    {
+     "word": "nay",
+     "start": 3.12,
+     "end": 3.24
+    },
+    {
+     "word": "mình",
+     "start": 3.24,
+     "end": 3.38
+    },
+    {
+     "word": "thử",
+     "start": 3.38,
+     "end": 3.6
+    },
+    {
+     "word": "xem",
+     "start": 3.6,
+     "end": 3.86
+    },
+    {
+     "word": "nhé.",
+     "start": 3.86,
+     "end": 3.98
+    }
+   ]
   },
   "a13.check.n.9": {
-   "text": "Lần trước, bạn đứng lên được chín lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được chín lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.9.vi.m4a",
+   "duration": 4.381,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.06,
+     "end": 0.32
+    },
+    {
+     "word": "trước,",
+     "start": 0.32,
+     "end": 0.82
+    },
+    {
+     "word": "bạn",
+     "start": 0.82,
+     "end": 1.14
+    },
+    {
+     "word": "đứng",
+     "start": 1.14,
+     "end": 1.34
+    },
+    {
+     "word": "lên",
+     "start": 1.34,
+     "end": 1.54
+    },
+    {
+     "word": "được",
+     "start": 1.54,
+     "end": 1.72
+    },
+    {
+     "word": "chín",
+     "start": 1.72,
+     "end": 1.96
+    },
+    {
+     "word": "lần.",
+     "start": 1.96,
+     "end": 2.64
+    },
+    {
+     "word": "Hôm",
+     "start": 2.64,
+     "end": 3.22
+    },
+    {
+     "word": "nay",
+     "start": 3.22,
+     "end": 3.36
+    },
+    {
+     "word": "mình",
+     "start": 3.36,
+     "end": 3.48
+    },
+    {
+     "word": "thử",
+     "start": 3.48,
+     "end": 3.72
+    },
+    {
+     "word": "xem",
+     "start": 3.72,
+     "end": 3.98
+    },
+    {
+     "word": "nhé.",
+     "start": 3.98,
+     "end": 3.99
+    }
+   ]
   },
   "a13.check.n.10": {
-   "text": "Lần trước, bạn đứng lên được mười lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được mười lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.10.vi.m4a",
+   "duration": 4.025,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.04,
+     "end": 0.32
+    },
+    {
+     "word": "trước,",
+     "start": 0.32,
+     "end": 0.8
+    },
+    {
+     "word": "bạn",
+     "start": 0.8,
+     "end": 1.06
+    },
+    {
+     "word": "đứng",
+     "start": 1.06,
+     "end": 1.24
+    },
+    {
+     "word": "lên",
+     "start": 1.24,
+     "end": 1.38
+    },
+    {
+     "word": "được",
+     "start": 1.38,
+     "end": 1.56
+    },
+    {
+     "word": "mười",
+     "start": 1.56,
+     "end": 1.8
+    },
+    {
+     "word": "lần.",
+     "start": 1.8,
+     "end": 2.48
+    },
+    {
+     "word": "Hôm",
+     "start": 2.48,
+     "end": 2.94
+    },
+    {
+     "word": "nay",
+     "start": 2.94,
+     "end": 3.06
+    },
+    {
+     "word": "mình",
+     "start": 3.06,
+     "end": 3.18
+    },
+    {
+     "word": "thử",
+     "start": 3.18,
+     "end": 3.4
+    },
+    {
+     "word": "xem",
+     "start": 3.4,
+     "end": 3.64
+    },
+    {
+     "word": "nhé.",
+     "start": 3.64,
+     "end": 3.98
+    }
+   ]
   },
   "a13.check.n.11": {
-   "text": "Lần trước, bạn đứng lên được mười một lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được mười một lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.11.vi.m4a",
+   "duration": 4.552,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.08,
+     "end": 0.34
+    },
+    {
+     "word": "trước,",
+     "start": 0.34,
+     "end": 0.92
+    },
+    {
+     "word": "bạn",
+     "start": 0.92,
+     "end": 1.3
+    },
+    {
+     "word": "đứng",
+     "start": 1.3,
+     "end": 1.5
+    },
+    {
+     "word": "lên",
+     "start": 1.5,
+     "end": 1.68
+    },
+    {
+     "word": "được",
+     "start": 1.68,
+     "end": 1.88
+    },
+    {
+     "word": "mười",
+     "start": 1.88,
+     "end": 2.0
+    },
+    {
+     "word": "một",
+     "start": 2.0,
+     "end": 2.12
+    },
+    {
+     "word": "lần.",
+     "start": 2.12,
+     "end": 2.92
+    },
+    {
+     "word": "Hôm",
+     "start": 2.92,
+     "end": 3.5
+    },
+    {
+     "word": "nay",
+     "start": 3.5,
+     "end": 3.6
+    },
+    {
+     "word": "mình",
+     "start": 3.6,
+     "end": 3.7
+    },
+    {
+     "word": "thử",
+     "start": 3.7,
+     "end": 3.94
+    },
+    {
+     "word": "xem",
+     "start": 3.94,
+     "end": 3.98
+    },
+    {
+     "word": "nhé.",
+     "start": 3.98,
+     "end": 3.99
+    }
+   ]
   },
   "a13.check.n.12": {
-   "text": "Lần trước, bạn đứng lên được mười hai lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được mười hai lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.12.vi.m4a",
+   "duration": 4.468,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.06,
+     "end": 0.32
+    },
+    {
+     "word": "trước,",
+     "start": 0.32,
+     "end": 0.84
+    },
+    {
+     "word": "bạn",
+     "start": 0.84,
+     "end": 1.2
+    },
+    {
+     "word": "đứng",
+     "start": 1.2,
+     "end": 1.4
+    },
+    {
+     "word": "lên",
+     "start": 1.4,
+     "end": 1.56
+    },
+    {
+     "word": "được",
+     "start": 1.56,
+     "end": 1.72
+    },
+    {
+     "word": "mười",
+     "start": 1.72,
+     "end": 1.87
+    },
+    {
+     "word": "hai",
+     "start": 1.87,
+     "end": 2.02
+    },
+    {
+     "word": "lần.",
+     "start": 2.02,
+     "end": 2.84
+    },
+    {
+     "word": "Hôm",
+     "start": 2.84,
+     "end": 3.44
+    },
+    {
+     "word": "nay",
+     "start": 3.44,
+     "end": 3.54
+    },
+    {
+     "word": "mình",
+     "start": 3.54,
+     "end": 3.66
+    },
+    {
+     "word": "thử",
+     "start": 3.66,
+     "end": 3.88
+    },
+    {
+     "word": "xem",
+     "start": 3.88,
+     "end": 3.98
+    },
+    {
+     "word": "nhé.",
+     "start": 3.98,
+     "end": 3.99
+    }
+   ]
   },
   "a13.check.n.13": {
-   "text": "Lần trước, bạn đứng lên được mười ba lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được mười ba lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.13.vi.m4a",
+   "duration": 4.305,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.06,
+     "end": 0.32
+    },
+    {
+     "word": "trước,",
+     "start": 0.32,
+     "end": 0.78
+    },
+    {
+     "word": "bạn",
+     "start": 0.78,
+     "end": 1.04
+    },
+    {
+     "word": "đứng",
+     "start": 1.04,
+     "end": 1.24
+    },
+    {
+     "word": "lên",
+     "start": 1.24,
+     "end": 1.42
+    },
+    {
+     "word": "được",
+     "start": 1.42,
+     "end": 1.62
+    },
+    {
+     "word": "mười",
+     "start": 1.62,
+     "end": 1.78
+    },
+    {
+     "word": "ba",
+     "start": 1.78,
+     "end": 1.94
+    },
+    {
+     "word": "lần.",
+     "start": 1.94,
+     "end": 2.68
+    },
+    {
+     "word": "Hôm",
+     "start": 2.68,
+     "end": 3.1
+    },
+    {
+     "word": "nay",
+     "start": 3.1,
+     "end": 3.26
+    },
+    {
+     "word": "mình",
+     "start": 3.26,
+     "end": 3.4
+    },
+    {
+     "word": "thử",
+     "start": 3.4,
+     "end": 3.64
+    },
+    {
+     "word": "xem",
+     "start": 3.64,
+     "end": 3.9
+    },
+    {
+     "word": "nhé.",
+     "start": 3.9,
+     "end": 3.98
+    }
+   ]
   },
   "a13.check.n.14": {
-   "text": "Lần trước, bạn đứng lên được mười bốn lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được mười bốn lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.14.vi.m4a",
+   "duration": 4.468,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.04,
+     "end": 0.32
+    },
+    {
+     "word": "trước,",
+     "start": 0.32,
+     "end": 0.84
+    },
+    {
+     "word": "bạn",
+     "start": 0.84,
+     "end": 1.2
+    },
+    {
+     "word": "đứng",
+     "start": 1.2,
+     "end": 1.38
+    },
+    {
+     "word": "lên",
+     "start": 1.38,
+     "end": 1.58
+    },
+    {
+     "word": "được",
+     "start": 1.58,
+     "end": 1.76
+    },
+    {
+     "word": "mười",
+     "start": 1.76,
+     "end": 1.92
+    },
+    {
+     "word": "bốn",
+     "start": 1.92,
+     "end": 2.08
+    },
+    {
+     "word": "lần.",
+     "start": 2.08,
+     "end": 2.84
+    },
+    {
+     "word": "Hôm",
+     "start": 2.84,
+     "end": 3.38
+    },
+    {
+     "word": "nay",
+     "start": 3.38,
+     "end": 3.52
+    },
+    {
+     "word": "mình",
+     "start": 3.52,
+     "end": 3.64
+    },
+    {
+     "word": "thử",
+     "start": 3.64,
+     "end": 3.88
+    },
+    {
+     "word": "xem",
+     "start": 3.88,
+     "end": 3.98
+    },
+    {
+     "word": "nhé.",
+     "start": 3.98,
+     "end": 3.99
+    }
+   ]
   },
   "a13.check.n.15": {
-   "text": "Lần trước, bạn đứng lên được mười lăm lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được mười lăm lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.15.vi.m4a",
+   "duration": 4.643,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.06,
+     "end": 0.32
+    },
+    {
+     "word": "trước,",
+     "start": 0.32,
+     "end": 0.86
+    },
+    {
+     "word": "bạn",
+     "start": 0.86,
+     "end": 1.18
+    },
+    {
+     "word": "đứng",
+     "start": 1.18,
+     "end": 1.4
+    },
+    {
+     "word": "lên",
+     "start": 1.4,
+     "end": 1.58
+    },
+    {
+     "word": "được",
+     "start": 1.58,
+     "end": 1.78
+    },
+    {
+     "word": "mười",
+     "start": 1.78,
+     "end": 1.94
+    },
+    {
+     "word": "lăm",
+     "start": 1.94,
+     "end": 2.1
+    },
+    {
+     "word": "lần.",
+     "start": 2.1,
+     "end": 2.86
+    },
+    {
+     "word": "Hôm",
+     "start": 2.86,
+     "end": 3.46
+    },
+    {
+     "word": "nay",
+     "start": 3.46,
+     "end": 3.6
+    },
+    {
+     "word": "mình",
+     "start": 3.6,
+     "end": 3.72
+    },
+    {
+     "word": "thử",
+     "start": 3.72,
+     "end": 3.94
+    },
+    {
+     "word": "xem",
+     "start": 3.94,
+     "end": 3.98
+    },
+    {
+     "word": "nhé.",
+     "start": 3.98,
+     "end": 3.99
+    }
+   ]
   },
   "a13.check.n.16": {
-   "text": "Lần trước, bạn đứng lên được mười sáu lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được mười sáu lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.16.vi.m4a",
+   "duration": 4.184,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.06,
+     "end": 0.32
+    },
+    {
+     "word": "trước,",
+     "start": 0.32,
+     "end": 0.82
+    },
+    {
+     "word": "bạn",
+     "start": 0.82,
+     "end": 1.12
+    },
+    {
+     "word": "đứng",
+     "start": 1.12,
+     "end": 1.3
+    },
+    {
+     "word": "lên",
+     "start": 1.3,
+     "end": 1.46
+    },
+    {
+     "word": "được",
+     "start": 1.46,
+     "end": 1.62
+    },
+    {
+     "word": "mười",
+     "start": 1.62,
+     "end": 1.76
+    },
+    {
+     "word": "sáu",
+     "start": 1.76,
+     "end": 1.9
+    },
+    {
+     "word": "lần.",
+     "start": 1.9,
+     "end": 2.66
+    },
+    {
+     "word": "Hôm",
+     "start": 2.66,
+     "end": 3.18
+    },
+    {
+     "word": "nay",
+     "start": 3.18,
+     "end": 3.3
+    },
+    {
+     "word": "mình",
+     "start": 3.3,
+     "end": 3.42
+    },
+    {
+     "word": "thử",
+     "start": 3.42,
+     "end": 3.64
+    },
+    {
+     "word": "xem",
+     "start": 3.64,
+     "end": 3.9
+    },
+    {
+     "word": "nhé.",
+     "start": 3.9,
+     "end": 3.98
+    }
+   ]
   },
   "a13.check.n.17": {
-   "text": "Lần trước, bạn đứng lên được mười bảy lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được mười bảy lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.17.vi.m4a",
+   "duration": 4.298,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.0,
+     "end": 0.2
+    },
+    {
+     "word": "trước,",
+     "start": 0.2,
+     "end": 0.7
+    },
+    {
+     "word": "bạn",
+     "start": 0.7,
+     "end": 1.04
+    },
+    {
+     "word": "đứng",
+     "start": 1.04,
+     "end": 1.24
+    },
+    {
+     "word": "lên",
+     "start": 1.24,
+     "end": 1.4
+    },
+    {
+     "word": "được",
+     "start": 1.4,
+     "end": 1.58
+    },
+    {
+     "word": "mười",
+     "start": 1.58,
+     "end": 1.73
+    },
+    {
+     "word": "bảy",
+     "start": 1.73,
+     "end": 1.88
+    },
+    {
+     "word": "lần.",
+     "start": 1.88,
+     "end": 2.66
+    },
+    {
+     "word": "Hôm",
+     "start": 2.66,
+     "end": 3.1
+    },
+    {
+     "word": "nay",
+     "start": 3.1,
+     "end": 3.26
+    },
+    {
+     "word": "mình",
+     "start": 3.26,
+     "end": 3.4
+    },
+    {
+     "word": "thử",
+     "start": 3.4,
+     "end": 3.64
+    },
+    {
+     "word": "xem",
+     "start": 3.64,
+     "end": 3.9
+    },
+    {
+     "word": "nhé.",
+     "start": 3.9,
+     "end": 3.98
+    }
+   ]
   },
   "a13.check.n.18": {
-   "text": "Lần trước, bạn đứng lên được mười tám lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được mười tám lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.18.vi.m4a",
+   "duration": 4.727,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.06,
+     "end": 0.34
+    },
+    {
+     "word": "trước,",
+     "start": 0.34,
+     "end": 0.88
+    },
+    {
+     "word": "bạn",
+     "start": 0.88,
+     "end": 1.26
+    },
+    {
+     "word": "đứng",
+     "start": 1.26,
+     "end": 1.44
+    },
+    {
+     "word": "lên",
+     "start": 1.44,
+     "end": 1.6
+    },
+    {
+     "word": "được",
+     "start": 1.6,
+     "end": 1.78
+    },
+    {
+     "word": "mười",
+     "start": 1.78,
+     "end": 1.95
+    },
+    {
+     "word": "tám",
+     "start": 1.95,
+     "end": 2.12
+    },
+    {
+     "word": "lần.",
+     "start": 2.12,
+     "end": 2.88
+    },
+    {
+     "word": "Hôm",
+     "start": 2.88,
+     "end": 3.68
+    },
+    {
+     "word": "nay",
+     "start": 3.68,
+     "end": 3.8
+    },
+    {
+     "word": "mình",
+     "start": 3.8,
+     "end": 3.9
+    },
+    {
+     "word": "thử",
+     "start": 3.9,
+     "end": 3.98
+    },
+    {
+     "word": "xem",
+     "start": 3.98,
+     "end": 3.99
+    },
+    {
+     "word": "nhé.",
+     "start": 3.98,
+     "end": 3.99
+    }
+   ]
   },
   "a13.check.n.19": {
-   "text": "Lần trước, bạn đứng lên được mười chín lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được mười chín lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.19.vi.m4a",
+   "duration": 4.472,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.06,
+     "end": 0.32
+    },
+    {
+     "word": "trước,",
+     "start": 0.32,
+     "end": 0.84
+    },
+    {
+     "word": "bạn",
+     "start": 0.84,
+     "end": 1.16
+    },
+    {
+     "word": "đứng",
+     "start": 1.16,
+     "end": 1.32
+    },
+    {
+     "word": "lên",
+     "start": 1.32,
+     "end": 1.48
+    },
+    {
+     "word": "được",
+     "start": 1.48,
+     "end": 1.64
+    },
+    {
+     "word": "mười",
+     "start": 1.64,
+     "end": 1.8
+    },
+    {
+     "word": "chín",
+     "start": 1.8,
+     "end": 1.96
+    },
+    {
+     "word": "lần.",
+     "start": 1.96,
+     "end": 2.76
+    },
+    {
+     "word": "Hôm",
+     "start": 2.76,
+     "end": 3.32
+    },
+    {
+     "word": "nay",
+     "start": 3.32,
+     "end": 3.46
+    },
+    {
+     "word": "mình",
+     "start": 3.46,
+     "end": 3.58
+    },
+    {
+     "word": "thử",
+     "start": 3.58,
+     "end": 3.82
+    },
+    {
+     "word": "xem",
+     "start": 3.82,
+     "end": 3.98
+    },
+    {
+     "word": "nhé.",
+     "start": 3.98,
+     "end": 3.99
+    }
+   ]
   },
   "a13.check.n.20": {
-   "text": "Lần trước, bạn đứng lên được hai mươi lần. Hôm nay mình thử xem nhé."
+   "text": "Lần trước, bạn đứng lên được hai mươi lần. Hôm nay mình thử xem nhé.",
+   "file": "a13.check.n.20.vi.m4a",
+   "duration": 4.468,
+   "words": [
+    {
+     "word": "Lần",
+     "start": 0.06,
+     "end": 0.34
+    },
+    {
+     "word": "trước,",
+     "start": 0.34,
+     "end": 0.88
+    },
+    {
+     "word": "bạn",
+     "start": 0.88,
+     "end": 1.2
+    },
+    {
+     "word": "đứng",
+     "start": 1.2,
+     "end": 1.4
+    },
+    {
+     "word": "lên",
+     "start": 1.4,
+     "end": 1.58
+    },
+    {
+     "word": "được",
+     "start": 1.58,
+     "end": 1.78
+    },
+    {
+     "word": "hai",
+     "start": 1.78,
+     "end": 1.93
+    },
+    {
+     "word": "mươi",
+     "start": 1.93,
+     "end": 2.08
+    },
+    {
+     "word": "lần.",
+     "start": 2.08,
+     "end": 2.84
+    },
+    {
+     "word": "Hôm",
+     "start": 2.84,
+     "end": 3.38
+    },
+    {
+     "word": "nay",
+     "start": 3.38,
+     "end": 3.52
+    },
+    {
+     "word": "mình",
+     "start": 3.52,
+     "end": 3.66
+    },
+    {
+     "word": "thử",
+     "start": 3.66,
+     "end": 3.9
+    },
+    {
+     "word": "xem",
+     "start": 3.9,
+     "end": 3.98
+    },
+    {
+     "word": "nhé.",
+     "start": 3.98,
+     "end": 3.99
+    }
+   ]
   },
   "a13.week.1": {
-   "text": "Tuần thứ nhất trong mười hai tuần. Theo nhịp của bạn."
+   "text": "Tuần thứ nhất trong mười hai tuần. Theo nhịp của bạn.",
+   "file": "a13.week.1.vi.m4a",
+   "duration": 3.502,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.0,
+     "end": 0.2
+    },
+    {
+     "word": "thứ",
+     "start": 0.2,
+     "end": 0.36
+    },
+    {
+     "word": "nhất",
+     "start": 0.36,
+     "end": 0.62
+    },
+    {
+     "word": "trong",
+     "start": 0.62,
+     "end": 0.94
+    },
+    {
+     "word": "mười",
+     "start": 0.94,
+     "end": 1.09
+    },
+    {
+     "word": "hai",
+     "start": 1.09,
+     "end": 1.24
+    },
+    {
+     "word": "tuần.",
+     "start": 1.24,
+     "end": 1.64
+    },
+    {
+     "word": "Theo",
+     "start": 1.64,
+     "end": 2.68
+    },
+    {
+     "word": "nhịp",
+     "start": 2.68,
+     "end": 2.92
+    },
+    {
+     "word": "của",
+     "start": 2.92,
+     "end": 2.98
+    },
+    {
+     "word": "bạn.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
   },
   "a13.week.2": {
-   "text": "Tuần thứ hai trong mười hai tuần. Theo nhịp của bạn."
+   "text": "Tuần thứ hai trong mười hai tuần. Theo nhịp của bạn.",
+   "file": "a13.week.2.vi.m4a",
+   "duration": 3.499,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.06,
+     "end": 0.32
+    },
+    {
+     "word": "thứ",
+     "start": 0.32,
+     "end": 0.5
+    },
+    {
+     "word": "hai",
+     "start": 0.5,
+     "end": 0.82
+    },
+    {
+     "word": "trong",
+     "start": 0.82,
+     "end": 1.12
+    },
+    {
+     "word": "mười",
+     "start": 1.12,
+     "end": 1.25
+    },
+    {
+     "word": "hai",
+     "start": 1.25,
+     "end": 1.38
+    },
+    {
+     "word": "tuần.",
+     "start": 1.38,
+     "end": 1.78
+    },
+    {
+     "word": "Theo",
+     "start": 1.78,
+     "end": 2.8
+    },
+    {
+     "word": "nhịp",
+     "start": 2.8,
+     "end": 2.98
+    },
+    {
+     "word": "của",
+     "start": 2.98,
+     "end": 2.99
+    },
+    {
+     "word": "bạn.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
   },
   "a13.week.3": {
-   "text": "Tuần thứ ba trong mười hai tuần. Theo nhịp của bạn."
+   "text": "Tuần thứ ba trong mười hai tuần. Theo nhịp của bạn.",
+   "file": "a13.week.3.vi.m4a",
+   "duration": 3.339,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.0,
+     "end": 0.18
+    },
+    {
+     "word": "thứ",
+     "start": 0.18,
+     "end": 0.34
+    },
+    {
+     "word": "ba",
+     "start": 0.34,
+     "end": 0.58
+    },
+    {
+     "word": "trong",
+     "start": 0.58,
+     "end": 0.82
+    },
+    {
+     "word": "mười",
+     "start": 0.82,
+     "end": 0.96
+    },
+    {
+     "word": "hai",
+     "start": 0.96,
+     "end": 1.1
+    },
+    {
+     "word": "tuần.",
+     "start": 1.1,
+     "end": 1.96
+    },
+    {
+     "word": "Theo",
+     "start": 1.96,
+     "end": 2.6
+    },
+    {
+     "word": "nhịp",
+     "start": 2.6,
+     "end": 2.82
+    },
+    {
+     "word": "của",
+     "start": 2.82,
+     "end": 2.98
+    },
+    {
+     "word": "bạn.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
   },
   "a13.week.4": {
-   "text": "Tuần thứ tư trong mười hai tuần. Theo nhịp của bạn."
+   "text": "Tuần thứ tư trong mười hai tuần. Theo nhịp của bạn.",
+   "file": "a13.week.4.vi.m4a",
+   "duration": 3.501,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.04,
+     "end": 0.32
+    },
+    {
+     "word": "thứ",
+     "start": 0.32,
+     "end": 0.5
+    },
+    {
+     "word": "tư",
+     "start": 0.5,
+     "end": 0.8
+    },
+    {
+     "word": "trong",
+     "start": 0.8,
+     "end": 1.14
+    },
+    {
+     "word": "mười",
+     "start": 1.14,
+     "end": 1.29
+    },
+    {
+     "word": "hai",
+     "start": 1.29,
+     "end": 1.44
+    },
+    {
+     "word": "tuần.",
+     "start": 1.44,
+     "end": 1.84
+    },
+    {
+     "word": "Theo",
+     "start": 1.84,
+     "end": 2.68
+    },
+    {
+     "word": "nhịp",
+     "start": 2.68,
+     "end": 2.94
+    },
+    {
+     "word": "của",
+     "start": 2.94,
+     "end": 2.98
+    },
+    {
+     "word": "bạn.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
   },
   "a13.week.5": {
-   "text": "Tuần thứ năm trong mười hai tuần. Theo nhịp của bạn."
+   "text": "Tuần thứ năm trong mười hai tuần. Theo nhịp của bạn.",
+   "file": "a13.week.5.vi.m4a",
+   "duration": 3.168,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.0,
+     "end": 0.18
+    },
+    {
+     "word": "thứ",
+     "start": 0.18,
+     "end": 0.34
+    },
+    {
+     "word": "năm",
+     "start": 0.34,
+     "end": 0.62
+    },
+    {
+     "word": "trong",
+     "start": 0.62,
+     "end": 0.92
+    },
+    {
+     "word": "mười",
+     "start": 0.92,
+     "end": 1.08
+    },
+    {
+     "word": "hai",
+     "start": 1.08,
+     "end": 1.24
+    },
+    {
+     "word": "tuần.",
+     "start": 1.24,
+     "end": 1.68
+    },
+    {
+     "word": "Theo",
+     "start": 1.68,
+     "end": 2.42
+    },
+    {
+     "word": "nhịp",
+     "start": 2.42,
+     "end": 2.66
+    },
+    {
+     "word": "của",
+     "start": 2.66,
+     "end": 2.8
+    },
+    {
+     "word": "bạn.",
+     "start": 2.8,
+     "end": 2.98
+    }
+   ]
   },
   "a13.week.6": {
-   "text": "Tuần thứ sáu trong mười hai tuần. Theo nhịp của bạn."
+   "text": "Tuần thứ sáu trong mười hai tuần. Theo nhịp của bạn.",
+   "file": "a13.week.6.vi.m4a",
+   "duration": 3.33,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.0,
+     "end": 0.22
+    },
+    {
+     "word": "thứ",
+     "start": 0.22,
+     "end": 0.42
+    },
+    {
+     "word": "sáu",
+     "start": 0.42,
+     "end": 0.7
+    },
+    {
+     "word": "trong",
+     "start": 0.7,
+     "end": 0.94
+    },
+    {
+     "word": "mười",
+     "start": 0.94,
+     "end": 1.08
+    },
+    {
+     "word": "hai",
+     "start": 1.08,
+     "end": 1.22
+    },
+    {
+     "word": "tuần.",
+     "start": 1.22,
+     "end": 1.58
+    },
+    {
+     "word": "Theo",
+     "start": 1.58,
+     "end": 2.62
+    },
+    {
+     "word": "nhịp",
+     "start": 2.62,
+     "end": 2.84
+    },
+    {
+     "word": "của",
+     "start": 2.84,
+     "end": 2.98
+    },
+    {
+     "word": "bạn.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
   },
   "a13.week.7": {
-   "text": "Tuần thứ bảy trong mười hai tuần. Theo nhịp của bạn."
+   "text": "Tuần thứ bảy trong mười hai tuần. Theo nhịp của bạn.",
+   "file": "a13.week.7.vi.m4a",
+   "duration": 3.167,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.0,
+     "end": 0.16
+    },
+    {
+     "word": "thứ",
+     "start": 0.16,
+     "end": 0.3
+    },
+    {
+     "word": "bảy",
+     "start": 0.3,
+     "end": 0.5
+    },
+    {
+     "word": "trong",
+     "start": 0.5,
+     "end": 0.76
+    },
+    {
+     "word": "mười",
+     "start": 0.76,
+     "end": 0.89
+    },
+    {
+     "word": "hai",
+     "start": 0.89,
+     "end": 1.02
+    },
+    {
+     "word": "tuần.",
+     "start": 1.02,
+     "end": 1.44
+    },
+    {
+     "word": "Theo",
+     "start": 1.44,
+     "end": 2.36
+    },
+    {
+     "word": "nhịp",
+     "start": 2.36,
+     "end": 2.6
+    },
+    {
+     "word": "của",
+     "start": 2.6,
+     "end": 2.72
+    },
+    {
+     "word": "bạn.",
+     "start": 2.72,
+     "end": 2.98
+    }
+   ]
   },
   "a13.week.8": {
-   "text": "Tuần thứ tám trong mười hai tuần. Theo nhịp của bạn."
+   "text": "Tuần thứ tám trong mười hai tuần. Theo nhịp của bạn.",
+   "file": "a13.week.8.vi.m4a",
+   "duration": 3.589,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.0,
+     "end": 0.22
+    },
+    {
+     "word": "thứ",
+     "start": 0.22,
+     "end": 0.4
+    },
+    {
+     "word": "tám",
+     "start": 0.4,
+     "end": 0.7
+    },
+    {
+     "word": "trong",
+     "start": 0.7,
+     "end": 1.02
+    },
+    {
+     "word": "mười",
+     "start": 1.02,
+     "end": 1.17
+    },
+    {
+     "word": "hai",
+     "start": 1.17,
+     "end": 1.32
+    },
+    {
+     "word": "tuần.",
+     "start": 1.32,
+     "end": 1.72
+    },
+    {
+     "word": "Theo",
+     "start": 1.72,
+     "end": 2.84
+    },
+    {
+     "word": "nhịp",
+     "start": 2.84,
+     "end": 2.98
+    },
+    {
+     "word": "của",
+     "start": 2.98,
+     "end": 2.99
+    },
+    {
+     "word": "bạn.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
   },
   "a13.week.9": {
-   "text": "Tuần thứ chín trong mười hai tuần. Theo nhịp của bạn."
+   "text": "Tuần thứ chín trong mười hai tuần. Theo nhịp của bạn.",
+   "file": "a13.week.9.vi.m4a",
+   "duration": 3.501,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.08,
+     "end": 0.32
+    },
+    {
+     "word": "thứ",
+     "start": 0.32,
+     "end": 0.48
+    },
+    {
+     "word": "chín",
+     "start": 0.48,
+     "end": 0.8
+    },
+    {
+     "word": "trong",
+     "start": 0.8,
+     "end": 1.1
+    },
+    {
+     "word": "mười",
+     "start": 1.1,
+     "end": 1.26
+    },
+    {
+     "word": "hai",
+     "start": 1.26,
+     "end": 1.42
+    },
+    {
+     "word": "tuần.",
+     "start": 1.42,
+     "end": 1.84
+    },
+    {
+     "word": "Theo",
+     "start": 1.84,
+     "end": 2.72
+    },
+    {
+     "word": "nhịp",
+     "start": 2.72,
+     "end": 2.98
+    },
+    {
+     "word": "của",
+     "start": 2.98,
+     "end": 2.99
+    },
+    {
+     "word": "bạn.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
   },
   "a13.week.10": {
-   "text": "Tuần thứ mười trong mười hai tuần. Theo nhịp của bạn."
+   "text": "Tuần thứ mười trong mười hai tuần. Theo nhịp của bạn.",
+   "file": "a13.week.10.vi.m4a",
+   "duration": 3.846,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.08,
+     "end": 0.36
+    },
+    {
+     "word": "thứ",
+     "start": 0.36,
+     "end": 0.5
+    },
+    {
+     "word": "mười",
+     "start": 0.5,
+     "end": 0.86
+    },
+    {
+     "word": "trong",
+     "start": 0.86,
+     "end": 1.32
+    },
+    {
+     "word": "mười",
+     "start": 1.32,
+     "end": 1.47
+    },
+    {
+     "word": "hai",
+     "start": 1.47,
+     "end": 1.62
+    },
+    {
+     "word": "tuần.",
+     "start": 1.62,
+     "end": 2.02
+    },
+    {
+     "word": "Theo",
+     "start": 2.02,
+     "end": 2.98
+    },
+    {
+     "word": "nhịp",
+     "start": 2.98,
+     "end": 2.99
+    },
+    {
+     "word": "của",
+     "start": 2.98,
+     "end": 2.99
+    },
+    {
+     "word": "bạn.",
+     "start": 2.98,
+     "end": 3.846
+    }
+   ]
   },
   "a13.week.11": {
-   "text": "Tuần thứ mười một trong mười hai tuần. Theo nhịp của bạn."
+   "text": "Tuần thứ mười một trong mười hai tuần. Theo nhịp của bạn.",
+   "file": "a13.week.11.vi.m4a",
+   "duration": 3.673,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.04,
+     "end": 0.32
+    },
+    {
+     "word": "thứ",
+     "start": 0.32,
+     "end": 0.46
+    },
+    {
+     "word": "mười",
+     "start": 0.46,
+     "end": 0.66
+    },
+    {
+     "word": "một",
+     "start": 0.66,
+     "end": 0.86
+    },
+    {
+     "word": "trong",
+     "start": 0.86,
+     "end": 1.14
+    },
+    {
+     "word": "mười",
+     "start": 1.14,
+     "end": 1.31
+    },
+    {
+     "word": "hai",
+     "start": 1.31,
+     "end": 1.48
+    },
+    {
+     "word": "tuần.",
+     "start": 1.48,
+     "end": 1.9
+    },
+    {
+     "word": "Theo",
+     "start": 1.9,
+     "end": 2.92
+    },
+    {
+     "word": "nhịp",
+     "start": 2.92,
+     "end": 2.98
+    },
+    {
+     "word": "của",
+     "start": 2.98,
+     "end": 2.99
+    },
+    {
+     "word": "bạn.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
   },
   "a13.week.12": {
-   "text": "Tuần thứ mười hai trong mười hai tuần. Theo nhịp của bạn."
+   "text": "Tuần thứ mười hai trong mười hai tuần. Theo nhịp của bạn.",
+   "file": "a13.week.12.vi.m4a",
+   "duration": 3.593,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.0,
+     "end": 0.24
+    },
+    {
+     "word": "thứ",
+     "start": 0.24,
+     "end": 0.42
+    },
+    {
+     "word": "mười",
+     "start": 0.42,
+     "end": 0.62
+    },
+    {
+     "word": "hai",
+     "start": 0.62,
+     "end": 0.82
+    },
+    {
+     "word": "trong",
+     "start": 0.82,
+     "end": 1.12
+    },
+    {
+     "word": "mười",
+     "start": 1.12,
+     "end": 1.25
+    },
+    {
+     "word": "hai",
+     "start": 1.25,
+     "end": 1.38
+    },
+    {
+     "word": "tuần.",
+     "start": 1.38,
+     "end": 1.8
+    },
+    {
+     "word": "Theo",
+     "start": 1.8,
+     "end": 2.76
+    },
+    {
+     "word": "nhịp",
+     "start": 2.76,
+     "end": 2.98
+    },
+    {
+     "word": "của",
+     "start": 2.98,
+     "end": 2.99
+    },
+    {
+     "word": "bạn.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
   },
   "a13.days.1": {
-   "text": "Đây là ngày vận động đầu tiên trong tuần."
+   "text": "Đây là ngày vận động đầu tiên trong tuần.",
+   "file": "a13.days.1.vi.m4a",
+   "duration": 2.283,
+   "words": [
+    {
+     "word": "Đây",
+     "start": 0.04,
+     "end": 0.3
+    },
+    {
+     "word": "là",
+     "start": 0.3,
+     "end": 0.44
+    },
+    {
+     "word": "ngày",
+     "start": 0.44,
+     "end": 0.62
+    },
+    {
+     "word": "vận",
+     "start": 0.62,
+     "end": 0.84
+    },
+    {
+     "word": "động",
+     "start": 0.84,
+     "end": 0.98
+    },
+    {
+     "word": "đầu",
+     "start": 0.98,
+     "end": 1.16
+    },
+    {
+     "word": "tiên",
+     "start": 1.16,
+     "end": 1.56
+    },
+    {
+     "word": "trong",
+     "start": 1.56,
+     "end": 1.78
+    },
+    {
+     "word": "tuần.",
+     "start": 1.78,
+     "end": 1.98
+    }
+   ]
   },
   "a13.days.2": {
-   "text": "Tuần này bạn đã có hai ngày vận động."
+   "text": "Tuần này bạn đã có hai ngày vận động.",
+   "file": "a13.days.2.vi.m4a",
+   "duration": 2.543,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.06,
+     "end": 0.32
+    },
+    {
+     "word": "này",
+     "start": 0.32,
+     "end": 0.8
+    },
+    {
+     "word": "bạn",
+     "start": 0.8,
+     "end": 1.2
+    },
+    {
+     "word": "đã",
+     "start": 1.2,
+     "end": 1.34
+    },
+    {
+     "word": "có",
+     "start": 1.34,
+     "end": 1.56
+    },
+    {
+     "word": "hai",
+     "start": 1.56,
+     "end": 1.78
+    },
+    {
+     "word": "ngày",
+     "start": 1.78,
+     "end": 1.98
+    },
+    {
+     "word": "vận",
+     "start": 1.98,
+     "end": 1.99
+    },
+    {
+     "word": "động.",
+     "start": 1.98,
+     "end": 1.99
+    }
+   ]
   },
   "a13.days.3": {
-   "text": "Tuần này bạn đã có ba ngày vận động."
+   "text": "Tuần này bạn đã có ba ngày vận động.",
+   "file": "a13.days.3.vi.m4a",
+   "duration": 2.63,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.06,
+     "end": 0.32
+    },
+    {
+     "word": "này",
+     "start": 0.32,
+     "end": 0.82
+    },
+    {
+     "word": "bạn",
+     "start": 0.82,
+     "end": 1.14
+    },
+    {
+     "word": "đã",
+     "start": 1.14,
+     "end": 1.28
+    },
+    {
+     "word": "có",
+     "start": 1.28,
+     "end": 1.5
+    },
+    {
+     "word": "ba",
+     "start": 1.5,
+     "end": 1.78
+    },
+    {
+     "word": "ngày",
+     "start": 1.78,
+     "end": 1.98
+    },
+    {
+     "word": "vận",
+     "start": 1.98,
+     "end": 1.99
+    },
+    {
+     "word": "động.",
+     "start": 1.98,
+     "end": 1.99
+    }
+   ]
   },
   "a13.days.4": {
-   "text": "Tuần này bạn đã có bốn ngày vận động."
+   "text": "Tuần này bạn đã có bốn ngày vận động.",
+   "file": "a13.days.4.vi.m4a",
+   "duration": 2.626,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.08,
+     "end": 0.36
+    },
+    {
+     "word": "này",
+     "start": 0.36,
+     "end": 0.82
+    },
+    {
+     "word": "bạn",
+     "start": 0.82,
+     "end": 1.24
+    },
+    {
+     "word": "đã",
+     "start": 1.24,
+     "end": 1.38
+    },
+    {
+     "word": "có",
+     "start": 1.38,
+     "end": 1.58
+    },
+    {
+     "word": "bốn",
+     "start": 1.58,
+     "end": 1.82
+    },
+    {
+     "word": "ngày",
+     "start": 1.82,
+     "end": 1.98
+    },
+    {
+     "word": "vận",
+     "start": 1.98,
+     "end": 1.99
+    },
+    {
+     "word": "động.",
+     "start": 1.98,
+     "end": 1.99
+    }
+   ]
   },
   "a13.days.5": {
-   "text": "Tuần này bạn đã có năm ngày vận động."
+   "text": "Tuần này bạn đã có năm ngày vận động.",
+   "file": "a13.days.5.vi.m4a",
+   "duration": 2.626,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.06,
+     "end": 0.32
+    },
+    {
+     "word": "này",
+     "start": 0.32,
+     "end": 0.86
+    },
+    {
+     "word": "bạn",
+     "start": 0.86,
+     "end": 1.28
+    },
+    {
+     "word": "đã",
+     "start": 1.28,
+     "end": 1.4
+    },
+    {
+     "word": "có",
+     "start": 1.4,
+     "end": 1.62
+    },
+    {
+     "word": "năm",
+     "start": 1.62,
+     "end": 1.86
+    },
+    {
+     "word": "ngày",
+     "start": 1.86,
+     "end": 1.98
+    },
+    {
+     "word": "vận",
+     "start": 1.98,
+     "end": 1.99
+    },
+    {
+     "word": "động.",
+     "start": 1.98,
+     "end": 1.99
+    }
+   ]
   },
   "a13.days.6": {
-   "text": "Tuần này bạn đã có sáu ngày vận động."
+   "text": "Tuần này bạn đã có sáu ngày vận động.",
+   "file": "a13.days.6.vi.m4a",
+   "duration": 2.371,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.0,
+     "end": 0.3
+    },
+    {
+     "word": "này",
+     "start": 0.3,
+     "end": 0.52
+    },
+    {
+     "word": "bạn",
+     "start": 0.52,
+     "end": 0.84
+    },
+    {
+     "word": "đã",
+     "start": 0.84,
+     "end": 1.02
+    },
+    {
+     "word": "có",
+     "start": 1.02,
+     "end": 1.26
+    },
+    {
+     "word": "sáu",
+     "start": 1.26,
+     "end": 1.58
+    },
+    {
+     "word": "ngày",
+     "start": 1.58,
+     "end": 1.8
+    },
+    {
+     "word": "vận",
+     "start": 1.8,
+     "end": 1.98
+    },
+    {
+     "word": "động.",
+     "start": 1.98,
+     "end": 1.99
+    }
+   ]
   },
   "a13.days.7": {
-   "text": "Tuần này bạn đã có bảy ngày vận động."
+   "text": "Tuần này bạn đã có bảy ngày vận động.",
+   "file": "a13.days.7.vi.m4a",
+   "duration": 2.63,
+   "words": [
+    {
+     "word": "Tuần",
+     "start": 0.04,
+     "end": 0.34
+    },
+    {
+     "word": "này",
+     "start": 0.34,
+     "end": 0.82
+    },
+    {
+     "word": "bạn",
+     "start": 0.82,
+     "end": 1.18
+    },
+    {
+     "word": "đã",
+     "start": 1.18,
+     "end": 1.32
+    },
+    {
+     "word": "có",
+     "start": 1.32,
+     "end": 1.52
+    },
+    {
+     "word": "bảy",
+     "start": 1.52,
+     "end": 1.76
+    },
+    {
+     "word": "ngày",
+     "start": 1.76,
+     "end": 1.98
+    },
+    {
+     "word": "vận",
+     "start": 1.98,
+     "end": 1.99
+    },
+    {
+     "word": "động.",
+     "start": 1.98,
+     "end": 1.99
+    }
+   ]
   },
   "a13.walk.2": {
-   "text": "Buổi đi bộ thứ hai trong tuần. Đều đặn lắm."
+   "text": "Buổi đi bộ thứ hai trong tuần. Đều đặn lắm.",
+   "file": "a13.walk.2.vi.m4a",
+   "duration": 3.338,
+   "words": [
+    {
+     "word": "Buổi",
+     "start": 0.02,
+     "end": 0.28
+    },
+    {
+     "word": "đi",
+     "start": 0.28,
+     "end": 0.38
+    },
+    {
+     "word": "bộ",
+     "start": 0.38,
+     "end": 0.58
+    },
+    {
+     "word": "thứ",
+     "start": 0.58,
+     "end": 0.74
+    },
+    {
+     "word": "hai",
+     "start": 0.74,
+     "end": 0.98
+    },
+    {
+     "word": "trong",
+     "start": 0.98,
+     "end": 1.18
+    },
+    {
+     "word": "tuần.",
+     "start": 1.18,
+     "end": 1.5
+    },
+    {
+     "word": "Đều",
+     "start": 1.5,
+     "end": 2.68
+    },
+    {
+     "word": "đặn",
+     "start": 2.68,
+     "end": 2.86
+    },
+    {
+     "word": "lắm.",
+     "start": 2.86,
+     "end": 2.98
+    }
+   ]
   },
   "a13.walk.3": {
-   "text": "Buổi đi bộ thứ ba trong tuần. Đều đặn lắm."
+   "text": "Buổi đi bộ thứ ba trong tuần. Đều đặn lắm.",
+   "file": "a13.walk.3.vi.m4a",
+   "duration": 3.507,
+   "words": [
+    {
+     "word": "Buổi",
+     "start": 0.02,
+     "end": 0.34
+    },
+    {
+     "word": "đi",
+     "start": 0.34,
+     "end": 0.46
+    },
+    {
+     "word": "bộ",
+     "start": 0.46,
+     "end": 0.62
+    },
+    {
+     "word": "thứ",
+     "start": 0.62,
+     "end": 0.8
+    },
+    {
+     "word": "ba",
+     "start": 0.8,
+     "end": 1.04
+    },
+    {
+     "word": "trong",
+     "start": 1.04,
+     "end": 1.28
+    },
+    {
+     "word": "tuần.",
+     "start": 1.28,
+     "end": 1.62
+    },
+    {
+     "word": "Đều",
+     "start": 1.62,
+     "end": 2.86
+    },
+    {
+     "word": "đặn",
+     "start": 2.86,
+     "end": 2.98
+    },
+    {
+     "word": "lắm.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
   },
   "a13.walk.4": {
-   "text": "Buổi đi bộ thứ tư trong tuần. Đều đặn lắm."
+   "text": "Buổi đi bộ thứ tư trong tuần. Đều đặn lắm.",
+   "file": "a13.walk.4.vi.m4a",
+   "duration": 3.163,
+   "words": [
+    {
+     "word": "Buổi",
+     "start": 0.0,
+     "end": 0.05
+    },
+    {
+     "word": "đi",
+     "start": 0.0,
+     "end": 0.22
+    },
+    {
+     "word": "bộ",
+     "start": 0.22,
+     "end": 0.38
+    },
+    {
+     "word": "thứ",
+     "start": 0.38,
+     "end": 0.58
+    },
+    {
+     "word": "tư",
+     "start": 0.58,
+     "end": 0.84
+    },
+    {
+     "word": "trong",
+     "start": 0.84,
+     "end": 1.08
+    },
+    {
+     "word": "tuần.",
+     "start": 1.08,
+     "end": 1.4
+    },
+    {
+     "word": "Đều",
+     "start": 1.4,
+     "end": 2.5
+    },
+    {
+     "word": "đặn",
+     "start": 2.5,
+     "end": 2.72
+    },
+    {
+     "word": "lắm.",
+     "start": 2.72,
+     "end": 2.98
+    }
+   ]
   },
   "a13.walk.5": {
-   "text": "Buổi đi bộ thứ năm trong tuần. Đều đặn lắm."
+   "text": "Buổi đi bộ thứ năm trong tuần. Đều đặn lắm.",
+   "file": "a13.walk.5.vi.m4a",
+   "duration": 3.335,
+   "words": [
+    {
+     "word": "Buổi",
+     "start": 0.04,
+     "end": 0.34
+    },
+    {
+     "word": "đi",
+     "start": 0.34,
+     "end": 0.44
+    },
+    {
+     "word": "bộ",
+     "start": 0.44,
+     "end": 0.66
+    },
+    {
+     "word": "thứ",
+     "start": 0.66,
+     "end": 0.84
+    },
+    {
+     "word": "năm",
+     "start": 0.84,
+     "end": 1.08
+    },
+    {
+     "word": "trong",
+     "start": 1.08,
+     "end": 1.28
+    },
+    {
+     "word": "tuần.",
+     "start": 1.28,
+     "end": 1.62
+    },
+    {
+     "word": "Đều",
+     "start": 1.62,
+     "end": 2.68
+    },
+    {
+     "word": "đặn",
+     "start": 2.68,
+     "end": 2.9
+    },
+    {
+     "word": "lắm.",
+     "start": 2.9,
+     "end": 2.98
+    }
+   ]
   }
  },
  "notifications": {

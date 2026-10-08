@@ -1,6 +1,6 @@
-# QC giọng vi — 620/620 câu đã thu
+# QC giọng vi — 661/661 câu đã thu
 
-Tổng thời lượng: 35.7 phút (tiếng Anh cùng các câu: 37.8 phút).
+Tổng thời lượng: 38.2 phút (tiếng Anh cùng các câu: 40.2 phút).
 Chưa thu: 0. Cờ khác: 6 câu; cần thu lại (phát âm / im lặng / mức âm): 2.
 
 - `a2.move.side-step.intro` — Bước sang ngang.
