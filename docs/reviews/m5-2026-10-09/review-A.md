@@ -55,3 +55,29 @@
 [Minor] se-light/countdown.png — status "Warm-up · 5:09 left in / total" orphans "total" on line 2 at default text on SE — WalkPlayerView.swift:205-208 — shorter compact copy ("5:09 left") or give the status more width.
 
 Checked 88 images
+
+## Fix log (09/10/2026: Mac WIP 9dc3e38 merged into mac/integration as bdd393c, then cloud dc3df41)
+Mac WIP fixes were built on the Mac, but their screenshots were not reviewed after the fixes. The cloud fix (dc3df41) is not built yet; only a syntax check was run (`swiftc -parse`).
+- [Critical] Ready "Have ready" collapses at XXL → FIXED (WIP): one tile per row at accessibility sizes (WorkoutReadyView.swift).
+- [Critical] Walk player top bar breaks at XXL → FIXED:
+  - End shows ✕ only at accessibility sizes (review C).
+  - Status splits at the dot (WIP).
+  - At accessibility sizes, End + Sound keep the first row; the status and "Location on" take the full width below (cloud, WalkTopBar in WalkPlayerView.swift).
+- [Important] Anything else: "None of these" under the pinned doctor note on SE → FIXED (WIP): on short screens the note moves into the page (`footerScrollsWhenShort`).
+- [Important] Paywall note "$3.33 a…" at XXL → FIXED (WIP): the note wraps.
+- [Important] Reminder offer: time row under "Remind me" on SE → FIXED (WIP): no picture on short screens.
+- [Important] countdown capture shows the walk player → FIXED (WIP): the count holds at 3 under `-ScreenshotMode countdown`.
+- [Important] onboarding-goal dark capture shows step 5 → NOT A CODE FIX: re-capture on the Mac.
+- [Minor] Garden progress current plant in dark → FIXED (WIP): cream ink and a stronger halo.
+- [Minor] Highlighter offset/overhang and two-line answers → FIXED (WIP): drawn per line with `TextRenderer` (iOS 18).
+- [Minor] Paywall header label under Close at XXL → FIXED (WIP): trailing room.
+- [Minor] Paywall cards mix two price layouts → FIXED (WIP): one layout for the whole list.
+- [Minor] Plan-coach, Health granted and paywall XXL captures identical → FIXED (WIP): capture scroll anchors at accessibility sizes.
+- [Minor] "Reminder at" dropped on SE → FIXED (WIP): own line above − time +.
+- [Minor] Health granted line breaking mid-word at XXL → FIXED (WIP).
+- [Minor] Phone placement check green on green in dark → FIXED (WIP): shared ChosenCheck.
+- [Minor] Ready tile icons faint in dark → FIXED (WIP).
+- [Minor] Walk status orphans "total" on SE → FIXED (WIP): split at the dot.
+- [Minor] "Move with less pain" reads as a pain-relief promise → OWNER DECISION (suggestion "Move more comfortably").
+- [Minor] Paywall on SE: "Fewer plans" half under the footer; "Cancel anytime…" below the fold → NOT FIXED (layout pass on compact height).
+- [Minor] Phone placement art speckle edges in dark → NOT FIXED (art alpha clean-up).
