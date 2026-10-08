@@ -9,6 +9,7 @@ Mục tiêu: mọi màn và mọi luồng trong plan có câu giọng để demo
 Nguồn quy tắc: NIA-3T (xem A10 §1) "be aware of the weather and your surroundings", "drink water"; CDC nắng nóng (brief §4 dòng 15). Không hứa an toàn, chỉ nhắc.
 | ID | Khi nào | Câu thoại |
 |---|---|---|
+| a3.open.route | mở mọi bài ngoài trời, trước mọi câu khác (chủ app duyệt 09/10/2026) | Pick a flat, familiar route, and walk at a pace where you can still talk. |
 | a3.open.1 | mở | Let's head out. Start with an easy stroll. |
 | a3.open.2 | mở | Out the door we go. Nice and easy for the first couple of minutes. |
 | a3.safe.1 | khởi động | Keep one ear free so you can hear what's around you. |
@@ -108,7 +109,7 @@ Không logo, không tên thương hiệu; mô tả cảm giác nơi chốn, khô
 ## Tổng
 | Mục | Số câu tối thiểu |
 |---|---|
-| A3 ngoài trời | 12 |
+| A3 ngoài trời | 13 |
 | A5 đếm | 22 |
 | A6 động viên | 10 |
 | A7 an toàn | 12 |

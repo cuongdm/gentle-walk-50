@@ -36,8 +36,9 @@ import Testing
         let indoor = try SessionBuilder.build(kind: PlannedDay(main: long ? .longWalk : .walk, chairMoves: 0, cooldown: false),
                                               level: .inPlace, intensity: intensity, limits: [], rotationIndex: 0, content: content)
         let plan = try outdoor(intensity, long: long)
-        // Every walking part stays, with its time; only stretches that need a chair go.
-        #expect(plan.segments.filter { $0.exerciseID?.hasPrefix("st.") != true }
+        // Every walking part stays, with its time; only stretches that need a chair go. The route line
+        // comes first, in a short segment of its own.
+        #expect(plan.segments.dropFirst().filter { $0.exerciseID?.hasPrefix("st.") != true }
                 == indoor.segments.filter { $0.exerciseID?.hasPrefix("st.") != true }.map { OutdoorWalk.adapt(segment: $0) })
         let stretches = plan.segments.compactMap(\.exerciseID).filter { $0.hasPrefix("st.") }
         #expect(stretches.allSatisfy { OutdoorWalk.standingStretches.contains($0) }, "\(stretches)")
@@ -47,11 +48,30 @@ import Testing
         #expect(plan.segments.last?.kind == .cooldown)
     }
 
+    /// Every outdoor walk opens with the route line (owner 09/10/2026), before any other line.
+    @Test(arguments: cases)
+    func opensWithTheRouteLine(_ intensity: Intensity, _ long: Bool) throws {
+        for rotation in 0..<4 {
+            let plan = try outdoor(intensity, long: long, rotation: rotation)
+            #expect(plan.lineIDs.first == OutdoorWalk.routeLine)
+            #expect(plan.lineIDs.filter { $0 == OutdoorWalk.routeLine }.count == 1)
+            #expect(plan.segments.first?.kind == .intro)
+            #expect(plan.segments.first?.seconds == OutdoorWalk.routeLineSeconds)
+        }
+        #expect(texts[OutdoorWalk.routeLine] == "Pick a flat, familiar route, and walk at a pace where you can still talk.")
+    }
+
+    @Test func theRouteLineIsSaidOnceEvenIfTheRulesRunTwice() throws {
+        let plan = OutdoorWalk.adapt(try outdoor(.steady))
+        #expect(plan.lineIDs.filter { $0 == OutdoorWalk.routeLine }.count == 1)
+    }
+
     @Test func indoorPlansAreUntouchedByTheRules() throws {
         let plan = try SessionBuilder.build(kind: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), level: .inPlace,
                                             intensity: .steady, limits: [], rotationIndex: 0, content: content)
         #expect(plan.lineIDs.contains("a2.setup.inplace.1"))
         #expect(!OutdoorWalk.adapt(plan).lineIDs.contains("a2.setup.inplace.1"))
         #expect(OutdoorWalk.adapt(plan).lineIDs.contains("a2.open.1"))
+        #expect(!plan.lineIDs.contains(OutdoorWalk.routeLine))
     }
 }

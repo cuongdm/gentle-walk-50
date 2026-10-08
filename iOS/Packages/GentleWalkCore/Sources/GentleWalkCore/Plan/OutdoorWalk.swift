@@ -2,8 +2,13 @@
 /// that fit walking along a street. Lines for a chair, a seat, the floor or an in-place move (its intro,
 /// the "watch me" demo, "Next up: Side step") are left out, and stretches that need a chair are dropped;
 /// the walk ends with its slow cool-down walk and the standing chest stretch with the closing lines.
-/// Only recorded lines are used: nothing new to record.
+/// Every outdoor walk opens with the route line (owner 09/10/2026), the one line written for outdoors.
 public enum OutdoorWalk {
+    /// "Pick a flat, familiar route, and walk at a pace where you can still talk." (A3, owner 09/10/2026).
+    public static let routeLine = "a3.open.route"
+    /// The route line and a breath, in its own segment before anything else is said.
+    public static let routeLineSeconds = 7
+
     /// Cool-down stretches done standing with nothing to hold.
     public static let standingStretches: Set<String> = ["st.chest"]
 
@@ -36,6 +41,11 @@ public enum OutdoorWalk {
                     return standingStretches.contains(id)
                 }
                 .map(adapt(segment:))
+        }
+        if let b = plan.blocks.firstIndex(where: { $0.kind == .walk }),
+           !plan.blocks[b].segments.contains(where: { $0.cues.contains { $0.line == routeLine } }) {
+            plan.blocks[b].segments.insert(SessionTemplate.Segment(kind: .intro, seconds: routeLineSeconds,
+                                                                   cues: [.init(at: 0, line: routeLine)]), at: 0)
         }
         return plan
     }
