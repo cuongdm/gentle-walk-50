@@ -65,6 +65,10 @@ struct ProfileSnapshot: Equatable {
     var reminderMoment: DailyMoment
     var reminderMinutes: Int
     var frequency: ReminderFrequency
+    /// Her one main goal (plan 08/10/2026 task 2.12: the paywall, Your plan and Me echo it).
+    var goal: Goal = .notSure
+    /// What got in the way before, in the order she picked them.
+    var barriers: [Barrier] = []
 
     static let empty = ProfileSnapshot(name: nil, limits: [], level: .seated, restDays: RestDays.freeTier,
                                        reminderMoment: .coffee, reminderMinutes: 510, frequency: .daily)
@@ -83,5 +87,8 @@ struct ProfileSnapshot: Equatable {
         reminderMoment = DailyMoment(rawValue: profile.reminderMoment) ?? .coffee
         reminderMinutes = profile.reminderMinutes
         frequency = ReminderFrequency(rawValue: profile.reminderFrequency) ?? .daily
+        // Profiles saved before 08/10/2026 may hold two goals: the first picked is the main one.
+        goal = profile.goals.lazy.compactMap(Goal.init).first ?? .notSure
+        barriers = profile.barriers.compactMap(Barrier.init)
     }
 }

@@ -9,6 +9,7 @@ struct MeView: View {
     @State private var confirmDelete = false
     @State private var showsPrivacy = false
     @State private var editingBody = false
+    @State private var editingGoal = false
 
     var body: some View {
         ScrollView {
@@ -25,6 +26,7 @@ struct MeView: View {
                         app.todayPath = [.program]
                     }, onRestart: app.restartProgram)
                 }
+                GoalSection(goal: app.profile?.goal ?? .notSure, onChange: { editingGoal = true })
                 BodySection(limits: app.profile?.limits ?? [], walking: app.walkingLevel, onEdit: { editingBody = true })
                 #if DEBUG
                 // Not in screenshots (the capture hook is the only launch convention).
@@ -59,6 +61,11 @@ struct MeView: View {
         .sheet(isPresented: $editingBody) {
             BodyLimitsEditor(limits: app.profile?.limits ?? []) { limits in
                 app.updateProfile { $0.bodyLimits = OnboardingCopy.limitOrder.filter(limits.contains).map(\.rawValue) }
+            }
+        }
+        .sheet(isPresented: $editingGoal) {
+            GoalEditor(goal: app.profile?.goal ?? .notSure) { goal in
+                app.updateProfile { $0.goals = [goal.rawValue] }
             }
         }
         .fullScreenCover(isPresented: $confirmDelete) {

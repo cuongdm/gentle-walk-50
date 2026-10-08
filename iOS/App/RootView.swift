@@ -50,7 +50,8 @@ struct AppRootView: View {
             if app.onboardingDone {
                 MainTabView(app: app)
             } else {
-                OnboardingView(flow: app.onboarding, onRestore: { Task { await app.restorePurchases() } },
+                OnboardingView(flow: app.onboarding, voiceSource: app.voiceSource, voiceLines: app.content.voiceLines,
+                               onRestore: { Task { await app.restorePurchases() } },
                                onFinished: app.finishOnboarding)
             }
         }

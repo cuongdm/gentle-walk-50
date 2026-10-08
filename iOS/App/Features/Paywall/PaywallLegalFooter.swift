@@ -2,7 +2,7 @@ import SwiftUI
 
 /// Main button, the plain terms under it (two lines on an iPhone SE), then "Maybe later" and
 /// Restore · Terms · Privacy on one row of 56 pt targets (3.1.1, 3.1.2; plan 08/10/2026 task 1.5).
-/// "Or keep the free plan" and the cancel note sit on the page, under the plans.
+/// The cancel note sits on the page, under the plans.
 struct PaywallLegalFooter: View {
     let disclosure: String
     let buttonTitle: LocalizedStringResource
@@ -53,19 +53,13 @@ struct PaywallLegalFooter: View {
     private var privacy: some View { Button("Privacy", action: onPrivacy).buttonStyle(Self.link) }
 }
 
-/// "Or keep the free plan", one line under the plans.
-struct FreePlanNote: View {
-    var body: some View {
-        Text("Or keep the free plan: a walk each weekday.")
-            .typeRole(.caption).foregroundStyle(Palette.textMuted)
-    }
-}
-
-/// How to cancel, under the plans (the renewal itself is said under the button).
+/// How to cancel, under the plans (the renewal and the 24 hours are said under the button).
 struct CancelNote: View {
     var body: some View {
-        Text("Cancel anytime in Settings, at least 24 hours before renewal. Deleting the app doesn't cancel.")
-            .typeRole(.caption).foregroundStyle(Palette.text)
+        Text("Cancel anytime in Settings. Deleting the app doesn't cancel.")
+            .typeRole(.caption).foregroundStyle(Palette.textMuted)
+            .frame(maxWidth: .infinity)
+            .multilineTextAlignment(.center)
     }
 }
 

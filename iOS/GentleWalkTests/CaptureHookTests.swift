@@ -24,7 +24,7 @@ struct CaptureHookTests {
     }
 
     @Test func coversEveryPlannedState() {
-        #expect(CaptureState.allCases.count == 112)
+        #expect(CaptureState.allCases.count == 113)
     }
 
     @Test func seedsMargaretFixture() throws {
@@ -68,6 +68,18 @@ struct CaptureHookTests {
         for name in ["today-program", "today-check-due", "program", "selfcheck-intro", "selfcheck-timer", "selfcheck-count",
                      "progress-checks", "complete-check-invite", "complete-reps-up", "program-finished"] {
             #expect(CaptureHook.state(from: ["GentleWalk", "-ScreenshotMode", name]) != nil, "\(name)")
+        }
+    }
+
+    /// The new onboarding's states parse; the old ones are gone (plan 08/10/2026 task 2.14).
+    @Test func onboardingStatesParse() {
+        for name in ["onboarding-welcome", "onboarding-goal", "onboarding-barriers", "onboarding-name", "onboarding-activity",
+                     "onboarding-strength", "onboarding-sore-spots", "onboarding-anything-else", "onboarding-plan",
+                     "onboarding-plan-coach"] {
+            #expect(CaptureHook.state(from: ["GentleWalk", "-ScreenshotMode", name]) != nil, "\(name)")
+        }
+        for gone in ["onboarding-understanding-joints", "onboarding-understanding-charged", "onboarding-body"] {
+            #expect(CaptureHook.state(from: ["GentleWalk", "-ScreenshotMode", gone]) == nil, "\(gone)")
         }
     }
 }

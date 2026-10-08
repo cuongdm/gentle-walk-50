@@ -3,9 +3,11 @@
 # Usage: iOS/scripts/capture_states.sh <out-dir> <device-name> <state> [state ...]
 #   Suffixes: "<state>@dark" switches to dark mode, "<state>@xxl" to the largest accessibility text
 #   (the simulator content size; the app pins a size only for "-xxl" states, RootView CaptureRouter).
+#   Language: CAPTURE_LANG=vi CAPTURE_LOCALE=vi_VN capture_states.sh … (default en, en_US).
 # The app must already be built into /tmp/gw-dd (see the BUILD command in the plan).
 set -u
 out="$1"; device="$2"; shift 2
+lang="${CAPTURE_LANG:-en}"; locale="${CAPTURE_LOCALE:-en_US}"
 app="/tmp/gw-dd/Build/Products/Debug-iphonesimulator/GentleWalk.app"
 mkdir -p "$out"
 xcrun simctl boot "$device" 2>/dev/null
@@ -21,7 +23,7 @@ for item in "$@"; do
   xcrun simctl ui "$device" content_size large
   [[ "$variant" == "dark" ]] && xcrun simctl ui "$device" appearance dark
   [[ "$variant" == "xxl" ]] && xcrun simctl ui "$device" content_size accessibility-extra-extra-extra-large
-  xcrun simctl launch --terminate-running-process "$device" com.kmd.gentlewalk -ScreenshotMode "$state" -AppleLanguages "(en)" -AppleLocale en_US >/dev/null
+  xcrun simctl launch --terminate-running-process "$device" com.kmd.gentlewalk -ScreenshotMode "$state" -AppleLanguages "($lang)" -AppleLocale "$locale" >/dev/null
   sleep 8
   name="$state"; [[ -n "$variant" ]] && name="$state-$variant"
   xcrun simctl io "$device" screenshot "$out/$name.png" >/dev/null 2>&1 && echo "$out/$name.png"

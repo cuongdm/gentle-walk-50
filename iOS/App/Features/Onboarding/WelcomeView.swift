@@ -13,22 +13,28 @@ struct WelcomeView: View {
             WelcomeHero()
                 .padding(.top, 4)
                 .reveal(.rise)
-            Text(verbatim: AppBrand.name.uppercased())
-                .typeRole(.caption).fontWeight(.heavy).tracking(1.6)
-                .foregroundStyle(Palette.secondary)
-                .accessibilityLabel(Text(verbatim: AppBrand.name))
-                .reveal(delay: 0.1)
+            HStack(spacing: 6) {
+                AppIcon.steps.image.resizable().scaledToFit().frame(width: 18, height: 18).accessibilityHidden(true)
+                Text(verbatim: AppBrand.name.uppercased())
+                    .typeRole(.caption).fontWeight(.heavy).tracking(1.6)
+                    .accessibilityLabel(Text(verbatim: AppBrand.name))
+            }
+            .foregroundStyle(Palette.primary)
+            .reveal(delay: 0.1)
             Text("Steadier on your feet, at your own pace.")
                 .typeRole(.screenTitle)
                 .foregroundStyle(Palette.text)
                 .accessibilityAddTraits(.isHeader)
+                // A brush stroke of sienna under the slogan's end (Claude Design "Welcome").
+                .overlay(alignment: .bottomTrailing) { BrushUnderline().frame(width: 130, height: 8).offset(y: 6) }
+                .padding(.bottom, 4)
                 .reveal(delay: 0.18)
             VStack(alignment: .leading, spacing: 8) {
                 // The one promise first (steady program task 4.13), then how: seated, by voice. Each line
                 // at most seven words so all three fit an iPhone SE (plan 08/10/2026 task 1.4).
-                WelcomeLine(symbol: "calendar", text: "A 12-week plan for stronger legs").reveal(delay: 0.32)
-                WelcomeLine(symbol: "chair.fill", text: "Every move has a seated version").reveal(delay: 0.42)
-                WelcomeLine(symbol: "ear", text: "Follow the voice, no need to watch").reveal(delay: 0.52)
+                WelcomeLine(icon: .program, text: "12 weeks, 5 to 10 minutes a day").reveal(delay: 0.32)
+                WelcomeLine(icon: .seated, text: "Every move has a seated version").reveal(delay: 0.42)
+                WelcomeLine(icon: .listen, text: "Follow the voice, no need to watch").reveal(delay: 0.52)
             }
             Button("Let's begin", action: onBegin).buttonStyle(.primaryAction).reveal(delay: 0.7)
             Button("Restore purchase", action: onRestore)
@@ -69,14 +75,30 @@ private struct WelcomeHero: View {
 }
 
 private struct WelcomeLine: View {
-    let symbol: String
+    let icon: AppIcon
     let text: LocalizedStringResource
 
     var body: some View {
         HStack(spacing: 12) {
-            IconChip(symbol: symbol)
+            AppIconChip(icon: icon)
             Text(text).typeRole(.body).foregroundStyle(Palette.text)
         }
         .accessibilityElement(children: .combine)
+    }
+}
+
+/// A loose hand-drawn stroke, a little uneven, in sienna.
+private struct BrushUnderline: View {
+    var body: some View {
+        GeometryReader { proxy in
+            let w = proxy.size.width, h = proxy.size.height
+            Path { path in
+                path.move(to: CGPoint(x: 0, y: h * 0.75))
+                path.addCurve(to: CGPoint(x: w, y: h * 0.35), control1: CGPoint(x: w * 0.35, y: h * 0.2),
+                              control2: CGPoint(x: w * 0.7, y: h * 0.7))
+            }
+            .stroke(Palette.accent.opacity(0.8), style: StrokeStyle(lineWidth: 2.5, lineCap: .round))
+        }
+        .accessibilityHidden(true)
     }
 }

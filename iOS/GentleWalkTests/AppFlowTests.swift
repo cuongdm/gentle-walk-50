@@ -40,6 +40,17 @@ import GentleWalkCore
         #expect(isPaywall(free.cover))
     }
 
+    /// Me → Your goal (plan 08/10/2026 task 2.13): one goal saved, the snapshot (paywall, plan) follows.
+    @Test func changingTheGoalUpdatesTheSnapshot() {
+        let app = makeApp(entitlement: .free)
+        #expect(app.profile?.goal == .steadier)
+        #expect(app.profile?.barriers == [.joints, .charged])
+        app.updateProfile { $0.goals = [Goal.chairs.rawValue] }
+        #expect(app.profile?.goal == .chairs)
+        let stored = try? app.container.mainContext.fetch(FetchDescriptor<UserProfile>()).first
+        #expect(stored?.goals == ["chairs"])
+    }
+
     // I10
     @Test func restoreSaysWhatHappened() async {
         let failing = makeApp(entitlement: .free, sync: { throw RestoreFailed() })

@@ -10,12 +10,16 @@ enum CaptureState: String, CaseIterable, Sendable {
     case onboardingWelcome = "onboarding-welcome"
     case onboardingGoal = "onboarding-goal"
     case onboardingBarriers = "onboarding-barriers"
-    case onboardingUnderstandingJoints = "onboarding-understanding-joints"
-    case onboardingUnderstandingCharged = "onboarding-understanding-charged"
     case onboardingName = "onboarding-name"
+    // New onboarding (plan 08/10/2026 task 2.14): "You're not alone" went (understanding-joints,
+    // understanding-charged) and the body step became Sore spots and Anything else (onboarding-body).
+    case onboardingActivity = "onboarding-activity"
     case onboardingStrength = "onboarding-strength"
-    case onboardingBody = "onboarding-body"
+    case onboardingSoreSpots = "onboarding-sore-spots"
+    case onboardingAnythingElse = "onboarding-anything-else"
     case onboardingPlan = "onboarding-plan"
+    /// Your plan with "Hear your coach" playing (the button reads "Stop").
+    case onboardingPlanCoach = "onboarding-plan-coach"
     case paywallEligible = "paywall-eligible"
     case paywallMonthly = "paywall-monthly"
     case paywallLifetime = "paywall-lifetime"

@@ -36,16 +36,34 @@ public struct OnboardingAnswers: Equatable, Sendable {
 /// One "Why this will work for you" line on S07: a D3 line per barrier, or the default line.
 public enum WhyKey: Equatable, Sendable { case barrier(Barrier), pocket }
 
-/// What onboarding decides (task 2.15).
+/// What onboarding decides (task 2.15; plan 08/10/2026 task 2.1: one main goal, and "How active are
+/// you now?" used for the first weeks).
 public struct OnboardingProfile: Equatable, Sendable {
     public var startLevel: WalkLevel
+    /// The first barrier picked: the coach's reply on the barriers step.
     public var understandingKey: Barrier
     public var whyKeys: [WhyKey]
     /// Trimmed name, or nil: copy never shows an empty name.
     public var displayName: String?
+    /// The one main goal (owner 08/10/2026); "Not sure yet" when none was picked. Profiles saved before
+    /// the change may hold two goals: the first one picked is the main one.
+    public var primaryGoal: Goal
+    /// Default check-in for the first sessions: "I mostly sit" starts gentle, everyone else steady.
+    public var startIntensity: Intensity
+    /// "I mostly sit": walks two minutes shorter in the first two weeks.
+    public var startsShorter: Bool
 
-    static let maxWhyLines = 3
+    /// The compact plan screen has room for two "why" lines (task 2.10).
+    static let maxWhyLines = 2
     static let minWhyLines = 2
+
+    public static func startIntensity(for activity: ActivityAnswer?) -> Intensity {
+        activity == .mostlySit ? .gentle : .steady
+    }
+
+    public static func startsShorter(for activity: ActivityAnswer?) -> Bool {
+        activity == .mostlySit
+    }
 
     public static func make(answers: OnboardingAnswers) -> OnboardingProfile {
         let active = answers.activity == .walkMostDays || answers.activity == .exerciseRegularly
@@ -56,6 +74,9 @@ public struct OnboardingProfile: Equatable, Sendable {
         if why.count < minWhyLines { why.append(.pocket) }
         let name = answers.name?.trimmingCharacters(in: .whitespacesAndNewlines)
         return OnboardingProfile(startLevel: startLevel, understandingKey: barriers[0], whyKeys: why,
-                                 displayName: name?.isEmpty == false ? name : nil)
+                                 displayName: name?.isEmpty == false ? name : nil,
+                                 primaryGoal: answers.goals.first ?? .notSure,
+                                 startIntensity: startIntensity(for: answers.activity),
+                                 startsShorter: startsShorter(for: answers.activity))
     }
 }

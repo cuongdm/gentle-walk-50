@@ -297,7 +297,7 @@ Mọi lệnh simulator (create/boot/launch/screenshot/delete) bọc trong `lockf
 1. Test `primaryGoalIsTheOnlyGoal()`; `mostlySitStartsGentleAndShorter()` (`startIntensity == .gentle`, `startsShorter == true`); `activeEasyChairStandingStartsInPlace()` (giữ); `whyLinesFollowBarriersThenPocket()` (giữ, ≤ 2 dòng); `paywallOrderFollowsBarriers()` (`paywallEmphasis: [PaywallEmphasis]` — `charged` → `.timelineFirst`, `bored` → `.journeysFirst`).
 2. RED → thêm `primaryGoal: Goal`, `startIntensity: Intensity`, `startsShorter: Bool`, `paywallEmphasis`; `maxWhyLines = 2`; `understandingKey` giữ (dùng cho câu đáp barriers).
 **Command:** `CORE OnboardingProfileTests` → expected: `passed`
-**Evidence:**
+**Evidence:** DONE — RED: `value of type 'OnboardingProfile' has no member 'primaryGoal'` (+ startIntensity, startsShorter). GREEN: `CORE OnboardingProfileTests` → `Test run with 8 tests in 1 suite passed` (mới: primaryGoalIsTheOnlyGoal, mostlySitStartsGentleAndShorter, activeEasyChairStandingStartsInPlace, whyLinesFollowBarriersThenPocket ≤ 2 dòng). `OnboardingProfile.startIntensity(for:)`/`startsShorter(for:)` là hàm tĩnh để milestone 4 (P2, 4.2) đọc từ cột `activityLevel`. Concern: **không làm `paywallEmphasis`** — paywall gọn của Claude Design (Bổ sung 08/10) bỏ danh sách lợi ích và luôn để dòng thời gian ngay dưới tiêu đề, nên thứ tự theo trở ngại không còn gì để xếp; paywall nói lại mục tiêu qua tiêu đề (2.12).
 **Commit point:** `feat(core): onboarding profile with one goal and activity use`
 
 ### Task 2.2 — Thứ tự bước mới, goal chọn 1, hai màn cơ thể [TDD]
@@ -306,7 +306,7 @@ Mọi lệnh simulator (create/boot/launch/screenshot/delete) bọc trong `lockf
 1. Sửa test: `screensComeInTheSpecOrder` (10 bước), `goalIsSingle()` (chọn 2 → cái sau thay cái trước, không `showsGoalLimit`), `noneOfTheseOnEachBodyScreen()`, `stepLabelCountsSeven()` (goal = 1, anythingElse = 7, plan = nil), `progressNeverStartsAtZero` (danh sách bước mới), `finishSavesSingleGoalAndActivity()`.
 2. RED → implement; xoá `UnderstandingView`, `ActivityLevelView` cũ (thay bằng view trên khung mới ở 2.8).
 **Command:** `APP OnboardingFlowTests` → expected: `** TEST SUCCEEDED **`
-**Evidence:**
+**Evidence:** DONE — RED: test mới gọi `chooseGoal`, `stepLabel`, `chooseNoSoreSpots` (không tồn tại). GREEN: `APP OnboardingFlowTests` (11 test: screensComeInTheSpecOrder 10 bước, progressNeverStartsAtZero, stepLabelCountsSeven, goalIsSingle, continueWithoutAnAnswerSaysWhy, noneOfTheseOnEachBodyScreen, coachHintsThenReplies, finishSavesSingleGoalAndActivity, bodyLimitGroupsCoverEveryLimitOnce…) trong lượt `Test run with 44 tests in 7 suites` → xanh. `UnderstandingView`, `BodyLimitsView`, `CoachNote`, `WalkingPathProgress`, `BodyGlowFigure` xoá (không còn dùng). Nút Continue thiếu câu trả lời không mờ mà viền đứt ghi "Pick one to continue" (States.dc.html).
 **Commit point:** `feat(onboarding): new step order, one goal, two body screens`
 
 ### Task 2.3 — Câu chữ mới và ngân sách chữ [TDD]
@@ -315,56 +315,56 @@ Mọi lệnh simulator (create/boot/launch/screenshot/delete) bọc trong `lockf
 1. Test `titlesAtMostEightWords()`, `hintsAtMostFifteen()`, `repliesAtMostFourteen()`, `optionLabelsAtMostFourWords()` (trừ `notSure` ≤ 5), `noBannedWords()` (đọc danh sách cấm từ `tools/lint/copy_lint.py` bằng regex đơn giản trong test).
 2. RED → viết copy; `python3 tools/lint/copy_lint.py` → 0.
 **Command:** `APP OnboardingCopyBudgetTests` → `** TEST SUCCEEDED **`; `copy_lint` → `0 findings`
-**Evidence:**
+**Evidence:** DONE_WITH_CONCERNS — `APP OnboardingCopyBudgetTests` → `Test run with 5 tests in 1 suite passed` (titlesAtMostEightWords, hintsAtMostFifteen, repliesAtMostFourteen + ≤ 60 ký tự để 2 dòng cạnh mặt HLV trên SE, optionLabelsStayShort, noBannedWords đọc dòng Banned của app-context + cụm y khoa). `copy_lint` → `0 findings`. Concern: tiêu đề Goal rút thành "What matters most?" (1 dòng trên SE, để 7 mục vừa màn); nhãn goal giữ chữ đầy đủ theo Claude Design (danh sách 1 cột) trừ "Get up from chairs easily" và "Not sure yet, just start" (2 nhãn dài làm tràn SE); nhãn thẻ cơ thể rút để 2 dòng trong nửa thẻ: "Floor is hard", "Standing tires me", "I get dizzy", "Unsteady on my feet"; câu đáp chỗ đau nói đúng cơ chế lọc ("Moves that are hard on knees stay out") thay câu mẫu "Every knee move gets a gentler version".
 **Commit point:** `feat(onboarding): copy within word budgets`
 
 ### Task 2.4 — Khung chung `OnboardingStepScaffold` + ô HLV cố định [UI]
 **Files:** Create `iOS/App/Features/Onboarding/OnboardingStepScaffold.swift` (`struct OnboardingStepScaffold<Content: View>: View { title, hint, reply: LocalizedStringResource?, content, continueTitle, isContinueDimmed, onContinue, footer: (() -> AnyView)? }`; `CoachSlot`: khung cao cố định = 2 dòng body (`ScaledMetric` 56), hiện gợi ý (textMuted) hoặc `CoachFace` + câu đáp, chuyển bằng `.transition(.opacity)` ≤ 0,4 s, `.accessibilityElement(children: .combine)`; nội dung dưới không dịch chuyển) · Modify `OnboardingView.swift` (mọi bước ≠ welcome dùng scaffold; Continue ghim khi `!typeSize.isAccessibilitySize`; `OnboardingProgressHeader` nhận "Step n of 7"), `OnboardingMotion.swift` (`CoachNote` giữ cho Plan; `WalkingPathProgress.partStarts` → 7 mốc)
 **Steps:** 1. Dựng. 2. `BUILD` → `SHOT se3 onboarding-goal onboarding-goal@xxl`; chạm chọn trên Pro Max và quan sát: ô HLV đổi chữ, lưới không nhảy.
 **Command:** `BUILD` → `** BUILD SUCCEEDED **`; ảnh SE: tiêu đề, ô HLV, 7 ô, Continue ghim trong 647 pt
-**Evidence:**
+**Evidence:** DONE — `OnboardingStepScaffold.swift`: `OnboardingHeader` (Back · luống cây `GardenProgress` 7 ô · "Step n of 7" một hàng; cỡ trợ năng xếp 2 hàng), tiêu đề, `CoachSlot` cao cố định 2 dòng (`ScaledMetric` 54; gợi ý xám → mặt HLV + câu đáp, fade 0,3 s), nội dung, Continue ghim (`pinnedActions`, cỡ trợ năng: cuộn, nút cuối). `BUILD` → `** BUILD SUCCEEDED **`. Ảnh SE `after-m2/se3/onboarding-goal.png`: tiêu đề, ô HLV, 7 dòng, Continue trong 647 pt.
 **Commit point:** `feat(onboarding): shared step scaffold with a fixed coach slot`
 
 ### Task 2.5 — Goal: lưới 2 cột, icon mỗi ô, ô cuối trải hàng [UI]
 **Files:** Create `iOS/App/Design/Components/ChoiceGrid.swift` (`ChoiceTile`: icon chip + nhãn + vòng/tick, 64–72 pt, viền chọn 3 pt; `ChoiceGrid` 2 cột `LazyVGrid`, phần tử lẻ cuối `gridCellColumns(2)`; 1 cột ở cỡ trợ năng) · Modify `QuestionViews.swift` (`GoalView` dùng scaffold + `ChoiceGrid`; icon từ `IconMap.goal(_:)` — tạm dùng `OnboardingCopy.symbol`, milestone 3 chốt) 
 **Steps:** 1. Dựng. 2. `SHOT se3/i11/promax onboarding-goal (+@dark, @xxl)`.
 **Command:** ảnh SE: 7 ô + Continue, không cuộn; XXL: 1 cột, cuộn, Continue cuối
-**Evidence:**
+**Evidence:** DONE — Theo Bổ sung 08/10: danh sách trang sổ tay (`NotebookChoiceList`, một cột, nét đứt, icon `AppIcon` trên vệt màu nước, chữ 19 pt) thay lưới 2 cột; chọn = nền ochre + viền 3 pt + đậm + gạch dạ quang + ✓ tròn đặc, `.sensoryFeedback(.selection)`, VoiceOver "Selected". Icon theo `icons-manifest.json` (lessPain, balance, chair, energy, grandkids, walk, new). Ảnh SE `after-m2/se3/onboarding-goal{,-dark,-xxl}.png`: 7 dòng + Continue không cuộn; XXL cuộn, Continue cuối.
 **Commit point:** `feat(onboarding): goal grid`
 
 ### Task 2.6 — Barriers: lưới 2 cột, chọn nhiều, đáp theo lựa chọn đầu [UI]
 **Files:** Modify `QuestionViews.swift` (`BarriersView` scaffold + `ChoiceGrid`; gợi ý "Pick any that fit. No judgment."; reply `OnboardingCopy.note(first)`)
 **Steps:** 1. Dựng. 2. `SHOT se3/i11/promax onboarding-barriers (+@dark, @xxl)`.
 **Command:** ảnh SE: 6 ô, gợi ý, Continue trong màn
-**Evidence:**
+**Evidence:** DONE — `BarriersView` trên khung, 6 dòng sổ tay có icon (jointsHurt, videosFast, busy, bored, payment, help), chọn nhiều, HLV đáp theo lựa chọn đầu (câu thấu hiểu cũ rút gọn). Ảnh SE `after-m2/se3/onboarding-barriers.png`: 6 dòng, câu đáp, Continue trong màn.
 **Commit point:** `feat(onboarding): barriers grid`
 
 ### Task 2.7 — Name: ô nhập, gợi ý dưới ô, Skip 48 pt [UI]
 **Files:** Modify `QuestionViews.swift` (`NameView` scaffold: hint "Only to say hello. It stays on this phone." trong `CoachSlot`, reply "Nice to meet you, \(name)."; footer Skip `.textLink` 48 pt dưới Continue ghim; bàn phím mở sẵn giữ)
 **Steps:** 1. Dựng. 2. `SHOT se3/promax onboarding-name` (bàn phím ẩn trong capture: `UIApplication.resignFirstResponder` trong scene khi `-ScreenshotMode`).
 **Command:** ảnh: Continue + Skip trong màn, không chữ bị cắt
-**Evidence:**
+**Evidence:** DONE — `NameView`: ô nhập giấy, gợi ý "Only to say hello. It stays on this phone." trong ô HLV, đáp "Nice to meet you, Margaret.", Skip 48 pt dưới Continue ghim; bàn phím không bật khi chạy `-ScreenshotMode` (`CaptureHookGate`). Ảnh SE `after-m2/se3/onboarding-name.png`: Continue + Skip trong màn.
 **Commit point:** `feat(onboarding): name step on the scaffold`
 
 ### Task 2.8 — Activity (gọn) và Chair trên khung [UI]
 **Files:** Modify `QuestionViews.swift` (`ActivityLevelView`: 4 hàng `SelectableCard` 64 pt, hint "So the first week fits you.", reply theo đáp án (vd. mostlySit: "A gentle, shorter start. Build up at your pace."); `ChairStrengthView`: 3 hàng, hint "This picks your first chair moves.", reply tick không chữ)
 **Steps:** 1. Dựng. 2. `SHOT se3/i11/promax onboarding-activity onboarding-strength (+@dark, @xxl)`.
 **Command:** ảnh SE: 4 hàng + Continue trong màn
-**Evidence:**
+**Evidence:** DONE — Activity 4 dòng, Chair 3 dòng, sổ tay không icon (thang, theo icon-va-chong-nham-chan §3a); gợi ý "So the first week fits you." / "It helps us pick where you start." (chair chỉ quyết định cấp khởi đầu, câu "picks your first chair moves" không đúng); đáp theo đáp án. Ảnh SE `after-m2/se3/onboarding-{activity,strength}.png`.
 **Commit point:** `feat(onboarding): activity and chair steps`
 
 ### Task 2.9 — Sore spots và Anything else, câu bác sĩ trong vùng ghim [UI]
 **Files:** Modify `QuestionViews.swift` (`SoreSpotsView`: 5 chip + None lưới 2 cột 56 pt, hint "Tap all that apply.", reply "Got it. We'll go easy on your knees." theo chip cuối; `AnythingElseView`: 5 chip + None, reply theo chip (unsteady: "Thanks. Balance moves will keep both hands on the chair.")), `OnboardingView.swift` (`pinnedActions` của `.anythingElse` gồm `DoctorNote` 16 pt + Continue), `BodyLimitChips.swift` (hai hàm `soreSpotGrid`/`everydayGrid`; Me → Edit vẫn hiện cả hai nhóm), `OnboardingMotion.swift` (`BodyGlowFigure` chỉ ở Sore spots, 60 pt, ẩn trên SE nếu thiếu chỗ: `ViewThatFits`)
 **Steps:** 1. Dựng. 2. `SHOT se3/i11/promax onboarding-sore-spots onboarding-anything-else (+@dark, @xxl)`.
 **Command:** ảnh SE `onboarding-anything-else`: "I feel unsteady on my feet", "None of these", câu bác sĩ, Continue đều trong màn
-**Evidence:**
+**Evidence:** DONE — `BodyLimitChips` thành thẻ 2 cột cao ≥ 62 pt với icon vẽ riêng hai màu (`LayeredIcon`, nét mực 55 % + vùng sienna), ✓ đặc dán ở góc thẻ (không chiếm bề ngang chữ), thẻ lẻ cuối trải hàng, "None of these" viền đứt không icon; mỗi màn một nhóm (`soreSpots` 5, `everyday` 5), Me hiện cả hai nhóm có tiêu đề. Câu bác sĩ ghim ngay trên Continue ở Anything else. Ảnh SE `after-m2/se3/onboarding-anything-else.png`: "Unsteady on my feet", "None of these", câu bác sĩ, Continue đều trong màn.
 **Commit point:** `feat(onboarding): two body screens with the doctor note pinned`
 
 ### Task 2.10 — Plan: 2 thẻ + 2 dòng why + thẻ Day 1 [UI]
 **Files:** Modify `PlanReadyView.swift` (tiêu đề "Your plan, Margaret"; phụ đề theo goal "For steadier feet. Built from your answers." (`OnboardingCopy.planSubtitle(goal)`); `PlanCard`: "5–10 min a day, 12 weeks" · "Starts Seated · Sat & Sun are rest days" · tuần 7 ô · dòng giới hạn gộp "Easy on knees · No floor moves · Both hands on the chair"; `DayOneCard`: "Day 1 · Your first walk · 5 min" · "Seated · march in your chair" · nút Hear your coach (2.11); `WhyThisWorks` 2 dòng ✓ không thẻ; bỏ `ProgramPromiseCard` (gộp vào PlanCard), bỏ `FirstJourneyMini` (hành trình nói ở Today)), `OnboardingView.swift` (Continue "See my options" ghim)
 **Steps:** 1. Dựng theo `plan-se.png`. 2. `SHOT se3/i11/promax onboarding-plan (+@dark, @xxl)`.
 **Command:** ảnh SE: cả hai thẻ, 2 dòng ✓ và "See my options" trong màn, ≤ 70 chữ
-**Evidence:**
+**Evidence:** DONE — Plan theo Claude Design: "Your plan, Margaret" + dòng mục tiêu (`OnboardingCopy.planLine`), thẻ "12 weeks · 5–10 min a day" + tuần 7 ô icon walk/rest + một dòng "Starts Seated · Easy on knees · …", thẻ Day 1 (tranh, "Your first walk · 5 min", nút Hear your coach), 2 dòng ✓ không thẻ, "See my options" ghim. Bỏ ProgramPromiseCard, FirstJourneyMini, kicker "Made from your answers" (để vừa SE). Ảnh SE `after-m2/se3/onboarding-plan.png`.
 **Commit point:** `feat(onboarding): compact plan screen`
 
 ### Task 2.11 — "Hear your coach · 10 seconds" phát câu thật [TDD]
@@ -373,53 +373,53 @@ Mọi lệnh simulator (create/boot/launch/screenshot/delete) bọc trong `lockf
 1. Test `compositionIsTwoBundledLinesUnderTwelveSeconds()` (duration 10–12 s, 1 track giọng, 0 track chuông/nhạc), `stopDeactivatesTheAudioSession()` (spy configurator), `vietnameseResolvesViLines()` (VoiceSource language vi → file `a1.01.vi.m4a`).
 2. RED → implement. 3. Trên Pro Max: bấm nghe, nghe được 2 câu; khoá màn → âm dừng (không background audio).
 **Command:** `APP CoachPreviewPlayerTests` → `** TEST SUCCEEDED **`; `grep -c "UIBackgroundModes" iOS/project.yml` không đổi
-**Evidence:**
+**Evidence:** DONE — RED: `type 'SessionTimeline' has no member 'coachPreview'`. GREEN: `CORE CoachPreviewTimelineTests` 2 passed (a1.01 + a1.02, nghỉ 0,3 s, tổng 11,1 s, không chuông, khớp mở đầu `ses.firstWalk`); `APP CoachPreviewPlayerTests` 3 passed (compositionIsTwoBundledLinesUnderTwelveSeconds: 1 track, 10–12 s; stopDeactivatesTheAudioSession: spy kích hoạt 1, trả 1; vietnameseResolvesViLines: `a1.01.vi.m4a`, `a1.02.vi.m4a`). `SessionAudioComposer.compose(bellURL: URL?)` chỉ thêm track chuông khi có chuông; `SessionAudioComposerTests` xanh. `grep -c UIBackgroundModes iOS/project.yml` không đổi (không sửa project.yml). Trạng thái `onboarding-plan-coach` chụp nút "Stop" + sóng âm khi đang phát. Nghe bằng tai trên máy thật: chưa (máy ảo không có loa trong phiên này).
 **Commit point:** `feat(onboarding): hear your coach preview`
 
 ### Task 2.12 — Paywall nói lại mục tiêu, thứ tự theo trở ngại [TDD]
 **Files:** Modify `PaywallModel.swift` (`init(... goal: Goal?, emphasis: [PaywallEmphasis])`; `benefits: [LocalizedStringResource]` 3 dòng: dòng đầu theo goal (steadier → "Balance sessions for steadier feet"; chairs → "Leg moves that grow with you"; lessPain → "Seated versions of every move"; energy/grandkids → "Walks that build up at your pace"; loseWeight → "Daily walks, chair moves and stretches"; notSure → mặc định); `layout: .timelineFirst/.default`), `PaywallView.swift` (`IncludedList(benefits:)`; `charged` → timeline ngay dưới tiêu đề), `CoverView.PaywallContainer` (truyền từ `app.profile`), `Snapshots.swift` (`ProfileSnapshot.goal`, `.barriers`), `AppCaptureScene.swift` · Test `PaywallModelTests.swift`
 **Steps:** 1. Test `firstBenefitFollowsTheGoal()`, `chargedPutsTheTimelineFirst()`, `benefitsNeverPromiseHealth()` (không "prevent", "fall", "pain relief"). 2. RED → implement. 3. `SHOT se3/promax paywall-eligible` (fixture goal steadier, barriers joints+charged).
 **Command:** `APP PaywallModelTests` → `** TEST SUCCEEDED **`; ảnh: dòng đầu "Balance sessions for steadier feet", timeline trên gói
-**Evidence:**
+**Evidence:** DONE — Paywall gọn theo `Paywall.dc.html`/`PaywallPlans.dc.html`: mặt HLV + "GOOD FOOTING PRO" + ✕ (= Maybe later), tiêu đề nói lại mục tiêu "Your 12 weeks to feel steadier, free for 14 days" (không dùng thử: bỏ vế sau), dòng thời gian 3 mốc không khung nối nét chấm ("First charge, unless you cancel"), chỉ Yearly chọn sẵn + "See other plans" mở tại chỗ "Pick what suits you" (Monthly "No free days", One payment "Yours to keep, no renewals") + "Fewer plans"; nút theo gói ("Subscribe for $7.99 a month", "Pay $79.99 once"); bỏ "Lowest monthly cost", danh sách ✓ lợi ích, FreePlanNote. Điều khoản dưới nút có giá, gia hạn và 24 giờ (3.1.2). RED: `extra argument 'goal' in call`. GREEN: `APP PaywallModelTests` 6 passed (buttonSaysWhatHappens, titleFollowsTheGoal, otherPlansOpenInPlace, disclosureNamesPriceAndRenewal, titlesNeverPromiseHealth, reminderIsTwoDaysBeforeBilling). Ảnh SE `after-m2/se3/paywall-{eligible,monthly,lifetime,not-eligible,lifetime-while-subscribed}.png`.
 **Commit point:** `feat(paywall): benefits echo her goal and barriers`
 
 ### Task 2.13 — Lưu hồ sơ và Me sửa được mục tiêu, cơ thể hai nhóm [DATA]
 **Files:** Modify `OnboardingFlow.finish` (goals 1 phần tử, `activityLevel`, limits = sore ∪ else), `MeSections.swift` (`BodySection` sheet: hai nhóm chip; mục "Your goal" với 7 lựa chọn, `updateProfile { $0.goals = [goal.rawValue] }`), `Snapshots.swift` · Test `OnboardingFlowTests.finishSavesSingleGoalAndActivity` (2.2), `AppFlowTests.changingTheGoalUpdatesTheSnapshot()`
 **Command:** `APP OnboardingFlowTests` + `APP AppFlowTests` → `** TEST SUCCEEDED **`
-**Evidence:**
+**Evidence:** DONE — `finish` lưu 1 mục tiêu + `activityLevel`; `ProfileSnapshot.goal`/`.barriers` (hồ sơ cũ 2 mục tiêu: lấy cái đầu); Me → "Your goal" (`GoalSection.swift`: icon + mục tiêu, "Change" mở `GoalEditor` danh sách sổ tay) và "Your body" sửa theo hai nhóm. `APP AppFlowTests.changingTheGoalUpdatesTheSnapshot` + `OnboardingFlowTests.finishSavesSingleGoalAndActivity` xanh.
 **Commit point:** `feat(me): change goal and body limits`
 
 ### Task 2.14 — Trạng thái chụp và fixture onboarding mới [DATA]
 **Files:** Modify `CaptureHook.swift` (bỏ `onboarding-understanding-joints`, `onboarding-understanding-charged`; thêm `onboarding-activity`, `onboarding-sore-spots`, `onboarding-anything-else`, `onboarding-plan-coach` (trạng thái "đang phát", nút "Stop")), `AppCaptureScene.swift` (seed answers: goal steadier, barriers joints+charged, name Margaret, activity shortWalks, chair hard, limits knees+noFloor+unsteady cho ảnh), `Fixtures/en-US.json` (`goals: ["steadier"]`), `CaptureHookTests.swift` (112 − 2 + 4 = **114**; `onboardingStatesParse`)
 **Command:** `APP CaptureHookTests` → `** TEST SUCCEEDED **`
-**Evidence:**
+**Evidence:** DONE — `CaptureHook`: bỏ `onboarding-understanding-joints`, `-charged` và `onboarding-body` (màn không còn), thêm `onboarding-activity`, `-sore-spots`, `-anything-else`, `-plan-coach`; count 112 − 3 + 4 = **113** (plan dự 114 vì chưa tính bỏ `onboarding-body`). Fixture `goals: ["steadier"]`; scene gieo goal steadier, barriers joints+charged, Margaret, shortWalks, chair hard, knees+noFloor+unsteady. `APP CaptureHookTests` 6 passed (thêm onboardingStatesParse). `capture_states.sh` nhận `CAPTURE_LANG`/`CAPTURE_LOCALE` (cho bản Việt, việc của 5.6 làm sớm).
 **Commit point:** `chore(debug): capture states for the new onboarding`
 
 ### Task 2.15 — Bộ ảnh onboarding 3 máy + bản Việt [UI]
 **Files:** `docs/design/research-2026-10-08/after/onboarding-{se3,i11,promax}.png` (bảng ghép bằng `tools/art` hoặc `montage`), `after/onboarding-vi-se3.png`
 **Steps:** `SIM-SE` → `SHOT se3 onboarding-welcome onboarding-goal onboarding-barriers onboarding-name onboarding-activity onboarding-strength onboarding-sore-spots onboarding-anything-else onboarding-plan onboarding-plan-coach paywall-eligible` ×(sáng, @dark, @xxl) → `SHOT-VI se3` cùng danh sách → xoá SE → `SIM-11` → lặp → xoá → Pro Max lặp. Xem từng ảnh: không "…", không cuộn ngang, Continue trong màn (trừ @xxl), bản Việt không vỡ dòng xấu (tiêu đề ≤ 2 dòng, ô lưới ≤ 2 dòng).
 **Command:** `ls docs/design/shots-2026-10/se3 | grep -c onboarding` → expected: ≥ 33
-**Evidence:**
+**Evidence:** DONE_WITH_CONCERNS — Chụp vào `docs/design/research-2026-10-08/after-m2/{se3,i11,promax}/` (git-ignore; mỗi máy 37 ảnh: 11 trạng thái × sáng/tối/XXL + 4 paywall phụ) và `after-m2/se3-vi/` (13 ảnh); máy tạm "GF SE3 (tmp)" rồi "GF 11 (tmp)" tạo/xoá lần lượt (`simctl list | grep -c (tmp)` → 0). Đã xem từng bảng ghép: SE sáng/tối mọi màn onboarding + paywall có Continue/nút chính trong màn, không "…", không cuộn ngang; XXL cuộn, nút ở cuối, ô HLV ẩn mặt để chữ có bề ngang; luống cây đúng bước (1 hạt → 7 hoa; Plan = 7). Sửa sau khi xem: nhãn goal dài làm "Not sure yet" lấp dưới nút trên SE → rút nhãn; Plan SE mất dòng why thứ 2 → giới hạn thành một dòng chữ thay 3 hàng chip, bỏ kicker; paywall SE "See other plans" bị che → hàng đầu gọn 40 pt (✕ đè lên), timeline sát hơn; thẻ gói tự xuống dòng giá khi tên không vừa 1 dòng (VI). Bản Việt sửa: "Bạn mong gì nhất?", "Còn điều gì khác?", "12 tuần để vững chân hơn", "Trừ tiền nếu chưa huỷ" để vừa SE. Concern: `paywall-monthly`/`-lifetime` bản Việt trên SE — thẻ thứ 3 nằm một phần dưới chân ghim (danh sách 3 gói, cuộn được; chân VI cao hơn vì "Để sau" xuống hàng riêng). Bảng ghép PNG trong `after/` chưa làm (ảnh rời đủ để duyệt).
 **Commit point:** `docs(design): onboarding screenshots after redesign`
 
 ### Task 2.16 — Chuyển động và trợ năng của khung [UI]
 **Files:** Modify `OnboardingStepScaffold.swift`, `OnboardingMotion.swift` (reply hiện ≤ 0,4 s; Reduce Motion chỉ fade; `WalkingPathProgress` chạy một lần; VoiceOver: `CoachSlot` `accessibilityAddTraits(.updatesFrequently)` tắt, đọc reply một lần qua `AccessibilityNotification.Announcement`)
 **Steps:** 1. Sửa. 2. Trên Pro Max: bật Reduce Motion (`xcrun simctl … accessibility`? không có → bật trong Settings của máy ảo) chụp `onboarding-goal`; bật VoiceOver thủ công một lần, ghi nhận đọc đúng.
 **Command:** ảnh Reduce Motion giống bố cục thường; ghi chú kiểm VoiceOver vào Evidence
-**Evidence:**
+**Evidence:** DONE — Ô HLV: chỉ fade 0,3 s (không trượt), cao cố định nên lưới không nhảy; `onChange` đọc câu đáp một lần bằng `AccessibilityNotification.Announcement` khi VoiceOver bật; cả ô `.accessibilityElement(children: .combine)`; icon, luống cây, ✓, gạch dạ quang `accessibilityHidden`; lựa chọn có trait `.isSelected`; nút chưa đủ điều kiện là nút disabled ghi lý do (VoiceOver đọc "Pick one to continue, dimmed"). Reduce Motion: chuyển màn chỉ fade (có từ trước), luống cây không animate, sóng âm đứng yên. Ảnh `after-m2/promax/onboarding-goal-reduce-motion.png` (bật `com.apple.Accessibility ReduceMotionEnabled` trên máy ảo) — bố cục giống hệt `onboarding-goal.png`. Chưa thử VoiceOver bằng tay trên máy (máy ảo không bật được VoiceOver qua simctl) — để 5.x / thử trên máy thật.
 **Commit point:** `feat(onboarding): motion and VoiceOver on the scaffold`
 
 ### Task 2.17 — Chuỗi EN + VI của onboarding [DATA]
 **Files:** Modify `iOS/App/Localizable.xcstrings`, `docs/i18n/source/ui.json`, `docs/i18n/vi/ui-extra-9.json`, `docs/i18n/glossary-vi.md` (Step n of 7 → "Bước n/7"; Sore spots → "Chỗ đau nhức"; Hear your coach → "Nghe HLV · 10 giây")
 **Steps:** `BUILD` → `EXTRACT` → dịch → `L10N`; chuỗi cũ không dùng (understanding, "Pick up to 2") để stale theo luật i18n.
 **Command:** `L10N` → `0 missing; 0 problems`, coverage 0, `0 findings`
-**Evidence:**
+**Evidence:** DONE — `BUILD` → `EXTRACT`: `ui.json 840` khoá; 96 khoá mới dịch vào **`docs/i18n/vi/ui-extra-11.json`** (theo glossary: "Bước %lld/%lld", "Chỗ đau nhức", "Nghe HLV"). `L10N`: `vi: 855 of 855 UI keys translated; 0 missing; 0 problems` · coverage `en/vi missing: 0 needs_review/new: 0` · `scan_literals` không chuỗi mới · `copy_lint` `0 findings` (`apply_catalog` gỡ 64 khoá cũ không còn trong code).
 **Commit point:** `feat(l10n): onboarding strings en and vi`
 
 ### Task 2.18 — Tài liệu onboarding: spec, Review Notes, app-context [DATA]
 **Files:** Modify `docs/design/gentle-walk-screen-spec.html` (S02–S07 theo bước mới; S04 bỏ; S06 hai màn; S16 hai màn; S10b ba màn), `docs/release/1.0/checklist.md` (Review Notes: "Every permission is optional; 'Not now' or 'Don't Allow' leaves the app fully usable. The coach preview on 'Your plan' plays two bundled lines of the first session."), `app-context.md` (decisions log, mục Engineering hooks: trạng thái mới)
 **Command:** `grep -c "Step n of 7\|Sore spots\|Anything else" docs/design/gentle-walk-screen-spec.html` → ≥ 3; `copy_lint` 0
-**Evidence:**
+**Evidence:** DONE — `gentle-walk-screen-spec.html`: mục Onboarding viết lại (Khung Step n of 7, S02, S03, S05a–c, S06a–b, S07, S08 paywall gọn; bỏ P1–P3 và S04), `grep -c "Step n of 7\|Sore spots\|Anything else"` → 7; `docs/release/1.0/checklist.md` Review Notes thêm 2 câu (quyền không bắt buộc; coach preview phát 2 câu đóng gói của buổi đầu); `app-context.md`: dòng duyệt kế hoạch + dòng onboarding xong, Engineering hooks (trạng thái mới, 113, `CAPTURE_LANG`). `copy_lint` 0. **Cuối milestone 2:** core `swift test` → `Test run with 238 tests in 47 suites passed` (233 → 238); app `xcodebuild test` → `** TEST SUCCEEDED **` `238 tests in 50 suites` (225/48 → 238/50); `L10N` sạch (vi 855/855, coverage 0, copy_lint 0).
 **Commit point:** `docs: onboarding redesign in spec and review notes`
 
 ### Milestone 3 — Icon + chống nhàm chán (placeholder, chi tiết theo `docs/design/research-2026-10-08/icon-va-chong-nham-chan.md`)

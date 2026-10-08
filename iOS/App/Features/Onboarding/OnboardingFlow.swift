@@ -3,11 +3,17 @@ import Observation
 import SwiftData
 import GentleWalkCore
 
-/// Onboarding screens in order: S01, S02, S03, S04, S05a, S05b, S05c, S06, S07, then the paywall S08.
-/// Owner 01/10/2026: the three part intros (P1–P3) are gone (a picture and a part name, one more
-/// tap each), S04 leads into part 2 itself, and the stairs question went (nothing used the answer).
+/// Onboarding screens in order (plan 08/10/2026 task 2.2): Welcome, seven questions, Your plan, then the
+/// paywall. "You're not alone" went (its line is now the coach's reply on the barriers step) and the
+/// body question became two screens: sore spots, then everything else.
 enum OnboardingStep: Int, CaseIterable, Sendable {
-    case welcome, goal, barriers, understanding, name, activity, chair, body, plan, paywall
+    case welcome, goal, barriers, name, activity, chair, soreSpots, anythingElse, plan, paywall
+
+    /// The seven questions, in order.
+    static let questions: [OnboardingStep] = [.goal, .barriers, .name, .activity, .chair, .soreSpots, .anythingElse]
+
+    /// 1...7 for the questions ("Step 3 of 7"), nil for Welcome, the plan and the paywall.
+    var questionNumber: Int? { Self.questions.firstIndex(of: self).map { $0 + 1 } }
 }
 
 /// S07 "What's a good moment for your daily walk?" with its suggested time.
@@ -26,37 +32,38 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
     }
 }
 
-/// Onboarding state (task 5.1): step order, answers, validation hints and saving the profile.
+/// Onboarding state (task 5.1; plan 08/10/2026 tasks 2.1–2.2): step order, answers, the coach's hint and
+/// reply on each step, and saving the profile.
 @Observable @MainActor final class OnboardingFlow {
     private(set) var step: OnboardingStep = .welcome
-    var answers = OnboardingAnswers(goals: [], barriers: [], name: nil, activity: nil, stairs: nil, chair: nil, limits: []) {
-        didSet { hint = nil }
-    }
+    var answers = OnboardingAnswers(goals: [], barriers: [], name: nil, activity: nil, stairs: nil, chair: nil, limits: [])
     var nameText = ""
     /// The reminder starts "after my morning coffee"; she picks the moment on S16, where the
     /// reminder is asked for (owner 01/10/2026: Your plan was a screen and a half long).
     let moment: DailyMoment = .coffee
     let reminderMinutes = DailyMoment.coffee.suggestedMinutes
-    private(set) var hint: String?
-    private(set) var noLimitsChosen = false
+    /// "None of these" on Sore spots and on Anything else, each on its own screen.
+    private(set) var noSoreSpots = false
+    private(set) var noOtherLimits = false
+    /// The last body limit tapped on: the coach answers that one.
+    private(set) var lastLimit: BodyLimit?
 
-    static let maxGoals = 2
+    /// One main goal (owner 08/10/2026).
+    static let maxGoals = 1
 
-    /// "Part 2 of 3 · About you"; nil outside the three parts.
-    var progressLabel: String? {
-        switch step {
-        case .goal, .barriers, .understanding: String(localized: "Part 1 of 3 · Your goal")
-        case .name, .activity, .chair: String(localized: "Part 2 of 3 · About you")
-        case .body: String(localized: "Part 3 of 3 · Your body")
-        case .welcome, .plan, .paywall: nil
-        }
+    /// "Step 3 of 7" on the questions; nil on Welcome and Your plan.
+    var stepLabel: String? {
+        step.questionNumber.map { String(localized: "Step \($0) of \(OnboardingStep.questions.count)") }
     }
 
-    /// The thin bar under the header: never 0 on the first question (goal gradient, review M6,
-    /// 02/10/2026), full on the plan.
-    var progress: Double {
-        min(1, Double(step.rawValue) / Double(OnboardingStep.plan.rawValue))
+    /// Plants grown in the header's garden: the question number, all seven on Your plan.
+    var gardenStep: Int {
+        step.questionNumber ?? (step.rawValue >= OnboardingStep.plan.rawValue ? OnboardingStep.questions.count : 0)
     }
+
+    /// The garden as a share: never 0 on the first question (goal gradient, review M6, 02/10/2026),
+    /// full on the plan.
+    var progress: Double { Double(gardenStep) / Double(OnboardingStep.questions.count) }
 
     var profile: OnboardingProfile {
         var answers = answers
@@ -64,19 +71,25 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
         return OnboardingProfile.make(answers: answers)
     }
 
-    /// Continue: checks the one required answer on this screen, then moves on.
-    func next() {
-        if let missing = missingAnswerHint {
-            hint = missing
-            return
+    /// Why Continue can't go on yet ("Pick one to continue"): the button says it instead of fading
+    /// (control states, owner 08/10/2026). Nil when Continue works.
+    var continueBlockedReason: String? {
+        switch step {
+        case .goal where answers.goals.isEmpty,
+             .activity where answers.activity == nil,
+             .chair where answers.chair == nil: String(localized: "Pick one to continue")
+        default: nil
         }
-        hint = nil
+    }
+
+    /// Continue: moves on once this screen has the answer it needs.
+    func next() {
+        guard continueBlockedReason == nil else { return }
         movedForward = true
         if let next = OnboardingStep(rawValue: step.rawValue + 1) { step = next }
     }
 
     func back() {
-        hint = nil
         movedForward = false
         if let previous = OnboardingStep(rawValue: step.rawValue - 1) { step = previous }
     }
@@ -86,30 +99,15 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
 
     /// Screenshots and tests.
     func jump(to step: OnboardingStep) {
-        hint = nil
         self.step = step
     }
 
-    /// A third goal was tapped: "You can pick 2. Tap one to change it."
-    private(set) var showsGoalLimit = false
-
-    func toggleGoal(_ goal: Goal) {
-        showsGoalLimit = false
-        if let index = answers.goals.firstIndex(of: goal) {
-            answers.goals.remove(at: index)
-        } else if goal == .notSure {
-            // "Not sure yet" stands alone, like "None of these" on the body screen.
-            answers.goals = [.notSure]
-        } else if answers.goals.contains(.notSure) {
-            answers.goals = [goal]
-        } else if answers.goals.count < Self.maxGoals {
-            answers.goals.append(goal)
-        } else {
-            showsGoalLimit = true
-        }
+    /// One goal: the new pick replaces the old one; tapping the chosen goal keeps it.
+    func chooseGoal(_ goal: Goal) {
+        answers.goals = [goal]
     }
 
-    /// Keeps tap order: the first barrier picks the S04 screen.
+    /// Keeps tap order: the first barrier picks the coach's reply and the "why" lines.
     func toggleBarrier(_ barrier: Barrier) {
         if let index = answers.barriers.firstIndex(of: barrier) {
             answers.barriers.remove(at: index)
@@ -119,14 +117,59 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
     }
 
     func toggleLimit(_ limit: BodyLimit) {
-        noLimitsChosen = false
-        if answers.limits.contains(limit) { answers.limits.remove(limit) } else { answers.limits.insert(limit) }
+        if BodyLimitChips.soreSpots.contains(limit) { noSoreSpots = false } else { noOtherLimits = false }
+        if answers.limits.contains(limit) {
+            answers.limits.remove(limit)
+            if lastLimit == limit { lastLimit = nil }
+        } else {
+            answers.limits.insert(limit)
+            lastLimit = limit
+        }
     }
 
-    /// "None of these".
-    func chooseNoLimits() {
-        answers.limits = []
-        noLimitsChosen = true
+    /// "None of these" on Sore spots: clears the sore spots only.
+    func chooseNoSoreSpots() {
+        answers.limits.subtract(BodyLimitChips.soreSpots)
+        noSoreSpots = true
+        if let last = lastLimit, BodyLimitChips.soreSpots.contains(last) { lastLimit = nil }
+    }
+
+    /// "None of these" on Anything else: clears the everyday limits only.
+    func chooseNoOtherLimits() {
+        answers.limits.subtract(BodyLimitChips.everyday)
+        noOtherLimits = true
+        if let last = lastLimit, BodyLimitChips.everyday.contains(last) { lastLimit = nil }
+    }
+
+    /// What the coach says in the fixed slot on this step: a hint before she answers, then a short
+    /// reply to her answer (the old "You're not alone" screen became the barriers reply).
+    var coachLine: CoachLine? {
+        switch step {
+        case .goal:
+            answers.goals.first.map { .reply(OnboardingCopy.reply($0)) } ?? .hint(OnboardingCopy.hint(.goal))
+        case .barriers:
+            answers.barriers.first.map { .reply(OnboardingCopy.reply($0)) } ?? .hint(OnboardingCopy.hint(.barriers))
+        case .name:
+            trimmedName.map { .reply("Nice to meet you, \($0).") } ?? .hint(OnboardingCopy.hint(.name))
+        case .activity:
+            answers.activity.map { .reply(OnboardingCopy.reply($0)) } ?? .hint(OnboardingCopy.hint(.activity))
+        case .chair:
+            answers.chair == nil ? .hint(OnboardingCopy.hint(.chair)) : .reply(OnboardingCopy.chairReply)
+        case .soreSpots:
+            if let last = lastLimit, BodyLimitChips.soreSpots.contains(last) { .reply(OnboardingCopy.reply(last)) }
+            else if noSoreSpots { .reply(OnboardingCopy.noSoreSpotsReply) }
+            else { .hint(OnboardingCopy.hint(.soreSpots)) }
+        case .anythingElse:
+            if let last = lastLimit, BodyLimitChips.everyday.contains(last) { .reply(OnboardingCopy.reply(last)) }
+            else if noOtherLimits { .reply(OnboardingCopy.noOtherLimitsReply) }
+            else { .hint(OnboardingCopy.hint(.anythingElse)) }
+        case .welcome, .plan, .paywall: nil
+        }
+    }
+
+    private var trimmedName: String? {
+        let name = nameText.trimmingCharacters(in: .whitespacesAndNewlines)
+        return name.isEmpty ? nil : name
     }
 
     /// Saves the answers as the one `UserProfile` (free tier rest days: Saturday and Sunday).
@@ -136,7 +179,8 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
         let existing = try context.fetch(FetchDescriptor<UserProfile>())
         existing.forEach(context.delete)
         let saved = UserProfile(
-            name: profile.displayName, goals: answers.goals.map(\.rawValue), barriers: answers.barriers.map(\.rawValue),
+            name: profile.displayName, goals: answers.goals.prefix(Self.maxGoals).map(\.rawValue),
+            barriers: answers.barriers.map(\.rawValue),
             activityLevel: answers.activity?.rawValue ?? "", stairsAnswer: answers.stairs?.rawValue ?? "",
             chairAnswer: answers.chair?.rawValue ?? "",
             bodyLimits: OnboardingCopy.limitOrder.filter(answers.limits.contains).map(\.rawValue),
@@ -146,14 +190,23 @@ enum DailyMoment: String, CaseIterable, Identifiable, Sendable {
         try context.save()
         return saved
     }
+}
 
-    private var missingAnswerHint: String? {
-        switch step {
-        case .goal where answers.goals.isEmpty: String(localized: "Pick at least one.")
-        case .activity where answers.activity == nil,
-             .chair where answers.chair == nil: String(localized: "Pick one to continue.")
-        default: nil
+/// The coach's slot on a question: a quiet hint before she answers, her face and a reply after.
+enum CoachLine: Equatable {
+    case hint(LocalizedStringResource)
+    case reply(LocalizedStringResource)
+
+    var text: LocalizedStringResource {
+        switch self {
+        case .hint(let text), .reply(let text): text
         }
+    }
+
+    var isReply: Bool { if case .reply = self { true } else { false } }
+
+    static func == (lhs: CoachLine, rhs: CoachLine) -> Bool {
+        lhs.isReply == rhs.isReply && String(localized: lhs.text) == String(localized: rhs.text)
     }
 }
 

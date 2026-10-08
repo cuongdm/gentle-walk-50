@@ -34,9 +34,10 @@ struct AppCaptureScene: View {
 
     @ViewBuilder private func scene(_ app: AppModel) -> some View {
         switch state {
-        case .onboardingWelcome, .onboardingGoal, .onboardingBarriers, .onboardingUnderstandingJoints,
-             .onboardingUnderstandingCharged, .onboardingName, .onboardingStrength, .onboardingBody, .onboardingPlan:
-            OnboardingView(flow: app.onboarding, onRestore: {}, onFinished: {})
+        case .onboardingWelcome, .onboardingGoal, .onboardingBarriers, .onboardingName, .onboardingActivity,
+             .onboardingStrength, .onboardingSoreSpots, .onboardingAnythingElse, .onboardingPlan, .onboardingPlanCoach:
+            OnboardingView(flow: app.onboarding, voiceSource: app.voiceSource, voiceLines: app.content.voiceLines,
+                           playsCoachOnAppear: state == .onboardingPlanCoach, onRestore: {}, onFinished: {})
         case .paywallEligible, .paywallMonthly, .paywallLifetime, .paywallNotEligible, .paywallLifetimeWhileSubscribed:
             PaywallView(model: paywallModel, onPurchase: { _ in }, onRestore: {}, onMaybeLater: {})
         case .permissionsReminder, .permissionsHealth, .permissionsHealthGranted:
@@ -86,11 +87,17 @@ struct AppCaptureScene: View {
     }
 
     private var paywallModel: PaywallModel {
+        // Margaret's goal from the fixture: "Feel steadier on my feet".
         let model = PaywallModel(options: AppModel.capturePlanOptions, isEligibleForTrial: state != .paywallNotEligible,
-                                 activeRenewingProductID: state == .paywallLifetimeWhileSubscribed ? ProductID.yearly : nil)
+                                 activeRenewingProductID: state == .paywallLifetimeWhileSubscribed ? ProductID.yearly : nil,
+                                 goal: .steadier)
         switch state {
-        case .paywallMonthly: model.selectedID = ProductID.monthly
-        case .paywallLifetime, .paywallLifetimeWhileSubscribed: model.selectedID = ProductID.lifetime
+        case .paywallMonthly:
+            model.showsAllPlans = true
+            model.selectedID = ProductID.monthly
+        case .paywallLifetime, .paywallLifetimeWhileSubscribed:
+            model.showsAllPlans = true
+            model.selectedID = ProductID.lifetime
         default: break
         }
         return model
@@ -207,35 +214,42 @@ struct AppCaptureScene: View {
             app.favourites.toggle("walk.long")
             app.favourites.toggle("extra.balance")
         case .onboardingWelcome: app.onboarding.jump(to: .welcome)
+        // One answer per question for the screenshots (task 2.14): goal steadier, barriers joints then
+        // charged, Margaret, short walks, chair hard, knees + floor + unsteady.
         case .onboardingGoal:
-            app.onboarding.toggleGoal(.steadier)
+            app.onboarding.chooseGoal(.steadier)
             app.onboarding.jump(to: .goal)
         case .onboardingBarriers:
             app.onboarding.toggleBarrier(.joints)
             app.onboarding.toggleBarrier(.charged)
             app.onboarding.jump(to: .barriers)
-        case .onboardingUnderstandingJoints:
-            app.onboarding.toggleBarrier(.joints)
-            app.onboarding.jump(to: .understanding)
-        case .onboardingUnderstandingCharged:
-            app.onboarding.toggleBarrier(.charged)
-            app.onboarding.jump(to: .understanding)
         case .onboardingName:
             app.onboarding.nameText = "Margaret"
             app.onboarding.jump(to: .name)
+        case .onboardingActivity:
+            app.onboarding.answers.activity = .shortWalks
+            app.onboarding.jump(to: .activity)
         case .onboardingStrength:
             app.onboarding.answers.chair = .hard
             app.onboarding.jump(to: .chair)
-        case .onboardingBody:
+        case .onboardingSoreSpots:
+            app.onboarding.toggleLimit(.knees)
+            app.onboarding.jump(to: .soreSpots)
+        case .onboardingAnythingElse:
             app.onboarding.toggleLimit(.knees)
             app.onboarding.toggleLimit(.noFloor)
-            app.onboarding.jump(to: .body)
-        case .onboardingPlan:
+            app.onboarding.toggleLimit(.unsteady)
+            app.onboarding.jump(to: .anythingElse)
+        case .onboardingPlan, .onboardingPlanCoach:
+            app.onboarding.chooseGoal(.steadier)
             app.onboarding.nameText = "Margaret"
-            app.onboarding.toggleBarrier(.tooFast)
+            app.onboarding.toggleBarrier(.joints)
             app.onboarding.toggleBarrier(.charged)
+            app.onboarding.answers.activity = .shortWalks
+            app.onboarding.answers.chair = .hard
             app.onboarding.toggleLimit(.knees)
             app.onboarding.toggleLimit(.noFloor)
+            app.onboarding.toggleLimit(.unsteady)
             app.onboarding.jump(to: .plan)
         case .journey, .lockedStop: app.tab = .journey
         case .whereNext: app.tab = .journey

@@ -84,7 +84,7 @@ extension AppModel {
 
     /// Plan cards filled from the local StoreKit file's test prices.
     static let capturePlanOptions = [
-        PlanOption(id: ProductID.yearly, kind: .yearly, price: "$39.99", monthlyEquivalent: String(localized: "\("$3.33") a month"), isLowestMonthly: true),
+        PlanOption(id: ProductID.yearly, kind: .yearly, price: "$39.99", monthlyEquivalent: String(localized: "\("$3.33") a month")),
         PlanOption(id: ProductID.monthly, kind: .monthly, price: "$7.99"),
         PlanOption(id: ProductID.lifetime, kind: .lifetime, price: "$79.99"),
     ]

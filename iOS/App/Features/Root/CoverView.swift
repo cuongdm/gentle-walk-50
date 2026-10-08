@@ -111,7 +111,8 @@ struct PaywallContainer: View {
             if app.store.products.isEmpty { try? await app.store.loadProducts() }
             model = PaywallModel(options: PaywallModel.options(from: app.store.products),
                                  isEligibleForTrial: app.store.isEligibleForTrial,
-                                 activeRenewingProductID: app.store.activeRenewingProductID, now: app.now(), calendar: app.calendar)
+                                 activeRenewingProductID: app.store.activeRenewingProductID, goal: app.profile?.goal ?? .notSure,
+                                 now: app.now(), calendar: app.calendar)
         }
     }
 }

@@ -66,12 +66,11 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   <a href="#words">Ngôn từ</a>
   <p>Onboarding</p>
   <a href="#s01"><code>S01</code>Welcome</a>
-  <a href="#parts"><code>P1–3</code>Màn chuyển phần</a>
-  <a href="#s02"><code>S02</code>Your goal</a>
-  <a href="#s03"><code>S03</code>What's made it hard</a>
-  <a href="#s04"><code>S04</code>You're not alone</a>
+  <a href="#frame"><code>Khung</code>Step n of 7</a>
+  <a href="#s02"><code>S02</code>What matters most?</a>
+  <a href="#s03"><code>S03</code>What got in the way</a>
   <a href="#s05"><code>S05</code>About you</a>
-  <a href="#s06"><code>S06</code>Your body</a>
+  <a href="#s06"><code>S06</code>Sore spots · Anything else</a>
   <a href="#s07"><code>S07</code>Your plan</a>
   <a href="#s08"><code>S08</code>Paywall</a>
   <p>Buổi tập</p>
@@ -162,7 +161,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <section id="flow">
 <h2>Luồng màn hình</h2>
 <p><b>Lần đầu mở app</b></p>
-<div class="flow"><span>S01</span><i>→</i><span>P1</span><i>→</i><span>S02</span><i>→</i><span>S03</span><i>→</i><span>S04</span><i>→</i><span>P2</span><i>→</i><span>S05a–c</span><i>→</i><span>P3</span><i>→</i><span>S06</span><i>→</i><span>S07</span><i>→</i><span>S08 Paywall</span><i>→</i><span>S09</span><i>→</i><span>S11 First Walk</span><i>→</i><span>S15</span><i>→</i><span>S16</span><i>→</i><span>S17 Today</span></div>
+<div class="flow"><span>S01</span><i>→</i><span>S02</span><i>→</i><span>S03</span><i>→</i><span>S05a–c</span><i>→</i><span>S06a–b</span><i>→</i><span>S07</span><i>→</i><span>S08 Paywall</span><i>→</i><span>S09</span><i>→</i><span>S11 First Walk</span><i>→</i><span>S15</span><i>→</i><span>S16</span><i>→</i><span>S17 Today</span></div>
 <p class="meta">Bấm "Maybe later" ở S08 vẫn đi thẳng vào First Walk bản miễn phí. Không bao giờ rơi vào Home trống.</p>
 <p><b>Mỗi ngày sau đó</b> (loại buổi theo tuần mẫu: đi bộ · động tác ghế · giãn cơ, xem S07)</p>
 <div class="flow"><span>S17 Today + check-in</span><i>→</i><span>S10 Preview</span><i>→</i><span>S11 Walk</span><i>→</i><span>S12 Chair moves</span><i>→</i><span>S12b Stretch (hạ nhiệt)</span><i>→</i><span>S15 Complete</span><i>→</i><span>S18 Journey</span></div>
@@ -242,13 +241,15 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </section>
 
 <h2>Onboarding</h2>
-<p class="lede">Mỗi màn một câu hỏi. Thanh tiến trình trên cùng ghi phần và bước bằng chữ, ví dụ <q>Part 2 of 3 · About you</q>. Nút <q>Back</q> góc trái có chữ. Tổng khoảng 13–14 màn.</p>
-<div class="screen" id="parts">
-<div class="screen-head"><span class="id">P1–P3</span><h3>Màn chuyển phần</h3></div>
-<div class="tags"><span class="tag">Mới · học từ LazyFit</span></div>
+<p class="lede">Đổi 08/10/2026 (docs/plans/2026-10-08-ui-onboarding-personalization.md, milestone 2, theo Claude Design): Welcome · 7 câu hỏi · Your plan · Paywall. Bỏ màn chuyển phần và màn <q>You're not alone</q> (S04); câu thấu hiểu thành câu HLV đáp ở S03. Màn cơ thể tách hai: Sore spots và Anything else.</p>
+<div class="screen" id="frame">
+<div class="screen-head"><span class="id">Khung</span><h3>Step n of 7</h3></div>
 <ol>
-  <li>Ba màn ngắn trước mỗi phần: <q>Part 1 · Your goal</q> (trước S02) · <q>Part 2 · About you</q> (trước S05) · <q>Part 3 · Your body</q> (trước S06).</li>
-  <li>Mỗi màn: tranh nhỏ, tên phần, một dòng <q>A few quick questions. About a minute.</q> · nút <q>Continue</q>. Không tự chuyển.</li>
+  <li>Một hàng: <q>Back</q> có chữ · <b>luống cây 7 ô</b> (hạt → mầm → lá → bụi → nụ → hoa nhỏ → hoa; ô đã qua là cây xanh, ô hiện tại to hơn trên quầng ochre, ô chưa tới là ụ đất) · <q>Step n of 7</q>.</li>
+  <li>Tiêu đề ≤ 8 chữ · <b>ô HLV cố định 2 dòng</b>: gợi ý xám trước khi chọn, sau khi chọn là mặt HLV + câu đáp ≤ 14 chữ; nội dung dưới không dịch chuyển; VoiceOver đọc câu đáp một lần.</li>
+  <li>Lựa chọn dạng <b>trang sổ tay</b> (dòng ngăn nét đứt, icon trong vệt màu nước bên trái, chữ 19 pt) hoặc thẻ cơ thể 2 cột 62 pt có icon vẽ riêng hai màu.</li>
+  <li>Đã chọn: nền ochre + viền 3 pt + chữ đậm + gạch dạ quang + ✓ tròn đặc, không chỉ dựa vào màu. Chưa trả lời câu bắt buộc: nút viền đứt ghi <q>Pick one to continue</q>.</li>
+  <li><q>Continue</q> ghim ở đáy (cỡ trợ năng: cuộn, nút ở cuối). Mọi màn vừa iPhone SE ở cỡ chữ mặc định.</li>
 </ol>
 </div>
 
@@ -265,105 +266,68 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </div>
 
 <div class="screen" id="s02">
-<div class="screen-head"><span class="id">S02</span><h3>Your goal</h3></div>
+<div class="screen-head"><span class="id">S02</span><h3>What matters most?</h3></div>
 <ol>
-  <li>Tiêu đề: <q>What would you like to feel?</q> · phụ: <q>Pick up to 2.</q></li>
-  <li>Danh sách thẻ dọc, mỗi thẻ có icon nét đơn và chữ, chọn thì viền đậm và dấu tick:
-    <q>Move with less pain</q> · <q>Feel steadier on my feet</q> · <q>Lose some weight</q> · <q>Have more energy</q> · <q>Get up from chairs more easily</q> · <q>Keep up with the grandkids</q></li>
-  <li>Nút chính <q>Continue</q>, mờ nhẹ khi chưa chọn nhưng vẫn bấm được và nhắc <q>Pick at least one.</q></li>
+  <li>Step 1 of 7 · chọn <b>một</b> mục tiêu chính · gợi ý <q>Pick one. You can change it later in Me.</q></li>
+  <li><q>Move with less pain</q> · <q>Feel steadier on my feet</q> · <q>Get up from chairs easily</q> · <q>Have more energy</q> · <q>Keep up with the grandkids</q> · <q>Lose some weight</q> · <q>Not sure yet, just start</q></li>
+  <li>Câu đáp ví dụ: <q>Steadier it is. Balance moves keep a chair beside you.</q> Mục tiêu nói lại ở Your plan, paywall và Me (đổi được).</li>
 </ol>
 </div>
 
 <div class="screen" id="s03">
-<div class="screen-head"><span class="id">S03</span><h3>What's made it hard before?</h3></div>
+<div class="screen-head"><span class="id">S03</span><h3>What got in the way before?</h3></div>
 <ol>
-  <li>Tiêu đề: <q>What's made it hard before?</q> · phụ: <q>Pick any that fit. No judgment.</q></li>
-  <li>Thẻ chọn nhiều: <q>My joints hurt</q> · <q>Videos go too fast</q> · <q>I'm busy looking after others</q> · <q>I got bored after a few weeks</q> · <q>I was charged when I didn't expect it</q> · <q>I'm not sure where to start</q></li>
-  <li>Nút chính <q>Continue</q></li>
+  <li>Step 2 of 7 · chọn nhiều · gợi ý <q>Pick any that fit. No judgment.</q></li>
+  <li><q>My joints hurt</q> · <q>Videos go too fast</q> · <q>No time for me</q> · <q>I got bored</q> · <q>Surprise charges</q> · <q>Didn't know where to start</q></li>
+  <li>HLV đáp theo lựa chọn đầu (thay màn S04 cũ), ví dụ <q>We'll always show the date before any charge.</q>; hai dòng "why" ở S07 theo lựa chọn.</li>
 </ol>
-<p class="meta">Câu trả lời ở đây quyết định câu chữ ở S04, S07 và thông báo tuần đầu.</p>
-</div>
-
-<div class="screen" id="s04">
-<div class="screen-head"><span class="id">S04</span><h3>You're not alone</h3></div>
-<div class="tags"><span class="tag">Màn thấu hiểu, không có câu hỏi</span></div>
-<ol>
-  <li>Tranh nhỏ: hai tay cầm cốc trà.</li>
-  <li>Tiêu đề thay theo lựa chọn đầu tiên ở S03. Ví dụ với <q>My joints hurt</q>: <q>Sore knees don't mean you can't move.</q></li>
-  <li>Đoạn 2 dòng: <q>Every move here starts seated. If something hurts, one tap swaps it for an easier one.</q></li>
-  <li>Với <q>I was charged…</q>: <q>We'll always show the exact date before you're billed. Canceling takes one tap.</q></li>
-  <li>Nút chính <q>Continue</q>. Không tự chuyển màn.</li>
-</ol>
-<div class="note"><b>Không</b> dùng số liệu kiểu "9 out of 10 women…". Chưa có số thật.</div>
 </div>
 
 <div class="screen" id="s05">
 <div class="screen-head"><span class="id">S05</span><h3>About you</h3></div>
-<p>Tách thành hai màn nhỏ, một câu mỗi màn.</p>
-<h4>S05a · Name</h4>
-<ol>
-  <li>Tiêu đề: <q>What should we call you?</q> · ô nhập lớn, placeholder <q>Margaret</q></li>
-  <li>Nút chính <q>Continue</q> · link <q>Skip</q></li>
-</ol>
-<h4>S05b · How active are you now?</h4>
-<ol>
-  <li>Bốn thẻ, chọn một: <q>I mostly sit</q> · <q>Short walks sometimes</q> · <q>I walk most days</q> · <q>I exercise regularly</q></li>
-</ol>
-<h4>S05c · Everyday strength (mới)</h4>
-<ol>
-  <li>Màn 1: <q>How do you feel after one flight of stairs?</q> · <q>Too out of breath to talk</q> · <q>A little tired, but I can talk</q> · <q>Fine</q> · <q>I can do several flights</q></li>
-  <li>Màn 2: <q>Getting up from a chair without using your hands is…</q> · <q>Not possible right now</q> · <q>Hard, but I can</q> · <q>Easy</q></li>
-  <li>Sau khi chọn: dòng <q>Noted. We'll check back later so you can see the change.</q> Không điểm số, không so với người khác.</li>
-</ol>
-<p class="meta">S05b và S05c chọn cấp khởi đầu và làm mốc nền cho Everyday wins, sau này cho Fitness Check. Bỏ câu hỏi cầu thang cũ ở S05b vì đã có ở S05c.</p>
+<h4>S05a · What should we call you? (Step 3)</h4>
+<ol><li>Ô nhập, gợi ý <q>Only to say hello. It stays on this phone.</q>, đáp <q>Nice to meet you, Margaret.</q>; <q>Skip</q> dưới Continue.</li></ol>
+<h4>S05b · How active are you now? (Step 4, giữ và dùng)</h4>
+<ol><li><q>I mostly sit</q> · <q>Short walks sometimes</q> · <q>I walk most days</q> · <q>I exercise regularly</q> (thang, không icon). <q>I mostly sit</q> → khởi đầu Gentle và ngắn hơn 2 tuần đầu.</li></ol>
+<h4>S05c · Standing up without your hands is… (Step 5)</h4>
+<ol><li><q>Not possible right now</q> · <q>Hard, but I can</q> · <q>Easy</q>. Đáp <q>Noted. We'll start you somewhere comfortable.</q> Không điểm số.</li></ol>
 </div>
 
 <div class="screen" id="s06">
-<div class="screen-head"><span class="id">S06</span><h3>Your body</h3></div>
-<div class="tags"><span class="tag p">Trụ 2 · bản ngồi</span><span class="tag">Màn quan trọng nhất của onboarding</span></div>
+<div class="screen-head"><span class="id">S06</span><h3>Sore spots · Anything else</h3></div>
+<div class="tags"><span class="tag p">Trụ 2 · bản ngồi</span></div>
+<h4>S06a · Any sore spots? (Step 6)</h4>
+<ol><li>Thẻ 2 cột có hình người tô vùng: <q>Knees</q> · <q>Hips</q> · <q>Lower back</q> · <q>Shoulders</q> · <q>Joint replacement</q> · <q>None of these</q> (viền đứt, không icon).</li></ol>
+<h4>S06b · Anything else we should know? (Step 7)</h4>
 <ol>
-  <li>Tiêu đề: <q>Anything we should go easy on?</q> · phụ: <q>We'll only show moves that fit.</q></li>
-  <li>Hình cơ thể nhỏ chỉ để minh hoạ, không bấm được. Cách chọn chính là danh sách chip lớn:
-    <q>Knees</q> · <q>Hips</q> · <q>Lower back</q> · <q>Shoulders</q> · <q>I can't get down on the floor</q> · <q>Standing for long is hard</q> · <q>I get dizzy easily</q> · <q>Joint replacement</q> · <q>No jumping</q> · <q>None of these</q></li>
-  <li>Hộp lưu ý nền nhạt: <q>If you have a heart condition, recent surgery or you've been told to limit exercise, check with your doctor first.</q></li>
-  <li>Nút chính <q>Continue</q></li>
+  <li><q>Floor is hard</q> · <q>Standing tires me</q> · <q>I get dizzy</q> · <q>Unsteady on my feet</q> · <q>No jumping</q> · <q>None of these</q>.</li>
+  <li>Câu bác sĩ ghim ngay trên Continue: <q>If you have a heart condition, recent surgery, a fall or fainting in the past year, or you've been told to limit exercise, check with your doctor first.</q></li>
 </ol>
 </div>
 
 <div class="screen" id="s07">
-<div class="screen-head"><span class="id">S07</span><h3>Your plan is ready</h3></div>
+<div class="screen-head"><span class="id">S07</span><h3>Your plan</h3></div>
 <ol>
-  <li>Tiêu đề: <q>Your plan, Margaret</q></li>
-  <li>Thẻ plan: <q>5–10 min a day · 2 rest days a week</q> (bản miễn phí: ngày nghỉ cố định Thứ bảy + Chủ nhật, không đổi được) · <q>Starting level: Seated</q> · dòng nhỏ <q>Walks, chair moves and gentle stretches, in turn.</q></li>
-  <li>Hàng tuần mẫu, bảy ô nhỏ có icon và chữ một từ: <q>Walk</q> · <q>Stretch</q> · <q>Walk</q> · <q>Chair</q> · <q>Walk</q> · <q>Rest</q> · <q>Rest</q>. Người dùng chưa chọn được ngày nghỉ ở đây (chọn ở S20). Bản miễn phí: hàng này ẩn.</li>
-  <li>Dòng nhắc lại giới hạn đã chọn, dạng chip xám: <q>Easy on knees</q> · <q>No floor moves</q></li>
-  <li>Khối <q>Why this will work for you</q> với 2–3 dòng nối với S03. Ví dụ: <q>Videos went too fast? Here a calm voice sets the pace, and you can pause anytime.</q></li>
-  <li>Hành trình đầu tiên: bản đồ mini <q>Your first journey: Central Park to Brooklyn Bridge</q> · dòng nhỏ <q>Every walk in the app moves you along.</q></li>
-  <li>Thẻ <q>Your Day 1</q> cụ thể: <q>First walk · 5 min · seated</q> gồm <q>Warm-up march · 2 min</q> · <q>Easy intervals · 2 min</q> · <q>Cool-down · 1 min</q>.</li>
-  <li>Câu hỏi <q>When would you like to start?</q> · ba nút <q>Right now</q> (chọn sẵn) · <q>Tomorrow</q> · <q>Pick a time</q>.</li>
-  <li>Câu hỏi mốc sinh hoạt: <q>What's a good moment for your daily walk?</q> · <q>After my morning coffee</q> · <q>After lunch</q> · <q>During evening TV</q> · <q>Pick a time</q>. Mỗi mốc có giờ gợi ý sửa được (8:30 AM, 1:00 PM, 7:00 PM). Nhắc tập dùng mốc này.</li>
-  <li>Nút chính <q>See my options</q></li>
+  <li><q>Your plan, Margaret</q> · dòng mục tiêu, ví dụ <q>For steadier feet, at your own pace.</q></li>
+  <li>Thẻ: <q>12 weeks</q> · <q>5–10 min a day</q> · tuần 7 ô (đi bộ T2–T6, nghỉ T7–CN) · <q>Starts Seated · Easy on knees · No floor moves</q>.</li>
+  <li>Thẻ <q>Day 1</q>: <q>Your first walk · 5 min</q> · <q>Seated · march in your chair</q> · nút <q>Hear your coach · 10 s</q> phát thật hai câu đầu của First Walk (a1.01 + a1.02, EN/VI) → <q>Stop</q> → <q>Play again</q>.</li>
+  <li>Hai dòng ✓ "why" (không thẻ) · nút ghim <q>See my options</q>.</li>
 </ol>
-<p class="meta">Chọn <q>Tomorrow</q> hoặc giờ khác: sau paywall vẫn cho làm First Walk ngay nếu muốn, và lời nhắc gắn với giờ đã chọn. Quyền thông báo vẫn xin sau buổi tập đầu (S16).</p>
-<div class="note"><b>Không</b> có màn "Creating your plan 98%" giả lập, không dự đoán cân nặng hay ngày đạt mục tiêu.</div>
 </div>
 
 <div class="screen" id="s08">
 <div class="screen-head"><span class="id">S08</span><h3>Paywall</h3></div>
 <div class="tags"><span class="tag p">Trụ 3 · minh bạch tiền</span></div>
 <ol>
-  <li>Tiêu đề: <q>Try everything free for 14 days</q></li>
-  <li>Dòng thời gian dọc 3 mốc, có icon:
-    <q>Today · Full access, no charge</q> → <q>Day 12 · We'll remind you</q> → <q>Oct 11 · Billed [yearly price] unless you cancel</q></li>
-  <li>Ba thẻ gói, <q>Yearly</q> chọn sẵn và có trial: <q>Yearly · [yearly price] · [per month equivalent]</q> · <q>Monthly · [monthly price]</q> · <q>One payment · [lifetime price] · Yours to keep, no renewals</q> (người đang có gói tự gia hạn: thẻ thêm dòng <q>Your current plan keeps renewing until you cancel it.</q>; mua xong mở S21 với tiêu đề <q>One last step: cancel your old plan</q>). Không có gói tuần. Thẻ trả một lần nằm cuối, không chọn sẵn, không nhãn "Best value".</li>
-  <li>Khi chọn <q>Monthly</q> hoặc <q>One payment</q>: dòng thời gian trial ẩn, nút chính đổi thành <q>Continue</q>, dòng dưới ghi rõ số tiền trừ hôm nay.</li>
-  <li>Danh sách ngắn những gì có trong gói: <q>All walking levels and weekly plans</q> · <q>All chair, balance and stretch sessions</q> · <q>4 more journeys, and a new one every month</q></li>
-  <li>Dòng: <q>Cancel anytime in Settings. Deleting the app doesn't cancel.</q></li>
-  <li>Nút chính <q>Start free trial</q></li>
-  <li>Link bên dưới: <q>Maybe later</q> · và hàng cuối <q>Restore</q> · <q>Terms</q> · <q>Privacy</q></li>
+  <li>Bản gọn 08/10/2026 (Claude Design). Đầu: mặt HLV · <q>GOOD FOOTING PRO</q> · nút ✕ (= Maybe later).</li>
+  <li>Tiêu đề nói lại mục tiêu: <q>Your 12 weeks to feel steadier, free for 14 days</q> (không đủ điều kiện dùng thử: bỏ vế sau).</li>
+  <li>Dòng thời gian 3 mốc không khung, chấm nối nét chấm: <q>Today · Full access, no charge</q> → <q>Oct 20 · We remind you</q> → <q>Oct 22 · First charge, unless you cancel</q>.</li>
+  <li>Chỉ thẻ <q>Yearly</q> chọn sẵn (giá năm là số to nhất, giá/tháng chữ nhỏ) · link <q>See other plans</q> mở tại chỗ <q>Pick what suits you</q> · <q>Every plan unlocks the same things.</q> với Yearly / Monthly (<q>No free days</q>) / One payment (<q>Yours to keep, no renewals</q>) · <q>Fewer plans</q>. Không nhãn "Lowest monthly cost", không danh sách lợi ích.</li>
+  <li>Nút đổi theo gói: <q>Start my free trial</q> · <q>Subscribe for $7.99 a month</q> · <q>Subscribe for $39.99 a year</q> · <q>Pay $79.99 once</q>; điều khoản dưới nút: <q>Free for 14 days, then $39.99 a year. Renews until you cancel, at least 24 hours before renewal.</q></li>
+  <li><q>Cancel anytime in Settings. Deleting the app doesn't cancel.</q> · hàng cuối <q>Maybe later</q> · <q>Restore</q> · <q>Terms</q> · <q>Privacy</q>.</li>
 </ol>
-<div class="note"><b>Cấm:</b> đồng hồ đếm ngược, giá gạch ngang, ảnh trước/sau, chữ nhỏ giấu giá. Số tiền là chữ giữ chỗ, lấy từ App Store Connect khi code. Vẽ thêm màn nhỏ trước hộp thoại thanh toán của Apple: <q>Next, Apple will ask you to confirm. You won't be charged today.</q></div>
-<p class="meta">Bản miễn phí sau "Maybe later": mỗi ngày một bài đi bộ kèm 1–2 động tác ghế luân phiên và hạ nhiệt giãn cơ ngắn, streak, hành trình New York, chặng đầu của mọi hành trình khác, nút This hurts, chế độ ngoài trời. Không có tuần mẫu và buổi giãn cơ đầy đủ.</p>
+<div class="note"><b>Cấm:</b> đồng hồ đếm ngược, giá gạch ngang, ảnh trước/sau, chữ nhỏ giấu giá. Giá lấy từ StoreKit. Màn nhỏ trước hộp thoại thanh toán của Apple: <q>Next, Apple will ask you to confirm. You won't be charged today.</q></div>
+<p class="meta">Bản miễn phí sau "Maybe later": mỗi ngày một bài đi bộ kèm 1–2 động tác ghế luân phiên và hạ nhiệt giãn cơ ngắn, streak, hành trình New York, chặng đầu của mọi hành trình khác, nút This hurts, chế độ ngoài trời.</p>
 </div>
 
 <h2>Buổi tập</h2>
@@ -725,7 +689,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <div class="tbl"><table>
 <thead><tr><th>Nhóm</th><th>Frame</th><th>Bản thêm</th></tr></thead>
 <tbody>
-<tr><td>Onboarding</td><td>S01, P1, S02, S03, S04, P2, S05a, S05b, S05c hai màn, P3, S06, S07, S08 và màn trước hộp thoại Apple</td><td>S08 bản chữ XXL</td></tr>
+<tr><td>Onboarding</td><td>S01, S02, S03, S05a, S05b, S05c, S06a, S06b, S07 (và đang nghe HLV), S08 (Yearly, các gói khác) và màn trước hộp thoại Apple</td><td>S08 bản chữ XXL</td></tr>
 <tr><td>Buổi tập</td><td>S09, S10 (Indoors, Outdoors, ngày giãn cơ, ngày động tác ghế), S10b hai màn, S11, S12, S12b, S13, S14, S15, S16</td><td>S11: chuyển pha, paused, end, dark, iPad ngang · S12: trước bài đứng, nghỉ, dark · S12b: đổi bên, hạ nhiệt sau đi bộ · S15: First Walk, lên cấp, ảnh chia sẻ, ngày giãn cơ, chữ XXL · Outdoors: S11, S14, S15 có và không có GPS</td></tr>
 <tr><td>Hằng ngày</td><td>S17, S18 và postcard detail, All journeys, Where to next?, thẻ mời ở chặng khoá, S19, S20, S21</td><td>S17: 4 trạng thái, dark, chữ XXL</td></tr>
 <tr><td>Khác</td><td>4 thông báo màn khoá (một có hai nút), thẻ "fewer reminders", 1 thẻ cảnh báo đau</td><td></td></tr>

@@ -13,7 +13,7 @@ import GentleWalkCore
         // Bounded: a flow that stops advancing must fail the test, not hang it.
         for _ in 0..<OnboardingStep.allCases.count where flow.step != .paywall {
             switch flow.step {
-            case .goal: flow.toggleGoal(.steadier)
+            case .goal: flow.chooseGoal(.steadier)
             case .activity: flow.answers.activity = .shortWalks
             case .chair: flow.answers.chair = .hard
             default: break
@@ -24,18 +24,18 @@ import GentleWalkCore
         return seen
     }
 
-    /// Owner 01/10/2026: no part intros, no stairs question.
+    /// Plan 08/10/2026 task 2.2: seven questions, no "You're not alone", two body screens.
     @Test func screensComeInTheSpecOrder() {
         let flow = OnboardingFlow()
-        #expect(walkToEnd(flow) == [.welcome, .goal, .barriers, .understanding, .name, .activity, .chair, .body,
+        #expect(walkToEnd(flow) == [.welcome, .goal, .barriers, .name, .activity, .chair, .soreSpots, .anythingElse,
                                     .plan, .paywall])
     }
 
-    /// Review M6 (02/10/2026): the bar never starts at 0 and grows to full on the plan.
+    /// Review M6 (02/10/2026): the garden never starts empty and is full on the plan.
     @Test func progressNeverStartsAtZero() {
         let flow = OnboardingFlow()
         var values: [Double] = []
-        for step in [OnboardingStep.goal, .barriers, .understanding, .name, .activity, .chair, .body, .plan] {
+        for step in [OnboardingStep.goal, .barriers, .name, .activity, .chair, .soreSpots, .anythingElse, .plan] {
             flow.jump(to: step)
             values.append(flow.progress)
         }
@@ -44,16 +44,20 @@ import GentleWalkCore
         #expect(values == values.sorted())
     }
 
-    @Test func progressLabelNamesThePartAndStep() {
+    @Test func stepLabelCountsSeven() {
         let flow = OnboardingFlow()
-        flow.jump(to: .name)
-        #expect(flow.progressLabel == "Part 2 of 3 · About you")
         flow.jump(to: .goal)
-        #expect(flow.progressLabel == "Part 1 of 3 · Your goal")
-        flow.jump(to: .body)
-        #expect(flow.progressLabel == "Part 3 of 3 · Your body")
+        #expect(flow.stepLabel == "Step 1 of 7")
+        #expect(flow.gardenStep == 1)
+        flow.jump(to: .name)
+        #expect(flow.stepLabel == "Step 3 of 7")
+        flow.jump(to: .anythingElse)
+        #expect(flow.stepLabel == "Step 7 of 7")
         flow.jump(to: .plan)
-        #expect(flow.progressLabel == nil)
+        #expect(flow.stepLabel == nil)
+        #expect(flow.gardenStep == 7)
+        flow.jump(to: .welcome)
+        #expect(flow.stepLabel == nil)
     }
 
     @Test func backReturnsToThePreviousScreen() {
@@ -77,56 +81,75 @@ import GentleWalkCore
         #expect(ReminderTime.step(5, by: -1) == 0)
     }
 
-    @Test func goalsAreLimitedToTwo() {
+    /// One main goal (owner 08/10/2026): the new pick replaces the old one.
+    @Test func goalIsSingle() {
         let flow = OnboardingFlow()
-        flow.toggleGoal(.lessPain)
-        flow.toggleGoal(.steadier)
-        #expect(!flow.showsGoalLimit)
-        flow.toggleGoal(.moreEnergy)
-        #expect(flow.answers.goals == [.lessPain, .steadier])
-        // A third tap says why nothing changed (clarity review D23).
-        #expect(flow.showsGoalLimit)
-        flow.toggleGoal(.lessPain)
-        #expect(!flow.showsGoalLimit)
+        flow.chooseGoal(.lessPain)
+        flow.chooseGoal(.steadier)
         #expect(flow.answers.goals == [.steadier])
+        flow.chooseGoal(.steadier)
+        #expect(flow.answers.goals == [.steadier])
+        #expect(OnboardingFlow.maxGoals == 1)
     }
 
-    /// Review M7 (02/10/2026): "Not sure yet" is the way out and stands alone.
-    @Test func notSureStandsAlone() {
+    /// Continue says why it can't go on (control states): goal, activity and chair need an answer.
+    @Test func continueWithoutAnAnswerSaysWhy() {
         let flow = OnboardingFlow()
-        flow.toggleGoal(.lessPain)
-        flow.toggleGoal(.notSure)
-        #expect(flow.answers.goals == [.notSure])
-        flow.toggleGoal(.steadier)
-        #expect(flow.answers.goals == [.steadier])
-    }
-
-    @Test func continueWithoutAGoalAsksForOne() {
-        let flow = OnboardingFlow()
+        for step in [OnboardingStep.goal, .activity, .chair] {
+            flow.jump(to: step)
+            flow.next()
+            #expect(flow.step == step)
+            #expect(flow.continueBlockedReason == "Pick one to continue")
+        }
         flow.jump(to: .goal)
-        flow.next()
-        #expect(flow.step == .goal)
-        #expect(flow.hint == "Pick at least one.")
-        flow.toggleGoal(.chairs)
-        #expect(flow.hint == nil)
+        flow.chooseGoal(.chairs)
+        #expect(flow.continueBlockedReason == nil)
         flow.next()
         #expect(flow.step == .barriers)
+        // Barriers, name and the body screens can be passed without an answer.
+        #expect(flow.continueBlockedReason == nil)
     }
 
-    @Test func noneOfTheseClearsBodyLimits() {
+    /// "None of these" on each body screen clears only that screen's choices.
+    @Test func noneOfTheseOnEachBodyScreen() {
         let flow = OnboardingFlow()
         flow.toggleLimit(.knees)
         flow.toggleLimit(.noFloor)
-        flow.chooseNoLimits()
+        flow.chooseNoSoreSpots()
+        #expect(flow.answers.limits == [.noFloor])
+        #expect(flow.noSoreSpots)
+        #expect(!flow.noOtherLimits)
+        flow.chooseNoOtherLimits()
         #expect(flow.answers.limits.isEmpty)
-        #expect(flow.noLimitsChosen)
+        #expect(flow.noOtherLimits)
         flow.toggleLimit(.hips)
-        #expect(!flow.noLimitsChosen)
+        #expect(!flow.noSoreSpots)
+        #expect(flow.noOtherLimits)
     }
 
-    @Test func finishingSavesTheProfile() throws {
+    /// The coach's slot: a hint first, then a reply to the answer (the first barrier, the last body card).
+    @Test func coachHintsThenReplies() {
         let flow = OnboardingFlow()
-        flow.toggleGoal(.steadier)
+        flow.jump(to: .barriers)
+        #expect(flow.coachLine == .hint(OnboardingCopy.hint(.barriers)))
+        flow.toggleBarrier(.charged)
+        flow.toggleBarrier(.joints)
+        #expect(flow.coachLine == .reply(OnboardingCopy.reply(Barrier.charged)))
+        flow.jump(to: .anythingElse)
+        flow.toggleLimit(.knees)
+        // A sore spot does not answer on Anything else.
+        #expect(flow.coachLine?.isReply == false)
+        flow.toggleLimit(.unsteady)
+        #expect(String(localized: flow.coachLine!.text) == "Thanks. Balance moves will keep both hands on the chair.")
+        flow.jump(to: .name)
+        flow.nameText = " Margaret "
+        #expect(String(localized: flow.coachLine!.text) == "Nice to meet you, Margaret.")
+    }
+
+    @Test func finishSavesSingleGoalAndActivity() throws {
+        let flow = OnboardingFlow()
+        flow.chooseGoal(.lessPain)
+        flow.chooseGoal(.steadier)
         flow.toggleBarrier(.charged)
         flow.toggleBarrier(.joints)
         flow.nameText = " Margaret "
@@ -138,6 +161,7 @@ import GentleWalkCore
         #expect(profile.goals == ["steadier"])
         #expect(profile.barriers == ["charged", "joints"])
         #expect(profile.startLevel == "inplace")
+        #expect(profile.activityLevel == "walkMostDays")
         #expect(profile.bodyLimits == ["knees"])
         // The moment is picked on S16; onboarding saves "after my morning coffee", 8:30 AM.
         #expect(profile.reminderMoment == "coffee")
@@ -149,9 +173,9 @@ import GentleWalkCore
         #expect(flow.profile.understandingKey == .charged)
     }
 
-    /// The two groups on S06 and in Me hold every body limit exactly once (owner 01/10 layout).
+    /// The two body screens (and Me) hold every body limit exactly once.
     @Test func bodyLimitGroupsCoverEveryLimitOnce() {
-        let grouped = BodyLimitChips.joints + BodyLimitChips.everyday
+        let grouped = BodyLimitChips.soreSpots + BodyLimitChips.everyday
         #expect(Set(grouped) == Set(OnboardingCopy.limitOrder))
         #expect(grouped.count == OnboardingCopy.limitOrder.count)
     }

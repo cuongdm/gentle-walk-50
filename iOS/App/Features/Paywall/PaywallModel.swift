@@ -14,9 +14,6 @@ struct PlanOption: Identifiable, Equatable, Sendable {
     var price: String
     /// "$3.33 a month", yearly only, smaller than the price.
     var monthlyEquivalent: String?
-    /// "Lowest monthly cost" on the yearly card, only when the store prices make it true
-    /// (owner S2, 02/10/2026, past the "no hype" copy rule).
-    var isLowestMonthly = false
 
     var title: LocalizedStringResource {
         switch kind {
@@ -36,8 +33,10 @@ struct PlanOption: Identifiable, Equatable, Sendable {
     }
 }
 
-/// S08 Paywall (tasks 5.9, 5.10): which plan is chosen, the trial timeline, button title and the
-/// disclosure under it. Yearly with a trial is chosen first; one payment is last and never chosen first.
+/// S08 Paywall (tasks 5.9, 5.10; simple paywall, plan 08/10/2026 task 2.12): which plan is chosen, the
+/// title that says her goal back, the trial timeline, the button and the terms under it. Yearly shows
+/// alone, chosen; "See other plans" opens Monthly and One payment in place. One payment is never
+/// chosen first.
 @Observable @MainActor final class PaywallModel {
     private(set) var options: [PlanOption]
     var selectedID: String
@@ -45,48 +44,82 @@ struct PlanOption: Identifiable, Equatable, Sendable {
     /// A renewing plan the user already has: the one-payment card warns it keeps renewing (I2).
     let activeRenewingProductID: String?
     let trial: TrialTimeline
+    /// Her main goal from onboarding (owner 08/10/2026: one goal, said back on the paywall).
+    let goal: Goal
+    /// "See other plans" opened. Closing it ("Fewer plans") goes back to Yearly, the only plan then shown.
+    var showsAllPlans = false {
+        didSet { if !showsAllPlans, let yearly { selectedID = yearly.id } }
+    }
 
-    init(options: [PlanOption], isEligibleForTrial: Bool, activeRenewingProductID: String? = nil,
+    init(options: [PlanOption], isEligibleForTrial: Bool, activeRenewingProductID: String? = nil, goal: Goal = .notSure,
          now: Date = .now, calendar: Calendar = .current) {
         self.options = options
         self.isEligibleForTrial = isEligibleForTrial
         self.activeRenewingProductID = activeRenewingProductID
+        self.goal = goal
         selectedID = options.first { $0.kind == .yearly }?.id ?? options.first?.id ?? ""
         trial = TrialTimeline(start: now, trialLength: 14, calendar: calendar)
+        // No yearly plan in the store: show every plan there is.
+        if options.first(where: { $0.kind == .yearly }) == nil { showsAllPlans = true }
     }
 
     var selected: PlanOption? { options.first { $0.id == selectedID } }
     var yearly: PlanOption? { options.first { $0.kind == .yearly } }
 
+    /// Yearly alone until "See other plans".
+    var visibleOptions: [PlanOption] { showsAllPlans ? options : options.filter { $0.kind == .yearly } }
+
     /// The trial timeline shows only for the yearly plan when the trial is offered.
     var showsTrial: Bool { isEligibleForTrial && selected?.kind == .yearly }
 
+    /// "Your 12 weeks to feel steadier, free for 14 days"; "Pick what suits you" over all three plans.
     var title: LocalizedStringResource {
-        // Names Pro, so the "Pro" badges elsewhere connect to this screen (clarity review D4).
-        isEligibleForTrial ? "\(AppBrand.name) Pro: free for 14 days" : "\(AppBrand.name) Pro"
+        if showsAllPlans { return "Pick what suits you" }
+        guard isEligibleForTrial else { return Self.goalTitle(goal) }
+        return "\(String(localized: Self.goalTitle(goal))), free for 14 days"
     }
 
-    /// "Start my free trial": a beginning she owns, not a subscription (uxpeak A/B, review M11).
-    var buttonTitle: LocalizedStringResource { showsTrial ? "Start my free trial" : "Continue" }
+    /// Her goal said back as the 12 weeks (no health promise: 1.4.1, steady-claims.md).
+    static func goalTitle(_ goal: Goal) -> LocalizedStringResource {
+        switch goal {
+        case .steadier: "Your 12 weeks to feel steadier"
+        case .chairs: "Your 12 weeks to get up from chairs more easily"
+        case .lessPain: "Your 12 weeks of gentle, seated-first moves"
+        case .moreEnergy: "Your 12 weeks to get moving every day"
+        case .grandkids: "Your 12 weeks to keep up with the grandkids"
+        case .loseWeight: "Your 12 weeks of short daily walks"
+        case .notSure: "Your 12 weeks, at your own pace"
+        }
+    }
+
+    /// "Start my free trial": a beginning she owns (uxpeak A/B, review M11); otherwise the button names
+    /// the plan and its billed price ("Subscribe for $7.99 a month").
+    var buttonTitle: LocalizedStringResource {
+        guard let selected else { return "Continue" }
+        switch selected.kind {
+        case .yearly where showsTrial: return "Start my free trial"
+        case .yearly: return "Subscribe for \(selected.price) a year"
+        case .monthly: return "Subscribe for \(selected.price) a month"
+        case .lifetime: return "Pay \(selected.price) once"
+        }
+    }
 
     var billingDateText: String { trial.billingDate.formatted(.dateTime.month(.abbreviated).day()) }
 
     /// The day the trial reminder is sent, as a date like the billing day.
     var reminderDateText: String { trial.reminderDate.formatted(.dateTime.month(.abbreviated).day()) }
 
-    /// Plain terms under the button: what is charged, when, and that it renews (3.1.2(c)); two lines
-    /// on an iPhone SE (plan 08/10/2026 task 1.5; the 24-hour rule is in `CancelNote` under the plans).
+    /// Plain terms under the button: what is charged, when, and that it renews until she cancels at
+    /// least 24 hours before (3.1.2(c)).
     var disclosure: String {
         guard let selected else { return "" }
         switch selected.kind {
         case .yearly where showsTrial:
-            // A no-break space keeps "Oct 22" on one line.
-            let date = billingDateText.replacingOccurrences(of: " ", with: "\u{00A0}")
-            return String(localized: "Free for 14 days, then \(selected.price) a year from \(date). Renews until you cancel.")
+            return String(localized: "Free for 14 days, then \(selected.price) a year. Renews until you cancel, at least 24 hours before renewal.")
         case .yearly:
-            return String(localized: "\(selected.price) charged today, then every year until you cancel.")
+            return String(localized: "\(selected.price) charged today, then every year. Renews until you cancel, at least 24 hours before renewal.")
         case .monthly:
-            return String(localized: "\(selected.price) charged today, then every month until you cancel.")
+            return String(localized: "\(selected.price) every month. Renews until you cancel, at least 24 hours before renewal.")
         case .lifetime:
             return String(localized: "\(selected.price) charged today, one time. No renewals.")
         }
@@ -95,18 +128,12 @@ struct PlanOption: Identifiable, Equatable, Sendable {
     var showsRenewingWarning: Bool { activeRenewingProductID != nil }
 
     /// Builds cards from StoreKit products (price text from `displayPrice`, never typed in code).
-    /// The yearly plan costs less per month than the monthly plan.
-    static func isLowestMonthly(yearlyPrice: Decimal, monthlyPrice: Decimal) -> Bool {
-        yearlyPrice / 12 < monthlyPrice
-    }
-
     static func options(from products: [String: Product]) -> [PlanOption] {
         var result: [PlanOption] = []
         if let yearly = products[ProductID.yearly] {
             let monthly = (yearly.price / 12).formatted(yearly.priceFormatStyle)
-            let lowest = products[ProductID.monthly].map { isLowestMonthly(yearlyPrice: yearly.price, monthlyPrice: $0.price) } ?? false
             result.append(PlanOption(id: yearly.id, kind: .yearly, price: yearly.displayPrice,
-                                     monthlyEquivalent: String(localized: "\(monthly) a month"), isLowestMonthly: lowest))
+                                     monthlyEquivalent: String(localized: "\(monthly) a month")))
         }
         if let monthly = products[ProductID.monthly] {
             result.append(PlanOption(id: monthly.id, kind: .monthly, price: monthly.displayPrice))

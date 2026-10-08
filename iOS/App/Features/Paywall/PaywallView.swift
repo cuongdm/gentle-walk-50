@@ -1,8 +1,11 @@
 import SwiftUI
 
-/// S08 Paywall. Money is shown plainly: the billing date, the billed price as the biggest price,
-/// Restore · Terms · Privacy and "Maybe later" always on screen. No countdowns, no struck-through
-/// prices, no before/after pictures.
+/// S08 Paywall, the simple version (Claude Design "Paywall" and "Paywall, other plans", owner 08/10/2026:
+/// the old screen was crowded). Her goal said back as the title, the trial as three dated steps on a
+/// dotted line (no frame), Yearly alone and chosen, and "See other plans" opening Monthly and One payment
+/// in place. Money is shown plainly: the billed price is the largest price, the terms sit under the
+/// button, and Maybe later · Restore · Terms · Privacy are always on screen. No countdowns, no
+/// struck-through prices, no benefit checklist (Your plan, just before, says what she gets).
 struct PaywallView: View {
     @Bindable var model: PaywallModel
     let onPurchase: (PlanOption) -> Void
@@ -10,6 +13,7 @@ struct PaywallView: View {
     let onMaybeLater: () -> Void
     @State private var showsPrivacy = false
     @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     /// At normal text sizes the button, terms and links stay pinned at the bottom, so they are
     /// visible without scrolling even on the smallest iPhone (3.1.1, 3.1.2). At accessibility
@@ -24,42 +28,41 @@ struct PaywallView: View {
 
     var body: some View {
         ScrollView {
-            // Title, three lines, the trial dates and all three plans fit above the pinned footer on an
-            // iPhone SE (plan 08/10/2026 task 1.5); the free plan and the cancel note follow.
-            VStack(alignment: .leading, spacing: 8) {
-                ScreenHeader(title: model.title)
-                // What Pro adds comes first, then the dates and prices (clarity review D4).
-                IncludedList()
-                if model.showsTrial, let yearly = model.yearly {
-                    TrialTimelineView(reminderDate: model.reminderDateText, billingDate: model.billingDateText, price: yearly.price)
+            VStack(alignment: .leading, spacing: 10) {
+                PaywallHeader(title: model.title, showsAllPlans: model.showsAllPlans, onClose: onMaybeLater)
+                if model.showsAllPlans {
+                    Text("Every plan unlocks the same things.").typeRole(.body).foregroundStyle(Palette.text)
+                        .padding(.top, -8)
+                } else if model.showsTrial {
+                    TrialTimelineView(reminderDate: model.reminderDateText, billingDate: model.billingDateText)
                 }
-                VStack(spacing: 8) {
-                    ForEach(model.options) { option in
+                VStack(spacing: 10) {
+                    ForEach(model.visibleOptions) { option in
                         PlanOptionCard(option: option, isSelected: model.selectedID == option.id,
-                                       showsTrialNote: option.kind == .yearly && model.isEligibleForTrial,
+                                       note: note(for: option),
                                        renewingWarning: option.kind == .lifetime && model.showsRenewingWarning) {
                             model.selectedID = option.id
                         }
+                        .transition(.opacity.combined(with: .move(edge: .top)))
                     }
                 }
-                .padding(.top, model.options.contains(where: \.isLowestMonthly) ? 8 : 0)
-                FreePlanNote()
+                OtherPlansToggle(showsAll: model.showsAllPlans) { model.showsAllPlans.toggle() }
                 CancelNote()
                 if !pinsFooter { footer }
             }
+            .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: model.showsAllPlans)
             .padding(.horizontal, Metrics.screenMargin)
-            .padding(.top, 12)
+            .padding(.top, 4)
             .padding(.bottom, Metrics.screenMargin)
-            .frame(maxWidth: 640)
-            .frame(maxWidth: .infinity)
+            .readableColumn()
         }
+        .scrollBounceBehavior(.basedOnSize)
         .safeAreaInset(edge: .bottom) {
             if pinsFooter {
                 footer
                     .padding(.horizontal, Metrics.screenMargin)
                     .padding(.top, 10)
-                    .frame(maxWidth: 640)
-                    .frame(maxWidth: .infinity)
+                    .readableColumn()
                     .background {
                         Rectangle().fill(Palette.bg.shadow(.drop(color: .black.opacity(0.08), radius: 8, y: -2))).ignoresSafeArea()
                     }
@@ -68,143 +71,228 @@ struct PaywallView: View {
         .screenBackground()
         .sheet(isPresented: $showsPrivacy) { PrivacyPolicyView() }
     }
+
+    /// The small line under a plan's name: the free days and monthly cost on Yearly, "No free days" on
+    /// Monthly while the trial is on offer, "Yours to keep, no renewals" on One payment.
+    private func note(for option: PlanOption) -> String? {
+        switch option.kind {
+        case .yearly:
+            let monthly = option.monthlyEquivalent
+            guard model.isEligibleForTrial && model.showsAllPlans else { return monthly }
+            return monthly.map { String(localized: "14 days free · \($0)") } ?? String(localized: "14 days free")
+        case .monthly: return model.isEligibleForTrial ? String(localized: "No free days") : nil
+        case .lifetime: return String(localized: "Yours to keep, no renewals")
+        }
+    }
 }
 
-/// Today · Full access, no charge → Oct 20 · We'll remind you → Oct 22 · Billed $39.99. One line per
-/// step on an iPhone SE (plan 08/10/2026 task 1.5); "unless you cancel" is in the terms under the
-/// button. The reminder is a calendar date like the charge (review M11, 02/10/2026).
+/// "GOOD FOOTING PRO" with the coach, the title, and a Close button that is the same as Maybe later.
+private struct PaywallHeader: View {
+    let title: LocalizedStringResource
+    let showsAllPlans: Bool
+    let onClose: () -> Void
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .center, spacing: 10) {
+                if !showsAllPlans && !typeSize.isAccessibilitySize {
+                    CoachFace(size: 36)
+                }
+                if !showsAllPlans {
+                    Text(verbatim: "\(AppBrand.name) Pro".uppercased())
+                        .typeRole(.caption).fontWeight(.semibold).tracking(1.2)
+                        .foregroundStyle(Palette.accent)
+                        .accessibilityLabel(Text(verbatim: "\(AppBrand.name) Pro"))
+                }
+                Spacer(minLength: 0)
+            }
+            .frame(minHeight: 40)
+            // Close sits over the row's end: a 56 pt target without making the row taller.
+            .overlay(alignment: .trailing) {
+                Button(action: onClose) {
+                    Image(systemName: "xmark").font(.system(size: 16, weight: .semibold))
+                        .foregroundStyle(Palette.text)
+                        .frame(width: 40, height: 40)
+                        .background(Palette.surface, in: .circle)
+                        .overlay { Circle().strokeBorder(Palette.textMuted.opacity(0.3), lineWidth: 1) }
+                        .frame(width: Metrics.minTouchTarget, height: Metrics.minTouchTarget)
+                        .contentShape(.circle)
+                }
+                .buttonStyle(.plain)
+                .padding(.trailing, -8)
+                .accessibilityLabel(Text("Close"))
+            }
+            Text(title)
+                .typeRole(.screenTitle)
+                .foregroundStyle(Palette.text)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityAddTraits(.isHeader)
+        }
+    }
+}
+
+/// Today · Full access, no charge → Oct 20 · We remind you → Oct 22 · First charge, unless you cancel.
+/// Three dots on a dotted line, no frame (Claude Design). The reminder is a calendar date like the
+/// charge (review M11, 02/10/2026).
 struct TrialTimelineView: View {
     let reminderDate: String
     let billingDate: String
-    let price: String
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            // The trial reads top to bottom, one step after another (redesign 03/10/2026).
-            TimelineStep(symbol: "lock.open.fill", title: String(localized: "Today"), detail: String(localized: "Full access, no charge"))
-                .reveal(delay: 0.2)
-            TimelineStep(symbol: "bell.fill", title: reminderDate, detail: String(localized: "We'll remind you"))
-                .reveal(delay: 0.55)
-            TimelineStep(symbol: "creditcard.fill", title: billingDate, detail: String(localized: "Billed \(price)"))
-                .reveal(delay: 0.9)
+        VStack(alignment: .leading, spacing: 0) {
+            TimelineStep(dot: .filled(Palette.secondary), title: String(localized: "Today"),
+                         detail: String(localized: "Full access, no charge"), continues: true)
+                .reveal(delay: 0.15)
+            TimelineStep(dot: .filled(Palette.sun), title: reminderDate, detail: String(localized: "We remind you"), continues: true)
+                .reveal(delay: 0.4)
+            TimelineStep(dot: .ring(Palette.accent), title: billingDate,
+                         detail: String(localized: "First charge, unless you cancel"), continues: false)
+                .reveal(delay: 0.65)
         }
-        .cardStyle(padding: 10)
     }
 }
 
 private struct TimelineStep: View {
-    let symbol: String
+    enum Dot { case filled(Color), ring(Color) }
+
+    let dot: Dot
     let title: String
     let detail: String
+    let continues: Bool
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 12) {
-            Image(systemName: symbol)
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundStyle(Palette.onStrongFill)
-                .frame(width: 28, height: 28)
-                .background(Palette.secondary, in: .circle)
-                .alignmentGuide(.firstTextBaseline) { $0[VerticalAlignment.center] + 6 }
-                .accessibilityHidden(true)
-            // "Today  Full access, no charge" on one line where it fits.
-            Text("\(Text(verbatim: title).bold())  \(Text(verbatim: detail))")
+        HStack(alignment: .top, spacing: 12) {
+            VStack(spacing: 2) {
+                Group {
+                    switch dot {
+                    case .filled(let color): Circle().fill(color)
+                    case .ring(let color): Circle().strokeBorder(color, lineWidth: 2.5)
+                    }
+                }
+                .frame(width: 16, height: 16)
+                .padding(.top, 5)
+                if continues {
+                    DottedLine().frame(width: 2).frame(maxHeight: .infinity)
+                }
+            }
+            .frame(width: 16)
+            .accessibilityHidden(true)
+            Text("\(Text(verbatim: title).bold()) · \(Text(verbatim: detail))")
                 .typeRole(.body)
                 .foregroundStyle(Palette.text)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.bottom, continues ? 4 : 0)
         }
-        .frame(minHeight: 26)
         .accessibilityElement(children: .combine)
     }
 }
 
-/// One plan on one row (owner 01/10: three tall cards were hidden under the pinned button): the
-/// name and its notes on the left, the billed price on the right as the largest price, a smaller
-/// monthly equivalent under the yearly price.
+private struct DottedLine: View {
+    var body: some View {
+        GeometryReader { proxy in
+            Path { path in
+                path.move(to: CGPoint(x: proxy.size.width / 2, y: 0))
+                path.addLine(to: CGPoint(x: proxy.size.width / 2, y: proxy.size.height))
+            }
+            .stroke(Palette.textMuted.opacity(0.45), style: StrokeStyle(lineWidth: 2, lineCap: .round, dash: [0.5, 5]))
+        }
+    }
+}
+
+/// One plan: a radio (filled check when chosen), the name and its note, the billed price as the
+/// largest price. Chosen: ochre fill, 3 pt border, bold, check (never colour alone).
 struct PlanOptionCard: View {
     let option: PlanOption
     let isSelected: Bool
-    var showsTrialNote = false
+    var note: String?
     var renewingWarning = false
     let action: () -> Void
-    @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.colorScheme) private var scheme
+
+    private static let shape = RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
+
+    @ViewBuilder private var radio: some View {
+        if isSelected {
+            ChosenCheck()
+        } else {
+            Circle().strokeBorder(Palette.textMuted.opacity(0.6), lineWidth: 2)
+                .frame(width: 28, height: 28).accessibilityHidden(true)
+        }
+    }
+
+    private var details: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(option.title).typeRole(.body).fontWeight(isSelected ? .bold : .regular)
+            if let note {
+                Text(verbatim: note).typeRole(.caption)
+            }
+            if renewingWarning {
+                Text("Your current plan keeps renewing until you cancel it.")
+                    .typeRole(.caption).fontWeight(.semibold)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .foregroundStyle(Palette.text)
+    }
+
+    private var price: some View {
+        Text(verbatim: option.priceWithPeriod)
+            .typeRole(.cardTitle).fontWeight(.bold)
+            .foregroundStyle(Palette.text)
+    }
 
     var body: some View {
         Button(action: action) {
-            // Price beside the name; under it at the largest text sizes, so the row never runs off
-            // the screen.
-            let layout = typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 4))
-                : AnyLayout(HStackLayout(alignment: .center, spacing: 12))
-            layout {
-                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                    .typeRole(.cardTitle)
-                    .foregroundStyle(isSelected ? Palette.primary : Palette.textMuted)
-                    .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(option.title).typeRole(.body).fontWeight(.semibold)
-                    if showsTrialNote {
-                        Text("14 days free").typeRole(.caption).foregroundStyle(Palette.text)
-                    }
-                    if option.kind == .lifetime {
-                        Text("No renewals").typeRole(.caption).foregroundStyle(Palette.text)
-                    }
-                    if renewingWarning {
-                        Text("Your current plan keeps renewing until you cancel it.")
-                            .typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)
-                    }
+            // Price beside the name where the name keeps one line; under it otherwise (long names in
+            // Vietnamese, accessibility sizes), so the row never squeezes or runs off the screen.
+            ViewThatFits(in: .horizontal) {
+                HStack(alignment: .center, spacing: 12) {
+                    radio
+                    details.fixedSize()
+                    Spacer(minLength: 8)
+                    price.fixedSize()
                 }
-                .foregroundStyle(Palette.text)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                VStack(alignment: typeSize.isAccessibilitySize ? .leading : .trailing, spacing: 0) {
-                    Text(verbatim: option.priceWithPeriod).typeRole(.cardTitle).fontWeight(.bold)
-                    if let monthly = option.monthlyEquivalent {
-                        Text(verbatim: monthly).typeRole(.caption).foregroundStyle(Palette.textMuted)
+                HStack(alignment: .top, spacing: 12) {
+                    radio
+                    VStack(alignment: .leading, spacing: 2) {
+                        details
+                        price
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .foregroundStyle(Palette.text)
-                .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
             }
             .padding(.horizontal, 14)
-            .padding(.vertical, 6)
-            .frame(minHeight: 52)
-            .background(Palette.surface, in: .rect(cornerRadius: Metrics.cardRadius))
+            .padding(.vertical, 10)
+            .frame(minHeight: Metrics.rowHeight)
+            .background {
+                if isSelected { ChosenFill(cornerRadius: Metrics.cardRadius) } else { CardPaper() }
+            }
             .overlay {
-                RoundedRectangle(cornerRadius: Metrics.cardRadius)
-                    .strokeBorder(isSelected ? Palette.primary : Palette.textMuted.opacity(0.25), lineWidth: isSelected ? 3 : 1)
+                Self.shape.strokeBorder(isSelected ? ChoiceInk.chosen(scheme) : Palette.textMuted.opacity(0.25),
+                                        lineWidth: isSelected ? 3 : 1)
             }
-            // "Lowest monthly cost" as a tab on the card's top edge: no extra row (task 1.5). Only when
-            // StoreKit prices prove it (`isLowestMonthly`).
-            .overlay(alignment: .topTrailing) {
-                if option.isLowestMonthly {
-                    Text("Lowest monthly cost")
-                        .typeRole(.caption).fontWeight(.semibold)
-                        .foregroundStyle(Palette.onStrongFill)
-                        .padding(.horizontal, 10)
-                        .background(Palette.secondary, in: .capsule)
-                        .offset(x: -14, y: -11)
-                }
-            }
-            .contentShape(.rect(cornerRadius: Metrics.cardRadius))
+            .contentShape(Self.shape)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(PressableCardStyle())
+        .sensoryFeedback(.selection, trigger: isSelected)
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
 
-/// What the plan includes: three one-line benefits at caption size (task 1.5).
-struct IncludedList: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            line("All walking levels and weekly plans")
-            line("Chair, balance and stretch sessions")
-            line("4 more journeys, with more coming")
-        }
-    }
+/// "See other plans ⌄" / "Fewer plans ⌃": an underlined link, never plain grey text.
+private struct OtherPlansToggle: View {
+    let showsAll: Bool
+    let action: () -> Void
 
-    private func line(_ text: LocalizedStringResource) -> some View {
-        Label {
-            Text(text).typeRole(.caption)
-        } icon: {
-            Image(systemName: "checkmark").fontWeight(.semibold).foregroundStyle(Palette.secondary)
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 6) {
+                Text(showsAll ? "Fewer plans" : "See other plans")
+                Image(systemName: showsAll ? "chevron.up" : "chevron.down").font(.caption.weight(.bold)).accessibilityHidden(true)
+            }
         }
-        .foregroundStyle(Palette.text)
+        .buttonStyle(TextLinkButtonStyle(role: .body))
+        .frame(maxWidth: .infinity)
     }
 }

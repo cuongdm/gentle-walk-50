@@ -483,9 +483,11 @@ struct BodyLimitsEditor: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 ScreenHeader(title: "Anything we should go easy on?", subtitle: "We'll only show moves that fit.")
-                BodyLimitChips(selected: limits) { limit in
-                    if limits.contains(limit) { limits.remove(limit) } else { limits.insert(limit) }
-                }
+                // The two onboarding screens, as two groups (plan 08/10/2026 task 2.13).
+                Text("Sore spots").typeRole(.cardTitle).foregroundStyle(Palette.text).accessibilityAddTraits(.isHeader)
+                BodyLimitChips(limits: BodyLimitChips.soreSpots, selected: limits, onToggle: toggle)
+                Text("Anything else").typeRole(.cardTitle).foregroundStyle(Palette.text).accessibilityAddTraits(.isHeader)
+                BodyLimitChips(limits: BodyLimitChips.everyday, selected: limits, onToggle: toggle)
                 Button("Save") {
                     onSave(limits)
                     dismiss()
@@ -495,6 +497,10 @@ struct BodyLimitsEditor: View {
             .padding(Metrics.screenMargin)
         }
         .screenBackground()
+    }
+
+    private func toggle(_ limit: BodyLimit) {
+        if limits.contains(limit) { limits.remove(limit) } else { limits.insert(limit) }
     }
 }
 

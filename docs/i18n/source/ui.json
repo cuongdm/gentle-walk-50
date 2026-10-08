@@ -633,6 +633,38 @@
   ]
  },
  {
+  "key": "Change",
+  "comment": "",
+  "files": [
+   "GoalSection",
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Pick the one that matters most.",
+  "comment": "",
+  "files": [
+   "GoalSection"
+  ]
+ },
+ {
+  "key": "Save",
+  "comment": "",
+  "files": [
+   "GoalSection",
+   "MeSections",
+   "SelfCheckViews",
+   "NotificationSection"
+  ]
+ },
+ {
+  "key": "Your goal",
+  "comment": "",
+  "files": [
+   "GoalSection"
+  ]
+ },
+ {
   "key": "Exit full screen",
   "comment": "",
   "files": [
@@ -898,6 +930,13 @@
   ]
  },
  {
+  "key": "%@ Pro",
+  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
   "key": "%@ Pro · renews %@",
   "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
   "files": [
@@ -913,11 +952,17 @@
   ]
  },
  {
+  "key": "Anything else",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
   "key": "Anything we should go easy on?",
   "comment": "",
   "files": [
-   "MeSections",
-   "QuestionViews"
+   "MeSections"
   ]
  },
  {
@@ -961,13 +1006,6 @@
   "files": [
    "MeSections",
    "SoundControls"
-  ]
- },
- {
-  "key": "Change",
-  "comment": "",
-  "files": [
-   "MeSections"
   ]
  },
  {
@@ -1204,15 +1242,6 @@
   ]
  },
  {
-  "key": "Save",
-  "comment": "",
-  "files": [
-   "MeSections",
-   "SelfCheckViews",
-   "NotificationSection"
-  ]
- },
- {
   "key": "See Pro plans",
   "comment": "",
   "files": [
@@ -1232,6 +1261,13 @@
  {
   "key": "Smaller text",
   "comment": "A description of a button that shrinks text.",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Sore spots",
+  "comment": "",
   "files": [
    "MeSections"
   ]
@@ -1332,8 +1368,7 @@
   "key": "We'll only show moves that fit.",
   "comment": "",
   "files": [
-   "MeSections",
-   "QuestionViews"
+   "MeSections"
   ]
  },
  {
@@ -1683,6 +1718,34 @@
   ]
  },
  {
+  "key": "5 to 10 minutes, at a moment you choose.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "A calm voice sets the pace. Pause anytime.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "A gentle start. Change anything later.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "A gentle, shorter start. Build up at your pace.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
   "key": "A little tired, but I can talk",
   "comment": "",
   "files": [
@@ -1704,7 +1767,28 @@
   ]
  },
  {
+  "key": "Any sore spots?",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Anything else we should know?",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
   "key": "Both hands on the chair",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Didn't know where to start",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -1753,14 +1837,7 @@
   ]
  },
  {
-  "key": "Every move has a seated version. If something hurts, one tap swaps it for an easier one.",
-  "comment": "",
-  "files": [
-   "OnboardingCopy"
-  ]
- },
- {
-  "key": "Everything starts seated, and moves are filtered for your joints.",
+  "key": "Every walk moves you along a real journey.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -1781,6 +1858,48 @@
   ]
  },
  {
+  "key": "Floor is hard",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "For getting up from chairs more easily.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "For keeping up with the grandkids.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "For more energy, one walk at a time.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "For steadier feet, at your own pace.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Gentle moves, each with a seated version.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
   "key": "Gentle on replaced joints",
   "comment": "",
   "files": [
@@ -1788,21 +1907,70 @@
   ]
  },
  {
-  "key": "Get up from chairs more easily",
+  "key": "Get up from chairs easily",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "Good one. Sit-to-stands start with your hands on the chair.",
+  "key": "Good one. Sit-to-stands start with hands on the chair.",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "Got it. Every move starts seated, and one tap swaps anything that hurts.",
+  "key": "Good to hear. You can change this in Me anytime.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Good. We'll build on those walks, gently.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Got it. Every move has a seated version.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Got it. Moves that are hard on hips stay out.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Got it. Moves that are hard on knees stay out.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Got it. Moves that strain shoulders stay out.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Got it. Moves that strain the lower back stay out.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Great. Start steady, and go stronger anytime.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -1830,14 +1998,14 @@
   ]
  },
  {
-  "key": "I can do several flights",
+  "key": "How active are you now?",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "I can't get down on the floor",
+  "key": "I can do several flights",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -1851,21 +2019,14 @@
   ]
  },
  {
-  "key": "I feel unsteady on my feet",
+  "key": "I get dizzy",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "I get dizzy easily",
-  "comment": "",
-  "files": [
-   "OnboardingCopy"
-  ]
- },
- {
-  "key": "I got bored after a few weeks",
+  "key": "I got bored",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -1886,21 +2047,7 @@
   ]
  },
  {
-  "key": "I was charged when I didn't expect it",
-  "comment": "",
-  "files": [
-   "OnboardingCopy"
-  ]
- },
- {
-  "key": "I'm busy looking after others",
-  "comment": "",
-  "files": [
-   "OnboardingCopy"
-  ]
- },
- {
-  "key": "I'm not sure where to start",
+  "key": "It helps us pick where you start.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -1935,7 +2082,7 @@
   ]
  },
  {
-  "key": "Love that. We build steady stamina, one walk at a time.",
+  "key": "Love that. We build stamina one walk at a time.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -1970,6 +2117,13 @@
   ]
  },
  {
+  "key": "Nice. We'll start where you are and grow.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
   "key": "No floor moves",
   "comment": "",
   "files": [
@@ -1984,6 +2138,13 @@
   ]
  },
  {
+  "key": "No time for me",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
   "key": "Not possible right now",
   "comment": "",
   "files": [
@@ -1991,7 +2152,28 @@
   ]
  },
  {
-  "key": "Not sure yet, I just want to start",
+  "key": "Not sure yet, just start",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Noted. No quick turns, and a steady pace.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Noted. No session has any jumping.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Noted. Nothing here needs the floor.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -2005,7 +2187,28 @@
   ]
  },
  {
+  "key": "Noted. Standing parts stay short, with a seat close by.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
   "key": "Noted. We'll start you somewhere comfortable.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Only to say hello. It stays on this phone.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Phone in your pocket? Just follow the voice.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -2019,7 +2222,14 @@
   ]
  },
  {
-  "key": "Sessions are 5 to 10 minutes, at the moment of the day you choose.",
+  "key": "Pick any that fit. No judgment.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Pick one. You can change it later in Me.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -2027,6 +2237,13 @@
  },
  {
   "key": "Sessions fit around your day, from 5 minutes.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Short daily walks that add up.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -2054,21 +2271,35 @@
   ]
  },
  {
-  "key": "Sore knees don't mean you can't move.",
+  "key": "So the first week fits you.",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "Standing for long is hard",
+  "key": "Sore joints? Everything starts seated.",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "Steadier it is. Balance moves always come with a chair beside you.",
+  "key": "Standing tires me",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Standing up without your hands is…",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Steadier it is. Balance moves keep a chair beside you.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -2082,6 +2313,27 @@
   ]
  },
  {
+  "key": "Surprise charges",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Tap all that apply, or None of these.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Tap all that apply. We'll go easy there.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
   "key": "Thanks for telling us. Every move has a seated version.",
   "comment": "",
   "files": [
@@ -2089,21 +2341,35 @@
   ]
  },
  {
-  "key": "Thanks. We start you at a comfortable level and grow from there.",
+  "key": "Thanks. Balance moves will keep both hands on the chair.",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "That works. We start gentle, and you can change anything later.",
+  "key": "Thanks. Tell us in Me if anything changes.",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "That's what we're here for. We pick each day for you.",
+  "key": "Thanks. We'll keep every move gentle on that joint.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "That works. We start gentle; change anything later.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "That's what we're here for. We plan each day.",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -2117,14 +2383,14 @@
   ]
  },
  {
-  "key": "Videos go too fast",
+  "key": "Unsteady on my feet",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "Videos went too fast? Here a calm voice sets the pace, and you can pause anytime.",
+  "key": "Videos go too fast",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -2138,111 +2404,80 @@
   ]
  },
  {
-  "key": "We start you at the right level and adjust after every session.",
+  "key": "We start gently and adjust after each session.",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "We'll always show the exact date before any charge.",
+  "key": "We'll always show the date before any charge.",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "You can do it with your phone in your pocket. Just follow the voice.",
+  "key": "What got in the way before?",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "You'll see your billing date today, get a reminder before it, and can cancel anytime from Me.",
+  "key": "What matters most?",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "Your walks move you along real places, so there's always somewhere new.",
+  "key": "What should we call you?",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "Your week mixes walks, chair moves and stretches, and your journey keeps moving.",
+  "key": "You'll see the billing date before any charge.",
   "comment": "",
   "files": [
    "OnboardingCopy"
   ]
  },
  {
-  "key": "Part 1 of 3 · Your goal",
+  "key": "Your walks travel real places, always somewhere new.",
+  "comment": "",
+  "files": [
+   "OnboardingCopy"
+  ]
+ },
+ {
+  "key": "Nice to meet you, %@.",
   "comment": "",
   "files": [
    "OnboardingFlow"
   ]
  },
  {
-  "key": "Part 2 of 3 · About you",
+  "key": "Pick one to continue",
   "comment": "",
   "files": [
    "OnboardingFlow"
   ]
  },
  {
-  "key": "Part 3 of 3 · Your body",
+  "key": "Step %lld of %lld",
   "comment": "",
   "files": [
    "OnboardingFlow"
   ]
  },
  {
-  "key": "Pick at least one.",
+  "key": "If you have a heart condition, recent surgery, a fall or fainting in the past year, or you've been told to limit exercise, check with your doctor first.",
   "comment": "",
   "files": [
-   "OnboardingFlow"
-  ]
- },
- {
-  "key": "Pick one to continue.",
-  "comment": "",
-  "files": [
-   "OnboardingFlow"
-  ]
- },
- {
-  "key": "Back",
-  "comment": "",
-  "files": [
-   "OnboardingView",
-   "PauseButton",
-   "CancelGuideView",
-   "PermissionStepView",
-   "PaywallLegalFooter"
-  ]
- },
- {
-  "key": "Continue",
-  "comment": "",
-  "files": [
-   "OnboardingView",
-   "PaywallModel",
-   "PhonePlacementView",
-   "PermissionStepView",
-   "PaywallLegalFooter",
-   "OutdoorPrepView"
-  ]
- },
- {
-  "key": "See my options",
-  "comment": "",
-  "files": [
-   "OnboardingView",
-   "PlanReadyView"
+   "OnboardingStepScaffold"
   ]
  },
  {
@@ -2379,6 +2614,17 @@
   ]
  },
  {
+  "key": "Back",
+  "comment": "",
+  "files": [
+   "PauseButton",
+   "CancelGuideView",
+   "PermissionStepView",
+   "OnboardingStepScaffold",
+   "PaywallLegalFooter"
+  ]
+ },
+ {
   "key": "Pause",
   "comment": "A label for the pause button.",
   "files": [
@@ -2409,7 +2655,7 @@
   ]
  },
  {
-  "key": "Cancel anytime in Settings, at least 24 hours before renewal. Deleting the app doesn't cancel.",
+  "key": "Cancel anytime in Settings. Deleting the app doesn't cancel.",
   "comment": "",
   "files": [
    "PaywallLegalFooter"
@@ -2425,13 +2671,6 @@
  {
   "key": "Next, Apple will ask you to confirm.",
   "comment": "A description of the next step in the Apple purchase process.",
-  "files": [
-   "PaywallLegalFooter"
-  ]
- },
- {
-  "key": "Or keep the free plan: a walk each weekday.",
-  "comment": "",
   "files": [
    "PaywallLegalFooter"
   ]
@@ -2500,21 +2739,6 @@
   ]
  },
  {
-  "key": "%@ Pro",
-  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
-  "files": [
-   "PaywallModel",
-   "MeSections"
-  ]
- },
- {
-  "key": "%@ Pro: free for 14 days",
-  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
-  "files": [
-   "PaywallModel"
-  ]
- },
- {
   "key": "%@ a month",
   "comment": "",
   "files": [
@@ -2537,14 +2761,14 @@
   ]
  },
  {
-  "key": "%@ charged today, then every month until you cancel.",
+  "key": "%@ charged today, then every year. Renews until you cancel, at least 24 hours before renewal.",
   "comment": "",
   "files": [
    "PaywallModel"
   ]
  },
  {
-  "key": "%@ charged today, then every year until you cancel.",
+  "key": "%@ every month. Renews until you cancel, at least 24 hours before renewal.",
   "comment": "",
   "files": [
    "PaywallModel"
@@ -2558,7 +2782,26 @@
   ]
  },
  {
-  "key": "Free for 14 days, then %@ a year from %@. Renews until you cancel.",
+  "key": "%@, free for 14 days",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Continue",
+  "comment": "",
+  "files": [
+   "PaywallModel",
+   "PhonePlacementView",
+   "PermissionStepView",
+   "OnboardingStepScaffold",
+   "PaywallLegalFooter",
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "Free for 14 days, then %@ a year. Renews until you cancel, at least 24 hours before renewal.",
   "comment": "",
   "files": [
    "PaywallModel"
@@ -2579,7 +2822,35 @@
   ]
  },
  {
+  "key": "Pay %@ once",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Pick what suits you",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
   "key": "Start my free trial",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Subscribe for %@ a month",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Subscribe for %@ a year",
   "comment": "",
   "files": [
    "PaywallModel"
@@ -2593,10 +2864,52 @@
   ]
  },
  {
-  "key": "%@  %@",
-  "comment": "Layout only: a bold timeline step title followed by its detail. Both parts are already localized strings; nothing here to translate.",
+  "key": "Your 12 weeks of gentle, seated-first moves",
+  "comment": "",
   "files": [
-   "PaywallView"
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Your 12 weeks of short daily walks",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Your 12 weeks to feel steadier",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Your 12 weeks to get moving every day",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Your 12 weeks to get up from chairs more easily",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Your 12 weeks to keep up with the grandkids",
+  "comment": "",
+  "files": [
+   "PaywallModel"
+  ]
+ },
+ {
+  "key": "Your 12 weeks, at your own pace",
+  "comment": "",
+  "files": [
+   "PaywallModel"
   ]
  },
  {
@@ -2607,28 +2920,28 @@
   ]
  },
  {
-  "key": "4 more journeys, with more coming",
+  "key": "14 days free · %@",
   "comment": "",
   "files": [
    "PaywallView"
   ]
  },
  {
-  "key": "All walking levels and weekly plans",
+  "key": "Every plan unlocks the same things.",
   "comment": "",
   "files": [
    "PaywallView"
   ]
  },
  {
-  "key": "Billed %@",
+  "key": "Fewer plans",
   "comment": "",
   "files": [
    "PaywallView"
   ]
  },
  {
-  "key": "Chair, balance and stretch sessions",
+  "key": "First charge, unless you cancel",
   "comment": "",
   "files": [
    "PaywallView"
@@ -2642,21 +2955,21 @@
   ]
  },
  {
-  "key": "Lowest monthly cost",
+  "key": "No free days",
   "comment": "",
   "files": [
    "PaywallView"
   ]
  },
  {
-  "key": "No renewals",
+  "key": "See other plans",
   "comment": "",
   "files": [
    "PaywallView"
   ]
  },
  {
-  "key": "We'll remind you",
+  "key": "We remind you",
   "comment": "",
   "files": [
    "PaywallView"
@@ -2665,6 +2978,13 @@
  {
   "key": "Your current plan keeps renewing until you cancel it.",
   "comment": "A warning that appears when the user's current plan is set to renew.",
+  "files": [
+   "PaywallView"
+  ]
+ },
+ {
+  "key": "Yours to keep, no renewals",
+  "comment": "",
   "files": [
    "PaywallView"
   ]
@@ -2803,15 +3123,15 @@
   ]
  },
  {
-  "key": "12 weeks, at your own pace",
+  "key": "10 s",
   "comment": "",
   "files": [
    "PlanReadyView"
   ]
  },
  {
-  "key": "2 rest days a week · starting %@",
-  "comment": "A description of the user's walking plan, including the number of minutes per day, the number of rest days, and the starting level.",
+  "key": "12 weeks",
+  "comment": "",
   "files": [
    "PlanReadyView"
   ]
@@ -2824,6 +3144,13 @@
   ]
  },
  {
+  "key": "A walk each weekday. Saturday and Sunday are rest days.",
+  "comment": "",
+  "files": [
+   "PlanReadyView"
+  ]
+ },
+ {
   "key": "Day 1",
   "comment": "",
   "files": [
@@ -2831,8 +3158,22 @@
   ]
  },
  {
-  "key": "Every walk in the app moves you along.",
-  "comment": "A description of the benefits of the first journey.",
+  "key": "Hear your coach",
+  "comment": "",
+  "files": [
+   "PlanReadyView"
+  ]
+ },
+ {
+  "key": "Hear your coach, 10 seconds",
+  "comment": "",
+  "files": [
+   "PlanReadyView"
+  ]
+ },
+ {
+  "key": "Play again",
+  "comment": "",
   "files": [
    "PlanReadyView"
   ]
@@ -2846,29 +3187,29 @@
   ]
  },
  {
-  "key": "Week 1 starts with your first session. Every two weeks, a 30-second check shows how you're doing, compared only with yourself.",
+  "key": "See my options",
   "comment": "",
   "files": [
    "PlanReadyView"
   ]
  },
  {
-  "key": "Why this will work for you",
-  "comment": "A heading for the reasons why the plan will work for the user.",
+  "key": "Starts %@",
+  "comment": "",
   "files": [
    "PlanReadyView"
   ]
  },
  {
-  "key": "With %@ Pro, your week mixes walks, chair moves and stretches.",
-  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
+  "key": "Starts %@ · %@",
+  "comment": "",
   "files": [
    "PlanReadyView"
   ]
  },
  {
-  "key": "Your first journey: Central Park to Brooklyn Bridge",
-  "comment": "The title of the first journey.",
+  "key": "Stop the coach",
+  "comment": "",
   "files": [
    "PlanReadyView"
   ]
@@ -3268,104 +3609,6 @@
   ]
  },
  {
-  "key": "Getting up from a chair without using your hands is…",
-  "comment": "",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
-  "key": "How active are you now?",
-  "comment": "",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
-  "key": "If you have a heart condition, recent surgery, a fall or fainting in the past year, or you've been told to limit exercise, check with your doctor first.",
-  "comment": "",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
-  "key": "It helps us pick your first chair moves.",
-  "comment": "",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
-  "key": "Next, a few questions about your day.",
-  "comment": "A description of the next section of the onboarding flow.",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
-  "key": "Nice to meet you, %@.",
-  "comment": "",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
-  "key": "Pick any that fit. No judgment.",
-  "comment": "",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
-  "key": "Pick up to 2.",
-  "comment": "",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
-  "key": "So we start you at a comfortable level.",
-  "comment": "",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
-  "key": "We use it to say hello. You can skip it.",
-  "comment": "",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
-  "key": "What should we call you?",
-  "comment": "",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
-  "key": "What would you like from this?",
-  "comment": "",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
-  "key": "What's made it hard before?",
-  "comment": "",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
-  "key": "You can pick 2. Tap one to change it.",
-  "comment": "",
-  "files": [
-   "QuestionViews"
-  ]
- },
- {
   "key": "Your name",
   "comment": "The title of the text field for the user's name.",
   "files": [
@@ -3486,6 +3729,7 @@
    "SelfCheckViews",
    "ScreenHeader",
    "JourneyListView",
+   "PaywallView",
    "PaywallLegalFooter",
    "WorkoutView",
    "OutdoorPrepView"
@@ -3641,7 +3885,8 @@
   "key": "Stop",
   "comment": "",
   "files": [
-   "SelfCheckViews"
+   "SelfCheckViews",
+   "PlanReadyView"
   ]
  },
  {
@@ -4965,7 +5210,8 @@
   "key": "%@ · %@",
   "comment": "",
   "files": [
-   "WalkPlayerModel"
+   "WalkPlayerModel",
+   "PaywallView"
   ]
  },
  {
@@ -5132,7 +5378,7 @@
   ]
  },
  {
-  "key": "A 12-week plan for stronger legs",
+  "key": "12 weeks, 5 to 10 minutes a day",
   "comment": "",
   "files": [
    "WelcomeView"

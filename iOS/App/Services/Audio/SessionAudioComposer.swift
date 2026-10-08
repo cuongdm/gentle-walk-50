@@ -14,9 +14,10 @@ enum SessionAudioComposer {
 
     /// - Parameters:
     ///   - voiceURL: audio file per voice line id; lines without a file are left silent.
+    ///   - bellURL: the phase bell; nil (or a timeline without bells, like the coach preview) adds no bell track.
     ///   - doneBellURL: the completion bell; the phase bell is used when nil.
     ///   - length: how long music plays; defaults to the timeline total (open-ended walks pass more).
-    static func compose(timeline: SessionTimeline, voiceURL: [String: URL], bellURL: URL, doneBellURL: URL? = nil,
+    static func compose(timeline: SessionTimeline, voiceURL: [String: URL], bellURL: URL?, doneBellURL: URL? = nil,
                         musicURL: URL?, length: Double? = nil, duckedVolume: Float = duckedVolume) async throws -> (AVMutableComposition, AVAudioMix) {
         let total = time(length ?? timeline.total)
         let composition = AVMutableComposition()
@@ -27,10 +28,12 @@ enum SessionAudioComposer {
             try await voiceTrack.place(url, at: time(cue.start), limit: total)
         }
 
-        var bellTrack = TrackWriter(composition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid))
-        for bell in timeline.bells {
-            let url = bell.kind == .done ? (doneBellURL ?? bellURL) : bellURL
-            try await bellTrack.place(url, at: time(bell.at), limit: total)
+        if let bellURL, !timeline.bells.isEmpty {
+            var bellTrack = TrackWriter(composition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid))
+            for bell in timeline.bells {
+                let url = bell.kind == .done ? (doneBellURL ?? bellURL) : bellURL
+                try await bellTrack.place(url, at: time(bell.at), limit: total)
+            }
         }
 
         let mix = AVMutableAudioMix()
