@@ -1,0 +1,22 @@
+Family | x/em | cap/em | x/cap | tnum works | ữ falls back | width 'Good morning, Margaret' 17px
+New York (system; Safari only, Chrome shows a fallback) | Chrome cannot select this system font; open the page in Safari (ui-serif / ui-rounded) or see ip11/*.png
+SF Pro Rounded (system; Safari only, Chrome shows a fallback) | Chrome cannot select this system font; open the page in Safari (ui-serif / ui-rounded) or see ip11/*.png
+SF Pro (system-ui) | 0.508 | 0.705 | 0.72 | yes | no | 175 px
+Atkinson Hyperlegible Next | 0.496 | 0.668 | 0.74 | yes | FALLBACK | 183 px
+Atkinson Hyperlegible (2019) | 0.496 | 0.668 | 0.74 | yes | FALLBACK | 183 px
+Lexend | 0.525 | 0.700 | 0.75 | NO | no | 204 px
+Inter | 0.516 | 0.728 | 0.71 | yes | no | 181 px
+Nunito | 0.493 | 0.712 | 0.69 | yes | no | 187 px
+Nunito Sans | 0.486 | 0.705 | 0.69 | yes | no | 187 px
+Source Sans 3 | 0.486 | 0.656 | 0.74 | yes | no | 173 px
+Public Sans | 0.517 | 0.723 | 0.72 | yes | no | 192 px
+Figtree | 0.500 | 0.700 | 0.71 | yes | FALLBACK | 187 px
+Plus Jakarta Sans | 0.536 | 0.745 | 0.72 | yes | no | 198 px
+Outfit | 0.475 | 0.694 | 0.68 | yes | FALLBACK | 189 px
+DM Sans | 0.496 | 0.700 | 0.71 | NO | FALLBACK | 174 px
+Fraunces | 0.436 | 0.700 | 0.62 | NO | no | 192 px
+Newsreader | 0.512 | 0.715 | 0.72 | yes | no | 180 px
+Literata | 0.513 | 0.730 | 0.70 | yes | no | 201 px
+Source Serif 4 | 0.452 | 0.670 | 0.67 | yes | no | 180 px
+Lora | 0.500 | 0.700 | 0.71 | yes | no | 196 px
+Merriweather | 0.521 | 0.743 | 0.70 | yes | no | 198 px

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Icon set comparison — Good Footing</title>
+<!--
+  Research artefact (08/10/2026). Pulls the real SVG bodies of each set at runtime from the Iconify API
+  (https://api.iconify.design/<prefix>.json?icons=a,b,c), which serves the upstream packages
+  (@iconify-json/<prefix> on npm). Nothing is committed except this HTML and the PNG renders.
+  Open with ?theme=dark for the dark variant, ?size=small for 44 pt chips / 20 pt glyphs.
+  Render: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars
+          --virtual-time-budget=20000 --window-size=1700,2300 --screenshot=compare-light.png compare.html
+-->
+<style>
+  :root {
+    --paper: #F8F1E6; --surface: #FFFCF6; --ink: #2A241F; --muted: #655A50; --line: rgba(42,36,31,.12);
+    --sap: #5E7F3A; --sky: #3F6A8A; --ochre: #8A5F12; --sienna: #A9512C; --danger: #BF5347; --hooker: #2E4A33;
+    --chip: 56px; --glyph: 30px;
+  }
+  :root[data-theme="dark"] {
+    --paper: #1F1B17; --surface: #2A251F; --ink: #F2EBE1; --muted: #BDB2A5; --line: rgba(242,235,225,.14);
+    --sap: #9DBE78; --sky: #9DBBD4; --ochre: #E0B45A; --sienna: #E0915F; --danger: #D9776B; --hooker: #8FB38F;
+  }
+  :root[data-size="small"] { --chip: 44px; --glyph: 20px; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px 28px; background: var(--paper); color: var(--ink);
+         font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; font-size: 15px; }
+  h1 { font-family: "New York", "Iowan Old Style", Georgia, serif; font-weight: 600; font-size: 26px; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 18px; }
+  table { border-collapse: collapse; width: 100%; }
+  th { font-weight: 600; font-size: 12px; color: var(--muted); text-align: center; padding: 0 2px 8px; letter-spacing: .02em; }
+  th.set { text-align: left; width: 200px; }
+  td { padding: 7px 2px; border-top: 1px solid var(--line); text-align: center; vertical-align: middle; }
+  td.set { text-align: left; }
+  td.set b { display: block; font-size: 14px; }
+  td.set small { color: var(--muted); font-size: 11.5px; }
+  .chip { position: relative; width: var(--chip); height: var(--chip); margin: 0 auto; display: grid; place-items: center; }
+  .chip svg.wash { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .chip svg.glyph { position: relative; width: var(--glyph); height: var(--glyph); display: block; }
+  .chip.c0 { color: var(--sap); } .chip.c1 { color: var(--sky); } .chip.c2 { color: var(--ochre); }
+  .chip.c3 { color: var(--sienna); } .chip.c4 { color: var(--danger); } .chip.c5 { color: var(--hooker); }
+  .chip.colour svg.glyph { color: initial; }
+  .chip.wobble svg.glyph { filter: url(#wobble); }
+  .chip.wobble svg.wash { filter: url(#washedge); opacity: .9; }
+  .none { color: var(--muted); font-size: 18px; opacity: .55; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: 12.5px; }
+</style>
+</head>
+<body>
+<h1 id="title">Icon set comparison on Pigment paper</h1>
+<p class="sub" id="sub">Real SVGs from each set via the Iconify API · glyph on an uneven watercolour wash (tint at 16 %) · — = no icon for that concept in the set (checked 08/10/2026)</p>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="wobble" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+  <filter id="washedge" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/></filter>
+</svg>
+<table id="grid"></table>
+<p class="legend">Wash colours = app roles: sap (sessions/plan), sky (journey/time), ochre (checks/new), sienna (people), danger (pain/health), Hooker green (primary). Dark theme uses lighter tints than the app's current dark tokens so the glyph clears 4.5:1 on #1F1B17.</p>
+<script>
+const DATA = {"concepts": ["walk", "chair", "stretch", "balance", "knee", "hip", "lower back", "shoulder", "grandkids", "coffee", "TV", "reminder", "health", "journey", "steps", "tree", "self-check", "dizzy"], "rows": [{"id": "ph", "label": "Phosphor Regular", "prefix": "ph", "icons": ["person-simple-walk", "chair", "person-simple-tai-chi", null, null, null, null, null, "baby", "coffee", "television-simple", "bell", "heart", "map-trifold", "footprints", "tree", "timer", "smiley-x-eyes"]}, {"id": "ph-duotone", "label": "Phosphor Duotone", "prefix": "ph", "icons": ["person-simple-walk-duotone", "chair-duotone", "person-simple-tai-chi-duotone", null, null, null, null, null, "baby-duotone", "coffee-duotone", "television-simple-duotone", "bell-duotone", "heart-duotone", "map-trifold-duotone", "footprints-duotone", "tree-duotone", "timer-duotone", "smiley-x-eyes-duotone"]}, {"id": "ph-fill", "label": "Phosphor Fill", "prefix": "ph", "icons": ["person-simple-walk-fill", "chair-fill", "person-simple-tai-chi-fill", null, null, null, null, null, "baby-fill", "coffee-fill", "television-simple-fill", "bell-fill", "heart-fill", "map-trifold-fill", "footprints-fill", "tree-fill", "timer-fill", "smiley-x-eyes-fill"]}, {"id": "ph-bold", "label": "Phosphor Bold", "prefix": "ph", "icons": ["person-simple-walk-bold", "chair-bold", "person-simple-tai-chi-bold", null, null, null, null, null, "baby-bold", "coffee-bold", "television-simple-bold", "bell-bold", "heart-bold", "map-trifold-bold", "footprints-bold", "tree-bold", "timer-bold", "smiley-x-eyes-bold"]}, {"id": "ph-wobble", "label": "Mock: Phosphor Bold + hand-wobble filter + textured wash (custom A)", "prefix": "ph", "icons": ["person-simple-walk-bold", "chair-bold", "person-simple-tai-chi-bold", null, null, null, null, null, "baby-bold", "coffee-bold", "television-simple-bold", "bell-bold", "heart-bold", "map-trifold-bold", "footprints-bold", "tree-bold", "timer-bold", "smiley-x-eyes-bold"], "wobble": true}, {"id": "healthicons", "label": "Health Icons Outline", "prefix": "healthicons", "icons": ["walk-supported-outline", "wheelchair-outline", "exercise-yoga-outline", "elderly-outline", "joints-outline", "leg-outline", "back-pain-outline", "arm-outline", "old-woman-outline", null, null, null, "heart-outline", null, "foot-outline", null, null, "dizzy-outline"]}, {"id": "healthicons-filled", "label": "Health Icons Filled", "prefix": "healthicons", "icons": ["walk-supported", "wheelchair", "exercise-yoga", "elderly", "joints", "leg", "back-pain", "arm", "old-woman", null, null, null, "heart", null, "foot", null, null, "dizzy"]}, {"id": "iconoir", "label": "Iconoir", "prefix": "iconoir", "icons": ["walking", "sleeper-chair", "stretching", "yoga", null, null, null, null, "community", "coffee-cup", "tv", "bell", "heart", "map", null, "tree", "timer", null]}, {"id": "tabler", "label": "Tabler", "prefix": "tabler", "icons": ["walk", "armchair", "stretching", "yoga", null, null, null, null, "friends", "coffee", "device-tv", "bell", "heart", "map", "footsteps", "tree", "stopwatch", "mood-sad-dizzy"]}, {"id": "lucide", "label": "Lucide", "prefix": "lucide", "icons": [null, "armchair", null, "person-standing", null, null, null, null, "baby", "coffee", "tv", "bell", "heart", "map", "footprints", "tree-deciduous", "timer", null]}, {"id": "ri", "label": "Remix Line", "prefix": "ri", "icons": ["walk-line", "armchair-line", null, null, null, null, null, null, "parent-line", "cup-line", "tv-line", "bell-line", "heart-line", "map-2-line", "footprint-line", "tree-line", "timer-line", null]}, {"id": "hugeicons", "label": "Hugeicons Stroke Rounded (free)", "prefix": "hugeicons", "icons": ["walking", "chair-01", "workout-stretching", "yoga-01", "body-part-leg", null, "back-muscle-body", "shoulder", "kid", "coffee-02", "tv-01", "bell", "heart", "map", "footprints", "tree-01", "timer-01", "sad-dizzy"]}, {"id": "solar", "label": "Solar Linear", "prefix": "solar", "icons": ["walking-linear", "armchair-linear", "stretching-linear", "body-linear", null, null, null, null, "users-group-two-rounded-linear", "cup-hot-linear", "tv-linear", "bell-linear", "heart-linear", "map-linear", null, "leaf-linear", "stopwatch-linear", null]}, {"id": "solar-duo", "label": "Solar Bold Duotone", "prefix": "solar", "icons": ["walking-bold-duotone", "armchair-bold-duotone", "stretching-bold-duotone", "body-bold-duotone", null, null, null, null, "users-group-two-rounded-bold-duotone", "cup-hot-bold-duotone", "tv-bold-duotone", "bell-bold-duotone", "heart-bold-duotone", "map-bold-duotone", null, "leaf-bold-duotone", "stopwatch-bold-duotone", null]}, {"id": "mingcute", "label": "MingCute Line", "prefix": "mingcute", "icons": ["walk-line", null, "yoga-line", "body-line", "high-knees-line", null, null, null, "group-line", "teacup-line", "tv-1-line", "bell-ringing-line", "heart-line", "map-line", "foot-line", "tree-line", "stopwatch-line", "unhappy-dizzy-line"]}, {"id": "icon-park", "label": "IconPark Outline", "prefix": "icon-park-outline", "icons": [null, "chair", "stretching", "stand-up", null, null, null, null, "family", "tea-drink", "tv", "bell-ring", "heart", "area-map", "foot", "tree", "stopwatch", "dizzy-face"]}, {"id": "sl-freehand", "label": "Streamline Freehand (free 1 000)", "prefix": "streamline-freehand", "icons": ["walking-symbol", null, null, null, null, null, null, null, "family-child-play-ball-sign", null, "vintage-tv-1", "alert-alarm-bell", "donation-charity-donate-heart-flower", "mobilephone-action-navigation-map", null, null, "time-stopwatch", "smiley-dizzy"]}, {"id": "sl-ultimate", "label": "Streamline Ultimate (free 2 000)", "prefix": "streamline-ultimate", "icons": ["walking-1", "office-chair", "yoga-back-stretch-1", null, "medical-specialty-knee-1", null, "acupuncture-back", null, "family-child-play-ball-warning", "coffee-cold", "modern-tv-curvy-edge", "alarm-bell-ring", null, "maps", null, null, "stopwatch", null]}, {"id": "sl-plump", "label": "Streamline Plump (free 1 500)", "prefix": "streamline-plump", "icons": [null, "wheelchair-2", null, null, null, null, null, null, null, "coffee-mug", null, "bell", null, "map-fold", null, "tree-1", "stopwatch-half", null]}, {"id": "pepicons", "label": "Pepicons Pencil (hand-drawn)", "prefix": "pepicons-pencil", "icons": ["person", null, null, null, null, null, null, null, "person-plus", null, "television", "bell", "heart", "map", null, "tree", "stopwatch", null]}, {"id": "fluent-hc", "label": "Fluent Emoji High Contrast", "prefix": "fluent-emoji-high-contrast", "icons": ["woman-walking", "chair", "person-in-lotus-position", "woman-standing", "person-kneeling", null, null, null, "older-person", "hot-beverage", "television", "bell", "red-heart", "world-map", "footprints", "deciduous-tree", "stopwatch", "face-with-spiral-eyes"]}, {"id": "fluent-flat", "label": "Fluent Emoji Flat (colour)", "prefix": "fluent-emoji-flat", "icons": ["woman-walking", "chair", "person-in-lotus-position", "woman-standing", "person-kneeling", null, null, null, "older-person", "hot-beverage", "television", "bell", "red-heart", "world-map", "footprints", "deciduous-tree", "stopwatch", "face-with-spiral-eyes"]}, {"id": "openmoji", "label": "OpenMoji (colour, hand-drawn)", "prefix": "openmoji", "icons": ["woman-walking", "chair", "person-in-lotus-position", "person-standing", "knee-pain", null, "backache", "joint-pain", "older-person", "hot-beverage", "television", "bell", "red-heart", "world-map", "footprints", "deciduous-tree", "stopwatch", "dizzy-face"]}]};
+const q = new URLSearchParams(location.search);
+if (q.get('theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+if (q.get('size') === 'small') document.documentElement.dataset.size = 'small';
+document.getElementById('title').textContent += q.get('theme') === 'dark' ? ' — dark' : ' — light';
+if (q.get('size') === 'small') document.getElementById('sub').textContent += ' · 44 pt chip / 20 pt glyph (Me rows)';
+else document.getElementById('sub').textContent += ' · 56 pt chip / 30 pt glyph (onboarding cards)';
+
+// Same four-lobe blob as iOS/App/Design/Components/IconChip.swift (WashShape), variant hashed from the icon name.
+const LOBES = [[1.00,0.90,0.97,0.86],[0.92,1.00,0.86,0.95],[0.88,0.94,1.00,0.90],[0.97,0.86,0.92,1.00]];
+function variant(key){ let s=0; for (const ch of key) s=(s+ch.codePointAt(0))%997; return s%LOBES.length; }
+function washPath(v, size){
+  const r=LOBES[v], c=size/2, h=size/2; const pts=[];
+  for (let i=0;i<4;i++){ const a=i*Math.PI/2; pts.push([c+Math.cos(a)*h*r[i], c+Math.sin(a)*h*r[i]]); }
+  let d=`M${pts[0][0]} ${pts[0][1]}`;
+  for (let i=0;i<4;i++){ const n=pts[(i+1)%4], a=i*Math.PI/2+Math.PI/4, k=1.32*(r[i]+r[(i+1)%4])/2;
+    d+=` Q${c+Math.cos(a)*h*k} ${c+Math.sin(a)*h*k} ${n[0]} ${n[1]}`; }
+  return d+'Z';
+}
+// Role colour per concept column.
+const ROLE = [0,0,1,1,4,4,4,4,3,2,2,0,4,1,0,0,2,4];
+
+async function load(prefix, names){
+  const want=[...new Set(names.filter(Boolean))];
+  if (!want.length) return {icons:{}};
+  const url=`https://api.iconify.design/${prefix}.json?icons=${encodeURIComponent(want.join(','))}`;
+  try { const r=await fetch(url); if(!r.ok) throw new Error(r.status); return await r.json(); }
+  catch(e){ console.warn(prefix, e); return {icons:{}, error:String(e)}; }
+}
+function svgFor(set, name){
+  const ic=set.icons[name]; if(!ic) return null;
+  const w=ic.width||set.width||24, h=ic.height||set.height||24;
+  return `<svg class="glyph" xmlns="http://www.w3.org/2000/svg" viewBox="${ic.left||0} ${ic.top||0} ${w} ${h}">${ic.body}</svg>`;
+}
+(async () => {
+  const grid=document.getElementById('grid');
+  grid.innerHTML = '<tr><th class="set">Set · style</th>' + DATA.concepts.map(c=>`<th>${c}</th>`).join('') + '</tr>';
+  for (const row of DATA.rows){
+    const set = await load(row.prefix, row.icons);
+    const colour = /flat|openmoji/.test(row.id); const wob = row.wobble ? 'wobble' : '';
+    const cells = row.icons.map((n,i)=>{
+      const svg = n && svgFor(set,n);
+      if(!svg) return `<td><span class="none" title="${n||'no icon'}">${n? '?' : '—'}</span></td>`;
+      const v=variant(n), size=56;
+      return `<td><div class="chip c${ROLE[i]} ${colour?'colour':''} ${wob}" title="${row.prefix}:${n}">
+        <svg class="wash" viewBox="0 0 ${size} ${size}"><path d="${washPath(v,size)}" fill="currentColor" opacity="0.16"/></svg>${svg}</div></td>`;
+    }).join('');
+    const found=row.icons.filter(n=>n && set.icons[n]).length;
+    grid.insertAdjacentHTML('beforeend', `<tr><td class="set"><b>${row.label}</b><small>${row.prefix} · ${found}/${DATA.concepts.length} concepts${set.error?' · load error':''}</small></td>${cells}</tr>`);
+  }
+  document.body.dataset.ready = '1';
+})();
+</script>
+</body>
+</html>

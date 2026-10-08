@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Control states</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#2E4A33}a:hover{color:#1f3424}
+</style>
+</helmet>
+<div style="width: 1200px; height: 844px; box-sizing: border-box; background: radial-gradient(130% 75% at 50% 0%, #FDF9F2 0%, #F8F1E6 55%, #F1E6D4 100%); color: #2A241F; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; padding: 36px 40px; display: flex; flex-direction: column; gap: 22px">
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <h1 style="margin: 0; font-family: ui-serif, 'New York', Georgia, serif; font-weight: 600; font-size: 34px">Every control says what state it is in</h1>
+    <span style="font-size: 18px; color: #4a4038">Never colour alone: a chosen thing changes fill, border, weight and gets a check. Words back it up (On, Off, Done, Keep holding).</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-size: 15px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #A9512C">Main button</span>
+      <span style="font-size: 15px; color: #5b5149">Ready</span>
+      <button type="button" style="height: 60px; border: none; border-radius: 30px; background: linear-gradient(180deg, #5A8052 0%, #4A7044 55%, #3E6138 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 8px 18px rgba(62,97,56,0.26); color: #FFFDF8; font: 600 19px -apple-system, system-ui, sans-serif">Continue</button>
+      <span style="font-size: 15px; color: #5b5149">Finger down: sinks, darker, light tap felt</span>
+      <button type="button" style="height: 60px; border: none; border-radius: 30px; background: linear-gradient(180deg, #3E6138 0%, #34532F 100%); box-shadow: inset 0 3px 6px rgba(0,0,0,0.28); color: #F1EBDD; font: 600 19px -apple-system, system-ui, sans-serif; transform: scale(0.97)">Continue</button>
+      <span style="font-size: 15px; color: #5b5149">Not yet: says why</span>
+      <button type="button" disabled style="height: 60px; border: 2px dashed #B9AB93; border-radius: 30px; background: #EFE6D6; color: #4a4038; font: 600 18px -apple-system, system-ui, sans-serif">Pick one to continue</button>
+      <span style="font-size: 15px; color: #5b5149">Working</span>
+      <button type="button" style="height: 60px; border: none; border-radius: 30px; background: linear-gradient(180deg, #5A8052 0%, #4A7044 55%, #3E6138 100%); color: #FFFDF8; font: 600 19px -apple-system, system-ui, sans-serif; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFDF8" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 3a9 9 0 1 1-9 9" opacity="0.9"/></svg>Saving…</button>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-size: 15px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #A9512C">Answer you pick</span>
+      <span style="font-size: 15px; color: #5b5149">Not chosen: paper, thin border</span>
+      <button type="button" style="min-height: 60px; display: flex; align-items: center; gap: 12px; padding: 8px 14px; border-radius: 16px; border: 1.5px solid #D8CCB7; background: linear-gradient(180deg, #FFFEFA 0%, #FAF4E8 100%); font: 500 18px -apple-system, system-ui, sans-serif; color: #2A241F; text-align: left">
+        <span style="width: 36px; height: 36px; flex: none; display: flex; align-items: center; justify-content: center; border-radius: 52% 48% 40% 60% / 45% 55% 45% 55%; background: radial-gradient(circle at 34% 30%, rgba(127,163,192,0.14) 0%, rgba(127,163,192,0.44) 100%)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2E4A33" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4v9.4M5 4.5c2.6-.5 5.3-.4 7.6.3v8.6M3.7 13.4h10.4l-.4 2.3H4.1zM5 15.7l-.8 4.6M13.4 15.7l.8 4.6M18.5 15V5.5M15.8 8.2l2.7-2.7 2.7 2.7"/></svg></span>
+        <span style="flex: 1">Up from chairs</span>
+      </button>
+      <span style="font-size: 15px; color: #5b5149">Chosen: tinted fill, 3 pt border, bold, check</span>
+      <button type="button" aria-pressed="true" style="min-height: 60px; display: flex; align-items: center; gap: 12px; padding: 8px 14px; border-radius: 16px; border: 3px solid #2E4A33; background: linear-gradient(180deg, rgba(217,164,65,0.36) 0%, rgba(217,164,65,0.18) 100%); box-shadow: 0 6px 14px rgba(46,74,51,0.14); font: 700 18px -apple-system, system-ui, sans-serif; color: #2A241F; text-align: left">
+        <span style="width: 36px; height: 36px; flex: none; display: flex; align-items: center; justify-content: center; border-radius: 52% 48% 40% 60% / 45% 55% 45% 55%; background: radial-gradient(circle at 34% 30%, rgba(127,163,192,0.14) 0%, rgba(127,163,192,0.44) 100%)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2E4A33" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4v9.4M5 4.5c2.6-.5 5.3-.4 7.6.3v8.6M3.7 13.4h10.4l-.4 2.3H4.1zM5 15.7l-.8 4.6M13.4 15.7l.8 4.6M18.5 15V5.5M15.8 8.2l2.7-2.7 2.7 2.7"/></svg></span>
+        <span style="flex: 1">Up from chairs</span>
+        <span style="width: 28px; height: 28px; flex: none; border-radius: 50%; background: #2E4A33; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M5 13.8c2.1 1.6 3.7 3.3 5 5.4 2.5-5.4 6-9.6 11-13" stroke="#FFFDF8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </button>
+      <span style="font-size: 15px; color: #5b5149">One of three: the chosen one is filled and checked</span>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+        <button type="button" style="height: 54px; border-radius: 27px; border: 1.5px solid #D8CCB7; background: linear-gradient(180deg, #FFFEFA 0%, #FAF4E8 100%); font: 500 17px -apple-system, system-ui, sans-serif; color: #2A241F">Achy</button>
+        <button type="button" aria-pressed="true" style="height: 54px; border-radius: 27px; border: 3px solid #2E4A33; background: linear-gradient(180deg, #557A42 0%, #3F6230 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 5px 12px rgba(63,98,48,0.25); font: 700 17px -apple-system, system-ui, sans-serif; color: #FFFDF8; display: flex; align-items: center; justify-content: center; gap: 6px"><svg width="15" height="15" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M5 13.8c2.1 1.6 3.7 3.3 5 5.4 2.5-5.4 6-9.6 11-13" stroke="#FFFDF8" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Okay</button>
+        <button type="button" style="height: 54px; border-radius: 27px; border: 1.5px solid #D8CCB7; background: linear-gradient(180deg, #FFFEFA 0%, #FAF4E8 100%); font: 500 17px -apple-system, system-ui, sans-serif; color: #2A241F">Great</button>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-size: 15px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #A9512C">On or off</span>
+      <span style="font-size: 15px; color: #5b5149">The word is always shown</span>
+      <div style="min-height: 60px; display: flex; align-items: center; gap: 12px; padding: 6px 14px; border-radius: 16px; background: linear-gradient(180deg, #FFFEFA 0%, #FAF4E8 100%); border: 1.5px solid #E4D9C6">
+        <span style="flex: 1; font-size: 18px">Captions</span>
+        <span style="font-size: 16px; font-weight: 600; color: #5b5149">Off</span>
+        <span style="width: 58px; height: 34px; border-radius: 17px; background: #D9CFBE; box-shadow: inset 0 2px 4px rgba(42,36,31,0.18); position: relative; flex: none"><span style="position: absolute; left: 3px; top: 3px; width: 28px; height: 28px; border-radius: 50%; background: #FFFDF8; box-shadow: 0 2px 4px rgba(42,36,31,0.25)"></span></span>
+      </div>
+      <div style="min-height: 60px; display: flex; align-items: center; gap: 12px; padding: 6px 14px; border-radius: 16px; background: linear-gradient(180deg, #FFFEFA 0%, #FAF4E8 100%); border: 1.5px solid #E4D9C6">
+        <span style="flex: 1; font-size: 18px">Captions</span>
+        <span style="font-size: 16px; font-weight: 700; color: #2E4A33">On</span>
+        <span style="width: 58px; height: 34px; border-radius: 17px; background: linear-gradient(180deg, #557A42 0%, #3F6230 100%); position: relative; flex: none"><span style="position: absolute; right: 3px; top: 3px; width: 28px; height: 28px; border-radius: 50%; background: #FFFDF8; box-shadow: 0 2px 4px rgba(42,36,31,0.25); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M5 13.8c2.1 1.6 3.7 3.3 5 5.4 2.5-5.4 6-9.6 11-13" stroke="#3F6230" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+      </div>
+      <span style="font-size: 15px; color: #5b5149">A row that opens something: value + arrow</span>
+      <div style="min-height: 60px; display: flex; align-items: center; gap: 12px; padding: 6px 14px; border-radius: 16px; background: linear-gradient(180deg, #FFFEFA 0%, #FAF4E8 100%); border: 1.5px solid #E4D9C6">
+        <span style="flex: 1; font-size: 18px">Reminder</span>
+        <span style="font-size: 16px; color: #5b5149">8:30 AM</span>
+        <svg width="10" height="16" viewBox="0 0 9 14" fill="none" stroke="#7a6d5c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 2l5 5-5 5"/></svg>
+      </div>
+      <span style="font-size: 15px; color: #5b5149">A link: underlined, never plain grey text</span>
+      <a href="#" style="font-size: 17px; font-weight: 500; text-decoration: underline; text-underline-offset: 4px; padding: 8px 0">Pick a different session</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-size: 15px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #A9512C">Hold (only if needed)</span>
+      <span style="font-size: 15px; color: #5b5149">Before: says hold</span>
+      <div style="display: flex; align-items: center; gap: 14px">
+        <span style="width: 76px; height: 76px; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 40% 35%, #FFFFFF 0%, #F1E7D6 100%); border: 3px solid #D8CCB7"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2E4A33" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V6.2a1.5 1.5 0 0 1 3 0V12M11 11V4.7a1.5 1.5 0 0 1 3 0V12M14 11.5V6a1.5 1.5 0 0 1 3 0v7c0 4-2.6 7-6.3 7-2.5 0-4-1.2-5.2-3.2l-2.3-3.9a1.5 1.5 0 0 1 2.5-1.6L8 13"/></svg></span>
+        <span style="font-size: 18px; font-weight: 600">Hold to start</span>
+      </div>
+      <span style="font-size: 15px; color: #5b5149">Holding: ring fills, words change</span>
+      <div style="display: flex; align-items: center; gap: 14px">
+        <span style="position: relative; width: 76px; height: 76px; flex: none">
+          <svg width="76" height="76" viewBox="0 0 76 76" fill="none" aria-hidden="true" style="position: absolute; inset: 0"><circle cx="38" cy="38" r="35" stroke="#E4D9C6" stroke-width="5"/><path d="M38 3a35 35 0 0 1 30.3 52.5" stroke="#5E7F3A" stroke-width="5" stroke-linecap="round"/></svg>
+          <span style="position: absolute; inset: 8px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #EEF3E6 0%, #D7E3C6 100%); display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2E4A33" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V6.2a1.5 1.5 0 0 1 3 0V12M11 11V4.7a1.5 1.5 0 0 1 3 0V12M14 11.5V6a1.5 1.5 0 0 1 3 0v7c0 4-2.6 7-6.3 7-2.5 0-4-1.2-5.2-3.2l-2.3-3.9a1.5 1.5 0 0 1 2.5-1.6L8 13"/></svg></span>
+        </span>
+        <span style="font-size: 18px; font-weight: 600; color: #2E4A33">Keep holding…</span>
+      </div>
+      <span style="font-size: 15px; color: #5b5149">Done: check, word, light buzz</span>
+      <div style="display: flex; align-items: center; gap: 14px">
+        <span style="width: 76px; height: 76px; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #557A42 0%, #3F6230 100%); box-shadow: 0 6px 14px rgba(63,98,48,0.28)"><svg width="34" height="34" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M5 13.8c2.1 1.6 3.7 3.3 5 5.4 2.5-5.4 6-9.6 11-13" stroke="#FFFDF8" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span style="font-size: 18px; font-weight: 700; color: #2E4A33">Done</span>
+      </div>
+      <span style="font-size: 15px; color: #5b5149">VoiceOver and Switch Control: one tap does it</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

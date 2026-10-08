@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Good Footing font specimens</title>
+<meta name="description" content="Side-by-side type specimens for the Good Footing font study (08/10/2026): candidate pairings on the app paper colour, English and Vietnamese, light and dark.">
+<!-- Fonts come from Google Fonts CSS only; no font files are committed. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@200..800&family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@100..900&family=Inter:opsz,wght@14..32,100..900&family=Nunito:wght@200..1000&family=Nunito+Sans:opsz,wght@6..12,200..1000&family=Source+Sans+3:wght@200..900&family=Public+Sans:wght@100..900&family=Figtree:wght@300..900&family=Plus+Jakarta+Sans:wght@200..800&family=Outfit:wght@100..900&family=DM+Sans:opsz,wght@9..40,100..1000&family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=Newsreader:opsz,wght@6..72,200..800&family=Literata:opsz,wght@7..72,200..900&family=Source+Serif+4:opsz,wght@8..60,200..900&family=Lora:wght@400..700&family=Merriweather:opsz,wght@18..144,300..900&family=Be+Vietnam+Pro:wght@400;700&display=block">
+<style>
+  :root {
+    --paper: #F8F1E6; --surface: #FFFCF6; --ink: #2A241F; --muted: #655A50;
+    --primary: #2E4A33; --secondary: #5E7F3A; --sky: #7FA3C0; --sun: #D9A441; --sienna: #A9512C;
+    --on-fill: #FFFFFF; --line: #D9D0C2; --bad: #BF5347;
+  }
+  :root[data-theme="dark"] {
+    --paper: #1F1B17; --surface: #2A251F; --ink: #F2EBE1; --muted: #BDB2A5;
+    --primary: #4A7151; --secondary: #557537; --sky: #7296B5; --sun: #D2A04A; --sienna: #E0915F;
+    --line: #3C352D;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1F1B17; --surface: #2A251F; --ink: #F2EBE1; --muted: #BDB2A5;
+      --primary: #4A7151; --secondary: #557537; --sky: #7296B5; --sun: #D2A04A; --sienna: #E0915F;
+      --line: #3C352D;
+    }
+  }
+  html { background: var(--paper); }
+  body { margin: 0; padding: 24px 16px 48px; background: var(--paper); color: var(--ink); font-family: system-ui, -apple-system, sans-serif; max-width: 1360px; margin-inline: auto; }
+  h1 { font: 600 22px/1.3 system-ui; margin: 0 0 4px; }
+  .lead { color: var(--muted); font-size: 14px; margin: 0 0 20px; }
+  section { margin: 0 0 36px; }
+  section > h2 { font: 600 15px/1.3 system-ui; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px 20px; min-width: 0; }
+  .card h3 { font: 600 13px/1.3 system-ui; color: var(--muted); margin: 0 0 12px; letter-spacing: .02em; }
+  .card h3 b { color: var(--ink); font-weight: 600; }
+  .t { margin: 0 0 10px; overflow-wrap: anywhere; }
+  .title { font-family: var(--serif); font-weight: var(--serif-w, 600); line-height: 1.18; letter-spacing: var(--serif-ls, 0); }
+  .sans { font-family: var(--sans); line-height: 1.35; }
+  .s34 { font-size: 34px; } .s30 { font-size: 30px; } .s28 { font-size: 28px; } .s22 { font-size: 22px; font-weight: 600; }
+  .s20 { font-size: 20px; } .s19 { font-size: 19px; } .s17 { font-size: 17px; } .s15 { font-size: 15px; color: var(--muted); }
+  .btn { display: block; box-sizing: border-box; width: 100%; min-height: 60px; border-radius: 14px; background: var(--primary); color: var(--on-fill); text-align: center; font-family: var(--sans); font-size: 20px; font-weight: 600; line-height: 60px; margin: 12px 0 8px; }
+  .chip { display: inline-block; border: 2px solid var(--primary); border-radius: 999px; padding: 10px 22px; font-family: var(--sans); font-size: 20px; font-weight: 600; margin: 4px 6px 4px 0; }
+  .chip.on { background: var(--secondary); color: var(--on-fill); border-color: var(--secondary); }
+  .timer { font-family: var(--sans); font-size: 80px; line-height: 1; font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; margin: 6px 0; }
+  .stat { font-family: var(--sans); font-size: 40px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .phase { font-family: var(--sans); font-size: 34px; font-weight: 700; letter-spacing: .045em; text-transform: uppercase; }
+  .row { display: flex; gap: 24px; flex-wrap: wrap; align-items: baseline; }
+  .mono { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--muted); }
+  /* Vietnamese stress strip: one line per family, same sentence, explicit fallback so missing glyphs show in Be Vietnam Pro (a visibly different design). */
+  .strip { display: grid; grid-template-columns: 220px 1fr 1fr; gap: 6px 14px; align-items: baseline; font-size: 24px; }
+  .strip .name { font: 500 13px/1.2 system-ui; color: var(--muted); }
+  .strip .en, .strip .vi { font-family: var(--f), "Be Vietnam Pro", sans-serif; overflow-wrap: anywhere; }
+  .strip .vi { font-feature-settings: normal; }
+  .strip .flag { font: 600 12px/1 system-ui; color: var(--bad); margin-left: 6px; vertical-align: middle; }
+  .strip .ok { color: var(--secondary); }
+  table.meas { border-collapse: collapse; font-size: 13px; width: 100%; }
+  table.meas th, table.meas td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  .num { font-family: var(--f); font-size: 40px; font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; line-height: 1.1; }
+  .num.prop { font-variant-numeric: proportional-nums; font-feature-settings: "tnum" 0; }
+  .glyphs { font-family: var(--f); font-size: 36px; line-height: 1.2; }
+  .pair-note { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<h1>Good Footing: font specimens (08/10/2026)</h1>
+<p class="lead">Paper <span class="mono">#F8F1E6</span> / ink <span class="mono">#2A241F</span> in light; <span class="mono">#1F1B17</span> / <span class="mono">#F2EBE1</span> in dark. Fonts load from Google Fonts; a Vietnamese glyph missing from a family falls back to Be Vietnam Pro (flagged in red). Add <span class="mono">?theme=dark</span> or <span class="mono">?section=N</span> to the URL.</p>
+
+<!-- ============ Section 0: Vietnamese coverage strip, all 20 families ============ -->
+<section data-section="0">
+  <h2>0 · Vietnamese stacked-mark test, every candidate (24 px, regular + bold)</h2>
+  <div class="strip" id="strip"></div>
+  <p class="pair-note">Sentence: "Đứng lên rồi ngồi xuống, theo nhịp của bạn · ế ở ữ ặ ộ ỳ ẵ Ự". A red "FALLBACK" means the family has no glyph for ữ/ế and Chrome substituted another font.</p>
+</section>
+
+<!-- ============ Section 1..5: pairings ============ -->
+<div id="pairings"></div>
+
+<!-- ============ Section 6: numerals + ambiguous glyphs ============ -->
+<section data-section="6">
+  <h2>6 · Timer figures (tabular on / off) and ambiguous glyphs, sans candidates with Vietnamese</h2>
+  <div class="grid" id="numerals"></div>
+</section>
+
+<!-- ============ Section 7: measurements (filled by script) ============ -->
+<section data-section="7">
+  <h2>7 · Measured in this browser: x-height and cap-height as a share of font size, tabular-figure support, Vietnamese fallback</h2>
+  <table class="meas" id="meas"><thead><tr><th>Family</th><th>x/em</th><th>cap/em</th><th>x/cap</th><th>tnum works</th><th>ữ falls back</th><th>width 'Good morning, Margaret' 17px</th></tr></thead><tbody></tbody></table>
+</section>
+
+<script>
+(function () {
+  const q = new URLSearchParams(location.search);
+  const theme = q.get('theme');
+  if (theme === 'dark' || theme === 'light') document.documentElement.dataset.theme = theme;
+
+  const families = [
+    // name, css family, kind
+    ['New York (system; Safari only, Chrome shows a fallback)', 'ui-serif', 'serif', 'safari'],
+    ['SF Pro Rounded (system; Safari only, Chrome shows a fallback)', 'ui-rounded', 'sans', 'safari'],
+    ['SF Pro (system-ui)', 'system-ui', 'sans'],
+    ['Atkinson Hyperlegible Next', '"Atkinson Hyperlegible Next"', 'sans'],
+    ['Atkinson Hyperlegible (2019)', '"Atkinson Hyperlegible"', 'sans'],
+    ['Lexend', 'Lexend', 'sans'],
+    ['Inter', 'Inter', 'sans'],
+    ['Nunito', 'Nunito', 'sans'],
+    ['Nunito Sans', '"Nunito Sans"', 'sans'],
+    ['Source Sans 3', '"Source Sans 3"', 'sans'],
+    ['Public Sans', '"Public Sans"', 'sans'],
+    ['Figtree', 'Figtree', 'sans'],
+    ['Plus Jakarta Sans', '"Plus Jakarta Sans"', 'sans'],
+    ['Outfit', 'Outfit', 'sans'],
+    ['DM Sans', '"DM Sans"', 'sans'],
+    ['Fraunces', 'Fraunces', 'serif'],
+    ['Newsreader', 'Newsreader', 'serif'],
+    ['Literata', 'Literata', 'serif'],
+    ['Source Serif 4', '"Source Serif 4"', 'serif'],
+    ['Lora', 'Lora', 'serif'],
+    ['Merriweather', 'Merriweather', 'serif'],
+  ];
+
+  const VI = 'Đứng lên rồi ngồi xuống, theo nhịp của bạn · ế ở ữ ặ ộ ỳ ẵ Ự';
+  const EN = 'Stand up and sit down, at your own pace';
+
+  // --- Section 0: strip
+  const strip = document.getElementById('strip');
+  families.forEach(([name, css]) => {
+    const n = document.createElement('div'); n.className = 'name'; n.textContent = name; strip.appendChild(n);
+    const en = document.createElement('div'); en.className = 'en'; en.style.setProperty('--f', css); en.textContent = EN; strip.appendChild(en);
+    const vi = document.createElement('div'); vi.className = 'vi'; vi.style.setProperty('--f', css); vi.dataset.family = css;
+    vi.innerHTML = `<span>${VI}</span> <b>${VI.slice(0, 15)}</b><span class="flag"></span>`;
+    strip.appendChild(vi);
+  });
+
+  // --- Pairings
+  const pairings = [
+    { id: 1, label: 'A · Current: New York + SF Pro Rounded (system, 0 KB). Real rendering only in Safari or the ip11/ iPhone screenshots; Chrome substitutes Times + SF Pro here', serif: 'ui-serif', sans: 'ui-rounded, system-ui', serifW: 600 },
+    { id: 2, label: 'B · Fraunces (soft, opsz) + Nunito Sans', serif: 'Fraunces', sans: '"Nunito Sans"', serifW: 600, serifExtra: 'font-variation-settings: "SOFT" 60, "WONK" 0;' },
+    { id: 3, label: 'C · Literata + Lexend', serif: 'Literata', sans: 'Lexend', serifW: 600 },
+    { id: 4, label: 'D · Source Serif 4 + Source Sans 3', serif: '"Source Serif 4"', sans: '"Source Sans 3"', serifW: 600 },
+    { id: 5, label: 'E · Newsreader + Public Sans (reserve)', serif: 'Newsreader', sans: '"Public Sans"', serifW: 600 },
+    { id: 8, label: 'F · Lora + Nunito (reserve, roundest)', serif: 'Lora', sans: 'Nunito', serifW: 600 },
+  ];
+  const host = document.getElementById('pairings');
+  pairings.forEach(p => {
+    const s = document.createElement('section'); s.dataset.section = p.id;
+    const style = `--serif:${p.serif};--sans:${p.sans};--serif-w:${p.serifW};`;
+    s.innerHTML = `
+      <h2>${p.id} · ${p.label}</h2>
+      <div class="grid">
+        <div class="card" style="${style}">
+          <h3>English · <b>titles ${p.serif.replace(/"/g,'')}</b>, text ${p.sans.replace(/"/g,'')}</h3>
+          <p class="t title s34" style="${p.serifExtra||''}">Good morning, Margaret</p>
+          <p class="t title s28" style="${p.serifExtra||''}">Your 2-week check is ready</p>
+          <p class="t sans s22">Chair moves · 14 min</p>
+          <p class="t sans s20">Stand up and sit down, at your own pace</p>
+          <p class="t sans s17">Stand up and sit down, at your own pace. Every two weeks, a 30-second check shows how you're doing, compared only with yourself.</p>
+          <p class="t sans s15">We'll set today's session to match. Illinois 1l I 0O</p>
+          <div><span class="chip">Achy</span><span class="chip on">Okay</span><span class="chip">Great</span></div>
+          <div class="btn">Start my free trial</div>
+          <div class="row"><span class="timer">0:11</span><span class="stat">2 × 8</span><span class="phase">Brisk walk</span></div>
+        </div>
+        <div class="card" style="${style}">
+          <h3>Tiếng Việt · <b>tiêu đề ${p.serif.replace(/"/g,'')}</b>, chữ ${p.sans.replace(/"/g,'')}</h3>
+          <p class="t title s34" style="${p.serifExtra||''}">Chào buổi sáng, Margaret</p>
+          <p class="t title s28" style="${p.serifExtra||''}">Tự kiểm tra 2 tuần đã sẵn sàng</p>
+          <p class="t sans s22">Động tác ghế · 14 phút</p>
+          <p class="t sans s20">Đứng lên rồi ngồi xuống, theo nhịp của bạn</p>
+          <p class="t sans s17">Đứng lên rồi ngồi xuống, theo nhịp của bạn. Cứ hai tuần, một lần tự kiểm tra 30 giây cho thấy bạn tiến bộ ra sao, chỉ so với chính mình.</p>
+          <p class="t sans s15">Chúng tôi sẽ chọn buổi tập hôm nay cho phù hợp. Vững chân hơn, ở ữ ặ ệ</p>
+          <div><span class="chip">Ê ẩm</span><span class="chip on">Ổn</span><span class="chip">Khoẻ</span></div>
+          <div class="btn">Bắt đầu dùng thử miễn phí</div>
+          <div class="row"><span class="timer">0:11</span><span class="stat">2 × 8</span><span class="phase">Đi nhanh</span></div>
+        </div>
+      </div>`;
+    host.appendChild(s);
+  });
+
+  // --- Section 6: numerals for sans with Vietnamese
+  const numHost = document.getElementById('numerals');
+  const sansVI = families.filter(f => f[2] === 'sans');
+  sansVI.forEach(([name, css]) => {
+    const c = document.createElement('div'); c.className = 'card'; c.style.setProperty('--f', css);
+    c.innerHTML = `<h3><b>${name}</b></h3>
+      <div class="num">0:11<br>1:11<br>8:88 · 2 × 8</div>
+      <div class="num prop" style="color:var(--muted)">0:11 · 1:11 (proportional)</div>
+      <div class="glyphs">Il1 | 0O | ag 69 | rn m</div>`;
+    numHost.appendChild(c);
+  });
+
+  // --- Section filter
+  const only = q.get('section');
+  if (only !== null) {
+    const keep = new Set(only.split(','));
+    document.querySelectorAll('section').forEach(s => { if (!keep.has(s.dataset.section)) s.hidden = true; });
+    document.querySelector('h1').hidden = true; document.querySelector('.lead').hidden = true;
+  }
+
+  // --- Measurements (after fonts load)
+  function measure() {
+    const canvas = document.createElement('canvas'); const ctx = canvas.getContext('2d');
+    const tbody = document.querySelector('#meas tbody');
+    const probe = document.createElement('span'); probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font-size:40px;'; document.body.appendChild(probe);
+    function w(fam, text, feat) { probe.style.fontFamily = fam; probe.style.fontFeatureSettings = feat || 'normal'; probe.textContent = text; return probe.getBoundingClientRect().width; }
+    const isChrome = /Chrome\//.test(navigator.userAgent) && !/Edg|OPR/.test(navigator.userAgent);
+    families.forEach(([name, css, kind, note]) => {
+      if (note === 'safari' && isChrome) {
+        const viCell = document.querySelector(`.strip .vi[data-family='${css}'] .flag`);
+        if (viCell) viCell.textContent = 'not rendered by Chrome';
+        const tr = document.createElement('tr'); tr.innerHTML = `<td>${name}</td><td colspan="6">Chrome cannot select this system font; open the page in Safari (ui-serif / ui-rounded) or see ip11/*.png</td>`; tbody.appendChild(tr);
+        return;
+      }
+      ctx.font = `400 100px ${css}`;
+      const x = ctx.measureText('x').actualBoundingBoxAscent / 100;
+      const cap = ctx.measureText('H').actualBoundingBoxAscent / 100;
+      const t0 = w(css, '0000', '"tnum" 1'), t1 = w(css, '1111', '"tnum" 1');
+      const tnum = Math.abs(t0 - t1) < 0.6;
+      // fallback test: ữ in family vs the same glyph forced to the fallback family
+      const fb = '"Be Vietnam Pro"';
+      const a = w(`${css}, ${fb}`, 'ữữữữữữữữ'), b = w(fb, 'ữữữữữữữữ'), c = w(`${css}, ${fb}`, 'uuuuuuuu');
+      const falls = Math.abs(a - b) < 0.6 && Math.abs(a - c) > 0.6 || (css === fb);
+      const wide = w(css, 'Good morning, Margaret') * 17 / 40;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${name}</td><td>${x.toFixed(3)}</td><td>${cap.toFixed(3)}</td><td>${(x/cap).toFixed(2)}</td><td>${tnum ? 'yes' : 'NO'}</td><td>${falls ? 'FALLBACK' : 'no'}</td><td>${wide.toFixed(0)} px</td>`;
+      tbody.appendChild(tr);
+      const viCell = document.querySelector(`.strip .vi[data-family='${css.replace(/'/g, "\\'")}'] .flag`);
+      if (viCell) { viCell.textContent = falls ? 'FALLBACK' : 'ok'; viCell.classList.toggle('ok', !falls); }
+    });
+    probe.remove();
+    document.body.dataset.measured = '1';
+  }
+  document.fonts.ready.then(() => setTimeout(measure, 300));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Good Footing onboarding mockups</title>
+<meta name="description" content="New onboarding, Today, Complete and permission screens for Good Footing, drawn at iPhone SE (375×667) and iPhone 11 (414×896) sizes. Research 08/10/2026.">
+<style>
+/* ---------- Pigment palette (owner 03/10/2026) ---------- */
+:root{
+  --paper:#F8F1E6; --surface:#FFFDF9; --ink:#2A241F; --ink-muted:#6B6158;
+  --hooker:#2E4A33; --sap:#5E7F3A; --ochre:#D9A441; --sky:#7FA3C0; --sienna:#A9512C;
+  --line:rgba(42,36,31,.18); --sap-wash:rgba(94,127,58,.14); --sky-wash:rgba(127,163,192,.22);
+  --ochre-wash:rgba(217,164,65,.22); --sienna-wash:rgba(169,81,44,.14);
+  /* Fonts: Apple system fonts only (owner 08/10/2026). Titles New York via ui-serif where the
+     renderer has it (Safari/iOS); Chrome falls back to a serif of the same metrics class. */
+  --font-ui:-apple-system,"SF Pro Text","SF Pro",system-ui,"Helvetica Neue",Arial,sans-serif;
+  --font-title:ui-serif,"New York","Iowan Old Style","Palatino",Georgia,serif;
+  --page-bg:#D9D3CA; --page-ink:#2A241F;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--page-bg:#1B1816;--page-ink:#EDE6DC}}
+:root[data-theme="dark"]{color-scheme:dark;--page-bg:#1B1816;--page-ink:#EDE6DC}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--page-bg);color:var(--page-ink);font-family:var(--font-ui);padding:16px}
+body.only{padding:0;background:var(--paper)}
+body.only h1,body.only .lede{display:none}
+h1{font-family:var(--font-title);font-weight:600;font-size:28px;margin:8px 0 4px}
+.lede{font-size:15px;margin:0 0 18px;max-width:72ch;line-height:1.5}
+.row{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;margin-bottom:34px}
+.row h2{flex-basis:100%;margin:0;font-size:17px;font-weight:600}
+.row .note{flex-basis:100%;font-size:14px;color:inherit;opacity:.8;margin:-10px 0 0;max-width:80ch;line-height:1.45}
+
+/* ---------- Phone frame ---------- */
+.phone{position:relative;background:var(--paper);color:var(--ink);overflow:hidden;flex:none;
+  border-radius:28px;box-shadow:0 2px 0 rgba(0,0,0,.08),0 12px 30px rgba(0,0,0,.18);font-family:var(--font-ui);
+  -webkit-font-smoothing:antialiased}
+body.only .phone{border-radius:0;box-shadow:none}
+.phone.se{width:375px;height:667px;--top:20px;--bottom:0px;border-radius:8px}
+.phone.i11{width:414px;height:896px;--top:48px;--bottom:34px}
+.phone .status{position:absolute;left:0;right:0;top:0;height:var(--top);display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 26px 2px;font-size:15px;font-weight:600;letter-spacing:.2px}
+.phone.se .status{padding:0 10px 1px;font-size:12px}
+.phone .status b{font-weight:600}
+.phone .home{position:absolute;left:50%;bottom:8px;width:134px;height:5px;border-radius:3px;background:var(--ink);opacity:.9;transform:translateX(-50%)}
+.phone.se .home{display:none}
+.screen{position:absolute;left:0;right:0;top:var(--top);bottom:var(--bottom);display:flex;flex-direction:column;padding:0 20px}
+.phone .label{position:absolute;left:0;right:0;bottom:-26px;text-align:center;font-size:12px;color:var(--page-ink);opacity:.7}
+body.only .label{display:none}
+
+/* ---------- Skeleton: top bar · coach slot · middle · pinned bottom ---------- */
+.topbar{height:44px;display:flex;align-items:center;justify-content:space-between;flex:none}
+.back{display:flex;align-items:center;gap:4px;font-size:15px;font-weight:600;text-decoration:underline;text-underline-offset:3px;height:44px}
+.back svg{width:14px;height:14px}
+.step{font-size:15px;font-weight:600}
+.path{height:22px;flex:none;position:relative;margin:0 0 6px}
+.path svg{width:100%;height:22px;display:block}
+.title{font-family:var(--font-title);font-weight:600;font-size:28px;line-height:1.18;margin:4px 0 0;letter-spacing:-.2px}
+.phone.i11 .title{font-size:30px}
+.phone.se .title.pw{font-size:24px}
+.phone.se .tl .st div{font-size:15px;line-height:26px}
+.phone.se .tl .st{min-height:26px}
+.phone.se .tl .st .dot{width:24px;height:24px;font-size:12px}
+.phone.se .se-hide{display:none}
+.phone.se .plan{min-height:50px;padding:6px 12px}
+.phone.se .plan .pn{font-size:16px}.phone.se .plan .pn small{font-size:13px}.phone.se .plan .pr{font-size:19px}
+.helper{font-size:17px;line-height:1.3;margin:6px 0 0;min-height:46px;display:flex;align-items:flex-start}
+.phone.i11 .helper{font-size:19px;min-height:50px}
+/* Coach reply replaces the helper in the same slot, so nothing below moves. */
+.coach{display:flex;gap:10px;align-items:flex-start;min-height:46px;margin:6px 0 0}
+.coach .face{width:40px;height:40px;border-radius:50%;flex:none;background:#EFE4D2 url("../../../iOS/App/Assets.xcassets/Art/walker-wave.imageset/walker-wave.png") no-repeat;
+  background-size:98px 185px;background-position:-34px -5px;border:2px solid rgba(94,127,58,.35)}
+.coach .bubble{font-size:17px;line-height:1.3;background:var(--surface);border:1.5px solid rgba(94,127,58,.3);border-radius:4px 16px 16px 16px;padding:7px 12px}
+.phone.i11 .coach .bubble{font-size:19px}
+.middle{flex:1 1 auto;display:flex;flex-direction:column;gap:10px;padding-top:12px;min-height:0}
+.bottom{flex:none;padding:10px 0 10px;display:flex;flex-direction:column;gap:2px;align-items:stretch;
+  background:linear-gradient(to bottom,rgba(248,241,230,0),var(--paper) 18px)}
+.phone.i11 .bottom{padding-bottom:4px}
+.btn{height:64px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;
+  background:var(--hooker);color:#fff;text-align:center;padding:0 20px}
+.btn.secondary{background:transparent;color:var(--ink);border:2px solid var(--hooker)}
+.btn.danger{background:var(--sienna)}
+.link{height:48px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.link.small{font-size:15px;height:40px}
+.caption{font-size:16px;line-height:1.3;color:var(--ink)}
+.caption.muted{color:var(--ink-muted)}
+
+/* ---------- Answer controls (older hands: 64 pt rows, 3 pt selected border, tick) ---------- */
+.opts{display:flex;flex-direction:column;gap:10px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.opt>span:first-of-type:not(.ic){min-width:0;flex:1}
+.opt{min-height:64px;border-radius:16px;background:var(--surface);border:1.5px solid var(--line);display:flex;align-items:center;gap:12px;
+  padding:10px 14px;font-size:19px;font-weight:600;line-height:1.2;position:relative}
+.grid2 .opt{min-height:64px;font-size:18px;padding:8px 10px;align-items:center;gap:8px}
+.grid2 .opt .ic{width:34px;height:34px;font-size:17px}
+.grid2 .opt .tick{width:24px;height:24px}
+.grid2 .opt.span{grid-column:1 / -1;min-height:60px}
+.opt .tick{width:26px;height:26px;border-radius:50%;border:2px solid var(--ink-muted);flex:none;margin-left:auto}
+.opt.on{border:3px solid var(--hooker);background:#F2F4EA;padding:8.5px 12.5px}
+.opt.on .tick{border:0;background:var(--hooker);position:relative}
+.opt.on .tick::after{content:"";position:absolute;left:8px;top:4px;width:7px;height:13px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.opt .ic{width:40px;height:40px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:40% 55% 45% 60%/55% 40% 60% 45%;font-size:20px}
+.ic.sky{background:var(--sky-wash);color:#3E6B8C}.ic.sap{background:var(--sap-wash);color:var(--sap)}
+.ic.ochre{background:var(--ochre-wash);color:#8A5F12}.ic.sienna{background:var(--sienna-wash);color:var(--sienna)}
+.pill{min-height:56px;border-radius:28px;background:var(--surface);border:2px solid rgba(42,36,31,.35);display:flex;align-items:center;justify-content:center;
+  text-align:center;font-size:18px;font-weight:600;padding:6px 12px;line-height:1.15}
+.pill.on{background:var(--sap);border-color:var(--sap);color:#fff}
+.pill.none{grid-column:1 / -1}
+.card{background:var(--surface);border-radius:16px;padding:14px 16px;border:1px solid rgba(42,36,31,.06)}
+.card.outline{border:2px solid var(--sap)}
+.ttl{font-size:22px;font-weight:600;line-height:1.2}
+.body{font-size:17px;line-height:1.3}
+.phone.i11 .body{font-size:19px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:15px;font-weight:600;background:rgba(42,36,31,.1);border-radius:999px;padding:5px 12px}
+.week{display:flex;gap:6px}
+.week div{flex:1;background:var(--paper);border-radius:10px;min-height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:14px;font-weight:600;gap:2px}
+.week div.rest{opacity:.5}
+.week div span{font-size:16px}
+.play{display:flex;align-items:center;gap:10px;min-height:56px;border-radius:14px;border:2px solid var(--sap);padding:6px 12px;font-size:17px;font-weight:600}
+.play .pbtn{width:40px;height:40px;border-radius:50%;background:var(--sap);color:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+.play .pbtn::after{content:"";margin-left:3px;border-left:14px solid #fff;border-top:9px solid transparent;border-bottom:9px solid transparent}
+.art{border-radius:16px;overflow:hidden;background:#EFE4D2;display:block}
+.art img{display:block;width:100%;height:100%;object-fit:cover}
+.hero{height:200px;flex:none}
+.phone.i11 .hero{height:250px}
+.brand{font-size:14px;font-weight:800;letter-spacing:1.6px;color:var(--sap);margin-top:14px}
+.lines{display:flex;flex-direction:column;gap:9px;margin-top:10px}
+.line{display:flex;gap:12px;align-items:center;font-size:17px;line-height:1.25}
+.phone.i11 .line{font-size:19px}
+.line .ic{width:40px;height:40px}
+
+/* paywall */
+.tl{display:flex;flex-direction:column;gap:0}
+.tl .st{display:flex;gap:12px;align-items:flex-start;min-height:30px}
+.tl .st .dot{width:28px;height:28px;border-radius:50%;background:var(--sap);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;flex:none}
+.tl .st + .st::before{content:none}
+.tl .st div{font-size:17px;line-height:28px}
+.tl .st div b{font-weight:700}
+.plan{min-height:54px;border-radius:16px;background:var(--surface);border:1.5px solid var(--line);display:flex;align-items:center;gap:10px;padding:8px 14px}
+.plan.on{border:3px solid var(--hooker)}
+.plan .radio{width:24px;height:24px;border-radius:50%;border:2px solid var(--ink-muted);flex:none}
+.plan.on .radio{border:0;background:var(--hooker);position:relative}
+.plan.on .radio::after{content:"";position:absolute;left:8px;top:4px;width:6px;height:12px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.plan .pn{font-size:17px;font-weight:600;flex:1}
+.plan .pn small{display:block;font-size:14px;font-weight:500;color:var(--ink-muted)}
+.plan .pr{font-size:21px;font-weight:700;text-align:right;line-height:1.1}
+.plan .pr small{display:block;font-size:13px;font-weight:500;color:var(--ink-muted)}
+.legal{display:flex;justify-content:space-between;align-items:center;height:42px;font-size:15px;font-weight:600}
+.legal span{text-decoration:underline;text-underline-offset:3px}
+.legal .r{display:flex;gap:10px}
+.disc{font-size:13px;line-height:1.28;text-align:center;margin-top:4px}
+
+/* today */
+.today-h{font-family:var(--font-title);font-size:28px;font-weight:600;margin-top:6px}
+.sub{display:flex;align-items:center;gap:8px;font-size:17px;margin-top:2px}
+.ring{width:22px;height:22px;border-radius:50%;border:3px solid rgba(94,127,58,.3);border-top-color:var(--sap);border-right-color:var(--sap)}
+.seg{display:flex;gap:8px}
+.seg div{flex:1;min-height:52px;border-radius:26px;border:2px solid rgba(42,36,31,.35);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;background:var(--surface)}
+.seg div.on{background:var(--sap);border-color:var(--sap);color:#fff}
+.tabs{height:62px;flex:none;display:flex;justify-content:space-around;align-items:center;border-top:1px solid var(--line);margin:0 -20px;padding:4px 10px 0;background:var(--paper)}
+.tabs div{font-size:12px;font-weight:600;color:var(--ink-muted);display:flex;flex-direction:column;align-items:center;gap:3px}
+.tabs div.on{color:var(--sienna)}
+.tabs i{font-style:normal;font-size:20px}
+.stats{display:flex;gap:8px}
+.stats div{flex:1;background:var(--surface);border-radius:14px;min-height:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.stats b{font-size:22px}.stats span{font-size:14px;color:var(--ink-muted)}
+.hero-row{display:flex;gap:12px;align-items:flex-end}
+.hero-row .art{width:84px;height:120px;flex:none;background:transparent}
+.hero-row .art img{object-fit:contain}
+.scroll-hint{font-size:12px;color:var(--ink-muted);text-align:center;margin-top:-6px}
+</style>
+</head>
+<body>
+<h1>Good Footing · onboarding mockups (08/10/2026)</h1>
+<p class="lede">Every step shares one skeleton: top bar with a word step label and the walking path · the question (New York serif) · a fixed two‑line slot that holds the helper line and, once she answers, the coach's reply · answer controls ≥ 56 pt · the primary action pinned at the bottom. Left frame: iPhone SE 3 (375 × 667), the smallest supported screen. Right: iPhone 11 (414 × 896). Fonts: Apple system fonts only, as recommended in <code>font-va-hinh-anh.md</code> §3a (SF Pro via <code>-apple-system</code> for text, New York via <code>ui-serif</code> for titles, caption 16 pt, primary button 64 pt). Art: the app's own paintings from <code>iOS/App/Assets.xcassets/Art</code>.</p>
+<div id="root"></div>
+
+<script>
+const ART = '../../../iOS/App/Assets.xcassets/Art/';
+const art = (n, ext='png') => `${ART}${n}.imageset/${n}.${ext}`;
+const chev = '<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2L4 7l5 5"/></svg>';
+
+// Winding path with a walker at `p` (0–1) and 3 part dots, like WalkingPathProgress.
+function path(p){
+  const W=335,H=22; let d='';
+  for(let i=0;i<=120;i++){const t=i/120;const x=11+(W-22)*t;const y=H/2+6*Math.sin(t*Math.PI*3);d+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+  const pt=t=>({x:11+(W-22)*t,y:H/2+6*Math.sin(t*Math.PI*3)});
+  const w=pt(p);
+  const dots=[0.14,0.5,0.86].map(t=>{const q=pt(t);return `<circle cx="${q.x}" cy="${q.y}" r="5" fill="${p>=t?'#5E7F3A':'#C9C2B6'}" stroke="#F8F1E6" stroke-width="2"/>`}).join('');
+  return `<div class="path"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
+  <path d="${d}" fill="none" stroke="#5E7F3A" stroke-opacity=".25" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 8"/>
+  <path d="${d}" fill="none" stroke="#5E7F3A" stroke-width="4" stroke-linecap="round" pathLength="1" stroke-dasharray="${p} 1"/>
+  ${dots}<circle cx="${w.x}" cy="${w.y}" r="9" fill="#FFFDF9" stroke="#2E4A33" stroke-width="2.5"/>
+  <text x="${w.x}" y="${w.y+4}" text-anchor="middle" font-size="11" fill="#2E4A33">🚶</text></svg></div>`;
+}
+function topBar(step, total, label){
+  const p = step/ total;
+  return `<div class="topbar"><div class="back">${chev}Back</div><div class="step">Step ${step} of ${total}</div></div>${path(p)}`;
+}
+const slotHelper = t => `<div class="helper">${t}</div>`;
+const slotCoach = t => `<div class="coach"><div class="face"></div><div class="bubble">${t}</div></div>`;
+const opt = (t, on=false, ic='') => `<div class="opt ${on?'on':''}">${ic}<span>${t}</span><span class="tick"></span></div>`;
+const ic = (c, g) => `<span class="ic ${c}">${g}</span>`;
+const pill = (t,on=false,cls='') => `<div class="pill ${on?'on':''} ${cls}">${t}</div>`;
+const bottom = (primary, link='') => `<div class="bottom"><div class="btn">${primary}</div>${link?`<div class="link">${link}</div>`:''}</div>`;
+
+const screens = [
+// ------------------------------------------------------------------ 0 Welcome
+{ id:'welcome', title:'0 · Welcome (S01)', note:'Hero scales with the screen (200 pt on SE, 250 on iPhone 11) so Let’s begin is on screen without scrolling. Three lines, each ≤ 7 words. The painting loops as the 3.3 s video on device.',
+  html: `
+  <div class="middle" style="padding-top:8px;gap:0">
+    <div class="art hero"><img src="${art('scene-living-room','jpg')}" alt=""></div>
+    <div class="brand">GOOD FOOTING</div>
+    <div class="title">Steadier on your feet, at your own pace.</div>
+    <div class="lines">
+      <div class="line">${ic('sap','📅')}<span>12 weeks, 5–10 minutes a day</span></div>
+      <div class="line">${ic('sky','🪑')}<span>Every move has a seated version</span></div>
+      <div class="line">${ic('ochre','👂')}<span>Follow the voice, no need to watch</span></div>
+    </div>
+  </div>
+  <div class="bottom"><div class="btn">Let's begin</div><div class="link small">Restore purchase</div></div>`},
+// ------------------------------------------------------------------ 1 Goal
+{ id:'goal', title:'1 · What matters most (S02) — pick one', note:'ĐỔI QUYẾT ĐỊNH CŨ: one goal instead of “up to 2”. Seven tiles in a 2‑column grid fit the SE without scrolling; the escape answer spans the last row. The coach reply fills the fixed slot under the title, so Continue never moves.',
+  html: `${topBar(1,7)}
+  <div class="title">What matters most to you?</div>
+  ${slotCoach('Steadier it is. Balance moves keep a chair beside you.')}
+  <div class="middle"><div class="grid2">
+    ${opt('Less pain',false,ic('sienna','♥'))}
+    ${opt('Steadier feet',true,ic('sky','🧍'))}
+    ${opt('Up from chairs',false,ic('sap','🪑'))}
+    ${opt('More energy',false,ic('ochre','☀'))}
+    ${opt('Keep up with grandkids',false,ic('ochre','👧'))}
+    ${opt('Lose some weight',false,ic('sap','🚶'))}
+    <div class="opt span">${ic('sky','✦')}<span>Not sure yet, just start</span><span class="tick"></span></div>
+  </div></div>
+  ${bottom('Continue')}`},
+// ------------------------------------------------------------------ 2 Barriers (+ understanding merged)
+{ id:'barriers', title:'2 · What got in the way (S03 + S04 merged)', note:'ĐỔI QUYẾT ĐỊNH CŨ: the separate “You’re not alone” screen goes; its reassurance is the coach’s reply to the first pick (S04 copy, shortened to ≤ 14 words). Labels cut to ≤ 4 words so six fit in two columns.',
+  html: `${topBar(2,7)}
+  <div class="title">What got in the way before?</div>
+  ${slotCoach('Sore knees don’t stop you here. Every move has a seated version.')}
+  <div class="middle"><div class="grid2">
+    ${opt('My joints hurt',true)}
+    ${opt('Videos go too fast')}
+    ${opt('No time for me')}
+    ${opt('I got bored')}
+    ${opt('Surprise charges',true)}
+    ${opt('Didn’t know where to start')}
+  </div><div class="caption muted">Pick any that fit. No judgment.</div></div>
+  ${bottom('Continue')}`},
+// ------------------------------------------------------------------ 3 Name
+{ id:'name', title:'3 · Your name (S05a)', note:'Same skeleton; keyboard rises over the pinned button, and the Return key says Continue. Skip stays as a link. The reply lands in the slot.',
+  html: `${topBar(3,7)}
+  <div class="title">What should we call you?</div>
+  ${slotCoach('Nice to meet you, Margaret.')}
+  <div class="middle">
+    <div class="opt" style="min-height:64px;font-size:22px;border-color:var(--hooker);border-width:2px">Margaret<span style="width:2px;height:28px;background:var(--ink);margin-left:2px"></span></div>
+    <div class="caption muted">Only to say hello. It stays on this phone.</div>
+  </div>
+  ${bottom('Continue','Skip')}`},
+// ------------------------------------------------------------------ 4 Chair
+{ id:'chair', title:'4 · Up from a chair (S05c)', note:'ĐỔI QUYẾT ĐỊNH CŨ: “How active are you now?” is dropped; the start level comes from this answer plus the body limits (same rule as today minus one input). Three big rows, helper says why we ask.',
+  html: `${topBar(4,7)}
+  <div class="title">Standing up without your hands is…</div>
+  ${slotHelper('This picks your first chair moves.')}
+  <div class="middle"><div class="opts">
+    ${opt('Not possible right now')}
+    ${opt('Hard, but I can',true)}
+    ${opt('Easy')}
+  </div></div>
+  ${bottom('Continue')}`},
+// ------------------------------------------------------------------ 5 Sore spots
+{ id:'body1', title:'5 · Sore spots (S06, part 1)', note:'The ten body chips split into two even screens so “None of these” and the safety chips are never below the fold (today they are hidden on iPhone 11). Joints as a 2‑column grid of 56 pt pills.',
+  html: `${topBar(5,7)}
+  <div class="title">Any sore spots?</div>
+  ${slotCoach('Got it. We’ll go easy on your knees and skip anything that strains them.')}
+  <div class="middle"><div class="grid2">
+    ${pill('Knees',true)}${pill('Hips')}${pill('Lower back')}${pill('Shoulders')}${pill('Joint replacement')}${pill('None of these',false,'')}
+  </div><div class="caption muted">Tap all that apply.</div></div>
+  ${bottom('Continue')}`},
+// ------------------------------------------------------------------ 6 Anything else
+{ id:'body2', title:'6 · Anything else (S06, part 2)', note:'Everyday limits, including the safety ones (dizzy, unsteady). The doctor line (1.4.1) sits above Continue as a caption on this screen only. Budget on SE: 3 rows × 64 + caption 54 + button 60.',
+  html: `${topBar(6,7)}
+  <div class="title">Anything else we should know?</div>
+  ${slotCoach('Thanks. Balance moves will keep both hands on the chair.')}
+  <div class="middle"><div class="grid2">
+    ${pill('Can’t get down on the floor',true)}${pill('Standing long is hard')}${pill('I get dizzy easily')}${pill('I feel unsteady on my feet',true)}${pill('No jumping')}${pill('None of these')}
+  </div></div>
+  <div class="bottom"><div class="caption" style="margin-bottom:8px">🩺 Heart condition, recent surgery, a fall or fainting this past year, or told to limit exercise? Check with your doctor first.</div><div class="btn">Continue</div></div>`},
+// ------------------------------------------------------------------ 7 Plan + taste
+{ id:'plan', title:'7 · Your plan (S07) with the “hear your coach” taste', note:'Built from her answers only: goal headline, start level, limits. Day 1 carries a 10‑second play button: the real coach line from the First Walk script, so she hears the product before any paywall. No fake loading. “Why this works” is two lines, from her barriers.',
+  html: `${topBar(7,7)}
+  <div class="title">Your plan, Margaret</div>
+  ${slotHelper('For steadier feet. Built from your answers.')}
+  <div class="middle" style="gap:10px">
+    <div class="card">
+      <div class="ttl">5–10 min a day, 12 weeks</div>
+      <div class="body" style="margin-top:2px">Starts <b>Seated</b> · Sat & Sun are rest days</div>
+      <div class="week" style="margin-top:8px"><div>M<span>🚶</span></div><div>T<span>🚶</span></div><div>W<span>🚶</span></div><div>T<span>🚶</span></div><div>F<span>🚶</span></div><div class="rest">S<span>☾</span></div><div class="rest">S<span>☾</span></div></div>
+      <div class="caption" style="margin-top:8px">Easy on knees · No floor moves · Both hands on the chair</div>
+    </div>
+    <div class="card outline" style="padding-top:12px">
+      <div class="body"><b>Day 1 · Your first walk · 5 min</b><br><span class="caption muted">Seated · march in your chair</span></div>
+      <div class="play" style="margin-top:8px"><div class="pbtn"></div><span>Hear your coach · 10 seconds</span></div>
+    </div>
+    <div class="caption">✓ A calm voice sets the pace; pause anytime.<br>✓ Billing date shown before any charge.</div>
+  </div>
+  ${bottom('See my options')}`},
+// ------------------------------------------------------------------ 8 Paywall
+{ id:'paywall', title:'8 · Paywall (S08)', note:'Compliance kept: Restore · Terms · Privacy, billed price largest, trial timeline, auto‑renew terms under the button, Maybe later always visible. Trimmed so the three plans and the footer are on screen on the SE; the first benefit line follows her goal.',
+  html: `
+  <div class="topbar" style="justify-content:flex-end"><div class="back" style="gap:0">Close</div></div>
+  <div class="title pw">Good Footing Pro, free for 14 days</div>
+  <div class="middle" style="gap:7px;padding-top:4px">
+    <div class="body">✓ Balance sessions for steadier feet<br>✓ All walks, chair moves and stretches<span class="se-hide"><br>✓ 4 more journeys, with more coming</span></div>
+    <div class="card" style="padding:10px 14px"><div class="tl">
+      <div class="st"><div class="dot">🔓</div><div><b>Today</b> &nbsp;Full access, no charge</div></div>
+      <div class="st"><div class="dot">🔔</div><div><b>Oct 20</b> &nbsp;We'll remind you</div></div>
+      <div class="st"><div class="dot">💳</div><div><b>Oct 22</b> &nbsp;Billed $39.99 unless you cancel</div></div>
+    </div></div>
+    <div class="plan on"><div class="radio"></div><div class="pn">Yearly<small>14 days free · lowest per month</small></div><div class="pr">$39.99 a year<small>$3.33 a month</small></div></div>
+    <div class="plan"><div class="radio"></div><div class="pn">Monthly</div><div class="pr">$7.99 a month</div></div>
+    <div class="plan"><div class="radio"></div><div class="pn">One payment<small>Yours to keep, no renewals</small></div><div class="pr">$79.99 once</div></div>
+    <div class="caption muted" style="font-size:14px">Or keep the free plan: a walk each weekday and the New York journey.</div>
+  </div>
+  <div class="bottom" style="gap:0"><div class="btn">Start my free trial</div>
+    <div class="disc">Free for 14 days, then $39.99 a year from Oct 22. Renews automatically unless you cancel at least 24 hours before the renewal date.</div>
+    <div class="legal"><span>Maybe later</span><div class="r"><span>Restore</span><span>Terms</span><span>Privacy</span></div></div></div>`},
+// ------------------------------------------------------------------ 9 Permissions split: reminder
+{ id:'perm-reminder', title:'After the first walk · Reminder (S16a)', note:'“Two quick things” split into two even screens; the second (Apple Health) card is hidden below the fold today. Moment grid + time stepper fit above a pinned Allow / Not now. Permission is asked only now, after real value.',
+  html: `
+  <div class="topbar"><div></div><div class="step">1 of 2</div></div>
+  <div class="title">A nudge for your daily walk?</div>
+  ${slotHelper('One message a day at most. Never on rest days.')}
+  <div class="middle"><div class="grid2">
+    ${opt('After my morning coffee',true)}${opt('After lunch')}${opt('During evening TV')}${opt('Pick a time')}
+  </div>
+  <div class="card" style="display:flex;align-items:center;gap:12px;padding:10px 14px"><span class="caption" style="flex:1">One gentle reminder a day, at</span>
+    <div class="pill" style="min-height:48px;width:48px;padding:0;border-radius:50%;background:var(--hooker);color:#fff;border-color:var(--hooker)">−</div><b style="font-size:19px">8:30 AM</b><div class="pill" style="min-height:48px;width:48px;padding:0;border-radius:50%;background:var(--hooker);color:#fff;border-color:var(--hooker)">+</div></div>
+  </div>
+  ${bottom('Allow reminders','Not now')}`},
+{ id:'perm-health', title:'After the first walk · Apple Health (S16b)', note:'Own screen, same skeleton. The “Turn On All, then Allow” callout stays because Apple’s sheet greys out Allow until a switch is on.',
+  html: `
+  <div class="topbar"><div class="back">${chev}Back</div><div class="step">2 of 2</div></div>
+  <div class="title">See your everyday steps?</div>
+  ${slotHelper('Progress shows your all‑day steps. Your journey moves either way.')}
+  <div class="middle">
+    <div class="art" style="height:150px"><img src="${art('moment-friends','jpg')}" alt=""></div>
+    <div class="card" style="background:var(--sky-wash)"><div class="body">👆 Next, Apple asks what to share: tap <b>Turn On All</b>, then <b>Allow</b>. Or <b>Don't Allow</b> to skip.</div></div>
+    <div class="caption muted">Your data stays on this phone.</div>
+  </div>
+  ${bottom('Connect Apple Health','Not now')}`},
+// ------------------------------------------------------------------ Today (new)
+{ id:'today', title:'Today (S17) — tightened', note:'Greeting, the program week and active days collapse into two lines so Start sits in the top half even on the SE. The check‑in stays inside the session card. Journey, week strip and extras follow below (scroll is fine here).',
+  html: `
+  <div class="today-h" style="margin-top:4px">Good morning, Margaret</div>
+  <div class="sub"><span class="ring"></span><span>13 active days · Week 3 of 12 · <u>Plan</u></span></div>
+  <div class="middle" style="gap:12px;padding-top:12px">
+    <div class="card" style="padding:14px 16px">
+      <div class="ttl">Chair moves · 14 min</div>
+      <div class="body">With your chair</div>
+      <div class="body" style="margin-top:8px">How do your joints feel today?</div>
+      <div class="seg" style="margin-top:6px"><div>Achy</div><div class="on">Okay</div><div>Great</div></div>
+      <div class="btn" style="margin-top:12px">Start</div>
+      <div class="link small">Pick a different session</div>
+    </div>
+    <div class="card" style="display:flex;gap:12px;align-items:center;padding:10px 14px"><div class="art" style="width:72px;height:56px;flex:none"><img src="${art('cover-jr-ny','jpg')}" alt=""></div><div><div class="caption muted">Your journey · New York City</div><div class="body"><b>1.8 of 5 mi · 0.4 mi to Times Square</b></div></div></div>
+    <div class="card" style="padding:10px 14px"><div class="caption"><b>Your 2‑week check</b> is in 12 days · 30 seconds with your chair.</div></div>
+  </div>
+  <div class="tabs"><div class="on"><i>☀</i>Today</div><div><i>🗺</i>Journey</div><div><i>📊</i>Progress</div><div><i>👤</i>Me</div></div>`},
+// ------------------------------------------------------------------ Complete first walk (new)
+{ id:'complete-first', title:'Complete · first walk (S15) with the 2‑week check invite', note:'The invite is the one next thing, so it comes right after the feeling question and above the fold on iPhone 11; tree line and journey collapse to one caption each. Done stays pinned.',
+  html: `
+  <div class="hero-row" style="margin-top:6px"><div class="art"><img src="${art('walker-celebrate')}" alt=""></div><div><div class="title" style="font-size:26px">That's your first walk!</div><div class="body" style="margin-top:4px">5 minutes. You showed up, and that's the hardest part.</div></div></div>
+  <div class="middle" style="gap:10px;padding-top:12px">
+    <div class="stats"><div><b>5 min</b><span>moving</span></div><div><b>+0.2 mi</b><span>on your journey</span></div><div><b>1</b><span>active day</span></div></div>
+    <div class="body"><b>How did that feel?</b></div>
+    <div class="seg"><div>Too easy</div><div>Just right</div><div>Too hard</div></div>
+    <div class="card outline"><div class="ttl" style="font-size:20px">Want to see where you start?</div><div class="body" style="margin-top:2px">30 seconds with your chair. In two weeks, do it again and compare with yourself.</div><div class="btn secondary" style="margin-top:10px;height:56px">Let's do it</div></div>
+    <div class="caption muted">🌱 1 of 7 active days to Sprout · Every walk moves your journey.</div>
+  </div>
+  ${bottom('Done')}`},
+];
+
+const sizes = [['se','iPhone SE 3 · 375×667'],['i11','iPhone 11 · 414×896']];
+const params = new URLSearchParams(location.search);
+const only = params.get('only'), onlySize = params.get('size');
+const root = document.getElementById('root');
+if(only){ document.body.classList.add('only'); }
+for(const s of screens){
+  if(only && s.id!==only) continue;
+  const row = document.createElement('div'); row.className='row';
+  if(!only) row.innerHTML = `<h2>${s.title}</h2><p class="note">${s.note}</p>`;
+  for(const [cls,lab] of sizes){
+    if(only && onlySize && cls!==onlySize) continue;
+    const ph = document.createElement('div'); ph.className=`phone ${cls}`; ph.id=`${s.id}-${cls}`;
+    ph.innerHTML = `<div class="status"><b>9:41</b><b>●●● ᯤ ▮</b></div><div class="screen">${s.html}</div>${cls==='i11'?'<div class="home"></div>':''}<div class="label">${lab}</div>`;
+    row.appendChild(ph);
+  }
+  root.appendChild(row);
+}
+</script>
+</body>
+</html>
