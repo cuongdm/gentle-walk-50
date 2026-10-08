@@ -77,7 +77,8 @@ struct ChairPlayerView: View {
                                 CountedForYouLabel(pulse: model.session.motion?.pulse ?? 0)
                             } else {
                                 // Without the phone held to the chest, the count is hers (review D13).
-                                Text("Tap +1 each time you stand").typeRole(.caption).foregroundStyle(Palette.textMuted)
+                                // An instruction: body size, main text colour (plan 08/10/2026 task 1.14).
+                                Text("Tap +1 each time you stand").typeRole(.body).foregroundStyle(Palette.text)
                             }
                         }
                     } else {
@@ -95,7 +96,7 @@ struct ChairPlayerView: View {
             }
             .scrollBounceBehavior(.basedOnSize)
             // The spoken line stays in view above the controls, as plain text (review U3).
-            CaptionBar(caption: model.player.caption?.text, style: .plain(.center))
+            CaptionBar(caption: model.player.caption?.text, style: .bubble)
             PlayerControlRow(isPaused: isPaused, onBack: model.back, onPause: model.session.togglePause,
                              onSkip: model.skip)
             WorkoutSafetyBar(showsVoice: false, onBreak: model.session.takeBreak, onHurts: model.session.openHurts)

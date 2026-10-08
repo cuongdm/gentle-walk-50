@@ -76,7 +76,7 @@ private struct TypeRamp: View {
             Text(verbatim: "Screen title 30").typeRole(.screenTitle)
             Text(verbatim: "Card title 22").typeRole(.cardTitle)
             Text(verbatim: "Body 19 — Walk at your own pace, one step at a time.").typeRole(.body)
-            Text(verbatim: "Caption 15, muted").typeRole(.caption).foregroundStyle(Palette.textMuted)
+            Text(verbatim: "Caption 16, muted").typeRole(.caption).foregroundStyle(Palette.textMuted)
             Text(verbatim: "BRISK WALK").typeRole(.phaseLabel).foregroundStyle(Palette.onLightFill)
                 .padding(.horizontal, 12)
                 .background(Palette.sun, in: .rect(cornerRadius: 12))

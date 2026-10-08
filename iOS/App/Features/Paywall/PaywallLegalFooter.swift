@@ -1,8 +1,8 @@
 import SwiftUI
 
-/// Main button, the disclosure under it, "Maybe later", and Restore · Terms · Privacy (3.1.1, 3.1.2).
-/// "Or keep the free plan" sits on the page (`FreePlanNote`), not here: the pinned footer has to
-/// leave room for the plans.
+/// Main button, the plain terms under it (two lines on an iPhone SE), then "Maybe later" and
+/// Restore · Terms · Privacy on one row of 56 pt targets (3.1.1, 3.1.2; plan 08/10/2026 task 1.5).
+/// "Or keep the free plan" and the cancel note sit on the page, under the plans.
 struct PaywallLegalFooter: View {
     let disclosure: String
     let buttonTitle: LocalizedStringResource
@@ -11,6 +11,8 @@ struct PaywallLegalFooter: View {
     let onRestore: () -> Void
     let onPrivacy: () -> Void
 
+    private static let link = TextLinkButtonStyle(role: .caption, horizontalPadding: 4)
+
     var body: some View {
         VStack(spacing: 4) {
             Button(action: onContinue) { Text(buttonTitle) }.buttonStyle(.primaryAction)
@@ -18,35 +20,52 @@ struct PaywallLegalFooter: View {
                 .typeRole(.caption)
                 .foregroundStyle(Palette.text)
                 .multilineTextAlignment(.center)
-            // "Maybe later" and the legal links share one row of 56 pt targets.
+                .fixedSize(horizontal: false, vertical: true)
             ViewThatFits(in: .horizontal) {
-                HStack(spacing: 0) { maybeLater(.caption); Spacer(minLength: 4); links }
-                VStack(spacing: 0) { maybeLater(.body); links }
+                HStack(spacing: 0) { maybeLater; Spacer(minLength: 4); links }
+                VStack(spacing: 0) { maybeLater; links }
             }
         }
         .frame(maxWidth: .infinity)
     }
 
-    private func maybeLater(_ role: TypeRole) -> some View {
-        Button("Maybe later", action: onMaybeLater).buttonStyle(TextLinkButtonStyle(role: role))
+    private var maybeLater: some View {
+        Button("Maybe later", action: onMaybeLater).buttonStyle(Self.link)
     }
 
+    /// One row where it fits; stacked at the largest text sizes (never wider than the screen).
     private var links: some View {
-            HStack(spacing: 2) {
-                Button("Restore", action: onRestore).buttonStyle(.smallTextLink)
+        ViewThatFits(in: .horizontal) {
+            HStack(spacing: 0) {
+                restore
                 Text(verbatim: "·").foregroundStyle(Palette.textMuted).accessibilityHidden(true)
-                Link("Terms", destination: LegalLinks.termsOfUse).buttonStyle(.smallTextLink)
+                terms
                 Text(verbatim: "·").foregroundStyle(Palette.textMuted).accessibilityHidden(true)
-                Button("Privacy", action: onPrivacy).buttonStyle(.smallTextLink)
+                privacy
             }
+            .fixedSize()
+            VStack(spacing: 0) { restore; terms; privacy }
+        }
+    }
+
+    private var restore: some View { Button("Restore", action: onRestore).buttonStyle(Self.link) }
+    private var terms: some View { Link("Terms", destination: LegalLinks.termsOfUse).buttonStyle(Self.link) }
+    private var privacy: some View { Button("Privacy", action: onPrivacy).buttonStyle(Self.link) }
+}
+
+/// "Or keep the free plan", one line under the plans.
+struct FreePlanNote: View {
+    var body: some View {
+        Text("Or keep the free plan: a walk each weekday.")
+            .typeRole(.caption).foregroundStyle(Palette.textMuted)
     }
 }
 
-/// "Or keep the free plan": on the paywall page, under the plans.
-struct FreePlanNote: View {
+/// How to cancel, under the plans (the renewal itself is said under the button).
+struct CancelNote: View {
     var body: some View {
-        Text("Or keep the free plan: a walk each weekday and the New York journey.")
-            .typeRole(.caption).foregroundStyle(Palette.textMuted)
+        Text("Cancel anytime in Settings, at least 24 hours before renewal. Deleting the app doesn't cancel.")
+            .typeRole(.caption).foregroundStyle(Palette.text)
     }
 }
 

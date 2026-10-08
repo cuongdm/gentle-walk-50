@@ -74,17 +74,19 @@ struct PlanOption: Identifiable, Equatable, Sendable {
     /// The day the trial reminder is sent, as a date like the billing day.
     var reminderDateText: String { trial.reminderDate.formatted(.dateTime.month(.abbreviated).day()) }
 
-    /// Plain terms under the button: what is charged, when, and that it renews (3.1.2(c)).
+    /// Plain terms under the button: what is charged, when, and that it renews (3.1.2(c)); two lines
+    /// on an iPhone SE (plan 08/10/2026 task 1.5; the 24-hour rule is in `CancelNote` under the plans).
     var disclosure: String {
         guard let selected else { return "" }
-        let renewal = String(localized: "Renews automatically unless you cancel at least 24 hours before the renewal date.")
         switch selected.kind {
         case .yearly where showsTrial:
-            return String(localized: "Free for 14 days, then \(selected.price) a year from \(billingDateText). \(renewal)")
+            // A no-break space keeps "Oct 22" on one line.
+            let date = billingDateText.replacingOccurrences(of: " ", with: "\u{00A0}")
+            return String(localized: "Free for 14 days, then \(selected.price) a year from \(date). Renews until you cancel.")
         case .yearly:
-            return String(localized: "\(selected.price) charged today, then every year. \(renewal)")
+            return String(localized: "\(selected.price) charged today, then every year until you cancel.")
         case .monthly:
-            return String(localized: "\(selected.price) charged today, then every month. \(renewal)")
+            return String(localized: "\(selected.price) charged today, then every month until you cancel.")
         case .lifetime:
             return String(localized: "\(selected.price) charged today, one time. No renewals.")
         }

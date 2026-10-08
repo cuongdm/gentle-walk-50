@@ -90,7 +90,7 @@ extension AppModel {
         afterOneTimeScreens { [self] in preview(request, checkIn: today?.checkedIn) }
     }
 
-    /// Runs `action` now, or once "Two quick things" or the cancel guide closes: those show once and
+    /// Runs `action` now, or once the permission screens or the cancel guide closes: those show once and
     /// were replaced (lost for good) by "Do it again", "Do them now" or a reminder's Start (review
     /// 02/10/2026).
     func afterOneTimeScreens(_ action: @escaping () -> Void) {
@@ -98,6 +98,19 @@ extension AppModel {
         // The plans offered at the end of New York wait too (they flashed and were lost).
         case .permissions?, .cancelGuide?, .paywall?: pendingAfterCover = action
         default: action()
+        }
+    }
+
+    /// A permission step is done (granted, "Not now" or "Don't Allow"): reminders lead to Apple Health,
+    /// Apple Health back to what was waiting (plan 08/10/2026 task 1.6).
+    func permissionStepDone(_ ask: PermissionAsk) {
+        switch ask {
+        case .reminders:
+            cover = .permissions(.health)
+        case .health:
+            oneTimeScreenClosed()
+            reload()
+            Task { await notifications.reschedule() }
         }
     }
 
@@ -133,11 +146,11 @@ extension AppModel {
 
     func outdoorPrepDone(_ request: WorkoutRequest, useLocation: Bool?) {
         defaults.set(true, forKey: "outdoorPrepSeen")
-        if let useLocation { defaults.set(useLocation ? "location" : "steps", forKey: "outdoorLocationChoice") }
+        if let useLocation { OutdoorLocationChoice.save(useLocation, in: defaults) }
         begin(request, showsReady: false)
     }
 
-    var usesLocationOutdoors: Bool { defaults.string(forKey: "outdoorLocationChoice") == "location" }
+    var usesLocationOutdoors: Bool { OutdoorLocationChoice.usesLocation(in: defaults) }
 
     private func prepareAndPlay(_ request: WorkoutRequest, showsReady: Bool) async {
         var request = request
@@ -263,7 +276,7 @@ extension AppModel {
         if result != nil, !defaults.bool(forKey: "permissionsShown") {
             defaults.set(true, forKey: "permissionsShown")
             defaults.set(now(), forKey: "permissionsShownAt")
-            cover = .permissions
+            cover = .permissions(.reminders)
         } else {
             cover = nil
             if result?.journeyComplete == true, journey.journeyID == "jr.ny" { offerPlans(.finishedNewYork) }
@@ -298,6 +311,16 @@ extension AppModel {
     func answerFewerReminders(_ fewer: Bool) {
         defaults.set(true, forKey: "fewerRemindersAnswered")
         if fewer { updateProfile { $0.reminderFrequency = ReminderFrequency.quietDays.rawValue } }
+        reload()
+    }
+
+    /// "Keep it seated" on the moved-up card: back one level, from now on (answers before today no
+    /// longer count, so she is not moved straight up again; plan 08/10/2026 task 0.5).
+    func keepEasierLevel() {
+        guard let profile else { return }
+        let state = walkLevels.state(startLevel: profile.level)
+        guard let easier = state.level.easier else { return }
+        walkLevels.set(level: easier, changedAt: now(), card: nil)
         reload()
     }
 

@@ -22,7 +22,7 @@ import GentleWalkCore
         let seated = try await model(at: 215)
         #expect(seated.phaseLabel == "QUICKER")
         #expect(seated.tone == .brisk)
-        #expect(seated.clock == "00:25")
+        #expect(seated.clock == "0:25")
         #expect(seated.statusLine.hasPrefix("Round 2 of 6 · "))
         #expect(seated.nextLine == "Next: easy walk · 0:30")
         #expect(seated.move?.id == "wk.side-step")
@@ -37,7 +37,7 @@ import GentleWalkCore
         let warm = try await model(at: 34)
         #expect(warm.phaseLabel == "WARM-UP")
         #expect(warm.tone == .easy)
-        #expect(warm.clock == "01:26")
+        #expect(warm.clock == "1:26")
         #expect(warm.statusLine.hasPrefix("Warm-up · "))
         #expect(warm.nextLine == "Next: easy walk · 0:30")
         // The warm-up marches.

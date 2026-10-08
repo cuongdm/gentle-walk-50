@@ -67,6 +67,28 @@ import GentleWalkCore
         #expect(app.defaults.object(forKey: FavouriteSessions.defaultsKey) == nil)
     }
 
+    /// Plan 08/10/2026 task 1.6: one permission per screen, after the first session only.
+    @Test func permissionsComeAfterFirstSession() {
+        let app = makeApp(entitlement: .subscribed)
+        app.workoutClosed(CompletionResult(isFirstWorkout: true))
+        guard case .permissions(.reminders)? = app.cover else { Issue.record("first: \(String(describing: app.cover))"); return }
+        var ranAfter = false
+        app.afterOneTimeScreens { ranAfter = true }
+        #expect(!ranAfter)
+
+        app.permissionStepDone(.reminders)  // "Not now" or "Continue"
+        guard case .permissions(.health)? = app.cover else { Issue.record("second: \(String(describing: app.cover))"); return }
+        #expect(!ranAfter)
+
+        app.permissionStepDone(.health)
+        #expect(app.cover == nil)
+        #expect(ranAfter)
+
+        // Shown once: the next session goes straight back to Today.
+        app.workoutClosed(CompletionResult())
+        #expect(app.cover == nil)
+    }
+
     // I5
     @Test func startWalkFromANotificationNeverReplacesARunningSession() {
         let app = makeApp(entitlement: .subscribed)

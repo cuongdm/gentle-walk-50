@@ -148,9 +148,9 @@ enum PhaseTone: Equatable, Sendable { case ready, easy, brisk }
         }
     }
 
-    /// "02:14"
+    /// "2:14", "0:24": minutes not padded, as the spec writes it (plan 08/10/2026 task 1.14).
     static func clock(_ seconds: Int) -> String {
-        Duration.seconds(seconds).formatted(.time(pattern: .minuteSecond(padMinuteToLength: 2)))
+        Duration.seconds(seconds).formatted(.time(pattern: .minuteSecond))
     }
 
     /// "8:40"

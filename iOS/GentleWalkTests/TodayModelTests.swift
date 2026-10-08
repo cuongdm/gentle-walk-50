@@ -107,13 +107,44 @@ import GentleWalkCore
         let brokenBreaks = [22, 23, 24, 25].map { TodayInput.Workout(date: at($0), feeling: .justRight, breakCount: $0 == 25 ? 2 : 0, level: .seated) }
         #expect(model(input(workouts: brokenBreaks, pains: pains, healthConnected: false)).specialCard == .pain(area: .knees))
         #expect(model(input(workouts: brokenBreaks, healthConnected: false)).specialCard == .shorter)
-        let tooHard = [23, 24, 25].map { TodayInput.Workout(date: at($0), feeling: .tooHard, breakCount: 0, level: .inPlace) }
-        var inPlace = input(workouts: tooHard, healthConnected: false)
-        inPlace.level = .inPlace
-        #expect(model(inPlace).specialCard == .movedDown(to: .seated))
+        // The level changed when the feeling was saved (task 0.3): Today shows the stored card.
+        var movedDown = input(healthConnected: false)
+        movedDown.levelCard = .movedDown(to: .seated)
+        #expect(model(movedDown).specialCard == .movedDown(to: .seated))
+        var movedUp = input(healthConnected: false)
+        movedUp.level = .inPlace
+        movedUp.levelCard = .movedUp(to: .inPlace)
+        #expect(model(movedUp).specialCard == .movedUp(to: .inPlace))
+        movedUp.levelCard = .movedDown(to: .seated)
+        #expect(model(movedUp).specialCard == .movedDown(to: .seated))
         #expect(model(input(healthConnected: false)).specialCard == .connectHealth)
         #expect(model(input(fewerReminders: true)).specialCard == .fewerReminders)
         #expect(model(input()).specialCard == nil)
+    }
+
+    /// Plan 08/10/2026 task 0.4: Today reads the current level and its card; it no longer works the
+    /// level out from the history itself.
+    @Test func movedUpCardShowsAfterAChange() {
+        var value = input()
+        value.level = .inPlace
+        value.levelCard = .movedUp(to: .inPlace)
+        let model = model(value)
+        #expect(model.specialCard == .movedUp(to: .inPlace))
+        #expect(model.request?.level == .inPlace)
+    }
+
+    @Test func levelDropsBackAfterTooHardAtTheNewLevel() {
+        // The store moved her back down: three "Too hard" at In place are in the history, level is Seated.
+        let tooHard = [23, 24, 25].map { TodayInput.Workout(date: at($0), feeling: .tooHard, breakCount: 0, level: .inPlace) }
+        var value = input(workouts: tooHard)
+        value.level = .seated
+        value.levelCard = .movedDown(to: .seated)
+        #expect(model(value).request?.level == .seated)
+        // Old answers alone never move the level on Today (no card, same level).
+        let tooEasy = [23, 24, 25].map { TodayInput.Workout(date: at($0), feeling: .tooEasy, breakCount: 0, level: .seated) }
+        let plain = model(input(workouts: tooEasy))
+        #expect(plain.request?.level == .seated)
+        #expect(plain.specialCard == nil)
     }
 
     @Test func showsTrialEndingCardFromDayTen() {

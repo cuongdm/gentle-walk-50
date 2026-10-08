@@ -26,20 +26,42 @@ struct DailyMomentPicker: View {
                     MomentTile(title: OnboardingCopy.title(value), isSelected: moment == value) { onChoose(value) }
                 }
             }
-            HStack(spacing: 10) {
-                Text("One gentle reminder a day, at:").typeRole(.caption).foregroundStyle(Palette.textMuted)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                StepButton(symbol: "minus", label: "Earlier time") { onStep(-1) }
-                DatePicker(selection: timeBinding, displayedComponents: .hourAndMinute) {
-                    Text("Reminder time")
+            // At accessibility sizes the words, the time and − / + each get a row (the one row ran off
+            // the screen at XXL, plan 08/10/2026 task 1.13).
+            Group {
+                if typeSize.isAccessibilitySize {
+                    VStack(alignment: .leading, spacing: 8) {
+                        timeLabel
+                        timePicker
+                        HStack(spacing: 12) { earlier; later }
+                    }
+                } else {
+                    HStack(spacing: 10) {
+                        timeLabel.frame(maxWidth: .infinity, alignment: .leading)
+                        earlier
+                        timePicker
+                        later
+                    }
                 }
-                .labelsHidden()
-                .datePickerStyle(.compact)
-                .fixedSize()
-                StepButton(symbol: "plus", label: "Later time") { onStep(1) }
             }
             .cardStyle(padding: 10)
         }
+    }
+
+    private var timeLabel: some View {
+        Text("One gentle reminder a day, at:").typeRole(.caption).foregroundStyle(Palette.textMuted)
+    }
+
+    private var earlier: some View { StepButton(symbol: "minus", label: "Earlier time") { onStep(-1) } }
+    private var later: some View { StepButton(symbol: "plus", label: "Later time") { onStep(1) } }
+
+    private var timePicker: some View {
+        DatePicker(selection: timeBinding, displayedComponents: .hourAndMinute) {
+            Text("Reminder time")
+        }
+        .labelsHidden()
+        .datePickerStyle(.compact)
+        .fixedSize()
     }
 
     /// Minutes after midnight as a time of today, for the picker.
@@ -76,7 +98,7 @@ private struct MomentTile: View {
             }
             .foregroundStyle(Palette.text)
             .padding(12)
-            .frame(maxWidth: .infinity, minHeight: 72, alignment: .topLeading)
+            .frame(maxWidth: .infinity, minHeight: Metrics.rowHeight, alignment: .topLeading)
             .background {
                 RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
                     .fill(isSelected ? Palette.secondary.opacity(0.12) : Palette.surface)
@@ -92,10 +114,12 @@ private struct MomentTile: View {
     }
 }
 
-private struct StepButton: View {
+/// A round − or + of 56 pt (reminder time, sound levels); faded when it cannot go further.
+struct StepButton: View {
     let symbol: String
     let label: LocalizedStringResource
     let action: () -> Void
+    @Environment(\.isEnabled) private var isEnabled
 
     var body: some View {
         Button(action: action) {
@@ -104,6 +128,7 @@ private struct StepButton: View {
                 .foregroundStyle(Palette.onStrongFill)
                 .frame(width: 56, height: 56)
                 .background(Palette.secondary, in: .circle)
+                .opacity(isEnabled ? 1 : 0.4)
         }
         .buttonStyle(.plain)
         .accessibilityLabel(Text(label))

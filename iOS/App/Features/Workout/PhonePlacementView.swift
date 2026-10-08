@@ -56,7 +56,7 @@ struct PhonePlacementView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 14) {
+            VStack(alignment: .leading, spacing: 12) {
                 ScreenHeader(title: "Where will your phone be?", subtitle: "So the voice knows how to guide you.")
                 ForEach(Array(PhonePlacement.allCases.enumerated()), id: \.element.id) { index, placement in
                     PlacementCard(placement: placement, isSelected: choice == placement,
@@ -110,7 +110,7 @@ private struct PlacementCard: View {
                     }
                 }
             }
-            .padding(12)
+            .padding(10)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background {
                 RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
@@ -128,8 +128,9 @@ private struct PlacementCard: View {
     }
 
     private var picture: some View {
-        ArtImage(art: placement.art, height: 118, fallbackSymbol: placement.symbol)
-            .frame(width: 118)
+        // 110 × 80 pt, so three cards and Continue fit an iPhone SE (plan 08/10/2026 task 1.13).
+        ArtImage(art: placement.art, height: 80, fallbackSymbol: placement.symbol)
+            .frame(width: 110)
             .overlay(alignment: .topTrailing) {
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                     .typeRole(.cardTitle)

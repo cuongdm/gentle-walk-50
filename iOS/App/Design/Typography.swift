@@ -1,8 +1,9 @@
 import SwiftUI
 
-/// Type roles from the screen spec: SF Pro Rounded, no Light weight, body 19 pt (never under 17).
-/// Screen titles are set in New York, the system serif (owner 03/10/2026: "A + the titles of B"), so
-/// headings read like a notebook rather than a stock app; everything else stays rounded.
+/// Type roles from the screen spec: no Light weight, body 19 pt (never under 17), caption 16.
+/// Font A1 (owner 08/10/2026, docs/design/research-2026-10-08/font-va-hinh-anh.md §3a): screen titles in
+/// New York, the system serif, so headings read like a notebook; text, buttons and captions in SF Pro
+/// (sharper than Rounded at small sizes, optical sizes built in); SF Pro Rounded only for numbers.
 ///
 /// Each role is anchored to a system text style, so it scales with Dynamic Type exactly like that
 /// style; the spec size is the value at the default content size.
@@ -15,11 +16,11 @@ enum TypeRole: CaseIterable {
     case body
     /// Button label: 20 pt semibold.
     case button
-    /// Caption: 15 pt, secondary information only.
+    /// Caption: 16 pt, secondary information only, never instructions.
     case caption
     /// Player phase label: 34 pt bold, uppercase with tracking (e.g. BRISK WALK).
     case phaseLabel
-    /// Player clock and counters: 80 pt, tabular figures.
+    /// Player clock and counters: 80 pt medium, tabular figures.
     case timer
     /// Phase change card: the new phase name, 52 pt bold.
     case transition
@@ -34,7 +35,7 @@ enum TypeRole: CaseIterable {
         case .cardTitle: 22
         case .body: 19
         case .button: 20
-        case .caption: 15
+        case .caption: 16
         case .phaseLabel: 34
         case .timer: 80
         case .transition: 52
@@ -48,20 +49,37 @@ enum TypeRole: CaseIterable {
         case .screenTitle: .semibold
         case .phaseLabel, .transition, .stat: .bold
         case .cardTitle, .button: .semibold
-        case .body, .caption, .timer, .wallClock: .regular
+        // Medium, not regular: big thin figures glare on dark and sand (decision D17).
+        case .timer, .wallClock: .medium
+        case .body, .caption: .regular
+        }
+    }
+
+    /// New York for screen titles, SF Pro Rounded for numbers, SF Pro for everything else.
+    var design: Font.Design {
+        switch self {
+        case .screenTitle: .serif
+        case .phaseLabel, .timer, .transition, .stat, .wallClock: .rounded
+        case .cardTitle, .body, .button, .caption: .default
+        }
+    }
+
+    /// Extra space between lines: Vietnamese stacked marks need it in body text and titles.
+    var lineSpacing: CGFloat {
+        switch self {
+        case .body, .screenTitle: 2
+        default: 0
         }
     }
 
     /// The system text style this role scales with.
-    /// New York for screen titles, SF Pro Rounded for the rest.
-    var design: Font.Design { self == .screenTitle ? .serif : .rounded }
 
     var anchor: Font.TextStyle {
         switch self {
         case .screenTitle: .title
         case .cardTitle: .title2
         case .body, .button: .body
-        case .caption: .subheadline
+        case .caption: .callout
         case .phaseLabel, .timer, .transition, .stat, .wallClock: .largeTitle
         }
     }
@@ -82,6 +100,7 @@ private struct TypeRoleModifier: ViewModifier {
             .font(.system(size: size, weight: role.weight, design: role.design))
             .monospacedDigit()
             .tracking(role == .phaseLabel || role == .transition ? 1.5 : 0)
+            .lineSpacing(role.lineSpacing)
     }
 }
 

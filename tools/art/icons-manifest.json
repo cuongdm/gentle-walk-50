@@ -1,0 +1,708 @@
+{
+  "_comment": [
+    "Content icons for Good Footing: one concept (meaning) -> one glyph -> one asset. Read by tools/art/build_icons.py.",
+    "source 'phosphor': Phosphor Bold (+ Fill twin for the selected state) from the pinned npm tarball below.",
+    "source 'custom': assets/icons/custom/<glyph>.svg and <glyph>-fill.svg (drawn by tools/art/draw_custom_icons.py).",
+    "layers ['base','mark']: two-tone custom icon. Extra assets <asset>-base, <asset>-base-fill (selected) and <asset>-mark; show with LayeredIcon (base = ink ~55 %, mark = sienna). <asset>/<asset>-fill stay as single-colour fallbacks.",
+    "tint = colour role (sap/sky/ochre/sienna/danger) per icon-va-chong-nham-chan.md; glyph colour tokens come in milestone 3.",
+    "replaces = the SF Symbol this concept replaces in the views. System controls (chevron, checkmark, xmark, plus, play/pause) stay SF Symbols.",
+    "sharedGlyphs: the only glyphs allowed on more than one concept (one symbol, one meaning). Empty on purpose."
+  ],
+  "phosphor": {
+    "package": "@phosphor-icons/core",
+    "version": "2.1.1",
+    "tarball": "https://registry.npmjs.org/@phosphor-icons/core/-/core-2.1.1.tgz",
+    "integrity": "sha512-v4ARvrip4qBCImOE5rmPUylOEK4iiED9ZyKjcvzuezqMaiRASCHKcRIuvvxL/twvLpkfnEODCOJp5dM4eZilxQ==",
+    "license": "MIT"
+  },
+  "sharedGlyphs": {},
+  "icons": [
+    {
+      "concept": "session.walk",
+      "asset": "walk",
+      "source": "phosphor",
+      "glyph": "person-simple-walk",
+      "tint": "sap",
+      "meaning": "Walk session; walking in general (goal \"Lose some weight\", gentle restart, week calendar)",
+      "replaces": "figure.walk"
+    },
+    {
+      "concept": "session.long-walk",
+      "asset": "long-walk",
+      "source": "phosphor",
+      "glyph": "person-simple-hike",
+      "tint": "sap",
+      "meaning": "Long walk; longest walk without a break",
+      "replaces": "figure.walk.motion"
+    },
+    {
+      "concept": "session.chair",
+      "asset": "chair",
+      "source": "phosphor",
+      "glyph": "chair",
+      "tint": "sap",
+      "meaning": "Chair moves; a chair (goal \"Up from chairs\", sturdy chair, sit-to-stand)",
+      "replaces": "chair.fill"
+    },
+    {
+      "concept": "session.seated",
+      "asset": "seated",
+      "source": "phosphor",
+      "glyph": "armchair",
+      "tint": "sap",
+      "meaning": "Seated level (\"Starts seated\")",
+      "replaces": "figure.seated.side"
+    },
+    {
+      "concept": "session.stretch",
+      "asset": "stretch",
+      "source": "custom",
+      "glyph": "stretch",
+      "tint": "sky",
+      "meaning": "Stretch session",
+      "replaces": "figure.flexibility"
+    },
+    {
+      "concept": "session.balance",
+      "asset": "balance",
+      "source": "phosphor",
+      "glyph": "person-simple-tai-chi",
+      "tint": "sky",
+      "meaning": "Balance: Steady set, goal \"Steadier feet\", hands on the chair",
+      "replaces": "figure.stand"
+    },
+    {
+      "concept": "session.outdoors",
+      "asset": "outdoors",
+      "source": "phosphor",
+      "glyph": "map-pin",
+      "tint": "sky",
+      "meaning": "Outdoor walk; location (permission, \"Use my location\")",
+      "replaces": "location.fill"
+    },
+    {
+      "concept": "progress.journey",
+      "asset": "journey",
+      "source": "phosphor",
+      "glyph": "map-trifold",
+      "tint": "sky",
+      "meaning": "Journeys, postcards, miles on the route",
+      "replaces": "map.fill"
+    },
+    {
+      "concept": "progress.active-day",
+      "asset": "active-day",
+      "source": "phosphor",
+      "glyph": "leaf",
+      "tint": "sap",
+      "meaning": "Active days; the tree growing (Sapling)",
+      "replaces": "leaf.fill"
+    },
+    {
+      "concept": "progress.sprout",
+      "asset": "sprout",
+      "source": "phosphor",
+      "glyph": "plant",
+      "tint": "sap",
+      "meaning": "Tree stage: Sprout",
+      "replaces": "leaf"
+    },
+    {
+      "concept": "progress.seed",
+      "asset": "seed",
+      "source": "phosphor",
+      "glyph": "circle-dashed",
+      "tint": "sap",
+      "meaning": "Tree stage: Seed",
+      "replaces": "circle.dotted"
+    },
+    {
+      "concept": "progress.tree",
+      "asset": "tree",
+      "source": "phosphor",
+      "glyph": "tree",
+      "tint": "sap",
+      "meaning": "Tree stage: Tree",
+      "replaces": "tree.fill"
+    },
+    {
+      "concept": "progress.recap",
+      "asset": "progress",
+      "source": "phosphor",
+      "glyph": "chart-bar",
+      "tint": "sap",
+      "meaning": "Progress; weekly recap",
+      "replaces": "chart.bar.fill"
+    },
+    {
+      "concept": "progress.steps",
+      "asset": "steps",
+      "source": "phosphor",
+      "glyph": "footprints",
+      "tint": "sap",
+      "meaning": "All-day steps; \"Just count my steps\"; feet flat",
+      "replaces": "shoeprints.fill"
+    },
+    {
+      "concept": "progress.wins",
+      "asset": "everyday-wins",
+      "source": "phosphor",
+      "glyph": "thumbs-up",
+      "tint": "sap",
+      "meaning": "Everyday wins",
+      "replaces": "checkmark.circle.fill"
+    },
+    {
+      "concept": "progress.time",
+      "asset": "time",
+      "source": "phosphor",
+      "glyph": "clock",
+      "tint": "ochre",
+      "meaning": "Time: \"Pick a time\", minutes moving",
+      "replaces": "clock.fill"
+    },
+    {
+      "concept": "program.weeks",
+      "asset": "program",
+      "source": "phosphor",
+      "glyph": "calendar-dots",
+      "tint": "sap",
+      "meaning": "The 12-week program; your week; your plan",
+      "replaces": "calendar"
+    },
+    {
+      "concept": "program.self-check",
+      "asset": "self-check",
+      "source": "phosphor",
+      "glyph": "timer",
+      "tint": "ochre",
+      "meaning": "2-week self-check; self-check reminders",
+      "replaces": "stopwatch.fill"
+    },
+    {
+      "concept": "program.new",
+      "asset": "new",
+      "source": "phosphor",
+      "glyph": "sparkle",
+      "tint": "ochre",
+      "meaning": "New this week; goal \"Not sure yet\"",
+      "replaces": "sparkles"
+    },
+    {
+      "concept": "program.level-up",
+      "asset": "level-up",
+      "source": "phosphor",
+      "glyph": "arrow-circle-up",
+      "tint": "sap",
+      "meaning": "Moved up a level; a new personal record",
+      "replaces": "arrow.up.circle.fill"
+    },
+    {
+      "concept": "program.level-down",
+      "asset": "level-down",
+      "source": "phosphor",
+      "glyph": "arrow-circle-down",
+      "tint": "sap",
+      "meaning": "Shorter today; moved down a level",
+      "replaces": "arrow.down.circle.fill"
+    },
+    {
+      "concept": "program.rest",
+      "asset": "rest",
+      "source": "phosphor",
+      "glyph": "moon-stars",
+      "tint": "sap",
+      "meaning": "Rest day",
+      "replaces": "moon.zzz.fill"
+    },
+    {
+      "concept": "program.done",
+      "asset": "done",
+      "source": "phosphor",
+      "glyph": "seal-check",
+      "tint": "sap",
+      "meaning": "Done for today",
+      "replaces": "checkmark.seal.fill"
+    },
+    {
+      "concept": "program.countdown",
+      "asset": "countdown",
+      "source": "phosphor",
+      "glyph": "hourglass-simple",
+      "tint": "sap",
+      "meaning": "Countdown before a session (\"3, 2, 1\")",
+      "replaces": "timer"
+    },
+    {
+      "concept": "goal.less-pain",
+      "asset": "less-pain",
+      "source": "phosphor",
+      "glyph": "hand-heart",
+      "tint": "danger",
+      "meaning": "Goal \"Less pain\" (not the heart: that is Apple Health)",
+      "replaces": "heart"
+    },
+    {
+      "concept": "goal.energy",
+      "asset": "energy",
+      "source": "phosphor",
+      "glyph": "sun",
+      "tint": "ochre",
+      "meaning": "Goal \"More energy\"",
+      "replaces": "sun.max.fill"
+    },
+    {
+      "concept": "goal.grandkids",
+      "asset": "grandkids",
+      "source": "custom",
+      "glyph": "grandkids",
+      "tint": "sienna",
+      "meaning": "Goal \"Keep up with grandkids\"",
+      "replaces": "figure.2.and.child.holdinghands"
+    },
+    {
+      "concept": "barrier.joints-hurt",
+      "asset": "joints-hurt",
+      "source": "phosphor",
+      "glyph": "bandaids",
+      "tint": "danger",
+      "meaning": "Barrier \"My joints hurt\" (user test decides; fallback: no icon)",
+      "replaces": "bandage.fill"
+    },
+    {
+      "concept": "barrier.videos-fast",
+      "asset": "videos-fast",
+      "source": "phosphor",
+      "glyph": "fast-forward",
+      "tint": "sky",
+      "meaning": "Barrier \"Videos go too fast\"",
+      "replaces": "forward.fill"
+    },
+    {
+      "concept": "barrier.busy",
+      "asset": "busy",
+      "source": "phosphor",
+      "glyph": "users",
+      "tint": "sienna",
+      "meaning": "Barrier \"No time for me\" (caring for others)",
+      "replaces": "person.2.fill"
+    },
+    {
+      "concept": "barrier.bored",
+      "asset": "bored",
+      "source": "phosphor",
+      "glyph": "smiley-meh",
+      "tint": "ochre",
+      "meaning": "Barrier \"I got bored\"",
+      "replaces": "zzz"
+    },
+    {
+      "concept": "money.payment",
+      "asset": "payment",
+      "source": "phosphor",
+      "glyph": "credit-card",
+      "tint": "sap",
+      "meaning": "Subscription, trial ending, billing, \"Surprise charges\"",
+      "replaces": "creditcard.fill"
+    },
+    {
+      "concept": "money.unlock",
+      "asset": "unlock",
+      "source": "phosphor",
+      "glyph": "lock-open",
+      "tint": "sap",
+      "meaning": "Paywall timeline \"Today: full access\"",
+      "replaces": "lock.open.fill"
+    },
+    {
+      "concept": "money.pro",
+      "asset": "pro",
+      "source": "phosphor",
+      "glyph": "lock",
+      "tint": "sap",
+      "meaning": "Pro / locked content",
+      "replaces": "lock.fill"
+    },
+    {
+      "concept": "moment.coffee",
+      "asset": "coffee",
+      "source": "phosphor",
+      "glyph": "coffee",
+      "tint": "ochre",
+      "meaning": "Reminder moment \"After my morning coffee\"",
+      "replaces": "cup.and.saucer.fill"
+    },
+    {
+      "concept": "moment.lunch",
+      "asset": "lunch",
+      "source": "phosphor",
+      "glyph": "fork-knife",
+      "tint": "ochre",
+      "meaning": "Reminder moment \"After lunch\"",
+      "replaces": "fork.knife"
+    },
+    {
+      "concept": "moment.evening-tv",
+      "asset": "evening-tv",
+      "source": "phosphor",
+      "glyph": "television-simple",
+      "tint": "ochre",
+      "meaning": "Reminder moment \"During evening TV\"",
+      "replaces": "tv.fill"
+    },
+    {
+      "concept": "settings.reminder",
+      "asset": "reminder",
+      "source": "phosphor",
+      "glyph": "bell",
+      "tint": "sap",
+      "meaning": "Reminders and notifications",
+      "replaces": "bell.fill"
+    },
+    {
+      "concept": "settings.notify-journeys",
+      "asset": "new-journeys",
+      "source": "phosphor",
+      "glyph": "newspaper",
+      "tint": "sap",
+      "meaning": "Notification setting \"New journeys\"",
+      "replaces": "newspaper.fill"
+    },
+    {
+      "concept": "settings.language",
+      "asset": "language",
+      "source": "phosphor",
+      "glyph": "globe-simple",
+      "tint": "sap",
+      "meaning": "Language and units",
+      "replaces": "globe"
+    },
+    {
+      "concept": "settings.text-size",
+      "asset": "text-size",
+      "source": "phosphor",
+      "glyph": "text-aa",
+      "tint": "sap",
+      "meaning": "Text size",
+      "replaces": "textformat.size"
+    },
+    {
+      "concept": "settings.appearance",
+      "asset": "appearance",
+      "source": "phosphor",
+      "glyph": "circle-half",
+      "tint": "sap",
+      "meaning": "Appearance (light / dark)",
+      "replaces": "circle.lefthalf.filled"
+    },
+    {
+      "concept": "settings.your-body",
+      "asset": "your-body",
+      "source": "phosphor",
+      "glyph": "person-arms-spread",
+      "tint": "sap",
+      "meaning": "Me: \"Your body\"; self-check arms step",
+      "replaces": "figure.arms.open"
+    },
+    {
+      "concept": "audio.sound",
+      "asset": "sound",
+      "source": "phosphor",
+      "glyph": "speaker-high",
+      "tint": "sap",
+      "meaning": "Sound",
+      "replaces": "speaker.wave.2.fill"
+    },
+    {
+      "concept": "audio.coach-voice",
+      "asset": "coach-voice",
+      "source": "phosphor",
+      "glyph": "user-sound",
+      "tint": "sap",
+      "meaning": "Coach voice; voice louder than music",
+      "replaces": "person.wave.2.fill"
+    },
+    {
+      "concept": "audio.music",
+      "asset": "music",
+      "source": "phosphor",
+      "glyph": "music-note",
+      "tint": "sap",
+      "meaning": "Music",
+      "replaces": "music.note"
+    },
+    {
+      "concept": "audio.captions",
+      "asset": "captions",
+      "source": "phosphor",
+      "glyph": "closed-captioning",
+      "tint": "sap",
+      "meaning": "Captions",
+      "replaces": "captions.bubble.fill"
+    },
+    {
+      "concept": "audio.listen",
+      "asset": "listen",
+      "source": "phosphor",
+      "glyph": "ear",
+      "tint": "sap",
+      "meaning": "Voice-led sessions; \"One ear free to hear traffic\"",
+      "replaces": "ear.fill"
+    },
+    {
+      "concept": "health.apple-health",
+      "asset": "health",
+      "source": "phosphor",
+      "glyph": "heart",
+      "tint": "danger",
+      "meaning": "Apple Health",
+      "replaces": "heart.fill"
+    },
+    {
+      "concept": "safety.hurts",
+      "asset": "hurts",
+      "source": "phosphor",
+      "glyph": "hand-palm",
+      "tint": "danger",
+      "meaning": "\"This hurts\" / stop / pain alert",
+      "replaces": "hand.raised.fill"
+    },
+    {
+      "concept": "safety.warning",
+      "asset": "warning",
+      "source": "phosphor",
+      "glyph": "warning",
+      "tint": "danger",
+      "meaning": "Safety warning; \"Stop if it hurts\"",
+      "replaces": "exclamationmark.triangle.fill"
+    },
+    {
+      "concept": "help.help",
+      "asset": "help",
+      "source": "phosphor",
+      "glyph": "question",
+      "tint": "sap",
+      "meaning": "Help; barrier \"Didn't know where to start\"",
+      "replaces": "questionmark.circle.fill"
+    },
+    {
+      "concept": "help.contact",
+      "asset": "contact",
+      "source": "phosphor",
+      "glyph": "envelope-simple",
+      "tint": "sap",
+      "meaning": "Contact us",
+      "replaces": "envelope.fill"
+    },
+    {
+      "concept": "help.terms",
+      "asset": "terms",
+      "source": "phosphor",
+      "glyph": "file-text",
+      "tint": "sap",
+      "meaning": "Terms of Use",
+      "replaces": "doc.text.fill"
+    },
+    {
+      "concept": "help.privacy",
+      "asset": "privacy",
+      "source": "phosphor",
+      "glyph": "shield-check",
+      "tint": "sap",
+      "meaning": "Privacy",
+      "replaces": "lock.shield.fill"
+    },
+    {
+      "concept": "help.restore",
+      "asset": "restore",
+      "source": "phosphor",
+      "glyph": "arrow-clockwise",
+      "tint": "sap",
+      "meaning": "Restore purchase",
+      "replaces": "arrow.clockwise"
+    },
+    {
+      "concept": "help.delete-data",
+      "asset": "delete-data",
+      "source": "phosphor",
+      "glyph": "trash",
+      "tint": "danger",
+      "meaning": "Delete all my data",
+      "replaces": "trash.fill"
+    },
+    {
+      "concept": "help.info",
+      "asset": "info",
+      "source": "phosphor",
+      "glyph": "info",
+      "tint": "sap",
+      "meaning": "Note (\"isn't medical advice\")",
+      "replaces": "info.circle"
+    },
+    {
+      "concept": "outdoor.water",
+      "asset": "water",
+      "source": "phosphor",
+      "glyph": "drop",
+      "tint": "sky",
+      "meaning": "Water with you",
+      "replaces": "waterbottle.fill"
+    },
+    {
+      "concept": "outdoor.shoes",
+      "asset": "shoes",
+      "source": "phosphor",
+      "glyph": "sneaker",
+      "tint": "sap",
+      "meaning": "Sturdy shoes",
+      "replaces": "shoe.fill"
+    },
+    {
+      "concept": "outdoor.phone-charged",
+      "asset": "phone-charged",
+      "source": "phosphor",
+      "glyph": "battery-full",
+      "tint": "sap",
+      "meaning": "Phone charged",
+      "replaces": "battery.100percent"
+    },
+    {
+      "concept": "outdoor.hot-day",
+      "asset": "hot-day",
+      "source": "phosphor",
+      "glyph": "thermometer-hot",
+      "tint": "ochre",
+      "meaning": "Hot-day tip",
+      "replaces": "thermometer.sun.fill"
+    },
+    {
+      "concept": "permission.motion",
+      "asset": "motion",
+      "source": "phosphor",
+      "glyph": "device-mobile",
+      "tint": "sap",
+      "meaning": "Motion: phone held to the chest / on the table",
+      "replaces": "iphone.gen3.radiowaves.left.and.right"
+    },
+    {
+      "concept": "body.knees",
+      "asset": "body-knees",
+      "source": "custom",
+      "glyph": "body-knees",
+      "tint": "sienna",
+      "meaning": "Sore spot: Knees",
+      "layers": [
+        "base",
+        "mark"
+      ]
+    },
+    {
+      "concept": "body.hips",
+      "asset": "body-hips",
+      "source": "custom",
+      "glyph": "body-hips",
+      "tint": "sienna",
+      "meaning": "Sore spot: Hips",
+      "layers": [
+        "base",
+        "mark"
+      ]
+    },
+    {
+      "concept": "body.lower-back",
+      "asset": "body-lower-back",
+      "source": "custom",
+      "glyph": "body-lower-back",
+      "tint": "sienna",
+      "meaning": "Sore spot: Lower back",
+      "layers": [
+        "base",
+        "mark"
+      ]
+    },
+    {
+      "concept": "body.shoulders",
+      "asset": "body-shoulders",
+      "source": "custom",
+      "glyph": "body-shoulders",
+      "tint": "sienna",
+      "meaning": "Sore spot: Shoulders",
+      "layers": [
+        "base",
+        "mark"
+      ]
+    },
+    {
+      "concept": "body.joint-replacement",
+      "asset": "body-joint-replacement",
+      "source": "custom",
+      "glyph": "body-joint-replacement",
+      "tint": "sienna",
+      "meaning": "Sore spot: Joint replacement",
+      "layers": [
+        "base",
+        "mark"
+      ]
+    },
+    {
+      "concept": "limit.floor",
+      "asset": "limit-floor",
+      "source": "custom",
+      "glyph": "limit-floor",
+      "tint": "sienna",
+      "meaning": "Limit: \"Can't get down on the floor\"",
+      "layers": [
+        "base",
+        "mark"
+      ]
+    },
+    {
+      "concept": "limit.standing-long",
+      "asset": "limit-standing-long",
+      "source": "custom",
+      "glyph": "limit-standing-long",
+      "tint": "sienna",
+      "meaning": "Limit: \"Standing long is hard\"",
+      "layers": [
+        "base",
+        "mark"
+      ]
+    },
+    {
+      "concept": "limit.dizzy",
+      "asset": "limit-dizzy",
+      "source": "custom",
+      "glyph": "limit-dizzy",
+      "tint": "sienna",
+      "meaning": "Limit: \"Dizzy\"",
+      "layers": [
+        "base",
+        "mark"
+      ]
+    },
+    {
+      "concept": "limit.unsteady",
+      "asset": "limit-unsteady",
+      "source": "custom",
+      "glyph": "limit-unsteady",
+      "tint": "sienna",
+      "meaning": "Limit: \"Unsteady\"",
+      "layers": [
+        "base",
+        "mark"
+      ]
+    },
+    {
+      "concept": "limit.no-jumping",
+      "asset": "limit-no-jumping",
+      "source": "custom",
+      "glyph": "limit-no-jumping",
+      "tint": "sienna",
+      "meaning": "Limit: \"No jumping\"",
+      "layers": [
+        "base",
+        "mark"
+      ]
+    }
+  ]
+}

@@ -36,14 +36,15 @@ struct ProgramView: View {
             VStack(alignment: .leading, spacing: 18) {
                 ScreenHeader(title: "Your 12-week plan",
                              subtitle: "Stronger legs and better balance, at your own pace. Reps go up only when you're ready.")
+                // Right under the title, seen before any stage (1.4.1; plan 08/10/2026 task 1.16).
+                Text("\(AppBrand.name) is for general fitness. It isn't medical advice.")
+                    .typeRole(.caption).foregroundStyle(Palette.textMuted)
                 if case .week(let week, _) = snapshot.position {
                     Text(verbatim: String(localized: "You're in week \(week) of \(ProgramCalendar.weeks).")).typeRole(.body)
                         .fontWeight(.semibold).foregroundStyle(Palette.text)
                 }
                 ProgramStageList(current: currentStage)
                 SelfCheckDots(doneWeeks: snapshot.checkWeeks, status: snapshot.checkStatus, onStart: onSelfCheck)
-                Text("\(AppBrand.name) is for general fitness. It isn't medical advice.")
-                    .typeRole(.caption).foregroundStyle(Palette.textMuted)
             }
             .padding(Metrics.screenMargin)
             .readableColumn()

@@ -16,6 +16,7 @@ struct TodayInput: Equatable {
     var name: String?
     var restDays: Set<Weekday>
     var limits: Set<BodyLimit>
+    /// The level she is on now (`WalkLevelStore`), not the start level from onboarding.
     var level: WalkLevel
     var entitlement: Entitlement
     /// End of the free trial if one was ever started (for "Your trial has ended").
@@ -36,6 +37,8 @@ struct TodayInput: Equatable {
     /// Dates of her 2-week self-checks, and "Later" on the week-0 invite.
     var selfChecks: [Date] = []
     var selfCheckDismissedAt: Date? = nil
+    /// The card that explains the last level change, until her next session or 7 days (task 0.4).
+    var levelCard: AdaptationCard? = nil
 }
 
 /// "Week 3 of 12 · Steady base" above today's session (steady program task 4.2).
@@ -74,6 +77,8 @@ enum TodaySpecialCard: Equatable, Sendable {
     case pain(area: BodyArea)
     case shorter
     case movedDown(to: WalkLevel)
+    /// "You're ready for a little more" (plan 08/10/2026 task 0.5).
+    case movedUp(to: WalkLevel)
     case connectHealth
     case fewerReminders
 }
@@ -122,7 +127,8 @@ struct TodaySwapOption: Equatable, Identifiable {
     @ObservationIgnored private let content: ContentBundle
     @ObservationIgnored private let activity: ActivityCalendar
     @ObservationIgnored private let restDays: Set<Weekday>
-    @ObservationIgnored private let adaptation: AdaptationResult
+    /// Two Breaks last time: today is a little shorter (negative minutes, or 0).
+    @ObservationIgnored private let minutesDelta: Int
     @ObservationIgnored private let restart: WelcomeBackState?
     @ObservationIgnored private let painAlert: PainAlert?
     @ObservationIgnored private let plannedDay: PlannedDay
@@ -135,9 +141,9 @@ struct TodaySwapOption: Equatable, Identifiable {
         self.content = content
         restDays = RestDays.effective(chosen: input.restDays, entitlement: input.entitlement)
         activity = ActivityCalendar(records: input.workouts.map(\.date), restDays: restDays, calendar: input.calendar)
-        let history = input.workouts.sorted { $0.date < $1.date }
-            .map { SessionFeedback(level: $0.level, feeling: $0.feeling, breakCount: $0.breakCount) }
-        adaptation = Adaptation.next(level: input.level, history: history)
+        // The level itself changes when "How did that feel?" is saved (`SessionCompletionService`).
+        let last = input.workouts.max { $0.date < $1.date }
+        minutesDelta = (last?.breakCount ?? 0) >= Adaptation.breaksForShorter ? -Adaptation.shorterByMinutes : 0
         let done = activity.isActive(input.now)
         restart = done ? nil : WelcomeBack.state(lastWorkout: input.workouts.map(\.date).max(), restDays: restDays,
                                                  now: input.now, calendar: input.calendar)
@@ -241,8 +247,8 @@ struct TodaySwapOption: Equatable, Identifiable {
         return String(localized: "Welcome back. Your journey is right where you left it.")
     }
 
-    /// The level today: seated after repeated pain in one area, otherwise the adapted level.
-    private var level: WalkLevel { painAlert != nil ? .seated : adaptation.level }
+    /// The level today: seated after repeated pain in one area, otherwise her current level.
+    private var level: WalkLevel { painAlert != nil ? .seated : input.level }
 
     var session: TodaySession {
         if doneToday { return TodaySession(kind: .done, title: String(localized: "Done for today")) }
@@ -301,13 +307,17 @@ struct TodaySwapOption: Equatable, Identifiable {
         }
         guard !plannedDay.isRest else { return nil }
         return WorkoutRequest(day: plannedDay, level: level, intensity: intensity, place: .indoors, limits: input.limits,
-                              rotationIndex: activeDays, minutesDelta: adaptation.minutesDelta)
+                              rotationIndex: activeDays, minutesDelta: minutesDelta)
     }
 
     var specialCard: TodaySpecialCard? {
         if let painAlert { return .pain(area: painAlert.area) }
-        if adaptation.minutesDelta < 0 { return .shorter }
-        if case .movedDown(let to)? = adaptation.card { return .movedDown(to: to) }
+        if minutesDelta < 0 { return .shorter }
+        switch input.levelCard {
+        case .movedDown(let to)?: return .movedDown(to: to)
+        case .movedUp(let to)?: return .movedUp(to: to)
+        case .shorter?, nil: break
+        }
         // Not before a first session: Apple Health is asked after it (S16), never before.
         if !input.healthConnected, !isNew { return .connectHealth }
         if input.suggestFewerReminders { return .fewerReminders }

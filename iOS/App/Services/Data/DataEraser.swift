@@ -20,9 +20,9 @@ import UserNotifications
     static let all: [String] = [
         PhonePlacement.defaultsKey, PhonePlacement.seenKey, WorkoutPreviewModel.placeKey, TextSizeOverride.defaultsKey,
         HealthService.askedKey, "paywallDismissedAt", "restTodayDate", "permissionsShownAt", "reminderOfferShown", UnitPreferences.distanceKey, UnitPreferences.weightKey,
-        UnitPreferences.heightKey, "notificationSettings", "outdoorLocationChoice",
+        UnitPreferences.heightKey, "notificationSettings", OutdoorLocationChoice.defaultsKey,
         "outdoorPrepSeen", "healthCardDismissed", "musicOff", "voiceLouder", "captionsOn", "reviewPromptMilestones", "lastSchedule",
-        FavouriteSessions.defaultsKey, SupportLadderStore.defaultsKey, RepLadderStore.defaultsKey, AppModel.selfCheckDismissedKey,
+        FavouriteSessions.defaultsKey, SupportLadderStore.defaultsKey, RepLadderStore.defaultsKey, WalkLevelStore.defaultsKey, AppModel.selfCheckDismissedKey,
         "permissionsShown", "fewerRemindersAnswered", "lastTrialEnds",
         AudioLevels.voiceKey, AudioLevels.musicKey, AudioLevels.introsKey,
     ]

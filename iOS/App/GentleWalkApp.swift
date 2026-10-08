@@ -11,6 +11,7 @@ struct GentleWalkApp: App {
 
     init() {
         UNUserNotificationCenter.current().delegate = Self.notificationDelegate
+        MainTabView.useLargerTabLabels()
     }
 
     var body: some Scene {

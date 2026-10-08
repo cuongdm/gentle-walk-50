@@ -25,7 +25,13 @@ struct MeView: View {
                         app.todayPath = [.program]
                     }, onRestart: app.restartProgram)
                 }
-                BodySection(limits: app.profile?.limits ?? [], onEdit: { editingBody = true })
+                BodySection(limits: app.profile?.limits ?? [], walking: app.walkingLevel, onEdit: { editingBody = true })
+                #if DEBUG
+                // Not in screenshots (the capture hook is the only launch convention).
+                if CaptureHook.state(from: ProcessInfo.processInfo.arguments) == nil {
+                    PersonalisationCountersCard(counters: app.personalisationCounters())
+                }
+                #endif
                 WeekSection(restDays: app.isPro ? (app.profile?.restDays ?? RestDays.freeTier) : RestDays.freeTier,
                             isPro: app.isPro, onSeePlans: { app.offerPlans(.lockedContent) }) { days in
                     app.updateProfile { $0.restDays = days.map(\.rawValue).sorted(by: >) }

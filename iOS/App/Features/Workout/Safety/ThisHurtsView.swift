@@ -8,7 +8,8 @@ struct ThisHurtsView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            // 12 pt gaps: with 64 pt buttons the urgent-signs note stays on an iPhone SE (plan 08/10/2026).
+            VStack(alignment: .leading, spacing: 12) {
                 ScreenHeader(title: "Let's take care of that.")
                 Text("Where does it hurt? (optional)").typeRole(.cardTitle).foregroundStyle(Palette.text)
                 FlowChips(selection: $model.area)
@@ -17,7 +18,7 @@ struct ThisHurtsView: View {
                     Task { onDone(await model.showEasier()) }
                 }
                 .buttonStyle(.primaryAction)
-                VStack(spacing: 4) {
+                VStack(spacing: 0) {
                     if model.canSkip {
                         Button(model.isWalk ? "Skip this part" : "Skip this move") { Task { onDone(await model.skipMove()) } }
                             .buttonStyle(.textLink)

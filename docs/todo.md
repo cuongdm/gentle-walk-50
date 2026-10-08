@@ -8,6 +8,8 @@ Kế hoạch: [plans/2026-10-08-steady-program.md](plans/2026-10-08-steady-progr
 - [ ] **Chủ app** — nghe 3 câu HLV mới (`a12.check.*`, đã thu EN + VI qua Vibi 08/10: `assets/voice/cache-bella-v4`, `cache-vi-bella-v4`); muốn sửa lời thì sửa [scripts/A12-steady-program.md](scripts/A12-steady-program.md) rồi thu lại.
 - [ ] **Chủ app** — xem các quyết định nhỏ đã tự chốt (handoff mục 6). Code đã ở `main`.
 
+- [ ] **Chủ app quyết (nghiên cứu độc lập 08/10, [research/2026-10-08-kha-nang-chi-tra-va-kiem-tien.md](research/2026-10-08-kha-nang-chi-tra-va-kiem-tien.md)):** nhóm 58–75 trả được $39,99/năm, nhưng chưa có bằng chứng quảng cáo hoàn vốn (mô hình cơ sở: mỗi $1 quảng cáo thu về ~$0,24–0,30). (1) mức lỗ tối đa chấp nhận năm đầu; (2) cho phép Meta SDK hoặc đối tác đo lường không (đang trái luật "không SDK"); (3) thu nhỏ bản miễn phí không; (4) giá: tháng $9,99, trọn đời $99,99, thử năm $49,99 song song; (5) kiểm chứng rẻ trước (~$5–8K: test trang đích Meta $300–500, rồi Apple Ads tới ~1.000–1.500 cài).
+
 ## Chủ app quyết định (đề xuất mặc định đã ghi, chưa chốt)
 | # | Việc | Đề xuất mặc định | Trạng thái |
 |---|---|---|---|

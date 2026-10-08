@@ -64,8 +64,10 @@ enum CaptureState: String, CaseIterable, Sendable {
     case completeOutdoor = "complete-outdoor"
     case completeStopped = "complete-stopped"
     case completeXxl = "complete-xxl"
-    case permissions = "permissions"
-    case permissionsGranted = "permissions-granted"
+    // One permission per screen (plan 08/10/2026 task 1.6; replaced permissions, permissions-granted).
+    case permissionsReminder = "permissions-reminder"
+    case permissionsHealth = "permissions-health"
+    case permissionsHealthGranted = "permissions-health-granted"
     case today = "today"
     case todayDone = "today-done"
     case todayFree = "today-free"
@@ -102,7 +104,9 @@ enum CaptureState: String, CaseIterable, Sendable {
     case soundSheet = "sound-sheet"
     case watchOnTV = "watch-on-tv"
     case outdoorPrep = "outdoor-prep"
-    case outdoorLocationAsk = "outdoor-location-ask"
+    /// Measure first, then a one-button prompt (plan 08/10/2026 task 1.17; replaced outdoor-location-ask).
+    case outdoorMeasureChoice = "outdoor-measure-choice"
+    case outdoorLocationPrompt = "outdoor-location-prompt"
     case outdoorPlayer = "outdoor-player"
     case outdoorPlayerNoGps = "outdoor-player-no-gps"
     case outdoorPlayerFinding = "outdoor-player-finding"
@@ -118,6 +122,9 @@ enum CaptureState: String, CaseIterable, Sendable {
     /// The rep ladder's "Next time: …" line (the tree's level-up already owns complete-level-up).
     case completeRepsUp = "complete-reps-up"
     case programFinished = "program-finished"
+    // UI, onboarding and personalisation (docs/plans/2026-10-08-ui-onboarding-personalization.md).
+    /// "You're ready for a little more" after three "Too easy" at Seated (task 0.5).
+    case todayMovedUp = "today-moved-up"
 }
 
 enum CaptureHook {

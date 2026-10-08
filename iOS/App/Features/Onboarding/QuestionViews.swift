@@ -88,7 +88,7 @@ struct NameView: View {
                 .submitLabel(.continue)
                 .focused($focused)
                 .padding(.horizontal, 16)
-                .frame(minHeight: 64)
+                .frame(minHeight: Metrics.rowHeight)
                 .background(Palette.surface, in: .rect(cornerRadius: 16))
                 .overlay { RoundedRectangle(cornerRadius: 16).strokeBorder(Palette.textMuted.opacity(0.4), lineWidth: 1) }
                 .onSubmit(flow.next)

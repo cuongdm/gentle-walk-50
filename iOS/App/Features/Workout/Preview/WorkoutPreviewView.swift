@@ -14,8 +14,9 @@ struct WorkoutPreviewView: View {
     @Environment(\.dynamicTypeSize) private var typeSize
     /// Start stays in view at the bottom; at accessibility sizes it sits at the end of the list.
     private var pinsActions: Bool { !typeSize.isAccessibilitySize }
-    /// The choices carry their own paintings; only a day without choices (chair moves) gets one on top.
-    private var showsHero: Bool { !model.showsPlaceQuestion && model.day.main != .stretch }
+    /// The choices carry their own paintings; only a day without choices (chair moves) gets one on top,
+    /// and only for a short list, so a long one is not pushed under Start (plan 08/10/2026 task 1.12).
+    private var showsHero: Bool { !model.showsPlaceQuestion && model.day.main != .stretch && model.rows.count <= 4 }
 
     var body: some View {
         ScrollView {
@@ -191,7 +192,8 @@ struct SegmentList: View {
 
     @ViewBuilder private func swap(_ row: PreviewRow) -> some View {
         if let id = row.swappableExerciseID {
-            Button("Swap") { onSwap(id) }.buttonStyle(.smallTextLink)
+            // A real button, 56 pt, not a small link (task 1.12).
+            Button("Swap") { onSwap(id) }.buttonStyle(PillButtonStyle())
                 .accessibilityLabel(Text("Swap \(row.title)"))
         }
     }

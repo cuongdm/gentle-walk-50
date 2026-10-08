@@ -46,6 +46,16 @@ import Testing
         #expect(notifications.cleared == 1)
     }
 
+    @Test func eraseClearsWalkLevel() throws {
+        WalkLevelStore(defaults: defaults).set(level: .inPlace, changedAt: Date(), card: .movedUp(to: .inPlace))
+        #expect(AppDefaultsKeys.all.contains(WalkLevelStore.defaultsKey))
+
+        try DataEraser(context: container.mainContext, defaults: defaults, notifications: FakePendingNotifications()).eraseAll()
+
+        #expect(defaults.data(forKey: WalkLevelStore.defaultsKey) == nil)
+        #expect(WalkLevelStore(defaults: defaults).state(startLevel: .seated).level == .seated)
+    }
+
     @Test func textSizeStepsWithinRange() {
         var size = TextSizeOverride(step: 0)
         #expect(size.dynamicTypeSize == nil)

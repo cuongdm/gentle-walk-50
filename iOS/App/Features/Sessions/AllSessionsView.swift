@@ -31,8 +31,9 @@ struct AllSessionsView: View {
     }
 }
 
-/// A group title and its sessions: a sideways row of tiles, or stacked cards at accessibility
-/// text sizes (a tile would be too narrow for the words).
+/// A group title and its sessions in a two-column grid that wraps downwards (plan 08/10/2026 task 1.11:
+/// a sideways row hid its third tile and older eyes rarely find sideways scrolling), tiles in a row the
+/// same height; stacked cards at accessibility text sizes (a tile would be too narrow for the words).
 struct SessionSection: View {
     let title: LocalizedStringResource
     let items: [AllSessionsModel.Item]
@@ -40,6 +41,11 @@ struct SessionSection: View {
     let onOpen: (AllSessionsModel.Item) -> Void
 
     @Environment(\.dynamicTypeSize) private var typeSize
+
+    /// Items in pairs, one pair per grid row.
+    private var rows: [[AllSessionsModel.Item]] {
+        stride(from: 0, to: items.count, by: 2).map { Array(items[$0..<min($0 + 2, items.count)]) }
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -52,21 +58,22 @@ struct SessionSection: View {
                     }
                 }
             } else {
-                ScrollView(.horizontal) {
-                    HStack(alignment: .top, spacing: 12) {
-                        ForEach(items) { item in
-                            SessionTile(title: item.title, detail: item.detail, art: item.art, isLocked: item.isLocked,
-                                        hasVideo: item.hasVideo, isFavourite: model.isFavourite(item.id),
-                                        onToggleFavourite: { model.toggleFavourite(item.id) }) { onOpen(item) }
+                Grid(horizontalSpacing: 12, verticalSpacing: 12) {
+                    ForEach(rows, id: \.first?.id) { pair in
+                        GridRow(alignment: .top) {
+                            ForEach(pair) { item in tile(item) }
+                            if pair.count == 1 { Color.clear.gridCellUnsizedAxes([.horizontal, .vertical]) }
                         }
                     }
-                    .padding(.horizontal, Metrics.screenMargin)
                 }
-                .scrollIndicators(.hidden)
-                // Rows run to the screen edges; the text above keeps the page margin.
-                .padding(.horizontal, -Metrics.screenMargin)
             }
         }
+    }
+
+    private func tile(_ item: AllSessionsModel.Item) -> some View {
+        SessionTile(title: item.title, detail: item.detail, art: item.art, isLocked: item.isLocked,
+                    hasVideo: item.hasVideo, isFavourite: model.isFavourite(item.id),
+                    onToggleFavourite: { model.toggleFavourite(item.id) }) { onOpen(item) }
     }
 }
 

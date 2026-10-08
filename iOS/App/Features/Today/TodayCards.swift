@@ -16,6 +16,13 @@ struct SpecialCard: View {
                 Text("We made today a little shorter. Build up at your pace.").typeRole(.body)
             case .movedDown(let level):
                 Text("We moved you back to \(Text(level.title)) for now.").typeRole(.body)
+            case .movedUp(let level):
+                // Plan 08/10/2026 task 0.5: say the step up once, with the easier level one tap away.
+                Text("You're ready for a little more").typeRole(.cardTitle)
+                if let easier = level.easier {
+                    Text("Your walks are now \(Text(level.title)). \(Text(easier.title)) is one tap away.").typeRole(.body)
+                    Button("Keep it seated", action: actions.onKeepEasierLevel).buttonStyle(PillButtonStyle())
+                }
             case .connectHealth:
                 Text("Count your steps automatically").typeRole(.cardTitle)
                 // Apple's sheet keeps Allow greyed out until a switch is on: say so before it opens.
@@ -252,57 +259,12 @@ struct ExtraTile: View {
     }
 }
 
-/// "Week 3 of 12 · Stage 1 · Steady base" with "Plan ›" (steady program task 4.3, design screen 2). After a
-/// long break: "Pick up at week 5" (never "lost" or "start over").
-struct ProgramStripCard: View {
-    let strip: ProgramStripState
-    let onOpen: () -> Void
-    let onPickUp: () -> Void
-
-    @Environment(\.dynamicTypeSize) private var typeSize
-
-    var body: some View {
-        // At accessibility sizes the text gets the full width and "Plan ›" moves under it (it wrapped to
-        // three narrow lines beside the link).
-        let row = typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8))
-                                               : AnyLayout(HStackLayout(spacing: 12))
-        VStack(alignment: .leading, spacing: 10) {
-            Button(action: onOpen) {
-                row {
-                    if !typeSize.isAccessibilitySize {
-                        Image(systemName: "figure.stand").typeRole(.cardTitle).foregroundStyle(Palette.secondary)
-                            .accessibilityHidden(true)
-                    }
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(verbatim: strip.title).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
-                        Text(verbatim: strip.detail).typeRole(.caption).foregroundStyle(Palette.textMuted)
-                    }
-                    if !typeSize.isAccessibilitySize { Spacer(minLength: 0) }
-                    HStack(spacing: 4) {
-                        Text("Plan")
-                        Image(systemName: "chevron.right").accessibilityHidden(true)
-                    }
-                    .typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
-                }
-                .frame(minHeight: Metrics.minTouchTarget)
-                .contentShape(.rect)
-            }
-            .buttonStyle(.plain)
-            .accessibilityElement(children: .combine)
-            .accessibilityHint(Text("Opens your 12-week plan"))
-            if let week = strip.pickUpWeek {
-                Button(String(localized: "Pick up at week \(week)"), action: onPickUp)
-                    .buttonStyle(PillButtonStyle(isSelected: true))
-            }
-        }
-        .cardStyle(padding: 12)
-    }
-}
-
 /// The 2-week self-check on Today: coming up (one quiet line), or ready with "Start" (task 4.3).
 struct SelfCheckCard: View {
     let status: SelfCheckStatus
     let title: String
+    /// Due and shown above the session: "Start my check" is the screen's main button (task 1.8).
+    var isMain = false
     let onStart: () -> Void
     let onLater: () -> Void
 
@@ -324,7 +286,11 @@ struct SelfCheckCard: View {
                 }
             case .due, .overdue:
                 Text("30 seconds of sit-to-stands. You compare only with yourself.").typeRole(.body)
-                Button("Start my check", action: onStart).buttonStyle(.secondaryAction)
+                if isMain {
+                    Button("Start my check", action: onStart).buttonStyle(.primaryAction)
+                } else {
+                    Button("Start my check", action: onStart).buttonStyle(.secondaryAction)
+                }
             case .none:
                 EmptyView()
             }

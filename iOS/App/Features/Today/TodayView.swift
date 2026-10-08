@@ -16,24 +16,31 @@ struct TodayView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 18) {
-                TodayHero(greeting: model.greeting, activeDays: model.activeDays, progress: model.treeProgress)
+            VStack(alignment: .leading, spacing: 14) {
+                // Greeting and one line (days · week · Plan ›), so Start sits in the upper half of an
+                // iPhone SE (plan 08/10/2026 task 1.8).
+                TodayHeadline(greeting: model.greeting, activeDays: model.activeDays, progress: model.treeProgress,
+                              strip: model.programStrip,
+                              onOpenPlan: model.programStrip?.kind == .finished ? actions.onProgramFinished : actions.onOpenProgram,
+                              onPickUp: actions.onPickUpProgram)
                 if let welcome = model.welcomeBack {
                     Text(verbatim: welcome).typeRole(.body).foregroundStyle(Palette.text)
                 }
-                if let strip = model.programStrip {
-                    ProgramStripCard(strip: strip, onOpen: strip.kind == .finished ? actions.onProgramFinished : actions.onOpenProgram,
-                                     onPickUp: actions.onPickUpProgram)
+                // A check that is due comes first with the one green button; the session card's Start
+                // steps back to an outlined button (one main button per screen).
+                if checkIsDue, let status = model.checkCard, let title = model.checkTitle {
+                    SelfCheckCard(status: status, title: title, isMain: true, onStart: actions.onSelfCheck,
+                                  onLater: actions.onSelfCheckLater)
                 }
                 TodaySessionCard(session: model.session, detail: model.sessionDetail, trialEnded: model.showsTrialEndedNote,
-                                 isSeated: model.isSeatedWalk,
+                                 isSeated: model.isSeatedWalk, startIsSecondary: checkIsDue,
                                  checkIn: model.showsCheckIn && model.session.kind != .rest
                                     ? .init(selected: model.checkedIn, onSelect: model.checkIn) : nil,
                                  onStart: { if let request = model.request { actions.onStart(request) } },
                                  onSeePlans: actions.onSeePlans,
                                  onPickAnother: model.swapOptions.isEmpty ? actions.onSeeAllSessions : { showsSwap = true },
                                  onStillOpen: model.stillOpenRequest.map { request in { actions.onStart(request) } })
-                if let status = model.checkCard, let title = model.checkTitle {
+                if !checkIsDue, let status = model.checkCard, let title = model.checkTitle {
                     SelfCheckCard(status: status, title: title, onStart: actions.onSelfCheck, onLater: actions.onSelfCheckLater)
                 }
                 if let ends = model.trialEndingDate {
@@ -71,6 +78,13 @@ struct TodayView: View {
         }
     }
 
+    private var checkIsDue: Bool {
+        switch model.checkCard {
+        case .due?, .overdue?: true
+        default: false
+        }
+    }
+
     private func actOnPendingSwap() {
         guard let pending = pendingSwap else { return }
         pendingSwap = nil
@@ -92,6 +106,8 @@ struct TodayActions {
     var onConnectHealth: () -> Void
     var onDismissCard: () -> Void
     var onFewerReminders: (Bool) -> Void
+    /// "Keep it seated" on the moved-up card (plan 08/10/2026 task 0.5).
+    var onKeepEasierLevel: () -> Void = {}
     /// Steady program: the 12-week plan, the 2-week self-check, "Pick up at week N", the finish screen.
     var onOpenProgram: () -> Void = {}
     var onSelfCheck: () -> Void = {}
@@ -100,19 +116,69 @@ struct TodayActions {
     var onProgramFinished: () -> Void = {}
 }
 
-/// "Good morning, Margaret" and a small line with the tree ring and "13 active days · Sprout". No
-/// picture: today's session is the first thing under it (owner 01/10/2026; the coach at home
-/// stays on Preview and Complete).
-struct TodayHero: View {
+/// "Good morning, Margaret", then one line: the tree ring, "13 active days · Week 3 of 12 · Plan ›"
+/// (plan 08/10/2026 task 1.8: the hero and the program strip were 180 pt before the session card).
+/// No picture: today's session is the first thing under it (owner 01/10/2026).
+struct TodayHeadline: View {
     let greeting: String
     let activeDays: Int
     let progress: Double
+    /// The 12-week plan; nil before the first session (then the line shows the tree level).
+    let strip: ProgramStripState?
+    let onOpenPlan: () -> Void
+    let onPickUp: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: 4) {
             Text(verbatim: greeting).typeRole(.screenTitle).foregroundStyle(Palette.text)
                 .accessibilityAddTraits(.isHeader)
-            ActiveDaysLine(count: activeDays, progress: progress)
+            if let strip {
+                Button(action: onOpenPlan) {
+                    // One line: with the word "Plan" where it fits, a chevron alone on an iPhone SE,
+                    // wrapped only at large text sizes.
+                    ViewThatFits(in: .horizontal) {
+                        line(showsPlanWord: true)
+                        line(showsPlanWord: false)
+                        HStack(spacing: 8) {
+                            ActiveDaysRing(progress: progress, size: 24)
+                            (Text(verbatim: "\(summary) · ") + Text("Plan") + Text(verbatim: " ›"))
+                                .typeRole(.body).fontWeight(.semibold)
+                                .multilineTextAlignment(.leading)
+                        }
+                    }
+                    .foregroundStyle(Palette.text)
+                    .frame(minHeight: Metrics.minTouchTarget)
+                    .contentShape(.rect)
+                }
+                .buttonStyle(.plain)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(Text(verbatim: "\(summary), ") + Text("Plan"))
+                .accessibilityAddTraits(.isButton)
+                .accessibilityHint(Text("Opens your 12-week plan"))
+                if let week = strip.pickUpWeek {
+                    Button(String(localized: "Pick up at week \(week)"), action: onPickUp)
+                        .buttonStyle(PillButtonStyle(isSelected: true))
+                }
+            } else {
+                ActiveDaysLine(count: activeDays, progress: progress)
+            }
+        }
+    }
+
+    /// "13 active days · Week 3 of 12"
+    private var summary: String { "\(Plural.activeDays(activeDays)) · \(strip?.title ?? "")" }
+
+    private func line(showsPlanWord: Bool) -> some View {
+        HStack(spacing: 8) {
+            ActiveDaysRing(progress: progress, size: 24)
+            Text(verbatim: summary).typeRole(.body).fontWeight(.semibold).fixedSize()
+            Spacer(minLength: 4)
+            HStack(spacing: 4) {
+                if showsPlanWord { Text("Plan") }
+                Image(systemName: "chevron.right").accessibilityHidden(true)
+            }
+            .typeRole(.body).fontWeight(.semibold)
+            .fixedSize()
         }
     }
 }
@@ -137,6 +203,11 @@ struct ActiveDaysLine: View {
 struct ActiveDaysRing: View {
     let progress: Double
     @ScaledMetric(relativeTo: .body) private var size: CGFloat = 30
+
+    init(progress: Double, size: CGFloat = 30) {
+        self.progress = progress
+        _size = ScaledMetric(wrappedValue: size, relativeTo: .body)
+    }
 
     var body: some View {
         ZStack {
@@ -194,6 +265,8 @@ struct TodaySessionCard: View {
     let trialEnded: Bool
     /// A seated walk shows a seated figure, not a walking one (clarity review D6).
     var isSeated = false
+    /// A 2-week check is due above: Start is the outlined button (task 1.8).
+    var startIsSecondary = false
     /// The check-in, while today's session is still to do.
     var checkIn: CheckInChoice?
     let onStart: () -> Void
@@ -244,7 +317,11 @@ struct TodaySessionCard: View {
                 CheckInRow(selected: checkIn.selected, onSelect: checkIn.onSelect)
             }
             if session.kind != .done && session.kind != .rest {
-                Button("Start", action: onStart).buttonStyle(.primaryAction)
+                if startIsSecondary {
+                    Button("Start", action: onStart).buttonStyle(.secondaryAction)
+                } else {
+                    Button("Start", action: onStart).buttonStyle(.primaryAction)
+                }
             }
             if let onStillOpen {
                 Button("Today's session is still here if you'd like it", action: onStillOpen)

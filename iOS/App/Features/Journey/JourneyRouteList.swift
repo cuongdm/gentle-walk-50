@@ -118,7 +118,8 @@ private struct RouteRow: View {
     private var row: some View {
             HStack(alignment: .center, spacing: 12) {
                 RouteLine(isFirst: isFirst, isLast: isLast, status: status, lineDone: lineDone)
-                PostcardThumb(stopID: stop.id, isSoft: !status.isReached, width: 64, height: 52)
+                // 80 pt thumbnails (plan 08/10/2026 task 1.15).
+                PostcardThumb(stopID: stop.id, isSoft: !status.isReached, width: 80, height: 64)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(verbatim: stop.name).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
                     Text(verbatim: detail).typeRole(.caption).foregroundStyle(Palette.textMuted)
@@ -130,7 +131,7 @@ private struct RouteRow: View {
                 case .next, .ahead: EmptyView()
                 }
             }
-            .frame(minHeight: 72)
+            .frame(minHeight: 80)
             .contentShape(.rect)
     }
 
@@ -164,13 +165,22 @@ private struct RouteLine: View {
     var body: some View {
         VStack(spacing: 0) {
             Rectangle().fill(isFirst ? .clear : (reached ? Palette.secondary : Palette.textMuted.opacity(0.3))).frame(width: 3)
-            Circle()
-                .fill(reached ? Palette.secondary : Palette.surface)
-                .overlay { Circle().strokeBorder(ring, lineWidth: status == .ahead || status == .locked ? 2 : 3) }
-                .frame(width: 14, height: 14)
+            // A reached stop is a 24 pt tick badge; the others a small ring (task 1.15).
+            if reached {
+                Image(systemName: "checkmark")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundStyle(Palette.onStrongFill)
+                    .frame(width: 24, height: 24)
+                    .background(Palette.secondary, in: .circle)
+            } else {
+                Circle()
+                    .fill(Palette.surface)
+                    .overlay { Circle().strokeBorder(ring, lineWidth: status == .ahead || status == .locked ? 2 : 3) }
+                    .frame(width: 16, height: 16)
+            }
             Rectangle().fill(isLast ? .clear : (lineDone ? Palette.secondary : Palette.textMuted.opacity(0.3))).frame(width: 3)
         }
-        .frame(width: 16)
+        .frame(width: 24)
         .accessibilityHidden(true)
     }
 }

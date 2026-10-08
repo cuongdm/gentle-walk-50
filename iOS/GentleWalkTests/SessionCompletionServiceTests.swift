@@ -20,17 +20,24 @@ import GentleWalkCore
     /// Keeps each test's in-memory container alive (a context whose container is freed crashes).
     let container = try! ModelContainerFactory.make(inMemory: true)
 
+    let levelDefaults: UserDefaults = {
+        let defaults = UserDefaults(suiteName: "SessionCompletionServiceTests")!
+        defaults.removePersistentDomain(forName: "SessionCompletionServiceTests")
+        return defaults
+    }()
+    var levels: WalkLevelStore { WalkLevelStore(defaults: levelDefaults) }
+
     func service(entitlement: Entitlement = .subscribed) throws -> (SessionCompletionService, ModelContext, FakeHealthWriter, FakeRescheduler) {
         let context = container.mainContext
         let health = FakeHealthWriter()
         let notifications = FakeRescheduler()
         let service = SessionCompletionService(context: context, content: TestFixtures.content, entitlement: { entitlement },
-                                               health: health, notifications: notifications, calendar: calendar)
+                                               health: health, notifications: notifications, levels: levels, calendar: calendar)
         return (service, context, health, notifications)
     }
 
-    func summary(minutes: Double, on date: Date, breaks: Int = 0) -> SessionSummary {
-        SessionSummary(date: date, kind: .walk, level: .seated, intensity: .steady, place: .indoors,
+    func summary(minutes: Double, on date: Date, breaks: Int = 0, level: WalkLevel = .seated) -> SessionSummary {
+        SessionSummary(date: date, kind: .walk, level: level, intensity: .steady, place: .indoors,
                        activeSeconds: Int(minutes * 60), breakCount: breaks)
     }
 
@@ -130,5 +137,41 @@ import GentleWalkCore
         let result = try await pro.complete(summary(minutes: 6, on: day(28)))  // 3.3 miles
         #expect(result.unlockedStops.map(\.id) == ["pc.smoky.2"])
         #expect(result.nextStop?.id == "pc.smoky.3")
+    }
+
+    // MARK: Level changes when the feeling is recorded (plan 08/10/2026 task 0.3)
+
+    /// Walks three sessions at `level` from `firstDay` and answers each with `feeling`.
+    func walk(_ count: Int, at level: WalkLevel, from firstDay: Int, feeling: Feeling, on service: SessionCompletionService) async throws {
+        for offset in 0..<count {
+            let result = try await service.complete(summary(minutes: 10, on: day(firstDay + offset), level: level))
+            try service.recordFeeling(feeling, for: result.recordID)
+        }
+    }
+
+    @Test func threeTooHardAtInPlaceMovesDownAndKeepsACard() async throws {
+        let (service, _, _, _) = try service()
+        levels.set(level: .inPlace, changedAt: day(1), card: nil)
+        try await walk(3, at: .inPlace, from: 2, feeling: .tooHard, on: service)
+        #expect(levels.state(startLevel: .seated) == LevelState(level: .seated, changedAt: day(4)))
+        #expect(levels.pendingCard == .movedDown(to: .seated))
+    }
+
+    @Test func threeTooEasyAtSeatedMovesUp() async throws {
+        let (service, _, _, _) = try service()
+        try await walk(3, at: .seated, from: 2, feeling: .tooEasy, on: service)
+        #expect(levels.state(startLevel: .seated).level == .inPlace)
+        #expect(levels.pendingCard == .movedUp(to: .inPlace))
+        // Then "Too hard" three times at the new level steps back down.
+        try await walk(3, at: .inPlace, from: 5, feeling: .tooHard, on: service)
+        #expect(levels.state(startLevel: .seated).level == .seated)
+        #expect(levels.pendingCard == .movedDown(to: .seated))
+    }
+
+    @Test func justRightChangesNothing() async throws {
+        let (service, _, _, _) = try service()
+        try await walk(4, at: .seated, from: 2, feeling: .justRight, on: service)
+        #expect(levels.state(startLevel: .seated) == LevelState(level: .seated, changedAt: nil))
+        #expect(levels.pendingCard == nil)
     }
 }

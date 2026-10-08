@@ -10,10 +10,13 @@ struct SoundControls: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
-            LevelSlider(title: "Coach's voice", symbol: "person.wave.2", value: $levels.voice,
-                        range: AudioLevels.voiceFloor...1)
+            LevelStepper(title: "Coach's voice", symbol: "person.wave.2",
+                         step: Binding(get: { AudioLevels.voiceStep(for: levels.voice) },
+                                       set: { levels.voice = AudioLevels.voice(atStep: $0) }))
             if showsMusic {
-                LevelSlider(title: "Music", symbol: "music.note", value: $levels.music, range: 0...1)
+                LevelStepper(title: "Music", symbol: "music.note",
+                             step: Binding(get: { AudioLevels.musicStep(for: levels.music) },
+                                           set: { levels.music = AudioLevels.music(atStep: $0) }))
             }
             Toggle(isOn: $levels.moveIntroductions) {
                 VStack(alignment: .leading, spacing: 2) {
@@ -33,25 +36,36 @@ struct SoundControls: View {
     }
 }
 
-/// "Coach's voice" with a quiet and a loud icon either side of the slider (56 pt tall row).
-private struct LevelSlider: View {
+/// "Coach's voice" with − and + (56 pt) either side of "3 of 5" (plan 08/10/2026 task 1.10: the spec's
+/// "no sliders" rule for shaky hands). VoiceOver: swipe up or down to change it.
+private struct LevelStepper: View {
     let title: LocalizedStringResource
     let symbol: String
-    @Binding var value: Double
-    let range: ClosedRange<Double>
+    @Binding var step: Int
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Label(title, systemImage: symbol).typeRole(.body)
-            HStack(spacing: 10) {
-                Image(systemName: "speaker.fill").foregroundStyle(Palette.textMuted).accessibilityHidden(true)
-                Slider(value: $value, in: range)
-                    .tint(Palette.secondary)
-                    .accessibilityLabel(Text(title))
-                    .accessibilityValue(Text(value.formatted(.percent.precision(.fractionLength(0)))))
-                Image(systemName: "speaker.wave.3.fill").foregroundStyle(Palette.textMuted).accessibilityHidden(true)
+            HStack(spacing: 12) {
+                StepButton(symbol: "minus", label: "Quieter") { step = max(1, step - 1) }
+                    .disabled(step <= 1)
+                Text("\(step) of \(AudioLevels.steps)")
+                    .typeRole(.body).fontWeight(.semibold).monospacedDigit()
+                    .frame(maxWidth: .infinity)
+                StepButton(symbol: "plus", label: "Louder") { step = min(AudioLevels.steps, step + 1) }
+                    .disabled(step >= AudioLevels.steps)
             }
             .frame(minHeight: Metrics.minTouchTarget)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text(title))
+            .accessibilityValue(Text("\(step) of \(AudioLevels.steps)"))
+            .accessibilityAdjustableAction { direction in
+                switch direction {
+                case .increment: step = min(AudioLevels.steps, step + 1)
+                case .decrement: step = max(1, step - 1)
+                @unknown default: break
+                }
+            }
         }
     }
 }

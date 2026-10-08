@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+<path d="M128 100L128 104.95M91.82 129.44L74 140M164.18 129.44L182 140M110.24 178.78L80 238M165.8 218.02L176 238" fill="none" stroke="#000000" stroke-width="24" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M152 44A24 24 0 1 1 104 44A24 24 0 1 1 152 44" fill="none" stroke="#000000" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M140 100A12 12 0 1 1 116 100A12 12 0 1 1 140 100ZM86 140A12 12 0 1 1 62 140A12 12 0 1 1 86 140ZM194 140A12 12 0 1 1 170 140A12 12 0 1 1 194 140ZM92 238A12 12 0 1 1 68 238A12 12 0 1 1 92 238ZM188 238A12 12 0 1 1 164 238A12 12 0 1 1 188 238Z" fill="#000000"/>
+<path d="M168.88 196.64A14 14 0 1 1 140.88 196.64A14 14 0 1 1 168.88 196.64Z" fill="#000000"/>
+</svg>

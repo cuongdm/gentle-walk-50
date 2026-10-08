@@ -20,7 +20,7 @@ import UserNotifications
     }
 }
 
-/// S16 "Two quick things" (task 5.14): each button opens Apple's dialog; a granted card shows a tick.
+/// S16a/S16b (task 5.14, one per screen since 08/10/2026): each button opens Apple's dialog; granted shows a tick.
 @Observable @MainActor final class PermissionsModel {
     private(set) var healthConnected = false
     private(set) var remindersAllowed = false

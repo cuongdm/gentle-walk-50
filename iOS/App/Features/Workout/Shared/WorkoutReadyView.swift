@@ -15,11 +15,13 @@ struct WorkoutReadyView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            // Tighter than before so "Then" stays above the pinned buttons on an iPhone SE once the main
+            // button grew to 64 pt (plan 08/10/2026 task 1.3).
+            VStack(alignment: .leading, spacing: 12) {
                 HStack(alignment: .center, spacing: 14) {
                     if !typeSize.isAccessibilitySize {
-                        ArtImage(art: art, height: 110, fallbackSymbol: "figure.walk")
-                            .frame(width: 110)
+                        ArtImage(art: art, height: 90, fallbackSymbol: "figure.walk")
+                            .frame(width: 96)
                             .accessibilityHidden(true)
                     }
                     VStack(alignment: .leading, spacing: 4) {
@@ -30,7 +32,6 @@ struct WorkoutReadyView: View {
                         Text(verbatim: summary).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
                     }
                 }
-                .padding(.top, 8)
                 HaveReadyCard(needsChair: needsChair, placement: PhonePlacement.saved())
                 ThenStrip()
                 if typeSize.isAccessibilitySize { actions }
@@ -105,7 +106,7 @@ private struct HaveReadyCard: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .cardStyle()
+        .cardStyle(padding: 12)
     }
 }
 

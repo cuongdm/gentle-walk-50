@@ -1,3 +1,5 @@
+import Foundation
+
 /// "How did that feel?" after a session (S15).
 public enum Feeling: String, CaseIterable, Codable, Sendable { case tooEasy, justRight, tooHard }
 
@@ -6,14 +8,26 @@ public struct SessionFeedback: Equatable, Sendable {
     public var level: WalkLevel
     public var feeling: Feeling?
     public var breakCount: Int
+    /// When the session was done; `nil` in old callers (then it always counts).
+    public var date: Date?
 
-    public init(level: WalkLevel, feeling: Feeling?, breakCount: Int) {
-        self.level = level; self.feeling = feeling; self.breakCount = breakCount
+    public init(level: WalkLevel, feeling: Feeling?, breakCount: Int, date: Date? = nil) {
+        self.level = level; self.feeling = feeling; self.breakCount = breakCount; self.date = date
+    }
+}
+
+/// The walking level she is on now and when it last changed (`nil` = never changed since onboarding).
+public struct LevelState: Equatable, Sendable {
+    public var level: WalkLevel
+    public var changedAt: Date?
+
+    public init(level: WalkLevel, changedAt: Date?) {
+        self.level = level; self.changedAt = changedAt
     }
 }
 
 /// The Today card that explains an automatic change (spec "Tự điều chỉnh").
-public enum AdaptationCard: Equatable, Sendable {
+public enum AdaptationCard: Equatable, Codable, Sendable {
     /// "We moved you back to Seated for now."
     case movedDown(to: WalkLevel)
     case movedUp(to: WalkLevel)
@@ -36,14 +50,25 @@ public enum Adaptation {
     public static let breaksForShorter = 2
     public static let shorterByMinutes = 2
 
-    /// `history` is oldest first.
+    /// `history` is oldest first. Same as `next(state:history:)` for a level that never changed.
     public static func next(level: WalkLevel, history: [SessionFeedback]) -> AdaptationResult {
+        next(state: LevelState(level: level, changedAt: nil), history: history)
+    }
+
+    /// Only answers given at the current level, after its last change, can move her again
+    /// (so a step up can be undone by "Too hard" at the new level, and old answers never re-trigger).
+    public static func next(state: LevelState, history: [SessionFeedback]) -> AdaptationResult {
+        let level = state.level
         var result = AdaptationResult(level: level, minutesDelta: 0, card: nil)
         if let last = history.last, last.breakCount >= breaksForShorter {
             result.minutesDelta = -shorterByMinutes
             result.card = .shorter
         }
-        let answers = history.filter { $0.level == level }.compactMap(\.feeling)
+        let answers = history.filter { feedback in
+            guard feedback.level == level else { return false }
+            guard let changedAt = state.changedAt, let date = feedback.date else { return true }
+            return date > changedAt
+        }.compactMap(\.feeling)
         let streak = answers.reversed().prefix { $0 == answers.last }
         guard streak.count >= streakLength, let feeling = answers.last else { return result }
         switch feeling {

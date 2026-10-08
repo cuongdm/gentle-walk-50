@@ -18,12 +18,19 @@ struct MoveHeaderWithClock<Clock: View, Detail: View>: View {
         if typeSize.isAccessibilitySize {
             VStack(alignment: .leading, spacing: 8) {
                 names
+                detail()
                 clock()
             }
         } else {
-            HStack(alignment: .center, spacing: 12) {
-                names.frame(maxWidth: .infinity, alignment: .leading)
-                clock().frame(maxWidth: clockWidth, alignment: .trailing)
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(alignment: .center, spacing: 12) {
+                    names.frame(maxWidth: .infinity, alignment: .leading)
+                    // The clock or counter gets its room first, so "4 of 8" never ends in "…" on an
+                    // iPhone SE (plan 08/10/2026 task 1.14).
+                    clock().frame(maxWidth: clockWidth, alignment: .trailing).layoutPriority(1)
+                }
+                // Full width under the name: an instruction, read at body size (task 1.14).
+                detail()
             }
         }
     }
@@ -39,7 +46,6 @@ struct MoveHeaderWithClock<Clock: View, Detail: View>: View {
                 .accessibilityAddTraits(.isHeader)
             Text(verbatim: exercise?.purpose ?? "").typeRole(.caption).foregroundStyle(Palette.textMuted)
                 .lineLimit(2)
-            detail()
         }
     }
 }

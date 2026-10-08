@@ -22,3 +22,13 @@ assets/video/W1-1/v2/
 assets/video/frames/pose/
 assets/video/**/*_nologo.mp4
 assets/video/**/*crop-check.png
+
+# Screenshot evidence for the 08/10 UI work: local only (large)
+docs/design/research-2026-10-08/ip11/
+docs/design/research-2026-10-08/after-m1/
+docs/design/research-2026-10-08/after/*/
+docs/design/research-2026-10-08/mockups/*-se.png
+docs/design/research-2026-10-08/mockups/*-i11.png
+docs/design/research-2026-10-08/spec-0*.png
+docs/design/research-2026-10-08/spec-system-dark.png
+docs/design/research-2026-10-08/icon-mockups/art/

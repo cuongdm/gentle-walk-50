@@ -15,6 +15,18 @@ enum Palette {
     /// The one main button per screen; white text. Hooker's green, deep like ink (Pigment, 03/10/2026):
     /// green reads as "go" next to the red This hurts button and stands out on paper for older eyes.
     static let primary = Color(Name.primary)
+    /// Soft depth on the main button (Claude Design direction, owner 08/10/2026, lightened the same day:
+    /// the deep Hooker green read too heavy): a vertical gradient `primaryTop` → `primaryMid` (55 %) →
+    /// `primaryBottom`; pressed, `primaryBottom` → `primaryPressed`. White text on every stop (≥ 4.5:1).
+    static let primaryTop = Color(Name.primaryTop)
+    static let primaryMid = Color(Name.primaryMid)
+    static let primaryBottom = Color(Name.primaryBottom)
+    static let primaryPressed = Color(Name.primaryPressed)
+    /// Card paper: a faint gradient from `surfaceTop` to `surfaceBottom` around `surface`.
+    static let surfaceTop = Color(Name.surfaceTop)
+    static let surfaceBottom = Color(Name.surfaceBottom)
+    /// Warm umber for soft shadows under cards (black in dark mode). Never used for text.
+    static let shadow = Color(Name.shadow)
     /// Small warm accent (the old terracotta): selected tab. Used as text, never as a fill under text.
     static let accent = Color(Name.accent)
     /// Progress, journey, "done".
@@ -42,6 +54,13 @@ enum Palette {
         static let bg = "bg"
         static let surface = "surface"
         static let primary = "primary"
+        static let primaryTop = "primaryTop"
+        static let primaryMid = "primaryMid"
+        static let primaryPressed = "primaryPressed"
+        static let primaryBottom = "primaryBottom"
+        static let surfaceTop = "surfaceTop"
+        static let surfaceBottom = "surfaceBottom"
+        static let shadow = "shadow"
         static let accent = "accent"
         static let secondary = "secondary"
         static let sky = "sky"
@@ -57,25 +76,39 @@ enum Palette {
     static let assetNames = [
         Name.bg, Name.surface, Name.primary, Name.accent, Name.secondary, Name.sky, Name.sun,
         Name.text, Name.textMuted, Name.dangerSoft, Name.onStrongFill, Name.onLightFill, Name.artPaper,
+        Name.primaryTop, Name.primaryMid, Name.primaryBottom, Name.primaryPressed, Name.surfaceTop, Name.surfaceBottom, Name.shadow,
     ]
 
     /// A text colour drawn on a fill colour somewhere in the app.
     struct TextPair: Sendable {
+        /// Small text (chip labels, the tab word) keeps a margin over 4.5:1 (plan 08/10/2026 task 1.2).
+        static let smallText = 5.0
+
         let name: String
         let foreground: String
         let background: String
+        var minimum = 4.5
     }
 
-    /// Every text-on-fill pairing the screens use; each must reach 4.5:1 in light and dark.
+    /// Every text-on-fill pairing the screens use; each must reach its minimum (4.5:1, small text 5:1)
+    /// in light and dark.
     static let textPairs = [
         TextPair(name: "text on bg", foreground: Name.text, background: Name.bg),
         TextPair(name: "text on surface", foreground: Name.text, background: Name.surface),
         TextPair(name: "textMuted on bg", foreground: Name.textMuted, background: Name.bg),
         TextPair(name: "textMuted on surface", foreground: Name.textMuted, background: Name.surface),
         TextPair(name: "button on primary", foreground: Name.onStrongFill, background: Name.primary),
-        TextPair(name: "selected tab on bg", foreground: Name.accent, background: Name.bg),
+        TextPair(name: "button on primary gradient top", foreground: Name.onStrongFill, background: Name.primaryTop),
+        TextPair(name: "button on primary gradient middle", foreground: Name.onStrongFill, background: Name.primaryMid),
+        TextPair(name: "button on primary gradient bottom", foreground: Name.onStrongFill, background: Name.primaryBottom),
+        TextPair(name: "button on primary pressed", foreground: Name.onStrongFill, background: Name.primaryPressed),
+        TextPair(name: "text on card paper top", foreground: Name.text, background: Name.surfaceTop),
+        TextPair(name: "text on card paper bottom", foreground: Name.text, background: Name.surfaceBottom),
+        TextPair(name: "textMuted on card paper top", foreground: Name.textMuted, background: Name.surfaceTop),
+        TextPair(name: "textMuted on card paper bottom", foreground: Name.textMuted, background: Name.surfaceBottom),
+        TextPair(name: "selected tab on bg", foreground: Name.accent, background: Name.bg, minimum: TextPair.smallText),
         TextPair(name: "ink on art paper", foreground: Name.onLightFill, background: Name.artPaper),
-        TextPair(name: "label on secondary", foreground: Name.onStrongFill, background: Name.secondary),
+        TextPair(name: "label on secondary", foreground: Name.onStrongFill, background: Name.secondary, minimum: TextPair.smallText),
         TextPair(name: "button on dangerSoft", foreground: Name.onStrongFill, background: Name.dangerSoft),
         TextPair(name: "label on sky", foreground: Name.onLightFill, background: Name.sky),
         TextPair(name: "label on sun", foreground: Name.onLightFill, background: Name.sun),
@@ -85,9 +118,13 @@ enum Palette {
 /// Layout numbers from the screen spec (buttons, touch targets, margins, cards).
 enum Metrics {
     static let screenMargin: CGFloat = 20
-    /// Widest column of text and buttons on iPad (review U1).
-    static let readableWidth: CGFloat = 700
-    static let buttonHeight: CGFloat = 60
+    /// Widest column of text and buttons on iPad (review U1): about 60 characters of 19 pt body
+    /// (plan 08/10/2026).
+    static let readableWidth: CGFloat = 620
+    /// Main buttons: 64 pt, about 10 mm on an iPhone (font-va-hinh-anh.md §5).
+    static let buttonHeight: CGFloat = 64
+    /// Tappable rows and choice cards (plan 08/10/2026 task 1.3).
+    static let rowHeight: CGFloat = 64
     /// 14 and 16 (Pigment, 03/10/2026): calmer corners than the stock 18–28.
     static let buttonRadius: CGFloat = 14
     static let secondaryBorder: CGFloat = 2
@@ -102,10 +139,12 @@ enum ContrastRatio {
 
     static func between(_ foreground: String, _ background: String, style: UIUserInterfaceStyle) throws -> Double {
         let traits = UITraitCollection(userInterfaceStyle: style)
-        guard let fg = UIColor(named: foreground, in: .main, compatibleWith: traits) else {
+        // `resolvedColor(with:)`: a named colour is dynamic, and reading its components without
+        // resolving gives the light value even for dark (found 08/10/2026: dark was never checked).
+        guard let fg = UIColor(named: foreground, in: .main, compatibleWith: traits)?.resolvedColor(with: traits) else {
             throw Failure.missingColour(foreground)
         }
-        guard let bg = UIColor(named: background, in: .main, compatibleWith: traits) else {
+        guard let bg = UIColor(named: background, in: .main, compatibleWith: traits)?.resolvedColor(with: traits) else {
             throw Failure.missingColour(background)
         }
         let (high, low) = (max(luminance(fg), luminance(bg)), min(luminance(fg), luminance(bg)))

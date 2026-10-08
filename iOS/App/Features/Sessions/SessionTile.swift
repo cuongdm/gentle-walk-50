@@ -1,7 +1,8 @@
 import SwiftUI
 
-/// One session in a sideways row of "All sessions": painting on top with the heart on it, then
-/// the name and length, and the Pro lock when her plan does not include it.
+/// One session in the two-column grid of "All sessions": painting on top with the heart on it, then
+/// the name and length (17 pt and up, task 1.11), and the Pro lock when her plan does not include it.
+/// Takes the width of its column and the height of its row.
 struct SessionTile: View {
     let title: String
     let detail: String
@@ -12,8 +13,6 @@ struct SessionTile: View {
     let onToggleFavourite: () -> Void
     let action: () -> Void
 
-    @ScaledMetric(relativeTo: .body) private var width: CGFloat = 156
-
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Button(action: action) {
@@ -23,9 +22,8 @@ struct SessionTile: View {
                             if hasVideo { VideoBadge().padding(6) }
                         }
                     Text(verbatim: title).typeRole(.body).fontWeight(.semibold)
-                        .lineLimit(2, reservesSpace: true)
                         .multilineTextAlignment(.leading)
-                    Text(verbatim: detail).typeRole(.caption).foregroundStyle(Palette.textMuted)
+                    Text(verbatim: detail).typeRole(.body).foregroundStyle(Palette.textMuted)
                 }
                 .foregroundStyle(Palette.text)
                 .contentShape(.rect)
@@ -34,7 +32,7 @@ struct SessionTile: View {
             if isLocked { ProBadge() }
         }
         .padding(8)
-        .frame(width: width, alignment: .topLeading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(Palette.surface, in: .rect(cornerRadius: Metrics.cardRadius, style: .continuous))
         // The heart sits on the painting's corner, on a light disc so it reads on any picture.
         .overlay(alignment: .topTrailing) {

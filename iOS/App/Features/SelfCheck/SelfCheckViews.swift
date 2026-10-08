@@ -53,31 +53,40 @@ struct SelfCheckIntroView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 18) {
-                ArtImage(art: .walkerSeatedMarch, height: 150, fallbackSymbol: "chair.fill").accessibilityHidden(true)
-                ScreenHeader(title: "Your 2-week check", subtitle: "How many times can you stand up from your chair in 30 seconds?")
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Before you start").typeRole(.cardTitle)
-                    SafetyPoint(symbol: "chair.fill", text: "Use a sturdy chair with no wheels, its back against a wall.")
-                    SafetyPoint(symbol: "shoeprints.fill", text: "Sit near the front, feet flat on the floor.")
-                    SafetyPoint(symbol: "hand.raised.fill", text: "Cross your arms, or push up with your hands. Either is fine.")
-                    SafetyPoint(symbol: "exclamationmark.circle.fill", text: "Stop if anything hurts or you feel dizzy.")
+            // How it works first, then four short safety points, all above the pinned "I'm ready" on
+            // an iPhone SE (plan 08/10/2026 task 1.7).
+            VStack(alignment: .leading, spacing: 10) {
+                ScreenHeader(title: "Your 2-week check")
+                HStack(alignment: .center, spacing: 12) {
+                    Text("How many times can you stand up from your chair in 30 seconds?")
+                        .typeRole(.body).foregroundStyle(Palette.text)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    if !typeSize.isAccessibilitySize {
+                        ArtImage(art: .walkerSeatedMarch, height: 84, fallbackSymbol: "chair.fill").frame(width: 84)
+                    }
                 }
-                .foregroundStyle(Palette.text)
-                .cardStyle()
-                VStack(alignment: .leading, spacing: 8) {
+                // One card: the three steps, then the four safety points.
+                VStack(alignment: .leading, spacing: 4) {
                     Text("How it works").typeRole(.cardTitle)
-                    Text("1. Stand up all the way, then sit back down.")
-                    Text("2. Keep going for 30 seconds, at your own pace.")
-                    Text("3. Count each time you stand up. You'll enter the number.")
+                    Text("1. Stand up fully, then sit down.")
+                    Text("2. Keep going for 30 seconds.")
+                    Text("3. Count each time you stand.")
+                    Divider().padding(.vertical, 6)
+                    Text("Before you start").typeRole(.cardTitle)
+                    SafetyPoint(symbol: "chair.fill", text: "Sturdy chair, no wheels, by a wall")
+                    SafetyPoint(symbol: "shoeprints.fill", text: "Sit near the front, feet flat")
+                    SafetyPoint(symbol: "hand.raised.fill", text: "Cross arms or push up, both fine")
+                    SafetyPoint(symbol: "exclamationmark.circle.fill", text: "Stop if it hurts or you feel dizzy")
                 }
                 .typeRole(.body)
                 .foregroundStyle(Palette.text)
-                .cardStyle()
+                .cardStyle(padding: 12)
                 SelfCheckDisclaimer()
                 if typeSize.isAccessibilitySize { actions }
             }
-            .padding(Metrics.screenMargin)
+            .padding(.horizontal, Metrics.screenMargin)
+            .padding(.top, 8)
+            .padding(.bottom, Metrics.screenMargin)
             .readableColumn()
         }
         .pinnedActions(!typeSize.isAccessibilitySize) { actions }

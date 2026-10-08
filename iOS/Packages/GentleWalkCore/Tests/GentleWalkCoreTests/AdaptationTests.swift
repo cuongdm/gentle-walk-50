@@ -1,3 +1,4 @@
+import Foundation
 import Testing
 @testable import GentleWalkCore
 
@@ -34,6 +35,40 @@ import Testing
         // Two at the old level + one at the new level: no second step.
         let history = feedback([.tooHard, .tooHard], level: .inPlace) + feedback([.tooHard], level: .seated)
         #expect(Adaptation.next(level: .seated, history: history).level == .seated)
+    }
+
+    // MARK: Current level (task 0.1)
+
+    let d0 = Date(timeIntervalSince1970: 1_790_000_000)
+    func dated(_ feelings: [Feeling], level: WalkLevel, startingDaysFrom offset: Int) -> [SessionFeedback] {
+        feelings.enumerated().map { index, feeling in
+            SessionFeedback(level: level, feeling: feeling, breakCount: 0,
+                            date: d0.addingTimeInterval(Double(offset + index) * 86_400))
+        }
+    }
+
+    @Test func tooHardAtTheNewLevelStepsBackDown() {
+        let history = dated([.tooEasy, .tooEasy, .tooEasy], level: .seated, startingDaysFrom: -3)
+            + dated([.tooHard, .tooHard, .tooHard], level: .inPlace, startingDaysFrom: 1)
+        let result = Adaptation.next(state: LevelState(level: .inPlace, changedAt: d0), history: history)
+        #expect(result.level == .seated)
+        #expect(result.card == .movedDown(to: .seated))
+    }
+
+    @Test func answersBeforeTheChangeDoNotCount() {
+        // Moved back down to Seated at d0; the old "Too easy" streak at Seated must not lift her again.
+        let history = dated([.tooEasy, .tooEasy, .tooEasy], level: .seated, startingDaysFrom: -10)
+            + dated([.tooHard, .tooHard, .tooHard], level: .inPlace, startingDaysFrom: -3)
+        let result = Adaptation.next(state: LevelState(level: .seated, changedAt: d0), history: history)
+        #expect(result.level == .seated)
+        #expect(result.card == nil)
+    }
+
+    @Test func firstChangeHasNoDate() {
+        let history = dated([.tooEasy, .tooEasy, .tooEasy], level: .seated, startingDaysFrom: -3)
+        let result = Adaptation.next(state: LevelState(level: .seated, changedAt: nil), history: history)
+        #expect(result.level == .inPlace)
+        #expect(result.card == .movedUp(to: .inPlace))
     }
 
     @Test func seatedIsTheFloorAndThePadIsNeverChosenAutomatically() {

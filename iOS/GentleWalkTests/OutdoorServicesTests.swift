@@ -134,3 +134,48 @@ import GentleWalkCore
         #expect(!service.isRunning)
     }
 }
+
+/// Outdoor prep (plan 08/10/2026 task 1.17): she picks how to measure first; only "Map and distance"
+/// leads to the one-button location prompt, and "Don't Allow" there means steps, never asked again.
+@MainActor @Suite(.serialized) struct OutdoorPrepFlowTests {
+    let defaults: UserDefaults = {
+        let defaults = UserDefaults(suiteName: "outdoor-prep-flow-tests")!
+        defaults.removePersistentDomain(forName: "outdoor-prep-flow-tests")
+        return defaults
+    }()
+
+    @Test func dontAllowFallsBackToSteps() async {
+        let flow = OutdoorPrepFlow(asksLocation: OutdoorLocationChoice.asks(in: defaults))
+        #expect(flow.step == .ready)
+        flow.readyDone()
+        #expect(flow.step == .measure)
+        flow.measure = .map
+        #expect(flow.measureDone() == .continues)  // Map: the prompt comes first
+        #expect(flow.step == .locationPrompt)
+        let useLocation = await flow.requestLocation { false }  // "Don't Allow"
+        #expect(useLocation == false)
+
+        OutdoorLocationChoice.save(useLocation, in: defaults)
+        #expect(!OutdoorLocationChoice.asks(in: defaults))
+        #expect(!OutdoorLocationChoice.usesLocation(in: defaults))
+        // Next time: straight from the checklist to the walk, no question.
+        let next = OutdoorPrepFlow(asksLocation: OutdoorLocationChoice.asks(in: defaults))
+        #expect(next.readyDone() == .finished(useLocation: nil))
+    }
+
+    @Test func stepsOnlyNeverOpensThePrompt() async {
+        let flow = OutdoorPrepFlow(asksLocation: true)
+        flow.readyDone()
+        flow.measure = .steps
+        #expect(flow.measureDone() == .finished(useLocation: false))
+        #expect(flow.step == .measure)
+    }
+
+    @Test func allowUsesTheMap() async {
+        let flow = OutdoorPrepFlow(asksLocation: true)
+        flow.readyDone()
+        flow.measure = .map
+        _ = flow.measureDone()
+        #expect(await flow.requestLocation { true } == true)
+    }
+}

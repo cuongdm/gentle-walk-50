@@ -34,7 +34,7 @@ import GentleWalkCore
     var progressPath: [ProgressRoute] = []
     /// "Rest today" from a reminder: the day it was tapped.
     nonisolated static let restTodayKey = "restTodayDate"
-    /// Waits for "Two quick things" or the cancel guide to close (`afterOneTimeScreens`).
+    /// Waits for the permission screens or the cancel guide to close (`afterOneTimeScreens`).
     @ObservationIgnored var pendingAfterCover: (() -> Void)?
     private(set) var today: TodayModel?
     private(set) var journey = JourneySnapshot.empty
@@ -85,7 +85,9 @@ import GentleWalkCore
 
     @ObservationIgnored private(set) lazy var completion = SessionCompletionService(
         context: container.mainContext, content: content, entitlement: { [unowned self] in self.entitlement },
-        health: health, notifications: notifications, calendar: calendar)
+        health: health, notifications: notifications, levels: walkLevels, calendar: calendar)
+    /// Her current walking level (plan 08/10/2026 decision D1).
+    var walkLevels: WalkLevelStore { WalkLevelStore(defaults: defaults) }
 
     var entitlement: Entitlement { entitlementOverride ?? store.entitlement }
 
@@ -178,10 +180,11 @@ import GentleWalkCore
         progress = ProgressSnapshot(records: records, wins: wins, checks: checks, supportLevels: support, restDays: restDays,
                                     calendar: calendar, now: now())
         guard let profile else { today = nil; return }
+        let levelState = currentLevel(startLevel: profile.level, records: records)
         let pains = painRecorder.snapshots(since: now().addingTimeInterval(-14 * 86_400))
         let input = TodayInput(
             now: now(), calendar: calendar, name: profile.name, restDays: profile.restDays, limits: profile.limits,
-            level: profile.level, entitlement: entitlement, trialEnds: trialEnds, workouts: records.map {
+            level: levelState.level, entitlement: entitlement, trialEnds: trialEnds, workouts: records.map {
                 TodayInput.Workout(date: $0.date, feeling: $0.feeling.flatMap(Feeling.init), breakCount: $0.breakCount,
                                    level: WalkLevel(rawValue: $0.level) ?? .seated)
             }, pains: pains, healthConnected: health.isConnected || defaults.bool(forKey: "healthCardDismissed")
@@ -190,11 +193,29 @@ import GentleWalkCore
             journeyID: journey.journeyID, journeyMiles: journey.totalMiles,
             restedToday: (defaults.object(forKey: Self.restTodayKey) as? Date).map { calendar.isDate($0, inSameDayAs: now()) } ?? false,
             program: program?.programRound, programFinishedAt: program?.finishedAt, selfChecks: checks.map(\.date),
-            selfCheckDismissedAt: selfCheckDismissedAt)
+            selfCheckDismissedAt: selfCheckDismissedAt, levelCard: walkLevels.pendingCard)
         today = TodayModel(input: input, content: content)
     }
 
-    /// "Two quick things" asked about Apple Health in the last 7 days: Today does not ask again yet
+    /// Me → Your body: her current level, since when, and where she started (task 0.6).
+    var walkingLevel: WalkingLevelSummary? {
+        guard let profile else { return nil }
+        let state = walkLevels.state(startLevel: profile.level)
+        return WalkingLevelSummary(level: state.level, since: state.changedAt, start: profile.level)
+    }
+
+    /// Her current level; the card explaining its last change goes once she has done a session after
+    /// it, or after 7 days (plan 08/10/2026 task 0.4).
+    private func currentLevel(startLevel: WalkLevel, records: [WorkoutRecord]) -> LevelState {
+        let store = walkLevels
+        if store.pendingCard != nil, let changedAt = store.changedAt,
+           records.contains(where: { $0.date > changedAt }) || now().timeIntervalSince(changedAt) >= 7 * 86_400 {
+            store.clearCard()
+        }
+        return store.state(startLevel: startLevel)
+    }
+
+    /// The permission screens asked about Apple Health in the last 7 days: Today does not ask again yet
     /// (it asked right after "Not now"; review 02/10/2026).
     private var healthAskedRecently: Bool {
         guard let asked = defaults.object(forKey: "permissionsShownAt") as? Date else { return false }

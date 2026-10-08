@@ -11,7 +11,7 @@ struct AppCaptureScene: View {
     static func handles(_ state: CaptureState) -> Bool {
         let name = state.rawValue
         return ["onboarding", "paywall", "today", "journey", "journeys", "where-next", "postcard", "locked-stop", "progress",
-                "me", "cancel-guide", "sound-sheet", "watch-on-tv", "permissions", "reminder-offer", "outdoor-prep", "outdoor-location-ask", "root", "all-sessions",
+                "me", "cancel-guide", "sound-sheet", "watch-on-tv", "permissions", "reminder-offer", "outdoor-prep", "outdoor-measure-choice", "outdoor-location-prompt", "root", "all-sessions",
                 "program", "selfcheck"]
             .contains { name == $0 || name.hasPrefix($0 + "-") }
     }
@@ -39,10 +39,13 @@ struct AppCaptureScene: View {
             OnboardingView(flow: app.onboarding, onRestore: {}, onFinished: {})
         case .paywallEligible, .paywallMonthly, .paywallLifetime, .paywallNotEligible, .paywallLifetimeWhileSubscribed:
             PaywallView(model: paywallModel, onPurchase: { _ in }, onRestore: {}, onMaybeLater: {})
-        case .permissions, .permissionsGranted:
-            PermissionsView(model: PermissionsModel(health: nil, notifications: nil, healthConnected: state == .permissionsGranted,
-                                                    remindersAllowed: state == .permissionsGranted),
-                            moment: .coffee, minutes: 510, onReminderTime: { _, _ in }, onDone: {})
+        case .permissionsReminder, .permissionsHealth, .permissionsHealthGranted:
+            PermissionStepView(ask: state == .permissionsReminder ? .reminders : .health,
+                               model: PermissionsModel(health: nil, notifications: nil,
+                                                       healthConnected: state == .permissionsHealthGranted,
+                                                       remindersAllowed: state != .permissionsReminder),
+                               moment: .coffee, minutes: 510, onReminderTime: { _, _ in }, onDone: {},
+                               onBack: state == .permissionsReminder ? nil : {})
         case .soundSheet:
             SoundSheet(showsMusic: true) { _ in }
         case .watchOnTV:
@@ -54,10 +57,9 @@ struct AppCaptureScene: View {
             ScrollView { NotificationSection(app: app).padding(Metrics.screenMargin) }.screenBackground()
         case .meDeleteConfirm:
             DeleteDataConfirmation(onDelete: {}, onCancel: {})
-        case .outdoorPrep:
-            OutdoorPrepView(asksLocation: true, onRequestLocation: {}, onDone: { _ in })
-        case .outdoorLocationAsk:
-            ScrollView { OutdoorLocationAskView(onUseLocation: {}, onStepsOnly: {}) }.screenBackground()
+        case .outdoorPrep, .outdoorMeasureChoice, .outdoorLocationPrompt:
+            OutdoorPrepView(asksLocation: true, onRequestLocation: { false }, onDone: { _ in },
+                            startStep: state == .outdoorPrep ? .ready : state == .outdoorMeasureChoice ? .measure : .locationPrompt)
         case .postcard:
             if let stop = app.content.journeys.first?.stops[1] { PostcardDetailView(stop: stop) }
         case .todaySwap:
@@ -111,6 +113,14 @@ struct AppCaptureScene: View {
         }
         if state == .todayTrialEnded { app.defaults.set(Date.now.addingTimeInterval(-3 * 86_400), forKey: "lastTrialEnds") }
         if state == .todayRest { app.defaults.set(Date.now, forKey: AppModel.restTodayKey) }
+        if state == .me {
+            // Me shows "Walking level: In place since …" (task 0.6): moved up six days ago.
+            app.walkLevels.set(level: .inPlace, changedAt: app.now().addingTimeInterval(-6 * 86_400), card: nil)
+        }
+        if state == .todayMovedUp {
+            // Moved up after her last session (an hour ago, after every seeded workout).
+            app.walkLevels.set(level: .inPlace, changedAt: app.now().addingTimeInterval(-3_600), card: .movedUp(to: .inPlace))
+        }
         app.reload()
         prepare(app)
         return app

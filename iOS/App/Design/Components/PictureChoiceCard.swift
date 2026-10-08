@@ -34,7 +34,7 @@ struct PictureChoiceCard: View {
             .foregroundStyle(Palette.text)
             .padding(8)
             .padding(.trailing, 8)
-            .frame(maxWidth: .infinity, minHeight: 72)
+            .frame(maxWidth: .infinity, minHeight: Metrics.rowHeight)
             .background {
                 RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
                     .fill(Palette.surface)

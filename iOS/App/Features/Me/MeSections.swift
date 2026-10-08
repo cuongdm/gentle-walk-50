@@ -91,12 +91,40 @@ struct SubscriptionSection: View {
     }
 }
 
+/// "Walking level: In place since Oct 20 · Started at Seated" (plan 08/10/2026 task 0.6): the same
+/// current level Today and Preview use, and where she began.
+struct WalkingLevelSummary: Equatable {
+    var level: WalkLevel
+    /// When the level last changed; nil while she is still at her start level.
+    var since: Date?
+    var start: WalkLevel
+}
+
+struct WalkingLevelLine: View {
+    let summary: WalkingLevelSummary
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            if let since = summary.since {
+                Text("Walking level: \(Text(summary.level.title)) since \(since.formatted(.dateTime.month(.abbreviated).day()))")
+                    .typeRole(.body)
+                Text("Started at \(Text(summary.start.title))").typeRole(.caption).foregroundStyle(Palette.textMuted)
+            } else {
+                Text("Walking level: \(Text(summary.level.title))").typeRole(.body)
+            }
+        }
+        .accessibilityElement(children: .combine)
+    }
+}
+
 struct BodySection: View {
     let limits: Set<BodyLimit>
+    var walking: WalkingLevelSummary? = nil
     let onEdit: () -> Void
 
     var body: some View {
         SettingsCard(title: "Your body", actionTitle: "Edit", action: onEdit) {
+            if let walking { WalkingLevelLine(summary: walking) }
             if limits.isEmpty {
                 Text("Nothing to go easy on").typeRole(.body)
             } else {
@@ -362,7 +390,7 @@ struct HealthSection: View {
 struct OutdoorSection: View {
     let defaults: UserDefaults
     let location: LocationService
-    @AppStorage("outdoorLocationChoice") private var choice = ""
+    @AppStorage(OutdoorLocationChoice.defaultsKey) private var choice = ""
     /// Read when Me shows, when the app comes back from Settings, and after Apple's dialog.
     @State private var denied = false
 
@@ -373,8 +401,9 @@ struct OutdoorSection: View {
                 if on { Task { _ = await location.requestPermissionAndWait(); denied = location.isDenied } }
             })) {
                 VStack(alignment: .leading) {
-                    Text("Use location for outdoor walks").typeRole(.body)
-                    Text("Only while you walk. Stays on this phone.").typeRole(.caption)
+                    // The same choice as in Outdoor prep: map and distance, or steps only (task 1.17).
+                    Text("Map and distance").typeRole(.body)
+                    Text("Uses your location while you walk. Off: steps only.").typeRole(.caption)
                 }
             }
             .tint(Palette.secondary)

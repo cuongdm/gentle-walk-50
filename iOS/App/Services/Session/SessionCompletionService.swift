@@ -57,15 +57,19 @@ struct CompletionResult: Equatable, Sendable {
     private let entitlement: () -> Entitlement
     private let health: WorkoutHealthWriting
     private let notifications: NotificationRescheduling
+    /// Her current walking level; "How did that feel?" can change it (plan 08/10/2026 task 0.3).
+    private let levels: WalkLevelStore?
     private let calendar: Calendar
 
     init(context: ModelContext, content: ContentBundle, entitlement: @escaping () -> Entitlement,
-         health: WorkoutHealthWriting, notifications: NotificationRescheduling, calendar: Calendar = .current) {
+         health: WorkoutHealthWriting, notifications: NotificationRescheduling, levels: WalkLevelStore? = nil,
+         calendar: Calendar = .current) {
         self.context = context
         self.content = content
         self.entitlement = entitlement
         self.health = health
         self.notifications = notifications
+        self.levels = levels
         self.calendar = calendar
     }
 
@@ -101,6 +105,23 @@ struct CompletionResult: Equatable, Sendable {
         guard let record = try context.fetch(descriptor).first else { return }
         record.feeling = feeling.rawValue
         try context.save()
+        try adaptLevel(after: record)
+    }
+
+    /// The level changes here, once, when the answer is saved, so Today, Preview and Me all read
+    /// the same level and the Today card shows exactly once (plan 08/10/2026 decision 2).
+    private func adaptLevel(after record: WorkoutRecord) throws {
+        guard let levels else { return }
+        let profile = try context.fetch(FetchDescriptor<UserProfile>()).first { $0.onboardingCompleted }
+        let startLevel = profile.flatMap { WalkLevel(rawValue: $0.startLevel) } ?? .seated
+        let state = levels.state(startLevel: startLevel)
+        let history = try context.fetch(FetchDescriptor<WorkoutRecord>(sortBy: [SortDescriptor(\.date)])).map {
+            SessionFeedback(level: WalkLevel(rawValue: $0.level) ?? .seated, feeling: $0.feeling.flatMap(Feeling.init),
+                            breakCount: $0.breakCount, date: $0.date)
+        }
+        let result = Adaptation.next(state: state, history: history)
+        guard result.level != state.level else { return }
+        levels.set(level: result.level, changedAt: record.date, card: result.card)
     }
 
     private func advanceJourney(by miles: Double, on date: Date, into result: inout CompletionResult) throws {

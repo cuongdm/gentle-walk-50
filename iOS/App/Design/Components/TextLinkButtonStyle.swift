@@ -4,6 +4,8 @@ import SwiftUI
 /// Primary-coloured text would fall under 4.5:1 on the background, so links stay in `text`.
 struct TextLinkButtonStyle: ButtonStyle {
     var role: TypeRole = .body
+    /// Side padding of the touch area; a row of several small links uses less (paywall footer on SE).
+    var horizontalPadding: CGFloat = 8
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -13,7 +15,7 @@ struct TextLinkButtonStyle: ButtonStyle {
             .foregroundStyle(Palette.text)
             .multilineTextAlignment(.center)
             .frame(minHeight: Metrics.minTouchTarget)
-            .padding(.horizontal, 8)
+            .padding(.horizontal, horizontalPadding)
             .contentShape(.rect)
             .opacity(configuration.isPressed ? 0.6 : 1)
     }

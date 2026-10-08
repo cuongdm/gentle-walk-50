@@ -10,7 +10,8 @@ enum AppCover: Identifiable {
     case outdoorPrep(WorkoutRequest)
     case preparing(WorkoutRequest)
     case workout(WorkoutSessionModel)
-    case permissions
+    /// After the first session: reminders, then Apple Health, one per screen (plan 08/10/2026 task 1.6).
+    case permissions(PermissionAsk)
     /// "Not yet" on the First Walk: offer a daily reminder.
     case reminderOffer
     case cancelGuide(afterLifetime: Bool)
@@ -27,6 +28,7 @@ enum AppCover: Identifiable {
         case .outdoorPrep(let request): "outdoor-\(request.id)"
         case .preparing(let request): "preparing-\(request.id)"
         case .workout(let session): "workout-\(session.request.id)"
+        // One id for both steps: the second replaces the first in place, not as a new cover.
         case .permissions: "permissions"
         case .reminderOffer: "reminder-offer"
         case .cancelGuide: "cancel"

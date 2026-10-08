@@ -1,12 +1,12 @@
 import SwiftUI
 
 extension View {
-    /// Card from the spec: surface fill, radius 20, no heavy shadow.
+    /// Card from the spec: paper fill (`CardPaper`), radius 16, light shadows only.
     func cardStyle(padding: CGFloat = 16) -> some View {
         self
             .padding(padding)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Palette.surface, in: .rect(cornerRadius: Metrics.cardRadius, style: .continuous))
+            .background { CardPaper() }
     }
 
     /// iPad and landscape: content in a centred column no wider than a comfortable reading line
@@ -31,5 +31,19 @@ extension View {
             .overlay(alignment: .top) {
                 Palette.bg.frame(height: 0).ignoresSafeArea(edges: .top).allowsHitTesting(false)
             }
+    }
+}
+
+/// Card paper (Claude Design direction, owner 08/10/2026): a faint top-to-bottom paper gradient and
+/// two light shadows, so cards sit on the page without looking raised.
+struct CardPaper: View {
+    private static let shape = RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
+    private static let paper = LinearGradient(colors: [Palette.surfaceTop, Palette.surfaceBottom],
+                                              startPoint: .top, endPoint: .bottom)
+
+    var body: some View {
+        Self.shape.fill(Self.paper)
+            .shadow(color: Palette.shadow.opacity(0.05), radius: 1, y: 1)
+            .shadow(color: Palette.shadow.opacity(0.07), radius: 10, y: 4)
     }
 }

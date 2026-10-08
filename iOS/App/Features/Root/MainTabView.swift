@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 import GentleWalkCore
 
 /// Four tabs, icon and word always shown (task 6.1). One `NavigationStack` per tab.
@@ -52,6 +53,21 @@ struct MainTabView: View {
         }
         .tint(Palette.accent)
     }
+
+    /// Tab words at 15 pt instead of the system's ~10–13 (plan 08/10/2026 task 1.2; the selected word is
+    /// `accent`, which keeps 5:1 on the page). Set once at launch.
+    static func useLargerTabLabels() {
+        let font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        let scaled = UIFontMetrics(forTextStyle: .footnote).scaledFont(for: font, maximumPointSize: 22)
+        let appearance = UITabBarAppearance()
+        appearance.configureWithDefaultBackground()
+        for item in [appearance.stackedLayoutAppearance, appearance.inlineLayoutAppearance, appearance.compactInlineLayoutAppearance] {
+            item.normal.titleTextAttributes = [.font: scaled]
+            item.selected.titleTextAttributes = [.font: scaled]
+        }
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+    }
 }
 
 struct TodayTab: View {
@@ -70,6 +86,7 @@ struct TodayTab: View {
                 onConnectHealth: { Task { _ = await app.health.requestAuthorization(); app.reload() } },
                 onDismissCard: app.dismissHealthCard,
                 onFewerReminders: app.answerFewerReminders,
+                onKeepEasierLevel: app.keepEasierLevel,
                 onOpenProgram: { app.todayPath.append(.program) },
                 onSelfCheck: app.openSelfCheck,
                 onSelfCheckLater: app.selfCheckLater,

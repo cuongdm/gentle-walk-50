@@ -122,7 +122,7 @@ struct MonthCalendar: View {
                             dayCell(day, active: false, rest: rest)
                         }
                     } else {
-                        Color.clear.frame(minHeight: 36)
+                        Color.clear.frame(minHeight: 44)
                     }
                 }
             }
@@ -138,19 +138,26 @@ struct MonthCalendar: View {
             : String(localized: "Your first active day this month will show here.")
     }
 
+    /// Day numbers at body size in 44 pt cells, the rest-day moon 16 pt under the number (plan 08/10/2026
+    /// task 1.15: 16 pt numbers, 36 pt cells and an 8 pt moon were too small).
     private func dayCell(_ day: Date, active: Bool, rest: Bool) -> some View {
-        Text(verbatim: "\(calendar.component(.day, from: day))")
-            .typeRole(.caption)
-            // Seven columns: at the largest sizes the number shrinks a little
-            // rather than breaking over two lines (review I12).
-            .lineLimit(1)
-            .minimumScaleFactor(0.5)
-            .foregroundStyle(active ? Palette.onStrongFill : Palette.text)
-            .frame(maxWidth: .infinity, minHeight: 40)
-            .background(active ? Palette.secondary : .clear, in: .circle)
-            .overlay(alignment: .bottom) {
-                if rest && !active { Image(systemName: "moon.fill").font(.system(size: 8)).foregroundStyle(Palette.textMuted) }
+        VStack(spacing: 0) {
+            Text(verbatim: "\(calendar.component(.day, from: day))")
+                .typeRole(.body)
+                // Seven columns: at the largest sizes the number shrinks a little
+                // rather than breaking over two lines (review I12).
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+            if rest && !active {
+                Image(systemName: "moon.fill")
+                    .font(.system(size: 16))
+                    .foregroundStyle(Palette.textMuted)
+                    .dynamicTypeSize(...DynamicTypeSize.xxLarge)
             }
+        }
+            .foregroundStyle(active ? Palette.onStrongFill : Palette.text)
+            .frame(maxWidth: .infinity, minHeight: 44)
+            .background(active ? Palette.secondary : .clear, in: .circle)
             // The whole cell answers the tap, not just the circle (seven columns leave ~46 pt).
             .contentShape(.rect)
             .accessibilityLabel(Text(verbatim: day.formatted(date: .complete, time: .omitted)))

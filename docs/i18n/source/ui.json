@@ -169,7 +169,8 @@
   "key": "%lld of %lld",
   "comment": "",
   "files": [
-   "ChairPlayerModel"
+   "ChairPlayerModel",
+   "SoundControls"
   ]
  },
  {
@@ -566,7 +567,7 @@
   ]
  },
  {
-  "key": "Your first walk waits on Today. We can nudge you once a day, at a moment you choose.",
+  "key": "Your first walk waits on Today. We can nudge you once a day.",
   "comment": "",
   "files": [
    "CoverView"
@@ -604,8 +605,7 @@
   "key": "What's a good moment for your daily walk?",
   "comment": "A heading for the daily moment picker.",
   "files": [
-   "DailyMomentPicker",
-   "PermissionsView"
+   "DailyMomentPicker"
   ]
  },
  {
@@ -872,7 +872,7 @@
   "files": [
    "JourneyView",
    "JourneyListView",
-   "PermissionsView",
+   "PermissionStepView",
    "TodayCards"
   ]
  },
@@ -983,7 +983,7 @@
   "files": [
    "MeSections",
    "ProgressScreen",
-   "PermissionsView"
+   "PermissionStepView"
   ]
  },
  {
@@ -1128,6 +1128,14 @@
   ]
  },
  {
+  "key": "Map and distance",
+  "comment": "",
+  "files": [
+   "MeSections",
+   "OutdoorPrepView"
+  ]
+ },
+ {
   "key": "Music",
   "comment": "A toggle for the user to turn on or off music in a workout.",
   "files": [
@@ -1156,13 +1164,6 @@
   "files": [
    "MeSections",
    "StoreNotice"
-  ]
- },
- {
-  "key": "Only while you walk. Stays on this phone.",
-  "comment": "A description of the location-based outdoor walks feature.",
-  "files": [
-   "MeSections"
   ]
  },
  {
@@ -1257,6 +1258,13 @@
   ]
  },
  {
+  "key": "Started at %@",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
   "key": "Subscription",
   "comment": "",
   "files": [
@@ -1293,14 +1301,28 @@
   ]
  },
  {
-  "key": "Use location for outdoor walks",
-  "comment": "A toggle that lets the user choose whether to use location for outdoor walks.",
+  "key": "Uses your location while you walk. Off: steps only.",
+  "comment": "",
   "files": [
    "MeSections"
   ]
  },
  {
   "key": "Voice louder than music",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Walking level: %@",
+  "comment": "",
+  "files": [
+   "MeSections"
+  ]
+ },
+ {
+  "key": "Walking level: %@ since %@",
   "comment": "",
   "files": [
    "MeSections"
@@ -2199,6 +2221,7 @@
    "OnboardingView",
    "PauseButton",
    "CancelGuideView",
+   "PermissionStepView",
    "PaywallLegalFooter"
   ]
  },
@@ -2209,6 +2232,7 @@
    "OnboardingView",
    "PaywallModel",
    "PhonePlacementView",
+   "PermissionStepView",
    "PaywallLegalFooter",
    "OutdoorPrepView"
   ]
@@ -2271,14 +2295,28 @@
   ]
  },
  {
-  "key": "Just count my steps",
+  "key": "How should we measure your walk?",
   "comment": "",
   "files": [
    "OutdoorPrepView"
   ]
  },
  {
-  "key": "On hot days, walk early or late and rest in the shade. Stop if you feel dizzy or unwell.",
+  "key": "Next, iPhone asks about location",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "No location needed",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "On hot days, walk early or late. Stop if you feel dizzy.",
   "comment": "",
   "files": [
    "OutdoorPrepView"
@@ -2292,7 +2330,21 @@
   ]
  },
  {
+  "key": "Only while you walk. It stays on this phone.",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
   "key": "Phone charged",
+  "comment": "",
+  "files": [
+   "OutdoorPrepView"
+  ]
+ },
+ {
+  "key": "Steps only",
   "comment": "",
   "files": [
    "OutdoorPrepView"
@@ -2306,14 +2358,7 @@
   ]
  },
  {
-  "key": "Use my location",
-  "comment": "",
-  "files": [
-   "OutdoorPrepView"
-  ]
- },
- {
-  "key": "Want a map of your walk?",
+  "key": "Uses your location while you walk",
   "comment": "",
   "files": [
    "OutdoorPrepView"
@@ -2327,8 +2372,8 @@
   ]
  },
  {
-  "key": "With your location on, we can measure your distance and show your route afterwards. It's only used while you're walking and stays on this phone.",
-  "comment": "A description of the map feature that shows your route and distance.",
+  "key": "You can change this in Me.",
+  "comment": "",
   "files": [
    "OutdoorPrepView"
   ]
@@ -2364,6 +2409,13 @@
   ]
  },
  {
+  "key": "Cancel anytime in Settings, at least 24 hours before renewal. Deleting the app doesn't cancel.",
+  "comment": "",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
   "key": "If you connect Apple Health, we read your step count to show it in Progress and save your workouts to Health. Health data never leaves your phone through us.",
   "comment": "A description of how the app uses Apple Health.",
   "files": [
@@ -2378,7 +2430,7 @@
   ]
  },
  {
-  "key": "Or keep the free plan: a walk each weekday and the New York journey.",
+  "key": "Or keep the free plan: a walk each weekday.",
   "comment": "",
   "files": [
    "PaywallLegalFooter"
@@ -2485,14 +2537,14 @@
   ]
  },
  {
-  "key": "%@ charged today, then every month. %@",
+  "key": "%@ charged today, then every month until you cancel.",
   "comment": "",
   "files": [
    "PaywallModel"
   ]
  },
  {
-  "key": "%@ charged today, then every year. %@",
+  "key": "%@ charged today, then every year until you cancel.",
   "comment": "",
   "files": [
    "PaywallModel"
@@ -2506,7 +2558,7 @@
   ]
  },
  {
-  "key": "Free for 14 days, then %@ a year from %@. %@",
+  "key": "Free for 14 days, then %@ a year from %@. Renews until you cancel.",
   "comment": "",
   "files": [
    "PaywallModel"
@@ -2521,13 +2573,6 @@
  },
  {
   "key": "One payment",
-  "comment": "",
-  "files": [
-   "PaywallModel"
-  ]
- },
- {
-  "key": "Renews automatically unless you cancel at least 24 hours before the renewal date.",
   "comment": "",
   "files": [
    "PaywallModel"
@@ -2555,14 +2600,14 @@
   ]
  },
  {
-  "key": "4 more journeys, with more coming",
+  "key": "14 days free",
   "comment": "",
   "files": [
    "PaywallView"
   ]
  },
  {
-  "key": "All chair, balance and stretch sessions",
+  "key": "4 more journeys, with more coming",
   "comment": "",
   "files": [
    "PaywallView"
@@ -2576,15 +2621,15 @@
   ]
  },
  {
-  "key": "Billed %@ unless you cancel",
+  "key": "Billed %@",
   "comment": "",
   "files": [
    "PaywallView"
   ]
  },
  {
-  "key": "Cancel anytime in Settings. Deleting the app doesn't cancel.",
-  "comment": "A description of the cancellation policy.",
+  "key": "Chair, balance and stretch sessions",
+  "comment": "",
   "files": [
    "PaywallView"
   ]
@@ -2597,14 +2642,14 @@
   ]
  },
  {
-  "key": "Includes 14 days free",
-  "comment": "A note that a subscription includes 14 days of free trial.",
+  "key": "Lowest monthly cost",
+  "comment": "",
   "files": [
    "PaywallView"
   ]
  },
  {
-  "key": "Lowest monthly cost",
+  "key": "No renewals",
   "comment": "",
   "files": [
    "PaywallView"
@@ -2625,66 +2670,73 @@
   ]
  },
  {
-  "key": "Yours to keep, no renewals",
-  "comment": "A description of a lifetime plan.",
-  "files": [
-   "PaywallView"
-  ]
- },
- {
-  "key": "**One message a day at most**, never on rest days or days you've moved.",
-  "comment": "A description of the benefits of allowing daily reminders.",
-  "files": [
-   "PermissionsView"
-  ]
- },
- {
-  "key": "Allow reminders",
+  "key": "%lld of 2",
   "comment": "",
   "files": [
-   "PermissionsView"
+   "PermissionStepView"
+  ]
+ },
+ {
+  "key": "A nudge for your daily walk?",
+  "comment": "",
+  "files": [
+   "PermissionStepView"
   ]
  },
  {
   "key": "Apple Health connected",
   "comment": "",
   "files": [
-   "PermissionsView"
+   "PermissionStepView"
   ]
  },
  {
   "key": "Next, Apple asks what to share: tap **Turn On All**, then **Allow**. Or tap **Don't Allow** to skip.",
   "comment": "",
   "files": [
-   "PermissionsView"
+   "PermissionStepView"
   ]
  },
  {
-  "key": "Progress shows your all-day steps. **Your journey moves with or without it.** Your data stays on this phone.",
-  "comment": "A description of the benefits of connecting Apple Health.",
+  "key": "One message a day at most. Never on rest days.",
+  "comment": "",
   "files": [
-   "PermissionsView"
+   "PermissionStepView"
+  ]
+ },
+ {
+  "key": "Progress shows your all-day steps. Your journey moves either way.",
+  "comment": "",
+  "files": [
+   "PermissionStepView"
   ]
  },
  {
   "key": "Reminders on",
   "comment": "",
   "files": [
-   "PermissionsView"
+   "PermissionStepView"
   ]
  },
  {
-  "key": "See your everyday steps",
+  "key": "See your everyday steps?",
   "comment": "",
   "files": [
-   "PermissionsView"
+   "PermissionStepView"
   ]
  },
  {
-  "key": "Two quick things",
+  "key": "Set my reminder",
   "comment": "",
   "files": [
-   "PermissionsView"
+   "PermissionStepView"
+  ]
+ },
+ {
+  "key": "Your data stays on this phone.",
+  "comment": "",
+  "files": [
+   "PermissionStepView"
   ]
  },
  {
@@ -2923,6 +2975,13 @@
   ]
  },
  {
+  "key": "Or keep your plan as it is",
+  "comment": "",
+  "files": [
+   "ProgramFinishedView"
+  ]
+ },
+ {
   "key": "Start a new 12 weeks",
   "comment": "",
   "files": [
@@ -2931,7 +2990,21 @@
   ]
  },
  {
-  "key": "What next? Start a new 12 weeks from week 1, or keep your weekly plan as it is. Your 2-week checks go on either way.",
+  "key": "Start again at week 1",
+  "comment": "",
+  "files": [
+   "ProgramFinishedView"
+  ]
+ },
+ {
+  "key": "Still the same goal? Change it in Me.",
+  "comment": "",
+  "files": [
+   "ProgramFinishedView"
+  ]
+ },
+ {
+  "key": "What next?",
   "comment": "",
   "files": [
    "ProgramFinishedView"
@@ -3379,21 +3452,21 @@
   ]
  },
  {
-  "key": "1. Stand up all the way, then sit back down.",
+  "key": "1. Stand up fully, then sit down.",
   "comment": "",
   "files": [
    "SelfCheckViews"
   ]
  },
  {
-  "key": "2. Keep going for 30 seconds, at your own pace.",
+  "key": "2. Keep going for 30 seconds.",
   "comment": "",
   "files": [
    "SelfCheckViews"
   ]
  },
  {
-  "key": "3. Count each time you stand up. You'll enter the number.",
+  "key": "3. Count each time you stand.",
   "comment": "",
   "files": [
    "SelfCheckViews"
@@ -3419,7 +3492,7 @@
   ]
  },
  {
-  "key": "Cross your arms, or push up with your hands. Either is fine.",
+  "key": "Cross arms or push up, both fine",
   "comment": "",
   "files": [
    "SelfCheckViews"
@@ -3445,7 +3518,6 @@
   "files": [
    "SelfCheckViews",
    "JourneyListView",
-   "PermissionsView",
    "CompleteView"
   ]
  },
@@ -3544,7 +3616,7 @@
   ]
  },
  {
-  "key": "Sit near the front, feet flat on the floor.",
+  "key": "Sit near the front, feet flat",
   "comment": "",
   "files": [
    "SelfCheckViews"
@@ -3580,7 +3652,14 @@
   ]
  },
  {
-  "key": "Stop if anything hurts or you feel dizzy.",
+  "key": "Stop if it hurts or you feel dizzy",
+  "comment": "",
+  "files": [
+   "SelfCheckViews"
+  ]
+ },
+ {
+  "key": "Sturdy chair, no wheels, by a wall",
   "comment": "",
   "files": [
    "SelfCheckViews"
@@ -3603,13 +3682,6 @@
  },
  {
   "key": "Times you stood up",
-  "comment": "",
-  "files": [
-   "SelfCheckViews"
-  ]
- },
- {
-  "key": "Use a sturdy chair with no wheels, its back against a wall.",
   "comment": "",
   "files": [
    "SelfCheckViews"
@@ -3853,6 +3925,13 @@
   ]
  },
  {
+  "key": "Louder",
+  "comment": "",
+  "files": [
+   "SoundControls"
+  ]
+ },
+ {
   "key": "Move introductions",
   "comment": "Sound: switch for the coach saying each chair move's name and purpose.",
   "files": [
@@ -3862,6 +3941,13 @@
  {
   "key": "Move introductions change from your next session.",
   "comment": "Sound sheet footnote.",
+  "files": [
+   "SoundControls"
+  ]
+ },
+ {
+  "key": "Quieter",
+  "comment": "",
   "files": [
    "SoundControls"
   ]
@@ -4295,6 +4381,13 @@
   ]
  },
  {
+  "key": "Keep it seated",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
   "key": "Keep them daily",
   "comment": "",
   "files": [
@@ -4312,27 +4405,6 @@
  {
   "key": "Next, Apple asks what to share: tap “Turn On All”, then “Allow”. Or tap “Don’t Allow” to skip.",
   "comment": "A description of the next step in the user's health data consent process.",
-  "files": [
-   "TodayCards"
-  ]
- },
- {
-  "key": "Opens your 12-week plan",
-  "comment": "",
-  "files": [
-   "TodayCards"
-  ]
- },
- {
-  "key": "Pick up at week %lld",
-  "comment": "",
-  "files": [
-   "TodayCards"
-  ]
- },
- {
-  "key": "Plan",
-  "comment": "",
   "files": [
    "TodayCards"
   ]
@@ -4383,6 +4455,13 @@
   ]
  },
  {
+  "key": "You're ready for a little more",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
   "key": "You've mentioned %@ pain 3 times this week. We've switched you to seated moves. Consider checking with your doctor.",
   "comment": "A body text that explains why the user is being moved to seated exercises.",
   "files": [
@@ -4391,6 +4470,13 @@
  },
  {
   "key": "Your journey · %@",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "Your walks are now %@. %@ is one tap away.",
   "comment": "",
   "files": [
    "TodayCards"
@@ -4677,7 +4763,28 @@
   ]
  },
  {
+  "key": "Opens your 12-week plan",
+  "comment": "",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
   "key": "Pick a different session",
+  "comment": "",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
+  "key": "Pick up at week %lld",
+  "comment": "",
+  "files": [
+   "TodayView"
+  ]
+ },
+ {
+  "key": "Plan",
   "comment": "",
   "files": [
    "TodayView"
@@ -5025,7 +5132,7 @@
   ]
  },
  {
-  "key": "A 12-week plan for stronger legs and better balance",
+  "key": "A 12-week plan for stronger legs",
   "comment": "",
   "files": [
    "WelcomeView"

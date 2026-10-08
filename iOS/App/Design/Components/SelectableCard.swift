@@ -38,7 +38,7 @@ struct SelectableCard: View {
             .foregroundStyle(Palette.text)
             .padding(.horizontal, 16)
             .padding(.vertical, 14)
-            .frame(maxWidth: .infinity, minHeight: 72)
+            .frame(maxWidth: .infinity, minHeight: Metrics.rowHeight)
             .background {
                 RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
                     .fill(Palette.surface)

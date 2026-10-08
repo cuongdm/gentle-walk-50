@@ -1,8 +1,10 @@
 import SwiftUI
 import GentleWalkCore
 
-/// S15 Workout complete. Fixed order: leaves (2 s), title, three numbers, "How did that feel?",
-/// tree line, self comparison, journey bar, new postcard, Done and Share with family.
+/// S15 Workout complete. Fixed order: leaves (2 s), title, three numbers, "How did that feel?", the
+/// 2-week check invite (week 0), one footnote card (tree and journey), self comparison, new postcard,
+/// Done (pinned) and Share with family. On an iPhone SE the invite's buttons sit above Done on the
+/// first walk (plan 08/10/2026 task 1.9).
 struct CompleteView: View {
     let content: CompleteContent
     let onFeeling: (Feeling) -> Void
@@ -38,7 +40,7 @@ struct CompleteView: View {
     var body: some View {
         ZStack(alignment: .top) {
             ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 12) {
                     CompleteHero(title: content.title, subtitle: content.subtitle, level: content.reachedLevel,
                                  isCalm: content.variant == .stoppedForPain)
                     CompleteStats(minutes: content.minutes, milesText: content.milesText, milesLabel: content.milesLabel,
@@ -51,8 +53,15 @@ struct CompleteView: View {
                             onFeeling(value)
                         }
                     }
-                    TreeMilestoneLine(activeDays: content.activeDays)
-                        .cardStyle()
+                    // The next thing to do comes before the numbers' details (task 1.9).
+                    if let invite = selfCheckInvite, !inviteDismissed {
+                        SelfCheckInviteCard(onStart: invite.onStart, onLater: {
+                            inviteDismissed = true
+                            invite.onLater()
+                        })
+                    }
+                    CompleteFootnote(activeDays: content.activeDays, journeyLine: content.journeyLine,
+                                     journeyProgress: content.journeyProgress)
                     if route.count > 1 {
                         VStack(alignment: .leading, spacing: 6) {
                             RouteMapView(route: route)
@@ -67,15 +76,6 @@ struct CompleteView: View {
                     }
                     if let levelUpLine {
                         LevelUpLine(text: levelUpLine)
-                    }
-                    if let invite = selfCheckInvite, !inviteDismissed {
-                        SelfCheckInviteCard(onStart: invite.onStart, onLater: {
-                            inviteDismissed = true
-                            invite.onLater()
-                        })
-                    }
-                    if let line = content.journeyLine {
-                        JourneyProgressBar(line: line, progress: content.journeyProgress)
                     }
                     if let stop = content.newPostcard {
                         NewPostcardCard(stop: stop, onOpen: { onOpenPostcard(stop) })
@@ -135,7 +135,7 @@ private struct StatTile: View {
                 .lineLimit(1).minimumScaleFactor(0.7)
             Text(verbatim: label).typeRole(.caption).foregroundStyle(Palette.textMuted)
         }
-        .frame(maxWidth: .infinity, minHeight: 80)
+        .frame(maxWidth: .infinity, minHeight: 70)
         .background(Palette.surface, in: .rect(cornerRadius: Metrics.cardRadius))
         .accessibilityElement(children: .combine)
     }
@@ -159,32 +159,56 @@ struct SelfCheckInviteCard: View {
     let onLater: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 8) {
             Text("Want to see where you start?").typeRole(.cardTitle)
             Text("Thirty seconds with your chair. In two weeks, do it again and compare with yourself.").typeRole(.body)
-            Button("Let's do it", action: onStart).buttonStyle(.secondaryAction)
-            Button("Later", action: onLater).buttonStyle(.smallTextLink).frame(maxWidth: .infinity)
+            // One row, so "Later" is in view with "Let's do it" (stacked at large text sizes).
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: Metrics.touchSpacing) { letsDoIt; later }
+                VStack(spacing: 4) { letsDoIt; later }
+            }
         }
         .foregroundStyle(Palette.text)
-        .cardStyle()
+        .cardStyle(padding: 12)
         .overlay { RoundedRectangle(cornerRadius: Metrics.cardRadius).strokeBorder(Palette.sky, lineWidth: 2) }
+    }
+
+    private var letsDoIt: some View {
+        Button("Let's do it", action: onStart).buttonStyle(PillButtonStyle(isSelected: true))
+    }
+
+    private var later: some View {
+        Button("Later", action: onLater).buttonStyle(.textLink)
     }
 }
 
-/// "2.6 mi to Brooklyn Bridge" over a secondary progress bar.
-struct JourneyProgressBar: View {
-    let line: String
-    let progress: Double
+/// One quiet card under the feeling question (task 1.9): the tree line ("1 of 7 active days to Sprout")
+/// and the journey line ("0.3 of 5 mi · 0.7 mi to Bethesda Fountain"), with why any session counts.
+struct CompleteFootnote: View {
+    let activeDays: Int
+    let journeyLine: String?
+    let journeyProgress: Double
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(verbatim: line).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
-            ProgressView(value: progress).tint(Palette.secondary).scaleEffect(x: 1, y: 2, anchor: .center)
-                .accessibilityHidden(true)
-            // Why a chair session moves the journey (clarity review D16).
-            Text("Every minute you move takes you further on your journey.").typeRole(.caption).foregroundStyle(Palette.textMuted)
+        VStack(alignment: .leading, spacing: 8) {
+            if let milestone = TreeLevel.milestone(activeDays: activeDays) {
+                Label { Text(verbatim: TreeMilestoneLine.text(milestone)) } icon: {
+                    Image(systemName: "leaf.fill").foregroundStyle(Palette.secondary)
+                }
+            }
+            if let journeyLine {
+                Label { Text(verbatim: journeyLine) } icon: {
+                    Image(systemName: "map.fill").foregroundStyle(Palette.secondary)
+                }
+                ProgressView(value: journeyProgress).tint(Palette.secondary).accessibilityHidden(true)
+                // Why a chair session moves the journey (clarity review D16).
+                Text("Every minute you move takes you further on your journey.").foregroundStyle(Palette.textMuted)
+            }
         }
-        .cardStyle()
+        .typeRole(.caption)
+        .foregroundStyle(Palette.text)
+        .accessibilityElement(children: .combine)
+        .cardStyle(padding: 12)
     }
 }
 

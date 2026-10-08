@@ -15,8 +15,8 @@ struct CoverView: View {
         case .preview(let model):
             PreviewCover(model: model, app: app)
         case .outdoorPrep(let request):
-            OutdoorPrepView(asksLocation: app.defaults.string(forKey: "outdoorLocationChoice") == nil,
-                            onRequestLocation: { _ = await app.location.requestPermissionAndWait() },
+            OutdoorPrepView(asksLocation: OutdoorLocationChoice.asks(in: app.defaults),
+                            onRequestLocation: { await app.location.requestPermissionAndWait() },
                             onDone: { app.outdoorPrepDone(request, useLocation: $0) },
                             onClose: { app.cover = nil })
         case .preparing:
@@ -49,12 +49,12 @@ struct CoverView: View {
                             app.workoutClosed(nil)
                             if session.request.isFirstWalk { Task { await app.offerReminderAfterNotYet() } }
                         },
-                        // After "Two quick things" (S16) when that shows: the invite never blocks the permissions.
+                        // After the permission screens (S16a/b) when they show: the invite never blocks the permissions.
                         onSelfCheck: { app.afterOneTimeScreens { app.openSelfCheck() } },
                         onSelfCheckLater: app.selfCheckLater,
                         onClose: app.workoutClosed)
-        case .permissions:
-            PermissionsCover(app: app)
+        case .permissions(let ask):
+            PermissionsCover(app: app, ask: ask)
         case .reminderOffer:
             ReminderOfferCover(app: app)
         case .cancelGuide(let afterLifetime):
@@ -65,7 +65,11 @@ struct CoverView: View {
                               onClose: app.closeSelfCheck)
         case .programFinished:
             ProgramFinishedView(summary: app.programFinishedSummary(), name: app.profile?.name,
-                                onRestart: app.restartProgram, onKeepRoutine: app.keepRoutine)
+                                onRestart: app.restartProgram, onKeepRoutine: app.keepRoutine,
+                                onChangeGoal: {
+                                    app.cover = nil
+                                    app.tab = .me
+                                })
         }
     }
 }
@@ -127,31 +131,33 @@ private struct PreviewCover: View {
     }
 }
 
-/// S16 with its model kept while the reminder time changes (the profile update redraws the cover).
+/// S16a/S16b with one model kept across both steps and while the reminder time changes (the profile
+/// update redraws the cover).
 private struct PermissionsCover: View {
     let app: AppModel
+    let ask: PermissionAsk
     @State private var model: PermissionsModel
 
-    init(app: AppModel) {
+    init(app: AppModel, ask: PermissionAsk) {
         self.app = app
+        self.ask = ask
         _model = State(initialValue: PermissionsModel(health: app.health, notifications: SystemNotificationAuthorizer(),
                                                       healthConnected: app.health.isConnected))
     }
 
     var body: some View {
-        PermissionsView(model: model,
-                        moment: app.profile?.reminderMoment ?? .coffee,
-                        minutes: app.profile?.reminderMinutes ?? DailyMoment.coffee.suggestedMinutes,
-                        onReminderTime: { moment, minutes in
-                            app.updateProfile {
-                                $0.reminderMoment = moment.rawValue
-                                $0.reminderMinutes = minutes
-                            }
-                        }) {
-            app.oneTimeScreenClosed()
-            app.reload()
-            Task { await app.notifications.reschedule() }
-        }
+        PermissionStepView(ask: ask, model: model,
+                           moment: app.profile?.reminderMoment ?? .coffee,
+                           minutes: app.profile?.reminderMinutes ?? DailyMoment.coffee.suggestedMinutes,
+                           onReminderTime: { moment, minutes in
+                               app.updateProfile {
+                                   $0.reminderMoment = moment.rawValue
+                                   $0.reminderMinutes = minutes
+                               }
+                           },
+                           onDone: { app.permissionStepDone(ask) },
+                           onBack: ask == .health ? { app.cover = .permissions(.reminders) } : nil)
+        .id(ask)
         .task { await model.readReminders() }
     }
 }
@@ -161,13 +167,16 @@ private struct PermissionsCover: View {
 private struct ReminderOfferCover: View {
     let app: AppModel
     @State private var asking = false
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                ArtImage(art: .momentFriends, height: 150, fallbackSymbol: "bell.fill")
+            VStack(alignment: .leading, spacing: 10) {
+                // 96 pt so the moments, the time and the buttons fit an iPhone SE (task 1.13).
+                ArtImage(art: .momentFriends, height: 96, fallbackSymbol: "bell.fill")
                     .accessibilityHidden(true)
-                ScreenHeader(title: "Want a reminder?", subtitle: "Your first walk waits on Today. We can nudge you once a day, at a moment you choose.")
+                // The subtitle says it: no second question above the moments (task 1.13).
+                ScreenHeader(title: "Want a reminder?", subtitle: "Your first walk waits on Today. We can nudge you once a day.")
                 DailyMomentPicker(moment: app.profile?.reminderMoment ?? .coffee,
                                   minutes: app.profile?.reminderMinutes ?? DailyMoment.coffee.suggestedMinutes,
                                   onChoose: { moment in update(moment, moment.suggestedMinutes) },
@@ -176,12 +185,18 @@ private struct ReminderOfferCover: View {
                                              ReminderTime.step(app.profile?.reminderMinutes ?? DailyMoment.coffee.suggestedMinutes, by: step))
                                   },
                                   onSet: { minutes in update(app.profile?.reminderMoment ?? .coffee, minutes) },
-                                  showsQuestion: true)
+                                  showsQuestion: false)
+                // At accessibility sizes the buttons end the page (a pinned bar took half the screen).
+                if typeSize.isAccessibilitySize { actions }
             }
             .padding(Metrics.screenMargin)
             .readableColumn()
         }
-        .pinnedActions(true) {
+        .pinnedActions(!typeSize.isAccessibilitySize) { actions }
+        .screenBackground()
+    }
+
+    @ViewBuilder private var actions: some View {
             Button("Remind me") {
                 guard !asking else { return }
                 asking = true
@@ -195,8 +210,6 @@ private struct ReminderOfferCover: View {
             Button("No thanks") { app.cover = nil }
                 .buttonStyle(.textLink)
                 .frame(maxWidth: .infinity)
-        }
-        .screenBackground()
     }
 
     private func update(_ moment: DailyMoment, _ minutes: Int) {
