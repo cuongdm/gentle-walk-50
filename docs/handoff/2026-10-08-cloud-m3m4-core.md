@@ -11,8 +11,8 @@ _08/10/2026 · Nhánh `cloud/core-content-m3m4` (từ `main` c9769c6) · Kế ho
 | 3.10 Chủ đề tuần | DONE | `WeekTheme` (12 case, `forWeek(_:)`, `of(_:)`, `week`, `stage`, `title`, `newThisWeek: News?` = .programStarts/.stageStarts/.lastWeek) | `WeekThemeTests` 4 test xanh |
 | 4.9 P6 check-in tuần | DONE | `WeeklyEffort`, `BetterChip` (7 chip, `title`), `WeeklyNote` (Codable), `WeekEffects` (.none), `WeeklyCheckIn.reviewedWeek/isDue/current/effects/lastWeekChip/adding`, `WeeklyCheckIn.kept` = 24; `RepLadder.update(…, holdRaises:)` | `WeeklyCheckInTests` 7 test, `RepLadderTests.holdRaisesKeepsTheStep` xanh |
 | 4.11 P10 giờ nhắc và độ dài | DONE | `SessionTiming`, `LengthSignal` (.shorter/.longer), `HabitSignals.suggestedReminderMinutes(starts:reminderMinutes:calendar:)`, `HabitSignals.lengthSignal(_:)` | `HabitSignalsTests` 4 test xanh |
-| 4.12 P11 ngày đã đi nhiều | IN PROGRESS | | |
-| 4.18 Thông báo tổng kết tuần | NOT STARTED | | |
+| 4.12 P11 ngày đã đi nhiều | DONE (chỉ logic) | `BusyDay.usualSteps(dailySteps:now:calendar:)`, `BusyDay.isBusy(stepsToday:dailySteps:now:reminderMinutes:calendar:)` | `BusyDayTests` 3 test xanh |
+| 4.18 Thông báo tổng kết tuần | IN PROGRESS | | |
 | 4.13 P7 kịch bản A13 | NOT STARTED | | |
 
 Ranh giới: nhánh này chỉ sửa `iOS/Packages/GentleWalkCore`, `tools/content`, `tools/lint`, `docs/scripts`, `docs/i18n`, `docs/handoff` (và dòng Evidence trong kế hoạch). Không đụng `iOS/App`, `iOS/GentleWalkTests`, `Localizable.xcstrings`, `project.yml`, `Plan/Adaptation.swift`, WalkLevel, TodayModel.

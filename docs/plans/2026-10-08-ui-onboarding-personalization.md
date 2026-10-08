@@ -557,7 +557,7 @@ _Tài liệu chưa có lúc lập kế hoạch (08/10). Task 3.1 đọc nó và 
 ### Task 4.12 — P11: bước Apple Health → "đã đi nhiều hôm nay" [TDD]
 **Files:** Modify `HealthService.swift` (`stepsToday(now:)`, `medianDailySteps(weeks: 4)` — chỉ khi đã có quyền), `AppModel.reload` (tính async, cache `TodayInput.busyDay: Bool` = hôm nay > 1,5 × trung vị, trước giờ nhắc), `TodayModel` (dòng "You've been on your feet a lot today. A gentle stretch fits." + swap mặc định stretch; không đổi lịch, không bỏ nhắc) · Test `HealthServiceTests.busyDayNeedsOneAndAHalfTimesTheMedian()`, `TodayModelTests`
 **Command:** `APP HealthServiceTests` → xanh
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: `CORE BusyDayTests` 3 tests passed (busyDayNeedsOneAndAHalfTimesTheMedian, onlyBeforeTheReminder, needsAWeekOfHerOwnSteps). Trung vị bước chân 28 ngày trước hôm nay (bỏ ngày 0 bước, cần ≥ 7 ngày); bận khi trước giờ nhắc và hôm nay > 1,5 × trung vị. Phần đọc HealthKit không làm ở đây (app). Mac: `HealthService.stepsToday(now:)` + `dailySteps(from:to:calendar:)` đã có (chỉ khi đã cho quyền) → `BusyDay.isBusy` trong `AppModel.reload` (async, cache `TodayInput.busyDay`), dòng Today "You've been on your feet a lot today. A gentle stretch fits." + swap mặc định Gentle stretch; test `HealthServiceTests` dùng `CaptureHealthStore`. Chữ VI trong `ui-extra-10.json`.
 **Commit point:** `feat(personalisation): busy day from Apple Health steps`
 
 ### Task 4.13 — P7: kịch bản A13 câu HLV theo lịch sử (EN + VI) [DATA]
