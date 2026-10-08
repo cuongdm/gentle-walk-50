@@ -17,7 +17,7 @@ struct AllSessionsView: View {
                     Text("Pick any session. It counts for today.").typeRole(.body).foregroundStyle(Palette.text)
                 }
                 if !model.favouriteItems.isEmpty {
-                    SessionSection(title: "Your favourites", items: model.favouriteItems, model: model, onOpen: onOpen)
+                    SessionSection(title: "Your favorites", items: model.favouriteItems, model: model, onOpen: onOpen)
                 }
                 ForEach(model.sections) { section in
                     SessionSection(title: section.group.title, items: section.items, model: model, onOpen: onOpen)

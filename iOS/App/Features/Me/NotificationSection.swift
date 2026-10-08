@@ -8,6 +8,7 @@ struct NotificationSection: View {
     let app: AppModel
     @State private var changingTime = false
     @State private var permission: SystemPermission.Reminders?
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         let profile = app.profile ?? .empty
@@ -19,7 +20,11 @@ struct NotificationSection: View {
             }
             if permission == .blocked { BlockedRemindersNote() }
             Text("How often").typeRole(.body).fontWeight(.semibold)
-            HStack(spacing: Metrics.touchSpacing) {
+            // Side by side the long answer broke mid-word at the largest sizes ("haven'/t"): stacked there.
+            let frequencyLayout = typeSize.isAccessibilitySize
+                ? AnyLayout(VStackLayout(alignment: .leading, spacing: Metrics.touchSpacing))
+                : AnyLayout(HStackLayout(spacing: Metrics.touchSpacing))
+            frequencyLayout {
                 frequencyButton(.daily, "Daily", current: profile.frequency)
                 frequencyButton(.quietDays, "Only if I haven't moved", current: profile.frequency)
             }

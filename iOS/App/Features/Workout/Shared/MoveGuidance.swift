@@ -118,7 +118,7 @@ struct WatchOnTVSheet: View {
                 ClosableHeader(title: String(localized: "Watch on your TV"),
                                subtitle: String(localized: "Works with a TV that supports AirPlay. The coach's voice plays on the TV too."),
                                onClose: { dismiss() })
-                TVStep(number: 1, symbol: "hand.draw", text: "Swipe down from the top-right corner of your phone.")
+                TVStep(number: 1, symbol: "hand.draw", text: "Open Control Center: swipe down from the top-right corner. On a phone with a Home button, swipe up from the bottom edge.")
                 TVStep(number: 2, symbol: "rectangle.on.rectangle", text: "Tap Screen Mirroring: the two overlapping rectangles.")
                 TVStep(number: 3, symbol: "tv", text: "Choose your TV, then turn your phone on its side.")
                 Button("Got it") { dismiss() }.buttonStyle(.primaryAction)

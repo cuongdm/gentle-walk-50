@@ -4,15 +4,20 @@ import SwiftUI
 /// Primary-coloured text would fall under 4.5:1 on the background, so links stay in `text`.
 struct TextLinkButtonStyle: ButtonStyle {
     var role: TypeRole = .body
-    /// Side padding of the touch area; a row of several small links uses less (paywall footer on SE).
+    /// Side padding of the touch area; a row of several small links uses less (paywall footer on SE),
+    /// a link left-aligned under text uses none so its words line up with the text above.
     var horizontalPadding: CGFloat = 8
+    /// The ink: `text` on the background and cards; `onStrongFill` on a strong fill such as the green
+    /// "Done for today" card ("label on secondary" in `Palette.textPairs`). A `.foregroundStyle` set
+    /// outside the style cannot reach the label, so the colour is passed here.
+    var color: Color = Palette.text
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .typeRole(role)
             .fontWeight(.semibold)
             .underline()
-            .foregroundStyle(Palette.text)
+            .foregroundStyle(color)
             .multilineTextAlignment(.center)
             .frame(minHeight: Metrics.minTouchTarget)
             .padding(.horizontal, horizontalPadding)

@@ -6,12 +6,14 @@ import SwiftUI
 struct AcknowledgementsView: View {
     /// The licence text, read once from the bundle when the screen appears (never in `body`).
     @State private var licence: String?
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         MeDetailScreen(title: "Acknowledgements") {
             VStack(alignment: .leading, spacing: 10) {
                 HStack(spacing: 12) {
-                    AppIconChip(icon: .acknowledgements)
+                    // At the largest sizes the chip leaves the name too little room (it broke mid-word).
+                    if !typeSize.isAccessibilitySize { AppIconChip(icon: .acknowledgements) }
                     Text(verbatim: "Phosphor Icons").typeRole(.cardTitle).accessibilityAddTraits(.isHeader)
                 }
                 Text("The icons in this app are Phosphor Icons, shared under the MIT License.").typeRole(.body)

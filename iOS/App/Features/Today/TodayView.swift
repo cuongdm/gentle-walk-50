@@ -357,15 +357,13 @@ struct TodaySessionCard: View {
             }
             if let onStillOpen {
                 Button("Today's session is still here if you'd like it", action: onStillOpen)
-                    .buttonStyle(.smallTextLink)
-                    .foregroundStyle(Palette.onStrongFill)
-                    .multilineTextAlignment(.leading)
+                    // No side padding: the words line up with "Today counts as an active day." above.
+                    .buttonStyle(TextLinkButtonStyle(role: .caption, horizontalPadding: 0, color: linkInk))
             }
             if let onPickAnother {
                 // Done for today: All sessions stays one tap away (it was only at the foot of Today).
                 Button(pickAnotherTitle, action: onPickAnother)
-                    .buttonStyle(.smallTextLink)
-                    .foregroundStyle(session.kind == .done ? Palette.onStrongFill : Palette.text)
+                    .buttonStyle(TextLinkButtonStyle(role: .caption, color: linkInk))
                     .frame(maxWidth: .infinity)
                     // The 56 pt touch area keeps its size; only the empty space around the words shrinks.
                     .padding(.vertical, -8)
@@ -376,6 +374,9 @@ struct TodaySessionCard: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(session.kind == .done ? Palette.secondary : Palette.surface, in: .rect(cornerRadius: Metrics.cardRadius))
     }
+
+    /// Links on the green "Done for today" card take the card's own white (dark ink there was about 3:1).
+    private var linkInk: Color { session.kind == .done ? Palette.onStrongFill : Palette.text }
 
     private var pickAnotherTitle: LocalizedStringResource {
         switch session.kind {

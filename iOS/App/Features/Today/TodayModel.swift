@@ -307,7 +307,7 @@ struct TodaySwapOption: Equatable, Identifiable {
         }
         if plannedDay.isRest { return TodaySession(kind: .rest, title: String(localized: "Rest day")) }
         let minutes = request.map(minutes(of:)) ?? 0
-        if trialEnded { return TodaySession(kind: .freeWalk, title: String(localized: "Free walk of the day · \(minutes) min")) }
+        if trialEnded { return TodaySession(kind: .freeWalk, title: String(localized: "Free walk of the day\u{00A0}·\u{00A0}\(minutes)\u{00A0}min")) }
         return TodaySession(kind: .planned, title: title(for: plannedDay.main, minutes: minutes), main: plannedDay.main)
     }
 
