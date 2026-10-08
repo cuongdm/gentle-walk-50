@@ -1,5 +1,14 @@
 # Việc cần làm — Good Footing
-_Cập nhật 08/10/2026 (trước đó 03/10/2026). Mỗi việc có người làm, đầu ra và trạng thái. Xong thì gạch và ghi ngày; quyết định sản phẩm ghi thêm vào decisions log của app-context.md._
+_Cập nhật 09/10/2026 (trước đó 08/10/2026). Mỗi việc có người làm, đầu ra và trạng thái. Xong thì gạch và ghi ngày; quyết định sản phẩm ghi thêm vào decisions log của app-context.md._
+
+## RevenueCat và giá (09/10/2026) — code xong trên nhánh `local/revenuecat`
+Kế hoạch: [plans/2026-10-09-revenuecat.md](plans/2026-10-09-revenuecat.md). Chủ app chốt: SDK RevenueCat làm lớp mua (đảo quyết định 08/10 "không SDK" cho riêng mua hàng); giá năm 49,99 (dùng thử 14 ngày), tháng 9,99, trả một lần 99,99.
+- [x] ~~Claude — tích hợp SDK sau seam `PurchaseBackend`, luật `CustomerRules` ở core, paywall đọc giá từ cửa hàng, trạng thái "Try again" khi không có cửa hàng, giá mới ở `.storekit`/ảnh chụp/test, chữ Privacy (app, web, checklist) + bản Việt~~ Xong 09/10.
+- [ ] **Chủ app** — làm phần A và B của [release/1.0/revenuecat-setup.md](release/1.0/revenuecat-setup.md) (App Store Connect, khoá In-App Purchase, project RevenueCat).
+- [ ] **Chủ app** — đặt public SDK key vào `iOS/Config/Local.xcconfig`: `REVENUECAT_PUBLIC_KEY = appl_…` (mẫu ở `iOS/Config/Local.xcconfig.example`). Thiếu khoá thì cổng phát hành `ReleaseContentTests.revenueCatKeyIsSet` đỏ.
+- [ ] **Chủ app** — mua thử Sandbox trên iPhone thật: năm (có 14 ngày dùng thử, thẻ Today, nhắc ngày 12), tháng, trả một lần khi đang có gói năm (cảnh báo + hướng dẫn huỷ), Restore sau khi cài lại, huỷ gói → hết hạn về miễn phí.
+- [ ] **Chủ app quyết** — nhãn App Privacy: có khai thêm Identifiers → Device ID không (SDK gửi IDFV trong header; RevenueCat nói không bắt buộc). Xem [release/1.0/checklist.md](release/1.0/checklist.md) mục 3.
+- [ ] **Chủ app** — đăng lại `site/privacy.html` (đã thêm mục RevenueCat).
 
 ## Chương trình vững chân (08/10/2026) — đang làm
 Kế hoạch: [plans/2026-10-08-steady-program.md](plans/2026-10-08-steady-program.md). Bàn giao cho phiên Mac: [handoff/2026-10-08-steady-program-local.md](handoff/2026-10-08-steady-program-local.md).
@@ -8,7 +17,7 @@ Kế hoạch: [plans/2026-10-08-steady-program.md](plans/2026-10-08-steady-progr
 - [ ] **Chủ app** — nghe 3 câu HLV mới (`a12.check.*`, đã thu EN + VI qua Vibi 08/10: `assets/voice/cache-bella-v4`, `cache-vi-bella-v4`); muốn sửa lời thì sửa [scripts/A12-steady-program.md](scripts/A12-steady-program.md) rồi thu lại.
 - [ ] **Chủ app** — xem các quyết định nhỏ đã tự chốt (handoff mục 6). Code đã ở `main`.
 
-- [ ] **Chủ app quyết (nghiên cứu độc lập 08/10, [research/2026-10-08-kha-nang-chi-tra-va-kiem-tien.md](research/2026-10-08-kha-nang-chi-tra-va-kiem-tien.md)):** nhóm 58–75 trả được $39,99/năm, nhưng chưa có bằng chứng quảng cáo hoàn vốn (mô hình cơ sở: mỗi $1 quảng cáo thu về ~$0,24–0,30). (1) mức lỗ tối đa chấp nhận năm đầu; (2) cho phép Meta SDK hoặc đối tác đo lường không (đang trái luật "không SDK"); (3) thu nhỏ bản miễn phí không; (4) giá: tháng $9,99, trọn đời $99,99, thử năm $49,99 song song; (5) kiểm chứng rẻ trước (~$5–8K: test trang đích Meta $300–500, rồi Apple Ads tới ~1.000–1.500 cài).
+- [ ] **Chủ app quyết (nghiên cứu độc lập 08/10, [research/2026-10-08-kha-nang-chi-tra-va-kiem-tien.md](research/2026-10-08-kha-nang-chi-tra-va-kiem-tien.md)):** nhóm 58–75 trả được $39,99/năm, nhưng chưa có bằng chứng quảng cáo hoàn vốn (mô hình cơ sở: mỗi $1 quảng cáo thu về ~$0,24–0,30). (1) mức lỗ tối đa chấp nhận năm đầu; (2) cho phép Meta SDK hoặc đối tác đo lường không (luật "không SDK" vẫn giữ cho quảng cáo; RevenueCat là ngoại lệ cho mua hàng từ 09/10); (3) thu nhỏ bản miễn phí không; (4) ~~giá: tháng $9,99, trọn đời $99,99, thử năm $49,99 song song~~ chốt 09/10: năm $49,99, tháng $9,99, trọn đời $99,99; (5) kiểm chứng rẻ trước (~$5–8K: test trang đích Meta $300–500, rồi Apple Ads tới ~1.000–1.500 cài).
   - Chốt 08/10: tạm GIỮ NGUYÊN không SDK (đo bằng Apple Search Ads/AdServices trước, Meta chỉ test trang đích) và GIỮ nhắc trước khi hết dùng thử. Còn mở: mức lỗ tối đa năm đầu, thu nhỏ bản miễn phí, giá.
 
 - [ ] **Chủ app xem (code 08/10, kế hoạch [plans/2026-10-08-ui-onboarding-personalization.md](plans/2026-10-08-ui-onboarding-personalization.md)):**
@@ -35,16 +44,16 @@ Kế hoạch: [plans/2026-10-08-steady-program.md](plans/2026-10-08-steady-progr
 ## Sau nghiên cứu thị trường 03/10/2026 (app-context decisions log)
 Đã chốt: khách mục tiêu 58–75 (lõi 60–72); tìm tên mới; năm đầu chạy quảng cáo; chưa mua Sensor Tower/AppMagic.
 
-**Giá: ghi lại, chốt sau.** Giá trong `iOS/App/GentleWalk.storekit` (39,99 / 7,99 / 79,99 USD) chỉ là giá test.
-- [ ] **Gói năm:** cân nhắc 49,99–59,99 USD thay 39,99 USD.
+**Giá: chốt 09/10/2026 — năm 49,99 USD (dùng thử 14 ngày), tháng 9,99, trả một lần 99,99** (`.storekit` đã theo; giá thật đặt ở App Store Connect). Các mục dưới giữ làm lịch sử.
+- [x] ~~**Gói năm:** cân nhắc 49,99–59,99 USD thay 39,99 USD.~~ Chốt 49,99.
   - Ở 39,99 USD với phễu trung bình, quảng cáo chỉ hoà vốn khi mỗi lượt tải tốn ≤ 1,6–2,5 USD, trong khi Apple Ads tốn khoảng 3,77 USD.
   - Thị trường: LazyFit có gói 69,99 USD; Essentrics thu 189,99 USD/năm từ phụ nữ khoảng 66 tuổi.
   - Bảng tính: [research/2026-10-03-quang-cao-nam-dau.md](research/2026-10-03-quang-cao-nam-dau.md) §1.
-- [ ] **Gói trả một lần:** cân nhắc 99–129 USD thay 79,99 USD, và cho nổi bật hơn.
+- [x] ~~**Gói trả một lần:** cân nhắc 99–129 USD thay 79,99 USD, và cho nổi bật hơn.~~ Chốt 99,99, giữ vị trí thứ ba.
   - Nhóm 60–75 ghét gói tự gia hạn; 49% review 1–2★ của cả ngách là về tiền.
   - Giữ thứ tự hiện tại: gói năm chọn sẵn, trả một lần đứng thứ ba.
-- [ ] **Trial 14 ngày hay 7 ngày** cho người đến từ quảng cáo: 7 ngày giúp quảng cáo học nhanh hơn.
-- [ ] Khi chốt: sửa `.storekit` và App Store Connect, nhãn "Lowest monthly cost" (S2) tự tính lại, cập nhật app-context mục Price model.
+- [x] ~~**Trial 14 ngày hay 7 ngày** cho người đến từ quảng cáo~~ Chốt 09/10: giữ 14 ngày (app đọc số ngày từ ưu đãi của App Store, đổi ở ASC không cần sửa app).
+- [x] ~~Khi chốt: sửa `.storekit` và App Store Connect, nhãn "Lowest monthly cost" (S2) tự tính lại, cập nhật app-context mục Price model.~~ `.storekit` + app-context xong 09/10 (nhãn S2 đã bỏ khỏi paywall gọn 08/10; "$4.17 a month" tính từ giá thật). App Store Connect: chủ app (revenuecat-setup.md).
 
 **Việc khác:**
 - [x] ~~**Tên mới**~~ Đổi 07/10/2026 sang **Good Footing**, khẩu hiệu "Steadier on your feet, at your own pace.": tên dưới icon, câu xin quyền, Welcome, "Good Footing Pro", `.storekit`, trang privacy, bản Việt; tên gom ở `iOS/App/Design/AppBrand.swift`. Bundle ID và mã sản phẩm giữ nguyên.

@@ -1,6 +1,6 @@
 # App context — Good Footing
 
-_Updated: 07/10/2026 (chốt tên Good Footing và khẩu hiệu) · trước đó 03/10/2026 (khách mục tiêu 58–75, định vị, tìm tên mới, quảng cáo năm đầu), 28/09/2026 · by: manh-skill-idea · Brief: docs/idea/gentle-walk-voice.md · Spec màn hình: docs/design/gentle-walk-screen-spec.html · Kế hoạch nội dung: docs/content-plan.md_
+_Updated: 09/10/2026 (RevenueCat làm lớp mua, chốt giá) · trước đó 07/10/2026 (chốt tên Good Footing và khẩu hiệu), 03/10/2026 (khách mục tiêu 58–75, định vị, tìm tên mới, quảng cáo năm đầu), 28/09/2026 · by: manh-skill-idea · Brief: docs/idea/gentle-walk-voice.md · Spec màn hình: docs/design/gentle-walk-screen-spec.html · Kế hoạch nội dung: docs/content-plan.md_
 
 ## Identity
 - App name (store, chốt 07/10/2026): **Good Footing: Gentle Workouts** (29/30) · tên dưới icon và trong app: **Good Footing** (`AppBrand.name`) · gói: **Good Footing Pro** · Subtitle: "Chair Yoga, Walks & Stretches" (29/30). Chưa qua luật sư nhãn hiệu và chưa giữ tên trên App Store Connect (docs/todo.md). Tên làm việc cũ "Gentle Walk 50+" chỉ còn trong mã nội bộ và báo cáo lịch sử. Cơ sở: docs/research/2026-10-03-ten-app-moi.md
@@ -55,11 +55,12 @@ _Updated: 07/10/2026 (chốt tên Good Footing và khẩu hiệu) · trước đ
 - Free: mỗi ngày một bài đi bộ kèm 1–2 động tác ghế luân phiên, ngày hoạt động (không có streak, không bao giờ "mất chuỗi"), 2 ngày nghỉ mặc định Thứ bảy + Chủ nhật (không đổi được; đổi ngày nghỉ là tính năng Pro), hành trình New York, chặng đầu mọi hành trình khác, This hurts, chế độ ngoài trời.
 - Steady program (08/10/2026): khung 12 tuần, màn Kế hoạch, tự kiểm tra 2 tuần và biểu đồ **miễn phí**; tăng số lần theo khả năng (thang số lần) và bậc vịn là **Pro**.
 - Paid: đủ cấp và chương trình tuần, thư viện động tác đầy đủ, các buổi giãn cơ đầy đủ (bản miễn phí có phần hạ nhiệt ngắn), 4 hành trình còn lại và tuyến mới hằng tháng, lịch sử chi tiết.
-- Trial: 14 ngày trên gói năm (chọn sẵn), nhắc ngày 12 bằng thông báo **và** thẻ trên Today từ ngày 10 tới khi hết trial (không cần quyền thông báo); kiểm tra điều kiện bằng StoreKit 2. Trả một lần ở vị trí thứ ba, không chọn sẵn; người đang có gói tự gia hạn mua trả một lần được cảnh báo trước và dẫn tới hướng dẫn huỷ gói ngay sau khi mua.
+- Trial: 14 ngày trên gói năm (chọn sẵn), nhắc ngày 12 bằng thông báo **và** thẻ trên Today từ ngày 10 tới khi hết trial (không cần quyền thông báo); kiểm tra điều kiện qua RevenueCat (StoreKit 2 bên dưới), số ngày dùng thử lấy từ ưu đãi của App Store, không viết cứng. Trả một lần ở vị trí thứ ba, không chọn sẵn; người đang có gói tự gia hạn mua trả một lần được cảnh báo trước và dẫn tới hướng dẫn huỷ gói ngay sau khi mua.
 - Mời nâng cấp: onboarding · hoàn thành New York · bấm nội dung khoá. Không hiện mỗi lần mở app.
 - Paywall gọn (08/10/2026): tiêu đề nói lại mục tiêu của cô ấy; chỉ hiện gói năm kèm dòng thời gian dùng thử; "See other plans" mở gói tháng và trả một lần ngay tại chỗ. Bộ ba (Restore · Terms · Privacy), giá bị trừ to nhất và điều khoản gia hạn luôn trong màn.
 - Store fee assumption: 15%.
-- Giá (03/10/2026): giá trong `GentleWalk.storekit` (năm 39,99 · tháng 7,99 · trả một lần 79,99 USD) chỉ là giá test. **Giá gói năm và gói trả một lần chờ chốt** (docs/todo.md, mục Giá). Lý do cần xem lại: ở 39,99 USD/năm, quảng cáo khó hoà vốn (docs/research/2026-10-03-quang-cao-nam-dau.md).
+- Giá (chốt 09/10/2026, nghiên cứu docs/research/2026-10-08-kha-nang-chi-tra-va-kiem-tien.md §7.1): **năm 49,99 USD** (dùng thử **14 ngày**), **tháng 9,99**, **trả một lần 99,99**. Giá đặt ở App Store Connect; app hiện giá cửa hàng trả về (`localizedPriceString`), "$4.17 a month" tính từ giá năm thật; `GentleWalk.storekit` theo cùng giá. Thử 39,99/49,99 sau này làm bằng offering của RevenueCat, không cần sửa app.
+- Lớp mua (09/10/2026): **SDK RevenueCat** (tài khoản RevenueCat riêng), entitlement `pro`, offering `default` (`$rc_annual`, `$rc_monthly`, `$rc_lifetime`), người dùng ẩn danh, không tài khoản. Khoá công khai đặt ở `iOS/Config/Local.xcconfig` (`REVENUECAT_PUBLIC_KEY`); thiếu khoá thì app chạy bản miễn phí. RevenueCat nhận lịch sử mua (mã ngẫu nhiên, không gì về sức khoẻ) → nhãn App Privacy khai Purchase History, không còn "Data Not Collected". Các bước của chủ app: docs/release/1.0/revenuecat-setup.md.
 
 ## Tone & copy rules
 - Voice: ấm, chậm, tôn trọng. Không hype, không so với người khác, chỉ so với chính mình.
@@ -203,3 +204,4 @@ _Updated: 07/10/2026 (chốt tên Good Footing và khẩu hiệu) · trước đ
   - 0 Critical. 2 Important: số ngày dùng thử viết cứng; "Not now" ở màn trước quyền S16, cần chủ app chốt lại D5.
   - 3 Minor.
   - 54 câu tiếng Việt sửa cho tự nhiên; 2 câu giọng vi cần thu lại (`a12.check.setup` sai nghĩa, `a8.camino.4`). — by cloud review
+- 09/10/2026 — **Lớp mua: SDK RevenueCat** (chủ app chốt), **đảo quyết định 08/10** giữ "không SDK, StoreKit 2 trực tiếp" — riêng cho mua hàng; quảng cáo/đo lường vẫn không SDK (Meta, MMP chưa mở). Quyền Pro = entitlement `pro` của RevenueCat; người dùng ẩn danh; chỉ một file app gọi SDK (`RevenueCatBackend`), luật ở `GentleWalkCore` (`CustomerRules`). **Giá chốt: năm 49,99 USD, giữ dùng thử 14 ngày, tháng 9,99, trả một lần 99,99** (nghiên cứu 08/10 §7.1 đề xuất ra mắt 39,99 và thử 49,99 song song; chủ app chọn 49,99). Nhãn App Privacy đổi từ "Data Not Collected" sang khai Purchase History (không gắn danh tính, không theo dõi); chữ Privacy trong app và trang web nói rõ RevenueCat. Kế hoạch: docs/plans/2026-10-09-revenuecat.md. — nhánh `local/revenuecat`
