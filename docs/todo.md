@@ -10,6 +10,19 @@ Kế hoạch: [plans/2026-10-08-steady-program.md](plans/2026-10-08-steady-progr
 
 - [ ] **Chủ app quyết (nghiên cứu độc lập 08/10, [research/2026-10-08-kha-nang-chi-tra-va-kiem-tien.md](research/2026-10-08-kha-nang-chi-tra-va-kiem-tien.md)):** nhóm 58–75 trả được $39,99/năm, nhưng chưa có bằng chứng quảng cáo hoàn vốn (mô hình cơ sở: mỗi $1 quảng cáo thu về ~$0,24–0,30). (1) mức lỗ tối đa chấp nhận năm đầu; (2) cho phép Meta SDK hoặc đối tác đo lường không (đang trái luật "không SDK"); (3) thu nhỏ bản miễn phí không; (4) giá: tháng $9,99, trọn đời $99,99, thử năm $49,99 song song; (5) kiểm chứng rẻ trước (~$5–8K: test trang đích Meta $300–500, rồi Apple Ads tới ~1.000–1.500 cài).
 
+- [ ] **Chủ app xem (code 08/10, kế hoạch [plans/2026-10-08-ui-onboarding-personalization.md](plans/2026-10-08-ui-onboarding-personalization.md)):**
+  - Today trên iPhone SE: nút Start nằm ở ~60% chiều cao màn (mục tiêu 55%); có bỏ/dời dòng "We'll set today's session to match." không.
+  - Chữ rút gọn để vừa iPhone SE ở onboarding và paywall (vd. "What matters most?", "Get up from chairs easily", "Floor is hard", "Standing tires me", "I get dizzy", "Unsteady on my feet"; 24 giờ huỷ dời xuống dưới các gói).
+  - Paywall khi mở "See other plans" bằng tiếng Việt trên SE: gói thứ ba nằm dưới thanh nút, phải cuộn.
+  - Màn chơi ghế trên SE: phần giữa cuộn, chip "Two hands on the chair" bị che một nửa.
+  - "Your results" dùng 4 tuần theo thiết kế (kế hoạch ghi 8 tuần).
+  - Bài bị tạm gác sau 2 lần báo đau: thẻ trên Today hiện 3 ngày.
+  - Check-in tuần chọn "Easier than I expected" → buổi đi bộ dài thêm ~2 phút.
+  - Duyệt câu mới: "After last time, Great is picked…", "A gentle start for your first sessions…".
+  - Nghe lại 6 câu HLV tiếng Việt của hành trình Pro bị máy nghe-chữ gắn cờ vì tên địa danh tiếng Anh: a8.smoky.2, a8.smoky.6, a8.camino.3, a8.camino.5, a8.camino.6, a8.ne.6.
+
+- [x] ~~Chủ app chốt lại D5~~ Chốt 08/10: bỏ "Not now" ở màn trước quyền Health và nhắc nhở (một nút mở hộp thoại Apple, "Don't Allow" vẫn đi tiếp), ẩn Close ở bước xin vị trí. Làm trong task 3.8.
+
 ## Chủ app quyết định (đề xuất mặc định đã ghi, chưa chốt)
 | # | Việc | Đề xuất mặc định | Trạng thái |
 |---|---|---|---|
