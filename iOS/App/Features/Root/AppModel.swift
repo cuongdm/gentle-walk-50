@@ -192,7 +192,7 @@ import GentleWalkCore
         let pains = painRecorder.snapshots(since: now().addingTimeInterval(-14 * 86_400))
         var input = TodayInput(
             now: now(), calendar: calendar, name: profile.name, restDays: profile.restDays, limits: profile.limits,
-            level: levelState.level, entitlement: entitlement, trialEnds: trialEnds, workouts: records.map {
+            level: levelState.level, entitlement: entitlement, trialEnds: trialEnds, trialDays: store.trialDays, workouts: records.map {
                 TodayInput.Workout(date: $0.date, feeling: $0.feeling.flatMap(Feeling.init), breakCount: $0.breakCount,
                                    level: WalkLevel(rawValue: $0.level) ?? .seated, kind: $0.kind)
             }, pains: pains, healthConnected: health.isConnected || defaults.bool(forKey: "healthCardDismissed")

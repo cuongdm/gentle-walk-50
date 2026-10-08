@@ -157,6 +157,24 @@ import GentleWalkCore
         #expect(model(input(now: at(7, 10), entitlement: .trial(ends: ends), healthConnected: false, trialEnds: ends)).specialCard == .connectHealth)
     }
 
+    /// Review I-1 leftover (08/10/2026): the banner counts its day 10 from the trial length StoreKit
+    /// offers, as the paywall does, not from a typed 14 days.
+    @Test func trialEndingCardUsesStoreKitTrialLength() {
+        let ends = at(11, 10, hour: 19)
+        func card(now: Date, trialDays: Int?) -> Date? {
+            var value = input(now: now, entitlement: .trial(ends: ends), trialEnds: ends)
+            value.trialDays = trialDays
+            return model(value).trialEndingDate
+        }
+        // A 3-week trial started Sep 20: day 10 is Sep 30, a week before a 2-week trial's day 10.
+        #expect(card(now: at(30, 9), trialDays: 21) == ends)
+        #expect(card(now: at(29, 9), trialDays: 21) == nil)
+        #expect(card(now: at(30, 9), trialDays: 14) == nil)
+        // Products not loaded yet (or the offer gone): the 2-week trial the store sells.
+        #expect(card(now: at(7, 10), trialDays: nil) == ends)
+        #expect(card(now: at(6, 10), trialDays: nil) == nil)
+    }
+
     @Test func noNameMeansNoNameInCopy() {
         let model = model(input(name: nil))
         #expect(model.greeting == Greetings.pick(now: at(28), calendar: calendar).text)
