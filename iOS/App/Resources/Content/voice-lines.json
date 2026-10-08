@@ -37510,6 +37510,1176 @@
           "end": 2.98
         }
       ]
+    },
+    {
+      "id": "a8.smoky.2",
+      "text": "Laurel Falls. Listen for the water, and take a breath.",
+      "file": "a8.smoky.2.m4a",
+      "duration": 4.008,
+      "words": [
+        {
+          "word": "Laurel",
+          "start": 0.12,
+          "end": 0.54
+        },
+        {
+          "word": "Falls.",
+          "start": 0.54,
+          "end": 1.24
+        },
+        {
+          "word": "Listen",
+          "start": 1.24,
+          "end": 1.88
+        },
+        {
+          "word": "for",
+          "start": 1.88,
+          "end": 2.08
+        },
+        {
+          "word": "the",
+          "start": 2.08,
+          "end": 2.18
+        },
+        {
+          "word": "water,",
+          "start": 2.18,
+          "end": 2.54
+        },
+        {
+          "word": "and",
+          "start": 2.54,
+          "end": 3.06
+        },
+        {
+          "word": "take",
+          "start": 3.06,
+          "end": 3.3
+        },
+        {
+          "word": "a",
+          "start": 3.3,
+          "end": 3.44
+        },
+        {
+          "word": "breath.",
+          "start": 3.44,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a8.smoky.3",
+      "text": "Clingmans Dome, high up in the Smokies. Look how far you've come.",
+      "file": "a8.smoky.3.m4a",
+      "duration": 4.809,
+      "words": [
+        {
+          "word": "Clingmans",
+          "start": 0.1,
+          "end": 0.78
+        },
+        {
+          "word": "Dome,",
+          "start": 0.78,
+          "end": 1.48
+        },
+        {
+          "word": "high",
+          "start": 1.48,
+          "end": 1.72
+        },
+        {
+          "word": "up",
+          "start": 1.72,
+          "end": 1.9
+        },
+        {
+          "word": "in",
+          "start": 1.9,
+          "end": 2.02
+        },
+        {
+          "word": "the",
+          "start": 2.02,
+          "end": 2.12
+        },
+        {
+          "word": "Smokies.",
+          "start": 2.12,
+          "end": 2.98
+        },
+        {
+          "word": "Look",
+          "start": 2.98,
+          "end": 3.56
+        },
+        {
+          "word": "how",
+          "start": 3.56,
+          "end": 3.72
+        },
+        {
+          "word": "far",
+          "start": 3.72,
+          "end": 3.98
+        },
+        {
+          "word": "you've",
+          "start": 3.98,
+          "end": 3.99
+        },
+        {
+          "word": "come.",
+          "start": 3.98,
+          "end": 3.99
+        }
+      ]
+    },
+    {
+      "id": "a8.smoky.4",
+      "text": "Mingus Mill, an old mill beside a mountain stream.",
+      "file": "a8.smoky.4.m4a",
+      "duration": 3.846,
+      "words": [
+        {
+          "word": "Mingus",
+          "start": 0.12,
+          "end": 0.64
+        },
+        {
+          "word": "Mill,",
+          "start": 0.64,
+          "end": 1.32
+        },
+        {
+          "word": "an",
+          "start": 1.32,
+          "end": 1.66
+        },
+        {
+          "word": "old",
+          "start": 1.66,
+          "end": 2.0
+        },
+        {
+          "word": "mill",
+          "start": 2.0,
+          "end": 2.3
+        },
+        {
+          "word": "beside",
+          "start": 2.3,
+          "end": 2.68
+        },
+        {
+          "word": "a",
+          "start": 2.68,
+          "end": 2.88
+        },
+        {
+          "word": "mountain",
+          "start": 2.88,
+          "end": 2.98
+        },
+        {
+          "word": "stream.",
+          "start": 2.98,
+          "end": 2.99
+        }
+      ]
+    },
+    {
+      "id": "a8.smoky.5",
+      "text": "Mabry Mill, on the Blue Ridge Parkway. A lovely place to rest.",
+      "file": "a8.smoky.5.m4a",
+      "duration": 5.151,
+      "words": [
+        {
+          "word": "Mabry",
+          "start": 0.12,
+          "end": 0.62
+        },
+        {
+          "word": "Mill,",
+          "start": 0.62,
+          "end": 1.0
+        },
+        {
+          "word": "on",
+          "start": 1.0,
+          "end": 1.56
+        },
+        {
+          "word": "the",
+          "start": 1.56,
+          "end": 1.66
+        },
+        {
+          "word": "Blue",
+          "start": 1.66,
+          "end": 1.88
+        },
+        {
+          "word": "Ridge",
+          "start": 1.88,
+          "end": 2.16
+        },
+        {
+          "word": "Parkway.",
+          "start": 2.16,
+          "end": 3.08
+        },
+        {
+          "word": "A",
+          "start": 3.08,
+          "end": 3.62
+        },
+        {
+          "word": "lovely",
+          "start": 3.62,
+          "end": 4.02
+        },
+        {
+          "word": "place",
+          "start": 4.02,
+          "end": 4.38
+        },
+        {
+          "word": "to",
+          "start": 4.38,
+          "end": 4.56
+        },
+        {
+          "word": "rest.",
+          "start": 4.56,
+          "end": 4.98
+        }
+      ]
+    },
+    {
+      "id": "a8.smoky.6",
+      "text": "The Linn Cove Viaduct. You've walked the whole way. Well done.",
+      "file": "a8.smoky.6.m4a",
+      "duration": 5.156,
+      "words": [
+        {
+          "word": "The",
+          "start": 0.04,
+          "end": 0.26
+        },
+        {
+          "word": "Linn",
+          "start": 0.26,
+          "end": 0.5
+        },
+        {
+          "word": "Cove",
+          "start": 0.5,
+          "end": 0.74
+        },
+        {
+          "word": "Viaduct.",
+          "start": 0.74,
+          "end": 1.78
+        },
+        {
+          "word": "You've",
+          "start": 1.78,
+          "end": 2.44
+        },
+        {
+          "word": "walked",
+          "start": 2.44,
+          "end": 2.74
+        },
+        {
+          "word": "the",
+          "start": 2.74,
+          "end": 2.92
+        },
+        {
+          "word": "whole",
+          "start": 2.92,
+          "end": 3.26
+        },
+        {
+          "word": "way.",
+          "start": 3.26,
+          "end": 4.02
+        },
+        {
+          "word": "Well",
+          "start": 4.02,
+          "end": 4.56
+        },
+        {
+          "word": "done.",
+          "start": 4.56,
+          "end": 4.98
+        }
+      ]
+    },
+    {
+      "id": "a8.camino.2",
+      "text": "Portomarín, a town above the river. Keep your easy pace.",
+      "file": "a8.camino.2.m4a",
+      "duration": 4.726,
+      "words": [
+        {
+          "word": "Portomarín,",
+          "start": 0.217,
+          "end": 1.1
+        },
+        {
+          "word": "a",
+          "start": 1.1,
+          "end": 1.42
+        },
+        {
+          "word": "town",
+          "start": 1.42,
+          "end": 1.82
+        },
+        {
+          "word": "above",
+          "start": 1.82,
+          "end": 2.1
+        },
+        {
+          "word": "the",
+          "start": 2.1,
+          "end": 2.26
+        },
+        {
+          "word": "river.",
+          "start": 2.26,
+          "end": 2.9
+        },
+        {
+          "word": "Keep",
+          "start": 2.9,
+          "end": 3.5
+        },
+        {
+          "word": "your",
+          "start": 3.5,
+          "end": 3.7
+        },
+        {
+          "word": "easy",
+          "start": 3.7,
+          "end": 3.98
+        },
+        {
+          "word": "pace.",
+          "start": 3.98,
+          "end": 3.99
+        }
+      ]
+    },
+    {
+      "id": "a8.camino.3",
+      "text": "Palas de Rei, a welcome stop for walkers on the Camino.",
+      "file": "a8.camino.3.m4a",
+      "duration": 3.755,
+      "words": [
+        {
+          "word": "Palas",
+          "start": 0.151,
+          "end": 0.58
+        },
+        {
+          "word": "de",
+          "start": 0.58,
+          "end": 0.7
+        },
+        {
+          "word": "Rei,",
+          "start": 0.7,
+          "end": 1.4
+        },
+        {
+          "word": "a",
+          "start": 1.4,
+          "end": 1.6
+        },
+        {
+          "word": "welcome",
+          "start": 1.6,
+          "end": 1.92
+        },
+        {
+          "word": "stop",
+          "start": 1.92,
+          "end": 2.26
+        },
+        {
+          "word": "for",
+          "start": 2.26,
+          "end": 2.46
+        },
+        {
+          "word": "walkers",
+          "start": 2.46,
+          "end": 2.9
+        },
+        {
+          "word": "on",
+          "start": 2.9,
+          "end": 2.98
+        },
+        {
+          "word": "the",
+          "start": 2.98,
+          "end": 2.99
+        },
+        {
+          "word": "Camino.",
+          "start": 2.98,
+          "end": 2.99
+        }
+      ]
+    },
+    {
+      "id": "a8.camino.4",
+      "text": "Melide. More of the Camino is behind you than ahead.",
+      "file": "a8.camino.4.m4a",
+      "duration": 3.757,
+      "words": [
+        {
+          "word": "Melide.",
+          "start": 0.138,
+          "end": 1.02
+        },
+        {
+          "word": "More",
+          "start": 1.02,
+          "end": 1.64
+        },
+        {
+          "word": "of",
+          "start": 1.64,
+          "end": 1.76
+        },
+        {
+          "word": "the",
+          "start": 1.76,
+          "end": 1.86
+        },
+        {
+          "word": "Camino",
+          "start": 1.86,
+          "end": 2.28
+        },
+        {
+          "word": "is",
+          "start": 2.28,
+          "end": 2.48
+        },
+        {
+          "word": "behind",
+          "start": 2.48,
+          "end": 2.82
+        },
+        {
+          "word": "you",
+          "start": 2.82,
+          "end": 2.98
+        },
+        {
+          "word": "than",
+          "start": 2.98,
+          "end": 2.99
+        },
+        {
+          "word": "ahead.",
+          "start": 2.98,
+          "end": 2.99
+        }
+      ]
+    },
+    {
+      "id": "a8.camino.5",
+      "text": "O Pedrouzo. The last stop before Santiago.",
+      "file": "a8.camino.5.m4a",
+      "duration": 3.507,
+      "words": [
+        {
+          "word": "O",
+          "start": 0.08,
+          "end": 0.24
+        },
+        {
+          "word": "Pedrouzo.",
+          "start": 0.24,
+          "end": 1.24
+        },
+        {
+          "word": "The",
+          "start": 1.24,
+          "end": 1.7
+        },
+        {
+          "word": "last",
+          "start": 1.7,
+          "end": 2.0
+        },
+        {
+          "word": "stop",
+          "start": 2.0,
+          "end": 2.32
+        },
+        {
+          "word": "before",
+          "start": 2.32,
+          "end": 2.62
+        },
+        {
+          "word": "Santiago.",
+          "start": 2.62,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a8.camino.6",
+      "text": "Obradoiro Square, in Santiago. You walked the Camino. Well done.",
+      "file": "a8.camino.6.m4a",
+      "duration": 5.774,
+      "words": [
+        {
+          "word": "Obradoiro",
+          "start": 0.139,
+          "end": 0.76
+        },
+        {
+          "word": "Square,",
+          "start": 0.76,
+          "end": 1.5
+        },
+        {
+          "word": "in",
+          "start": 1.5,
+          "end": 1.84
+        },
+        {
+          "word": "Santiago.",
+          "start": 1.84,
+          "end": 2.9
+        },
+        {
+          "word": "You",
+          "start": 2.9,
+          "end": 3.5
+        },
+        {
+          "word": "walked",
+          "start": 3.5,
+          "end": 3.78
+        },
+        {
+          "word": "the",
+          "start": 3.78,
+          "end": 3.92
+        },
+        {
+          "word": "Camino.",
+          "start": 3.92,
+          "end": 4.72
+        },
+        {
+          "word": "Well",
+          "start": 4.72,
+          "end": 4.98
+        },
+        {
+          "word": "done.",
+          "start": 4.98,
+          "end": 4.99
+        }
+      ]
+    },
+    {
+      "id": "a8.ne.2",
+      "text": "Nubble Light, on its little island just off the shore.",
+      "file": "a8.ne.2.m4a",
+      "duration": 3.765,
+      "words": [
+        {
+          "word": "Nubble",
+          "start": 0.12,
+          "end": 0.52
+        },
+        {
+          "word": "Light,",
+          "start": 0.52,
+          "end": 1.06
+        },
+        {
+          "word": "on",
+          "start": 1.06,
+          "end": 1.4
+        },
+        {
+          "word": "its",
+          "start": 1.4,
+          "end": 1.54
+        },
+        {
+          "word": "little",
+          "start": 1.54,
+          "end": 1.8
+        },
+        {
+          "word": "island",
+          "start": 1.8,
+          "end": 2.24
+        },
+        {
+          "word": "just",
+          "start": 2.24,
+          "end": 2.72
+        },
+        {
+          "word": "off",
+          "start": 2.72,
+          "end": 2.98
+        },
+        {
+          "word": "the",
+          "start": 2.98,
+          "end": 2.99
+        },
+        {
+          "word": "shore.",
+          "start": 2.98,
+          "end": 2.99
+        }
+      ]
+    },
+    {
+      "id": "a8.ne.3",
+      "text": "Portsmouth Harbor. Boats, water, and your steady steps.",
+      "file": "a8.ne.3.m4a",
+      "duration": 4.816,
+      "words": [
+        {
+          "word": "Portsmouth",
+          "start": 0.08,
+          "end": 0.6
+        },
+        {
+          "word": "Harbor.",
+          "start": 0.6,
+          "end": 1.38
+        },
+        {
+          "word": "Boats,",
+          "start": 1.38,
+          "end": 2.44
+        },
+        {
+          "word": "water,",
+          "start": 2.44,
+          "end": 3.3
+        },
+        {
+          "word": "and",
+          "start": 3.3,
+          "end": 3.58
+        },
+        {
+          "word": "your",
+          "start": 3.58,
+          "end": 3.76
+        },
+        {
+          "word": "steady",
+          "start": 3.76,
+          "end": 3.98
+        },
+        {
+          "word": "steps.",
+          "start": 3.98,
+          "end": 3.99
+        }
+      ]
+    },
+    {
+      "id": "a8.ne.4",
+      "text": "Rockport, a harbor town by the sea. Keep going at your pace.",
+      "file": "a8.ne.4.m4a",
+      "duration": 4.186,
+      "words": [
+        {
+          "word": "Rockport,",
+          "start": 0.16,
+          "end": 0.96
+        },
+        {
+          "word": "a",
+          "start": 0.96,
+          "end": 1.18
+        },
+        {
+          "word": "harbor",
+          "start": 1.18,
+          "end": 1.46
+        },
+        {
+          "word": "town",
+          "start": 1.46,
+          "end": 1.76
+        },
+        {
+          "word": "by",
+          "start": 1.76,
+          "end": 1.92
+        },
+        {
+          "word": "the",
+          "start": 1.92,
+          "end": 2.08
+        },
+        {
+          "word": "sea.",
+          "start": 2.08,
+          "end": 2.64
+        },
+        {
+          "word": "Keep",
+          "start": 2.64,
+          "end": 3.02
+        },
+        {
+          "word": "going",
+          "start": 3.02,
+          "end": 3.32
+        },
+        {
+          "word": "at",
+          "start": 3.32,
+          "end": 3.48
+        },
+        {
+          "word": "your",
+          "start": 3.48,
+          "end": 3.58
+        },
+        {
+          "word": "pace.",
+          "start": 3.58,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a8.ne.5",
+      "text": "You've reached Plymouth, on the Massachusetts shore.",
+      "file": "a8.ne.5.m4a",
+      "duration": 3.076,
+      "words": [
+        {
+          "word": "You've",
+          "start": 0.02,
+          "end": 0.4
+        },
+        {
+          "word": "reached",
+          "start": 0.4,
+          "end": 0.64
+        },
+        {
+          "word": "Plymouth,",
+          "start": 0.64,
+          "end": 1.22
+        },
+        {
+          "word": "on",
+          "start": 1.22,
+          "end": 1.7
+        },
+        {
+          "word": "the",
+          "start": 1.7,
+          "end": 1.8
+        },
+        {
+          "word": "Massachusetts",
+          "start": 1.8,
+          "end": 2.3
+        },
+        {
+          "word": "shore.",
+          "start": 2.3,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a8.ne.6",
+      "text": "Nauset Light, on Cape Cod. You walked the whole route. Well done.",
+      "file": "a8.ne.6.m4a",
+      "duration": 5.692,
+      "words": [
+        {
+          "word": "Nauset",
+          "start": 0.153,
+          "end": 0.6
+        },
+        {
+          "word": "Light,",
+          "start": 0.6,
+          "end": 0.9
+        },
+        {
+          "word": "on",
+          "start": 0.9,
+          "end": 1.34
+        },
+        {
+          "word": "Cape",
+          "start": 1.34,
+          "end": 1.62
+        },
+        {
+          "word": "Cod.",
+          "start": 1.62,
+          "end": 2.38
+        },
+        {
+          "word": "You",
+          "start": 2.38,
+          "end": 2.92
+        },
+        {
+          "word": "walked",
+          "start": 2.92,
+          "end": 3.24
+        },
+        {
+          "word": "the",
+          "start": 3.24,
+          "end": 3.4
+        },
+        {
+          "word": "whole",
+          "start": 3.4,
+          "end": 3.78
+        },
+        {
+          "word": "route.",
+          "start": 3.78,
+          "end": 4.6
+        },
+        {
+          "word": "Well",
+          "start": 4.6,
+          "end": 4.98
+        },
+        {
+          "word": "done.",
+          "start": 4.98,
+          "end": 4.99
+        }
+      ]
+    },
+    {
+      "id": "a8.pch.2",
+      "text": "Point Lobos. Rocky coves and the sound of the ocean.",
+      "file": "a8.pch.2.m4a",
+      "duration": 3.93,
+      "words": [
+        {
+          "word": "Point",
+          "start": 0.1,
+          "end": 0.4
+        },
+        {
+          "word": "Lobos.",
+          "start": 0.4,
+          "end": 1.22
+        },
+        {
+          "word": "Rocky",
+          "start": 1.22,
+          "end": 1.78
+        },
+        {
+          "word": "coves",
+          "start": 1.78,
+          "end": 2.32
+        },
+        {
+          "word": "and",
+          "start": 2.32,
+          "end": 2.52
+        },
+        {
+          "word": "the",
+          "start": 2.52,
+          "end": 2.64
+        },
+        {
+          "word": "sound",
+          "start": 2.64,
+          "end": 2.98
+        },
+        {
+          "word": "of",
+          "start": 2.98,
+          "end": 2.99
+        },
+        {
+          "word": "the",
+          "start": 2.98,
+          "end": 2.99
+        },
+        {
+          "word": "ocean.",
+          "start": 2.98,
+          "end": 2.99
+        }
+      ]
+    },
+    {
+      "id": "a8.pch.3",
+      "text": "Bixby Bridge, high above a canyon by the sea.",
+      "file": "a8.pch.3.m4a",
+      "duration": 3.506,
+      "words": [
+        {
+          "word": "Bixby",
+          "start": 0.08,
+          "end": 0.56
+        },
+        {
+          "word": "Bridge,",
+          "start": 0.56,
+          "end": 1.26
+        },
+        {
+          "word": "high",
+          "start": 1.26,
+          "end": 1.74
+        },
+        {
+          "word": "above",
+          "start": 1.74,
+          "end": 1.98
+        },
+        {
+          "word": "a",
+          "start": 1.98,
+          "end": 2.18
+        },
+        {
+          "word": "canyon",
+          "start": 2.18,
+          "end": 2.54
+        },
+        {
+          "word": "by",
+          "start": 2.54,
+          "end": 2.76
+        },
+        {
+          "word": "the",
+          "start": 2.76,
+          "end": 2.9
+        },
+        {
+          "word": "sea.",
+          "start": 2.9,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a8.pch.4",
+      "text": "Pfeiffer Beach. Take a moment, then carry on at your pace.",
+      "file": "a8.pch.4.m4a",
+      "duration": 4.385,
+      "words": [
+        {
+          "word": "Pfeiffer",
+          "start": 0.1,
+          "end": 0.52
+        },
+        {
+          "word": "Beach.",
+          "start": 0.52,
+          "end": 1.16
+        },
+        {
+          "word": "Take",
+          "start": 1.16,
+          "end": 1.84
+        },
+        {
+          "word": "a",
+          "start": 1.84,
+          "end": 1.96
+        },
+        {
+          "word": "moment,",
+          "start": 1.96,
+          "end": 2.58
+        },
+        {
+          "word": "then",
+          "start": 2.58,
+          "end": 2.9
+        },
+        {
+          "word": "carry",
+          "start": 2.9,
+          "end": 3.24
+        },
+        {
+          "word": "on",
+          "start": 3.24,
+          "end": 3.5
+        },
+        {
+          "word": "at",
+          "start": 3.5,
+          "end": 3.6
+        },
+        {
+          "word": "your",
+          "start": 3.6,
+          "end": 3.7
+        },
+        {
+          "word": "pace.",
+          "start": 3.7,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a8.pch.5",
+      "text": "McWay Falls, where a waterfall meets the beach.",
+      "file": "a8.pch.5.m4a",
+      "duration": 3.074,
+      "words": [
+        {
+          "word": "McWay",
+          "start": 0.154,
+          "end": 0.52
+        },
+        {
+          "word": "Falls,",
+          "start": 0.52,
+          "end": 1.14
+        },
+        {
+          "word": "where",
+          "start": 1.14,
+          "end": 1.54
+        },
+        {
+          "word": "a",
+          "start": 1.54,
+          "end": 1.68
+        },
+        {
+          "word": "waterfall",
+          "start": 1.68,
+          "end": 2.08
+        },
+        {
+          "word": "meets",
+          "start": 2.08,
+          "end": 2.36
+        },
+        {
+          "word": "the",
+          "start": 2.36,
+          "end": 2.5
+        },
+        {
+          "word": "beach.",
+          "start": 2.5,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a8.pch.6",
+      "text": "Hearst Castle, on the hill above the coast. You made it. Well done.",
+      "file": "a8.pch.6.m4a",
+      "duration": 5.149,
+      "words": [
+        {
+          "word": "Hearst",
+          "start": 0.1,
+          "end": 0.46
+        },
+        {
+          "word": "Castle,",
+          "start": 0.46,
+          "end": 1.12
+        },
+        {
+          "word": "on",
+          "start": 1.12,
+          "end": 1.4
+        },
+        {
+          "word": "the",
+          "start": 1.4,
+          "end": 1.5
+        },
+        {
+          "word": "hill",
+          "start": 1.5,
+          "end": 1.74
+        },
+        {
+          "word": "above",
+          "start": 1.74,
+          "end": 2.0
+        },
+        {
+          "word": "the",
+          "start": 2.0,
+          "end": 2.16
+        },
+        {
+          "word": "coast.",
+          "start": 2.16,
+          "end": 2.86
+        },
+        {
+          "word": "You",
+          "start": 2.86,
+          "end": 3.26
+        },
+        {
+          "word": "made",
+          "start": 3.26,
+          "end": 3.54
+        },
+        {
+          "word": "it.",
+          "start": 3.54,
+          "end": 4.12
+        },
+        {
+          "word": "Well",
+          "start": 4.12,
+          "end": 4.58
+        },
+        {
+          "word": "done.",
+          "start": 4.58,
+          "end": 4.98
+        }
+      ]
     }
   ]
 }

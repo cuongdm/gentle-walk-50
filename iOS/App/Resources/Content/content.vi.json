@@ -38968,6 +38968,1266 @@
      "end": 2.98
     }
    ]
+  },
+  "a8.smoky.2": {
+   "text": "Laurel Falls. Lắng nghe tiếng nước, và hít thở nhé.",
+   "file": "a8.smoky.2.vi.m4a",
+   "duration": 4.187,
+   "words": [
+    {
+     "word": "Laurel",
+     "start": 0.157,
+     "end": 0.708
+    },
+    {
+     "word": "Falls.",
+     "start": 0.708,
+     "end": 1.26
+    },
+    {
+     "word": "Lắng",
+     "start": 1.26,
+     "end": 2.0
+    },
+    {
+     "word": "nghe",
+     "start": 2.0,
+     "end": 2.2
+    },
+    {
+     "word": "tiếng",
+     "start": 2.2,
+     "end": 2.44
+    },
+    {
+     "word": "nước,",
+     "start": 2.44,
+     "end": 2.7
+    },
+    {
+     "word": "và",
+     "start": 2.7,
+     "end": 3.38
+    },
+    {
+     "word": "hít",
+     "start": 3.38,
+     "end": 3.58
+    },
+    {
+     "word": "thở",
+     "start": 3.58,
+     "end": 3.84
+    },
+    {
+     "word": "nhé.",
+     "start": 3.84,
+     "end": 3.98
+    }
+   ]
+  },
+  "a8.smoky.3": {
+   "text": "Clingmans Dome, trên cao giữa dãy Smoky. Nhìn xem bạn đã đi xa thế nào.",
+   "file": "a8.smoky.3.vi.m4a",
+   "duration": 5.861,
+   "words": [
+    {
+     "word": "Clingmans",
+     "start": 0.1,
+     "end": 0.84
+    },
+    {
+     "word": "Dome,",
+     "start": 0.84,
+     "end": 1.14
+    },
+    {
+     "word": "trên",
+     "start": 1.14,
+     "end": 1.62
+    },
+    {
+     "word": "cao",
+     "start": 1.62,
+     "end": 1.98
+    },
+    {
+     "word": "giữa",
+     "start": 1.98,
+     "end": 2.18
+    },
+    {
+     "word": "dãy",
+     "start": 2.18,
+     "end": 2.34
+    },
+    {
+     "word": "Smoky.",
+     "start": 2.34,
+     "end": 3.3
+    },
+    {
+     "word": "Nhìn",
+     "start": 3.3,
+     "end": 4.0
+    },
+    {
+     "word": "xem",
+     "start": 4.0,
+     "end": 4.22
+    },
+    {
+     "word": "bạn",
+     "start": 4.22,
+     "end": 4.48
+    },
+    {
+     "word": "đã",
+     "start": 4.48,
+     "end": 4.64
+    },
+    {
+     "word": "đi",
+     "start": 4.64,
+     "end": 4.8
+    },
+    {
+     "word": "xa",
+     "start": 4.8,
+     "end": 4.98
+    },
+    {
+     "word": "thế",
+     "start": 4.98,
+     "end": 4.99
+    },
+    {
+     "word": "nào.",
+     "start": 4.98,
+     "end": 4.99
+    }
+   ]
+  },
+  "a8.smoky.4": {
+   "text": "Mingus Mill, một cối xay cũ bên dòng suối núi.",
+   "file": "a8.smoky.4.vi.m4a",
+   "duration": 3.502,
+   "words": [
+    {
+     "word": "Mingus",
+     "start": 0.1,
+     "end": 0.56
+    },
+    {
+     "word": "Mill,",
+     "start": 0.56,
+     "end": 1.16
+    },
+    {
+     "word": "một",
+     "start": 1.16,
+     "end": 1.54
+    },
+    {
+     "word": "cối",
+     "start": 1.54,
+     "end": 1.76
+    },
+    {
+     "word": "xay",
+     "start": 1.76,
+     "end": 1.98
+    },
+    {
+     "word": "cũ",
+     "start": 1.98,
+     "end": 2.24
+    },
+    {
+     "word": "bên",
+     "start": 2.24,
+     "end": 2.5
+    },
+    {
+     "word": "dòng",
+     "start": 2.5,
+     "end": 2.68
+    },
+    {
+     "word": "suối",
+     "start": 2.68,
+     "end": 2.98
+    },
+    {
+     "word": "núi.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
+  },
+  "a8.smoky.5": {
+   "text": "Mabry Mill, trên đường Blue Ridge Parkway. Một chỗ thật đẹp để nghỉ chân.",
+   "file": "a8.smoky.5.vi.m4a",
+   "duration": 5.318,
+   "words": [
+    {
+     "word": "Mabry",
+     "start": 0.12,
+     "end": 0.6
+    },
+    {
+     "word": "Mill,",
+     "start": 0.6,
+     "end": 0.88
+    },
+    {
+     "word": "trên",
+     "start": 0.88,
+     "end": 1.48
+    },
+    {
+     "word": "đường",
+     "start": 1.48,
+     "end": 1.72
+    },
+    {
+     "word": "Blue",
+     "start": 1.72,
+     "end": 1.98
+    },
+    {
+     "word": "Ridge",
+     "start": 1.98,
+     "end": 2.24
+    },
+    {
+     "word": "Parkway.",
+     "start": 2.24,
+     "end": 3.0
+    },
+    {
+     "word": "Một",
+     "start": 3.0,
+     "end": 3.86
+    },
+    {
+     "word": "chỗ",
+     "start": 3.86,
+     "end": 4.0
+    },
+    {
+     "word": "thật",
+     "start": 4.0,
+     "end": 4.18
+    },
+    {
+     "word": "đẹp",
+     "start": 4.18,
+     "end": 4.44
+    },
+    {
+     "word": "để",
+     "start": 4.44,
+     "end": 4.58
+    },
+    {
+     "word": "nghỉ",
+     "start": 4.58,
+     "end": 4.78
+    },
+    {
+     "word": "chân.",
+     "start": 4.78,
+     "end": 4.98
+    }
+   ]
+  },
+  "a8.smoky.6": {
+   "text": "Linn Cove Viaduct. Bạn đã đi trọn chặng đường. Giỏi lắm.",
+   "file": "a8.smoky.6.vi.m4a",
+   "duration": 4.294,
+   "words": [
+    {
+     "word": "Linn",
+     "start": 0.157,
+     "end": 0.598
+    },
+    {
+     "word": "Cove",
+     "start": 0.598,
+     "end": 1.039
+    },
+    {
+     "word": "Viaduct.",
+     "start": 1.039,
+     "end": 1.48
+    },
+    {
+     "word": "Bạn",
+     "start": 1.48,
+     "end": 1.9
+    },
+    {
+     "word": "đã",
+     "start": 1.9,
+     "end": 2.04
+    },
+    {
+     "word": "đi",
+     "start": 2.04,
+     "end": 2.16
+    },
+    {
+     "word": "trọn",
+     "start": 2.16,
+     "end": 2.38
+    },
+    {
+     "word": "chặng",
+     "start": 2.38,
+     "end": 2.6
+    },
+    {
+     "word": "đường.",
+     "start": 2.6,
+     "end": 3.3
+    },
+    {
+     "word": "Giỏi",
+     "start": 3.3,
+     "end": 3.84
+    },
+    {
+     "word": "lắm.",
+     "start": 3.84,
+     "end": 3.98
+    }
+   ]
+  },
+  "a8.camino.2": {
+   "text": "Portomarín, thị trấn nằm trên dòng sông. Cứ giữ nhịp nhẹ nhàng nhé.",
+   "file": "a8.camino.2.vi.m4a",
+   "duration": 4.724,
+   "words": [
+    {
+     "word": "Portomarín,",
+     "start": 0.179,
+     "end": 1.36
+    },
+    {
+     "word": "thị",
+     "start": 1.36,
+     "end": 1.5
+    },
+    {
+     "word": "trấn",
+     "start": 1.5,
+     "end": 1.68
+    },
+    {
+     "word": "nằm",
+     "start": 1.68,
+     "end": 1.9
+    },
+    {
+     "word": "trên",
+     "start": 1.9,
+     "end": 2.06
+    },
+    {
+     "word": "dòng",
+     "start": 2.06,
+     "end": 2.24
+    },
+    {
+     "word": "sông.",
+     "start": 2.24,
+     "end": 2.94
+    },
+    {
+     "word": "Cứ",
+     "start": 2.94,
+     "end": 3.56
+    },
+    {
+     "word": "giữ",
+     "start": 3.56,
+     "end": 3.74
+    },
+    {
+     "word": "nhịp",
+     "start": 3.74,
+     "end": 3.98
+    },
+    {
+     "word": "nhẹ",
+     "start": 3.98,
+     "end": 3.99
+    },
+    {
+     "word": "nhàng",
+     "start": 3.98,
+     "end": 3.99
+    },
+    {
+     "word": "nhé.",
+     "start": 3.98,
+     "end": 3.99
+    }
+   ]
+  },
+  "a8.camino.3": {
+   "text": "Palas de Rei, điểm dừng quen thuộc của người đi Camino.",
+   "file": "a8.camino.3.vi.m4a",
+   "duration": 3.673,
+   "words": [
+    {
+     "word": "Palas",
+     "start": 0.178,
+     "end": 0.5
+    },
+    {
+     "word": "de",
+     "start": 0.5,
+     "end": 0.72
+    },
+    {
+     "word": "Rei,",
+     "start": 0.72,
+     "end": 1.34
+    },
+    {
+     "word": "điểm",
+     "start": 1.34,
+     "end": 1.7
+    },
+    {
+     "word": "dừng",
+     "start": 1.7,
+     "end": 1.88
+    },
+    {
+     "word": "quen",
+     "start": 1.88,
+     "end": 2.12
+    },
+    {
+     "word": "thuộc",
+     "start": 2.12,
+     "end": 2.38
+    },
+    {
+     "word": "của",
+     "start": 2.38,
+     "end": 2.56
+    },
+    {
+     "word": "người",
+     "start": 2.56,
+     "end": 2.76
+    },
+    {
+     "word": "đi",
+     "start": 2.76,
+     "end": 2.9
+    },
+    {
+     "word": "Camino.",
+     "start": 2.9,
+     "end": 2.98
+    }
+   ]
+  },
+  "a8.camino.4": {
+   "text": "Melide. Phần Camino đã đi giờ nhiều hơn phần còn lại.",
+   "file": "a8.camino.4.vi.m4a",
+   "duration": 4.1,
+   "words": [
+    {
+     "word": "Melide.",
+     "start": 0.162,
+     "end": 1.56
+    },
+    {
+     "word": "Phần",
+     "start": 1.56,
+     "end": 1.74
+    },
+    {
+     "word": "Camino",
+     "start": 1.74,
+     "end": 2.26
+    },
+    {
+     "word": "đã",
+     "start": 2.26,
+     "end": 2.44
+    },
+    {
+     "word": "đi",
+     "start": 2.44,
+     "end": 2.62
+    },
+    {
+     "word": "giờ",
+     "start": 2.62,
+     "end": 2.82
+    },
+    {
+     "word": "nhiều",
+     "start": 2.82,
+     "end": 3.06
+    },
+    {
+     "word": "hơn",
+     "start": 3.06,
+     "end": 3.32
+    },
+    {
+     "word": "phần",
+     "start": 3.32,
+     "end": 3.52
+    },
+    {
+     "word": "còn",
+     "start": 3.52,
+     "end": 3.7
+    },
+    {
+     "word": "lại.",
+     "start": 3.7,
+     "end": 3.98
+    }
+   ]
+  },
+  "a8.camino.5": {
+   "text": "O Pedrouzo. Điểm dừng cuối trước Santiago.",
+   "file": "a8.camino.5.vi.m4a",
+   "duration": 3.846,
+   "words": [
+    {
+     "word": "O",
+     "start": 0.165,
+     "end": 0.853
+    },
+    {
+     "word": "Pedrouzo.",
+     "start": 0.853,
+     "end": 1.54
+    },
+    {
+     "word": "Điểm",
+     "start": 1.54,
+     "end": 2.1
+    },
+    {
+     "word": "dừng",
+     "start": 2.1,
+     "end": 2.32
+    },
+    {
+     "word": "cuối",
+     "start": 2.32,
+     "end": 2.7
+    },
+    {
+     "word": "trước",
+     "start": 2.7,
+     "end": 2.94
+    },
+    {
+     "word": "Santiago.",
+     "start": 2.94,
+     "end": 2.98
+    }
+   ]
+  },
+  "a8.camino.6": {
+   "text": "Obradoiro Square, ở Santiago. Bạn đã đi trọn Camino. Giỏi lắm.",
+   "file": "a8.camino.6.vi.m4a",
+   "duration": 6.118,
+   "words": [
+    {
+     "word": "Obradoiro",
+     "start": 0.159,
+     "end": 0.64
+    },
+    {
+     "word": "Square,",
+     "start": 0.64,
+     "end": 1.14
+    },
+    {
+     "word": "ở",
+     "start": 1.14,
+     "end": 1.68
+    },
+    {
+     "word": "Santiago.",
+     "start": 1.68,
+     "end": 2.72
+    },
+    {
+     "word": "Bạn",
+     "start": 2.72,
+     "end": 3.44
+    },
+    {
+     "word": "đã",
+     "start": 3.44,
+     "end": 3.56
+    },
+    {
+     "word": "đi",
+     "start": 3.56,
+     "end": 3.72
+    },
+    {
+     "word": "trọn",
+     "start": 3.72,
+     "end": 3.96
+    },
+    {
+     "word": "Camino.",
+     "start": 3.96,
+     "end": 5.08
+    },
+    {
+     "word": "Giỏi",
+     "start": 5.08,
+     "end": 5.72
+    },
+    {
+     "word": "lắm.",
+     "start": 5.72,
+     "end": 5.98
+    }
+   ]
+  },
+  "a8.ne.2": {
+   "text": "Nubble Light, trên hòn đảo nhỏ ngay sát bờ.",
+   "file": "a8.ne.2.vi.m4a",
+   "duration": 3.163,
+   "words": [
+    {
+     "word": "Nubble",
+     "start": 0.1,
+     "end": 0.56
+    },
+    {
+     "word": "Light,",
+     "start": 0.56,
+     "end": 0.9
+    },
+    {
+     "word": "trên",
+     "start": 0.9,
+     "end": 1.54
+    },
+    {
+     "word": "hòn",
+     "start": 1.54,
+     "end": 1.76
+    },
+    {
+     "word": "đảo",
+     "start": 1.76,
+     "end": 1.96
+    },
+    {
+     "word": "nhỏ",
+     "start": 1.96,
+     "end": 2.22
+    },
+    {
+     "word": "ngay",
+     "start": 2.22,
+     "end": 2.44
+    },
+    {
+     "word": "sát",
+     "start": 2.44,
+     "end": 2.68
+    },
+    {
+     "word": "bờ.",
+     "start": 2.68,
+     "end": 2.98
+    }
+   ]
+  },
+  "a8.ne.3": {
+   "text": "Portsmouth Harbor. Thuyền, mặt nước, và những bước chân đều đặn của bạn.",
+   "file": "a8.ne.3.vi.m4a",
+   "duration": 5.776,
+   "words": [
+    {
+     "word": "Portsmouth",
+     "start": 0.08,
+     "end": 0.64
+    },
+    {
+     "word": "Harbor.",
+     "start": 0.64,
+     "end": 1.66
+    },
+    {
+     "word": "Thuyền,",
+     "start": 1.66,
+     "end": 2.98
+    },
+    {
+     "word": "mặt",
+     "start": 2.98,
+     "end": 3.14
+    },
+    {
+     "word": "nước,",
+     "start": 3.14,
+     "end": 3.42
+    },
+    {
+     "word": "và",
+     "start": 3.42,
+     "end": 4.12
+    },
+    {
+     "word": "những",
+     "start": 4.12,
+     "end": 4.26
+    },
+    {
+     "word": "bước",
+     "start": 4.26,
+     "end": 4.46
+    },
+    {
+     "word": "chân",
+     "start": 4.46,
+     "end": 4.72
+    },
+    {
+     "word": "đều",
+     "start": 4.72,
+     "end": 4.98
+    },
+    {
+     "word": "đặn",
+     "start": 4.98,
+     "end": 4.99
+    },
+    {
+     "word": "của",
+     "start": 4.98,
+     "end": 4.99
+    },
+    {
+     "word": "bạn.",
+     "start": 4.98,
+     "end": 4.99
+    }
+   ]
+  },
+  "a8.ne.4": {
+   "text": "Rockport, thị trấn cảng bên biển. Cứ đi tiếp theo nhịp của bạn.",
+   "file": "a8.ne.4.vi.m4a",
+   "duration": 4.729,
+   "words": [
+    {
+     "word": "Rockport,",
+     "start": 0.08,
+     "end": 1.02
+    },
+    {
+     "word": "thị",
+     "start": 1.02,
+     "end": 1.34
+    },
+    {
+     "word": "trấn",
+     "start": 1.34,
+     "end": 1.56
+    },
+    {
+     "word": "cảng",
+     "start": 1.56,
+     "end": 1.8
+    },
+    {
+     "word": "bên",
+     "start": 1.8,
+     "end": 1.96
+    },
+    {
+     "word": "biển.",
+     "start": 1.96,
+     "end": 2.64
+    },
+    {
+     "word": "Cứ",
+     "start": 2.64,
+     "end": 3.44
+    },
+    {
+     "word": "đi",
+     "start": 3.44,
+     "end": 3.58
+    },
+    {
+     "word": "tiếp",
+     "start": 3.58,
+     "end": 3.78
+    },
+    {
+     "word": "theo",
+     "start": 3.78,
+     "end": 3.98
+    },
+    {
+     "word": "nhịp",
+     "start": 3.98,
+     "end": 3.99
+    },
+    {
+     "word": "của",
+     "start": 3.98,
+     "end": 3.99
+    },
+    {
+     "word": "bạn.",
+     "start": 3.98,
+     "end": 3.99
+    }
+   ]
+  },
+  "a8.ne.5": {
+   "text": "Bạn đã đến Plymouth, trên bờ biển Massachusetts.",
+   "file": "a8.ne.5.vi.m4a",
+   "duration": 3.592,
+   "words": [
+    {
+     "word": "Bạn",
+     "start": 0.04,
+     "end": 0.3
+    },
+    {
+     "word": "đã",
+     "start": 0.3,
+     "end": 0.44
+    },
+    {
+     "word": "đến",
+     "start": 0.44,
+     "end": 0.68
+    },
+    {
+     "word": "Plymouth,",
+     "start": 0.68,
+     "end": 1.54
+    },
+    {
+     "word": "trên",
+     "start": 1.54,
+     "end": 1.9
+    },
+    {
+     "word": "bờ",
+     "start": 1.9,
+     "end": 2.08
+    },
+    {
+     "word": "biển",
+     "start": 2.08,
+     "end": 2.34
+    },
+    {
+     "word": "Massachusetts.",
+     "start": 2.34,
+     "end": 2.66
+    }
+   ]
+  },
+  "a8.ne.6": {
+   "text": "Nauset Light, ở Cape Cod. Bạn đã đi trọn tuyến đường. Giỏi lắm.",
+   "file": "a8.ne.6.vi.m4a",
+   "duration": 5.497,
+   "words": [
+    {
+     "word": "Nauset",
+     "start": 0.145,
+     "end": 0.56
+    },
+    {
+     "word": "Light,",
+     "start": 0.56,
+     "end": 1.16
+    },
+    {
+     "word": "ở",
+     "start": 1.16,
+     "end": 1.5
+    },
+    {
+     "word": "Cape",
+     "start": 1.5,
+     "end": 1.68
+    },
+    {
+     "word": "Cod.",
+     "start": 1.68,
+     "end": 2.44
+    },
+    {
+     "word": "Bạn",
+     "start": 2.44,
+     "end": 2.96
+    },
+    {
+     "word": "đã",
+     "start": 2.96,
+     "end": 3.06
+    },
+    {
+     "word": "đi",
+     "start": 3.06,
+     "end": 3.2
+    },
+    {
+     "word": "trọn",
+     "start": 3.2,
+     "end": 3.44
+    },
+    {
+     "word": "tuyến",
+     "start": 3.44,
+     "end": 3.68
+    },
+    {
+     "word": "đường.",
+     "start": 3.68,
+     "end": 4.56
+    },
+    {
+     "word": "Giỏi",
+     "start": 4.56,
+     "end": 4.98
+    },
+    {
+     "word": "lắm.",
+     "start": 4.98,
+     "end": 4.99
+    }
+   ]
+  },
+  "a8.pch.2": {
+   "text": "Point Lobos. Những vịnh nhỏ đầy đá và tiếng sóng biển.",
+   "file": "a8.pch.2.vi.m4a",
+   "duration": 3.845,
+   "words": [
+    {
+     "word": "Point",
+     "start": 0.0,
+     "end": 0.2
+    },
+    {
+     "word": "Lobos.",
+     "start": 0.2,
+     "end": 1.22
+    },
+    {
+     "word": "Những",
+     "start": 1.22,
+     "end": 1.8
+    },
+    {
+     "word": "vịnh",
+     "start": 1.8,
+     "end": 2.04
+    },
+    {
+     "word": "nhỏ",
+     "start": 2.04,
+     "end": 2.24
+    },
+    {
+     "word": "đầy",
+     "start": 2.24,
+     "end": 2.5
+    },
+    {
+     "word": "đá",
+     "start": 2.5,
+     "end": 2.82
+    },
+    {
+     "word": "và",
+     "start": 2.82,
+     "end": 2.98
+    },
+    {
+     "word": "tiếng",
+     "start": 2.98,
+     "end": 2.99
+    },
+    {
+     "word": "sóng",
+     "start": 2.98,
+     "end": 2.99
+    },
+    {
+     "word": "biển.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
+  },
+  "a8.pch.3": {
+   "text": "Bixby Bridge, cao vút trên hẻm núi sát biển.",
+   "file": "a8.pch.3.vi.m4a",
+   "duration": 3.499,
+   "words": [
+    {
+     "word": "Bixby",
+     "start": 0.1,
+     "end": 0.58
+    },
+    {
+     "word": "Bridge,",
+     "start": 0.58,
+     "end": 1.42
+    },
+    {
+     "word": "cao",
+     "start": 1.42,
+     "end": 1.98
+    },
+    {
+     "word": "vút",
+     "start": 1.98,
+     "end": 2.16
+    },
+    {
+     "word": "trên",
+     "start": 2.16,
+     "end": 2.4
+    },
+    {
+     "word": "hẻm",
+     "start": 2.4,
+     "end": 2.6
+    },
+    {
+     "word": "núi",
+     "start": 2.6,
+     "end": 2.8
+    },
+    {
+     "word": "sát",
+     "start": 2.8,
+     "end": 2.98
+    },
+    {
+     "word": "biển.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
+  },
+  "a8.pch.4": {
+   "text": "Pfeiffer Beach. Nghỉ một chút, rồi đi tiếp theo nhịp của bạn.",
+   "file": "a8.pch.4.vi.m4a",
+   "duration": 3.585,
+   "words": [
+    {
+     "word": "Pfeiffer",
+     "start": 0.0,
+     "end": 0.34
+    },
+    {
+     "word": "Beach.",
+     "start": 0.34,
+     "end": 1.04
+    },
+    {
+     "word": "Nghỉ",
+     "start": 1.04,
+     "end": 1.54
+    },
+    {
+     "word": "một",
+     "start": 1.54,
+     "end": 1.7
+    },
+    {
+     "word": "chút,",
+     "start": 1.7,
+     "end": 1.98
+    },
+    {
+     "word": "rồi",
+     "start": 1.98,
+     "end": 2.44
+    },
+    {
+     "word": "đi",
+     "start": 2.44,
+     "end": 2.6
+    },
+    {
+     "word": "tiếp",
+     "start": 2.6,
+     "end": 2.74
+    },
+    {
+     "word": "theo",
+     "start": 2.74,
+     "end": 2.92
+    },
+    {
+     "word": "nhịp",
+     "start": 2.92,
+     "end": 2.98
+    },
+    {
+     "word": "của",
+     "start": 2.98,
+     "end": 2.99
+    },
+    {
+     "word": "bạn.",
+     "start": 2.98,
+     "end": 2.99
+    }
+   ]
+  },
+  "a8.pch.5": {
+   "text": "McWay Falls, nơi thác nước đổ xuống bãi biển.",
+   "file": "a8.pch.5.vi.m4a",
+   "duration": 3.246,
+   "words": [
+    {
+     "word": "McWay",
+     "start": 0.136,
+     "end": 0.58
+    },
+    {
+     "word": "Falls,",
+     "start": 0.58,
+     "end": 1.26
+    },
+    {
+     "word": "nơi",
+     "start": 1.26,
+     "end": 1.74
+    },
+    {
+     "word": "thác",
+     "start": 1.74,
+     "end": 1.94
+    },
+    {
+     "word": "nước",
+     "start": 1.94,
+     "end": 2.16
+    },
+    {
+     "word": "đổ",
+     "start": 2.16,
+     "end": 2.38
+    },
+    {
+     "word": "xuống",
+     "start": 2.38,
+     "end": 2.6
+    },
+    {
+     "word": "bãi",
+     "start": 2.6,
+     "end": 2.8
+    },
+    {
+     "word": "biển.",
+     "start": 2.8,
+     "end": 2.98
+    }
+   ]
+  },
+  "a8.pch.6": {
+   "text": "Hearst Castle, trên đồi nhìn ra bờ biển. Bạn đã tới nơi. Giỏi lắm.",
+   "file": "a8.pch.6.vi.m4a",
+   "duration": 6.203,
+   "words": [
+    {
+     "word": "Hearst",
+     "start": 0.1,
+     "end": 0.46
+    },
+    {
+     "word": "Castle,",
+     "start": 0.46,
+     "end": 0.86
+    },
+    {
+     "word": "trên",
+     "start": 0.86,
+     "end": 1.52
+    },
+    {
+     "word": "đồi",
+     "start": 1.52,
+     "end": 1.78
+    },
+    {
+     "word": "nhìn",
+     "start": 1.78,
+     "end": 2.0
+    },
+    {
+     "word": "ra",
+     "start": 2.0,
+     "end": 2.16
+    },
+    {
+     "word": "bờ",
+     "start": 2.16,
+     "end": 2.34
+    },
+    {
+     "word": "biển.",
+     "start": 2.34,
+     "end": 2.96
+    },
+    {
+     "word": "Bạn",
+     "start": 2.96,
+     "end": 3.66
+    },
+    {
+     "word": "đã",
+     "start": 3.66,
+     "end": 3.82
+    },
+    {
+     "word": "tới",
+     "start": 3.82,
+     "end": 4.04
+    },
+    {
+     "word": "nơi.",
+     "start": 4.04,
+     "end": 5.1
+    },
+    {
+     "word": "Giỏi",
+     "start": 5.1,
+     "end": 5.8
+    },
+    {
+     "word": "lắm.",
+     "start": 5.8,
+     "end": 5.98
+    }
+   ]
   }
  },
  "notifications": {
@@ -39003,13 +40263,13 @@
   "nt.check.4": "Đến lần tự kiểm tra 2 tuần. Cùng chiếc ghế, cùng cách như lần trước."
  },
  "wins": {
-  "win.1": "Đứng dậy khỏi ghế sofa mà không cần chống tay",
-  "win.2": "Xách hết đồ đi chợ vào nhà chỉ trong một chuyến",
-  "win.3": "Đi hết một vòng cửa hàng",
-  "win.4": "Leo hết cầu thang mà không phải dừng lại",
-  "win.5": "Ngồi chơi dưới sàn với các cháu",
-  "win.6": "Với tới kệ cao nhất mà không cần ghế kê",
-  "win.7": "Đi ra hộp thư rồi quay về, thấy nhẹ nhàng",
-  "win.8": "Đứng suốt cả buổi hoà nhạc hay trận bóng"
+  "win.1": "Đứng dậy khỏi sofa, không chống tay",
+  "win.2": "Xách đồ chợ một chuyến",
+  "win.3": "Đi hết cửa hàng",
+  "win.4": "Lên cầu thang không dừng",
+  "win.5": "Ngồi dưới sàn với các cháu",
+  "win.6": "Với kệ cao, không cần ghế kê",
+  "win.7": "Ra hộp thư rồi về",
+  "win.8": "Đứng hết một buổi diễn"
  }
 }

@@ -184,8 +184,9 @@ Luật (spec mục Thông báo, plan 7.1–7.8): tối đa 1/ngày, không ghi s
 Nút trên thông báo nhắc tập: "Start walk" · "Rest today". `nt.week.less` không nêu ngày bỏ tập.
 
 ## D9. Everyday wins (tối thiểu 8)
-Got up from the sofa without using my hands · Carried the groceries in one trip · Walked the whole store · Climbed the stairs without stopping · Played on the floor with the grandkids · Reached the top shelf without a stool · Walked to the mailbox and back, easily · Stood through a whole concert or ball game
-"Played on the floor" chỉ hiện nếu S06 không chọn "I can't get down on the floor".
+Up from the sofa, no hands · Groceries in one trip · Walked the whole store · Stairs without stopping · On the floor with the grandkids · Top shelf, no stool · To the mailbox and back · Stood through a whole show
+"On the floor with the grandkids" chỉ hiện nếu S06 không chọn "I can't get down on the floor".
+Nhãn ngắn (08/10/2026, Progress nửa dưới theo mock ProgressMore của Claude Design, một dòng trên SE): giữ thứ tự nên id `win.1`–`win.8` không đổi; câu cũ: Got up from the sofa without using my hands · Carried the groceries in one trip · Walked the whole store · Climbed the stairs without stopping · Played on the floor with the grandkids · Reached the top shelf without a stool · Walked to the mailbox and back, easily · Stood through a whole concert or ball game.
 
 ## D10. An toàn và hỏi bác sĩ (5)
 | Chỗ | Chữ |
