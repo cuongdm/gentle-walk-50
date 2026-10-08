@@ -13,6 +13,6 @@ _08/10/2026 · Nhánh `cloud/core-content-m3m4` (từ `main` c9769c6) · Kế ho
 | 4.11 P10 giờ nhắc và độ dài | DONE | `SessionTiming`, `LengthSignal` (.shorter/.longer), `HabitSignals.suggestedReminderMinutes(starts:reminderMinutes:calendar:)`, `HabitSignals.lengthSignal(_:)` | `HabitSignalsTests` 4 test xanh |
 | 4.12 P11 ngày đã đi nhiều | DONE (chỉ logic) | `BusyDay.usualSteps(dailySteps:now:calendar:)`, `BusyDay.isBusy(stepsToday:dailySteps:now:reminderMinutes:calendar:)` | `BusyDayTests` 3 test xanh |
 | 4.18 Thông báo tổng kết tuần | DONE | không API mới (planner đã chỉ gửi số ngày; test khoá lại) | `NotificationPlannerTests.weeklyRecapNeverNamesHealth`, `stillAtMostOneADay` (21/21 xanh) |
-| 4.13 P7 kịch bản A13 | IN PROGRESS | | |
+| 4.13 P7 kịch bản A13 | DONE (chưa thu giọng) | `CoachHistory.checkLine/weekLine/daysLine/walkLine`, `CoachHistory.allLineIDs` (41) | `CoachHistoryTests` 3 test (coachHistoryLinesExist 41 EN+VI); toàn core 230/46 xanh |
 
 Ranh giới: nhánh này chỉ sửa `iOS/Packages/GentleWalkCore`, `tools/content`, `tools/lint`, `docs/scripts`, `docs/i18n`, `docs/handoff` (và dòng Evidence trong kế hoạch). Không đụng `iOS/App`, `iOS/GentleWalkTests`, `Localizable.xcstrings`, `project.yml`, `Plan/Adaptation.swift`, WalkLevel, TodayModel.

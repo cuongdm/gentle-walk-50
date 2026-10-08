@@ -36186,6 +36186,129 @@
      "end": 3.98
     }
    ]
+  },
+  "a13.check.n.3": {
+   "text": "Lần trước, bạn đứng lên được ba lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.4": {
+   "text": "Lần trước, bạn đứng lên được bốn lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.5": {
+   "text": "Lần trước, bạn đứng lên được năm lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.6": {
+   "text": "Lần trước, bạn đứng lên được sáu lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.7": {
+   "text": "Lần trước, bạn đứng lên được bảy lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.8": {
+   "text": "Lần trước, bạn đứng lên được tám lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.9": {
+   "text": "Lần trước, bạn đứng lên được chín lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.10": {
+   "text": "Lần trước, bạn đứng lên được mười lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.11": {
+   "text": "Lần trước, bạn đứng lên được mười một lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.12": {
+   "text": "Lần trước, bạn đứng lên được mười hai lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.13": {
+   "text": "Lần trước, bạn đứng lên được mười ba lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.14": {
+   "text": "Lần trước, bạn đứng lên được mười bốn lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.15": {
+   "text": "Lần trước, bạn đứng lên được mười lăm lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.16": {
+   "text": "Lần trước, bạn đứng lên được mười sáu lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.17": {
+   "text": "Lần trước, bạn đứng lên được mười bảy lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.18": {
+   "text": "Lần trước, bạn đứng lên được mười tám lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.19": {
+   "text": "Lần trước, bạn đứng lên được mười chín lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.check.n.20": {
+   "text": "Lần trước, bạn đứng lên được hai mươi lần. Hôm nay mình thử xem nhé."
+  },
+  "a13.week.1": {
+   "text": "Tuần thứ nhất trong mười hai tuần. Theo nhịp của bạn."
+  },
+  "a13.week.2": {
+   "text": "Tuần thứ hai trong mười hai tuần. Theo nhịp của bạn."
+  },
+  "a13.week.3": {
+   "text": "Tuần thứ ba trong mười hai tuần. Theo nhịp của bạn."
+  },
+  "a13.week.4": {
+   "text": "Tuần thứ tư trong mười hai tuần. Theo nhịp của bạn."
+  },
+  "a13.week.5": {
+   "text": "Tuần thứ năm trong mười hai tuần. Theo nhịp của bạn."
+  },
+  "a13.week.6": {
+   "text": "Tuần thứ sáu trong mười hai tuần. Theo nhịp của bạn."
+  },
+  "a13.week.7": {
+   "text": "Tuần thứ bảy trong mười hai tuần. Theo nhịp của bạn."
+  },
+  "a13.week.8": {
+   "text": "Tuần thứ tám trong mười hai tuần. Theo nhịp của bạn."
+  },
+  "a13.week.9": {
+   "text": "Tuần thứ chín trong mười hai tuần. Theo nhịp của bạn."
+  },
+  "a13.week.10": {
+   "text": "Tuần thứ mười trong mười hai tuần. Theo nhịp của bạn."
+  },
+  "a13.week.11": {
+   "text": "Tuần thứ mười một trong mười hai tuần. Theo nhịp của bạn."
+  },
+  "a13.week.12": {
+   "text": "Tuần thứ mười hai trong mười hai tuần. Theo nhịp của bạn."
+  },
+  "a13.days.1": {
+   "text": "Đây là ngày vận động đầu tiên trong tuần."
+  },
+  "a13.days.2": {
+   "text": "Tuần này bạn đã có hai ngày vận động."
+  },
+  "a13.days.3": {
+   "text": "Tuần này bạn đã có ba ngày vận động."
+  },
+  "a13.days.4": {
+   "text": "Tuần này bạn đã có bốn ngày vận động."
+  },
+  "a13.days.5": {
+   "text": "Tuần này bạn đã có năm ngày vận động."
+  },
+  "a13.days.6": {
+   "text": "Tuần này bạn đã có sáu ngày vận động."
+  },
+  "a13.days.7": {
+   "text": "Tuần này bạn đã có bảy ngày vận động."
+  },
+  "a13.walk.2": {
+   "text": "Buổi đi bộ thứ hai trong tuần. Đều đặn lắm."
+  },
+  "a13.walk.3": {
+   "text": "Buổi đi bộ thứ ba trong tuần. Đều đặn lắm."
+  },
+  "a13.walk.4": {
+   "text": "Buổi đi bộ thứ tư trong tuần. Đều đặn lắm."
+  },
+  "a13.walk.5": {
+   "text": "Buổi đi bộ thứ năm trong tuần. Đều đặn lắm."
   }
  },
  "notifications": {
