@@ -169,6 +169,13 @@
   ]
  },
  {
+  "key": "Both hands, even if the video shows one.",
+  "comment": "",
+  "files": [
+   "ChairPlayerModel"
+  ]
+ },
+ {
   "key": "Easier version, as you chose",
   "comment": "",
   "files": [
@@ -185,13 +192,6 @@
  },
  {
   "key": "Starting with the easier version, after last time.",
-  "comment": "",
-  "files": [
-   "ChairPlayerModel"
-  ]
- },
- {
-  "key": "Use both hands, even where the video shows one.",
   "comment": "",
   "files": [
    "ChairPlayerModel"
@@ -591,6 +591,13 @@
  },
  {
   "key": "Remind me",
+  "comment": "",
+  "files": [
+   "CoverView"
+  ]
+ },
+ {
+  "key": "Try again",
   "comment": "",
   "files": [
    "CoverView"
@@ -2719,7 +2726,7 @@
   ]
  },
  {
-  "key": "Move with less pain",
+  "key": "Move more comfortably",
   "comment": "",
   "files": [
    "OnboardingCopy"
@@ -3272,8 +3279,8 @@
   ]
  },
  {
-  "key": "%@ keeps everything on this phone.",
-  "comment": "%@ is the app name (AppBrand.name). Keep it; the name is never translated.",
+  "key": "%@ keeps your health and workouts on this phone.",
+  "comment": "",
   "files": [
    "PaywallLegalFooter"
   ]
@@ -3307,8 +3314,8 @@
   ]
  },
  {
-  "key": "Purchases are handled by Apple. We never see your payment details.",
-  "comment": "A description of how the app handles purchases.",
+  "key": "Purchases are made through Apple. We never see your payment details.",
+  "comment": "",
   "files": [
    "PaywallLegalFooter"
   ]
@@ -3328,15 +3335,22 @@
   ]
  },
  {
-  "key": "We don't have accounts, servers, ads or tracking. We don't collect or sell your data.",
-  "comment": "A description of the app's privacy policy.",
+  "key": "To know which plan you have, the app sends your purchases, with basic details like your iOS version and country, to RevenueCat, the service that runs our subscriptions. It uses a random ID, not your name or Apple Account, and never anything about your health or workouts.",
+  "comment": "",
   "files": [
    "PaywallLegalFooter"
   ]
  },
  {
-  "key": "You can delete everything at any time in Me → Delete all my data.",
-  "comment": "A description of the data that can be deleted from the app.",
+  "key": "We don't have accounts, ads or tracking, and we never sell your data.",
+  "comment": "",
+  "files": [
+   "PaywallLegalFooter"
+  ]
+ },
+ {
+  "key": "You can delete everything on this phone at any time in Me → Delete all my data.",
+  "comment": "",
   "files": [
    "PaywallLegalFooter"
   ]

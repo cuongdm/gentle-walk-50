@@ -3,11 +3,13 @@ _Khung 29/09/2026. Người chịu trách nhiệm: **Chủ app** (App Store Conn
 
 ## 1. In-App Purchases (App Store Connect → Monetization)
 - [ ] **Chủ app** — Tạo nhóm subscription "Good Footing Pro" (một nhóm, 3.1.2(b)).
-- [ ] **Chủ app** — `com.kmd.gentlewalk.pro.yearly`: 1 năm, level 1, intro offer **Free trial 2 weeks**; giá thật (file .storekit đang là giá test).
-- [ ] **Chủ app** — `com.kmd.gentlewalk.pro.monthly`: 1 tháng, level 1 (đổi qua lại với yearly là crossgrade).
-- [ ] **Chủ app** — `com.kmd.gentlewalk.pro.lifetime`: non-consumable.
+- [ ] **Chủ app** — `com.kmd.gentlewalk.pro.yearly`: 1 năm, level 1, intro offer **Free trial 2 weeks**, giá **49,99 USD** (chốt 09/10/2026; file `.storekit` đã theo giá này).
+- [ ] **Chủ app** — `com.kmd.gentlewalk.pro.monthly`: 1 tháng, level 1 (đổi qua lại với yearly là crossgrade), giá **9,99 USD**.
+- [ ] **Chủ app** — `com.kmd.gentlewalk.pro.lifetime`: non-consumable, giá **99,99 USD**.
+- [ ] **Chủ app** — RevenueCat (từ 09/10/2026): làm theo `docs/release/1.0/revenuecat-setup.md` (khoá In-App Purchase tải lên RevenueCat, entitlement `pro`, offering `default`), rồi đặt public SDK key vào `iOS/Config/Local.xcconfig`: `REVENUECAT_PUBLIC_KEY = appl_…` (mẫu ở `Local.xcconfig.example`). Thiếu khoá: app chạy ở bản miễn phí, paywall báo "Plans aren't available right now", cổng phát hành đỏ.
 - [ ] **Chủ app** — Tên hiển thị, mô tả, ảnh review cho từng IAP; gắn cả 3 IAP vào bản build nộp.
-- [ ] **Claude** — `StoreServiceTests` xanh với file `App/GentleWalk.storekit` (9 test, 29/09/2026).
+- [ ] **Claude** — `StoreServiceTests` (lớp mua giả, không mạng), `StoreConfigTests` (file `App/GentleWalk.storekit`: 3 sản phẩm, giá, trial 2 tuần) và core `CustomerRulesTests` xanh.
+- [ ] **Chủ app** — Mua thử trên iPhone thật bằng tài khoản Sandbox (năm có trial, tháng, trả một lần, Restore); xem giao dịch hiện trong RevenueCat (bật View Sandbox Data).
 
 ## 2. Age rating (câu trả lời, App Store Connect tự tính bậc — verify)
 | Câu hỏi | Trả lời |
@@ -24,9 +26,22 @@ _Khung 29/09/2026. Người chịu trách nhiệm: **Chủ app** (App Store Conn
 - [ ] **Chủ app** — Điền và xác nhận bậc tuổi ASC tính ra.
 
 ## 3. App Privacy (nhãn quyền riêng tư)
-- [ ] **Chủ app** — Chọn **Data Not Collected**: app không gửi dữ liệu nào ra khỏi máy (không server, không analytics, không SDK bên thứ ba). HealthKit, vị trí, chuyển động chỉ xử lý trên máy — verify cách trả lời với hướng dẫn hiện hành của Apple.
+Từ 09/10/2026 app có SDK RevenueCat nên **không còn chọn "Data Not Collected"**. Theo hướng dẫn của RevenueCat (revenuecat.com/docs → Apple App Privacy, đọc 09/10/2026):
+
+| Loại dữ liệu (ASC) | Khai? | Gắn với danh tính | Dùng để theo dõi | Mục đích |
+|---|---|---|---|---|
+| Purchases → **Purchase History** | **Có** (RevenueCat ghi "Required") | **Không**: app dùng mã ẩn danh của RevenueCat, không đăng nhập, không email | **Không** | **App Functionality** (xác nhận giao dịch, quyền Pro) + **Analytics** (bảng số liệu RevenueCat) |
+| Identifiers → User ID | Không (RevenueCat: chỉ khi dùng mã người dùng riêng; app chỉ dùng mã ẩn danh) | — | — | — |
+| Identifiers → Device ID | Không theo RevenueCat (chỉ khi tích hợp dùng IDFA; app không dùng, đã tắt thu định danh tự động) — **xem lưu ý dưới** | — | — | — |
+| Diagnostics | Không (RevenueCat: "does not collect device diagnostic information") | — | — | — |
+| Usage Data, Location, Contact Info, Health & Fitness | Không (không SDK analytics; RevenueCat chỉ lấy locale và tiền tệ; dữ liệu sức khoẻ không rời máy) | — | — | — |
+
+- [ ] **Chủ app** — Điền nhãn như bảng trên trong App Store Connect → App Privacy; verify lại với trang RevenueCat và hướng dẫn của Apple lúc nộp.
+- [ ] **Chủ app (cần quyết)** — SDK RevenueCat gửi IDFV (mã Apple cấp cho các app cùng nhà phát triển) trong header `X-Apple-Device-Identifier` của mọi yêu cầu, và máy chủ thấy địa chỉ IP. RevenueCat không yêu cầu khai Device ID cho trường hợp này; nếu muốn thận trọng, khai thêm **Identifiers → Device ID**, không gắn danh tính, không theo dõi, App Functionality.
+- [ ] **Chủ app** — HealthKit, vị trí, chuyển động vẫn chỉ xử lý trên máy; không có gì liên quan sức khoẻ gửi tới RevenueCat.
 - [ ] **Chủ app** — Privacy Policy URL (task 9.1): đăng `site/privacy.html` (mặc định GitHub Pages), điền `[date]` và `[support email]` trước khi đăng.
-- [ ] **Claude** — `PrivacyInfo.xcprivacy`: tracking false, không domain, UserDefaults CA92.1 (task 1.10).
+- [ ] **Claude** — `PrivacyInfo.xcprivacy`: tracking false, không domain, UserDefaults CA92.1 (task 1.10); từ 09/10/2026 khai Purchase History (không gắn danh tính, không theo dõi, App Functionality + Analytics), test `StoreConfigTests.privacyManifestDeclaresPurchaseHistoryOnly`. SDK RevenueCat 5.94.0 kèm manifest riêng (Purchase History, App Functionality; UserDefaults CA92.1).
+- [ ] **Claude** — Chữ Privacy trong app (Me, paywall) và `site/privacy.html` nói rõ RevenueCat: lịch sử mua với mã ngẫu nhiên, chi tiết kỹ thuật, không gì về sức khoẻ; bản Việt đủ.
 
 ## 4. Điều khoản
 - [ ] **Chủ app** — Terms of Use: đang dùng EULA chuẩn của Apple (link trên paywall và Me). Nếu dùng Terms riêng: thêm `site/terms.html` và đổi `LegalLinks.termsOfUse`.

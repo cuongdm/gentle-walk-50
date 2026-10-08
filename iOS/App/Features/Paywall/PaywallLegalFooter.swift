@@ -100,14 +100,16 @@ struct PrivacyPolicyView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
-                    Text("\(AppBrand.name) keeps everything on this phone.").typeRole(.cardTitle)
-                    Text("We don't have accounts, servers, ads or tracking. We don't collect or sell your data.")
+                    Text("\(AppBrand.name) keeps your health and workouts on this phone.").typeRole(.cardTitle)
+                    Text("We don't have accounts, ads or tracking, and we never sell your data.")
                     Text("Your answers, workouts, pain reports and journey progress are stored only on this phone and are not backed up to iCloud by the app.")
                     Text("Your 2-week check results stay on this phone, too. They are compared only with your own earlier checks.")
                     Text("If you connect Apple Health, we read your step count to show it in Progress and to suggest a lighter session on busy days. We also save your workouts to Health. Health data never leaves your phone through us.")
                     Text("Outdoor walks use your location only while you walk, to measure distance and draw your route. The route stays on this phone and in Apple Health if you allow it.")
-                    Text("Purchases are handled by Apple. We never see your payment details.")
-                    Text("You can delete everything at any time in Me → Delete all my data.")
+                    Text("Purchases are made through Apple. We never see your payment details.")
+                    // RevenueCat (owner 09/10/2026): purchase history under a random ID, nothing health-related.
+                    Text("To know which plan you have, the app sends your purchases, with basic details like your iOS version and country, to RevenueCat, the service that runs our subscriptions. It uses a random ID, not your name or Apple Account, and never anything about your health or workouts.")
+                    Text("You can delete everything on this phone at any time in Me → Delete all my data.")
                 }
                 .typeRole(.body)
                 .foregroundStyle(Palette.text)
