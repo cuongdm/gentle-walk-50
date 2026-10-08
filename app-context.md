@@ -57,6 +57,7 @@ _Updated: 07/10/2026 (chốt tên Good Footing và khẩu hiệu) · trước đ
 - Paid: đủ cấp và chương trình tuần, thư viện động tác đầy đủ, các buổi giãn cơ đầy đủ (bản miễn phí có phần hạ nhiệt ngắn), 4 hành trình còn lại và tuyến mới hằng tháng, lịch sử chi tiết.
 - Trial: 14 ngày trên gói năm (chọn sẵn), nhắc ngày 12 bằng thông báo **và** thẻ trên Today từ ngày 10 tới khi hết trial (không cần quyền thông báo); kiểm tra điều kiện bằng StoreKit 2. Trả một lần ở vị trí thứ ba, không chọn sẵn; người đang có gói tự gia hạn mua trả một lần được cảnh báo trước và dẫn tới hướng dẫn huỷ gói ngay sau khi mua.
 - Mời nâng cấp: onboarding · hoàn thành New York · bấm nội dung khoá. Không hiện mỗi lần mở app.
+- Paywall gọn (08/10/2026): tiêu đề nói lại mục tiêu của cô ấy; chỉ hiện gói năm kèm dòng thời gian dùng thử; "See other plans" mở gói tháng và trả một lần ngay tại chỗ. Bộ ba (Restore · Terms · Privacy), giá bị trừ to nhất và điều khoản gia hạn luôn trong màn.
 - Store fee assumption: 15%.
 - Giá (03/10/2026): giá trong `GentleWalk.storekit` (năm 39,99 · tháng 7,99 · trả một lần 79,99 USD) chỉ là giá test. **Giá gói năm và gói trả một lần chờ chốt** (docs/todo.md, mục Giá). Lý do cần xem lại: ở 39,99 USD/năm, quảng cáo khó hoà vốn (docs/research/2026-10-03-quang-cao-nam-dau.md).
 
@@ -72,6 +73,11 @@ _Updated: 07/10/2026 (chốt tên Good Footing và khẩu hiệu) · trước đ
 
 ## Content & visuals
 - Kế hoạch nội dung đầy đủ (giọng, âm thanh, minh hoạ, chữ trong app, gói hằng tháng): docs/content-plan.md. Không lặp lại ở đây.
+- Hệ hình ảnh (08/10/2026):
+  - Font A1: tiêu đề New York, chữ SF Pro, số SF Pro Rounded, chú thích 16 pt.
+  - Giấy ấm và nút chính xanh 64 pt có chiều sâu mềm (không 3D).
+  - Icon nội dung Phosphor 2.1.1 (MIT), một hình một nghĩa.
+  - Chi tiết token: docs/design/gentle-walk-screen-spec.html mục Design tokens.
 
 ## Seasonal hooks (thị trường Mỹ)
 - Đầu năm (tháng 1): mục tiêu năm mới · Mùa xuân: bắt đầu đi ngoài trời · Mùa hè: nhắc nắng nóng, đi sớm · Mùa thu (tháng 9–10): tuyến Smoky Mountains và hải đăng New England đẹp nhất · Mother's Day (tháng 5): ảnh chia sẻ với gia đình.
@@ -165,3 +171,35 @@ _Updated: 07/10/2026 (chốt tên Good Footing và khẩu hiệu) · trước đ
 - 08/10/2026 — Steady program code xong trên cloud (chưa build): core + test chạy Docker (191 test), SchemaV2 + migration, RepLadderStore, giao diện Hôm nay/Kế hoạch/tự kiểm tra/Tiến bộ/Hoàn thành/Welcome/Tôi, câu HLV A12 (3 câu mới, chờ chủ app duyệt rồi thu), 4 câu thông báo nt.check.*, bản Việt. Bàn giao cho phiên Mac: docs/handoff/2026-10-08-steady-program-local.md. Tên trạng thái chụp mới `complete-reps-up` thay `complete-level-up` trong kế hoạch (tên cũ đã thuộc màn lên cấp cây) — by manh-skill-code
 - 08/10/2026 — Kế hoạch "UI không tràn, font A1, onboarding mới, icon, cá nhân hoá" duyệt: docs/plans/2026-10-08-ui-onboarding-personalization.md (81 task / 6 milestone; chủ app chốt: giữ "How active are you now?" và dùng thật; goal chọn 1; bỏ màn "You're not alone"; cơ thể 2 màn; paywall ở onboarding + "Hear your coach"; quyền 2 màn, vị trí chọn cách đo rồi 1 nút; cấp hiện tại ở UserDefaults; không SchemaV3) — by manh-skill-plan
 - 08/10/2026 — Onboarding mới xong (milestone 2 của docs/plans/2026-10-08-ui-onboarding-personalization.md): Welcome · 7 câu hỏi (một mục tiêu chính · trở ngại · tên · mức vận động giữ và dùng · đứng dậy · chỗ đau · điều khác) · Your plan · paywall gọn; khung chung có luống cây 7 ô, ô HLV cố định (gợi ý → câu đáp, thay màn "You're not alone"), danh sách dạng trang sổ tay và thẻ cơ thể vẽ riêng; trạng thái chọn rõ không chỉ bằng màu; "Hear your coach · 10 seconds" phát a1.01 + a1.02 thật (EN/VI); paywall nói lại mục tiêu, chỉ Yearly + "See other plans"; Me đổi được mục tiêu. Mọi màn onboarding vừa iPhone SE ở cỡ chữ mặc định — by manh-skill-code
+- 08/10/2026 — Font A1 và chiều sâu mềm xong (milestone 0–1 của docs/plans/2026-10-08-ui-onboarding-personalization.md, commit e15a38b). Theo hướng Claude Design, chủ app chốt và làm sáng xanh cùng ngày.
+  - Chữ: tiêu đề New York, chữ SF Pro, SF Pro Rounded chỉ cho số, chú thích 16 pt.
+  - Nút chính 64 pt có dải xanh sáng → đậm, viền sáng mép trên, bóng mềm, lún khi nhấn; thẻ giấy bóng nhẹ.
+  - `secondary` #54722F, `accent` #8F4323; cặp chữ–nền kiểm cả tối.
+  - Mọi màn đã rà vừa iPhone SE.
+  - Quyền tách 2 màn; vị trí hỏi cách đo trước, rồi một nút. — by cloud review
+- 08/10/2026 — Icon nội dung chuyển sang Phosphor Icons 2.1.1 (MIT), cùng 12 icon cơ thể vẽ riêng.
+  - Bold khi thường, Fill khi chọn; đặt trên chip màu nước; luôn đi cùng chữ.
+  - Một hình một nghĩa (`AppIcon`, `AppIconTests`). Điều khiển hệ thống giữ SF Symbols.
+  - Nguồn: `tools/art/icons-manifest.json`; giấy phép trong app. — by cloud review
+- 08/10/2026 — Cá nhân hoá P1–P13 trong app (milestone 4, commit 016196a). Mọi tín hiệu ở trên máy (UserDefaults, không SchemaV3, "Delete all my data" xoá hết).
+  - HLV mở buổi bằng trạng thái ngày và tối đa một câu lịch sử (A13).
+  - "Too hard"/"Too easy" hai lần đổi mặc định.
+  - Mục tiêu nhắc lại trên Hôm nay, Hoàn thành, Tiến bộ.
+  - Nhớ Easier/Harder và lựa chọn Preview.
+  - Bài đau tạm gác 4 tuần, có "Bring it back".
+  - Check-in tuần định hình tuần sau; thẻ "Your results".
+  - Giờ nhắc và độ dài theo thói quen thật.
+  - Ngày đi lại nhiều (số bước Apple Health so với chính cô ấy) gợi ý giãn cơ.
+  - Nghỉ dài hạ một bậc thang (Pro). — by cloud review
+- 08/10/2026 — Nội dung chống nhàm chán (cloud, đã gộp ở 3c2741c):
+  - 21 lời khen màn Hoàn thành cho 6 bối cảnh, không lặp lần trước.
+  - Lời chào theo buổi trong ngày và mùa, không lặp trong 7 ngày.
+  - 12 câu chủ đề tuần ("New this week" chỉ khi có điều mới).
+  - Câu HLV cho mọi chặng của 4 hành trình Pro: 20 câu, đã thu EN + VI.
+  - Kho câu HLV xoay vòng.
+  - Nhãn Everyday wins ngắn, id ổn định.
+  - Logic nằm ở GentleWalkCore (`CompleteCheer`, `Greetings`, `WeekTheme`, `JourneyCoach`); lời khen, lời chào và câu chủ đề tuần chưa nối vào giao diện. — by cloud review
+- 08/10/2026 — Rà soát App Review và tiếng Việt sau tích hợp: docs/reviews/2026-10-08-app-review-recheck.md.
+  - 0 Critical. 2 Important: số ngày dùng thử viết cứng; "Not now" ở màn trước quyền S16, cần chủ app chốt lại D5.
+  - 3 Minor.
+  - 54 câu tiếng Việt sửa cho tự nhiên; 2 câu giọng vi cần thu lại (`a12.check.setup` sai nghĩa, `a8.camino.4`). — by cloud review
