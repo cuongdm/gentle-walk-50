@@ -38,6 +38,17 @@ enum Art: String, CaseIterable, Sendable {
         "cover-\(journeyID.replacingOccurrences(of: ".", with: "-"))"
     }
 
+    /// The painted part of each tree picture (the rest is paper), as a share of its width and height:
+    /// measured on the PNGs in Assets.xcassets/Art (opaque, non-paper pixels), 09/10/2026.
+    static func treeContentRect(level: TreeLevel) -> CGRect {
+        switch level {
+        case .seed: CGRect(x: 0.10, y: 0.78, width: 0.85, height: 0.18)
+        case .sprout: CGRect(x: 0.0, y: 0.64, width: 0.82, height: 0.32)
+        case .sapling: CGRect(x: 0.0, y: 0.26, width: 1.0, height: 0.70)
+        case .tree: CGRect(x: 0.0, y: 0.07, width: 0.95, height: 0.89)
+        }
+    }
+
     /// Painting of the progress tree at a level ("tree-sprout").
     static func treeName(level: TreeLevel) -> String {
         switch level {

@@ -11,24 +11,28 @@ struct JourneyView: View {
     /// Start today's session; nil hides the button (rest day, or already done).
     var onWalkNow: (() -> Void)? = nil
 
+    /// Height of the visible scroll area: on a short phone (SE, 667 pt) the map shrinks and the
+    /// next-stop card moves above the progress card, so its button clears the tab bar (review M5-D).
+    /// iPhone SE about 554 pt, mini about 635 pt; iPhone 11 and larger about 720 pt and up.
+    @State private var viewportHeight: CGFloat = 0
+    private var isShort: Bool { viewportHeight > 0 && viewportHeight < 680 }
+
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: isShort ? 12 : 16) {
                 if let journey = snapshot.journey {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(verbatim: journey.title).typeRole(.screenTitle).foregroundStyle(Palette.text)
                             .accessibilityAddTraits(.isHeader)
                         Text("A shorter, gentle version of the real route. Every minute you move takes you further.").typeRole(.caption).foregroundStyle(Palette.textMuted)
                     }
-                    JourneyMap(snapshot: snapshot, journey: journey, onPostcard: onPostcard)
-                    JourneyProgressCard(journey: journey, routeMiles: snapshot.routeMiles)
-                    if snapshot.isLockedAhead, let next = snapshot.nextStop {
-                        LockedStopCard(stopName: next.name, onSeePlans: onSeePlans)
-                    } else if let next = snapshot.nextStop {
-                        NextStopCard(stop: next, milesToGo: snapshot.milesToNext, progress: legProgress(to: next, in: journey),
-                                     onWalk: onWalkNow)
-                    } else if snapshot.isComplete {
-                        RouteDoneCard()
+                    JourneyMap(snapshot: snapshot, journey: journey, onPostcard: onPostcard, height: isShort ? 190 : 250)
+                    if isShort {
+                        nextStopCard(in: journey)
+                        JourneyProgressCard(journey: journey, routeMiles: snapshot.routeMiles)
+                    } else {
+                        JourneyProgressCard(journey: journey, routeMiles: snapshot.routeMiles)
+                        nextStopCard(in: journey)
                     }
                     RouteList(journey: journey, snapshot: snapshot, onPostcard: onPostcard, onLocked: onSeePlans)
                     Text("Outdoor walks count their real distance.")
@@ -39,11 +43,24 @@ struct JourneyView: View {
             .frame(maxWidth: 700)
             .frame(maxWidth: .infinity)
         }
+        .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { viewportHeight = $0 }
         .screenBackground()
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("All journeys", action: onAllJourneys)
             }
+        }
+    }
+
+    /// What comes next: the locked stop past the free leg, the next postcard, or the finished route.
+    @ViewBuilder private func nextStopCard(in journey: Journey) -> some View {
+        if snapshot.isLockedAhead, let next = snapshot.nextStop {
+            LockedStopCard(stopName: next.name, onSeePlans: onSeePlans)
+        } else if let next = snapshot.nextStop {
+            NextStopCard(stop: next, milesToGo: snapshot.milesToNext, progress: legProgress(to: next, in: journey),
+                         onWalk: onWalkNow)
+        } else if snapshot.isComplete {
+            RouteDoneCard()
         }
     }
 

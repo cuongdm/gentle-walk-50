@@ -6400,13 +6400,6 @@
   ]
  },
  {
-  "key": "About last week. You can skip this.",
-  "comment": "",
-  "files": [
-   "WeeklyCheckInView"
-  ]
- },
- {
   "key": "About right",
   "comment": "",
   "files": [
@@ -6429,6 +6422,13 @@
  },
  {
   "key": "Getting up from a chair",
+  "comment": "",
+  "files": [
+   "WeeklyCheckInView"
+  ]
+ },
+ {
+  "key": "Last week felt…",
   "comment": "",
   "files": [
    "WeeklyCheckInView"
@@ -6477,14 +6477,14 @@
   ]
  },
  {
-  "key": "This week felt…",
+  "key": "Walking outside",
   "comment": "",
   "files": [
    "WeeklyCheckInView"
   ]
  },
  {
-  "key": "Walking outside",
+  "key": "You can skip this.",
   "comment": "",
   "files": [
    "WeeklyCheckInView"

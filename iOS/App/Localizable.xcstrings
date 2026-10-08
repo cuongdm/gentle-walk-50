@@ -1069,16 +1069,6 @@
         }
       }
     },
-    "About last week. You can skip this." : {
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Về tuần trước. Bạn có thể bỏ qua."
-          }
-        }
-      }
-    },
     "About right" : {
       "localizations" : {
         "vi" : {
@@ -1445,7 +1435,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Còn điều gì app nên biết không?"
+            "value" : "Còn điều gì mình nên biết không?"
           }
         }
       }
@@ -2710,7 +2700,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ít gói hơn"
+            "value" : "Thu gọn"
           }
         }
       }
@@ -4540,6 +4530,16 @@
         }
       }
     },
+    "Last week felt…" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuần qua bạn thấy…"
+          }
+        }
+      }
+    },
     "Last week you said getting up from a chair felt a bit better. Let's keep the leg work going." : {
       "localizations" : {
         "vi" : {
@@ -5406,7 +5406,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Không nhảy"
+            "value" : "Không bật nhảy"
           }
         }
       }
@@ -6476,7 +6476,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tiến bộ hiện số bước cả ngày của bạn. Hành trình vẫn tiến dù có kết nối hay không."
+            "value" : "Mục Tiến bộ sẽ hiện số bước cả ngày của bạn. Hành trình vẫn tiến, dù có kết nối hay không."
           }
         }
       }
@@ -8699,16 +8699,6 @@
         }
       }
     },
-    "This week felt…" : {
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tuần này bạn thấy…"
-          }
-        }
-      }
-    },
     "This wk" : {
       "localizations" : {
         "vi" : {
@@ -9383,7 +9373,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "App nhắc bạn"
+            "value" : "Ứng dụng nhắc bạn"
           }
         }
       }
@@ -9403,7 +9393,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "App luôn báo ngày trước khi tính phí."
+            "value" : "Ứng dụng luôn báo ngày trước khi tính phí."
           }
         }
       }
@@ -9447,7 +9437,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chúng tôi sẽ chỉnh buổi tập hôm nay cho phù hợp."
+            "value" : "Mình sẽ chỉnh buổi tập hôm nay cho phù hợp."
           }
         }
       }
@@ -9866,6 +9856,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bạn có thể xoá mọi thứ bất cứ lúc nào trong Tôi → Xoá toàn bộ dữ liệu của tôi."
+          }
+        }
+      }
+    },
+    "You can skip this." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn có thể bỏ qua."
           }
         }
       }

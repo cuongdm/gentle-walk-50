@@ -224,6 +224,16 @@ struct SelfCheckChart: View {
                     }
             }
             .chartYAxis(.hidden)
+            // "Week 0", "Week 2" at the caption role in muted ink, not the chart's small light-grey default.
+            .chartXAxis {
+                AxisMarks { value in
+                    AxisValueLabel {
+                        if let text = value.as(String.self) {
+                            Text(verbatim: text).typeRole(.caption).foregroundStyle(Palette.textMuted)
+                        }
+                    }
+                }
+            }
             .frame(height: 170)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(Text(verbatim: spoken))

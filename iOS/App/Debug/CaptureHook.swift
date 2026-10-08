@@ -138,7 +138,7 @@ enum CaptureState: String, CaseIterable, Sendable {
     case todayMoveReminder = "today-move-reminder"
     /// Monday: "Last week you said stairs felt a bit better…" (P6).
     case todayLastWeek = "today-last-week"
-    /// "This week felt…" (P6).
+    /// "Last week felt…" (P6).
     case weeklyCheckin = "weekly-checkin"
     /// "Your results" with five weeks of sessions and three checks (P8).
     case progressResults = "progress-results"

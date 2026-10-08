@@ -15,7 +15,7 @@ struct WeeklyCheckInView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                ScreenHeader(title: "This week felt…", subtitle: "About last week. You can skip this.")
+                ScreenHeader(title: "Last week felt…", subtitle: "You can skip this.")
                 VStack(spacing: 10) {
                     ForEach(WeeklyEffort.allCases, id: \.self) { value in
                         SelectableCard(title: value.title, symbol: value.symbol, isSelected: effort == value) { effort = value }

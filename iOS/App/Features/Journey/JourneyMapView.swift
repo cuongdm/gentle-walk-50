@@ -8,6 +8,8 @@ struct JourneyMap: View {
     let snapshot: JourneySnapshot
     let journey: Journey
     let onPostcard: (Journey.Stop) -> Void
+    /// The painting's height: 190 still leaves room above the route for the "You" pin.
+    var height: CGFloat = 250
 
     private var fraction: Double {
         journey.length > 0 ? min(1, max(0, snapshot.routeMiles / journey.length)) : 0
@@ -40,7 +42,7 @@ struct JourneyMap: View {
                     .allowsHitTesting(false)
             }
         }
-        .frame(height: 250)
+        .frame(height: height)
         // Badges and the miles label live on a fixed-height painting; the list below carries
         // the same facts at full text size.
         .dynamicTypeSize(...DynamicTypeSize.xLarge)

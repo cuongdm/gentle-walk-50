@@ -204,8 +204,8 @@ struct WorkoutCaptureScene: View {
             seconds = 300
         case .completeCheckInvite:
             req = request(PlannedDay(main: .walk, chairMoves: 0, cooldown: false), firstWalk: true)
-            result = CompletionResult(sessionMiles: 0.25, journeyID: "jr.ny", routeMiles: 0.25, unlockedStops: [],
-                                      nextStop: ny.stops[0], milesToNext: 0.1, activeDays: 1, isFirstWorkout: true)
+            result = CompletionResult(sessionMiles: 0.25, journeyID: "jr.ny", routeMiles: 0.25, unlockedStops: [ny.stops[0]],
+                                      nextStop: ny.stops[1], milesToNext: 0.75, activeDays: 1, isFirstWorkout: true)
             seconds = 300
         case .completeRepsUp:
             req = request(PlannedDay(main: .chair, chairMoves: 0, cooldown: true))
