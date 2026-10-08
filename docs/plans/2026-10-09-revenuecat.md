@@ -38,3 +38,13 @@
 | 8 | Quyền riêng tư (manifest, chữ trong app, site, checklist) + VI | `PrivacyInfo.xcprivacy`, `PaywallLegalFooter.swift`, `site/privacy.html`, `docs/i18n/vi/ui-extra-20.json` | copy_lint 0, catalog đủ en/vi |
 | 9 | Tài liệu, luật | `CLAUDE.md`, `app-context.md`, `docs/todo.md`, `docs/release/1.0/*` | — |
 | 10 | Build, trích khoá, test đầy đủ, cổng phát hành, ảnh | — | `** TEST SUCCEEDED **`, ảnh đúng giá |
+
+## Kết quả (09/10/2026, máy Mac, nhánh `local/revenuecat`, sau khi gộp `main` có bundle ID `com.kmd.goodfooting`)
+- SDK: `purchases-ios-spm` **5.94.0** (bản ổn định mới nhất theo `git ls-remote --tags`), `exactVersion` vì `Package.resolved` nằm trong project không commit.
+- Build Debug iPhone 17 Pro Max: `** BUILD SUCCEEDED **` (code cloud trên `main` cũng build sạch).
+- Core `swift test`: **295 test / 61 suite xanh** (`CustomerRulesTests` thay `EntitlementRulesTests`).
+- App `xcodebuild test`: **297 test / 56 suite xanh** (`StoreServiceTests` 18 test trên lớp mua giả, `PaywallModelTests` thêm giá từ cửa hàng, `StoreConfigTests` thêm giá và manifest).
+- Cổng phát hành: nội dung và giọng xanh; **`revenueCatKeyIsSet` đỏ đúng ý** cho tới khi có khoá thật.
+- i18n: `ui.json` 1015 khoá; vi 1071/1071, 0 thiếu; coverage en/vi 0 thiếu; `copy_lint` 0. Khoá mục tiêu mới "Move more comfortably" có, khoá cũ "Move with less pain" đã bỏ. `extract_sources.py` bỏ qua chuỗi của RevenueCat (56 khoá màn debug của SDK).
+- Ảnh Pro Max (xem bằng mắt): `paywall-eligible` ($49.99 a year, $4.17 a month, 14 ngày, Oct 21 nhắc / Oct 23 thu, bộ ba đủ), `paywall-monthly`, `paywall-lifetime`, `paywall-not-eligible`, `paywall-unavailable` (mới: Try again · Maybe later, sáng + tối), `today-trial-ending` ($49.99), `me` (then $49.99 a year).
+- Chưa kiểm được khi chưa có khoá: mua thật qua RevenueCat (Sandbox), offering `default`, `customerInfoStream` thật, điều kiện dùng thử thật từ App Store.
