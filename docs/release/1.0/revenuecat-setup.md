@@ -4,6 +4,8 @@ _09/10/2026. Quyết định của chủ app: dùng SDK RevenueCat trong app, t�
 Chia việc: phần A và B là việc **bạn** làm trên web (khoá và tài khoản là của bạn). Phần C là việc tôi làm sau khi bạn báo xong. Không dán khoá bí mật vào chat.
 
 ## A. App Store Connect
+_Đã làm 09/10/2026 bằng Claude in Chrome: bước 0 (App ID `com.kmd.goodfooting`, có HealthKit) và bước 1 (app "Good Footing: Gentle Workouts", iOS, English (U.S.), SKU `goodfooting`, Apple ID `6820763820`). Còn bước 2 trở đi._
+
 0. **Đăng ký Bundle ID trước** (lỗi "The key is not valid or is not compatible with the Bundle ID" trong RevenueCat là do thiếu bước này): developer.apple.com → Certificates, Identifiers & Profiles → Identifiers → + → App IDs → App. Bundle ID **Explicit** `com.kmd.goodfooting`, bật capability **HealthKit** (và In-App Purchase nếu có). Bundle ID này đã được đổi trong dự án ngày 09/10/2026.
 1. **App mới:** Apps → + → New App, chọn Bundle ID vừa đăng ký `com.kmd.goodfooting`. Tên: "Good Footing: Gentle Workouts" (còn chờ luật sư nhãn hiệu xem; đổi được sau).
 2. **Nhóm đăng ký:** Monetization → Subscriptions → tạo nhóm "Good Footing Pro".

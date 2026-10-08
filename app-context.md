@@ -5,7 +5,7 @@ _Updated: 09/10/2026 (RevenueCat làm lớp mua, chốt giá) · trước đó 0
 ## Identity
 - App name (store, chốt 07/10/2026): **Good Footing: Gentle Workouts** (29/30) · tên dưới icon và trong app: **Good Footing** (`AppBrand.name`) · gói: **Good Footing Pro** · Subtitle: "Chair Yoga, Walks & Stretches" (29/30). Chưa qua luật sư nhãn hiệu và chưa giữ tên trên App Store Connect (docs/todo.md). Tên làm việc cũ "Gentle Walk 50+" chỉ còn trong mã nội bộ và báo cáo lịch sử. Cơ sở: docs/research/2026-10-03-ten-app-moi.md
 - Khẩu hiệu: **"Steadier on your feet, at your own pace."** (VI: "Vững chân hơn, theo nhịp của riêng bạn.") · tiêu đề màn Welcome, dùng cho store, site, quảng cáo. Tên nói kết quả (đứng vững, khởi đầu tốt), phụ đề nói trong app có gì.
-- Bundle ID (iOS): `com.kmd.goodfooting` (đổi từ `com.kmd.gentlewalk` ngày 09/10/2026, trước khi tạo app trên App Store Connect; từ lúc app có trên ASC thì không đổi nữa) · Package (Android): chưa có
+- Bundle ID (iOS): `com.kmd.goodfooting` (đổi từ `com.kmd.gentlewalk` ngày 09/10/2026, trước khi tạo app trên App Store Connect; từ lúc app có trên ASC thì không đổi nữa; app đã tạo trên ASC ngày 09/10/2026, Apple ID `6820763820`, SKU `goodfooting`, tên "Good Footing: Gentle Workouts") · Package (Android): chưa có
 - App Store ID: chưa có · Website / Support / Privacy / Terms URL: chưa có
 - Category: Health & Fitness · Age rating: chưa trả lời
 - Platforms: iOS trước (iPhone + iPad) · Android để sau, tính như sản phẩm thứ hai
