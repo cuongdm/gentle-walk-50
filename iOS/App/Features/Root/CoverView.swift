@@ -171,14 +171,18 @@ private struct PermissionsCover: View {
 private struct ReminderOfferCover: View {
     let app: AppModel
     @State private var asking = false
+    @State private var isShort = false
     @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
-                // 96 pt so the moments, the time and the buttons fit an iPhone SE (task 1.13).
-                ArtImage(art: .momentFriends, height: 96, fallbackSymbol: "bell.fill")
-                    .accessibilityHidden(true)
+                // 96 pt; none on an iPhone SE, where it pushed the reminder time under "Remind me" (review A,
+                // 09/10/2026: she must see the time she agrees to).
+                if !isShort {
+                    ArtImage(art: .momentFriends, height: 96, fallbackSymbol: "bell.fill")
+                        .accessibilityHidden(true)
+                }
                 // The subtitle says it: no second question above the moments (task 1.13).
                 ScreenHeader(title: "Want a reminder?", subtitle: "Your first walk waits on Today. We can nudge you once a day.")
                 DailyMomentPicker(moment: app.profile?.reminderMoment ?? .coffee,
@@ -197,6 +201,7 @@ private struct ReminderOfferCover: View {
             .readableColumn()
         }
         .pinnedActions(!typeSize.isAccessibilitySize) { actions }
+        .onShortHeightChange { isShort = $0 }
         .screenBackground()
     }
 

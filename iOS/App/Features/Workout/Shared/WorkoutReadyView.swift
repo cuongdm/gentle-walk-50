@@ -95,18 +95,25 @@ private struct HaveReadyCard: View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Have ready").typeRole(.cardTitle).foregroundStyle(Palette.text)
                 .accessibilityAddTraits(.isHeader)
-            let columns = Array(repeating: GridItem(.flexible(), spacing: 8, alignment: .top),
-                                count: typeSize.isAccessibilitySize ? 2 : 4)
-            LazyVGrid(columns: columns, spacing: 12) {
-                if needsChair { ReadyTile(symbol: "chair.fill", title: "Sturdy chair") }
-                ReadyTile(symbol: "figure.arms.open", title: "Room to move")
-                ReadyTile(symbol: "waterbottle.fill", title: "Water")
-                ReadyTile(symbol: placement.symbol, title: placement.shortTitle)
-                    .accessibilityLabel(Text("Phone: \(placement.title)"))
+            // At accessibility sizes one tile per row, icon beside the words (two columns squeezed the
+            // tiles to slivers with one letter per line on an iPhone SE, review A 09/10/2026).
+            if typeSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: 10) { tiles }
+            } else {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8, alignment: .top), count: 4),
+                          spacing: 12) { tiles }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .cardStyle(padding: 12)
+    }
+
+    @ViewBuilder private var tiles: some View {
+        if needsChair { ReadyTile(symbol: "chair.fill", title: "Sturdy chair") }
+        ReadyTile(symbol: "figure.arms.open", title: "Room to move")
+        ReadyTile(symbol: "waterbottle.fill", title: "Water")
+        ReadyTile(symbol: placement.symbol, title: placement.shortTitle)
+            .accessibilityLabel(Text("Phone: \(placement.title)"))
     }
 }
 
@@ -150,6 +157,7 @@ private struct ReadyTile: View {
     let title: LocalizedStringResource
 
     @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.colorScheme) private var scheme
     @ScaledMetric(relativeTo: .title3) private var size: CGFloat = 52
 
     var body: some View {
@@ -158,9 +166,10 @@ private struct ReadyTile: View {
         layout {
             Image(systemName: symbol)
                 .font(.title2)
-                .foregroundStyle(Palette.secondary)
+                .foregroundStyle(scheme == .dark ? Palette.text : Palette.secondary)
                 .frame(width: size, height: size)
-                .background(Palette.secondary.opacity(0.14), in: .circle)
+                // Cream on a stronger circle on dark, where green on the 14 % wash all but vanished (review A).
+                .background(Palette.secondary.opacity(scheme == .dark ? 0.3 : 0.14), in: .circle)
                 .accessibilityHidden(true)
             Text(title).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
                 .multilineTextAlignment(typeSize.isAccessibilitySize ? .leading : .center)

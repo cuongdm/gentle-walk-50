@@ -13,13 +13,18 @@ struct OnboardingStepScaffold<Content: View, Footer: View>: View {
     /// "Pick one to continue": Continue says why it can't go on yet.
     var blockedReason: String? = nil
     let onContinue: () -> Void
+    /// On a short screen (iPhone SE) the footer above Continue moves into the page, under the answers, so
+    /// the last answer is not hidden behind it (Anything else: "None of these" under the doctor note).
+    var footerScrollsWhenShort = false
     @ViewBuilder let content: () -> Content
     /// Under Continue (Skip) or above it (the doctor note), inside the pinned area.
     @ViewBuilder var aboveContinue: () -> Footer
     var belowContinue: AnyView? = nil
 
     @Environment(\.dynamicTypeSize) private var typeSize
+    @State private var isShort = false
     private var pins: Bool { !typeSize.isAccessibilitySize }
+    private var footerInPage: Bool { footerScrollsWhenShort && isShort }
 
     var body: some View {
         ScrollView {
@@ -32,6 +37,7 @@ struct OnboardingStepScaffold<Content: View, Footer: View>: View {
                 CoachSlot(line: coach)
                 content()
                     .padding(.top, 2)
+                if pins && footerInPage { aboveContinue().padding(.top, 6) }
                 if !pins { actions }
             }
             .padding(.horizontal, Metrics.screenMargin)
@@ -40,10 +46,11 @@ struct OnboardingStepScaffold<Content: View, Footer: View>: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .pinnedActions(pins) { actions }
+        .onShortHeightChange { isShort = $0 }
     }
 
     @ViewBuilder private var actions: some View {
-        aboveContinue()
+        if !(pins && footerInPage) { aboveContinue() }
         ContinueButton(title: continueTitle, blockedReason: blockedReason, action: onContinue)
         if let belowContinue { belowContinue }
     }

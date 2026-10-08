@@ -22,6 +22,7 @@ struct AppCaptureScene: View {
                 // The same cover presenter as AppRootView, so taps in a capture scene (a session card,
                 // Start, the paywall) open their screens instead of setting `app.cover` with nobody to show it.
                 scene(app)
+                    .modifier(LargestTextAnchor(anchor: largestTextAnchor))
                     .fullScreenCover(item: Binding(get: { app.cover }, set: { app.cover = $0 })) { cover in
                         CoverView(app: app, cover: cover)
                     }
@@ -83,6 +84,18 @@ struct AppCaptureScene: View {
             }
         default:
             MainTabView(app: app)
+        }
+    }
+
+    /// At the largest text sizes these states differ from their sibling only below the fold (the coach
+    /// playing, Health connected, the chosen plan), so their shots open further down (review A, 09/10/2026).
+    private var largestTextAnchor: UnitPoint? {
+        switch state {
+        case .permissionsHealthGranted: .bottom
+        // The Day 1 card with "Stop" sits a little past the middle of Your plan.
+        case .onboardingPlanCoach: UnitPoint(x: 0.5, y: 0.6)
+        case .paywallMonthly, .paywallLifetime, .paywallLifetimeWhileSubscribed: .center
+        default: nil
         }
     }
 
@@ -342,6 +355,15 @@ struct AppCaptureScene: View {
         case .weeklyCheckin: app.cover = .weeklyCheckIn
         default: app.tab = .today
         }
+    }
+}
+/// Opens the scene's scroll view at `anchor`, at accessibility text sizes only (other shots stay as they were).
+private struct LargestTextAnchor: ViewModifier {
+    let anchor: UnitPoint?
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    func body(content: Content) -> some View {
+        content.defaultScrollAnchor(typeSize.isAccessibilitySize ? anchor : nil)
     }
 }
 #endif

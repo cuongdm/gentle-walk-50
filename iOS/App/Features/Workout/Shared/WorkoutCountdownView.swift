@@ -11,13 +11,17 @@ struct WorkoutCountdownView: View {
     /// 3, 2, 1, then 0 for "Go".
     @State private var count = 3
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         VStack(spacing: 20) {
             Spacer(minLength: 0)
-            ArtImage(art: .walkerWave, height: 180)
-                .frame(maxWidth: 220)
-                .accessibilityHidden(true)
+            // At accessibility sizes the coach goes, so "Skip the countdown" keeps its words (review A).
+            if !typeSize.isAccessibilitySize {
+                ArtImage(art: .walkerWave, height: 180)
+                    .frame(maxWidth: 220)
+                    .accessibilityHidden(true)
+            }
             VStack(spacing: 6) {
                 Text("Get ready").typeRole(.screenTitle).foregroundStyle(Palette.text)
                     .accessibilityAddTraits(.isHeader)
@@ -27,13 +31,20 @@ struct WorkoutCountdownView: View {
             CountdownDial(count: count, reduceMotion: reduceMotion)
             Spacer(minLength: 0)
             Button("Skip the countdown") { CueSounds.shared.stop(); finish() }.buttonStyle(.secondaryAction)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(Metrics.screenMargin)
         .frame(maxWidth: 520)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .screenBackground()
         .sensoryFeedback(.impact(weight: .light), trigger: count)
-        .task { await run() }
+        .task {
+            #if DEBUG
+            // Screenshot state "countdown": hold at 3, or the count ends before the shot (review A).
+            if CaptureHook.state(from: ProcessInfo.processInfo.arguments) == .countdown { return }
+            #endif
+            await run()
+        }
     }
 
     private func run() async {

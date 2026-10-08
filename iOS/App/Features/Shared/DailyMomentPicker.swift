@@ -35,8 +35,8 @@ struct DailyMomentPicker: View {
                             HStack(spacing: 12) { earlier; later }
                         }
                     } else {
-                        // "Reminder at" where it fits on the line; on a small phone the − time + alone
-                        // (the clock line above and the buttons' spoken labels say what it is).
+                        // "Reminder at" on the line where it fits; on a small phone on its own line above
+                        // − time + (it was dropped there, and the time read as unlabelled, review A).
                         ViewThatFits(in: .horizontal) {
                             HStack(spacing: 8) {
                                 timeLabel.fixedSize()
@@ -45,12 +45,15 @@ struct DailyMomentPicker: View {
                                 timePicker
                                 later
                             }
-                            HStack(spacing: 12) {
-                                earlier
-                                timePicker
-                                later
+                            VStack(alignment: .leading, spacing: 4) {
+                                timeLabel
+                                HStack(spacing: 12) {
+                                    earlier
+                                    timePicker
+                                    later
+                                }
+                                .frame(maxWidth: .infinity)
                             }
-                            .frame(maxWidth: .infinity)
                         }
                     }
                 }

@@ -41,3 +41,12 @@ struct PinnedBarBackground: View {
         .ignoresSafeArea()
     }
 }
+
+extension View {
+    /// Tells `action` whether this screen's space is short: about 600 pt on an iPhone SE, against 700 and
+    /// more on every other iPhone. Measure outside the pinned bar (its height does not change the answer).
+    /// A screen can then give up a picture or move a note into the page there (review A, 09/10/2026).
+    func onShortHeightChange(below limit: CGFloat = 700, _ action: @escaping (Bool) -> Void) -> some View {
+        onGeometryChange(for: Bool.self) { $0.size.height < limit } action: { action($0) }
+    }
+}
