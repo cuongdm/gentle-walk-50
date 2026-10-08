@@ -14,6 +14,23 @@ public enum VoiceRotation {
         "a10.into", "a10.switch", "a10.hold.start", "a10.round2", "a10.close", "a11.break.close",
     ]
 
+    /// Pools (plan 3.9, anti-boredom #1): families where only some numbers are interchangeable. The rest
+    /// keep a fixed role and never rotate: `a2.warm.1` opens the warm-up ("Easy steps to start"), `a6.6`
+    /// ("a little stronger than last time") and `a6.9` ("almost there") are true only sometimes.
+    static let pools: [String: Set<Int>] = [
+        "a2.warm": [2, 3, 4, 5, 6, 7, 8],
+        "a6": [1, 2, 3, 4, 5, 7, 8, 10],
+        "a7.break": [1, 2],
+        "a3.open": [1, 2],
+        "a9.back": [1, 2],
+    ]
+
+    /// Whether this numbered line rotates with its family.
+    static func rotates(family: String, number: Int) -> Bool {
+        if let pool = pools[family] { return pool.contains(number) }
+        return families.contains(family)
+    }
+
     /// Variant numbers per rotating family, from the lines that exist in the content.
     public struct Table: Sendable {
         let variants: [String: [Int]]
@@ -24,7 +41,7 @@ public enum VoiceRotation {
             var book: [String: VoiceLine] = [:]
             for line in lines {
                 book[line.id] = line
-                if let (family, number) = VoiceRotation.split(line.id), families.contains(family) {
+                if let (family, number) = VoiceRotation.split(line.id), rotates(family: family, number: number) {
                     variants[family, default: []].append(number)
                 }
             }
@@ -42,7 +59,8 @@ public enum VoiceRotation {
 
         /// Every line the id can become (itself included), for content checks.
         public func alternatives(of id: String, level: WalkLevel?) -> [String] {
-            guard let (family, _) = VoiceRotation.split(id), let all = variants[family] else { return [id] }
+            guard let (family, number) = VoiceRotation.split(id), VoiceRotation.rotates(family: family, number: number),
+                  let all = variants[family] else { return [id] }
             let fitting = all.map { "\(family).\($0)" }.filter { lines[$0]?.fits(level: level, limits: []) ?? false }
             return fitting.contains(id) ? fitting : [id]
         }

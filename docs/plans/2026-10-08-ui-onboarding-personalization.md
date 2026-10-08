@@ -471,7 +471,7 @@ _Tài liệu chưa có lúc lập kế hoạch (08/10). Task 3.1 đọc nó và 
 
 ### Task 3.9 — Kho câu HLV đa dạng (coach line pools) [TDD]
 **Files:** Modify `VoiceRotation.swift`, nội dung `docs/scripts/*` (biến thể câu mở/đóng đã thu: xoay theo `rotationIndex`, không lặp trong 5 buổi) · Test `VoiceRotationTests` (chi tiết theo tài liệu §chống nhàm chán)
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: RED `CoachLinePoolTests` 7 issues (pool chưa có) → GREEN; toàn bộ core `Test run with 206 tests in 41 suites passed` (SessionSyncTests vẫn xanh nên độ lệch giọng/hình không đổi). Khởi động In place 5 buổi liền 5 câu khác nhau; một buổi không lặp câu; `a2.warm.1`, `a6.6`, `a6.9` không xoay. Ghi chú ở `docs/scripts/A2-walk.md` §3.2. Mac: không cần nối gì (SessionBuilder đã xoay theo `rotationIndex`); câu `a6.*` và `a7.break.*` chỉ phát khi template/app dùng chúng (P1/4.1 của Mac).
 **Commit point:** `feat(content): rotating coach line pools`
 
 ### Task 3.10 — Chủ đề buổi tập (session themes) theo tuần/chặng [TDD]

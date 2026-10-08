@@ -41,6 +41,8 @@ _30/09/2026 · Milestone M4 của [kế hoạch nội dung 4 nhóm](../plans/202
 ### 3.2 Chọn biến thể
 Như bản tối thiểu: biến thể = (ngày hoạt động + số thứ tự khe) mod số biến thể của khe, để hai ngày liền nhau khác câu. Câu có ghi "chỉ …" trong cột Ghi chú bị lọc trước khi chọn. Khe để trống khi mọi biến thể bị lọc (im lặng tốt hơn câu sai).
 
+**Kho xoay mở rộng (08/10/2026, kế hoạch UI/cá nhân hoá task 3.9, `VoiceRotation.pools`):** `a2.warm.2–8` xoay với nhau (`a2.warm.1` giữ vai câu mở "Easy steps to start"); khởi động In place 7 câu nên 5 buổi liền không lặp câu nào. Cũng xoay: `a6.*` trừ `a6.6` ("stronger than last time", chỉ đúng khi có so sánh) và `a6.9` ("almost there", theo vị trí); `a7.break.1–2`, `a3.open.1–2`, `a9.back.1–2`. Một buổi không bao giờ nói lại một câu (xoay là dịch vòng, không bốc ngẫu nhiên).
+
 ### 3.3 Khe khởi động
 **1:00 (Gentle walk 5, Commercial break 5)**
 | Khe | Thời điểm | Chọn từ |
