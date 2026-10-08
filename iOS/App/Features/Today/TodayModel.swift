@@ -277,7 +277,7 @@ struct TodaySwapOption: Equatable, Identifiable {
     /// running trial's offer was removed from the store).
     static let trialDaysUntilLoaded = 14
 
-    /// Day 10 of the trial until billing (I1): shown whether or not notifications are allowed. Counted
+    /// Four days before billing until billing (day 10 of a 2-week trial, I1): shown whether or not notifications are allowed. Counted
     /// back from the billing date with the trial length StoreKit offers, as the paywall counts it (I-1).
     var trialEndingDate: Date? {
         guard case .trial(let ends) = input.entitlement else { return nil }

@@ -29,4 +29,21 @@ import Testing
         #expect(trial.bannerWindow.contains(TestSupport.local(cal, 2026, 10, 11, 8, 0)))
         #expect(!trial.bannerWindow.contains(TestSupport.local(cal, 2026, 10, 12, 8, 0)))
     }
+
+    /// The banner keeps the same four days' notice on a shorter trial: day 3 of a week.
+    @Test func bannerGivesFourDaysNoticeOnAOneWeekTrial() {
+        let cal = TestSupport.newYork
+        let trial = TrialTimeline(start: TestSupport.local(cal, 2026, 9, 27, 19, 45), trialLength: 7, calendar: cal)
+        #expect(!trial.bannerWindow.contains(TestSupport.local(cal, 2026, 9, 29, 23, 59)))
+        #expect(trial.bannerWindow.contains(TestSupport.local(cal, 2026, 9, 30, 0, 1)))
+        #expect(trial.bannerWindow.contains(TestSupport.local(cal, 2026, 10, 4, 8, 0)))
+    }
+
+    /// A trial of four days or fewer shows the banner from the first day.
+    @Test func bannerShowsAllAlongOnAThreeDayTrial() {
+        let cal = TestSupport.newYork
+        let start = TestSupport.local(cal, 2026, 9, 27, 19, 45)
+        let trial = TrialTimeline(start: start, trialLength: 3, calendar: cal)
+        #expect(trial.bannerWindow.contains(start))
+    }
 }
