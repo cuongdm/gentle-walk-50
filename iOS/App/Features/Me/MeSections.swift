@@ -105,14 +105,14 @@ struct SubscriptionSection: View {
                     let date = renewalDate?.formatted(.dateTime.month(.abbreviated).day()) ?? ""
                     Text("Your \(renewingProductID == ProductID.monthly ? String(localized: "monthly") : String(localized: "yearly")) plan still renews on \(date)")
                         .typeRole(.body).fontWeight(.semibold)
-                    Button("Cancel it", action: onHowToCancel).buttonStyle(.textLink)
+                    Button("Cancel it", action: onHowToCancel).buttonStyle(TextLinkButtonStyle(horizontalPadding: 0))
                 }
             case .free:
                 Text("Free plan: a walk each weekday, the New York journey, and the first leg of every other journey.").typeRole(.body)
                 Button("See Pro plans", action: onSeePlans).buttonStyle(.secondaryAction)
             }
             if cancels {
-                Button("How to cancel", action: onHowToCancel).buttonStyle(.textLink)
+                Button("How to cancel", action: onHowToCancel).buttonStyle(TextLinkButtonStyle(horizontalPadding: 0))
             }
         }
     }
@@ -476,25 +476,38 @@ struct HelpSection: View {
 }
 
 /// "Delete all my data" confirmation: says plainly what goes and what stays in Apple Health.
+/// When the words don't fit the screen (largest text sizes, small phones) it scrolls instead of
+/// cutting every line to "…" (review B, m5).
 struct DeleteDataConfirmation: View {
     let onDelete: () -> Void
     let onCancel: () -> Void
 
     var body: some View {
+        ViewThatFits(in: .vertical) {
+            content(spaced: true)
+            ScrollView { content(spaced: false) }
+        }
+        .foregroundStyle(Palette.text)
+        .screenBackground()
+    }
+
+    /// `spaced`: the words sit low on the screen with the buttons at the foot (when everything fits).
+    private func content(spaced: Bool) -> some View {
         VStack(alignment: .leading, spacing: 18) {
-            Spacer()
+            if spaced { Spacer() }
             ScreenHeader(title: "Delete all your data?")
-            Text("This removes your answers, sessions, journey progress and settings from this phone. It can't be undone.")
-                .typeRole(.body)
-            Text("Workouts already saved in Apple Health stay there. You can remove them in the Health app.").typeRole(.body)
-            Text("Your subscription is not affected. Manage it in Settings.").typeRole(.body)
-            Spacer()
+            Group {
+                Text("This removes your answers, sessions, journey progress and settings from this phone. It can't be undone.")
+                Text("Workouts already saved in Apple Health stay there. You can remove them in the Health app.")
+                Text("Your subscription is not affected. Manage it in Settings.")
+            }
+            .typeRole(.body)
+            .fixedSize(horizontal: false, vertical: true)
+            if spaced { Spacer() }
             Button("Delete everything", action: onDelete).buttonStyle(.dangerAction)
             Button("Keep my data", action: onCancel).buttonStyle(.secondaryAction)
         }
-        .foregroundStyle(Palette.text)
         .padding(Metrics.screenMargin)
-        .screenBackground()
     }
 }
 

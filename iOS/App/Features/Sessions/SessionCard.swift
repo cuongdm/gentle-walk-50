@@ -77,7 +77,7 @@ struct FavouriteButton: View {
                 .contentShape(.rect)
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(isOn ? Text("Remove \(title) from favourites") : Text("Add \(title) to favourites"))
+        .accessibilityLabel(isOn ? Text("Remove \(title) from favorites") : Text("Add \(title) to favorites"))
         .sensoryFeedback(.selection, trigger: isOn)
     }
 }

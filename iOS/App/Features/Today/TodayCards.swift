@@ -29,7 +29,7 @@ struct SpecialCard: View {
                 // Plan 08/10/2026 task 0.5: say the step up once, with the easier level one tap away.
                 Text("You're ready for a little more").typeRole(.cardTitle)
                 if let easier = level.easier {
-                    Text("Your walks are now \(Text(level.title)). \(Text(easier.title)) is one tap away.").typeRole(.body)
+                    Text("New walking level: \(Text(level.title)). \(Text(easier.title)) is still one tap away.").typeRole(.body)
                     Button("Keep it seated", action: actions.onKeepEasierLevel).buttonStyle(PillButtonStyle())
                 }
             case .connectHealth:
@@ -43,7 +43,7 @@ struct SpecialCard: View {
                 }
             case .setAside(let name):
                 Text("We've set \(name) aside for now. Bring it back in Me.").typeRole(.body)
-                Button("Moves set aside", action: actions.onOpenMe).buttonStyle(.smallTextLink)
+                Button("Moves set aside", action: actions.onOpenMe).buttonStyle(TextLinkButtonStyle(role: .caption, horizontalPadding: 0))
             case .busyDay:
                 Text("You've been on your feet a lot today. A gentle stretch fits.").typeRole(.body)
                 Button("Gentle stretch instead", action: actions.onStretchInstead).buttonStyle(PillButtonStyle(isSelected: true))
@@ -192,7 +192,7 @@ struct WeekStrip: View {
             }
             Text(verbatim: line).typeRole(.body).foregroundStyle(Palette.text)
             if !isPro {
-                Text("Grey dots are days still open.").typeRole(.caption).foregroundStyle(Palette.textMuted)
+                Text("Gray dots are days still open.").typeRole(.caption).foregroundStyle(Palette.textMuted)
             }
         }
         .cardStyle()

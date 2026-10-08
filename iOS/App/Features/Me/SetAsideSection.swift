@@ -10,7 +10,8 @@ struct SetAsideSection: View {
         SettingsCard(title: "Moves set aside") {
             ForEach(moves) { move in
                 ViewThatFits(in: .horizontal) {
-                    HStack(alignment: .center, spacing: 12) { label(move); Spacer(minLength: 8); button(move) }
+                    HStack(alignment: .center, spacing: 12) { label(move); Spacer(minLength: 8); button(move).fixedSize() }
+                    // Stacked (large text): the pill may wrap; a fixed size pushed the whole screen past its margins.
                     VStack(alignment: .leading, spacing: 8) { label(move); button(move) }
                 }
             }
@@ -29,6 +30,5 @@ struct SetAsideSection: View {
     private func button(_ move: SetAsideMove) -> some View {
         Button("Bring it back") { onBringBack(move.id) }
             .buttonStyle(PillButtonStyle())
-            .fixedSize()
     }
 }

@@ -225,6 +225,17 @@ struct AppCaptureScene: View {
             // Her last five sessions began around 10, not at the 8:30 reminder.
             let records = ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).sorted { $0.date > $1.date }
             for record in records.prefix(5) { record.date = record.date.addingTimeInterval(105 * 60) }
+        case .todayFewerReminders:
+            // Five mornings in a row walked at 8:15, before the 8:30 reminder (and within 45 minutes of it, so
+            // the "Move your reminder?" card stays away): Today offers "Want fewer reminders?".
+            let fromDay = calendar.startOfDay(for: now.addingTimeInterval(-5 * 86_400))
+            ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).filter { $0.date >= fromDay }.forEach(context.delete)
+            for daysAgo in 1...5 {
+                guard let day = calendar.date(byAdding: .day, value: -daysAgo, to: calendar.startOfDay(for: now)),
+                      let at = calendar.date(byAdding: .minute, value: 8 * 60 + 15, to: day) else { continue }
+                context.insert(WorkoutRecord(date: at, kind: "walk", level: "seated", intensity: "steady",
+                                             place: "indoors", activeSeconds: 480, journeyMiles: 0.4))
+            }
         case .progressResults:
             // Five weeks of sessions growing from about 25 to 55 minutes a week, and three checks (7, 8, 9).
             ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).forEach(context.delete)

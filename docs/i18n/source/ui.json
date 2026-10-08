@@ -21,7 +21,7 @@
   ]
  },
  {
-  "key": "Your favourites",
+  "key": "Your favorites",
   "comment": "",
   "files": [
    "AllSessionsView"
@@ -2125,18 +2125,18 @@
   ]
  },
  {
+  "key": "Open Control Center: swipe down from the top-right corner. On a phone with a Home button, swipe up from the bottom edge.",
+  "comment": "",
+  "files": [
+   "MoveGuidance"
+  ]
+ },
+ {
   "key": "Sound",
   "comment": "Title of the Sound sheet and label of the speaker button in the players.",
   "files": [
    "MoveGuidance",
    "SoundControls"
-  ]
- },
- {
-  "key": "Swipe down from the top-right corner of your phone.",
-  "comment": "",
-  "files": [
-   "MoveGuidance"
   ]
  },
  {
@@ -4628,15 +4628,15 @@
   ]
  },
  {
-  "key": "Add %@ to favourites",
-  "comment": "A spoken label that says what the heart does.",
+  "key": "Add %@ to favorites",
+  "comment": "",
   "files": [
    "SessionCard"
   ]
  },
  {
-  "key": "Remove %@ from favourites",
-  "comment": "A spoken label that says what the heart does.",
+  "key": "Remove %@ from favorites",
+  "comment": "",
   "files": [
    "SessionCard"
   ]
@@ -5354,7 +5354,7 @@
   ]
  },
  {
-  "key": "Grey dots are days still open.",
+  "key": "Gray dots are days still open.",
   "comment": "",
   "files": [
    "TodayCards"
@@ -5412,6 +5412,13 @@
  },
  {
   "key": "New this week",
+  "comment": "",
+  "files": [
+   "TodayCards"
+  ]
+ },
+ {
+  "key": "New walking level: %@. %@ is still one tap away.",
   "comment": "",
   "files": [
    "TodayCards"
@@ -5519,13 +5526,6 @@
   ]
  },
  {
-  "key": "Your walks are now %@. %@ is one tap away.",
-  "comment": "",
-  "files": [
-   "TodayCards"
-  ]
- },
- {
   "key": "ankle",
   "comment": "",
   "files": [
@@ -5617,7 +5617,7 @@
   ]
  },
  {
-  "key": "Free walk of the day · %lld min",
+  "key": "Free walk of the day · %lld min",
   "comment": "",
   "files": [
    "TodayModel"

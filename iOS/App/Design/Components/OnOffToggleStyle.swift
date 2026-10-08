@@ -5,18 +5,52 @@ import SwiftUI
 /// reads the switch's value, so the word is hidden from it.
 struct OnOffToggleStyle: ToggleStyle {
     func makeBody(configuration: Configuration) -> some View {
-        Toggle(isOn: configuration.$isOn) {
-            HStack(spacing: 8) {
-                configuration.label.frame(maxWidth: .infinity, alignment: .leading)
-                Text(configuration.isOn ? "On" : "Off")
-                    .typeRole(.body).fontWeight(.semibold)
-                    .foregroundStyle(Palette.text)
-                    .fixedSize()
-                    .accessibilityHidden(true)
+        OnOffToggleRow(configuration: configuration)
+    }
+}
+
+/// At the largest text sizes the label takes the full width with the word and the switch on the line
+/// under it (beside them it broke mid-word: "Walk remin/der"); VoiceOver still meets one switch.
+private struct OnOffToggleRow: View {
+    let configuration: ToggleStyleConfiguration
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    var body: some View {
+        if typeSize.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: 4) {
+                configuration.label
+                HStack(spacing: 12) {
+                    word
+                    Spacer(minLength: 0)
+                    Toggle(isOn: configuration.$isOn) { configuration.label }
+                        .labelsHidden()
+                        .toggleStyle(.switch)
+                }
+                .frame(minHeight: Metrics.minTouchTarget)
             }
+            .contentShape(.rect)
+            .onTapGesture { configuration.isOn.toggle() }
+            .accessibilityRepresentation {
+                Toggle(isOn: configuration.$isOn) { configuration.label }
+            }
+        } else {
+            Toggle(isOn: configuration.$isOn) {
+                HStack(spacing: 8) {
+                    configuration.label.frame(maxWidth: .infinity, alignment: .leading)
+                    word
+                }
+            }
+            .toggleStyle(.switch)
+            .frame(minHeight: Metrics.minTouchTarget)
         }
-        .toggleStyle(.switch)
-        .frame(minHeight: Metrics.minTouchTarget)
+    }
+
+    private var word: some View {
+        Text(configuration.isOn ? "On" : "Off")
+            .typeRole(.body).fontWeight(.semibold)
+            .foregroundStyle(Palette.text)
+            .fixedSize()
+            .accessibilityHidden(true)
     }
 }
 
