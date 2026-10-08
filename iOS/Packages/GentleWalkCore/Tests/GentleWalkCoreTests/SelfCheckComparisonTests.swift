@@ -40,4 +40,29 @@ import Testing
             #expect(fields.allSatisfy { !$0.contains(banned) }, "field mentions \(banned)")
         }
     }
+
+    // MARK: P9 trend (plan 4.8)
+
+    /// Up or down by 2 or more against her last check done the same way; within two weeks only.
+    @Test func trendComparesTheSameWayByTwoOrMore() {
+        let ny = TestSupport.newYork
+        func at(_ day: Int) -> Date { TestSupport.local(ny, 2026, 10, day) }
+        func trend(_ checks: [SelfCheckResult], now: Int) -> SelfCheckTrend {
+            SelfCheckComparison.trend(history: checks, now: at(now), calendar: ny)
+        }
+        let first = SelfCheckResult(date: at(1), count: 8, usedHands: false)
+        #expect(trend([first], now: 2) == .flat)
+        #expect(trend([first, SelfCheckResult(date: at(15), count: 10, usedHands: false)], now: 16) == .up)
+        #expect(trend([first, SelfCheckResult(date: at(15), count: 9, usedHands: false)], now: 16) == .flat)
+        #expect(trend([first, SelfCheckResult(date: at(15), count: 6, usedHands: false)], now: 16) == .down)
+        // Another way of doing it is not compared.
+        #expect(trend([first, SelfCheckResult(date: at(15), count: 12, usedHands: true)], now: 16) == .flat)
+        // The last same-way check counts, not the first one.
+        let middle = SelfCheckResult(date: at(8), count: 11, usedHands: false)
+        #expect(trend([first, middle, SelfCheckResult(date: at(15), count: 11, usedHands: false)], now: 16) == .flat)
+        // It lasts two weeks after the check.
+        let up = [first, SelfCheckResult(date: at(15), count: 10, usedHands: false)]
+        #expect(trend(up, now: 29) == .up)
+        #expect(trend(up, now: 30) == .flat)
+    }
 }

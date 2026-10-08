@@ -183,6 +183,57 @@ import Testing
         #expect(on.filter { $0.kind == .newJourney }.count == 1)
         #expect(on.first { $0.kind == .newJourney }?.values["journey"] == "New England lighthouses")
     }
+
+    // MARK: Plan 4.18: the weekly recap stays private, one notification a day at most
+
+    /// Lock-screen words, English and Vietnamese: no body part, symptom or health word in any phrase,
+    /// and the recap carries only day counts (never her weekly check-in chip).
+    @Test func weeklyRecapNeverNamesHealth() throws {
+        let content = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .appendingPathComponent("App/Resources/Content")
+        struct Bank: Decodable { struct Phrase: Decodable { var id: String; var text: String }; var phrases: [Phrase] }
+        struct Overlay: Decodable { var notifications: [String: String] }
+        let english = try JSONDecoder().decode(Bank.self, from: Data(contentsOf: content.appendingPathComponent("notifications.json")))
+        let vietnamese = try JSONDecoder().decode(Overlay.self, from: Data(contentsOf: content.appendingPathComponent("content.vi.json")))
+        let englishWords = ["pain", "knee", "hip", "joint", "weight", "dizzy", "hurt", "sore", "stiff", "sleep", "stairs",
+                            "health", "injur", "fall", "ache", "achy"]
+        let vietnameseWords = ["đau", "gối", "hông", "khớp", "cân nặng", "chóng mặt", "cứng", "giấc ngủ", "cầu thang",
+                               "sức khoẻ", "sức khỏe", "ngã", "nhức"]
+        for phrase in english.phrases {
+            for word in englishWords { #expect(!phrase.text.lowercased().contains(word), "\(phrase.id): \(word)") }
+        }
+        // Whole words only ("hông" is inside "không").
+        func padded(_ text: String) -> String {
+            " " + String(text.lowercased().map { $0.isLetter ? $0 : " " }) + " "
+        }
+        for (id, text) in vietnamese.notifications {
+            for word in vietnameseWords { #expect(!padded(text).contains(" \(word) "), "\(id): \(word)") }
+        }
+        // The recap itself: Sunday, day counts only.
+        let workouts = [at(22, 9, 9), at(24, 9, 9), at(28, 9, 9), at(29, 9, 9), at(30, 9, 9), at(1, 10, 9)]
+        let recaps = NotificationPlanner.plan(input: input(now: at(1, 10), workouts: workouts), now: at(1, 10), days: 7)
+            .filter { $0.kind == .weeklyRecap }
+        #expect(recaps.count == 1)
+        for recap in recaps {
+            #expect(Set(recap.values.keys) == ["thisWeek", "lastWeek"])
+            #expect(recap.values.values.allSatisfy { Int($0) != nil })
+        }
+    }
+
+    /// With every kind in play (recap, self-check, landmark, reminders) over 16 days: one a day at most.
+    /// The weekly check-in (P6) is asked in the app only: the planner has nothing to say about it.
+    @Test func stillAtMostOneADay() {
+        let workouts = [at(22, 9, 9), at(28, 9, 9), at(29, 9, 9), at(30, 9, 9), at(1, 10, 9), at(2, 10, 9)]
+        var everything = input(now: at(2, 10, 12), workouts: workouts, landmark: LandmarkSoon(stopName: "Times Square"))
+        everything.selfCheckDue = at(4, 10)
+        let planned = NotificationPlanner.plan(input: everything, now: at(2, 10, 12), days: 16)
+        let perDay = Dictionary(grouping: planned) { cal.startOfDay(for: $0.fireDate) }
+        #expect(perDay.values.allSatisfy { $0.count == 1 })
+        #expect(planned.contains { $0.kind == .weeklyRecap })
+        let fields = Mirror(reflecting: everything).children.compactMap(\.label).map { $0.lowercased() }
+        #expect(fields.allSatisfy { !$0.contains("weeklynote") && !$0.contains("chip") && !$0.contains("better") })
+    }
 }
 
 @Suite struct PhraseRotationTests {

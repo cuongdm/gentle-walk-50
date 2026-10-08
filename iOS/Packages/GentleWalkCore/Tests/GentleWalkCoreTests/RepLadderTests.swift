@@ -68,4 +68,36 @@ import Testing
         let progress = RepLadder.update([:], done: ["mv.heel-toe": 0], steady: ["mv.heel-toe"], troubled: [])
         #expect(progress.isEmpty)
     }
+
+    /// P13: back after a long break, every counted move goes one step down, never below the first step.
+    @Test func stepDownNeverBelowZero() {
+        let start = [sts: RepProgress(step: 3, fullSessions: 1, pendingChange: .up),
+                     squat: RepProgress(step: 0, fullSessions: 1)]
+        let after = RepLadder.stepDownAll(start)
+        #expect(after[sts] == RepProgress(step: 2, fullSessions: 0, pendingChange: .down))
+        #expect(after[squat] == RepProgress(step: 0, fullSessions: 0, pendingChange: nil))
+        #expect(RepLadder.stepDownAll([:]).isEmpty)
+    }
+
+    /// P9: a check up by two allows one more step for two weeks; a check down by two keeps the day's own
+    /// reps. Still earned the usual way (two full sessions); unsteady or dizzy still caps it.
+    @Test func selfCheckTrendMovesTheCap() {
+        let top = [sts: RepProgress(step: 4)]
+        #expect(RepLadder.today(sts, progress: top, intensity: .gentle, limits: [], trend: .flat) == RepStep(sets: 1, reps: 8))
+        #expect(RepLadder.today(sts, progress: top, intensity: .gentle, limits: [], trend: .up) == RepStep(sets: 1, reps: 10))
+        #expect(RepLadder.today(sts, progress: top, intensity: .gentle, limits: [], trend: .down) == RepStep(sets: 1, reps: 6))
+        #expect(RepLadder.today(sts, progress: [:], intensity: .steady, limits: [], trend: .up) == RepStep(sets: 1, reps: 8))
+        #expect(RepLadder.today(sts, progress: top, intensity: .strong, limits: [], trend: .up) == RepStep(sets: 2, reps: 10))
+        #expect(RepLadder.today(sts, progress: top, intensity: .steady, limits: [.dizzy], trend: .up) == RepStep(sets: 1, reps: 8))
+    }
+
+    /// A hard week (P6) or a check down (P9): full sessions still count, no step up; trouble still lowers.
+    @Test func holdRaisesKeepsTheStep() {
+        let start = [sts: RepProgress(step: 1, fullSessions: 1)]
+        let held = RepLadder.update(start, done: [sts: 1], steady: [sts], troubled: [], holdRaises: true)
+        #expect(held[sts]?.step == 1 && held[sts]?.pendingChange == nil)
+        let down = RepLadder.update(start, done: [sts: 1], steady: [], troubled: [sts], holdRaises: true)
+        #expect(down[sts]?.step == 0)
+        #expect(RepLadder.update(held, done: [sts: 1], steady: [sts], troubled: [])[sts]?.step == 2)
+    }
 }

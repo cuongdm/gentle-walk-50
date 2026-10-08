@@ -140,3 +140,14 @@ Tên riêng (địa danh, Central Park, Times Square, Camino de Santiago…) gi�
 | You compare only with yourself. | Bạn chỉ so với chính mình. | nguyên văn |
 | Two hands / One hand / Fingertips on the chair | Hai tay vịn ghế / Một tay vịn ghế / Đầu ngón tay chạm ghế | nhãn mức vịn |
 | Pick up at week N | Tiếp tục từ tuần N | không bao giờ "mất", "bắt đầu lại từ đầu" |
+
+## Cá nhân hoá và chống nhàm chán (08/10/2026, kế hoạch UI/cá nhân hoá, nhánh cloud)
+| Tiếng Anh | Tiếng Việt | Ghi chú |
+|---|---|---|
+| Week theme (12 chủ đề tuần) | xem `docs/i18n/vi/ui-extra-10.json` | 2–4 chữ, không hứa; "Looking back" → "Nhìn lại 12 tuần" (không dùng "chặng") |
+| New this week | Mới tuần này | chỉ hiện khi thật sự có cái mới |
+| set aside (bài tạm bỏ) | tạm để sang một bên / bài tạm để sang bên | không nói "cấm", "chấn thương" |
+| Bring it back | Bật lại | |
+| This week felt… Easier than I expected / About right / Harder | Tuần này thấy… Dễ hơn mình nghĩ / Vừa sức / Khó hơn | check-in tuần |
+| felt a bit better | thấy dễ chịu hơn một chút | không "đỡ đau", không "khỏi" |
+| You've been on your feet a lot today | Hôm nay bạn đã đi lại nhiều | từ bước chân Apple Health |

@@ -471,12 +471,12 @@ _Tài liệu chưa có lúc lập kế hoạch (08/10). Task 3.1 đọc nó và 
 
 ### Task 3.9 — Kho câu HLV đa dạng (coach line pools) [TDD]
 **Files:** Modify `VoiceRotation.swift`, nội dung `docs/scripts/*` (biến thể câu mở/đóng đã thu: xoay theo `rotationIndex`, không lặp trong 5 buổi) · Test `VoiceRotationTests` (chi tiết theo tài liệu §chống nhàm chán)
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: RED `CoachLinePoolTests` 7 issues (pool chưa có) → GREEN; toàn bộ core `Test run with 206 tests in 41 suites passed` (SessionSyncTests vẫn xanh nên độ lệch giọng/hình không đổi). Khởi động In place 5 buổi liền 5 câu khác nhau; một buổi không lặp câu; `a2.warm.1`, `a6.6`, `a6.9` không xoay. Ghi chú ở `docs/scripts/A2-walk.md` §3.2. Mac: không cần nối gì (SessionBuilder đã xoay theo `rotationIndex`); câu `a6.*` và `a7.break.*` chỉ phát khi template/app dùng chúng (P1/4.1 của Mac).
 **Commit point:** `feat(content): rotating coach line pools`
 
 ### Task 3.10 — Chủ đề buổi tập (session themes) theo tuần/chặng [TDD]
 **Files:** theo tài liệu (vd. tên buổi theo địa danh hành trình, nhạc theo chặng) — `SessionCatalog.swift`, `TodayModel.swift`
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: `WeekThemeTests` 4 tests passed (test viết cùng lúc với kiểu mới). 12 chủ đề 2–4 chữ gắn 4 giai đoạn; `newThisWeek` chỉ có ở tuần 1, 4, 7, 10, 12 (thẻ "Mới tuần này" ẩn các tuần khác — trung thực). `title` là nguồn tiếng Anh; bản Việt + chữ thẻ ở `docs/i18n/vi/ui-extra-10.json`, glossary đã thêm mục. Mac: `extension WeekTheme { var localizedTitle: LocalizedStringResource }` (switch với literal để Xcode trích khoá), dòng kicker "Week %lld · %@" trên Today/Program, thẻ "New this week" theo `newThisWeek`; nhạc theo giai đoạn và tên buổi theo địa danh để sau (cần asset).
 **Commit point:** `feat(sessions): weekly themes`
 
 ### Task 3.11 — Lời chào và tranh thay đổi (greetings/art variants) [UI]
@@ -514,7 +514,7 @@ _Tài liệu chưa có lúc lập kế hoạch (08/10). Task 3.1 đọc nó và 
 ### Task 4.5 — P3: nhớ chỗ đau theo bài, tạm bỏ có đường quay lại [TDD]
 **Files:** Modify `PainRules.swift` (`exerciseRules(reports:now:) -> ExerciseRules { easier: Set<id>, setAside: Set<id> }`: 1 báo/14 ngày → easier; 2/28 ngày → setAside 28 ngày; bỏ qua id trong `memory.restored`), `SessionBuilder.swift` (`allowed` trừ setAside; `ChairSessionPlanner` tự thế bài ngồi — cơ chế có sẵn), `TodayModel.swift` (`TodaySpecialCard.setAside(exerciseName)`: "We've set Mini-squat aside for now. Bring it back in Me."), `TodayCards.swift`, `MeSections.swift` (mục "Moves set aside" với công tắc "Bring it back"), `ThisHurtsView.swift` (sau chọn vùng: gợi "Add 'Easy on knees' to your plan?" → `updateProfile`) · Test `PainRulesTests.swift` (`oneReportMakesItEasier`, `twoReportsSetItAside`, `restoredStaysAllowed`), `TodayModelTests`
 **Command:** `CORE PainRulesTests` + `CORE SessionBuilderTests` → `passed`; `APP TodayModelTests` → xanh
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: RED `extra argument 'exerciseRules' in call` → GREEN `CORE PainRulesTests|SessionBuilderTests` 37 tests passed. D9: 1 báo đau có bài trong 14 ngày → `easier`; 2 báo trên cùng bài trong 28 ngày → `setAside[id] = lần cuối + 28 ngày`; `restored[id]` (ngày bấm "Bring it back") bỏ các báo trước đó. `SessionBuilder.build(exerciseRules:)` bỏ bài tạm bỏ khỏi `allowed` (ChairSessionPlanner tự thế bài ngồi) và thêm `easier` vào `plan.easierExerciseIDs`. `ExerciseRules.merging` để gộp với trí nhớ Easier của 4.4. Mac: `WorkoutRequest` mang `exerciseRules`; `AppModel` tính từ `painRecorder.snapshots(since: 28 ngày)` + store "restored" (UserDefaults, `AppDefaultsKeys`); thẻ Today `.setAside(name)`, mục Me "Moves set aside" + "Bring it back", ThisHurts gợi `suggestedLimit`. Chữ EN/VI gợi ý: `docs/i18n/vi/ui-extra-10.json`.
 **Commit point:** `feat(personalisation): moves that hurt go easier, then aside`
 
 ### Task 4.6 — P12: nhớ lựa chọn ở Preview [TDD]
@@ -526,19 +526,19 @@ _Tài liệu chưa có lúc lập kế hoạch (08/10). Task 3.1 đọc nó và 
 ### Task 4.7 — P13: nghỉ dài → hạ một bậc thang (Pro) [TDD]
 **Files:** Modify `SupportLadder.swift`, `RepLadder.swift` (`stepDownAll(_:)`), `AppModel+Program.pickUpProgram` (gọi khi bấm "Pick up at week N"; HLV nói `a11.ladder.down` ở buổi kế qua `pendingChange = .down`) · Test `SupportLadderTests`, `RepLadderTests` (`stepDownNeverBelowZero`), `AppFlowTests.pickUpLowersLadders()`
 **Command:** `CORE RepLadderTests` + `CORE SupportLadderTests` → `passed`
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: RED `type 'SupportLadder' has no member 'stepDownAll'` → GREEN `CORE LadderTests` 13 tests passed. `RepLadder.stepDownAll` / `SupportLadder.stepDownAll`: mỗi bài hạ 1 bậc (không dưới bậc đầu / hai tay), đếm về 0, `pendingChange = .down` (HLV nói `a11.ladder.down` qua `SupportLadder.plan`). Mac: gọi cả hai trong `AppModel+Program.pickUpProgram` rồi lưu qua `SupportLadderStore`/`RepLadderStore`; test `AppFlowTests.pickUpLowersLadders()`.
 **Commit point:** `feat(ladders): one step down after a long break`
 
 ### Task 4.8 — P9: tự kiểm tra quay lại kế hoạch (Pro) [TDD]
 **Files:** Modify `SelfCheck.swift` (`SelfCheckComparison.trend(history:) -> .up/.down/.flat` chỉ cùng cách, chênh ≥ 2), `RepLadder.today(... trend:)` (up → trần `base + 2` trong 14 ngày; down → trần `base`, không lên bậc vịn), `AppModel+Flows.prepareAndPlay`, `TodayModel` (down → `suggestedCheckIn = .okay`) · Test `SelfCheckComparisonTests`, `RepLadderTests`
 **Command:** `CORE SelfCheckComparisonTests` + `CORE RepLadderTests` → `passed`
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: RED `extra argument 'trend' in call`, `extra argument 'holdRaises'` → GREEN `CORE LadderTests|SelfCheckComparisonTests` 19 tests passed. `SelfCheckComparison.trend`: lần mới nhất so với lần trước cùng cách (có/không chống tay), chênh ≥ 2 → .up/.down, quá 14 ngày → .flat. `RepLadder.today(trend:)`: up → trần base + 2, down → trần base (dizzy/unsteady vẫn chặn). `SupportLadder.update(holdRaises:)`: down → vẫn đếm buổi, chưa lên bậc. Mac: trong `prepareAndPlay` tính `trend` từ `selfCheckResults()` và truyền vào `RepLadderStore.today`; `onBalanceResult` truyền `holdRaises: trend == .down` cho `SupportLadderStore.record`; TodayModel: trend down → check-in gợi `.okay`.
 **Commit point:** `feat(selfcheck): results feed the rep ladder`
 
 ### Task 4.9 — P6: check-in tuần đổi tuần sau [TDD]
 **Files:** Create `iOS/Packages/GentleWalkCore/Sources/GentleWalkCore/Progress/WeeklyCheckIn.swift` (`WeeklyNote { weekStart, effort: .easier/.right/.harder, better: BetterChip? }`; `WeeklyCheckIn.isDue(now:notes:calendar:)` D11; `effects(note) -> WeekEffects { minutesDelta, defaultCheckIn, laddersFrozen }`), Create `iOS/App/Services/Data/WeeklyNoteStore.swift`, Create `iOS/App/Features/WeeklyCheckIn/WeeklyCheckInView.swift` (sheet 2 câu: "This week felt…" 3 ô · "One thing that felt a bit better?" 7 chip; "Skip"), `AppCover.weeklyCheckIn` · Modify `TodayModel` (thứ Hai: dòng "Last week you said stairs felt a bit better. Let's keep the leg work going."; `WeekEffects` áp vào request/check-in), `ProgressScreen.swift` (dòng thời gian ghi chú tuần, nguyên văn chip), `MainTabView`/`AppModel.sceneBecameActive` (mở sheet khi đến hạn, 1 lần/tuần), `DataEraser` · Test `WeeklyCheckInTests.swift` (core), `TodayModelTests.lastWeekLineOnMonday()`, `copy_lint`
 **Command:** `CORE WeeklyCheckInTests` → `passed`; `APP TodayModelTests` → xanh; `copy_lint` → 0
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: RED `cannot find WeeklyCheckIn` → GREEN `CORE WeeklyCheckInTests` 7 tests passed. D11: hỏi ở lần mở đầu tiên Chủ nhật–Thứ ba về tuần Thứ hai–Chủ nhật vừa qua, chỉ khi tuần đó có ≥ 1 buổi, một lần (Skip = note `effort: nil`). Harder → −2 phút, check-in mặc định Achy, thang không lên; Easier → +2 phút, Great; Right/Skip → không đổi; hiệu lực từ lúc trả lời tới hết tuần sau. `lastWeekChip` cho dòng Thứ hai/Thứ ba (bỏ "Nothing yet"). Mac: `WeeklyNoteStore` (UserDefaults JSON `[WeeklyNote]`, khoá vào `AppDefaultsKeys`), sheet `WeeklyCheckInView` + `AppCover.weeklyCheckIn` mở trong `sceneBecameActive` khi `isDue`, áp `WeekEffects` vào request/check-in (`laddersFrozen` → `SupportLadder.update(holdRaises:)` và `RepLadder.update(holdRaises:)`), dòng Today theo chip, dòng thời gian ở Progress. Chữ EN/VI: `docs/i18n/vi/ui-extra-10.json`; copy_lint 0.
 **Commit point:** `feat(personalisation): weekly check-in shapes next week`
 
 ### Task 4.10 — P8: thẻ "Your results" đầu Progress [UI]
@@ -551,20 +551,20 @@ _Tài liệu chưa có lúc lập kế hoạch (08/10). Task 3.1 đọc nó và 
 ### Task 4.11 — P10: giờ nhắc và độ dài theo hành vi thật [TDD]
 **Files:** Modify `NotificationPlanner.swift` hoặc Create `Progress/HabitSignals.swift` (core: `suggestedReminderMinutes(sessions:[(start, end)], reminderMinutes:)` — 5 buổi gần nhất lệch > 45 phút → đề xuất; `lengthSignal(records:)` — 2/3 buổi gần nhất kết thúc sớm 60–85 % không vì đau → `.shorter`; hay làm Extra ngay sau → `.longer`), `TodayModel` (`TodaySpecialCard.moveReminder(to:)` "Move your reminder to 9:15?" Yes/No → `updateProfile`; `.shorter` dùng cơ chế có sẵn; `.longer` → gợi Long walk) · Test `HabitSignalsTests.swift` (core), `TodayModelTests`
 **Command:** `CORE HabitSignalsTests` → `passed`
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: `CORE HabitSignalsTests` 4 tests passed (test viết cùng kiểu mới). Giờ nhắc: 5 buổi gần nhất, ≥ 4 buổi lệch > 45 phút cùng một phía → đề xuất trung vị làm tròn 15 phút (vd. 9:15); ít hơn 5 buổi hoặc lệch hai phía → nil. Độ dài: 3 buổi gần nhất, 2 buổi dừng ở 60–85 % kế hoạch (không vì đau) → `.shorter`; 2 buổi có Extra ngay sau → `.longer`; shorter thắng. Mac: map `WorkoutRecord` → `SessionTiming` (start = date − activeSeconds; plannedSeconds lưu thêm hoặc tính lại từ request; extraAfter = Extra bắt đầu ≤ 30 phút sau), thẻ `TodaySpecialCard.moveReminder(to:)` "Move your reminder to 9:15?" → `updateProfile`; `.shorter` → `minutesDelta −2` + thẻ shorter có sẵn; `.longer` → gợi Long walk. Chữ VI trong `ui-extra-10.json`.
 **Commit point:** `feat(personalisation): reminder time and length from real habits`
 
 ### Task 4.12 — P11: bước Apple Health → "đã đi nhiều hôm nay" [TDD]
 **Files:** Modify `HealthService.swift` (`stepsToday(now:)`, `medianDailySteps(weeks: 4)` — chỉ khi đã có quyền), `AppModel.reload` (tính async, cache `TodayInput.busyDay: Bool` = hôm nay > 1,5 × trung vị, trước giờ nhắc), `TodayModel` (dòng "You've been on your feet a lot today. A gentle stretch fits." + swap mặc định stretch; không đổi lịch, không bỏ nhắc) · Test `HealthServiceTests.busyDayNeedsOneAndAHalfTimesTheMedian()`, `TodayModelTests`
 **Command:** `APP HealthServiceTests` → xanh
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: `CORE BusyDayTests` 3 tests passed (busyDayNeedsOneAndAHalfTimesTheMedian, onlyBeforeTheReminder, needsAWeekOfHerOwnSteps). Trung vị bước chân 28 ngày trước hôm nay (bỏ ngày 0 bước, cần ≥ 7 ngày); bận khi trước giờ nhắc và hôm nay > 1,5 × trung vị. Phần đọc HealthKit không làm ở đây (app). Mac: `HealthService.stepsToday(now:)` + `dailySteps(from:to:calendar:)` đã có (chỉ khi đã cho quyền) → `BusyDay.isBusy` trong `AppModel.reload` (async, cache `TodayInput.busyDay`), dòng Today "You've been on your feet a lot today. A gentle stretch fits." + swap mặc định Gentle stretch; test `HealthServiceTests` dùng `CaptureHealthStore`. Chữ VI trong `ui-extra-10.json`.
 **Commit point:** `feat(personalisation): busy day from Apple Health steps`
 
 ### Task 4.13 — P7: kịch bản A13 câu HLV theo lịch sử (EN + VI) [DATA]
 **Files:** Create `docs/scripts/A13-coach-history.md` (bảng ID · câu · ghi chú: `a13.check.n.3`…`a13.check.n.20` "Last check, you stood up N times. Let's see today." · `a13.week.1`…`a13.week.12` "Week N of twelve. At your own pace." · `a13.days.1`…`a13.days.7` "That's N active days this week." · `a13.walk.2`…`a13.walk.5` "Second/Third/Fourth/Fifth walk this week. Nice and steady." — 41 câu, ≤ 16 từ, không tên, không "fall/risk/test"), Create `docs/i18n/vi/voice-a13.json` (41 câu VI theo glossary) · Modify `tools/content/voice_lines.py` (đọc A13), `tools/content/build_content.py`, `iOS/App/Resources/Content/voice-lines.json`, `ContentValidator.swift` · Test `ContentValidatorTests.coachHistoryLinesExist()` (41 id EN + VI)
 **Steps:** 1. Viết kịch bản; `copy_lint` 0. 2. Test RED → build content → GREEN; `build_content.py --check` exit 0.
 **Command:** `CORE ContentValidatorTests` → `passed`; `python3 tools/content/build_content.py --check` → exit 0
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: Kịch bản `docs/scripts/A13-coach-history.md` (41 câu: check.n.3–20, week.1–12, days.1–7, walk.2–5; số viết bằng chữ, câu nguyên theo D12), bản Việt `docs/i18n/vi/voice-a13.json`. `tools/content/voice_lines.py` đọc A13 → `build_content.py` ghi `voice-lines.json` 661 câu, `--check` stale: none; 41 câu Việt vá thẳng vào `content.vi.json` (chỉ thêm text, không xoá ghi âm; chưa chạy overlay vì cần `--cache`). `copy_lint` 0 findings. `CORE CoachHistoryTests` 3 passed; toàn bộ core `Test run with 230 tests in 46 suites passed`. Mac: 4.14 thu Vibi EN+VI; 4.15 nối `CoachHistory` vào `SessionBuilder` (mở/cuối buổi) và `SessionTimeline.selfCheck(previousCount:)`; `RELEASE` đỏ tới khi thu xong.
 **Commit point:** `feat(content): A13 coach history lines`
 
 ### Task 4.14 — P7: thu giọng A13 qua Vibi, EN rồi VI, QC [DATA]
@@ -601,7 +601,7 @@ _Tài liệu chưa có lúc lập kế hoạch (08/10). Task 3.1 đọc nó và 
 ### Task 4.18 — Thông báo: tổng kết tuần không ghi sức khoẻ, không trùng, ≤ 1/ngày [TDD]
 **Files:** Modify `NotificationPlanner.swift` (recap tuần chỉ số ngày/phút; không chèn chip P6), `NotificationScheduler.swift` · Test `NotificationPlannerTests.weeklyRecapNeverNamesHealth()`, `stillAtMostOneADay()` (với weekly check-in không tạo thông báo)
 **Command:** `CORE NotificationPlannerTests` → `passed`
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: Không phải sửa `NotificationPlanner.swift`: tổng kết tuần đã chỉ mang `thisWeek`/`lastWeek` (số ngày). Test mới khoá: (1) mọi câu thông báo EN (`notifications.json`) và VI (`content.vi.json`) không chứa từ cơ thể/triệu chứng/sức khoẻ (so nguyên từ, vì "hông" nằm trong "không"); (2) 16 ngày có đủ loại (tổng kết, tự kiểm tra, địa danh, nhắc) → mỗi ngày ≤ 1; `PlannerInput` không có trường chip check-in tuần. `CORE NotificationPlannerTests` 21 tests passed. Mac: `NotificationScheduler` không đổi; check-in tuần (4.9) không tạo thông báo.
 **Commit point:** `test(notifications): recap stays private`
 
 ### Milestone 5 — Kiểm chứng + tài liệu

@@ -35447,6 +35447,2069 @@
           "end": 3.99
         }
       ]
+    },
+    {
+      "id": "a13.check.n.3",
+      "text": "Last check, you stood up three times. Let's see today.",
+      "file": "a13.check.n.3.m4a",
+      "duration": 4.018,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.08,
+          "end": 0.42
+        },
+        {
+          "word": "check,",
+          "start": 0.42,
+          "end": 1.16
+        },
+        {
+          "word": "you",
+          "start": 1.16,
+          "end": 1.24
+        },
+        {
+          "word": "stood",
+          "start": 1.24,
+          "end": 1.46
+        },
+        {
+          "word": "up",
+          "start": 1.46,
+          "end": 1.66
+        },
+        {
+          "word": "three",
+          "start": 1.66,
+          "end": 1.98
+        },
+        {
+          "word": "times.",
+          "start": 1.98,
+          "end": 2.88
+        },
+        {
+          "word": "Let's",
+          "start": 2.88,
+          "end": 3.46
+        },
+        {
+          "word": "see",
+          "start": 3.46,
+          "end": 3.56
+        },
+        {
+          "word": "today.",
+          "start": 3.56,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.4",
+      "text": "Last check, you stood up four times. Let's see today.",
+      "file": "a13.check.n.4.m4a",
+      "duration": 4.187,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.08,
+          "end": 0.5
+        },
+        {
+          "word": "check,",
+          "start": 0.5,
+          "end": 1.16
+        },
+        {
+          "word": "you",
+          "start": 1.16,
+          "end": 1.48
+        },
+        {
+          "word": "stood",
+          "start": 1.48,
+          "end": 1.68
+        },
+        {
+          "word": "up",
+          "start": 1.68,
+          "end": 1.86
+        },
+        {
+          "word": "four",
+          "start": 1.86,
+          "end": 2.14
+        },
+        {
+          "word": "times.",
+          "start": 2.14,
+          "end": 3.0
+        },
+        {
+          "word": "Let's",
+          "start": 3.0,
+          "end": 3.58
+        },
+        {
+          "word": "see",
+          "start": 3.58,
+          "end": 3.7
+        },
+        {
+          "word": "today.",
+          "start": 3.7,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.5",
+      "text": "Last check, you stood up five times. Let's see today.",
+      "file": "a13.check.n.5.m4a",
+      "duration": 3.592,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.08,
+          "end": 0.4
+        },
+        {
+          "word": "check,",
+          "start": 0.4,
+          "end": 1.0
+        },
+        {
+          "word": "you",
+          "start": 1.0,
+          "end": 1.14
+        },
+        {
+          "word": "stood",
+          "start": 1.14,
+          "end": 1.32
+        },
+        {
+          "word": "up",
+          "start": 1.32,
+          "end": 1.48
+        },
+        {
+          "word": "five",
+          "start": 1.48,
+          "end": 1.82
+        },
+        {
+          "word": "times.",
+          "start": 1.82,
+          "end": 2.62
+        },
+        {
+          "word": "Let's",
+          "start": 2.62,
+          "end": 2.98
+        },
+        {
+          "word": "see",
+          "start": 2.98,
+          "end": 2.99
+        },
+        {
+          "word": "today.",
+          "start": 2.98,
+          "end": 2.99
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.6",
+      "text": "Last check, you stood up six times. Let's see today.",
+      "file": "a13.check.n.6.m4a",
+      "duration": 4.189,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.1,
+          "end": 0.46
+        },
+        {
+          "word": "check,",
+          "start": 0.46,
+          "end": 1.06
+        },
+        {
+          "word": "you",
+          "start": 1.06,
+          "end": 1.38
+        },
+        {
+          "word": "stood",
+          "start": 1.38,
+          "end": 1.58
+        },
+        {
+          "word": "up",
+          "start": 1.58,
+          "end": 1.74
+        },
+        {
+          "word": "six",
+          "start": 1.74,
+          "end": 2.04
+        },
+        {
+          "word": "times.",
+          "start": 2.04,
+          "end": 2.86
+        },
+        {
+          "word": "Let's",
+          "start": 2.86,
+          "end": 3.5
+        },
+        {
+          "word": "see",
+          "start": 3.5,
+          "end": 3.6
+        },
+        {
+          "word": "today.",
+          "start": 3.6,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.7",
+      "text": "Last check, you stood up seven times. Let's see today.",
+      "file": "a13.check.n.7.m4a",
+      "duration": 4.102,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.08,
+          "end": 0.46
+        },
+        {
+          "word": "check,",
+          "start": 0.46,
+          "end": 1.06
+        },
+        {
+          "word": "you",
+          "start": 1.06,
+          "end": 1.32
+        },
+        {
+          "word": "stood",
+          "start": 1.32,
+          "end": 1.54
+        },
+        {
+          "word": "up",
+          "start": 1.54,
+          "end": 1.74
+        },
+        {
+          "word": "seven",
+          "start": 1.74,
+          "end": 2.12
+        },
+        {
+          "word": "times.",
+          "start": 2.12,
+          "end": 2.96
+        },
+        {
+          "word": "Let's",
+          "start": 2.96,
+          "end": 3.42
+        },
+        {
+          "word": "see",
+          "start": 3.42,
+          "end": 3.54
+        },
+        {
+          "word": "today.",
+          "start": 3.54,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.8",
+      "text": "Last check, you stood up eight times. Let's see today.",
+      "file": "a13.check.n.8.m4a",
+      "duration": 4.017,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.1,
+          "end": 0.46
+        },
+        {
+          "word": "check,",
+          "start": 0.46,
+          "end": 1.02
+        },
+        {
+          "word": "you",
+          "start": 1.02,
+          "end": 1.36
+        },
+        {
+          "word": "stood",
+          "start": 1.36,
+          "end": 1.58
+        },
+        {
+          "word": "up",
+          "start": 1.58,
+          "end": 1.76
+        },
+        {
+          "word": "eight",
+          "start": 1.76,
+          "end": 2.08
+        },
+        {
+          "word": "times.",
+          "start": 2.08,
+          "end": 2.82
+        },
+        {
+          "word": "Let's",
+          "start": 2.82,
+          "end": 3.36
+        },
+        {
+          "word": "see",
+          "start": 3.36,
+          "end": 3.48
+        },
+        {
+          "word": "today.",
+          "start": 3.48,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.9",
+      "text": "Last check, you stood up nine times. Let's see today.",
+      "file": "a13.check.n.9.m4a",
+      "duration": 4.295,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.1,
+          "end": 0.48
+        },
+        {
+          "word": "check,",
+          "start": 0.48,
+          "end": 1.1
+        },
+        {
+          "word": "you",
+          "start": 1.1,
+          "end": 1.42
+        },
+        {
+          "word": "stood",
+          "start": 1.42,
+          "end": 1.62
+        },
+        {
+          "word": "up",
+          "start": 1.62,
+          "end": 1.8
+        },
+        {
+          "word": "nine",
+          "start": 1.8,
+          "end": 2.08
+        },
+        {
+          "word": "times.",
+          "start": 2.08,
+          "end": 2.9
+        },
+        {
+          "word": "Let's",
+          "start": 2.9,
+          "end": 3.64
+        },
+        {
+          "word": "see",
+          "start": 3.64,
+          "end": 3.74
+        },
+        {
+          "word": "today.",
+          "start": 3.74,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.10",
+      "text": "Last check, you stood up ten times. Let's see today.",
+      "file": "a13.check.n.10.m4a",
+      "duration": 3.839,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.1,
+          "end": 0.44
+        },
+        {
+          "word": "check,",
+          "start": 0.44,
+          "end": 1.06
+        },
+        {
+          "word": "you",
+          "start": 1.06,
+          "end": 1.38
+        },
+        {
+          "word": "stood",
+          "start": 1.38,
+          "end": 1.58
+        },
+        {
+          "word": "up",
+          "start": 1.58,
+          "end": 1.74
+        },
+        {
+          "word": "ten",
+          "start": 1.74,
+          "end": 1.98
+        },
+        {
+          "word": "times.",
+          "start": 1.98,
+          "end": 2.8
+        },
+        {
+          "word": "Let's",
+          "start": 2.8,
+          "end": 2.98
+        },
+        {
+          "word": "see",
+          "start": 2.98,
+          "end": 2.99
+        },
+        {
+          "word": "today.",
+          "start": 2.98,
+          "end": 2.99
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.11",
+      "text": "Last check, you stood up eleven times. Let's see today.",
+      "file": "a13.check.n.11.m4a",
+      "duration": 4.384,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.12,
+          "end": 0.5
+        },
+        {
+          "word": "check,",
+          "start": 0.5,
+          "end": 1.12
+        },
+        {
+          "word": "you",
+          "start": 1.12,
+          "end": 1.34
+        },
+        {
+          "word": "stood",
+          "start": 1.34,
+          "end": 1.56
+        },
+        {
+          "word": "up",
+          "start": 1.56,
+          "end": 1.78
+        },
+        {
+          "word": "eleven",
+          "start": 1.78,
+          "end": 2.22
+        },
+        {
+          "word": "times.",
+          "start": 2.22,
+          "end": 3.18
+        },
+        {
+          "word": "Let's",
+          "start": 3.18,
+          "end": 3.72
+        },
+        {
+          "word": "see",
+          "start": 3.72,
+          "end": 3.84
+        },
+        {
+          "word": "today.",
+          "start": 3.84,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.12",
+      "text": "Last check, you stood up twelve times. Let's see today.",
+      "file": "a13.check.n.12.m4a",
+      "duration": 4.3,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.1,
+          "end": 0.44
+        },
+        {
+          "word": "check,",
+          "start": 0.44,
+          "end": 1.04
+        },
+        {
+          "word": "you",
+          "start": 1.04,
+          "end": 1.36
+        },
+        {
+          "word": "stood",
+          "start": 1.36,
+          "end": 1.56
+        },
+        {
+          "word": "up",
+          "start": 1.56,
+          "end": 1.74
+        },
+        {
+          "word": "twelve",
+          "start": 1.74,
+          "end": 2.08
+        },
+        {
+          "word": "times.",
+          "start": 2.08,
+          "end": 2.96
+        },
+        {
+          "word": "Let's",
+          "start": 2.96,
+          "end": 3.52
+        },
+        {
+          "word": "see",
+          "start": 3.52,
+          "end": 3.66
+        },
+        {
+          "word": "today.",
+          "start": 3.66,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.13",
+      "text": "Last check, you stood up thirteen times. Let's see today.",
+      "file": "a13.check.n.13.m4a",
+      "duration": 4.381,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.08,
+          "end": 0.44
+        },
+        {
+          "word": "check,",
+          "start": 0.44,
+          "end": 1.02
+        },
+        {
+          "word": "you",
+          "start": 1.02,
+          "end": 1.38
+        },
+        {
+          "word": "stood",
+          "start": 1.38,
+          "end": 1.62
+        },
+        {
+          "word": "up",
+          "start": 1.62,
+          "end": 1.78
+        },
+        {
+          "word": "thirteen",
+          "start": 1.78,
+          "end": 2.18
+        },
+        {
+          "word": "times.",
+          "start": 2.18,
+          "end": 3.08
+        },
+        {
+          "word": "Let's",
+          "start": 3.08,
+          "end": 3.68
+        },
+        {
+          "word": "see",
+          "start": 3.68,
+          "end": 3.8
+        },
+        {
+          "word": "today.",
+          "start": 3.8,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.14",
+      "text": "Last check, you stood up fourteen times. Let's see today.",
+      "file": "a13.check.n.14.m4a",
+      "duration": 4.187,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.08,
+          "end": 0.42
+        },
+        {
+          "word": "check,",
+          "start": 0.42,
+          "end": 1.08
+        },
+        {
+          "word": "you",
+          "start": 1.08,
+          "end": 1.28
+        },
+        {
+          "word": "stood",
+          "start": 1.28,
+          "end": 1.52
+        },
+        {
+          "word": "up",
+          "start": 1.52,
+          "end": 1.72
+        },
+        {
+          "word": "fourteen",
+          "start": 1.72,
+          "end": 2.2
+        },
+        {
+          "word": "times.",
+          "start": 2.2,
+          "end": 3.06
+        },
+        {
+          "word": "Let's",
+          "start": 3.06,
+          "end": 3.56
+        },
+        {
+          "word": "see",
+          "start": 3.56,
+          "end": 3.68
+        },
+        {
+          "word": "today.",
+          "start": 3.68,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.15",
+      "text": "Last check, you stood up fifteen times. Let's see today.",
+      "file": "a13.check.n.15.m4a",
+      "duration": 4.553,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.08,
+          "end": 0.42
+        },
+        {
+          "word": "check,",
+          "start": 0.42,
+          "end": 1.24
+        },
+        {
+          "word": "you",
+          "start": 1.24,
+          "end": 1.32
+        },
+        {
+          "word": "stood",
+          "start": 1.32,
+          "end": 1.52
+        },
+        {
+          "word": "up",
+          "start": 1.52,
+          "end": 1.72
+        },
+        {
+          "word": "fifteen",
+          "start": 1.72,
+          "end": 2.26
+        },
+        {
+          "word": "times.",
+          "start": 2.26,
+          "end": 3.26
+        },
+        {
+          "word": "Let's",
+          "start": 3.26,
+          "end": 3.84
+        },
+        {
+          "word": "see",
+          "start": 3.84,
+          "end": 3.98
+        },
+        {
+          "word": "today.",
+          "start": 3.98,
+          "end": 3.99
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.16",
+      "text": "Last check, you stood up sixteen times. Let's see today.",
+      "file": "a13.check.n.16.m4a",
+      "duration": 4.388,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.1,
+          "end": 0.48
+        },
+        {
+          "word": "check,",
+          "start": 0.48,
+          "end": 1.22
+        },
+        {
+          "word": "you",
+          "start": 1.22,
+          "end": 1.32
+        },
+        {
+          "word": "stood",
+          "start": 1.32,
+          "end": 1.54
+        },
+        {
+          "word": "up",
+          "start": 1.54,
+          "end": 1.72
+        },
+        {
+          "word": "sixteen",
+          "start": 1.72,
+          "end": 2.22
+        },
+        {
+          "word": "times.",
+          "start": 2.22,
+          "end": 3.2
+        },
+        {
+          "word": "Let's",
+          "start": 3.2,
+          "end": 3.72
+        },
+        {
+          "word": "see",
+          "start": 3.72,
+          "end": 3.84
+        },
+        {
+          "word": "today.",
+          "start": 3.84,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.17",
+      "text": "Last check, you stood up seventeen times. Let's see today.",
+      "file": "a13.check.n.17.m4a",
+      "duration": 4.47,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.08,
+          "end": 0.42
+        },
+        {
+          "word": "check,",
+          "start": 0.42,
+          "end": 1.04
+        },
+        {
+          "word": "you",
+          "start": 1.04,
+          "end": 1.32
+        },
+        {
+          "word": "stood",
+          "start": 1.32,
+          "end": 1.52
+        },
+        {
+          "word": "up",
+          "start": 1.52,
+          "end": 1.7
+        },
+        {
+          "word": "seventeen",
+          "start": 1.7,
+          "end": 2.28
+        },
+        {
+          "word": "times.",
+          "start": 2.28,
+          "end": 3.3
+        },
+        {
+          "word": "Let's",
+          "start": 3.3,
+          "end": 3.88
+        },
+        {
+          "word": "see",
+          "start": 3.88,
+          "end": 3.98
+        },
+        {
+          "word": "today.",
+          "start": 3.98,
+          "end": 3.99
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.18",
+      "text": "Last check, you stood up eighteen times. Let's see today.",
+      "file": "a13.check.n.18.m4a",
+      "duration": 4.464,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.1,
+          "end": 0.48
+        },
+        {
+          "word": "check,",
+          "start": 0.48,
+          "end": 1.22
+        },
+        {
+          "word": "you",
+          "start": 1.22,
+          "end": 1.3
+        },
+        {
+          "word": "stood",
+          "start": 1.3,
+          "end": 1.54
+        },
+        {
+          "word": "up",
+          "start": 1.54,
+          "end": 1.7
+        },
+        {
+          "word": "eighteen",
+          "start": 1.7,
+          "end": 2.14
+        },
+        {
+          "word": "times.",
+          "start": 2.14,
+          "end": 3.08
+        },
+        {
+          "word": "Let's",
+          "start": 3.08,
+          "end": 3.7
+        },
+        {
+          "word": "see",
+          "start": 3.7,
+          "end": 3.84
+        },
+        {
+          "word": "today.",
+          "start": 3.84,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.19",
+      "text": "Last check, you stood up nineteen times. Let's see today.",
+      "file": "a13.check.n.19.m4a",
+      "duration": 4.105,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.1,
+          "end": 0.46
+        },
+        {
+          "word": "check,",
+          "start": 0.46,
+          "end": 1.0
+        },
+        {
+          "word": "you",
+          "start": 1.0,
+          "end": 1.32
+        },
+        {
+          "word": "stood",
+          "start": 1.32,
+          "end": 1.52
+        },
+        {
+          "word": "up",
+          "start": 1.52,
+          "end": 1.7
+        },
+        {
+          "word": "nineteen",
+          "start": 1.7,
+          "end": 2.1
+        },
+        {
+          "word": "times.",
+          "start": 2.1,
+          "end": 2.94
+        },
+        {
+          "word": "Let's",
+          "start": 2.94,
+          "end": 3.42
+        },
+        {
+          "word": "see",
+          "start": 3.42,
+          "end": 3.54
+        },
+        {
+          "word": "today.",
+          "start": 3.54,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.check.n.20",
+      "text": "Last check, you stood up twenty times. Let's see today.",
+      "file": "a13.check.n.20.m4a",
+      "duration": 4.552,
+      "words": [
+        {
+          "word": "Last",
+          "start": 0.1,
+          "end": 0.52
+        },
+        {
+          "word": "check,",
+          "start": 0.52,
+          "end": 1.16
+        },
+        {
+          "word": "you",
+          "start": 1.16,
+          "end": 1.44
+        },
+        {
+          "word": "stood",
+          "start": 1.44,
+          "end": 1.68
+        },
+        {
+          "word": "up",
+          "start": 1.68,
+          "end": 1.84
+        },
+        {
+          "word": "twenty",
+          "start": 1.84,
+          "end": 2.2
+        },
+        {
+          "word": "times.",
+          "start": 2.2,
+          "end": 3.14
+        },
+        {
+          "word": "Let's",
+          "start": 3.14,
+          "end": 3.76
+        },
+        {
+          "word": "see",
+          "start": 3.76,
+          "end": 3.88
+        },
+        {
+          "word": "today.",
+          "start": 3.88,
+          "end": 3.98
+        }
+      ]
+    },
+    {
+      "id": "a13.week.1",
+      "text": "Week one of twelve. At your own pace.",
+      "file": "a13.week.1.m4a",
+      "duration": 3.075,
+      "words": [
+        {
+          "word": "Week",
+          "start": 0.08,
+          "end": 0.34
+        },
+        {
+          "word": "one",
+          "start": 0.34,
+          "end": 0.52
+        },
+        {
+          "word": "of",
+          "start": 0.52,
+          "end": 0.66
+        },
+        {
+          "word": "twelve.",
+          "start": 0.66,
+          "end": 1.4
+        },
+        {
+          "word": "At",
+          "start": 1.4,
+          "end": 2.02
+        },
+        {
+          "word": "your",
+          "start": 2.02,
+          "end": 2.16
+        },
+        {
+          "word": "own",
+          "start": 2.16,
+          "end": 2.38
+        },
+        {
+          "word": "pace.",
+          "start": 2.38,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a13.week.2",
+      "text": "Week two of twelve. At your own pace.",
+      "file": "a13.week.2.m4a",
+      "duration": 3.244,
+      "words": [
+        {
+          "word": "Week",
+          "start": 0.1,
+          "end": 0.4
+        },
+        {
+          "word": "two",
+          "start": 0.4,
+          "end": 0.68
+        },
+        {
+          "word": "of",
+          "start": 0.68,
+          "end": 0.88
+        },
+        {
+          "word": "twelve.",
+          "start": 0.88,
+          "end": 1.62
+        },
+        {
+          "word": "At",
+          "start": 1.62,
+          "end": 2.18
+        },
+        {
+          "word": "your",
+          "start": 2.18,
+          "end": 2.32
+        },
+        {
+          "word": "own",
+          "start": 2.32,
+          "end": 2.56
+        },
+        {
+          "word": "pace.",
+          "start": 2.56,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a13.week.3",
+      "text": "Week three of twelve. At your own pace.",
+      "file": "a13.week.3.m4a",
+      "duration": 3.165,
+      "words": [
+        {
+          "word": "Week",
+          "start": 0.1,
+          "end": 0.42
+        },
+        {
+          "word": "three",
+          "start": 0.42,
+          "end": 0.7
+        },
+        {
+          "word": "of",
+          "start": 0.7,
+          "end": 0.9
+        },
+        {
+          "word": "twelve.",
+          "start": 0.9,
+          "end": 1.62
+        },
+        {
+          "word": "At",
+          "start": 1.62,
+          "end": 2.08
+        },
+        {
+          "word": "your",
+          "start": 2.08,
+          "end": 2.22
+        },
+        {
+          "word": "own",
+          "start": 2.22,
+          "end": 2.46
+        },
+        {
+          "word": "pace.",
+          "start": 2.46,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a13.week.4",
+      "text": "Week four of twelve. At your own pace.",
+      "file": "a13.week.4.m4a",
+      "duration": 2.903,
+      "words": [
+        {
+          "word": "Week",
+          "start": 0.06,
+          "end": 0.34
+        },
+        {
+          "word": "four",
+          "start": 0.34,
+          "end": 0.68
+        },
+        {
+          "word": "of",
+          "start": 0.68,
+          "end": 0.86
+        },
+        {
+          "word": "twelve.",
+          "start": 0.86,
+          "end": 1.52
+        },
+        {
+          "word": "At",
+          "start": 1.52,
+          "end": 1.84
+        },
+        {
+          "word": "your",
+          "start": 1.84,
+          "end": 1.98
+        },
+        {
+          "word": "own",
+          "start": 1.98,
+          "end": 1.99
+        },
+        {
+          "word": "pace.",
+          "start": 1.98,
+          "end": 1.99
+        }
+      ]
+    },
+    {
+      "id": "a13.week.5",
+      "text": "Week five of twelve. At your own pace.",
+      "file": "a13.week.5.m4a",
+      "duration": 2.994,
+      "words": [
+        {
+          "word": "Week",
+          "start": 0.08,
+          "end": 0.32
+        },
+        {
+          "word": "five",
+          "start": 0.32,
+          "end": 0.62
+        },
+        {
+          "word": "of",
+          "start": 0.62,
+          "end": 0.8
+        },
+        {
+          "word": "twelve.",
+          "start": 0.8,
+          "end": 1.5
+        },
+        {
+          "word": "At",
+          "start": 1.5,
+          "end": 1.98
+        },
+        {
+          "word": "your",
+          "start": 1.98,
+          "end": 1.99
+        },
+        {
+          "word": "own",
+          "start": 1.98,
+          "end": 1.99
+        },
+        {
+          "word": "pace.",
+          "start": 1.98,
+          "end": 1.99
+        }
+      ]
+    },
+    {
+      "id": "a13.week.6",
+      "text": "Week six of twelve. At your own pace.",
+      "file": "a13.week.6.m4a",
+      "duration": 3.074,
+      "words": [
+        {
+          "word": "Week",
+          "start": 0.06,
+          "end": 0.3
+        },
+        {
+          "word": "six",
+          "start": 0.3,
+          "end": 0.58
+        },
+        {
+          "word": "of",
+          "start": 0.58,
+          "end": 0.76
+        },
+        {
+          "word": "twelve.",
+          "start": 0.76,
+          "end": 1.5
+        },
+        {
+          "word": "At",
+          "start": 1.5,
+          "end": 2.0
+        },
+        {
+          "word": "your",
+          "start": 2.0,
+          "end": 2.14
+        },
+        {
+          "word": "own",
+          "start": 2.14,
+          "end": 2.38
+        },
+        {
+          "word": "pace.",
+          "start": 2.38,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a13.week.7",
+      "text": "Week seven of twelve. At your own pace.",
+      "file": "a13.week.7.m4a",
+      "duration": 3.415,
+      "words": [
+        {
+          "word": "Week",
+          "start": 0.08,
+          "end": 0.38
+        },
+        {
+          "word": "seven",
+          "start": 0.38,
+          "end": 0.74
+        },
+        {
+          "word": "of",
+          "start": 0.74,
+          "end": 0.94
+        },
+        {
+          "word": "twelve.",
+          "start": 0.94,
+          "end": 1.76
+        },
+        {
+          "word": "At",
+          "start": 1.76,
+          "end": 2.34
+        },
+        {
+          "word": "your",
+          "start": 2.34,
+          "end": 2.48
+        },
+        {
+          "word": "own",
+          "start": 2.48,
+          "end": 2.74
+        },
+        {
+          "word": "pace.",
+          "start": 2.74,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a13.week.8",
+      "text": "Week eight of twelve. At your own pace.",
+      "file": "a13.week.8.m4a",
+      "duration": 2.914,
+      "words": [
+        {
+          "word": "Week",
+          "start": 0.1,
+          "end": 0.4
+        },
+        {
+          "word": "eight",
+          "start": 0.4,
+          "end": 0.64
+        },
+        {
+          "word": "of",
+          "start": 0.64,
+          "end": 0.76
+        },
+        {
+          "word": "twelve.",
+          "start": 0.76,
+          "end": 1.4
+        },
+        {
+          "word": "At",
+          "start": 1.4,
+          "end": 1.82
+        },
+        {
+          "word": "your",
+          "start": 1.82,
+          "end": 1.98
+        },
+        {
+          "word": "own",
+          "start": 1.98,
+          "end": 1.99
+        },
+        {
+          "word": "pace.",
+          "start": 1.98,
+          "end": 1.99
+        }
+      ]
+    },
+    {
+      "id": "a13.week.9",
+      "text": "Week nine of twelve. At your own pace.",
+      "file": "a13.week.9.m4a",
+      "duration": 3.333,
+      "words": [
+        {
+          "word": "Week",
+          "start": 0.12,
+          "end": 0.42
+        },
+        {
+          "word": "nine",
+          "start": 0.42,
+          "end": 0.78
+        },
+        {
+          "word": "of",
+          "start": 0.78,
+          "end": 0.98
+        },
+        {
+          "word": "twelve.",
+          "start": 0.98,
+          "end": 1.7
+        },
+        {
+          "word": "At",
+          "start": 1.7,
+          "end": 2.18
+        },
+        {
+          "word": "your",
+          "start": 2.18,
+          "end": 2.32
+        },
+        {
+          "word": "own",
+          "start": 2.32,
+          "end": 2.62
+        },
+        {
+          "word": "pace.",
+          "start": 2.62,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a13.week.10",
+      "text": "Week ten of twelve. At your own pace.",
+      "file": "a13.week.10.m4a",
+      "duration": 3.256,
+      "words": [
+        {
+          "word": "Week",
+          "start": 0.06,
+          "end": 0.32
+        },
+        {
+          "word": "ten",
+          "start": 0.32,
+          "end": 0.68
+        },
+        {
+          "word": "of",
+          "start": 0.68,
+          "end": 0.9
+        },
+        {
+          "word": "twelve.",
+          "start": 0.9,
+          "end": 1.66
+        },
+        {
+          "word": "At",
+          "start": 1.66,
+          "end": 2.18
+        },
+        {
+          "word": "your",
+          "start": 2.18,
+          "end": 2.32
+        },
+        {
+          "word": "own",
+          "start": 2.32,
+          "end": 2.56
+        },
+        {
+          "word": "pace.",
+          "start": 2.56,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a13.week.11",
+      "text": "Week eleven of twelve. At your own pace.",
+      "file": "a13.week.11.m4a",
+      "duration": 3.589,
+      "words": [
+        {
+          "word": "Week",
+          "start": 0.08,
+          "end": 0.32
+        },
+        {
+          "word": "eleven",
+          "start": 0.32,
+          "end": 0.72
+        },
+        {
+          "word": "of",
+          "start": 0.72,
+          "end": 0.94
+        },
+        {
+          "word": "twelve.",
+          "start": 0.94,
+          "end": 1.82
+        },
+        {
+          "word": "At",
+          "start": 1.82,
+          "end": 2.44
+        },
+        {
+          "word": "your",
+          "start": 2.44,
+          "end": 2.58
+        },
+        {
+          "word": "own",
+          "start": 2.58,
+          "end": 2.86
+        },
+        {
+          "word": "pace.",
+          "start": 2.86,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a13.week.12",
+      "text": "Week twelve of twelve. At your own pace.",
+      "file": "a13.week.12.m4a",
+      "duration": 3.081,
+      "words": [
+        {
+          "word": "Week",
+          "start": 0.08,
+          "end": 0.38
+        },
+        {
+          "word": "twelve",
+          "start": 0.38,
+          "end": 0.76
+        },
+        {
+          "word": "of",
+          "start": 0.76,
+          "end": 0.98
+        },
+        {
+          "word": "twelve.",
+          "start": 0.98,
+          "end": 1.66
+        },
+        {
+          "word": "At",
+          "start": 1.66,
+          "end": 2.12
+        },
+        {
+          "word": "your",
+          "start": 2.12,
+          "end": 2.26
+        },
+        {
+          "word": "own",
+          "start": 2.26,
+          "end": 2.5
+        },
+        {
+          "word": "pace.",
+          "start": 2.5,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a13.days.1",
+      "text": "That's your first active day this week.",
+      "file": "a13.days.1.m4a",
+      "duration": 2.286,
+      "words": [
+        {
+          "word": "That's",
+          "start": 0.06,
+          "end": 0.42
+        },
+        {
+          "word": "your",
+          "start": 0.42,
+          "end": 0.54
+        },
+        {
+          "word": "first",
+          "start": 0.54,
+          "end": 0.94
+        },
+        {
+          "word": "active",
+          "start": 0.94,
+          "end": 1.36
+        },
+        {
+          "word": "day",
+          "start": 1.36,
+          "end": 1.54
+        },
+        {
+          "word": "this",
+          "start": 1.54,
+          "end": 1.8
+        },
+        {
+          "word": "week.",
+          "start": 1.8,
+          "end": 1.98
+        }
+      ]
+    },
+    {
+      "id": "a13.days.2",
+      "text": "That's two active days this week.",
+      "file": "a13.days.2.m4a",
+      "duration": 2.287,
+      "words": [
+        {
+          "word": "That's",
+          "start": 0.1,
+          "end": 0.44
+        },
+        {
+          "word": "two",
+          "start": 0.44,
+          "end": 0.76
+        },
+        {
+          "word": "active",
+          "start": 0.76,
+          "end": 1.28
+        },
+        {
+          "word": "days",
+          "start": 1.28,
+          "end": 1.58
+        },
+        {
+          "word": "this",
+          "start": 1.58,
+          "end": 1.84
+        },
+        {
+          "word": "week.",
+          "start": 1.84,
+          "end": 1.98
+        }
+      ]
+    },
+    {
+      "id": "a13.days.3",
+      "text": "That's three active days this week.",
+      "file": "a13.days.3.m4a",
+      "duration": 2.453,
+      "words": [
+        {
+          "word": "That's",
+          "start": 0.1,
+          "end": 0.48
+        },
+        {
+          "word": "three",
+          "start": 0.48,
+          "end": 0.74
+        },
+        {
+          "word": "active",
+          "start": 0.74,
+          "end": 1.24
+        },
+        {
+          "word": "days",
+          "start": 1.24,
+          "end": 1.58
+        },
+        {
+          "word": "this",
+          "start": 1.58,
+          "end": 1.84
+        },
+        {
+          "word": "week.",
+          "start": 1.84,
+          "end": 1.98
+        }
+      ]
+    },
+    {
+      "id": "a13.days.4",
+      "text": "That's four active days this week.",
+      "file": "a13.days.4.m4a",
+      "duration": 2.539,
+      "words": [
+        {
+          "word": "That's",
+          "start": 0.02,
+          "end": 0.42
+        },
+        {
+          "word": "four",
+          "start": 0.42,
+          "end": 0.84
+        },
+        {
+          "word": "active",
+          "start": 0.84,
+          "end": 1.36
+        },
+        {
+          "word": "days",
+          "start": 1.36,
+          "end": 1.7
+        },
+        {
+          "word": "this",
+          "start": 1.7,
+          "end": 1.98
+        },
+        {
+          "word": "week.",
+          "start": 1.98,
+          "end": 1.99
+        }
+      ]
+    },
+    {
+      "id": "a13.days.5",
+      "text": "That's five active days this week.",
+      "file": "a13.days.5.m4a",
+      "duration": 2.2,
+      "words": [
+        {
+          "word": "That's",
+          "start": 0.0,
+          "end": 0.32
+        },
+        {
+          "word": "five",
+          "start": 0.32,
+          "end": 0.7
+        },
+        {
+          "word": "active",
+          "start": 0.7,
+          "end": 1.18
+        },
+        {
+          "word": "days",
+          "start": 1.18,
+          "end": 1.5
+        },
+        {
+          "word": "this",
+          "start": 1.5,
+          "end": 1.74
+        },
+        {
+          "word": "week.",
+          "start": 1.74,
+          "end": 1.98
+        }
+      ]
+    },
+    {
+      "id": "a13.days.6",
+      "text": "That's six active days this week.",
+      "file": "a13.days.6.m4a",
+      "duration": 2.363,
+      "words": [
+        {
+          "word": "That's",
+          "start": 0.04,
+          "end": 0.48
+        },
+        {
+          "word": "six",
+          "start": 0.48,
+          "end": 0.8
+        },
+        {
+          "word": "active",
+          "start": 0.8,
+          "end": 1.26
+        },
+        {
+          "word": "days",
+          "start": 1.26,
+          "end": 1.58
+        },
+        {
+          "word": "this",
+          "start": 1.58,
+          "end": 1.82
+        },
+        {
+          "word": "week.",
+          "start": 1.82,
+          "end": 1.98
+        }
+      ]
+    },
+    {
+      "id": "a13.days.7",
+      "text": "That's seven active days this week.",
+      "file": "a13.days.7.m4a",
+      "duration": 2.538,
+      "words": [
+        {
+          "word": "That's",
+          "start": 0.08,
+          "end": 0.48
+        },
+        {
+          "word": "seven",
+          "start": 0.48,
+          "end": 0.88
+        },
+        {
+          "word": "active",
+          "start": 0.88,
+          "end": 1.36
+        },
+        {
+          "word": "days",
+          "start": 1.36,
+          "end": 1.72
+        },
+        {
+          "word": "this",
+          "start": 1.72,
+          "end": 1.98
+        },
+        {
+          "word": "week.",
+          "start": 1.98,
+          "end": 1.99
+        }
+      ]
+    },
+    {
+      "id": "a13.walk.2",
+      "text": "Second walk this week. Nice and steady.",
+      "file": "a13.walk.2.m4a",
+      "duration": 3.243,
+      "words": [
+        {
+          "word": "Second",
+          "start": 0.22,
+          "end": 0.54
+        },
+        {
+          "word": "walk",
+          "start": 0.54,
+          "end": 0.86
+        },
+        {
+          "word": "this",
+          "start": 0.86,
+          "end": 1.08
+        },
+        {
+          "word": "week.",
+          "start": 1.08,
+          "end": 1.74
+        },
+        {
+          "word": "Nice",
+          "start": 1.74,
+          "end": 2.38
+        },
+        {
+          "word": "and",
+          "start": 2.38,
+          "end": 2.54
+        },
+        {
+          "word": "steady.",
+          "start": 2.54,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a13.walk.3",
+      "text": "Third walk this week. Nice and steady.",
+      "file": "a13.walk.3.m4a",
+      "duration": 3.163,
+      "words": [
+        {
+          "word": "Third",
+          "start": 0.08,
+          "end": 0.38
+        },
+        {
+          "word": "walk",
+          "start": 0.38,
+          "end": 0.74
+        },
+        {
+          "word": "this",
+          "start": 0.74,
+          "end": 0.98
+        },
+        {
+          "word": "week.",
+          "start": 0.98,
+          "end": 1.72
+        },
+        {
+          "word": "Nice",
+          "start": 1.72,
+          "end": 2.34
+        },
+        {
+          "word": "and",
+          "start": 2.34,
+          "end": 2.48
+        },
+        {
+          "word": "steady.",
+          "start": 2.48,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "id": "a13.walk.4",
+      "text": "Fourth walk this week. Nice and steady.",
+      "file": "a13.walk.4.m4a",
+      "duration": 2.902,
+      "words": [
+        {
+          "word": "Fourth",
+          "start": 0.14,
+          "end": 0.46
+        },
+        {
+          "word": "walk",
+          "start": 0.46,
+          "end": 0.74
+        },
+        {
+          "word": "this",
+          "start": 0.74,
+          "end": 0.96
+        },
+        {
+          "word": "week.",
+          "start": 0.96,
+          "end": 1.52
+        },
+        {
+          "word": "Nice",
+          "start": 1.52,
+          "end": 1.98
+        },
+        {
+          "word": "and",
+          "start": 1.98,
+          "end": 1.99
+        },
+        {
+          "word": "steady.",
+          "start": 1.98,
+          "end": 1.99
+        }
+      ]
+    },
+    {
+      "id": "a13.walk.5",
+      "text": "Fifth walk this week. Nice and steady.",
+      "file": "a13.walk.5.m4a",
+      "duration": 3.163,
+      "words": [
+        {
+          "word": "Fifth",
+          "start": 0.06,
+          "end": 0.38
+        },
+        {
+          "word": "walk",
+          "start": 0.38,
+          "end": 0.72
+        },
+        {
+          "word": "this",
+          "start": 0.72,
+          "end": 0.98
+        },
+        {
+          "word": "week.",
+          "start": 0.98,
+          "end": 1.68
+        },
+        {
+          "word": "Nice",
+          "start": 1.68,
+          "end": 2.26
+        },
+        {
+          "word": "and",
+          "start": 2.26,
+          "end": 2.44
+        },
+        {
+          "word": "steady.",
+          "start": 2.44,
+          "end": 2.98
+        }
+      ]
     }
   ]
 }

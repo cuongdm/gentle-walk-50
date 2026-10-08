@@ -25,12 +25,15 @@ public enum SessionBuilder {
     ///   to announce (`SupportLadder.plan`). Empty: the hands lines written for the intensity.
     /// - Parameter reps: Pro's rep ladder: today's reps per counted move (`RepLadder.today`). Empty: the
     ///   reps written for the intensity (the free plan).
+    /// - Parameter exerciseRules: moves her pain reports set aside (left out, a seated move takes their
+    ///   place) or start easier (`PainRules.exerciseRules`, P3).
     public static func build(kind day: PlannedDay, level: WalkLevel, intensity: Intensity, limits: Set<BodyLimit>,
                              rotationIndex: Int, content: ContentBundle, variant: String? = nil,
                              support: (levels: [String: SupportLevel], announce: [String: SupportLadder.Change]) = ([:], [:]),
-                             reps: [String: RepStep] = [:])
+                             reps: [String: RepStep] = [:], exerciseRules: ExerciseRules = ExerciseRules())
         throws -> SessionPlan {
         let allowed = Set(BodyLimitFilter.allowed(content.exercises, limits: limits).map(\.id))
+            .subtracting(exerciseRules.setAsideIDs)
         let context = Context(limits: limits, rotationIndex: rotationIndex, allowed: allowed, content: content,
                               table: VoiceRotation.Table(lines: content.voiceLines), support: support.levels,
                               announce: support.announce, reps: reps)
@@ -80,6 +83,7 @@ public enum SessionBuilder {
 
         plan.easierExerciseIDs = Set(BodyLimitFilter.allowed(content.exercises, limits: limits)
             .filter { plan.exerciseIDs.contains($0.id) && BodyLimitFilter.startsEasier($0, limits: limits) }.map(\.id))
+            .union(exerciseRules.easier.intersection(plan.exerciseIDs))
         return plan
     }
 

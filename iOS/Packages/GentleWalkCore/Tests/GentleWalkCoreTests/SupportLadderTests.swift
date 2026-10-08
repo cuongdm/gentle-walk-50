@@ -50,4 +50,28 @@ import Testing
         let gentle = SupportLadder.plan(progress: progress, intensity: .gentle, limits: [])
         #expect(gentle.levels["bl.tandem"] == .twoHands && gentle.announce["bl.tandem"] == nil)
     }
+
+    /// P13: back after a long break, every hands level goes one step down (never below two hands) and
+    /// the coach says so at the next session (`a11.ladder.down`).
+    @Test func longBreakStepsEveryLevelDown() {
+        let start = ["bl.tandem": SupportProgress(level: .fingertips, steadySessions: 1, pendingChange: .up),
+                     "mv.single-leg": SupportProgress(level: .oneHand),
+                     "wk.shift": SupportProgress(level: .twoHands, steadySessions: 1)]
+        let after = SupportLadder.stepDownAll(start)
+        #expect(after["bl.tandem"] == SupportProgress(level: .oneHand, steadySessions: 0, pendingChange: .down))
+        #expect(after["mv.single-leg"] == SupportProgress(level: .twoHands, steadySessions: 0, pendingChange: .down))
+        // Already at both hands: nothing to lower, nothing to announce, the count starts again.
+        #expect(after["wk.shift"] == SupportProgress(level: .twoHands, steadySessions: 0, pendingChange: nil))
+        #expect(SupportLadder.plan(progress: after, intensity: .strong, limits: []).announce["bl.tandem"] == .down)
+    }
+
+    /// P9: after a check down by two, held-through sessions still count but the hands level does not go up.
+    @Test func checkDownHoldsTheHandsLevel() {
+        let start = ["bl.tandem": SupportProgress(level: .twoHands, steadySessions: 1)]
+        let held = SupportLadder.update(start, steady: ["bl.tandem"], troubled: [], holdRaises: true)
+        #expect(held["bl.tandem"]?.level == .twoHands)
+        #expect(held["bl.tandem"]?.pendingChange == nil)
+        let later = SupportLadder.update(held, steady: ["bl.tandem"], troubled: [])
+        #expect(later["bl.tandem"]?.level == .oneHand)
+    }
 }

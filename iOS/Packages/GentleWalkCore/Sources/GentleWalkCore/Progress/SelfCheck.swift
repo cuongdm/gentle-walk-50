@@ -64,6 +64,10 @@ public struct SelfCheckDelta: Equatable, Sendable {
     }
 }
 
+/// Where her latest 2-week check went against her last one done the same way (P9). Only "allows" a little
+/// more or less on the rep and support ladders; never a label, never shown as a score.
+public enum SelfCheckTrend: String, Codable, Equatable, Sendable { case up, flat, down }
+
 public enum SelfCheckComparison {
     /// Counts outside this range are not saved.
     public static let countRange = 0...40
@@ -77,5 +81,23 @@ public enum SelfCheckComparison {
         }
         return SelfCheckDelta(sinceFirst: latest.count - first.count, sinceLast: latest.count - last.count,
                               newMethodBaseline: false)
+    }
+
+    /// A change this big (either way) moves the ladders; smaller ones are everyday variation.
+    public static let trendThreshold = 2
+    /// The trend counts for two weeks after the check, until the next one is due.
+    public static let trendDays = SelfCheckSchedule.intervalDays
+
+    /// Latest check against the last earlier one done the same way (hands or not); `.flat` when there is
+    /// nothing to compare, the change is under `trendThreshold`, or the check is more than two weeks old.
+    public static func trend(history: [SelfCheckResult], now: Date, calendar: Calendar) -> SelfCheckTrend {
+        let sorted = history.sorted { $0.date < $1.date }
+        guard let latest = sorted.last,
+              ProgramCalendar.days(from: latest.date, to: now, calendar: calendar) <= trendDays,
+              let previous = sorted.dropLast().last(where: { $0.usedHands == latest.usedHands }) else { return .flat }
+        let change = latest.count - previous.count
+        if change >= trendThreshold { return .up }
+        if change <= -trendThreshold { return .down }
+        return .flat
     }
 }
