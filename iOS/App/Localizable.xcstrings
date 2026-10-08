@@ -209,6 +209,16 @@
         }
       }
     },
+    "%@ to go. Every minute you move takes you there." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Còn %@. Mỗi phút vận động đưa bạn tới đó."
+          }
+        }
+      }
+    },
     "%@ walked" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -402,6 +412,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld/%lld ngày vận động tới vòng năm tiếp theo"
+          }
+        }
+      }
+    },
+    "%lld of %lld moves need less hand on the chair now." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld trên %lld bài giờ đã vịn ghế ít hơn."
+          }
+        }
+      }
+    },
+    "%lld of %lld so far. They're yours to keep." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã có %lld trên %lld việc. Chúng mãi là của bạn."
           }
         }
       }
@@ -705,6 +735,17 @@
         }
       }
     },
+    "A full week!" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một tuần trọn vẹn!"
+          }
+        }
+      }
+    },
     "A gentle start for your first sessions. Change it if you like." : {
       "localizations" : {
         "vi" : {
@@ -746,6 +787,17 @@
         }
       }
     },
+    "A new best for you." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kỷ lục mới của bạn."
+          }
+        }
+      }
+    },
     "A nudge for your daily walk?" : {
       "localizations" : {
         "vi" : {
@@ -762,6 +814,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Phiên bản ngắn và nhẹ nhàng của lộ trình thật. Mỗi phút vận động đưa bạn đi xa hơn."
+          }
+        }
+      }
+    },
+    "A stage behind you." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã qua một giai đoạn."
           }
         }
       }
@@ -983,6 +1046,16 @@
         }
       }
     },
+    "All %lld balance moves: two hands for now." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cả %lld bài thăng bằng: hiện vịn hai tay."
+          }
+        }
+      }
+    },
     "All journeys" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1022,6 +1095,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ngày vận động là ngày bạn hoàn thành một buổi tập."
+          }
+        }
+      }
+    },
+    "Another session in the book." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thêm một buổi tập nữa rồi."
           }
         }
       }
@@ -1522,6 +1606,17 @@
         }
       }
     },
+    "Compared with yourself, that's your best so far." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So với chính bạn, đây là lần tốt nhất từ trước tới giờ."
+          }
+        }
+      }
+    },
     "Connect" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1540,16 +1635,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kết nối Apple Health"
-          }
-        }
-      }
-    },
-    "Connect Apple Health to see your everyday steps. Your journey doesn't need Health: it moves with your minutes here." : {
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kết nối Apple Health để xem số bước mỗi ngày. Hành trình không cần Apple Health: nó tiến theo số phút bạn tập ở đây."
           }
         }
       }
@@ -1763,6 +1848,17 @@
         }
       }
     },
+    "Day one, done." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xong ngày đầu tiên."
+          }
+        }
+      }
+    },
     "Delete all my data" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1921,6 +2017,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ĐI CHẬM"
+          }
+        }
+      }
+    },
+    "Each move" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Từng bài"
           }
         }
       }
@@ -2109,12 +2215,13 @@
         }
       }
     },
-    "Every minute you move takes you further on your journey." : {
+    "Every minute here counts." : {
+      "extractionState" : "manual",
       "localizations" : {
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mỗi phút vận động đưa bạn đi xa hơn trên hành trình."
+            "value" : "Mỗi phút ở đây đều có ý nghĩa."
           }
         }
       }
@@ -2136,6 +2243,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gói nào cũng mở đủ mọi thứ như nhau."
+          }
+        }
+      }
+    },
+    "Every planned day done. Enjoy your rest days." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xong mọi ngày đã định. Tận hưởng ngày nghỉ nhé."
           }
         }
       }
@@ -2276,18 +2394,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Đầu ngón tay đặt lên ghế"
-          }
-        }
-      }
-    },
-    "Finish a session to see it here." : {
-      "comment" : "A description of the text that appears when the user has no sessions.",
-      "isCommentAutoGenerated" : true,
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hoàn thành một buổi tập để thấy nó ở đây."
           }
         }
       }
@@ -2871,12 +2977,34 @@
         }
       }
     },
+    "Good to have you back." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vui vì bạn quay lại."
+          }
+        }
+      }
+    },
     "Good to hear. You can change this in Me anytime." : {
       "localizations" : {
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tốt quá. Bạn đổi được ở mục Tôi lúc nào cũng được."
+          }
+        }
+      }
+    },
+    "Good work today." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hôm nay tập tốt lắm."
           }
         }
       }
@@ -4030,6 +4158,28 @@
         }
       }
     },
+    "Look at that." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhìn xem kìa."
+          }
+        }
+      }
+    },
+    "Look how far you've come, at your own pace." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhìn xem bạn đã tiến bộ thế nào, theo nhịp của riêng bạn."
+          }
+        }
+      }
+    },
     "Lose some weight" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -4334,6 +4484,16 @@
         }
       }
     },
+    "Next postcard: %@." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bưu thiếp kế tiếp: %@."
+          }
+        }
+      }
+    },
     "Next ring in %lld active days." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -4489,6 +4649,17 @@
         }
       }
     },
+    "Nice to see you again." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thật vui được gặp lại bạn."
+          }
+        }
+      }
+    },
     "Nice. Even 5 minutes a day is a good start." : {
       "localizations" : {
         "vi" : {
@@ -4505,6 +4676,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hay lắm. Bắt đầu từ sức bạn hiện có rồi tăng dần."
+          }
+        }
+      }
+    },
+    "Nicely done." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Làm tốt lắm."
           }
         }
       }
@@ -4918,6 +5100,17 @@
         }
       }
     },
+    "On to the next stage." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sang giai đoạn tiếp theo."
+          }
+        }
+      }
+    },
     "On your walking pad" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -5062,6 +5255,28 @@
         }
       }
     },
+    "One session at a time, at your own pace." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Từng buổi một, theo nhịp của bạn."
+          }
+        }
+      }
+    },
+    "One session, and you're back in your rhythm." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một buổi thôi, bạn đã lấy lại nhịp."
+          }
+        }
+      }
+    },
     "One thing that felt a bit better?" : {
       "localizations" : {
         "vi" : {
@@ -5099,6 +5314,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chỉ khi bạn đang đi. Vị trí ở lại trên điện thoại này."
+          }
+        }
+      }
+    },
+    "Only you to beat, and you did." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chỉ cần vượt chính mình, và bạn đã làm được."
           }
         }
       }
@@ -5826,6 +6052,17 @@
         }
       }
     },
+    "Rest well. Next week is ready when you are." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nghỉ ngơi cho khoẻ. Tuần sau sẵn sàng khi bạn sẵn sàng."
+          }
+        }
+      }
+    },
     "Resting for" : {
       "localizations" : {
         "vi" : {
@@ -6066,6 +6303,16 @@
         }
       }
     },
+    "See your everyday steps here. Your journey moves either way." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xem số bước mỗi ngày ở đây. Hành trình vẫn đi tiếp dù có kết nối hay không."
+          }
+        }
+      }
+    },
     "See your everyday steps?" : {
       "localizations" : {
         "vi" : {
@@ -6104,6 +6351,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buổi tập"
+          }
+        }
+      }
+    },
+    "Session %lld · done" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buổi %lld · xong"
           }
         }
       }
@@ -6388,6 +6645,17 @@
         }
       }
     },
+    "Small sessions add up." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Những buổi ngắn cộng lại thành nhiều."
+          }
+        }
+      }
+    },
     "Smaller text" : {
       "comment" : "A description of a button that shrinks text.",
       "isCommentAutoGenerated" : true,
@@ -6522,6 +6790,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Giai đoạn %lld · Tuần %lld–%lld"
+          }
+        }
+      }
+    },
+    "Stage complete." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xong một giai đoạn."
           }
         }
       }
@@ -6780,6 +7059,17 @@
         }
       }
     },
+    "Starting again is something to be proud of." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bắt đầu lại là điều đáng tự hào."
+          }
+        }
+      }
+    },
     "Starting in" : {
       "localizations" : {
         "vi" : {
@@ -6890,6 +7180,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Đi bộ đều đặn · %lld phút"
+          }
+        }
+      }
+    },
+    "Steady, and at your own pace." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đều đặn, theo nhịp của bạn."
           }
         }
       }
@@ -7263,6 +7564,16 @@
         }
       }
     },
+    "Tap the ones you can do now." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chạm vào những việc bạn làm được bây giờ."
+          }
+        }
+      }
+    },
     "Tell us a little about you, and we'll start you somewhere comfortable." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7304,6 +7615,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cỡ chữ"
+          }
+        }
+      }
+    },
+    "Thank you for making time for yourself." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cảm ơn bạn đã dành thời gian cho chính mình."
           }
         }
       }
@@ -7358,12 +7680,45 @@
         }
       }
     },
+    "That's another one." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thêm một buổi nữa."
+          }
+        }
+      }
+    },
+    "That's more than your last best." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hơn cả lần tốt nhất trước của bạn."
+          }
+        }
+      }
+    },
     "That's what we're here for. We plan each day." : {
       "localizations" : {
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "App ở đây để giúp. Mỗi ngày đều có sẵn bài."
+          }
+        }
+      }
+    },
+    "That's your first one!" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buổi đầu tiên của bạn đây rồi!"
           }
         }
       }
@@ -7375,6 +7730,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buổi đi bộ đầu tiên của bạn!"
+          }
+        }
+      }
+    },
+    "That's your week." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trọn tuần rồi."
           }
         }
       }
@@ -7411,6 +7777,17 @@
         }
       }
     },
+    "The next stage starts whenever you're ready." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giai đoạn tiếp theo bắt đầu khi bạn sẵn sàng."
+          }
+        }
+      }
+    },
     "The route" : {
       "comment" : "Heading of the list of every stop on the journey.",
       "localizations" : {
@@ -7438,6 +7815,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sau đó"
+          }
+        }
+      }
+    },
+    "There you go." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vậy là xong."
           }
         }
       }
@@ -7509,16 +7897,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tuần này"
-          }
-        }
-      }
-    },
-    "Tick the ones you can do now." : {
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Đánh dấu những việc bạn làm được bây giờ."
           }
         }
       }
@@ -8267,6 +8645,17 @@
         }
       }
     },
+    "Week complete." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xong một tuần."
+          }
+        }
+      }
+    },
     "Week of %@" : {
       "localizations" : {
         "vi" : {
@@ -8299,6 +8688,17 @@
         }
       }
     },
+    "Welcome back!" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chào mừng bạn trở lại!"
+          }
+        }
+      }
+    },
     "Welcome back, %@. Your journey is right where you left it." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -8317,6 +8717,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chào mừng bạn quay lại. Hành trình vẫn ở đúng chỗ bạn dừng."
+          }
+        }
+      }
+    },
+    "Well done for starting. Come back whenever you like." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bắt đầu được là giỏi rồi. Lúc nào muốn thì quay lại nhé."
+          }
+        }
+      }
+    },
+    "Well done." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giỏi lắm."
           }
         }
       }
@@ -8602,8 +9024,19 @@
         }
       }
     },
+    "You did every session you planned this week." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn đã tập đủ mọi buổi định trong tuần."
+          }
+        }
+      }
+    },
     "You did it!" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "vi" : {
           "stringUnit" : {
@@ -8720,6 +9153,16 @@
         }
       }
     },
+    "You move up a step after holding steady twice in a row." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đứng vững hai buổi liền là bạn lên một bậc."
+          }
+        }
+      }
+    },
     "You often add an extra after your session. Try the longer walk today?" : {
       "localizations" : {
         "vi" : {
@@ -8747,6 +9190,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ở đây, bạn tự quyết nhịp tập."
+          }
+        }
+      }
+    },
+    "You showed up, and that's the hardest part." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn đã bắt đầu, và đó là phần khó nhất."
           }
         }
       }
@@ -8908,6 +9362,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hôm nay bạn đã đi lại nhiều. Một buổi giãn cơ nhẹ là vừa."
+          }
+        }
+      }
+    },
+    "You've finished this part of your 12 weeks." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn đã xong phần này của 12 tuần."
           }
         }
       }
@@ -9135,6 +9600,17 @@
         }
       }
     },
+    "Your best yet." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tốt nhất từ trước tới giờ."
+          }
+        }
+      }
+    },
     "Your body" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -9212,22 +9688,43 @@
         }
       }
     },
-    "Your first check comes after your first session." : {
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lần tự kiểm tra đầu tiên đến sau buổi tập đầu tiên."
-          }
-        }
-      }
-    },
     "Your first check done this way. Next time, you can compare." : {
       "localizations" : {
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lần đầu bạn làm theo cách này, nên chưa có gì để so. Lần sau sẽ so được."
+          }
+        }
+      }
+    },
+    "Your first one comes after your first session. 30 seconds with your chair." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lần đầu đến sau buổi tập đầu tiên. 30 giây với chiếc ghế."
+          }
+        }
+      }
+    },
+    "Your first session will show up here." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buổi tập đầu tiên của bạn sẽ hiện ở đây."
+          }
+        }
+      }
+    },
+    "Your first session!" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buổi tập đầu tiên!"
           }
         }
       }
@@ -9307,6 +9804,17 @@
         }
       }
     },
+    "Your legs did good work today." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hôm nay đôi chân đã làm việc chăm chỉ."
+          }
+        }
+      }
+    },
     "Your minutes keep adding up." : {
       "localizations" : {
         "vi" : {
@@ -9347,6 +9855,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gói của bạn đã có lại trên iPhone này."
+          }
+        }
+      }
+    },
+    "Your plan picked up right where you left it." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kế hoạch tiếp tục đúng chỗ bạn dừng."
           }
         }
       }

@@ -32,7 +32,8 @@ import GentleWalkCore
         let health = FakeHealthWriter()
         let notifications = FakeRescheduler()
         let service = SessionCompletionService(context: context, content: TestFixtures.content, entitlement: { entitlement },
-                                               health: health, notifications: notifications, levels: levels, calendar: calendar)
+                                               health: health, notifications: notifications, levels: levels,
+                                               cheers: CheerMemoryStore(defaults: levelDefaults), calendar: calendar)
         return (service, context, health, notifications)
     }
 
@@ -174,4 +175,43 @@ import GentleWalkCore
         #expect(levels.state(startLevel: .seated) == LevelState(level: .seated, changedAt: nil))
         #expect(levels.pendingCard == nil)
     }
+
+    // MARK: Complete cheers (plan 08/10/2026 task 3.6)
+
+    /// A new line every session, never the same one twice in a row, remembered across launches.
+    @Test func cheerNeverRepeatsTwiceInARow() async throws {
+        let (service, _, _, _) = try service()
+        var last: Cheer?
+        for d in 21...30 {
+            let result = try await service.complete(summary(minutes: 10, on: day(d)))
+            let cheer = try #require(result.cheer)
+            #expect(cheer.id != last?.id, "day \(d)")
+            #expect(CheerMemoryStore(defaults: levelDefaults).lastID == cheer.id)
+            last = cheer
+        }
+    }
+
+    @Test func firstSessionGetsTheFirstSessionCheerAndNumberOne() async throws {
+        let (service, _, _, _) = try service()
+        let first = try await service.complete(summary(minutes: 5, on: day(21)))
+        #expect(first.cheerContext == .firstSession)
+        #expect(first.sessionNumber == 1)
+        let second = try await service.complete(summary(minutes: 5, on: day(22)))
+        #expect(second.cheerContext == .ordinary)
+        #expect(second.sessionNumber == 2)
+    }
+
+    /// Her rest days decide when the week is done: Monday 28 Sep to Friday 2 Oct with Saturday and Sunday off.
+    @Test func weekDoneFollowsHerRestDays() async throws {
+        let (service, context, _, _) = try service()
+        context.insert(UserProfile(name: "Margaret", restDays: [7, 1], onboardingCompleted: true))
+        var contexts: [CheerContext?] = []
+        for d in [28, 29, 30] { contexts.append(try await service.complete(summary(minutes: 10, on: day(d))).cheerContext) }
+        for d in [1, 2] {
+            let date = calendar.date(from: DateComponents(year: 2026, month: 10, day: d, hour: 9))!
+            contexts.append(try await service.complete(summary(minutes: 10, on: date)).cheerContext)
+        }
+        #expect(contexts == [.firstSession, .ordinary, .ordinary, .ordinary, .weekDone])
+    }
 }
+

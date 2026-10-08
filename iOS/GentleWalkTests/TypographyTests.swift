@@ -12,7 +12,7 @@ import Testing
     }
 
     @Test func numberRolesUseRounded() {
-        for role in [TypeRole.phaseLabel, .timer, .transition, .stat, .wallClock] {
+        for role in [TypeRole.phaseLabel, .timer, .transition, .stat, .statCompact, .wallClock] {
             #expect(role.design == .rounded, "\(role)")
         }
     }

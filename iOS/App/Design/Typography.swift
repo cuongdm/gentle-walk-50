@@ -24,8 +24,10 @@ enum TypeRole: CaseIterable {
     case timer
     /// Phase change card: the new phase name, 52 pt bold.
     case transition
-    /// Big numbers on Complete and counters: 40 pt bold.
+    /// Big numbers on Today and counters: 40 pt bold.
     case stat
+    /// Numbers side by side in a card (Complete's three stats, Progress tiles): 30 pt bold.
+    case statCompact
     /// Player clock on iPad and in landscape, where it takes half the screen: 160 pt.
     case wallClock
 
@@ -40,6 +42,7 @@ enum TypeRole: CaseIterable {
         case .timer: 80
         case .transition: 52
         case .stat: 40
+        case .statCompact: 30
         case .wallClock: 160
         }
     }
@@ -47,7 +50,7 @@ enum TypeRole: CaseIterable {
     var weight: Font.Weight {
         switch self {
         case .screenTitle: .semibold
-        case .phaseLabel, .transition, .stat: .bold
+        case .phaseLabel, .transition, .stat, .statCompact: .bold
         case .cardTitle, .button: .semibold
         // Medium, not regular: big thin figures glare on dark and sand (decision D17).
         case .timer, .wallClock: .medium
@@ -59,7 +62,7 @@ enum TypeRole: CaseIterable {
     var design: Font.Design {
         switch self {
         case .screenTitle: .serif
-        case .phaseLabel, .timer, .transition, .stat, .wallClock: .rounded
+        case .phaseLabel, .timer, .transition, .stat, .statCompact, .wallClock: .rounded
         case .cardTitle, .body, .button, .caption: .default
         }
     }
@@ -80,6 +83,7 @@ enum TypeRole: CaseIterable {
         case .cardTitle: .title2
         case .body, .button: .body
         case .caption: .callout
+        case .statCompact: .title
         case .phaseLabel, .timer, .transition, .stat, .wallClock: .largeTitle
         }
     }

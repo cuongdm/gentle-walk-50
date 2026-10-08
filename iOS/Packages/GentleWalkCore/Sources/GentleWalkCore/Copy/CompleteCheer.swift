@@ -1,3 +1,5 @@
+import Foundation
+
 /// Why this Complete screen is special (plan 3.6; anti-boredom #4). The app works it out from the
 /// session; "stopped for pain" keeps its own calm screen and never gets a cheer.
 public enum CheerContext: String, CaseIterable, Sendable {
@@ -74,5 +76,51 @@ public enum CompleteCheer {
         ]
         }
         return lines.enumerated().map { Cheer(id: "cheer.\(context.rawValue).\($0.offset + 1)", title: $0.element.0, line: $0.element.1) }
+    }
+}
+
+/// One saved session, as the cheer needs it: when, how long, and whether it was a walk with no Break.
+public struct CheerSession: Equatable, Sendable {
+    public var date: Date
+    public var seconds: Int
+    public var isUnbrokenWalk: Bool
+
+    public init(date: Date, seconds: Int, isUnbrokenWalk: Bool) {
+        self.date = date; self.seconds = seconds; self.isUnbrokenWalk = isUnbrokenWalk
+    }
+}
+
+public extension CompleteCheer {
+    /// Unbroken walks she needs before a longer one counts as "a new best".
+    static let bestNeedsWalks = 2
+    /// A best is at least a whole minute longer, so the minutes shown go up too.
+    static let bestMarginSeconds = 60
+    /// Program weeks that close a stage (3, 6, 9, 12).
+    static let stageWeeks: Set<Int> = [3, 6, 9, 12]
+
+    /// The context of a session that was just saved, from her own sessions before it (plan 3.6):
+    /// - came back: three calendar days or more since the last one;
+    /// - personal best: her longest unbroken walk by a whole minute, once she has two to beat;
+    /// - week done: this session fills the last planned day of the week (days off excluded);
+    /// - stage done: a week done in week 3, 6, 9 or 12 of the program.
+    static func context(session: CheerSession, previous: [CheerSession], restDays: Set<Weekday>, programWeek: Int?,
+                        calendar: Calendar) -> CheerContext {
+        let today = calendar.startOfDay(for: session.date)
+        let days = previous.map { calendar.startOfDay(for: $0.date) }
+        let gap = days.max().map { calendar.dateComponents([.day], from: $0, to: today).day ?? 0 } ?? 0
+
+        let walks = previous.filter(\.isUnbrokenWalk).map(\.seconds)
+        let best = session.isUnbrokenWalk && walks.count >= bestNeedsWalks
+            && session.seconds >= (walks.max() ?? 0) + bestMarginSeconds
+
+        var weekDone = false
+        if !days.contains(today), let week = calendar.dateInterval(of: .weekOfYear, for: session.date) {
+            let planned = max(1, Weekday.allCases.count - restDays.count)
+            let active = Set(days.filter { week.contains($0) } + [today])
+            weekDone = active.count >= planned
+        }
+        let stageDone = weekDone && programWeek.map(stageWeeks.contains) == true
+        return context(isFirstSession: previous.isEmpty, daysSinceLastSession: gap, personalBest: best, weekDone: weekDone,
+                       stageDone: stageDone)
     }
 }

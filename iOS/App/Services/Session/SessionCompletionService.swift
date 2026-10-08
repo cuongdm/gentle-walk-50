@@ -47,6 +47,11 @@ struct CompletionResult: Equatable, Sendable {
     /// Set when this session reached a new tree level.
     var reachedLevel: TreeLevel?
     var isFirstWorkout = false
+    /// Why this Complete is special, and its words (plan 08/10/2026 task 3.6); nil only in old callers.
+    var cheerContext: CheerContext?
+    var cheer: Cheer?
+    /// "Session 13 · done": how many sessions she has finished, this one included.
+    var sessionNumber = 0
 }
 
 /// Saves a session and moves everything that depends on it (task 4.11): the workout record, the
@@ -59,17 +64,20 @@ struct CompletionResult: Equatable, Sendable {
     private let notifications: NotificationRescheduling
     /// Her current walking level; "How did that feel?" can change it (plan 08/10/2026 task 0.3).
     private let levels: WalkLevelStore?
+    /// The cheer shown last, so the next one differs (task 3.6).
+    private let cheers: CheerMemoryStore?
     private let calendar: Calendar
 
     init(context: ModelContext, content: ContentBundle, entitlement: @escaping () -> Entitlement,
          health: WorkoutHealthWriting, notifications: NotificationRescheduling, levels: WalkLevelStore? = nil,
-         calendar: Calendar = .current) {
+         cheers: CheerMemoryStore? = nil, calendar: Calendar = .current) {
         self.context = context
         self.content = content
         self.entitlement = entitlement
         self.health = health
         self.notifications = notifications
         self.levels = levels
+        self.cheers = cheers
         self.calendar = calendar
     }
 
@@ -93,11 +101,39 @@ struct CompletionResult: Equatable, Sendable {
         let before = TreeLevel.level(activeDays: daysBefore)
         let after = TreeLevel.level(activeDays: daysAfter)
         if after > before { result.reachedLevel = after }
+        try pickCheer(for: summary, previous: previous, activeDays: daysAfter, into: &result)
 
         try context.save()
         await health.saveWorkout(summary)
         await notifications.reschedule()
         return result
+    }
+
+    /// The Complete cheer: the context from her own sessions, rest days and program week, then a line
+    /// that turns with her active days and never repeats the last one shown (task 3.6).
+    private func pickCheer(for summary: SessionSummary, previous: [WorkoutRecord], activeDays: Int,
+                           into result: inout CompletionResult) throws {
+        func isUnbrokenWalk(kind: String, breaks: Int) -> Bool { (kind == "walk" || kind == "firstWalk") && breaks == 0 }
+        let profile = try context.fetch(FetchDescriptor<UserProfile>()).first { $0.onboardingCompleted }
+        let chosen = Set((profile?.restDays ?? []).compactMap(Weekday.init(rawValue:)))
+        let restDays = RestDays.effective(chosen: chosen, entitlement: entitlement())
+        let week: Int? = try context.fetch(FetchDescriptor<ProgramState>()).first.flatMap { state in
+            guard case .week(let week, _) = ProgramCalendar.position(state.programRound, on: summary.date, calendar: calendar)
+            else { return nil }
+            return week
+        }
+        let session = CheerSession(date: summary.date, seconds: summary.activeSeconds,
+                                   isUnbrokenWalk: isUnbrokenWalk(kind: summary.kind.rawValue, breaks: summary.breakCount))
+        let before = previous.map {
+            CheerSession(date: $0.date, seconds: $0.activeSeconds, isUnbrokenWalk: isUnbrokenWalk(kind: $0.kind, breaks: $0.breakCount))
+        }
+        let cheerContext = CompleteCheer.context(session: session, previous: before, restDays: restDays, programWeek: week,
+                                                 calendar: calendar)
+        let cheer = CompleteCheer.pick(cheerContext, sessionIndex: activeDays, lastID: cheers?.lastID)
+        cheers?.lastID = cheer.id
+        result.cheerContext = cheerContext
+        result.cheer = cheer
+        result.sessionNumber = previous.count + 1
     }
 
     func recordFeeling(_ feeling: Feeling, for recordID: UUID) throws {

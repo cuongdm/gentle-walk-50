@@ -42,9 +42,10 @@ struct CompleteView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
                     CompleteHero(title: content.title, subtitle: content.subtitle, level: content.reachedLevel,
-                                 isCalm: content.variant == .stoppedForPain)
+                                 isCalm: content.variant == .stoppedForPain, sessionLine: content.sessionLine)
                     CompleteStats(minutes: content.minutes, milesText: content.milesText, milesLabel: content.milesLabel,
-                                  activeDays: content.activeDays)
+                                  activeDays: content.activeDays,
+                                  milesIcon: content.variant == .outdoors ? .walk : .journey)
                     // Right under the numbers, so a postcard never pushes it below Done (review M3).
                     // After stopping for pain the answer is already known: no "too easy?" question.
                     if content.variant != .stoppedForPain {
@@ -60,8 +61,15 @@ struct CompleteView: View {
                             invite.onLater()
                         })
                     }
-                    CompleteFootnote(activeDays: content.activeDays, journeyLine: content.journeyLine,
-                                     journeyProgress: content.journeyProgress)
+                    // The next postcard as a tilted card with its stamp, then the tree line (Claude Design).
+                    if let next = content.nextStop, let miles = content.milesToNext {
+                        // The postcard opened today has its own big card below: no second copy here.
+                        NextPostcardRow(next: next, milesToGo: miles,
+                                        lastStop: content.newPostcard == nil ? content.lastStop : nil)
+                    } else if let journeyLine = content.journeyLine {
+                        CompleteJourneyLine(text: journeyLine, progress: content.journeyProgress)
+                    }
+                    CompleteTreeLine(activeDays: content.activeDays)
                     if route.count > 1 {
                         VStack(alignment: .leading, spacing: 6) {
                             RouteMapView(route: route)
@@ -100,44 +108,9 @@ struct CompleteView: View {
             .pinnedActions(pinsDone) {
                 Button("Done", action: onDone).buttonStyle(.primaryAction)
             }
-            if content.variant != .stoppedForPain { FallingLeaves() }
+            if content.variant != .stoppedForPain { FallingLeaves(isBigDay: content.cheerContext.map(FallingLeaves.bigDay) ?? false) }
         }
         .screenBackground()
-    }
-}
-
-/// Three numbers side by side; stacked at accessibility text sizes.
-struct CompleteStats: View {
-    let minutes: Int
-    let milesText: String
-    let milesLabel: String
-    let activeDays: Int
-
-    @Environment(\.dynamicTypeSize) private var typeSize
-
-    var body: some View {
-        let layout = typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(spacing: 10)) : AnyLayout(HStackLayout(spacing: 10))
-        layout {
-            StatTile(value: String(localized: "\(minutes) min"), label: String(localized: "moving"))
-            StatTile(value: milesText, label: milesLabel)
-            StatTile(value: "\(activeDays)", label: Plural.activeDaysLabel(activeDays))
-        }
-    }
-}
-
-private struct StatTile: View {
-    let value: String
-    let label: String
-
-    var body: some View {
-        VStack(spacing: 2) {
-            Text(verbatim: value).typeRole(.cardTitle).fontWeight(.bold).foregroundStyle(Palette.text)
-                .lineLimit(1).minimumScaleFactor(0.7)
-            Text(verbatim: label).typeRole(.caption).foregroundStyle(Palette.textMuted)
-        }
-        .frame(maxWidth: .infinity, minHeight: 70)
-        .background(Palette.surface, in: .rect(cornerRadius: Metrics.cardRadius))
-        .accessibilityElement(children: .combine)
     }
 }
 
@@ -182,36 +155,6 @@ struct SelfCheckInviteCard: View {
     }
 }
 
-/// One quiet card under the feeling question (task 1.9): the tree line ("1 of 7 active days to Sprout")
-/// and the journey line ("0.3 of 5 mi · 0.7 mi to Bethesda Fountain"), with why any session counts.
-struct CompleteFootnote: View {
-    let activeDays: Int
-    let journeyLine: String?
-    let journeyProgress: Double
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            if let milestone = TreeLevel.milestone(activeDays: activeDays) {
-                Label { Text(verbatim: TreeMilestoneLine.text(milestone)) } icon: {
-                    Image(systemName: "leaf.fill").foregroundStyle(Palette.secondary)
-                }
-            }
-            if let journeyLine {
-                Label { Text(verbatim: journeyLine) } icon: {
-                    Image(systemName: "map.fill").foregroundStyle(Palette.secondary)
-                }
-                ProgressView(value: journeyProgress).tint(Palette.secondary).accessibilityHidden(true)
-                // Why a chair session moves the journey (clarity review D16).
-                Text("Every minute you move takes you further on your journey.").foregroundStyle(Palette.textMuted)
-            }
-        }
-        .typeRole(.caption)
-        .foregroundStyle(Palette.text)
-        .accessibilityElement(children: .combine)
-        .cardStyle(padding: 12)
-    }
-}
-
 /// "New postcard: Bethesda Fountain" · Open.
 struct NewPostcardCard: View {
     let stop: Journey.Stop
@@ -235,6 +178,7 @@ struct NewPostcardCard: View {
             .padding(10)
             .background(Palette.surface, in: .rect(cornerRadius: Metrics.cardRadius + 6))
             .shadow(color: .black.opacity(0.12), radius: 10, y: 4)
+            .overlay(alignment: .topTrailing) { PostcardStamp().offset(x: 8, y: -10) }
             .rotationEffect(.degrees(-1.5))
             .padding(.vertical, 6)
         }
@@ -285,6 +229,8 @@ struct CompleteHero: View {
     let level: TreeLevel?
     /// Stopped for pain: the coach resting, not cheering.
     var isCalm = false
+    /// "SESSION 13 · DONE" above the title.
+    var sessionLine: String?
 
     @Environment(\.dynamicTypeSize) private var typeSize
     @ScaledMetric(relativeTo: .title) private var badgeSize: CGFloat = 76
@@ -305,23 +251,47 @@ struct CompleteHero: View {
                 ArtImage(art: isCalm ? .walkerRest : .walkerCelebrate, height: 132).frame(width: 110)
             }
             VStack(alignment: .leading, spacing: 4) {
+                if let sessionLine, level == nil {
+                    Text(verbatim: sessionLine.uppercased()).typeRole(.caption).fontWeight(.semibold).tracking(1.2)
+                        .foregroundStyle(Palette.accent)
+                }
                 if let level {
                     Text("You reached \(Text(level.title)). Your tree grows with every active day.").typeRole(.body)
                         .fontWeight(.semibold).foregroundStyle(Palette.secondary)
                 }
                 ScreenHeaderText(title: title, subtitle: subtitle)
             }
+            // Never cut the cheer short with "…" beside the badge (longer lines of task 3.6).
+            .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
 
 /// Leaves drifting down for two seconds with a short happy chime; the chime alone with Reduce Motion.
+/// The season picks what falls (blossoms, leaves, autumn leaves, snowflakes) and a big day (a best, a
+/// week or a stage done) lets more of them fall (plan 08/10/2026 task 3.6).
 struct FallingLeaves: View {
+    var isBigDay = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var start = Date()
     @State private var visible = true
     @State private var cheered = false
+
+    /// Moments that get the fuller fall.
+    static func bigDay(_ context: CheerContext) -> Bool {
+        [.personalBest, .weekDone, .stageDone].contains(context)
+    }
+
+    /// Two shapes and two colours per season, from the palette.
+    private static func pieces(_ season: Season) -> [(symbol: String, color: Color)] {
+        switch season {
+        case .spring: [("camera.macro", Palette.accent), ("leaf.fill", Palette.secondary)]
+        case .summer: [("leaf.fill", Palette.secondary), ("sun.max.fill", Palette.sun)]
+        case .autumn: [("leaf.fill", Palette.accent), ("leaf.fill", Palette.sun)]
+        case .winter: [("snowflake", Palette.sky), ("leaf.fill", Palette.secondary)]
+        }
+    }
 
     var body: some View {
         // A ZStack so the chime runs even when no leaves are drawn (Reduce Motion).
@@ -334,20 +304,25 @@ struct FallingLeaves: View {
 
     @ViewBuilder private var leaves: some View {
         if !reduceMotion && visible {
+            let pieces = Self.pieces(Greetings.season(start, calendar: .current))
+            let count = isBigDay ? 24 : 14
             TimelineView(.animation) { context in
                 let t = context.date.timeIntervalSince(start)
                 Canvas { graphics, size in
-                    for index in 0..<14 {
+                    let resolved = pieces.map { piece in
+                        var image = graphics.resolve(Image(systemName: piece.symbol))
+                        image.shading = .color(piece.color)
+                        return image
+                    }
+                    for index in 0..<count {
                         let seed = Double(index)
                         let x = size.width * ((seed * 0.137).truncatingRemainder(dividingBy: 1)) + sin(t * 2 + seed) * 18
                         let fall = 0.6 + (seed * 0.29).truncatingRemainder(dividingBy: 0.4)
                         let y = -30 + (size.height * 0.7) * min(1, t / 2) * fall
-                        let symbol = graphics.resolve(Image(systemName: index.isMultiple(of: 3) ? "camera.macro" : "leaf.fill"))
                         graphics.opacity = max(0, 1 - t / 2.2)
-                        graphics.draw(symbol, at: CGPoint(x: x, y: y))
+                        graphics.draw(resolved[index.isMultiple(of: 3) ? 1 : 0], at: CGPoint(x: x, y: y))
                     }
                 }
-                .foregroundStyle(Palette.secondary)
             }
             .allowsHitTesting(false)
             .accessibilityHidden(true)

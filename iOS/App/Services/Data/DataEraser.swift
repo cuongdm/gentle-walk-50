@@ -28,6 +28,8 @@ import UserNotifications
         // Personalisation (plan 08/10/2026 milestone 4).
         ExerciseMemoryStore.defaultsKey, WeeklyNoteStore.defaultsKey, SessionHabitStore.defaultsKey,
         SessionHabitStore.reminderAnsweredKey,
+        // Complete cheers (plan 08/10/2026 task 3.6).
+        CheerMemoryStore.defaultsKey,
     ]
 }
 

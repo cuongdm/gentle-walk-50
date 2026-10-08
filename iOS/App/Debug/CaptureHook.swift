@@ -144,6 +144,13 @@ enum CaptureState: String, CaseIterable, Sendable {
     case progressResults = "progress-results"
     /// Me → "Moves set aside" with "Bring it back" (P3).
     case meSetAside = "me-set-aside"
+    // Progress lower half (task 3.7), opened further down; and a new user.
+    /// The hands ladder with three moves on one hand (Pro).
+    case progressLower = "progress-lower"
+    /// Free, opened at the bottom: the wins grid with two chosen, steps not connected.
+    case progressLowerFree = "progress-lower-free"
+    /// No session yet: the empty Recent sessions and 2-week checks cards (opened in the middle).
+    case progressEmpty = "progress-empty"
 }
 
 enum CaptureHook {

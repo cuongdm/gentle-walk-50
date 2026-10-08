@@ -8,10 +8,21 @@ struct RecentSessionsCard: View {
     let sessions: [SessionHistoryItem]
     let isPro: Bool
     let onSeeAll: () -> Void
+    /// The empty card's one action (plan 08/10/2026 task 3.7); nil when today has nothing to start.
+    var onStartToday: (() -> Void)?
 
     static let shown = 3
 
     var body: some View {
+        if sessions.isEmpty {
+            ProgressEmptyCard(picture: .art(.walkerWave), title: "Recent sessions", line: "Your first session will show up here.",
+                              action: onStartToday.map { ("Start today's session", $0) })
+        } else {
+            list
+        }
+    }
+
+    private var list: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .firstTextBaseline) {
                 Text("Recent sessions").typeRole(.cardTitle).foregroundStyle(Palette.text)
@@ -32,13 +43,9 @@ struct RecentSessionsCard: View {
                     .accessibilityLabel(isPro ? Text("See all sessions") : Text("See all sessions, with \(AppBrand.name) Pro"))
                 }
             }
-            if sessions.isEmpty {
-                Text("Finish a session to see it here.").typeRole(.body).foregroundStyle(Palette.textMuted)
-            } else {
-                ForEach(sessions.prefix(Self.shown)) { item in
-                    SessionHistoryRow(item: item, showsDate: true)
-                    if item.id != sessions.prefix(Self.shown).last?.id { Divider() }
-                }
+            ForEach(sessions.prefix(Self.shown)) { item in
+                SessionHistoryRow(item: item, showsDate: true)
+                if item.id != sessions.prefix(Self.shown).last?.id { Divider() }
             }
         }
         .cardStyle()

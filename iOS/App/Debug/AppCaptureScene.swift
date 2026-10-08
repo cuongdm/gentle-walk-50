@@ -73,6 +73,8 @@ struct AppCaptureScene: View {
                 .sheet(isPresented: .constant(true)) {
                     DaySessionsSheet(day: day, sessions: SessionHistoryItem.on(day, in: app.progress.sessions, calendar: app.calendar))
                 }
+        case .progressLower, .progressLowerFree, .progressEmpty:
+            NavigationStack { ProgressTab(app: app, initialAnchor: state == .progressLowerFree ? .bottom : UnitPoint(x: 0.5, y: state == .progressEmpty ? 0.5 : 0.68)) }
         case .progressSessions:
             NavigationStack { SessionHistoryScreen(sessions: app.progress.sessions, calendar: app.calendar) }
         case .program:
@@ -106,7 +108,7 @@ struct AppCaptureScene: View {
     private func makeApp() -> AppModel {
         let trialEnds = Date.now.addingTimeInterval(2 * 86_400)
         let entitlement: Entitlement = switch state {
-        case .todayFree, .journeysFree, .todayTrialEnded, .lockedStop, .allSessionsFree, .progressFree: .free
+        case .todayFree, .journeysFree, .todayTrialEnded, .lockedStop, .allSessionsFree, .progressFree, .progressLowerFree: .free
         case .todayTrialEnding: .trial(ends: trialEnds)
         case .me: .trial(ends: Date.now.addingTimeInterval(12 * 86_400))
         case .meLifetime, .meLifetimeAndSubscription: .lifetime
@@ -118,7 +120,7 @@ struct AppCaptureScene: View {
         let start = calendar.date(byAdding: .day, value: calendar.firstWeekday == 2 ? 0 : 1, to: sunday) ?? .now
         let monday = start > .now ? start.addingTimeInterval(-7 * 86_400) : start
         let day = state == .todayLastWeek ? monday : Date.now
-        let app = AppModel.capture(entitlement: entitlement, healthConnected: state != .progressNoHealth, day: day) { context, now, calendar in
+        let app = AppModel.capture(entitlement: entitlement, healthConnected: ![.progressNoHealth, .progressLowerFree, .progressEmpty].contains(state), day: day) { context, now, calendar in
             seed(context, now: now, calendar: calendar)
         }
         seedPersonalisation(app)
@@ -160,6 +162,10 @@ struct AppCaptureScene: View {
                 SupportLadderStore(defaults: app.defaults).record(steady: ["bl.tandem"], troubled: [], announced: [])
                 SupportLadderStore(defaults: app.defaults).record(steady: ["bl.tandem"], troubled: [], announced: [])
             }
+        case .progressLower:
+            // Three balance moves held steady twice: one hand now.
+            let ladder = SupportLadderStore(defaults: app.defaults)
+            for _ in 0..<2 { ladder.record(steady: ["wk.shift", "bl.tandem", "bl.side-walk"], troubled: [], announced: []) }
         default:
             break
         }
@@ -240,7 +246,10 @@ struct AppCaptureScene: View {
                 context.insert(SelfCheckRecord(date: now.addingTimeInterval(-Double(30 - index * 14) * 86_400), count: count,
                                                usedHands: true, week: index * 2))
             }
-        case .progress, .progressFree, .progressDay, .progressSessions:
+        case .progressEmpty:
+            ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).forEach(context.delete)
+            ((try? context.fetch(FetchDescriptor<SelfCheckRecord>())) ?? []).forEach(context.delete)
+        case .progress, .progressFree, .progressDay, .progressSessions, .progressLower, .progressLowerFree:
             let records = ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).sorted { $0.date > $1.date }
             let feelings: [Feeling?] = [.justRight, .justRight, .tooEasy, nil, .justRight, .tooHard]
             for (index, record) in records.enumerated() {

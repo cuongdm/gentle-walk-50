@@ -75,3 +75,27 @@ import Testing
         #expect(later["bl.tandem"]?.level == .oneHand)
     }
 }
+
+/// "Hands on the chair" on Progress (plan 3.7): how many balance moves sit on each step of the ladder.
+@Suite struct SupportLadderSummaryTests {
+    /// Free (no levels): all eight moves with two hands.
+    @Test func freeHasEveryMoveOnTwoHands() {
+        let summary = SupportLadderSummary(levels: [:])
+        #expect(summary.total == 8)
+        #expect(summary.count(.twoHands) == 8)
+        #expect(summary.count(.oneHand) == 0)
+        #expect(summary.highest == .twoHands)
+    }
+
+    /// Pro: each move counts once on its step; ids outside the ladder are ignored.
+    @Test func countsEachMoveOnItsStep() {
+        let summary = SupportLadderSummary(levels: ["bl.tandem": .fingertips, "wk.shift": .oneHand, "mv.single-leg": .oneHand,
+                                                    "bl.side-walk": .twoHands, "mv.sit-to-stand": .oneHand])
+        #expect(summary.total == 8)
+        #expect(summary.count(.fingertips) == 1)
+        #expect(summary.count(.oneHand) == 2)
+        #expect(summary.count(.twoHands) == 5)
+        #expect(summary.highest == .fingertips)
+        #expect(SupportLevel.allCases.map(summary.count).reduce(0, +) == summary.total)
+    }
+}
