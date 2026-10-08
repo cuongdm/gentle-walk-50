@@ -108,6 +108,22 @@ public enum SupportLadder {
         return result
     }
 
+    /// Back after a long break ("Pick up at week N", P13): every exercise one step down, never below
+    /// both hands; the coach says so at the next session (`a11.ladder.down`). Counts start again.
+    public static func stepDownAll(_ progress: [String: SupportProgress]) -> [String: SupportProgress] {
+        progress.mapValues { entry in
+            var copy = entry
+            copy.steadySessions = 0
+            if let lower = SupportLevel(rawValue: entry.level.rawValue - 1) {
+                copy.level = lower
+                copy.pendingChange = .down
+            } else {
+                copy.pendingChange = nil
+            }
+            return copy
+        }
+    }
+
     /// The coach's line that announces a change to `level`.
     static func announcement(_ change: Change, to level: SupportLevel) -> String {
         switch (change, level) {

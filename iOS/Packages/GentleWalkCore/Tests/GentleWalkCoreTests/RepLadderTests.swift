@@ -68,4 +68,14 @@ import Testing
         let progress = RepLadder.update([:], done: ["mv.heel-toe": 0], steady: ["mv.heel-toe"], troubled: [])
         #expect(progress.isEmpty)
     }
+
+    /// P13: back after a long break, every counted move goes one step down, never below the first step.
+    @Test func stepDownNeverBelowZero() {
+        let start = [sts: RepProgress(step: 3, fullSessions: 1, pendingChange: .up),
+                     squat: RepProgress(step: 0, fullSessions: 1)]
+        let after = RepLadder.stepDownAll(start)
+        #expect(after[sts] == RepProgress(step: 2, fullSessions: 0, pendingChange: .down))
+        #expect(after[squat] == RepProgress(step: 0, fullSessions: 0, pendingChange: nil))
+        #expect(RepLadder.stepDownAll([:]).isEmpty)
+    }
 }

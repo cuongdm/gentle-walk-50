@@ -526,7 +526,7 @@ _Tài liệu chưa có lúc lập kế hoạch (08/10). Task 3.1 đọc nó và 
 ### Task 4.7 — P13: nghỉ dài → hạ một bậc thang (Pro) [TDD]
 **Files:** Modify `SupportLadder.swift`, `RepLadder.swift` (`stepDownAll(_:)`), `AppModel+Program.pickUpProgram` (gọi khi bấm "Pick up at week N"; HLV nói `a11.ladder.down` ở buổi kế qua `pendingChange = .down`) · Test `SupportLadderTests`, `RepLadderTests` (`stepDownNeverBelowZero`), `AppFlowTests.pickUpLowersLadders()`
 **Command:** `CORE RepLadderTests` + `CORE SupportLadderTests` → `passed`
-**Evidence:**
+**Evidence:** CORE XONG trên cloud (nhánh cloud/core-content-m3m4), chờ Mac nối UI: RED `type 'SupportLadder' has no member 'stepDownAll'` → GREEN `CORE LadderTests` 13 tests passed. `RepLadder.stepDownAll` / `SupportLadder.stepDownAll`: mỗi bài hạ 1 bậc (không dưới bậc đầu / hai tay), đếm về 0, `pendingChange = .down` (HLV nói `a11.ladder.down` qua `SupportLadder.plan`). Mac: gọi cả hai trong `AppModel+Program.pickUpProgram` rồi lưu qua `SupportLadderStore`/`RepLadderStore`; test `AppFlowTests.pickUpLowersLadders()`.
 **Commit point:** `feat(ladders): one step down after a long break`
 
 ### Task 4.8 — P9: tự kiểm tra quay lại kế hoạch (Pro) [TDD]

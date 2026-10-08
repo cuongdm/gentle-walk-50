@@ -1,0 +1,18 @@
+# Bàn giao: lõi logic và nội dung milestone 3–4 (cloud)
+_08/10/2026 · Nhánh `cloud/core-content-m3m4` (từ `main` c9769c6) · Kế hoạch: [docs/plans/2026-10-08-ui-onboarding-personalization.md](../plans/2026-10-08-ui-onboarding-personalization.md) · Phiên Mac đọc bằng `git fetch origin cloud/core-content-m3m4`._
+
+## Trạng thái (cập nhật mỗi commit)
+| Task | Trạng thái | API lõi mới | Test |
+|---|---|---|---|
+| 4.7 P13 nghỉ dài → hạ một bậc | DONE | `RepLadder.stepDownAll(_:)`, `SupportLadder.stepDownAll(_:)` | `RepLadderTests.stepDownNeverBelowZero`, `SupportLadderTests.longBreakStepsEveryLevelDown` (13/13 xanh) |
+| 4.8 P9 tự kiểm tra → thang số lần | IN PROGRESS | | |
+| 4.5 P3 nhớ chỗ đau theo bài | NOT STARTED | | |
+| 3.9 Kho câu HLV xoay vòng | NOT STARTED | | |
+| 3.10 Chủ đề tuần | NOT STARTED | | |
+| 4.9 P6 check-in tuần | NOT STARTED | | |
+| 4.11 P10 giờ nhắc và độ dài | NOT STARTED | | |
+| 4.12 P11 ngày đã đi nhiều | NOT STARTED | | |
+| 4.18 Thông báo tổng kết tuần | NOT STARTED | | |
+| 4.13 P7 kịch bản A13 | NOT STARTED | | |
+
+Ranh giới: nhánh này chỉ sửa `iOS/Packages/GentleWalkCore`, `tools/content`, `tools/lint`, `docs/scripts`, `docs/i18n`, `docs/handoff` (và dòng Evidence trong kế hoạch). Không đụng `iOS/App`, `iOS/GentleWalkTests`, `Localizable.xcstrings`, `project.yml`, `Plan/Adaptation.swift`, WalkLevel, TodayModel.

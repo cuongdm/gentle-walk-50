@@ -99,4 +99,12 @@ public enum RepLadder {
         }
         return result
     }
+
+    /// Back after a long break ("Pick up at week N", P13; Otago restarts gently): every counted move one
+    /// step down, never below the first step. Counts start again.
+    public static func stepDownAll(_ progress: [String: RepProgress]) -> [String: RepProgress] {
+        progress.mapValues { entry in
+            RepProgress(step: max(entry.step - 1, 0), fullSessions: 0, pendingChange: entry.step > 0 ? .down : nil)
+        }
+    }
 }
