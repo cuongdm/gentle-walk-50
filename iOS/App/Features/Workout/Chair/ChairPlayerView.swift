@@ -149,7 +149,7 @@ struct CountedForYouLabel: View {
 
     var body: some View {
         HStack(spacing: 6) {
-            Circle().fill(Palette.secondary).frame(width: 12, height: 12).opacity(lit ? 1 : 0.35)
+            Circle().fill(Palette.statusDot).frame(width: 12, height: 12).opacity(lit ? 1 : 0.35)
             Text("Counted for you").typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)
         }
         .onChange(of: pulse) {

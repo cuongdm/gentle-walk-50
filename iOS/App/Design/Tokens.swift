@@ -51,6 +51,9 @@ enum Palette {
     /// The stroke of every content icon (`AppIcon`) on its watercolour wash: deep green on paper, cream in
     /// dark mode (Claude Design, owner 08/10/2026). Never sky or sun as a line colour (`nguon-icon.md` §4).
     static let iconInk = Color(Name.iconInk)
+    /// Small live-status dots ("Tracking your walk", "Counted for you"): sap green on paper, a lighter
+    /// sap green in dark mode, where the deep one vanished on the dark pill and screen (review C, 09/10/2026).
+    static let statusDot = Color(Name.statusDot)
 
     /// Asset catalog names, one per colour set.
     enum Name {
@@ -75,13 +78,14 @@ enum Palette {
         static let onLightFill = "onLightFill"
         static let artPaper = "artPaper"
         static let iconInk = "iconInk"
+        static let statusDot = "statusDot"
     }
 
     static let assetNames = [
         Name.bg, Name.surface, Name.primary, Name.accent, Name.secondary, Name.sky, Name.sun,
         Name.text, Name.textMuted, Name.dangerSoft, Name.onStrongFill, Name.onLightFill, Name.artPaper,
         Name.primaryTop, Name.primaryMid, Name.primaryBottom, Name.primaryPressed, Name.surfaceTop, Name.surfaceBottom, Name.shadow,
-        Name.iconInk,
+        Name.iconInk, Name.statusDot,
     ]
 
     /// A text colour drawn on a fill colour somewhere in the app.
@@ -128,6 +132,9 @@ enum Palette {
         TextPair(name: "icon ink on ochre wash", foreground: Name.iconInk, background: Name.sun, minimum: TextPair.graphic, wash: 0.4),
         TextPair(name: "icon ink on sienna wash", foreground: Name.iconInk, background: Name.accent, minimum: TextPair.graphic, wash: 0.4),
         TextPair(name: "icon ink on danger wash", foreground: Name.iconInk, background: Name.dangerSoft, minimum: TextPair.graphic, wash: 0.4),
+        // Status dots: graphics, 3:1 on the screen and on the badge's card.
+        TextPair(name: "status dot on bg", foreground: Name.statusDot, background: Name.bg, minimum: TextPair.graphic),
+        TextPair(name: "status dot on surface", foreground: Name.statusDot, background: Name.surface, minimum: TextPair.graphic),
     ]
 }
 

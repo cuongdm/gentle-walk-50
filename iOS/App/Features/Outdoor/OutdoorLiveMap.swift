@@ -103,7 +103,7 @@ struct TrackingBadge: View {
         HStack(spacing: 6) {
             Image(systemName: "circle.fill")
                 .font(.system(size: 10))
-                .foregroundStyle(hasFix ? Palette.secondary : Palette.sun)
+                .foregroundStyle(hasFix ? Palette.statusDot : Palette.sun)
                 .symbolEffect(.pulse, options: .repeating, isActive: hasFix && !reduceMotion)
                 .accessibilityHidden(true)
             Text(hasFix ? "Tracking your walk" : "Finding GPS…")
