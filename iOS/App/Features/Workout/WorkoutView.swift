@@ -84,7 +84,8 @@ struct WorkoutView: View {
         case .complete(let result):
             CompleteView(
                 content: CompleteContent(result: result, request: session.request, minutes: session.minutesDone,
-                                         name: name, content: session.content, stoppedForPain: session.stoppedForPain),
+                                         name: name, content: session.content, comparison: session.goalLine,
+                                         stoppedForPain: session.stoppedForPain),
                 onFeeling: session.recordFeeling, onDone: { onClose(result) },
                 onOpenPostcard: { stop in onClose(result); onOpenPostcard?(stop) }, route: session.route,
                 routeInHealth: healthConnected,

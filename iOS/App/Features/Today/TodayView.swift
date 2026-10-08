@@ -26,16 +26,20 @@ struct TodayView: View {
                 if let welcome = model.welcomeBack {
                     Text(verbatim: welcome).typeRole(.body).foregroundStyle(Palette.text)
                 }
+                if let lastWeek = model.lastWeekLine {
+                    Text(verbatim: lastWeek).typeRole(.body).foregroundStyle(Palette.text)
+                }
                 // A check that is due comes first with the one green button; the session card's Start
                 // steps back to an outlined button (one main button per screen).
                 if checkIsDue, let status = model.checkCard, let title = model.checkTitle {
                     SelfCheckCard(status: status, title: title, isMain: true, onStart: actions.onSelfCheck,
                                   onLater: actions.onSelfCheckLater)
                 }
-                TodaySessionCard(session: model.session, detail: model.sessionDetail, trialEnded: model.showsTrialEndedNote,
+                TodaySessionCard(session: model.session, detail: model.sessionDetail, goalLine: model.goalLine,
+                                 trialEnded: model.showsTrialEndedNote,
                                  isSeated: model.isSeatedWalk, startIsSecondary: checkIsDue,
                                  checkIn: model.showsCheckIn && model.session.kind != .rest
-                                    ? .init(selected: model.checkedIn, onSelect: model.checkIn) : nil,
+                                    ? .init(selected: model.checkedIn, note: model.checkInNote, onSelect: model.checkIn) : nil,
                                  onStart: { if let request = model.request { actions.onStart(request) } },
                                  onSeePlans: actions.onSeePlans,
                                  onPickAnother: model.swapOptions.isEmpty ? actions.onSeeAllSessions : { showsSwap = true },
@@ -47,7 +51,7 @@ struct TodayView: View {
                     TrialEndingCard(date: ends, price: actions.yearlyPrice, onManage: actions.onManagePlan)
                 }
                 if let card = model.specialCard {
-                    SpecialCard(card: card, actions: actions)
+                    SpecialCard(card: card, actions: actions, reminderMinutes: model.reminderMinutes)
                 }
                 JourneyMiniCard(title: model.journeyTitle, line: model.journeyLine, progress: model.journeyProgress,
                                 journeyID: model.journeyID, onOpen: actions.onOpenJourney)
@@ -108,6 +112,16 @@ struct TodayActions {
     var onFewerReminders: (Bool) -> Void
     /// "Keep it seated" on the moved-up card (plan 08/10/2026 task 0.5).
     var onKeepEasierLevel: () -> Void = {}
+    // Personalisation cards (milestone 4).
+    /// A move set aside: Me has "Bring it back".
+    var onOpenMe: () -> Void = {}
+    /// A busy day: a gentle stretch instead of the planned session.
+    var onStretchInstead: () -> Void = {}
+    /// "Move your reminder to 9:15?": yes with the time, or keep it.
+    var onMoveReminder: (Int) -> Void = { _ in }
+    var onKeepReminder: () -> Void = {}
+    /// "Try the longer walk today?"
+    var onLongerWalk: () -> Void = {}
     /// Steady program: the 12-week plan, the 2-week self-check, "Pick up at week N", the finish screen.
     var onOpenProgram: () -> Void = {}
     var onSelfCheck: () -> Void = {}
@@ -229,6 +243,8 @@ struct ActiveDaysRing: View {
 /// chosen until she says otherwise (it is the session as planned). Her answer retitles the card.
 struct CheckInRow: View {
     let selected: CheckIn?
+    /// Why a choice is already made (D16); otherwise what the answer does.
+    var note: String? = nil
     let onSelect: (CheckIn) -> Void
 
     var body: some View {
@@ -240,7 +256,11 @@ struct CheckInRow: View {
                 HStack(spacing: 8) { buttons }
                 VStack(spacing: 8) { buttons }
             }
-            Text("We'll set today's session to match.").typeRole(.caption).foregroundStyle(Palette.textMuted)
+            if let note {
+                Text(verbatim: note).typeRole(.caption).foregroundStyle(Palette.text)
+            } else {
+                Text("We'll set today's session to match.").typeRole(.caption).foregroundStyle(Palette.textMuted)
+            }
         }
     }
 
@@ -262,6 +282,8 @@ struct CheckInRow: View {
 struct TodaySessionCard: View {
     let session: TodaySession
     let detail: String?
+    /// Her goal, when today's session serves it (P4).
+    var goalLine: String? = nil
     let trialEnded: Bool
     /// A seated walk shows a seated figure, not a walking one (clarity review D6).
     var isSeated = false
@@ -281,6 +303,7 @@ struct TodaySessionCard: View {
 
     struct CheckInChoice {
         let selected: CheckIn?
+        var note: String? = nil
         let onSelect: (CheckIn) -> Void
     }
 
@@ -290,6 +313,11 @@ struct TodaySessionCard: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(verbatim: session.title).typeRole(.cardTitle).fontWeight(.bold)
                     if let detail { Text(verbatim: detail).typeRole(.body) }
+                    if let goalLine {
+                        // Ink, with the leaf in green: only text-on-paper pairs are checked for contrast.
+                        Label { Text(verbatim: goalLine) } icon: { Image(systemName: "leaf.fill").foregroundStyle(Palette.secondary) }
+                            .typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)
+                    }
                 }
                 .foregroundStyle(session.kind == .done ? Palette.onStrongFill : Palette.text)
                 Spacer(minLength: 0)
@@ -314,7 +342,7 @@ struct TodaySessionCard: View {
                 }
             }
             if let checkIn {
-                CheckInRow(selected: checkIn.selected, onSelect: checkIn.onSelect)
+                CheckInRow(selected: checkIn.selected, note: checkIn.note, onSelect: checkIn.onSelect)
             }
             if session.kind != .done && session.kind != .rest {
                 if startIsSecondary {

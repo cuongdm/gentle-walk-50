@@ -73,13 +73,14 @@ extension AppModel {
 
     /// Today's Start (and Extras): the preview first (S10).
     func preview(_ request: WorkoutRequest, checkIn: CheckIn?) {
+        let request = personalised(request)
         // A picked stretch: the preview sets seated or standing itself, from her own limits.
         let preset = request.presetID.flatMap(SessionCatalog.preset(id:))
         let limits = preset?.main == .stretch ? (profile?.limits ?? request.limits.subtracting([.standingIsHard])) : request.limits
         let model = WorkoutPreviewModel(day: request.day, intensity: request.intensity, checkIn: checkIn,
                                         suggestedLevel: request.level, limits: limits, rotationIndex: request.rotationIndex,
                                         minutesDelta: request.minutesDelta, content: content, defaults: defaults,
-                                        presetID: request.presetID, standing: preset?.standing ?? false)
+                                        presetID: request.presetID, standing: preset?.standing ?? false, carrying: request)
         cover = .preview(model)
     }
 
@@ -126,6 +127,7 @@ extension AppModel {
     /// "Up next" screen before the count, for sessions that did not come from their preview (the
     /// First Walk, chair moves after an outdoor walk); the preview and outdoor prep already say it.
     func begin(_ request: WorkoutRequest, showsReady: Bool = true) {
+        let request = personalised(request)
         if request.place != .outdoors, !defaults.bool(forKey: PhonePlacement.seenKey) {
             cover = .phonePlacement(request)
         } else if request.place == .outdoors, !defaults.bool(forKey: "outdoorPrepSeen") {
@@ -137,7 +139,14 @@ extension AppModel {
     }
 
     /// Start now on the preview: she has just seen the session, so straight to the count.
-    func beginFromPreview(_ request: WorkoutRequest) { begin(request, showsReady: false) }
+    func beginFromPreview(_ request: WorkoutRequest) {
+        // P12: a different level or a swapped move, chosen on the preview, is remembered.
+        if let profile {
+            PreviewChoiceStore(defaults: defaults).record(request, currentLevel: walkLevels.state(startLevel: profile.level).level,
+                                                          now: now())
+        }
+        begin(request, showsReady: false)
+    }
 
     func placementDone(_ request: WorkoutRequest) {
         defaults.set(true, forKey: PhonePlacement.seenKey)
@@ -158,11 +167,15 @@ extension AppModel {
         let repLadder = RepLadderStore(defaults: defaults)
         // Pro: the support ladder sets the hands for each balance exercise (free keeps both hands), and
         // the rep ladder the reps of the counted leg moves (free keeps the day's own reps).
+        // P9: her last 2-week check moves the rep ceiling; P5: Harder done in full allows one step more.
+        let trend = selfCheckTrend
+        let holdRaises = trend == .down || weekEffects.laddersFrozen
         if isPro, !request.isFirstWalk {
             let support = SupportLadder.plan(progress: ladder.progress, intensity: request.intensity, limits: request.limits)
             request.supportLevels = support.levels
             request.supportAnnouncements = support.announce
-            request.reps = repLadder.today(intensity: request.intensity, limits: request.limits, isPro: true)
+            request.reps = repLadder.today(intensity: request.intensity, limits: request.limits, isPro: true, trend: trend,
+                                           harder: exerciseMemory.memory.harderBonus(now: now()))
         }
         guard var plan = try? request.plan(content: content) else { cover = nil; return }
         let levels = AudioLevels.saved(in: defaults)
@@ -182,20 +195,29 @@ extension AppModel {
         else { cover = nil; return }
         let session = WorkoutSessionModel(request: request, content: content, engine: engine, completion: completion,
                                           painRecorder: painRecorder, now: now)
+        if !request.isFirstWalk {
+            attachMemory(to: session, request: request, plannedSeconds: plan.totalSeconds)
+            session.goalLine = GoalText.completeLine(GoalText.main(of: profile?.goals ?? []))
+        }
         if isPro {
             let announced = Set(request.supportAnnouncements.keys)
             let reps = request.reps
             // Changes Complete said last time ("Next time: …") are said; a new one may replace them.
             let shownReps = Set(repLadder.progress.filter { $0.value.pendingChange != nil }.keys)
             let content = content
+            let memory = exerciseMemory
+            let now = now
             session.onBalanceResult = { [weak session] steady, troubled in
                 let supportBefore = ladder.progress
                 let repsBefore = repLadder.progress
-                ladder.record(steady: steady, troubled: troubled, announced: announced)
+                ladder.record(steady: steady, troubled: troubled, announced: announced, holdRaises: holdRaises)
                 let done = Dictionary(uniqueKeysWithValues: reps.compactMap { id, step in
                     RepLadder.steps(for: id).firstIndex(of: step).map { (id, $0) }
                 })
-                repLadder.record(done: done, steady: steady, troubled: troubled, shown: shownReps)
+                repLadder.record(done: done, steady: steady, troubled: troubled, shown: shownReps, holdRaises: holdRaises)
+                // Harder done in full on a counted move: next time one step more is allowed (D10).
+                let harder = (session?.harderChosen ?? []).intersection(steady).intersection(RepLadder.exercises)
+                if !harder.isEmpty { memory.update { for id in harder { $0.noteHarderDone(id, at: now()) } } }
                 session?.levelUpLine = LevelUpText.line(supportBefore: supportBefore, supportAfter: ladder.progress,
                                                         repsBefore: repsBefore, repsAfter: repLadder.progress,
                                                         content: content)

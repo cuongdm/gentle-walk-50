@@ -27,16 +27,33 @@ public enum SessionBuilder {
     ///   reps written for the intensity (the free plan).
     /// - Parameter exerciseRules: moves her pain reports set aside (left out, a seated move takes their
     ///   place) or start easier (`PainRules.exerciseRules`, P3).
+    /// - Parameter swapMemory: chair moves she swapped on a preview lately, original → replacement (P12):
+    ///   the replacement comes in its place until the memory runs out.
+    /// - Parameter opening: the coach's opening line and history line (P1, P7); nil for none.
     public static func build(kind day: PlannedDay, level: WalkLevel, intensity: Intensity, limits: Set<BodyLimit>,
                              rotationIndex: Int, content: ContentBundle, variant: String? = nil,
                              support: (levels: [String: SupportLevel], announce: [String: SupportLadder.Change]) = ([:], [:]),
-                             reps: [String: RepStep] = [:], exerciseRules: ExerciseRules = ExerciseRules())
+                             reps: [String: RepStep] = [:], exerciseRules: ExerciseRules = ExerciseRules(),
+                             swapMemory: [String: String] = [:], opening: OpeningContext? = nil)
+        throws -> SessionPlan {
+        let plan = try buildBlocks(kind: day, level: level, intensity: intensity, limits: limits, rotationIndex: rotationIndex,
+                                   content: content, variant: variant, support: support, reps: reps,
+                                   exerciseRules: exerciseRules, swapMemory: swapMemory)
+        guard let opening else { return plan }
+        let lines = Dictionary(content.voiceLines.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        return plan.withOpening(opening, rotationIndex: rotationIndex, lines: lines)
+    }
+
+    private static func buildBlocks(kind day: PlannedDay, level: WalkLevel, intensity: Intensity, limits: Set<BodyLimit>,
+                                    rotationIndex: Int, content: ContentBundle, variant: String?,
+                                    support: (levels: [String: SupportLevel], announce: [String: SupportLadder.Change]),
+                                    reps: [String: RepStep], exerciseRules: ExerciseRules, swapMemory: [String: String])
         throws -> SessionPlan {
         let allowed = Set(BodyLimitFilter.allowed(content.exercises, limits: limits).map(\.id))
             .subtracting(exerciseRules.setAsideIDs)
         let context = Context(limits: limits, rotationIndex: rotationIndex, allowed: allowed, content: content,
                               table: VoiceRotation.Table(lines: content.voiceLines), support: support.levels,
-                              announce: support.announce, reps: reps)
+                              announce: support.announce, reps: reps, swapMemory: swapMemory)
         var plan = SessionPlan()
 
         switch day.main {
@@ -102,6 +119,8 @@ public enum SessionBuilder {
         var support: [String: SupportLevel] = [:]
         var announce: [String: SupportLadder.Change] = [:]
         var reps: [String: RepStep] = [:]
+        /// P12: chair moves swapped on a preview lately, original → replacement.
+        var swapMemory: [String: String] = [:]
 
         /// A counted move at the reps she has earned: the pre-built step's segment (steady program 2.7),
         /// else the library's own.

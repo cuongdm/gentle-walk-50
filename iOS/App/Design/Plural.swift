@@ -22,4 +22,8 @@ enum Plural {
     static func minutes(_ count: Int) -> String {
         String(AttributedString(localized: "^[\(count) minute](inflect: true)").characters)
     }
+
+    static func weeks(_ count: Int) -> String {
+        String(AttributedString(localized: "^[\(count) week](inflect: true)").characters)
+    }
 }

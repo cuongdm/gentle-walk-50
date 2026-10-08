@@ -12,7 +12,8 @@ struct WorkoutRequest: Identifiable, Equatable, Sendable {
     var rotationIndex: Int
     /// First Walk from onboarding: its own scripted session (A1).
     var isFirstWalk = false
-    /// Shortened by adaptation (two Breaks last time), in minutes.
+    /// Minutes shorter (negative: two Breaks or two "Too hard" last time, a hard week) or longer (a week
+    /// she found easier, P6) than planned.
     var minutesDelta = 0
     /// Chair moves swapped on the preview: original id → replacement id.
     var swaps: [String: String] = [:]
@@ -23,6 +24,12 @@ struct WorkoutRequest: Identifiable, Equatable, Sendable {
     var supportAnnouncements: [String: SupportLadder.Change] = [:]
     /// Pro: today's reps per counted move (`RepLadder.today`); empty plays the day's own reps.
     var reps: [String: RepStep] = [:]
+    /// Moves her pain reports set aside or start easier, and moves she chose Easier twice (P3, P5).
+    var exerciseRules = ExerciseRules()
+    /// Chair moves she swapped on a preview lately, original → replacement (P12).
+    var swapMemory: [String: String] = [:]
+    /// The coach's opening and history lines (P1, P7): only for her planned day from Today.
+    var opening: OpeningContext?
 
     static func firstWalk(limits: Set<BodyLimit>) -> WorkoutRequest {
         WorkoutRequest(day: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), level: .seated, intensity: .gentle,
@@ -86,7 +93,8 @@ struct WorkoutRequest: Identifiable, Equatable, Sendable {
         }
         var plan = try SessionBuilder.build(kind: day, level: place == .pad ? .pad : level, intensity: intensity,
                                             limits: limits, rotationIndex: rotationIndex, content: content, variant: variant,
-                                            support: (supportLevels, supportAnnouncements), reps: reps)
+                                            support: (supportLevels, supportAnnouncements), reps: reps,
+                                            exerciseRules: exerciseRules, swapMemory: swapMemory, opening: spokenOpening)
         let libraryID = SessionBuilder.moveLibraryID(for: day.main == .chair ? intensity : .steady)
         if !swaps.isEmpty, let library = content.sessions.first(where: { $0.id == libraryID }) {
             for b in plan.blocks.indices where plan.blocks[b].kind == .chair {
@@ -97,6 +105,16 @@ struct WorkoutRequest: Identifiable, Equatable, Sendable {
                 }
             }
         }
-        return minutesDelta < 0 ? plan.shortened(byMinutes: -minutesDelta) : plan
+        if minutesDelta < 0 { return plan.shortened(byMinutes: -minutesDelta) }
+        return minutesDelta > 0 ? plan.lengthened(byMinutes: minutesDelta) : plan
+    }
+
+    /// The opening is for her planned day indoors: never the First Walk, a picked session or outdoors
+    /// (the place can change on the preview).
+    private var spokenOpening: OpeningContext? {
+        guard !isFirstWalk, presetID == nil, place != .outdoors, var opening else { return nil }
+        opening.intensity = intensity
+        opening.shortened = opening.shortened || minutesDelta < 0
+        return opening
     }
 }

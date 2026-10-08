@@ -112,6 +112,10 @@ struct ProgressSnapshot: Equatable {
     var sessions: [SessionHistoryItem]
     /// Pro: today's hands level per balance exercise (`SupportLadder`); empty for free.
     var supportLevels: [String: SupportLevel] = [:]
+    /// "Your results" (P8, plan 4.10).
+    var results = ResultsSummary.empty
+    /// Her weekly check-in answers, newest first (P6).
+    var weeklyNotes: [WeeklyNote] = []
 
     static let empty = ProgressSnapshot(activeDays: 0, activeDates: [], restDays: [], selfChecks: [], longestWalkMinutes: nil,
                                         checkedWins: [])
@@ -136,6 +140,11 @@ struct ProgressSnapshot: Equatable {
         checkedWins = Set(wins.map(\.key))
         sessions = SessionHistoryItem.list(records)
         self.supportLevels = supportLevels
+        let moved = records.map {
+            MovedSession(date: $0.date, seconds: $0.activeSeconds,
+                         unbrokenWalk: ($0.kind == "walk" || $0.kind == "firstWalk") && $0.breakCount == 0)
+        }
+        results = ResultsSummary(sessions: moved, checks: selfChecks, longestWalk: longestWalkMinutes, now: now, calendar: calendar)
     }
 
     var tree: TreeLevel { TreeLevel.level(activeDays: activeDays) }

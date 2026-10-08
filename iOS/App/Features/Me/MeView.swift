@@ -26,6 +26,10 @@ struct MeView: View {
                     }, onRestart: app.restartProgram)
                 }
                 BodySection(limits: app.profile?.limits ?? [], walking: app.walkingLevel, onEdit: { editingBody = true })
+                let setAside = app.setAsideMoves
+                if !setAside.isEmpty {
+                    SetAsideSection(moves: setAside, onBringBack: app.bringBack)
+                }
                 #if DEBUG
                 // Not in screenshots (the capture hook is the only launch convention).
                 if CaptureHook.state(from: ProcessInfo.processInfo.arguments) == nil {

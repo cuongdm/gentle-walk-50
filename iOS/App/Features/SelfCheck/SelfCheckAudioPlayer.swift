@@ -15,13 +15,15 @@ import GentleWalkCore
         self.voiceSource = voiceSource
     }
 
-    func start(onPlaying: @escaping @MainActor () -> Void) {
+    func start(onPlaying: @escaping @MainActor () -> Void) { start(previousCount: nil, onPlaying: onPlaying) }
+
+    func start(previousCount: Int?, onPlaying: @escaping @MainActor () -> Void) {
         stop()
         task = Task { [weak self] in
             guard let self else { return }
-            let timeline = SessionTimeline.selfCheck(voice: content.voiceLines)
+            let timeline = SessionTimeline.selfCheck(voice: content.voiceLines, previousCount: previousCount)
             var urls: [String: URL] = [:]
-            for id in SessionTimeline.selfCheckLineIDs {
+            for id in timeline.voice.map(\.lineID) {
                 switch await voiceSource.resolve(id) {
                 case .bundled(let url), .synthesized(let url): urls[id] = url
                 case .missing: break
@@ -42,6 +44,11 @@ import GentleWalkCore
             let player = AVPlayer(playerItem: item)
             self.player = player
             player.play()
+            // "Last check, you stood up eight times." first: the screen's clock starts after it.
+            if timeline.leadIn > 0 {
+                try? await Task.sleep(for: .seconds(timeline.leadIn))
+                guard !Task.isCancelled else { return }
+            }
             onPlaying()
         }
     }

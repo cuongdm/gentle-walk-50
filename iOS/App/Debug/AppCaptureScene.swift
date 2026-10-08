@@ -12,7 +12,7 @@ struct AppCaptureScene: View {
         let name = state.rawValue
         return ["onboarding", "paywall", "today", "journey", "journeys", "where-next", "postcard", "locked-stop", "progress",
                 "me", "cancel-guide", "sound-sheet", "watch-on-tv", "permissions", "reminder-offer", "outdoor-prep", "outdoor-measure-choice", "outdoor-location-prompt", "root", "all-sessions",
-                "program", "selfcheck"]
+                "program", "selfcheck", "weekly-checkin"]
             .contains { name == $0 || name.hasPrefix($0 + "-") }
     }
 
@@ -105,9 +105,16 @@ struct AppCaptureScene: View {
         case .meLifetime, .meLifetimeAndSubscription: .lifetime
         default: .subscribed
         }
-        let app = AppModel.capture(entitlement: entitlement, healthConnected: state != .progressNoHealth) { context, now, calendar in
+        // Monday of this week: the weekly note's line shows on Monday and Tuesday only.
+        let calendar = Calendar.current
+        let sunday = calendar.dateInterval(of: .weekOfYear, for: .now)?.start ?? .now
+        let start = calendar.date(byAdding: .day, value: calendar.firstWeekday == 2 ? 0 : 1, to: sunday) ?? .now
+        let monday = start > .now ? start.addingTimeInterval(-7 * 86_400) : start
+        let day = state == .todayLastWeek ? monday : Date.now
+        let app = AppModel.capture(entitlement: entitlement, healthConnected: state != .progressNoHealth, day: day) { context, now, calendar in
             seed(context, now: now, calendar: calendar)
         }
+        seedPersonalisation(app)
         if state == .meLifetimeAndSubscription {
             app.renewalOverride = (ProductID.yearly, Date.now.addingTimeInterval(12 * 86_400))
         }
@@ -124,6 +131,31 @@ struct AppCaptureScene: View {
         app.reload()
         prepare(app)
         return app
+    }
+
+    /// Personalisation memory per state (UserDefaults stores, milestone 4).
+    private func seedPersonalisation(_ app: AppModel) {
+        let now = app.now()
+        switch state {
+        case .todayLastWeek, .progressResults:
+            let calendar = app.calendar
+            // The Monday–Sunday week before this one (as the check-in asks about it on Sunday to Tuesday).
+            let thisWeek = calendar.dateInterval(of: .weekOfYear, for: now)?.start ?? now
+            let lastWeek = WeeklyCheckIn.reviewedWeek(now: now, calendar: calendar)
+                ?? calendar.date(byAdding: .day, value: -6, to: thisWeek) ?? now
+            let thisMonday = calendar.date(byAdding: .day, value: 7, to: lastWeek) ?? now
+            let store = WeeklyNoteStore(defaults: app.defaults)
+            let before = calendar.date(byAdding: .day, value: -7, to: lastWeek) ?? now
+            store.add(WeeklyNote(weekStart: before, effort: .right, better: .gettingUp, answeredAt: lastWeek))
+            store.add(WeeklyNote(weekStart: lastWeek, effort: .right, better: .stairs,
+                                 answeredAt: min(now, thisMonday.addingTimeInterval(-3_600))))
+            if state == .progressResults {
+                SupportLadderStore(defaults: app.defaults).record(steady: ["bl.tandem"], troubled: [], announced: [])
+                SupportLadderStore(defaults: app.defaults).record(steady: ["bl.tandem"], troubled: [], announced: [])
+            }
+        default:
+            break
+        }
     }
 
     /// Extra data per state on top of the Margaret fixture.
@@ -167,6 +199,39 @@ struct AppCaptureScene: View {
             }
             for program in (try? context.fetch(FetchDescriptor<ProgramState>())) ?? [] {
                 program.start = calendar.startOfDay(for: now.addingTimeInterval(-Double(back + 1) * 86_400))
+            }
+        case .todayGoalLine:
+            for profile in (try? context.fetch(FetchDescriptor<UserProfile>())) ?? [] { profile.goals = ["steadier"] }
+        case .todaySetAside, .meSetAside:
+            // Mini-squat hurt twice this month: set aside for four weeks (D9).
+            for daysAgo in [6.0, 1.0] {
+                context.insert(PainReport(date: now.addingTimeInterval(-daysAgo * 86_400), area: BodyArea.knees.rawValue,
+                                          exerciseID: "mv.mini-squat"))
+            }
+        case .todayMoveReminder:
+            // Her last five sessions began around 10, not at the 8:30 reminder.
+            let records = ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).sorted { $0.date > $1.date }
+            for record in records.prefix(5) { record.date = record.date.addingTimeInterval(105 * 60) }
+        case .progressResults:
+            // Five weeks of sessions growing from about 25 to 55 minutes a week, and three checks (7, 8, 9).
+            ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).forEach(context.delete)
+            ((try? context.fetch(FetchDescriptor<SelfCheckRecord>())) ?? []).forEach(context.delete)
+            let weekStart = calendar.dateInterval(of: .weekOfYear, for: now)?.start ?? now
+            let plan: [(weeksAgo: Int, minutes: [Int])] = [(4, [5, 8, 6]), (3, [8, 9, 12, 9]), (2, [10, 12, 9, 14]),
+                                                          (1, [12, 10, 14, 12]), (0, [12, 14])]
+            for week in plan {
+                for (index, minutes) in week.minutes.enumerated() {
+                    guard let day = calendar.date(byAdding: .day, value: -7 * week.weeksAgo + index + (week.weeksAgo == 0 ? 0 : 1),
+                                                  to: weekStart),
+                          let at = calendar.date(byAdding: .minute, value: 600, to: day), at < now else { continue }
+                    context.insert(WorkoutRecord(date: at, kind: index % 2 == 0 ? "walk" : "chair", level: "seated",
+                                                 intensity: "steady", place: "indoors", activeSeconds: minutes * 60,
+                                                 journeyMiles: 0.3))
+                }
+            }
+            for (index, count) in [7, 8, 9].enumerated() {
+                context.insert(SelfCheckRecord(date: now.addingTimeInterval(-Double(30 - index * 14) * 86_400), count: count,
+                                               usedHands: true, week: index * 2))
             }
         case .progress, .progressFree, .progressDay, .progressSessions:
             let records = ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).sorted { $0.date > $1.date }
@@ -239,8 +304,9 @@ struct AppCaptureScene: View {
             app.onboarding.jump(to: .plan)
         case .journey, .lockedStop: app.tab = .journey
         case .whereNext: app.tab = .journey
-        case .progress, .progressNoHealth, .progressFree: app.tab = .progress
-        case .me, .meLifetime, .meLifetimeAndSubscription: app.tab = .me
+        case .progress, .progressNoHealth, .progressFree, .progressResults: app.tab = .progress
+        case .me, .meLifetime, .meLifetimeAndSubscription, .meSetAside: app.tab = .me
+        case .weeklyCheckin: app.cover = .weeklyCheckIn
         default: app.tab = .today
         }
     }

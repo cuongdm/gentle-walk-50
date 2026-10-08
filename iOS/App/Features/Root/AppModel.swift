@@ -82,6 +82,8 @@ import GentleWalkCore
     /// Clock, injectable for screenshots.
     @ObservationIgnored var now: () -> Date = Date.init
     @ObservationIgnored var calendar: Calendar = .autoupdatingCurrent
+    /// Today's busy-day answer from Apple Health steps (P11), read once a day.
+    @ObservationIgnored var busyDayCache: BusyDayCache?
 
     @ObservationIgnored private(set) lazy var completion = SessionCompletionService(
         context: container.mainContext, content: content, entitlement: { [unowned self] in self.entitlement },
@@ -148,6 +150,7 @@ import GentleWalkCore
         reload()
         try? await store.loadProducts()
         reload()
+        offerWeeklyCheckInIfDue()
         await notifications.reschedule()
     }
 
@@ -158,6 +161,7 @@ import GentleWalkCore
     func sceneBecameActive() {
         guard loadedDay != calendar.startOfDay(for: now()) else { return }
         reload()
+        offerWeeklyCheckInIfDue()
         Task { await notifications.reschedule() }
     }
 
@@ -179,14 +183,15 @@ import GentleWalkCore
                                                  limits: profile?.limits ?? []).levels : [:]
         progress = ProgressSnapshot(records: records, wins: wins, checks: checks, supportLevels: support, restDays: restDays,
                                     calendar: calendar, now: now())
+        progress.weeklyNotes = weeklyNoteStore.notes.reversed()
         guard let profile else { today = nil; return }
         let levelState = currentLevel(startLevel: profile.level, records: records)
         let pains = painRecorder.snapshots(since: now().addingTimeInterval(-14 * 86_400))
-        let input = TodayInput(
+        var input = TodayInput(
             now: now(), calendar: calendar, name: profile.name, restDays: profile.restDays, limits: profile.limits,
             level: levelState.level, entitlement: entitlement, trialEnds: trialEnds, workouts: records.map {
                 TodayInput.Workout(date: $0.date, feeling: $0.feeling.flatMap(Feeling.init), breakCount: $0.breakCount,
-                                   level: WalkLevel(rawValue: $0.level) ?? .seated)
+                                   level: WalkLevel(rawValue: $0.level) ?? .seated, kind: $0.kind)
             }, pains: pains, healthConnected: health.isConnected || defaults.bool(forKey: "healthCardDismissed")
                 || healthAskedRecently,
             suggestFewerReminders: suggestsFewerReminders(records.map(\.date), profile: profile),
@@ -194,7 +199,21 @@ import GentleWalkCore
             restedToday: (defaults.object(forKey: Self.restTodayKey) as? Date).map { calendar.isDate($0, inSameDayAs: now()) } ?? false,
             program: program?.programRound, programFinishedAt: program?.finishedAt, selfChecks: checks.map(\.date),
             selfCheckDismissedAt: selfCheckDismissedAt, levelCard: walkLevels.pendingCard)
+        // Personalisation (milestone 4).
+        let habits = habitSignals(records: records, reminderMinutes: profile.reminderMinutes)
+        input.levelChangedAt = levelState.changedAt
+        input.goals = profile.goals
+        input.activity = profile.activity
+        input.exerciseRules = exerciseRules(now: now())
+        input.swapMemory = exerciseMemory.memory.activeSwaps(now: now())
+        input.checkTrend = SelfCheckComparison.trend(history: checks.map(\.result), now: now(), calendar: calendar)
+        input.weeklyNotes = weeklyNoteStore.notes
+        input.reminderMinutes = profile.reminderMinutes
+        input.reminderSuggestion = habits.reminder
+        input.lengthSignal = habits.length
+        input.busyDay = isBusyToday
         today = TodayModel(input: input, content: content)
+        refreshBusyDayIfNeeded()
     }
 
     /// Me → Your body: her current level, since when, and where she started (task 0.6).
@@ -222,9 +241,11 @@ import GentleWalkCore
         return now().timeIntervalSince(asked) < 7 * 86_400
     }
 
+    /// The wins she can do, those for her goal first (P4).
     var everydayWins: [EverydayWinItem] {
         let limits = profile?.limits ?? []
-        return allWins.filter { limits.isDisjoint(with: $0.hiddenFor) }
+        return GoalText.sorted(allWins.filter { limits.isDisjoint(with: $0.hiddenFor) }, id: \.id,
+                               goal: GoalText.main(of: profile?.goals ?? []))
     }
 
     func toggleWin(_ key: String) {

@@ -5,6 +5,8 @@ import GentleWalkCore
 struct SpecialCard: View {
     let card: TodaySpecialCard
     let actions: TodayActions
+    /// Her reminder now, for "Keep 8:30" (P10).
+    var reminderMinutes = 510
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -32,6 +34,25 @@ struct SpecialCard: View {
                     Button("Connect", action: actions.onConnectHealth).buttonStyle(PillButtonStyle(isSelected: true))
                     Button("Not now", action: actions.onDismissCard).buttonStyle(.textLink)
                 }
+            case .setAside(let name):
+                Text("We've set \(name) aside for now. Bring it back in Me.").typeRole(.body)
+                Button("Moves set aside", action: actions.onOpenMe).buttonStyle(.smallTextLink)
+            case .busyDay:
+                Text("You've been on your feet a lot today. A gentle stretch fits.").typeRole(.body)
+                Button("Gentle stretch instead", action: actions.onStretchInstead).buttonStyle(PillButtonStyle(isSelected: true))
+            case .moveReminder(let minutes):
+                let time = DailyMomentPicker.time(minutes)
+                Text("Move your reminder to \(time)?").typeRole(.cardTitle)
+                Text("You usually start around \(time).").typeRole(.body)
+                FlowLayout(spacing: Metrics.touchSpacing) {
+                    Button("Move it") { actions.onMoveReminder(minutes) }.buttonStyle(PillButtonStyle(isSelected: true))
+                    Button(String(localized: "Keep \(DailyMomentPicker.time(reminderMinutes))"), action: actions.onKeepReminder)
+                        .buttonStyle(PillButtonStyle())
+                }
+            case .longerWalk:
+                Text("You often add an extra after your session. Try the longer walk today?").typeRole(.body)
+                Button(String(localized: SessionCatalog.preset(id: "walk.long")?.title ?? "Longer walk"), action: actions.onLongerWalk)
+                    .buttonStyle(PillButtonStyle(isSelected: true))
             case .fewerReminders:
                 Text("You're doing this on your own now. Want fewer reminders?").typeRole(.body)
                 FlowLayout(spacing: Metrics.touchSpacing) {

@@ -49,11 +49,31 @@ enum HurtOutcome: Equatable, Sendable {
     @ObservationIgnored private let recorder: PainReportRecording
     @ObservationIgnored private let now: () -> Date
     @ObservationIgnored private var recorded = false
+    /// Her body limits now, and how to add one ("Add “Easy on knees” to your plan?", P3).
+    @ObservationIgnored private let limits: Set<BodyLimit>
+    @ObservationIgnored private let onAddLimit: ((BodyLimit) -> Void)?
+    private(set) var addedLimit: BodyLimit?
 
-    init(player: SessionPlayer, recorder: PainReportRecording, now: @escaping () -> Date = Date.init) {
+    init(player: SessionPlayer, recorder: PainReportRecording, now: @escaping () -> Date = Date.init,
+         limits: Set<BodyLimit> = [], onAddLimit: ((BodyLimit) -> Void)? = nil) {
         self.player = player
         self.recorder = recorder
         self.now = now
+        self.limits = limits
+        self.onAddLimit = onAddLimit
+    }
+
+    /// The body limit that matches the area she named, when her plan does not go easy on it yet.
+    var suggestedLimit: BodyLimit? {
+        guard onAddLimit != nil, addedLimit == nil, let area,
+              let limit = PainRules.suggestedLimit(for: area.bodyArea), !limits.contains(limit) else { return nil }
+        return limit
+    }
+
+    func addSuggestedLimit() {
+        guard let limit = suggestedLimit else { return }
+        addedLimit = limit
+        onAddLimit?(limit)
     }
 
     /// Easier version of the current move; on a walk, the brisk part eases off to an easy walk.

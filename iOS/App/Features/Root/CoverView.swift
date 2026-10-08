@@ -63,6 +63,9 @@ struct CoverView: View {
         case .selfCheck(let model):
             SelfCheckFlowView(model: model, onNotToday: app.selfCheckLater, onSave: { app.saveSelfCheck(model) },
                               onClose: app.closeSelfCheck)
+        case .weeklyCheckIn:
+            WeeklyCheckInView(onSave: { app.saveWeeklyCheckIn(effort: $0, better: $1) },
+                              onSkip: { app.saveWeeklyCheckIn(effort: nil, better: nil) })
         case .programFinished:
             ProgramFinishedView(summary: app.programFinishedSummary(), name: app.profile?.name,
                                 onRestart: app.restartProgram, onKeepRoutine: app.keepRoutine,

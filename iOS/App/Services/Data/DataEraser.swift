@@ -25,6 +25,9 @@ import UserNotifications
         FavouriteSessions.defaultsKey, SupportLadderStore.defaultsKey, RepLadderStore.defaultsKey, WalkLevelStore.defaultsKey, AppModel.selfCheckDismissedKey,
         "permissionsShown", "fewerRemindersAnswered", "lastTrialEnds",
         AudioLevels.voiceKey, AudioLevels.musicKey, AudioLevels.introsKey,
+        // Personalisation (plan 08/10/2026 milestone 4).
+        ExerciseMemoryStore.defaultsKey, WeeklyNoteStore.defaultsKey, SessionHabitStore.defaultsKey,
+        SessionHabitStore.reminderAnsweredKey,
     ]
 }
 

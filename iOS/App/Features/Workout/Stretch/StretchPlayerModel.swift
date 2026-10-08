@@ -118,6 +118,8 @@ import GentleWalkCore
     func chooseEasier() async {
         guard let id = phase?.exerciseID, !usesEasier else { return }
         try? await player.apply(.easierVersion(exerciseID: id))
+        // Remembered: twice in two weeks and the pose starts easier (P5).
+        session.onEasierChosen?(id)
     }
 
     func back() {

@@ -14,7 +14,10 @@ struct ProgramScreen: View {
     let app: AppModel
 
     var body: some View {
-        ProgramView(snapshot: snapshot, onSelfCheck: app.openSelfCheck)
+        ProgramView(snapshot: snapshot, onSelfCheck: app.openSelfCheck, onSeeResults: {
+            app.todayPath = []
+            app.tab = .progress
+        })
             .navigationBarTitleDisplayMode(.inline)
     }
 
@@ -30,6 +33,8 @@ struct ProgramScreen: View {
 struct ProgramView: View {
     let snapshot: ProgramSnapshot
     let onSelfCheck: () -> Void
+    /// "See how far you've come": "Your results" at the top of Progress (D14).
+    var onSeeResults: (() -> Void)? = nil
 
     var body: some View {
         ScrollView {
@@ -45,6 +50,9 @@ struct ProgramView: View {
                 }
                 ProgramStageList(current: currentStage)
                 SelfCheckDots(doneWeeks: snapshot.checkWeeks, status: snapshot.checkStatus, onStart: onSelfCheck)
+                if let onSeeResults {
+                    Button("See how far you've come", action: onSeeResults).buttonStyle(.textLink)
+                }
             }
             .padding(Metrics.screenMargin)
             .readableColumn()
