@@ -82,11 +82,19 @@ struct CaptureRouter: View {
     var body: some View {
         // "-xxl" states show the largest accessibility text; every other state keeps the simulator's
         // own text size, so "<state>@xxl" in capture_states.sh is captured large (review M10).
-        if let size = Self.pinnedTypeSize(for: state) {
-            scene.dynamicTypeSize(size)
-        } else {
-            scene
+        // "-dark" states draw dark whatever the simulator's appearance (they matched the light shots; review C).
+        Group {
+            if let size = Self.pinnedTypeSize(for: state) {
+                scene.dynamicTypeSize(size)
+            } else {
+                scene
+            }
         }
+        .preferredColorScheme(Self.pinnedColorScheme(for: state))
+    }
+
+    static func pinnedColorScheme(for state: CaptureState) -> ColorScheme? {
+        state.rawValue.hasSuffix("-dark") ? .dark : nil
     }
 
     static func pinnedTypeSize(for state: CaptureState) -> DynamicTypeSize? {

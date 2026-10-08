@@ -86,12 +86,22 @@ struct WorkoutRequest: Identifiable, Equatable, Sendable {
         }
     }
 
+    /// The walk level the coach speaks for: the pad's own, and standing outdoors, where she walks on her
+    /// feet whatever her indoor level (a seated cue there read "hips stay still on the seat", review C).
+    var coachedLevel: WalkLevel {
+        switch place {
+        case .pad: .pad
+        case .outdoors: .inPlace
+        case .indoors: level
+        }
+    }
+
     /// The plan this request plays.
     func plan(content: ContentBundle) throws -> SessionPlan {
         if isFirstWalk, let template = content.sessions.first(where: { $0.id == "ses.firstWalk" }) {
             return SessionPlan(template: template)
         }
-        var plan = try SessionBuilder.build(kind: day, level: place == .pad ? .pad : level, intensity: intensity,
+        var plan = try SessionBuilder.build(kind: day, level: coachedLevel, intensity: intensity,
                                             limits: limits, rotationIndex: rotationIndex, content: content, variant: variant,
                                             support: (supportLevels, supportAnnouncements), reps: reps,
                                             exerciseRules: exerciseRules, swapMemory: swapMemory, opening: spokenOpening)

@@ -146,22 +146,32 @@ struct WorkoutView: View {
 struct NotSavedView: View {
     let onClose: () -> Void
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
+        // Close stays pinned; the words scroll at the largest sizes, where the painting steps aside
+        // (they were cut to "No proble…"; review C).
         VStack(spacing: 20) {
-            Spacer()
-            ArtImage(art: .walkerWave, height: 180).frame(maxWidth: 220).accessibilityHidden(true)
+            Spacer(minLength: 0)
+            if !typeSize.isAccessibilitySize {
+                ArtImage(art: .walkerWave, height: 180).frame(maxWidth: 220).accessibilityHidden(true)
+            }
             VStack(spacing: 8) {
                 Text("No problem.").typeRole(.screenTitle).foregroundStyle(Palette.text)
+                    .multilineTextAlignment(.center)
                     .accessibilityAddTraits(.isHeader)
                 Text("Nothing was saved. Come back whenever you like.")
                     .typeRole(.body).foregroundStyle(Palette.text)
                     .multilineTextAlignment(.center)
             }
-            Spacer()
-            Button("Close", action: onClose).buttonStyle(.primaryAction)
+            .fixedSize(horizontal: false, vertical: true)
+            Spacer(minLength: 0)
         }
         .padding(Metrics.screenMargin)
+        .frame(maxWidth: .infinity)
         .readableColumn()
+        .scrollsWhenCrowded()
+        .pinnedActions(true) { Button("Close", action: onClose).buttonStyle(.primaryAction) }
         .screenBackground()
     }
 }

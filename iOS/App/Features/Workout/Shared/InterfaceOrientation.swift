@@ -58,6 +58,8 @@ struct VideoCornerButton: View {
                 .contentShape(.rect)
         }
         .buttonStyle(.plain)
+        // The circle is fixed, so the icon stops growing before it spills out (review C).
+        .dynamicTypeSize(...DynamicTypeSize.xxLarge)
         .accessibilityLabel(Text(label))
     }
 

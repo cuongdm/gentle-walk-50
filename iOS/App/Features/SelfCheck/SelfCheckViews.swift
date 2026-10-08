@@ -35,8 +35,9 @@ struct SelfCheckFlowView: View {
 struct SelfCheckDisclaimer: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text("This is not a medical test.")
-            Text("You compare only with yourself.")
+            // Always whole (steady-claims): never cut to "This is not a me…" (review C).
+            Text("This is not a medical test.").fixedSize(horizontal: false, vertical: true)
+            Text("You compare only with yourself.").fixedSize(horizontal: false, vertical: true)
         }
         .typeRole(.caption)
         .foregroundStyle(Palette.textMuted)
@@ -118,17 +119,23 @@ struct SelfCheckTimerView: View {
     let model: SelfCheckFlowModel
 
     var body: some View {
+        // Stop early and This hurts stay in view; at the largest sizes the clock and the disclaimer
+        // above them scroll, so the clock never runs under the status bar (review C).
         VStack(spacing: 24) {
-            Spacer(minLength: 0)
-            TimelineView(.periodic(from: .now, by: 0.25)) { context in
-                SelfCheckClock(phase: model.timerPhase(at: context.date))
+            VStack(spacing: 24) {
+                Spacer(minLength: 0)
+                TimelineView(.periodic(from: .now, by: 0.25)) { context in
+                    SelfCheckClock(phase: model.timerPhase(at: context.date))
+                }
+                Spacer(minLength: 0)
+                SelfCheckDisclaimer()
             }
-            Spacer(minLength: 0)
+            .scrollsWhenCrowded()
             VStack(spacing: Metrics.touchSpacing) {
                 Button("Stop early", action: model.stopEarly).buttonStyle(.secondaryAction)
                 Button("This hurts", action: model.hurts).buttonStyle(.dangerAction)
             }
-            SelfCheckDisclaimer()
+            .fixedSize(horizontal: false, vertical: true)
         }
         .padding(Metrics.screenMargin)
         .readableColumn()
@@ -189,9 +196,15 @@ struct SelfCheckCountView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                HStack(alignment: .center, spacing: 12) {
+                // Largest sizes: the chip above the title (beside it, the title broke one word per line; review C).
+                if typeSize.isAccessibilitySize {
                     AppIconChip(icon: .selfCheck, size: 44)
                     ScreenHeader(title: "How many times did you stand up?")
+                } else {
+                    HStack(alignment: .center, spacing: 12) {
+                        AppIconChip(icon: .selfCheck, size: 44)
+                        ScreenHeader(title: "How many times did you stand up?")
+                    }
                 }
                 CountStepper(count: model.count, onMinus: model.decrement, onPlus: model.increment)
                 if let last = model.lastTime {

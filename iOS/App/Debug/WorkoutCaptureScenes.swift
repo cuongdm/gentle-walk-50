@@ -148,7 +148,8 @@ struct WorkoutCaptureScene: View {
                 if let rest = phases.first(where: { $0.kind == .rest }) { model.player.tick(rest.start + 6) }
             default:
                 model.player.tick(sitToStand.start + 40)
-                for _ in 0..<4 { model.addRep() }
+                // The coach is saying "Two." here: the counter says the same (review C).
+                for _ in 0..<2 { model.addRep() }
                 model.forceCountedForYou = state == .chairCounted
             }
             return model

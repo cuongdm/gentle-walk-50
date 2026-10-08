@@ -34,6 +34,8 @@ struct CaptionBar: View {
             .typeRole(.cardTitle)
             .foregroundStyle(Palette.text)
             .lineLimit(typeSize.isAccessibilitySize ? nil : 3)
+            // Every line shows at the largest sizes (it was cut to one line; review C).
+            .fixedSize(horizontal: false, vertical: typeSize.isAccessibilitySize)
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity, minHeight: 34)
             .padding(.horizontal, 14)
@@ -55,6 +57,8 @@ struct CaptionBar: View {
             .typeRole(.body)
             .foregroundStyle(Palette.text)
             .lineLimit(typeSize.isAccessibilitySize ? nil : 3)
+            // Every line shows at the largest sizes (it was cut to one line; review C).
+            .fixedSize(horizontal: false, vertical: typeSize.isAccessibilitySize)
             .multilineTextAlignment(alignment == .leading ? .leading : .center)
             // Two lines kept free, so the controls below do not jump as lines come and go.
             .frame(maxWidth: .infinity, minHeight: 52, alignment: alignment == .leading ? .topLeading : .top)
@@ -73,6 +77,8 @@ struct CaptionBar: View {
             .typeRole(.body)
             .foregroundStyle(.white)
             .lineLimit(typeSize.isAccessibilitySize ? nil : 3)
+            // Every line shows at the largest sizes (it was cut to one line; review C).
+            .fixedSize(horizontal: false, vertical: typeSize.isAccessibilitySize)
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity, minHeight: Self.bandMinHeight)
             .padding(.horizontal, 16)

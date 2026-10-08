@@ -43,45 +43,29 @@ struct StretchPlayerView: View {
     }
 
     private var portrait: some View {
-        VStack(spacing: 10) {
-            HStack {
-                EndSessionButton(action: model.session.askToEnd)
-                Spacer()
-                if let position = model.cooldownPosition {
-                    Text(verbatim: position).typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)
-                }
-                SoundButton { showsSound = true }
-            }
-            if let progress = model.moveProgress {
-                MoveProgressHeader(progress: progress, next: model.followingName)
-            }
+        MovePlayerPortrait(
+            position: model.cooldownPosition, positionWeight: .semibold, progress: model.moveProgress,
+            next: model.followingName, caption: model.player.caption?.text, captionStyle: .plain(.center),
+            isPaused: isPaused, onEnd: model.session.askToEnd, onSound: { showsSound = true }, onBack: model.back,
+            onPause: model.session.togglePause, onSkip: model.skip,
+            onBreak: model.session.takeBreak, onHurts: model.session.openHurts
+        ) { maxHeight in
             ExerciseVideo(fileName: model.videoFile, isHolding: model.isHolding && !model.playsHoldClip)
                 .overlay(alignment: .topTrailing) { VideoCornerButton.expand(enterFullScreen).padding(4) }
                 // The breathing guide sits on the clip during a hold, not on a row of its own (owner 01/10).
+                // On a small clip only the dot shows (the pill covered the coach; review C).
                 .overlay(alignment: .bottomLeading) {
-                    if model.isHolding { BreathingGuide(isActive: !isPaused).padding(8) }
+                    if model.isHolding { BreathingGuide(isActive: !isPaused, isSmall: maxHeight != nil).padding(8) }
                 }
-            ScrollView {
-                VStack(alignment: .leading, spacing: 10) {
-                    MoveHeaderWithClock(exercise: model.pose) {
-                        HoldTimer(text: model.holdText, side: model.sideText)
-                    }
-                    MoveOptionsRow(usesEasier: model.usesEasier, hasHarder: false, showsTips: $showsTips,
-                                   onEasier: { Task { await model.chooseEasier() } })
-                    MoveTips(tips: showsTips ? model.pose?.tips ?? [] : [], note: model.note)
-                }
+                .frame(maxHeight: maxHeight)
+        } details: {
+            MoveHeaderWithClock(exercise: model.pose) {
+                HoldTimer(text: model.holdText, side: model.sideText)
             }
-            .scrollBounceBehavior(.basedOnSize)
-            // The spoken line stays in view above the controls, as plain text (review U3).
-            CaptionBar(caption: model.player.caption?.text, style: .plain(.center))
-            PlayerControlRow(isPaused: isPaused, onBack: model.back, onPause: model.session.togglePause,
-                             onSkip: model.skip)
-            WorkoutSafetyBar(showsVoice: false, onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
+            MoveOptionsRow(usesEasier: model.usesEasier, hasHarder: false, showsTips: $showsTips,
+                           onEasier: { Task { await model.chooseEasier() } })
+            MoveTips(tips: showsTips ? model.pose?.tips ?? [] : [], note: model.note)
         }
-        .padding(.horizontal, Metrics.screenMargin)
-        .padding(.bottom, 8)
-        .readableColumn()
-        .screenBackground()
     }
 }
 
@@ -110,17 +94,23 @@ struct HoldTimer: View {
 /// not a button (clarity review D33).
 struct BreathingGuide: View {
     let isActive: Bool
+    /// A small clip (iPhone SE, large text): a smaller dot, and the words only for VoiceOver.
+    var isSmall = false
 
     var body: some View {
         HStack(spacing: 8) {
-            BreathingDot(isActive: isActive, size: 40)
-            Text("Breathe with the circle").typeRole(.caption).foregroundStyle(Palette.text)
-                .lineLimit(2)
+            BreathingDot(isActive: isActive, size: isSmall ? 28 : 40)
+            if !isSmall {
+                Text("Breathe with the circle").typeRole(.caption).foregroundStyle(Palette.text)
+                    .lineLimit(2)
+            }
         }
         .padding(.leading, 4)
-        .padding(.trailing, 12)
+        .padding(.trailing, isSmall ? 4 : 12)
         .padding(.vertical, 4)
         .background(Palette.surface.opacity(0.88), in: .capsule)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("Breathe with the circle"))
     }
 }
 

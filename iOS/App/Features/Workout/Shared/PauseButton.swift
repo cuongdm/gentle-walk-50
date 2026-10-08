@@ -26,15 +26,20 @@ struct PlayerControlRow: View {
     let onBack: () -> Void
     let onPause: () -> Void
     let onSkip: () -> Void
+    /// Smaller on an iPhone SE, so the move above keeps room (still well over 56 pt).
+    var pauseSize: CGFloat = 76
 
     var body: some View {
         HStack {
             ControlIcon(title: "Back", symbol: "backward.end.fill", action: onBack)
             Spacer()
-            PauseButton(isPaused: isPaused, size: 76, action: onPause)
+            PauseButton(isPaused: isPaused, size: pauseSize, action: onPause)
             Spacer()
             ControlIcon(title: "Skip", symbol: "forward.end.fill", action: onSkip)
         }
+        .dynamicTypeSize(...PlayerChrome.typeLimit)
+        .fixedSize(horizontal: false, vertical: true)
+        .layoutPriority(1)
     }
 }
 

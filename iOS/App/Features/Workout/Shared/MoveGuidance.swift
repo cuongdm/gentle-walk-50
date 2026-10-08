@@ -15,6 +15,7 @@ struct MoveProgressHeader: View {
                 .typeRole(.caption).fontWeight(.semibold)
                 .foregroundStyle(Palette.textMuted)
                 .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(accessibilityText))

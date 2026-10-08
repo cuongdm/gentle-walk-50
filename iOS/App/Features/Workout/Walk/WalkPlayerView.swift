@@ -131,16 +131,22 @@ struct WalkPlayerView: View {
                 }
                 .padding(Metrics.screenMargin)
             } else {
-                // The picture shrinks first (and hides when too small); the largest text sizes
-                // scroll the words, never the controls, the clock or the safety buttons.
+                // The picture shrinks first, then hides (it left an empty gap when it hid inside its frame;
+                // review C); the largest text sizes scroll the words, never the controls, the clock or the
+                // safety buttons.
                 ViewThatFits(in: .vertical) {
-                    portrait(showsScene: true)
-                    // Largest text sizes: the words scroll so nothing is cut, while the controls
-                    // stay on screen (review I11).
-                    VStack(spacing: 10) {
-                        ScrollView { portraitText(showsScene: false) }
-                        controls
+                    if showsLiveMap {
+                        // The map shrinks on an iPhone SE, so the clock, Next and the spoken line stay in view.
+                        portrait(.map(360))
+                        portrait(.map(260))
+                        portrait(.map(180))
+                        // iPhone SE: a shorter map, with the clock at stat size and tighter spacing.
+                        portrait(.map(150), isCompact: true)
+                    } else {
+                        portrait(.picture)
                     }
+                    portrait(.none)
+                    crowdedPortrait
                 }
                 .padding(.horizontal, Metrics.screenMargin)
                 .padding(.bottom, 8)
@@ -149,32 +155,70 @@ struct WalkPlayerView: View {
         }
     }
 
-    /// The picture takes the room it needs first (see `sceneHeight`); too little room drops it.
-    private func portrait(showsScene: Bool) -> some View {
-        VStack(spacing: 14) {
-            portraitText(showsScene: showsScene)
+    enum PortraitScene {
+        case picture, map(CGFloat), none
+        var isMap: Bool { if case .map = self { true } else { false } }
+    }
+
+    private func portrait(_ scene: PortraitScene, isCompact: Bool = false) -> some View {
+        VStack(spacing: isCompact ? 10 : 14) {
+            portraitText(scene, isCompact: isCompact)
             controls
         }
     }
 
     /// Everything above the controls: top bar, picture, phase, clock, next and the spoken line.
-    private func portraitText(showsScene: Bool) -> some View {
-        VStack(spacing: 14) {
-            WalkTopBar(status: model.statusLine, locationOn: !showsLiveMap && (session.locationOn?() ?? false), onEnd: session.askToEnd,
-                                   onSound: { showsSound = true })
-            if showsLiveMap {
-                liveMap(height: 360).layoutPriority(1)
-            } else if showsScene {
-                WalkScene(level: model.level, video: video, isOutdoors: isOutdoors, height: sceneHeight, minHeight: 0,
-                          onFullScreen: expandAction)
+    private func portraitText(_ scene: PortraitScene, isCompact: Bool) -> some View {
+        VStack(spacing: isCompact ? 10 : 14) {
+            topBar(showsStatus: true)
+            switch scene {
+            case .map(let height):
+                liveMap(height: height).frame(height: height)
+            case .picture:
+                // At least a useful size, or this layout does not fit and the next one (no picture) is used.
+                WalkScene(level: model.level, video: video, isOutdoors: isOutdoors, height: sceneHeight,
+                          minHeight: WalkScene.smallest, onFullScreen: expandAction)
                     .layoutPriority(1)
+            case .none:
+                EmptyView()
             }
+            // The map's own strip shows the distance; without the map it sits under the clock.
             PhaseBlock(label: model.phaseLabel, levelNote: levelNote, tone: model.tone, clock: model.clock,
-                       clockCaption: model.clockCaption, distance: showsLiveMap ? nil : distanceText)
+                       clockCaption: model.clockCaption, distance: scene.isMap ? nil : distanceText, isCompact: isCompact)
             NextUpRow(next: model.nextLine, progress: model.isWalkingHome ? nil : model.phaseProgress, tone: model.tone)
             CaptionBar(caption: model.captionText, style: .plain(.center))
             Spacer(minLength: 0)
         }
+    }
+
+    /// Largest text sizes: the part and its clock stay above the controls (held at a size that leaves
+    /// room); the session line, Next and the spoken line scroll between them (review C, 09/10/2026).
+    private var crowdedPortrait: some View {
+        VStack(spacing: 10) {
+            topBar(showsStatus: false)
+            PhaseBlock(label: model.phaseLabel, levelNote: nil, tone: model.tone, clock: model.clock,
+                       clockCaption: model.clockCaption, distance: distanceText)
+                .dynamicTypeSize(...DynamicTypeSize.accessibility1)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(verbatim: model.statusLine).typeRole(.caption).foregroundStyle(Palette.text)
+                        .fixedSize(horizontal: false, vertical: true)
+                    if let levelNote {
+                        Text(verbatim: levelNote).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
+                    }
+                    NextUpRow(next: model.nextLine, progress: model.isWalkingHome ? nil : model.phaseProgress, tone: model.tone)
+                    CaptionBar(caption: model.captionText, style: .plain(.leading))
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .scrollBounceBehavior(.basedOnSize)
+            controls
+        }
+    }
+
+    private func topBar(showsStatus: Bool) -> some View {
+        WalkTopBar(status: showsStatus ? model.statusLine : nil, locationOn: !showsLiveMap && (session.locationOn?() ?? false),
+                   onEnd: session.askToEnd, onSound: { showsSound = true })
     }
 
     /// Back · Pause · Skip as on the chair and stretch players (owner 02/10/2026: a tired walker could
@@ -190,7 +234,8 @@ struct WalkPlayerView: View {
 
 /// End on the left, where the session is on the right (15 pt).
 struct WalkTopBar: View {
-    let status: String
+    /// "Round 2 of 6 · 7:13 left in total"; nil when the screen shows it elsewhere (largest text sizes).
+    let status: String?
     var locationOn = false
     let onEnd: () -> Void
     var onSound: (() -> Void)? = nil
@@ -204,11 +249,13 @@ struct WalkTopBar: View {
                     .foregroundStyle(Palette.text)
             }
             Spacer()
-            Text(verbatim: status)
-                .typeRole(.caption)
-                .foregroundStyle(Palette.text)
-                .multilineTextAlignment(.trailing)
-            if let onSound { SoundButton(action: onSound) }
+            if let status {
+                Text(verbatim: status)
+                    .typeRole(.caption)
+                    .foregroundStyle(Palette.text)
+                    .multilineTextAlignment(.trailing)
+            }
+            if let onSound { SoundButton(action: onSound).dynamicTypeSize(...PlayerChrome.typeLimit) }
         }
     }
 }
@@ -227,12 +274,12 @@ struct WalkScene: View {
     /// Shows the full-screen button on the clip.
     var onFullScreen: (() -> Void)?
 
-    private static let smallest: CGFloat = 80
+    static let smallest: CGFloat = 80
 
     var body: some View {
         Color.clear
             .frame(maxWidth: .infinity)
-            .frame(minHeight: minHeight == nil ? height : 0, maxHeight: height)
+            .frame(minHeight: minHeight ?? height, maxHeight: height)
             .overlay(alignment: .top) {
                 GeometryReader { proxy in
                     if proxy.size.height >= Self.smallest {
@@ -285,6 +332,8 @@ struct PhaseBlock: View {
     var distance: String? = nil
     /// iPad and landscape: clock and label take half the screen.
     var isLarge = false
+    /// iPhone SE beside the live map: the clock at stat size, without "left in this part".
+    var isCompact = false
 
     var body: some View {
         VStack(spacing: 6) {
@@ -300,9 +349,11 @@ struct PhaseBlock: View {
             if let levelNote {
                 Text(verbatim: levelNote).typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
             }
-            PhaseClock(text: clock, isLarge: isLarge)
+            PhaseClock(text: clock, isLarge: isLarge, isCompact: isCompact)
             // The big clock is this part; the top line is the whole session (clarity review D11).
-            Text(clockCaption).typeRole(.caption).foregroundStyle(Palette.textMuted)
+            if !isCompact {
+                Text(clockCaption).typeRole(.caption).foregroundStyle(Palette.textMuted)
+            }
             if let distance {
                 Text(verbatim: distance).typeRole(.cardTitle).foregroundStyle(Palette.text)
             }
@@ -314,10 +365,11 @@ struct PhaseBlock: View {
 struct PhaseClock: View {
     let text: String
     var isLarge = false
+    var isCompact = false
 
     var body: some View {
         Text(verbatim: text)
-            .typeRole(isLarge ? .wallClock : .timer)
+            .typeRole(isLarge ? .wallClock : isCompact ? .stat : .timer)
             .foregroundStyle(Palette.text)
             .lineLimit(1)
             .minimumScaleFactor(0.6)

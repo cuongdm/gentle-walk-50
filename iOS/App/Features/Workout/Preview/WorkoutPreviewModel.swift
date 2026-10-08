@@ -61,7 +61,9 @@ struct PreviewRow: Identifiable, Equatable {
     var request: WorkoutRequest {
         var walkDay = day
         if place == .outdoors { walkDay = PlannedDay(main: day.main, chairMoves: 0, cooldown: false) }
-        let chosen: WalkLevel = place == .pad ? .pad : (day.main == .stretch ? (standingStretch ? .inPlace : .seated) : level)
+        // Outdoors she walks on her feet: never the seated walk (review C).
+        let chosen: WalkLevel = place == .pad ? .pad : place == .outdoors && isWalkDay ? .inPlace
+            : (day.main == .stretch ? (standingStretch ? .inPlace : .seated) : level)
         var request = WorkoutRequest(day: walkDay, level: chosen, intensity: intensity, place: isWalkDay ? place : .indoors,
                                      limits: limits.union(day.main == .stretch && !standingStretch ? [.standingIsHard] : []),
                                      rotationIndex: rotationIndex, minutesDelta: minutesDelta)
@@ -123,9 +125,8 @@ struct PreviewRow: Identifiable, Equatable {
                 rows.append(PreviewRow(id: "warm", title: warmTitle,
                                        detail: Self.minutesText(warm), symbol: "figure.walk"))
                 let quicker = block.segments.contains { $0.kind == .brisk }
-                let movesTitle = !quicker ? String(localized: "Walking moves")
-                    : level == .seated && place == .indoors ? String(localized: "Easy and quicker rounds")
-                    : String(localized: "Easy and brisk rounds")
+                // "Quicker" everywhere, as the players say it (review C).
+                let movesTitle = quicker ? String(localized: "Easy and quicker rounds") : String(localized: "Walking moves")
                 rows.append(PreviewRow(id: "intervals", title: movesTitle,
                                        detail: Self.minutesText(intervals), symbol: "figure.walk.motion"))
                 let stretches = block.segments.contains { $0.kind == .cooldown && $0.exerciseID?.hasPrefix("st.") == true }
@@ -154,7 +155,8 @@ struct PreviewRow: Identifiable, Equatable {
                     guard let id = segment.exerciseID, let exercise = exercises[id], seen.insert(id).inserted else { continue }
                     let hold = segment.hold ?? plan.holdSeconds ?? 20
                     let bilateral = segment.cues.contains { $0.line.hasPrefix("a10.switch") }
-                    let detail = hold == 0 ? Self.secondsText(segment.seconds)
+                    // A pose without a set hold shows its time to the nearest 5 s ("49 sec" read like a bug; review C).
+                    let detail = hold == 0 ? Self.secondsText(max(5, Int((Double(segment.seconds) / 5).rounded()) * 5))
                         : bilateral ? String(localized: "\(hold) sec each side") : String(localized: "\(hold) sec")
                     rows.append(PreviewRow(id: "pose-\(id)", title: exercise.name, detail: detail, symbol: "figure.flexibility"))
                 }

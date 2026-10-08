@@ -59,6 +59,28 @@ import GentleWalkCore
         }
     }
 
+    /// Outdoors she walks on her feet: the coach never gives a seated cue ("hips stay still on the seat"),
+    /// even when her indoor level is seated (review C, 09/10/2026).
+    @Test func outdoorWalkIsNeverCoachedSeated() throws {
+        let suite = "outdoor-walk-level"
+        let defaults = try #require(UserDefaults(suiteName: suite))
+        defaults.removePersistentDomain(forName: suite)
+        let model = WorkoutPreviewModel(day: PlannedDay(main: .walk, chairMoves: 2, cooldown: true), intensity: .steady,
+                                        checkIn: nil, suggestedLevel: .seated, limits: [.knees], rotationIndex: 0,
+                                        content: TestFixtures.content, defaults: defaults)
+        model.place = .outdoors
+        #expect(model.request.level != .seated)
+        let lines = try model.request.plan(content: TestFixtures.content).lineIDs
+        #expect(!lines.isEmpty)
+        #expect(!lines.contains { $0.contains(".seated") }, "\(lines.filter { $0.contains(".seated") })")
+        // A request built elsewhere (capture, replay) with her seated level is still coached standing.
+        let seatedOutdoors = WorkoutRequest(day: PlannedDay(main: .walk, chairMoves: 0, cooldown: false), level: .seated,
+                                            intensity: .steady, place: .outdoors, limits: [.knees], rotationIndex: 0)
+        let seatedLines = try seatedOutdoors.plan(content: TestFixtures.content).lineIDs
+        #expect(!seatedLines.contains { $0.contains(".seated") })
+        defaults.removePersistentDomain(forName: suite)
+    }
+
     @Test func doItAgainFollowsThePlan() {
         let planned = WorkoutRequest(day: PlannedDay(main: .walk, chairMoves: 1, cooldown: false), level: .seated,
                                      intensity: .steady, place: .indoors, limits: [], rotationIndex: 0)

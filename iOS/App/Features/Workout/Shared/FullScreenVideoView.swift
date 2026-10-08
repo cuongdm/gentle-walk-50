@@ -27,6 +27,7 @@ struct FullScreenVideoView: View {
     let onHurts: () -> Void
 
     @State private var showsTV = false
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         GeometryReader { proxy in
@@ -79,9 +80,9 @@ struct FullScreenVideoView: View {
     private func panel(scrolls: Bool) -> some View {
         VStack(spacing: 12) {
             if scrolls {
-                ScrollView { readout }.scrollBounceBehavior(.basedOnSize)
+                ScrollView { readout(scrolls: true) }.scrollBounceBehavior(.basedOnSize)
             } else {
-                readout
+                readout(scrolls: false)
             }
             if let onBack, let onSkip {
                 PlayerControlRow(isPaused: isPaused, onBack: onBack, onPause: onPause, onSkip: onSkip)
@@ -92,10 +93,13 @@ struct FullScreenVideoView: View {
         .background(Palette.surface, in: .rect(cornerRadius: 24, style: .continuous))
     }
 
-    /// Part, counter (with Pause beside it on walks), progress and the spoken line.
-    private var readout: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            if let moveProgress { MoveProgressHeader(progress: moveProgress, next: next) }
+    /// Part, counter (with Pause beside it on walks), progress and the spoken line. On its side at the
+    /// largest sizes the counter comes first and the move bar after the spoken line, so the clock is in
+    /// view before any scrolling; on its side the line is never cut (review C, 09/10/2026).
+    private func readout(scrolls: Bool) -> some View {
+        let barLast = scrolls && typeSize.isAccessibilitySize
+        return VStack(alignment: .leading, spacing: 8) {
+            if !barLast, let moveProgress { MoveProgressHeader(progress: moveProgress, next: next) }
             HStack(alignment: .center) {
                 VStack(alignment: .leading, spacing: 2) {
                     if let title {
@@ -115,6 +119,8 @@ struct FullScreenVideoView: View {
             }
             if let progress { PhaseProgressBar(progress: progress, tint: tint) }
             CaptionBar(caption: caption, style: .plain(.leading))
+                .fixedSize(horizontal: false, vertical: scrolls)
+            if barLast, let moveProgress { MoveProgressHeader(progress: moveProgress, next: next) }
         }
     }
 }

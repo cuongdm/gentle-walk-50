@@ -16,10 +16,7 @@ struct PinnedActions<Actions: View>: ViewModifier {
                     .padding(.bottom, 6)
                     .frame(maxWidth: 640)
                     .frame(maxWidth: .infinity)
-                    .background {
-                        Rectangle().fill(Palette.bg.shadow(.drop(color: .black.opacity(0.08), radius: 8, y: -2)))
-                            .ignoresSafeArea()
-                    }
+                    .background { PinnedBarBackground() }
             }
         }
     }
@@ -28,5 +25,19 @@ struct PinnedActions<Actions: View>: ViewModifier {
 extension View {
     func pinnedActions<Actions: View>(_ pinned: Bool, @ViewBuilder _ actions: @escaping () -> Actions) -> some View {
         modifier(PinnedActions(pinned: pinned, actions: actions))
+    }
+}
+
+/// The pinned bar's fill: the page colour (with the screen's own wash, if any) over a soft top shadow,
+/// so words scrolling under the buttons never show through.
+struct PinnedBarBackground: View {
+    var wash: Color = .clear
+
+    var body: some View {
+        ZStack {
+            Rectangle().fill(Palette.bg.shadow(.drop(color: .black.opacity(0.08), radius: 8, y: -2)))
+            wash
+        }
+        .ignoresSafeArea()
     }
 }

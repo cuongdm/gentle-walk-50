@@ -4,12 +4,22 @@ import SwiftUI
 /// glance (it was an underlined word), without competing with Pause, Break or This hurts. Not red:
 /// red is This hurts. The touch area is 56 pt; "End this session?" still asks before anything ends
 /// (owner 01/10/2026).
+/// At accessibility text sizes only the ✕ shows (the word wrapped one letter per line on an iPhone SE);
+/// VoiceOver still reads "End session" (review C, 09/10/2026).
 struct EndSessionButton: View {
     let action: () -> Void
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
     var body: some View {
         Button(action: action) {
-            Label("End", systemImage: "xmark")
+            Group {
+                if typeSize.isAccessibilitySize {
+                    Image(systemName: "xmark")
+                } else {
+                    Label("End", systemImage: "xmark")
+                }
+            }
                 .typeRole(.caption)
                 .fontWeight(.semibold)
                 .foregroundStyle(Palette.text)
@@ -21,6 +31,7 @@ struct EndSessionButton: View {
                 .contentShape(.rect)
         }
         .buttonStyle(.plain)
+        .dynamicTypeSize(...PlayerChrome.typeLimit)
         .accessibilityLabel(Text("End session"))
     }
 }

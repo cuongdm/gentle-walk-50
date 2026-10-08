@@ -16,6 +16,16 @@ struct WorkoutSafetyBar: View {
     @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
+        rows
+            // Never squeezed by the screen above it: at the largest text sizes "This hurts" spilled out of
+            // its button and the hand sat on Skip (review C, 09/10/2026). The words stop growing at
+            // `PlayerChrome.typeLimit`, so the bar leaves room for the move on an iPhone SE.
+            .dynamicTypeSize(...PlayerChrome.typeLimit)
+            .fixedSize(horizontal: false, vertical: true)
+            .layoutPriority(1)
+    }
+
+    @ViewBuilder private var rows: some View {
         // Accessibility sizes: two rows of two, so no word is ever cut ("This hurts" above all).
         if typeSize.isAccessibilitySize, showsVoice || showsMusic {
             Grid(horizontalSpacing: Metrics.touchSpacing, verticalSpacing: Metrics.touchSpacing) {
@@ -61,11 +71,12 @@ private struct BarButton: View {
             VStack(spacing: 4) {
                 Image(systemName: symbol).accessibilityHidden(true)
                 Text(title).lineLimit(3).fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.center)
             }
             .typeRole(.caption)
             .fontWeight(.semibold)
             .foregroundStyle(text)
-            .frame(maxWidth: .infinity, minHeight: Metrics.minTouchTarget + 8)
+            .frame(maxWidth: .infinity, minHeight: Metrics.minTouchTarget + 8, maxHeight: .infinity)
             .padding(.vertical, 4)
             .background(fill, in: .rect(cornerRadius: 16, style: .continuous))
             .overlay { RoundedRectangle(cornerRadius: 16, style: .continuous).strokeBorder(Palette.textMuted.opacity(0.2)) }
@@ -73,4 +84,14 @@ private struct BarButton: View {
         }
         .buttonStyle(.plain)
     }
+}
+
+/// Limits for the player's fixed controls (End, Back · Pause · Skip, Break · This hurts): their words
+/// grow with the text size up to `typeLimit`, so the move, the clock and the spoken line keep room
+/// on an iPhone SE at the largest sizes (review C, 09/10/2026).
+enum PlayerChrome {
+    static let typeLimit = DynamicTypeSize.accessibility2
+    /// Below this height (an iPhone SE upright) the clip is held smaller, so the move's name, its clock
+    /// and Easier · Harder · Tips stay in view.
+    static let compactHeight: CGFloat = 700
 }

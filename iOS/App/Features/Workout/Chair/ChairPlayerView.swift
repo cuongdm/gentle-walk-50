@@ -53,64 +53,47 @@ struct ChairPlayerView: View {
     }
 
     private var portrait: some View {
-        VStack(spacing: 10) {
-            HStack {
-                EndSessionButton(action: model.session.askToEnd)
-                Spacer()
-                if let position = model.blockPosition {
-                    Text(verbatim: position).typeRole(.caption).foregroundStyle(Palette.text)
-                }
-                SoundButton { showsSound = true }
-            }
-            if let progress = model.moveProgress {
-                MoveProgressHeader(progress: progress, next: model.followingName)
-            }
+        MovePlayerPortrait(
+            position: model.blockPosition, progress: model.moveProgress, next: model.followingName,
+            caption: model.player.caption?.text, captionStyle: .bubble, isPaused: isPaused,
+            onEnd: model.session.askToEnd, onSound: { showsSound = true }, onBack: model.back,
+            onPause: model.session.togglePause, onSkip: model.skip,
+            onBreak: model.session.takeBreak, onHurts: model.session.openHurts
+        ) { maxHeight in
             ExerciseVideo(fileName: model.videoFile, picture: model.picture)
                 .overlay(alignment: .topTrailing) { VideoCornerButton.expand(enterFullScreen).padding(4) }
-            ScrollView {
-                VStack(alignment: .leading, spacing: 10) {
-                    if model.countsReps {
-                        MoveHeaderWithClock(exercise: model.exercise, clockWidth: 190) {
-                            RepCounter(text: model.repsText, onAdd: model.session.addRep)
-                        } detail: {
-                            if model.session.isCountedForYou {
-                                CountedForYouLabel(pulse: model.session.motion?.pulse ?? 0)
-                            } else {
-                                // Without the phone held to the chest, the count is hers (review D13).
-                                // An instruction: body size, main text colour (plan 08/10/2026 task 1.14).
-                                Text("Tap +1 each time you stand").typeRole(.body).foregroundStyle(Palette.text)
-                            }
-                        }
+                .frame(maxHeight: maxHeight)
+        } details: {
+            if model.countsReps {
+                MoveHeaderWithClock(exercise: model.exercise, clockWidth: 190) {
+                    RepCounter(text: model.repsText, onAdd: model.session.addRep)
+                } detail: {
+                    if model.session.isCountedForYou {
+                        CountedForYouLabel(pulse: model.session.motion?.pulse ?? 0)
                     } else {
-                        // The clock beside the name, not on a row of its own (owner 01/10).
-                        MoveHeaderWithClock(exercise: model.exercise) { MoveTimer(text: model.timerText) }
+                        // Without the phone held to the chest, the count is hers (review D13).
+                        // An instruction: body size, main text colour (plan 08/10/2026 task 1.14).
+                        Text("Tap +1 each time you stand").typeRole(.body).foregroundStyle(Palette.text)
                     }
-                    if model.supportLabel != nil || model.repsLabel != nil {
-                        LadderLabels(support: model.supportLabel, reps: model.repsLabel)
-                    }
-                    MoveOptionsRow(usesEasier: model.usesEasier, showsHarder: model.showsHarder,
-                                   hasHarder: model.exercise?.harder != nil, showsTips: $showsTips,
-                                   onEasier: { Task { await model.chooseEasier() } }, onHarder: model.chooseHarder)
-                    if let remembered = model.rememberedEasierNote {
-                        RememberedEasierLine(note: remembered, onUsual: model.tryUsualVersion)
-                    }
-                    if model.showsHarderProNote {
-                        Text("With Pro, more reps when you're ready").typeRole(.caption).foregroundStyle(Palette.textMuted)
-                    }
-                    MoveTips(tips: showsTips ? model.exercise?.tips ?? [] : [], note: model.versionNote)
                 }
+            } else {
+                // The clock beside the name, not on a row of its own (owner 01/10).
+                MoveHeaderWithClock(exercise: model.exercise) { MoveTimer(text: model.timerText) }
             }
-            .scrollBounceBehavior(.basedOnSize)
-            // The spoken line stays in view above the controls, as plain text (review U3).
-            CaptionBar(caption: model.player.caption?.text, style: .bubble)
-            PlayerControlRow(isPaused: isPaused, onBack: model.back, onPause: model.session.togglePause,
-                             onSkip: model.skip)
-            WorkoutSafetyBar(showsVoice: false, onBreak: model.session.takeBreak, onHurts: model.session.openHurts)
+            if model.supportLabel != nil || model.repsLabel != nil {
+                LadderLabels(support: model.supportLabel, reps: model.repsLabel)
+            }
+            MoveOptionsRow(usesEasier: model.usesEasier, showsHarder: model.showsHarder,
+                           hasHarder: model.exercise?.harder != nil, showsTips: $showsTips,
+                           onEasier: { Task { await model.chooseEasier() } }, onHarder: model.chooseHarder)
+            if let remembered = model.rememberedEasierNote {
+                RememberedEasierLine(note: remembered, onUsual: model.tryUsualVersion)
+            }
+            if model.showsHarderProNote {
+                Text("With Pro, more reps when you're ready").typeRole(.caption).foregroundStyle(Palette.textMuted)
+            }
+            MoveTips(tips: showsTips ? model.exercise?.tips ?? [] : [], note: model.versionNote)
         }
-        .padding(.horizontal, Metrics.screenMargin)
-        .padding(.bottom, 8)
-        .readableColumn()
-        .screenBackground()
     }
 }
 
@@ -210,6 +193,7 @@ struct MoveTips: View {
                 Text(verbatim: note)
                     .typeRole(.body)
                     .fontWeight(.semibold)
+                    .fixedSize(horizontal: false, vertical: true)
                     .foregroundStyle(Palette.text)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 8)
@@ -233,15 +217,21 @@ struct RestBetweenMoves: View {
     var onEnd: (() -> Void)?
 
     var body: some View {
-        // Break and This hurts stay on screen; only the part above them scrolls when crowded.
-        VStack(spacing: 18) {
+        // Break, This hurts and Skip rest stay on screen; only the part above them shrinks, then scrolls
+        // (Skip rest was pushed under the safety row on an iPhone SE; review C).
+        VStack(spacing: 14) {
             if let onEnd {
                 HStack {
                     EndSessionButton(action: onEnd)
                     Spacer()
                 }
             }
-            restInfo.scrollsWhenCrowded()
+            ViewThatFits(in: .vertical) {
+                restInfo(clipHeight: nil)
+                restInfo(clipHeight: 110)
+                ScrollView { restInfo(clipHeight: 110) }.scrollBounceBehavior(.basedOnSize)
+            }
+            Button("Skip rest", action: onSkipRest).buttonStyle(.textLink)
             WorkoutSafetyBar(showsVoice: false, onBreak: onBreak, onHurts: onHurts)
         }
         .padding(.horizontal, Metrics.screenMargin)
@@ -251,9 +241,9 @@ struct RestBetweenMoves: View {
         .background(Palette.bg.ignoresSafeArea())
     }
 
-    private var restInfo: some View {
+    private func restInfo(clipHeight: CGFloat?) -> some View {
         VStack(spacing: 18) {
-            Spacer()
+            Spacer(minLength: 0)
             Text("Rest").typeRole(.phaseLabel).foregroundStyle(Palette.text)
             Text(verbatim: timer).typeRole(.timer).lineLimit(1).minimumScaleFactor(0.5)
                 .foregroundStyle(Palette.text).contentTransition(.numericText())
@@ -261,12 +251,12 @@ struct RestBetweenMoves: View {
                 // A large look at the next move, like a class's "get ready" (competitor idea 1).
                 VStack(alignment: .leading, spacing: 10) {
                     NextUpName(name: next.name)
-                    ExerciseVideo(fileName: nextVideo).frame(maxWidth: 420)
+                    ExerciseVideo(fileName: nextVideo).frame(maxWidth: 420, maxHeight: clipHeight)
+                        .frame(maxWidth: .infinity)
                 }
                 .cardStyle()
             }
-            Button("Skip rest", action: onSkipRest).buttonStyle(.textLink)
-            Spacer()
+            Spacer(minLength: 0)
         }
     }
 }
@@ -300,20 +290,49 @@ struct StandBehindChairView: View {
     @State private var remaining = StandBehindChairView.countdownSeconds
     @State private var holding = false
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+    /// Ready, Wait and Skip stay pinned at the bottom (on an iPhone SE they were pushed off-screen,
+    /// review C); at accessibility sizes they end the page instead.
+    private var pinsActions: Bool { !typeSize.isAccessibilitySize }
+
     var body: some View {
-        VStack(spacing: 24) {
+        // The painting shrinks first, then the words scroll; the buttons never move.
+        ViewThatFits(in: .vertical) {
+            content(artHeight: 220)
+            content(artHeight: 120)
+            content(artHeight: 84)
+            ScrollView { content(artHeight: 84) }.scrollBounceBehavior(.basedOnSize)
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            if pinsActions {
+                VStack(spacing: 10) { actions }
+                    .padding(.horizontal, Metrics.screenMargin)
+                    .padding(.top, 8)
+                    .padding(.bottom, 8)
+                    .readableColumn()
+                    .background { PinnedBarBackground() }
+            }
+        }
+        .screenBackground()
+        .task { await run() }
+        .onDisappear(perform: onStopSpeaking)
+    }
+
+    private func content(artHeight: CGFloat) -> some View {
+        VStack(spacing: 16) {
             if let onEnd {
                 HStack {
                     EndSessionButton(action: { onStopSpeaking(); onEnd() })
                     Spacer()
                 }
             }
-            Spacer()
-            ArtImage(art: .walkerBehindChair, height: 220, fallbackSymbol: "chair.fill")
+            Spacer(minLength: 0)
+            ArtImage(art: .walkerBehindChair, height: artHeight, fallbackSymbol: "chair.fill")
             Text(line)
                 .typeRole(.screenTitle)
                 .foregroundStyle(Palette.text)
                 .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
             if !holding {
                 // The number as big as a clock: she reads it from behind the chair (review M9).
                 VStack(spacing: 2) {
@@ -327,25 +346,26 @@ struct StandBehindChairView: View {
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(Text("Starting in \(remaining) seconds"))
             }
-            Spacer()
-            Button("Ready") { onStopSpeaking(); onReady() }.buttonStyle(.primaryAction)
-            if !holding {
-                Button("Wait") {
-                    holding = true
-                    onStopSpeaking()
-                }
-                .buttonStyle(.secondaryAction)
-            }
-            if let onSkip {
-                Button("Skip this move") { onStopSpeaking(); onSkip() }.buttonStyle(.textLink)
-            }
+            Spacer(minLength: 0)
+            if !pinsActions { actions }
         }
-        .padding(Metrics.screenMargin)
-        .scrollsWhenCrowded()
+        .padding(.horizontal, Metrics.screenMargin)
+        .padding(.top, 8)
         .readableColumn()
-        .screenBackground()
-        .task { await run() }
-        .onDisappear(perform: onStopSpeaking)
+    }
+
+    @ViewBuilder private var actions: some View {
+        Button("Ready") { onStopSpeaking(); onReady() }.buttonStyle(.primaryAction)
+        if !holding {
+            Button("Wait") {
+                holding = true
+                onStopSpeaking()
+            }
+            .buttonStyle(.secondaryAction)
+        }
+        if let onSkip {
+            Button("Skip this move") { onStopSpeaking(); onSkip() }.buttonStyle(.textLink)
+        }
     }
 
     private func run() async {

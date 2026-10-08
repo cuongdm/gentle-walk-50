@@ -80,7 +80,7 @@ struct OutdoorLiveMap: View {
             LiveStatsStrip(miles: miles, seconds: seconds, steps: steps)
         }
         .frame(maxWidth: .infinity)
-        .frame(minHeight: 180, maxHeight: height)
+        .frame(minHeight: min(180, height), maxHeight: height)
         .clipShape(.rect(cornerRadius: Metrics.cardRadius, style: .continuous))
         .accessibilityElement(children: .contain)
     }

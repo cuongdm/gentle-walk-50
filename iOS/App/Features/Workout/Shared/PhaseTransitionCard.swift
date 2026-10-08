@@ -9,14 +9,21 @@ struct PhaseTransitionCard: View {
     var body: some View {
         ZStack {
             tone.fill.ignoresSafeArea()
-            Text(verbatim: label)
-                .typeRole(.transition)
-                .foregroundStyle(Palette.onLightFill)
-                .multilineTextAlignment(.center)
-                .padding(Metrics.screenMargin)
+            // One line, scaled down when it must: at the largest sizes "QUICKER" broke mid-word (review C).
+            ViewThatFits(in: .horizontal) {
+                styled(Text(verbatim: label)).fixedSize()
+                styled(Text(verbatim: label)).lineLimit(1).minimumScaleFactor(0.4)
+            }
+            .padding(Metrics.screenMargin)
         }
         .accessibilityElement()
         .accessibilityLabel(Text(verbatim: label))
+    }
+
+    private func styled(_ text: Text) -> some View {
+        text.typeRole(.transition)
+            .foregroundStyle(Palette.onLightFill)
+            .multilineTextAlignment(.center)
     }
 }
 
