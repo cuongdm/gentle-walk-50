@@ -58,6 +58,9 @@ targets:
       path: App/Info.plist
       properties:
         CFBundleDisplayName: Good Footing
+        # Version numbers come from build settings (Info.plist otherwise pins 1.0 / 1).
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         # Only standard HTTPS is used, which is exempt from export compliance documentation.
         ITSAppUsesNonExemptEncryption: false
         UILaunchScreen: {}
