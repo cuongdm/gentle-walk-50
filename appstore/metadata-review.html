@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App Store Metadata</title>
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body { font: 15px/1.55 -apple-system, "Segoe UI", sans-serif; margin: 0; padding: 24px;
+         max-width: 980px; margin-inline: auto; background: #111; color: #eee; }
+  @media (prefers-color-scheme: light) { body { background:#fafafa; color:#1a1a1a; }
+    pre { background:#fff !important; border-color:#ddd !important; }
+    .ai-card { background:#fff !important; border-color:#e2e2e2 !important; } }
+  h1 { font-size: 26px; } h2 { margin-top: 40px; border-bottom: 2px solid #e05a3a; padding-bottom: 6px; }
+  .loc { font-size: 12px; font-weight: 400; opacity: .6; }
+  .hint { font-size: 13px; opacity: .7; margin: 4px 0 18px; }
+  nav { position: sticky; top: 0; background: inherit; padding: 8px 0; z-index: 5;
+        line-height: 2.1; border-bottom: 1px solid #4443; }
+  nav a { margin-right: 10px; color: #e05a3a; text-decoration: none; font-size: 13px; white-space: nowrap; }
+  .field { margin: 14px 0; }
+  .field-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .field-label { font-weight: 600; }
+  .count { font-size: 12px; opacity: .6; } .count.over { color:#f43; font-weight:700; opacity:1; }
+  pre { background:#1c1c1e; border:1px solid #333; border-radius:8px; padding:12px;
+        white-space:pre-wrap; word-break:break-word; margin:0; font:13px/1.5 ui-monospace, Menlo, monospace; }
+  button.copy { margin-left:auto; background:#e05a3a; color:#fff; border:0; border-radius:8px;
+        padding:9px 22px; font-size:14px; font-weight:600; cursor:pointer; line-height:1;
+        transition: background .15s, transform .05s; }
+  button.copy:hover { background:#c94a2c; } button.copy:active { transform: scale(.96); }
+  button.copy.done { background:#2fa14b; }
+  .ai-card { border:1px solid #333; border-radius:12px; padding:6px 16px 12px; margin:14px 0; background:#191919; }
+  .ai-lang { font-weight:700; font-size:15px; margin-top:10px; }
+</style>
+</head>
+<body>
+<h1>App Store Metadata</h1>
+<p>Click <b>Copy</b> to copy a field verbatim. Character counts show next to each field (red = over the App Store limit).</p>
+<nav><a href="#appinfo">App Name &amp; Subtitle</a> <a href="#lang-en">English (United States)</a></nav>
+
+    <section id="appinfo">
+      <h2>App Name &amp; Subtitle - all languages (App Information)</h2>
+      <p class="hint">Grouped here so you can copy each locale in turn without scrolling through the long sections below.</p>
+      <div class="ai-card">
+        <div class="ai-lang">English (United States) <span class="loc">en-US</span></div>
+        <div class="field">
+          <div class="field-head"><span class="field-label">App Name</span><span class="count">29/30</span><button class="copy" data-target="en-name">Copy</button></div>
+          <pre id="en-name">Good Footing: Gentle Workouts</pre>
+        </div>
+        <div class="field">
+          <div class="field-head"><span class="field-label">Subtitle</span><span class="count">29/30</span><button class="copy" data-target="en-subtitle">Copy</button></div>
+          <pre id="en-subtitle">Chair Yoga, Walks &amp; Stretches</pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="lang-en">
+      <h2>English (United States) <span class="loc">App Store Connect locale: en-US</span></h2>
+      <div class="field">
+        <div class="field-head">
+          <span class="field-label">Promotional Text</span>
+          <span class="count">157/170</span>
+          <button class="copy" data-target="en-promotional_text">Copy</button>
+        </div>
+        <pre id="en-promotional_text">Steadier on your feet, at your own pace. A warm coach's voice guides every walk, chair move and stretch, so you can follow along without watching the screen.</pre>
+      </div>
+      <div class="field">
+        <div class="field-head">
+          <span class="field-label">Keywords</span>
+          <span class="count">100/100</span>
+          <button class="copy" data-target="en-keywords">Copy</button>
+        </div>
+        <pre id="en-keywords">balance,low,impact,indoor,home,women,beginner,exercise,seated,easy,strength,mobility,pad,leg,walking</pre>
+      </div>
+      <div class="field">
+        <div class="field-head">
+          <span class="field-label">Description</span>
+          <span class="count">3355/4000</span>
+          <button class="copy" data-target="en-description">Copy</button>
+        </div>
+        <pre id="en-description">Steadier on your feet, at your own pace.
+
+Good Footing is a gentle home workout app for women who are new to exercise or coming back to it. A warm coach's voice guides you through walking in place, chair moves, stretches and balance, one step at a time. Just listen and move. You don't need to watch the screen, and you never have to get down on the floor.
+
+FOLLOW ALONG BY VOICE
+• Your coach tells you what to do and when to change, with soft bells between moves
+• Set your phone down or lock the screen, and the voice keeps going
+• Turn on captions, and see short clips and pictures of each move
+• Watch the moves on your TV with Screen Mirroring
+
+A PLAN THAT FITS YOUR BODY
+• Answer a few easy questions and get your own 12-week plan, 5 to 10 minutes a day
+• Every move has a seated version. Walk seated, in place or on a walking pad
+• Tell the app about sore knees, hips, back or shoulders, and moves that don't suit you are left out
+• "Break" and "This hurts" are always on screen. A move that hurts is set aside for a while, and your plan eases off
+• Say how each session felt, and your plan adjusts over time
+
+STEADIER, WEEK BY WEEK
+• A short Steady set of balance moves on your workout days, with a chair beside you
+• Your 2-week check: count how many times you stand up from your chair in 30 seconds. You compare only with yourself, and it is not a medical test
+• See your active days, your checks and your everyday steps from Apple Health
+• Gentle reminders at a time that suits your day, never more than one a day, and no streaks to lose
+
+FREE TO START
+The free plan gives you a walk each weekday with one or two chair moves, a short cool-down stretch, the Steady set, your 12-week plan and your 2-week checks.
+
+Good Footing Pro adds the full weekly program, every chair move, full stretch sessions and extras, more reps when you're ready, less hand on the chair as you get steadier, your own choice of rest days, and your full session history.
+
+CALM AND PRIVATE
+• No account and no ads
+• Your answers and workouts stay on your iPhone. Your health data is never sent to us
+• Workouts play without an internet connection
+• Large, clear text that follows your iPhone text size, in light or dark mode
+• Made for iPhone and iPad
+
+Your first walk takes 5 minutes. Start today, at your own pace.
+
+ABOUT GOOD FOOTING PRO
+Good Footing Pro is optional. You can choose a yearly subscription that starts with a free trial, a monthly subscription, or a one-time purchase that never renews. The price for your country and the length of the free trial are shown in the app before you buy.
+
+Payment is charged to your Apple Account when you confirm the purchase, or when the free trial ends. Subscriptions renew automatically unless auto-renew is turned off at least 24 hours before the end of the current period. Your account is charged for renewal within 24 hours before the end of the current period. You can manage or cancel your subscription at any time in Settings &gt; your name &gt; Subscriptions. Deleting the app does not cancel it. Any unused part of a free trial ends when you buy a subscription.
+
+Good Footing is for general fitness and isn't medical advice. Talk to your doctor before you start, especially if you have a health condition.
+
+Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacy Policy: {{PRIVACY_URL}}</pre>
+      </div>
+      <div class="field">
+        <div class="field-head">
+          <span class="field-label">What's New</span>
+          <span class="count">0/4000</span>
+          <button class="copy" data-target="en-whats_new">Copy</button>
+        </div>
+        <pre id="en-whats_new"></pre>
+      </div>
+    </section>
+
+<script>
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('button.copy'); if (!btn) return;
+    var el = document.getElementById(btn.dataset.target); if (!el) return;
+    var text = el.innerText;
+    var done = function () { var old = btn.textContent; btn.textContent = 'Copied ✓';
+      btn.classList.add('done');
+      setTimeout(function () { btn.textContent = old; btn.classList.remove('done'); }, 1400); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text, done); });
+    } else { fallback(text, done); }
+  });
+  function fallback(text, done) {
+    var ta = document.createElement('textarea'); ta.value = text;
+    ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch (_) {}
+    document.body.removeChild(ta);
+  }
+</script>
+</body>
+</html>
