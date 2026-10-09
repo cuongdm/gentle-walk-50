@@ -3579,6 +3579,41 @@
   ]
  },
  {
+  "key": "Couldn't reach the App Store. Please check your connection and try again.",
+  "comment": "",
+  "files": [
+   "PaywallNotice"
+  ]
+ },
+ {
+  "key": "The App Store couldn't finish the purchase. Please try again later.",
+  "comment": "",
+  "files": [
+   "PaywallNotice"
+  ]
+ },
+ {
+  "key": "This plan isn't available in your App Store country or right now. Try another plan or try again later.",
+  "comment": "",
+  "files": [
+   "PaywallNotice"
+  ]
+ },
+ {
+  "key": "Waiting for approval. Your plan will start as soon as it's approved.",
+  "comment": "",
+  "files": [
+   "PaywallNotice"
+  ]
+ },
+ {
+  "key": "We're still confirming your purchase. If your plan hasn't started in a minute, tap Restore.",
+  "comment": "",
+  "files": [
+   "PaywallNotice"
+  ]
+ },
+ {
   "key": "Every plan unlocks the same things.",
   "comment": "",
   "files": [
@@ -5095,13 +5130,6 @@
   ]
  },
  {
-  "key": "Waiting for approval",
-  "comment": "",
-  "files": [
-   "StoreNotice"
-  ]
- },
- {
   "key": "We couldn't find a purchase for this Apple Account.",
   "comment": "",
   "files": [
@@ -5117,13 +5145,6 @@
  },
  {
   "key": "Your plan is back on this iPhone.",
-  "comment": "",
-  "files": [
-   "StoreNotice"
-  ]
- },
- {
-  "key": "Your purchase will start as soon as it's approved.",
   "comment": "",
   "files": [
    "StoreNotice"

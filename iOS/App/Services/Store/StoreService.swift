@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import OSLog
 import GentleWalkCore
 
 /// Schedules the "trial ends" notification (always sent, task 5.12); the notification service does it.
@@ -8,11 +9,20 @@ import GentleWalkCore
     func cancelTrialReminder()
 }
 
-enum PurchaseOutcome: Equatable, Sendable { case purchased, pending, cancelled }
+enum PurchaseOutcome: Equatable, Sendable {
+    /// Bought, and the "pro" entitlement is active.
+    case purchased
+    /// Ask to Buy or a bank check: it starts once approved.
+    case pending
+    case cancelled
+    /// The store took the purchase but the "pro" entitlement is not active (yet): never treated as bought.
+    case notActive
+}
 
 enum StoreError: Error {
     /// No purchase layer: no RevenueCat key in this build, or a unit test.
     case unavailable
+    /// The store sells none of the plans.
     case productUnavailable
 }
 
@@ -40,6 +50,8 @@ enum StoreError: Error {
     /// Called after a pushed change was applied (refund, Ask to Buy, renewal, expiry), so the screens
     /// built from the entitlement are rebuilt.
     @ObservationIgnored var onUpdate: (() -> Void)?
+    /// Purchase failures, at `.error` so they reach a TestFlight sysdiagnose: codes and plan IDs only.
+    nonisolated static let log = Logger(subsystem: "com.kmd.goodfooting", category: "store")
 
     /// - Parameters:
     ///   - backend: RevenueCat in the app (`RevenueCatBackend.configured()`); nil = no store, free plan.
@@ -70,9 +82,10 @@ enum StoreError: Error {
         }
     }
 
-    func loadProducts() async throws {
+    /// - Parameter refresh: read past the purchase layer's cache.
+    func loadProducts(refresh: Bool = false) async throws {
         guard let backend else { throw StoreError.unavailable }
-        let list = try await backend.offers()
+        let list = try await backend.offers(refresh: refresh)
         offers = list.sorted { $0.kind < $1.kind }
         let yearly = offer(.yearly)
         trialDays = yearly?.freeTrialDays
@@ -81,20 +94,48 @@ enum StoreError: Error {
         } else {
             introEligibility = .noOffer
         }
-        await refresh()
+        await self.refresh()
     }
 
+    /// Buys a plan. `.purchased` only when the "pro" entitlement is active afterwards. Throws
+    /// `PurchaseFailure` when it did not go through (logged here), `StoreError.unavailable` with no store.
     func purchase(_ productID: String) async throws -> PurchaseOutcome {
         guard let backend else { throw StoreError.unavailable }
-        guard offers.contains(where: { $0.id == productID }) else { throw StoreError.productUnavailable }
-        switch try await backend.purchase(productID) {
+        guard offers.contains(where: { $0.id == productID }) else {
+            Self.log.error("Purchase of \(productID, privacy: .public) not started: plan not loaded")
+            throw PurchaseFailure(reason: .planUnavailable, code: "plan not loaded")
+        }
+        let result: BackendPurchase
+        do {
+            result = try await backend.purchase(productID)
+        } catch {
+            let failure = error as? PurchaseFailure ?? PurchaseFailure(reason: .other, code: String(describing: type(of: error)))
+            Self.log.error("Purchase of \(productID, privacy: .public) failed: \(failure.code, privacy: .public)")
+            throw failure
+        }
+        switch result {
         case .purchased(let customer):
             apply(customer)
+            guard entitlement.isPro else {
+                Self.log.error("Purchase of \(productID, privacy: .public) finished but the pro entitlement is not active")
+                return .notActive
+            }
             return .purchased
         case .pending:
             return .pending
         case .cancelled:
             return .cancelled
+        }
+    }
+
+    /// After the store said a plan can't be bought: the plans read once more past the cache, so the
+    /// paywall offers only what is still on sale, or "Plans aren't available right now" when nothing is.
+    func reloadAfterUnavailablePlan() async {
+        do {
+            try await loadProducts(refresh: true)
+        } catch {
+            Self.log.error("No plans on sale after an unavailable plan")
+            offers = []
         }
     }
 

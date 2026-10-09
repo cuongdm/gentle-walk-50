@@ -2086,6 +2086,16 @@
         }
       }
     },
+    "Couldn't reach the App Store. Please check your connection and try again." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không kết nối được App Store. Vui lòng kiểm tra kết nối rồi thử lại."
+          }
+        }
+      }
+    },
     "Couldn't start the session" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -8541,6 +8551,16 @@
         }
       }
     },
+    "The App Store couldn't finish the purchase. Please try again later." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Store chưa hoàn tất được giao dịch. Vui lòng thử lại sau."
+          }
+        }
+      }
+    },
     "The coach says each chair move's name and what it helps with. Turn off once you know them." : {
       "comment" : "Sound: explanation under Move introductions.",
       "localizations" : {
@@ -8683,6 +8703,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Đây là điểm bắt đầu của bạn. Hai tuần nữa, bạn có thể so sánh."
+          }
+        }
+      }
+    },
+    "This plan isn't available in your App Store country or right now. Try another plan or try again later." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gói này chưa bán ở quốc gia App Store của bạn, hoặc lúc này chưa mua được. Hãy thử gói khác hoặc thử lại sau."
           }
         }
       }
@@ -9091,13 +9121,12 @@
         }
       }
     },
-    "Waiting for approval" : {
-      "extractionState" : "stale",
+    "Waiting for approval. Your plan will start as soon as it's approved." : {
       "localizations" : {
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Đang chờ phê duyệt"
+            "value" : "Đang chờ phê duyệt. Gói của bạn sẽ bắt đầu ngay khi được duyệt."
           }
         }
       }
@@ -9454,6 +9483,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mình sẽ chỉnh buổi tập hôm nay cho phù hợp."
+          }
+        }
+      }
+    },
+    "We're still confirming your purchase. If your plan hasn't started in a minute, tap Restore." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giao dịch của bạn đang được xác nhận. Nếu sau một phút gói vẫn chưa bắt đầu, hãy chạm Khôi phục."
           }
         }
       }
@@ -10808,17 +10847,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tiến độ đến giờ đã được lưu."
-          }
-        }
-      }
-    },
-    "Your purchase will start as soon as it's approved." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gói của bạn sẽ bắt đầu ngay khi được duyệt."
           }
         }
       }

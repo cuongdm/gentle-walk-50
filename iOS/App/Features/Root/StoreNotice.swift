@@ -1,9 +1,10 @@
 import SwiftUI
 import Foundation
 
-/// What a purchase or Restore did, told in plain words (review I10: silence reads as "broken").
+/// What Restore did, told in plain words (review I10: silence reads as "broken"). A purchase answers on
+/// the paywall itself (`PaywallNotice`, 09/10/2026), not in an alert over Apple's own.
 enum StoreNotice: Equatable, Sendable {
-    case restored, nothingToRestore, failed, pending
+    case restored, nothingToRestore, failed
     /// The session's audio could not be put together.
     case sessionFailed
     /// Me → Delete all my data: done (it dropped her on Welcome without a word; review 02/10/2026).
@@ -14,7 +15,6 @@ enum StoreNotice: Equatable, Sendable {
         case .restored: "Purchase restored"
         case .nothingToRestore: "No purchases found"
         case .failed: "Couldn't reach the App Store"
-        case .pending: "Waiting for approval"
         case .sessionFailed: "Couldn't start the session"
         case .dataDeleted: "Your data is deleted"
         }
@@ -25,7 +25,6 @@ enum StoreNotice: Equatable, Sendable {
         case .restored: "Your plan is back on this iPhone."
         case .nothingToRestore: "We couldn't find a purchase for this Apple Account."
         case .failed: "Please check your connection and try again."
-        case .pending: "Your purchase will start as soon as it's approved."
         case .sessionFailed: "Please try again. If it keeps happening, restart the app."
         case .dataDeleted: "Everything is deleted from this phone. You can start again whenever you like."
         }
@@ -33,7 +32,7 @@ enum StoreNotice: Equatable, Sendable {
 }
 
 
-/// The purchase / Restore answer as an alert, on whichever screen is on top (root or cover).
+/// The Restore answer (and the other notices) as an alert, on whichever screen is on top (root or cover).
 struct StoreNoticeAlert: ViewModifier {
     @Bindable var app: AppModel
 

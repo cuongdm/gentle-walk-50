@@ -79,23 +79,34 @@ struct CoverView: View {
 
 /// S08 in the app: plans from the store (RevenueCat), the "Apple will ask you" step, then purchase.
 /// No plans (offline, or a build with no store): a calm note, "Try again" and "Maybe later", never an
-/// empty or broken screen.
+/// empty or broken screen. Apple's own sheet and alerts (e.g. "This item is not available.") sit over the
+/// "Apple will ask you" step while the purchase runs; the paywall comes back with a line saying what
+/// happened unless Pro is really on (owner report 09/10/2026).
 struct PaywallContainer: View {
     let app: AppModel
     let trigger: PaywallTrigger
     @State private var model: PaywallModel?
     @State private var confirming: PlanOption?
     @State private var isLoading = true
+    /// A purchase is running: Continue and Back wait, so a second tap never starts a second purchase.
+    @State private var isPurchasing = false
 
     var body: some View {
         Group {
             if let confirming {
-                BeforeAppleSheetView(isTrial: confirming.kind == .yearly && app.store.isEligibleForTrial, onContinue: {
+                BeforeAppleSheetView(isTrial: confirming.kind == .yearly && app.store.isEligibleForTrial,
+                                     isPurchasing: isPurchasing, onContinue: {
+                    guard !isPurchasing else { return }
+                    isPurchasing = true
+                    model?.show(nil)
                     Task {
-                        await app.purchase(confirming, trigger: trigger)
+                        let notice = await app.purchase(confirming, trigger: trigger)
+                        if notice == .planUnavailable { rebuildIfPlansChanged() }
+                        model?.show(notice)
+                        isPurchasing = false
                         self.confirming = nil
                     }
-                }, onBack: { self.confirming = nil })
+                }, onBack: { if !isPurchasing { self.confirming = nil } })
             } else if let model, !model.options.isEmpty {
                 PaywallView(model: model, onPurchase: { confirming = $0 },
                             onRestore: { Task { await app.restorePurchases(from: trigger) } },
@@ -117,11 +128,22 @@ struct PaywallContainer: View {
     private func load(retry: Bool) async {
         isLoading = true
         if retry || app.store.offers.isEmpty { try? await app.store.loadProducts() }
-        model = PaywallModel(options: PaywallModel.options(from: app.store.offers),
-                             isEligibleForTrial: app.store.isEligibleForTrial, trialDays: app.store.trialDays,
-                             activeRenewingProductID: app.store.activeRenewingProductID, goal: app.profile?.goal ?? .notSure,
-                             now: app.now(), calendar: app.calendar)
+        model = makeModel()
         isLoading = false
+    }
+
+    private func makeModel() -> PaywallModel {
+        PaywallModel(options: PaywallModel.options(from: app.store.offers),
+                     isEligibleForTrial: app.store.isEligibleForTrial, trialDays: app.store.trialDays,
+                     activeRenewingProductID: app.store.activeRenewingProductID, goal: app.profile?.goal ?? .notSure,
+                     now: app.now(), calendar: app.calendar)
+    }
+
+    /// After a plan the store can't sell the plans were read again: only what is still on sale stays, and
+    /// with nothing left the "Plans aren't available right now" state replaces the buy buttons.
+    private func rebuildIfPlansChanged() {
+        guard PaywallModel.options(from: app.store.offers) != model?.options else { return }
+        model = makeModel()
     }
 }
 

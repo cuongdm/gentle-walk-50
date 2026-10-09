@@ -38,9 +38,12 @@ struct PaywallView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     PaywallHeader(title: model.title, showsAllPlans: model.showsAllPlans, onClose: onMaybeLater)
+                    // After a purchase that did not unlock Pro: the first thing she reads when the paywall
+                    // comes back, above the plans (the footer with Restore and Maybe later is unchanged).
+                    if let notice = model.notice { PaywallNoticeView(notice: notice) }
                     if model.showsAllPlans {
                         Text("Every plan unlocks the same things.").typeRole(.body).foregroundStyle(Palette.text)
-                            .padding(.top, -8)
+                            .padding(.top, model.notice == nil ? -8 : 0)
                     } else if model.showsTrial {
                         TrialTimelineView(reminderDate: model.reminderDateText, billingDate: model.billingDateText)
                     }

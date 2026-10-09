@@ -27,6 +27,10 @@ enum CaptureState: String, CaseIterable, Sendable {
     case paywallLifetimeWhileSubscribed = "paywall-lifetime-while-subscribed"
     /// No plans to show (offline, or a build without a RevenueCat key): Try again · Maybe later.
     case paywallUnavailable = "paywall-unavailable"
+    /// After a plan the store can't sell (owner report 09/10/2026): the line, every plan open.
+    case paywallPlanUnavailable = "paywall-plan-unavailable"
+    /// After Ask to Buy: the neutral "Waiting for approval" line over Yearly.
+    case paywallPending = "paywall-pending"
     case phonePlacement = "phone-placement"
     case previewIndoor = "preview-indoor"
     case previewOutdoor = "preview-outdoor"

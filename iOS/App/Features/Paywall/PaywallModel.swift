@@ -54,6 +54,8 @@ struct PlanOption: Identifiable, Equatable, Sendable {
     var showsAllPlans = false {
         didSet { if !showsAllPlans, let yearly { selectedID = yearly.id } }
     }
+    /// The line after a purchase that did not unlock Pro; nil after a cancel or a new try.
+    private(set) var notice: PaywallNotice?
 
     init(options: [PlanOption], isEligibleForTrial: Bool, trialDays: Int?, activeRenewingProductID: String? = nil,
          goal: Goal = .notSure, now: Date = .now, calendar: Calendar = .current) {
@@ -66,6 +68,13 @@ struct PlanOption: Identifiable, Equatable, Sendable {
         trial = trialDays.map { TrialTimeline(start: now, trialLength: $0, calendar: calendar) }
         // No yearly plan in the store: show every plan there is.
         if options.first(where: { $0.kind == .yearly }) == nil { showsAllPlans = true }
+    }
+
+    /// Shows the line after a purchase. A plan the store can't sell opens every plan, so another one is
+    /// right there ("Try another plan").
+    func show(_ notice: PaywallNotice?) {
+        self.notice = notice
+        if notice == .planUnavailable, options.count > 1 { showsAllPlans = true }
     }
 
     var selected: PlanOption? { options.first { $0.id == selectedID } }

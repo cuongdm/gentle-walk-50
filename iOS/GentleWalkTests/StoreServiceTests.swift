@@ -20,7 +20,11 @@ import GentleWalkCore
     var eligibility: IntroEligibility = .eligible
     /// What the next purchase does; nil = it goes through.
     var nextPurchase: BackendPurchase?
+    /// The next purchase fails like this (RevenueCat's error, already mapped), before anything else.
+    var failsPurchase: PurchaseFailure?
     var failsOffers = false
+    /// How many times the plans were read past the cache (after a plan the store can't sell).
+    private(set) var refreshes = 0
     var failsRestore = false
     /// Restore finds these purchases (a reinstall on a new phone).
     var restorable: CustomerSnapshot?
@@ -40,8 +44,11 @@ import GentleWalkCore
         ]
     }
 
-    func offers() async throws -> [StoreOffer] {
+    func offers(refresh: Bool) async throws -> [StoreOffer] {
+        if refresh { refreshes += 1 }
         if failsOffers { throw Failed() }
+        // Like RevenueCat's backend: a store with nothing to sell is an error, never an empty list.
+        if offerList.isEmpty { throw StoreError.productUnavailable }
         return offerList
     }
 
@@ -58,6 +65,7 @@ import GentleWalkCore
     }
 
     func purchase(_ productID: String) async throws -> BackendPurchase {
+        if let failsPurchase { throw failsPurchase }
         if let next = nextPurchase { return next }
         let offer = try #require(offerList.first { $0.id == productID })
         var purchased = record.purchasedProductIDs
@@ -300,6 +308,61 @@ import GentleWalkCore
         backend.failsOffers = false
         try await store.loadProducts()
         #expect(store.offers.count == 3)
+    }
+
+    /// RevenueCat's error codes, as the paywall tells them (owner report 09/10/2026, TestFlight: "This item
+    /// is not available."). The code itself goes to the log only.
+    @Test func revenueCatErrorsMapToWhatThePaywallSays() {
+        func failure(_ code: Int, _ info: [String: Any] = [:]) -> PurchaseFailure {
+            RevenueCatBackend.failure(NSError(domain: RevenueCatBackend.errorDomain, code: code, userInfo: info))
+        }
+        #expect(failure(5).reason == .planUnavailable)  // productNotAvailableForPurchaseError
+        #expect(failure(10).reason == .network)  // networkError
+        #expect(failure(35).reason == .network)  // offlineConnectionError
+        #expect(failure(2).reason == .other)  // storeProblemError
+        #expect(failure(3).reason == .other)  // purchaseNotAllowedError
+        #expect(RevenueCatBackend.failure(StoreError.productUnavailable).reason == .planUnavailable)
+        #expect(RevenueCatBackend.failure(NSError(domain: "Elsewhere", code: 7)).reason == .other)
+        // The log line names RevenueCat's code and the store error under it; never her data.
+        let logged = failure(5, ["readable_error_code": "PRODUCT_NOT_AVAILABLE_FOR_PURCHASE",
+                                 "rc_root_error": ["domain": "StoreKit.StoreKitError", "code": 3, "localizedDescription": "x"]])
+        #expect(logged.code == "RevenueCat 5 PRODUCT_NOT_AVAILABLE_FOR_PURCHASE, root StoreKit.StoreKitError 3")
+    }
+
+    /// A purchase that fails is logged and reaches the caller as a `PurchaseFailure`; nothing changes.
+    @Test func failedPurchaseChangesNothing() async throws {
+        let (store, backend) = try await store()
+        backend.failsPurchase = PurchaseFailure(reason: .planUnavailable, code: "test")
+        await #expect(throws: PurchaseFailure(reason: .planUnavailable, code: "test")) {
+            try await store.purchase(ProductID.yearly)
+        }
+        #expect(store.entitlement == .free)
+        #expect(store.offers.count == 3)
+    }
+
+    /// The store took the purchase but the "pro" entitlement is not on (RevenueCat set up without it):
+    /// not counted as bought.
+    @Test func purchaseWithoutTheEntitlementIsNotBought() async throws {
+        let (store, backend) = try await store()
+        backend.nextPurchase = .purchased(.empty)
+        #expect(try await store.purchase(ProductID.monthly) == .notActive)
+        #expect(store.entitlement == .free)
+    }
+
+    /// Read again past the cache after a plan the store can't sell: a store with nothing left empties the
+    /// plans (the paywall then says "Plans aren't available right now").
+    @Test func reloadAfterUnavailableEmptiesWhenNothingIsSold() async throws {
+        let (store, backend) = try await store()
+        await store.reloadAfterUnavailablePlan()
+        #expect(backend.refreshes == 1)
+        #expect(store.offers.count == 3)
+        backend.offerList.removeAll { $0.kind == .yearly }
+        await store.reloadAfterUnavailablePlan()
+        #expect(store.offers.map(\.kind) == [.monthly, .lifetime])
+        backend.offerList = []
+        await store.reloadAfterUnavailablePlan()
+        #expect(backend.refreshes == 3)
+        #expect(store.offers.isEmpty)
     }
 
     /// The public key from build settings: only a real App Store key configures RevenueCat.

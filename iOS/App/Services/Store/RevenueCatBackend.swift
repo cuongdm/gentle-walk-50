@@ -64,13 +64,20 @@ enum RevenueCatKey {
 
     // MARK: PurchaseBackend
 
-    func offers() async throws -> [StoreOffer] {
+    func offers(refresh: Bool) async throws -> [StoreOffer] {
         packages = [:]
         products = [:]
         var found: [PlanKind: StoreProduct] = [:]
         // The offering first, so a price test set up in RevenueCat reaches the paywall without an update.
-        if let offerings = try? await purchases.offerings(),
-           let offering = offerings.current ?? offerings.offering(identifier: Self.offeringID) {
+        // After a plan the store can't sell, fetched again rather than from the cache (rate-limited by
+        // RevenueCat, which then falls back to the cache).
+        let offerings: Offerings?
+        if refresh {
+            offerings = try? await purchases.syncAttributesAndOfferingsIfNeeded()
+        } else {
+            offerings = try? await purchases.offerings()
+        }
+        if let offerings, let offering = offerings.current ?? offerings.offering(identifier: Self.offeringID) {
             for (kind, package) in [(PlanKind.yearly, offering.annual), (.monthly, offering.monthly), (.lifetime, offering.lifetime)] {
                 guard let package else { continue }
                 found[kind] = package.storeProduct
@@ -123,7 +130,7 @@ enum RevenueCatKey {
             switch Self.code(of: error) {
             case .paymentPendingError: return .pending
             case .purchaseCancelledError: return .cancelled
-            default: throw error
+            default: throw Self.failure(error)
             }
         }
     }
@@ -178,5 +185,35 @@ enum RevenueCatKey {
         if let code = error as? ErrorCode { return code }
         let error = error as NSError
         return error.domain == ErrorCode.errorDomain ? ErrorCode(rawValue: error.code) : nil
+    }
+
+    /// The domain of RevenueCat's errors, so tests can build one without importing the SDK.
+    nonisolated static var errorDomain: String { ErrorCode.errorDomain }
+
+    /// What a failed purchase means for the paywall, with RevenueCat's code and the store error under it
+    /// for the log (e.g. "RevenueCat 5 PRODUCT_NOT_AVAILABLE_FOR_PURCHASE, root StoreKit.StoreKitError 3").
+    /// Only codes and domains: never the error's message, which can carry account details.
+    nonisolated static func failure(_ error: Error) -> PurchaseFailure {
+        if let failure = error as? PurchaseFailure { return failure }
+        if case StoreError.productUnavailable? = error as? StoreError {
+            return PurchaseFailure(reason: .planUnavailable, code: "product not loaded")
+        }
+        let info = (error as NSError).userInfo
+        guard let code = code(of: error) else {
+            let error = error as NSError
+            return PurchaseFailure(reason: .other, code: "\(error.domain) \(error.code)")
+        }
+        let reason: PurchaseFailure.Reason = switch code {
+        case .productNotAvailableForPurchaseError: .planUnavailable
+        case .networkError, .offlineConnectionError: .network
+        default: .other
+        }
+        var text = "RevenueCat \(code.rawValue)"
+        if let readable = info["readable_error_code"] as? String { text += " \(readable)" }
+        if let root = info["rc_root_error"] as? [String: Any], let domain = root["domain"] as? String,
+           let rootCode = root["code"] as? Int {
+            text += ", root \(domain) \(rootCode)"
+        }
+        return PurchaseFailure(reason: reason, code: text)
     }
 }

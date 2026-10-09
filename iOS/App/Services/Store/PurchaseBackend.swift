@@ -40,15 +40,37 @@ enum BackendPurchase: Equatable, Sendable {
     case cancelled
 }
 
+/// A purchase that did not go through, sorted by what the paywall can truthfully say about it (owner
+/// report 09/10/2026: TestFlight showed Apple's "This item is not available." and the app then said
+/// "check your connection").
+struct PurchaseFailure: Error, Equatable, Sendable {
+    enum Reason: Equatable, Sendable {
+        /// The store won't sell this plan here or now: not on sale in her App Store country, taken off sale,
+        /// or not yet live (RevenueCat `productNotAvailableForPurchaseError`, from StoreKit's
+        /// `notAvailableInStorefront` or `Product.PurchaseError.productUnavailable`).
+        case planUnavailable
+        /// No connection to the App Store or to the purchase service.
+        case network
+        /// Anything else the store reported (`storeProblemError`, purchases turned off, …).
+        case other
+    }
+
+    var reason: Reason
+    /// For the log only: the purchase layer's code and the store error under it. Never her data.
+    var code: String
+}
+
 /// The purchase layer behind `StoreService` (owner 09/10/2026): RevenueCat in the app
 /// (`RevenueCatBackend`, the only file that imports it), a fake in unit tests, so no test hits the network.
 @MainActor protocol PurchaseBackend: AnyObject {
-    /// The plans on sale; a plan the store does not have is left out.
-    func offers() async throws -> [StoreOffer]
+    /// The plans on sale; a plan the store does not have is left out. Throws when it sells none.
+    /// - Parameter refresh: read past the cache (after the store said a plan can't be bought).
+    func offers(refresh: Bool) async throws -> [StoreOffer]
     /// The customer record (the last one known when offline).
     func customer() async throws -> CustomerSnapshot
     /// Changes pushed by the store: renewals, refunds, expiry, purchases made elsewhere.
     func customerUpdates() -> AsyncStream<CustomerSnapshot>
+    /// Throws `PurchaseFailure` when the purchase did not go through (cancelled and pending are results).
     func purchase(_ productID: String) async throws -> BackendPurchase
     /// Restore purchases: asks the App Store for her purchases, then returns the record.
     func restore() async throws -> CustomerSnapshot
