@@ -41,7 +41,7 @@ _Đã làm 09/10/2026 bằng Claude in Chrome: bước 0 (App ID `com.kmd.goodfo
   - Yearly 49,99 USD, dùng thử 2 tuần (lịch bắt đầu 09/10/2026); monthly 9,99; lifetime (non-consumable) 99,99 USD.
   - Mỗi sản phẩm có tên + mô tả en-US ("Every walk, chair move and stretch.") và ảnh duyệt paywall chụp từ bản build hiện tại (đúng giá) kèm ghi chú duyệt.
   - Thông báo máy chủ App Store → RevenueCat đã đặt (RevenueCat báo "configured correctly").
-- **Việc còn lại của chủ app:** (1) Availability của 3 sản phẩm mới chọn 1/175 quốc gia (chỉ Mỹ); mở thêm nước khi cần. (2) Bấm "Add for Review" cho nhóm đăng ký cùng bản app 1.0 (đăng ký đầu tiên phải nộp cùng một phiên bản app). (3) Thử mua bằng tài khoản Sandbox.
+- **Việc còn lại của chủ app:** (1) ~~Availability của 3 sản phẩm chỉ 1/175 nước~~ — **đã mở 175/175 ngày 09/10/2026** bằng `tools/appstore/asc-open-territories.py` (đăng ký năm và tháng có giá cho đủ 175 nước theo bảng giá tương đương của Apple; mua một lần có mặt ở 175 nước). Lưu ý: ô "all countries" trên web chỉ bật availability, **không** tạo giá, nên storefront ngoài Mỹ báo "This item is not available"; chạy lại script (mặc định chỉ đọc, thêm `--apply` để ghi) nếu thêm sản phẩm mới. Availability của **app** vẫn là chỉ Mỹ (mục 5 của `asc-listing-fields.md`). (2) Bấm "Add for Review" cho nhóm đăng ký cùng bản app 1.0 (đăng ký đầu tiên phải nộp cùng một phiên bản app). (3) Thử mua bằng tài khoản Sandbox.
 
 ## C. Phần tôi làm sau đó
 1. Đọc khoá từ file (không in ra), gọi RevenueCat REST API v2 để tạo: quyền `pro`; 3 sản phẩm; gói mặc định `default` với `$rc_annual`, `$rc_monthly`, `$rc_lifetime`; gắn sản phẩm vào quyền `pro`.
