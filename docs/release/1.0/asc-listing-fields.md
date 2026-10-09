@@ -1,6 +1,13 @@
 # Good Footing 1.0 — các trường App Store Connect chủ app điền tay
 _09/10/2026 · Chữ store tiếng Anh (Mỹ) ở `appstore/metadata-json/en.json`, trang xem và copy `appstore/metadata-review.html` (tạo bằng skill appstore-metadata). Tài liệu này liệt kê những trường **tool API (`tools/appstore/asc-sync.py`) không ghi**, kèm câu trả lời đề xuất. Nguồn: `app-context.md`, `docs/design/steady-claims.md`, `docs/release/1.0/checklist.md` (§2, §3, §5), `iOS/App/PrivacyInfo.xcprivacy`, `iOS/App/Info.plist`, code app. Không ai gọi App Store Connect hay đăng gì lên mạng khi làm tài liệu này._
 
+## Đã làm trên App Store Connect (09/10/2026)
+- **Chữ listing** đẩy bằng `tools/appstore/asc-sync.py --only listing --apply`: subtitle, mô tả, từ khoá, promotional text (en-US). Mô tả còn dòng `Privacy Policy: {{PRIVACY_URL}}` chưa điền; khi có URL: sửa `en.json` và `_config.json`, rồi chạy lại đúng lệnh trên.
+- **Ảnh store:** 7 ảnh iPhone 6.9" và 6 ảnh iPad 13" (en-US) tải bằng `tools/appstore/asc-upload-shots.py --apply`.
+- **Danh mục:** Primary Health & Fitness, Secondary Lifestyle. **Age rating:** trả lời theo mục 3, kết quả 9+ (Việt Nam 12+, Brazil A10, Hàn Quốc ALL).
+- **Giá app:** Free (base United States). **Quốc gia:** chỉ United States. **Mac và Vision Pro:** đã tắt.
+- **Chưa làm (cần chủ app):** B1/B3 (trang privacy, trang hỗ trợ, URL), B4 (Device ID), B5 (copyright), B6 (Content Rights), B7 (liên hệ App Review + ghi chú duyệt), nhãn App Privacy, chọn build cho bản 1.0.
+
 ## 0. Việc bị chặn ở chủ app (làm trước khi nộp)
 
 | # | Việc | Vì sao | Chặn cái gì |

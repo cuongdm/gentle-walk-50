@@ -10,8 +10,13 @@
       "storekit": "iOS/App/GentleWalk.storekit"
     },
     "locales": {
-      "en": { "asc": "en-US", "privacy_url": "TODO: set after site/privacy.html is published" }
+      "en": {
+        "asc": "en-US",
+        "privacy_url": null
+      }
     },
-    "storekit_locales": { "en_US": "en-US" }
+    "storekit_locales": {
+      "en_US": "en-US"
+    }
   }
 }
