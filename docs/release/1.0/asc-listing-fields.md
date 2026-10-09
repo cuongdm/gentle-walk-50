@@ -6,7 +6,8 @@ _09/10/2026 · Chữ store tiếng Anh (Mỹ) ở `appstore/metadata-json/en.jso
 - **Ảnh store:** 7 ảnh iPhone 6.9" và 6 ảnh iPad 13" (en-US) tải bằng `tools/appstore/asc-upload-shots.py --apply`.
 - **Danh mục:** Primary Health & Fitness, Secondary Lifestyle. **Age rating:** trả lời theo mục 3, kết quả 9+ (Việt Nam 12+, Brazil A10, Hàn Quốc ALL).
 - **Giá app:** Free (base United States). **Quốc gia:** chỉ United States. **Mac và Vision Pro:** đã tắt.
-- **Chưa làm (cần chủ app):** B1/B3 (trang privacy, trang hỗ trợ, URL), B4 (Device ID), B5 (copyright), B6 (Content Rights), B7 (liên hệ App Review + ghi chú duyệt), nhãn App Privacy, chọn build cho bản 1.0.
+- **Chủ app xác nhận 09/10/2026 và đã nhập:** Copyright `2026 Cuong Do`; Content Rights "Yes, … necessary rights"; App Review: Sign-in required tắt, liên hệ Cuong Do, +84968594822, cuongdm@live.com, ghi chú duyệt tiếng Anh (mục 7); App Privacy (dạng nháp, **chưa Publish**): Device ID (App Functionality) và Purchases (Analytics + App Functionality), cả hai không gắn danh tính, không theo dõi.
+- **Còn lại:** B1/B3 (trang privacy, trang hỗ trợ, URL; sau đó điền Privacy Policy URL, bấm Publish nhãn App Privacy, sửa `{{PRIVACY_URL}}` và chạy lại `asc-sync --only listing --apply`), chọn build cho bản 1.0 (build đang tải lên), Submit do chủ app bấm. TestFlight nội bộ không cần các URL này.
 
 ## 0. Việc bị chặn ở chủ app (làm trước khi nộp)
 
