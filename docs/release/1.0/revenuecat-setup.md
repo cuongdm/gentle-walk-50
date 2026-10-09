@@ -35,7 +35,7 @@ _Đã làm 09/10/2026 bằng Claude in Chrome: bước 0 (App ID `com.kmd.goodfo
 ## Tình trạng ngày 09/10/2026 (đã làm bằng Claude in Chrome, không cần khoá bí mật)
 - RevenueCat (project `e94f818d`, app App Store `app61771b806c`, bundle ID `com.kmd.goodfooting`): đã tạo 3 sản phẩm theo đúng mã, quyền `pro` gắn 3 sản phẩm, gói `default` có `$rc_monthly`, `$rc_annual`, `$rc_lifetime` gắn vào 3 sản phẩm App Store. Quyền cũ "Cuong Pro" và các sản phẩm Test Store không bị đụng.
 - Khoá SDK công khai (`appl_…`) đã đặt vào `iOS/Config/Local.xcconfig` (file không commit), test kiểm tra khoá của cổng phát hành xanh.
-- **Còn đỏ:** "Credentials need attention" ở khoá In-App Purchase `49K6TC2584` (khoá đúng loại, Issuer ID khớp). Thử lại sau 15–30 phút; nếu vẫn đỏ thì tải lên lại file gốc `SubscriptionKey_49K6TC2584.p8`.
+- **Khoá đã hợp lệ (09/10/2026, sau khi chủ app tải lại khoá gốc):** cả khoá In-App Purchase `49K6TC2584` và khoá App Store Connect API đều báo "Valid credentials" trong RevenueCat.
 - **Còn thiếu:** tạo nhóm đăng ký và 3 sản phẩm trên App Store Connect (mục A.3), vì RevenueCat chỉ biết mã sản phẩm, chưa kiểm được ở phía Apple ("Could not check").
 
 ## C. Phần tôi làm sau đó
