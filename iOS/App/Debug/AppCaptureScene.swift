@@ -39,7 +39,8 @@ struct AppCaptureScene: View {
              .onboardingStrength, .onboardingSoreSpots, .onboardingAnythingElse, .onboardingPlan, .onboardingPlanCoach:
             OnboardingView(flow: app.onboarding, voiceSource: app.voiceSource, voiceLines: app.content.voiceLines,
                            playsCoachOnAppear: state == .onboardingPlanCoach, onRestore: {}, onFinished: {})
-        case .paywallEligible, .paywallMonthly, .paywallLifetime, .paywallNotEligible, .paywallLifetimeWhileSubscribed:
+        case .paywallEligible, .paywallMonthly, .paywallLifetime, .paywallNotEligible, .paywallLifetimeWhileSubscribed,
+             .paywallPlanUnavailable, .paywallPending:
             PaywallView(model: paywallModel, onPurchase: { _ in }, onRestore: {}, onMaybeLater: {})
         case .paywallUnavailable:
             PlansUnavailableView(onTryAgain: {}, onMaybeLater: {})
@@ -114,6 +115,8 @@ struct AppCaptureScene: View {
         case .paywallLifetime, .paywallLifetimeWhileSubscribed:
             model.showsAllPlans = true
             model.selectedID = ProductID.lifetime
+        case .paywallPlanUnavailable: model.show(.planUnavailable)
+        case .paywallPending: model.show(.pending)
         default: break
         }
         return model

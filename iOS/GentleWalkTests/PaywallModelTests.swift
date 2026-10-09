@@ -164,4 +164,28 @@ import GentleWalkCore
                                     currencyCode: nil, freeTrialDays: nil)
         #expect(PaywallModel.options(from: [noCurrency]).first?.monthlyEquivalent == nil)
     }
+
+    /// A plan the store can't sell: the line shows and every plan opens, so she can pick another; the
+    /// other lines leave the plans as they were. A new try clears the line.
+    @Test func unavailableNoticeOpensTheOtherPlans() {
+        let model = model(eligible: true)
+        model.show(.planUnavailable)
+        #expect(model.notice == .planUnavailable)
+        #expect(model.showsAllPlans)
+        #expect(model.selectedID == "y")
+        model.show(nil)
+        #expect(model.notice == nil)
+
+        let pending = self.model(eligible: true)
+        pending.show(.pending)
+        #expect(pending.notice == .pending)
+        #expect(!pending.showsAllPlans)
+
+        // One plan left on sale: nothing else to open.
+        let single = PaywallModel(options: [PlanOption(id: "m", kind: .monthly, price: "$9.99", monthlyEquivalent: nil)],
+                                  isEligibleForTrial: false, trialDays: nil, now: start, calendar: calendar)
+        single.show(.planUnavailable)
+        #expect(single.notice == .planUnavailable)
+        #expect(single.visibleOptions.map(\.id) == ["m"])
+    }
 }

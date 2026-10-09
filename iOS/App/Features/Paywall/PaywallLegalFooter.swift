@@ -67,8 +67,10 @@ struct CancelNote: View {
 }
 
 /// Shown before Apple's purchase sheet: "Next, Apple will ask you to confirm. You won't be charged today."
+/// It stays under Apple's sheet while the purchase runs; Continue then shows a spinner and Back waits.
 struct BeforeAppleSheetView: View {
     let isTrial: Bool
+    var isPurchasing = false
     let onContinue: () -> Void
     let onBack: () -> Void
 
@@ -84,8 +86,17 @@ struct BeforeAppleSheetView: View {
                 Text("You won't be charged today.").typeRole(.cardTitle).foregroundStyle(Palette.text)
             }
             Spacer()
-            Button("Continue", action: onContinue).buttonStyle(.primaryAction)
-            Button("Back", action: onBack).buttonStyle(.textLink)
+            Button(action: onContinue) {
+                if isPurchasing {
+                    ProgressView().tint(Palette.onStrongFill).accessibilityLabel(Text("Continue"))
+                } else {
+                    Text("Continue")
+                }
+            }
+            .buttonStyle(.primaryAction)
+            // Not `.disabled`: a faded button reads as broken while Apple's sheet is coming up.
+            .allowsHitTesting(!isPurchasing)
+            Button("Back", action: onBack).buttonStyle(.textLink).disabled(isPurchasing)
         }
         .padding(Metrics.screenMargin)
         .screenBackground()

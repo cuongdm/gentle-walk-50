@@ -41,7 +41,7 @@ _Đã làm 09/10/2026 bằng Claude in Chrome: bước 0 (App ID `com.kmd.goodfo
   - Yearly 49,99 USD, dùng thử 2 tuần (lịch bắt đầu 09/10/2026); monthly 9,99; lifetime (non-consumable) 99,99 USD.
   - Mỗi sản phẩm có tên + mô tả en-US ("Every walk, chair move and stretch.") và ảnh duyệt paywall chụp từ bản build hiện tại (đúng giá) kèm ghi chú duyệt.
   - Thông báo máy chủ App Store → RevenueCat đã đặt (RevenueCat báo "configured correctly").
-- **Việc còn lại của chủ app:** (1) Availability của 3 sản phẩm mới chọn 1/175 quốc gia (chỉ Mỹ); mở thêm nước khi cần. (2) Bấm "Add for Review" cho nhóm đăng ký cùng bản app 1.0 (đăng ký đầu tiên phải nộp cùng một phiên bản app). (3) Thử mua bằng tài khoản Sandbox.
+- **Việc còn lại của chủ app:** (1) Availability của 3 sản phẩm mới chọn 1/175 quốc gia (chỉ Mỹ); mở thêm nước khi cần. (2) Bấm "Add for Review" cho nhóm đăng ký cùng bản app 1.0 (đăng ký đầu tiên phải nộp cùng một phiên bản app). (3) Thử mua bằng tài khoản Sandbox. Gặp "This item is not available.": xem `purchase-troubleshooting.md`.
 
 ## C. Phần tôi làm sau đó
 1. Đọc khoá từ file (không in ra), gọi RevenueCat REST API v2 để tạo: quyền `pro`; 3 sản phẩm; gói mặc định `default` với `$rc_annual`, `$rc_monthly`, `$rc_lifetime`; gắn sản phẩm vào quyền `pro`.

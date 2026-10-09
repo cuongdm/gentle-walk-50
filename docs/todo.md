@@ -7,6 +7,7 @@ Kế hoạch: [plans/2026-10-09-revenuecat.md](plans/2026-10-09-revenuecat.md). 
 - [ ] **Chủ app** — làm phần A và B của [release/1.0/revenuecat-setup.md](release/1.0/revenuecat-setup.md) (App Store Connect, khoá In-App Purchase, project RevenueCat).
 - [ ] **Chủ app** — đặt public SDK key vào `iOS/Config/Local.xcconfig`: `REVENUECAT_PUBLIC_KEY = appl_…` (mẫu ở `iOS/Config/Local.xcconfig.example`). Thiếu khoá thì cổng phát hành `ReleaseContentTests.revenueCatKeyIsSet` đỏ.
 - [ ] **Chủ app** — mua thử Sandbox trên iPhone thật: năm (có 14 ngày dùng thử, thẻ Today, nhắc ngày 12), tháng, trả một lần khi đang có gói năm (cảnh báo + hướng dẫn huỷ), Restore sau khi cài lại, huỷ gói → hết hạn về miễn phí.
+- [ ] **Chủ app** — TestFlight 1.0 (2) báo "This item is not available." khi mua (09/10): đi checklist [release/1.0/purchase-troubleshooting.md](release/1.0/purchase-troubleshooting.md); nghi nhất là tài khoản App Store Việt Nam trong khi 3 sản phẩm chỉ bán ở Mỹ. App đã sửa trên nhánh `local/purchase-unavailable` (paywall giữ nguyên + câu nhẹ nhàng, không còn "kiểm tra kết nối").
 - [ ] **Chủ app quyết** — nhãn App Privacy: có khai thêm Identifiers → Device ID không (SDK gửi IDFV trong header; RevenueCat nói không bắt buộc). Xem [release/1.0/checklist.md](release/1.0/checklist.md) mục 3.
 - [ ] **Chủ app** — đăng lại `site/privacy.html` (đã thêm mục RevenueCat).
 

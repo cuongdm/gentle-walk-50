@@ -27,22 +27,40 @@ extension AppModel {
         afterPaywall(trigger)
     }
 
-    func purchase(_ option: PlanOption, trigger: PaywallTrigger) async {
+    /// Buys a plan from the paywall. It moves on (or opens the cancel guide) only once the "pro"
+    /// entitlement is really active; otherwise the paywall stays open and gets back the line to show
+    /// (nil after a cancel: Apple's sheet already said it). Owner report 09/10/2026: Apple's "This item is
+    /// not available." used to be followed by "Couldn't reach the App Store".
+    @discardableResult
+    func purchase(_ option: PlanOption, trigger: PaywallTrigger) async -> PaywallNotice? {
         let outcome: PurchaseOutcome
         do {
             outcome = try await store.purchase(option.id)
+        } catch let failure as PurchaseFailure {
+            // Her storefront may not sell it, or it was taken off sale: the plans are read once more, so a
+            // store with nothing to sell shows "Plans aren't available right now", not live buy buttons.
+            if failure.reason == .planUnavailable { await store.reloadAfterUnavailablePlan() }
+            return PaywallNotice(failure)
         } catch {
-            storeNotice = .failed
-            return
+            // No store in this build (the paywall then has no plans to buy).
+            return .couldNotConnect
         }
-        if outcome == .pending { storeNotice = .pending }
-        guard outcome == .purchased else { return }
-        reload()
-        await notifications.reschedule()
-        if option.kind == .lifetime, store.activeRenewingProductID != nil {
-            cover = .cancelGuide(afterLifetime: true)
-        } else {
-            afterPaywall(trigger)
+        switch outcome {
+        case .cancelled: return nil
+        case .pending: return .pending
+        case .notActive:
+            reload()
+            return .notActive
+        case .purchased:
+            reload()
+            guard isPro else { return .notActive }
+            await notifications.reschedule()
+            if option.kind == .lifetime, store.activeRenewingProductID != nil {
+                cover = .cancelGuide(afterLifetime: true)
+            } else {
+                afterPaywall(trigger)
+            }
+            return nil
         }
     }
 
