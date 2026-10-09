@@ -169,6 +169,21 @@ enum CaptureState: String, CaseIterable, Sendable {
     case programFinishedRoute = "program-finished-route"
     /// Week 8 on the second route: "Your 12 weeks" groups its stops by stage.
     case journeyWithStages = "journey-with-stages"
+    // "Your results" with one to four tiles, and the tree card at each stage (owner, real iPhone 09/10/2026).
+    /// Free, chair sessions only, two a week, no check: the minutes chart and one tile across the card.
+    case progressResultsOne = "progress-results-one"
+    /// Pro, two sessions a week with a walk each, no check: two tiles side by side.
+    case progressResultsTwo = "progress-results-two"
+    /// Free, as two plus three checks: two tiles, then one across the card.
+    case progressResultsThree = "progress-results-three"
+    /// Free, the progress-results sessions and checks: two rows of two (the free hands tile is the tallest).
+    case progressResultsFour = "progress-results-four"
+    /// Free, no session yet: the seed, "Next: Sprout, 7 active days from here.", one results tile.
+    case progressTreeSeed = "progress-tree-seed"
+    /// 30 active days in a row: the sapling (opened at the tree card; the sprout is in `progress`).
+    case progressTreeSapling = "progress-tree-sapling"
+    /// 90 active days in a row: the grown tree with one year ring (opened at the tree card).
+    case progressTreeGrown = "progress-tree-grown"
 }
 
 enum CaptureHook {

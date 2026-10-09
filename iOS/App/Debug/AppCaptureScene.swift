@@ -77,6 +77,9 @@ struct AppCaptureScene: View {
                 }
         case .progressLower, .progressLowerFree, .progressEmpty:
             NavigationStack { ProgressTab(app: app, initialAnchor: state == .progressLowerFree ? .bottom : UnitPoint(x: 0.5, y: state == .progressEmpty ? 0.5 : 0.68)) }
+        case .progressTreeSapling, .progressTreeGrown:
+            // The tree card sits under "Your results": opened a little down so it shows whole.
+            NavigationStack { ProgressTab(app: app, initialAnchor: UnitPoint(x: 0.5, y: 0.22)) }
         case .progressSessions:
             NavigationStack { SessionHistoryScreen(sessions: app.progress.sessions, calendar: app.calendar) }
         case .program, .programRecaps:
@@ -136,7 +139,8 @@ struct AppCaptureScene: View {
     private func makeApp() -> AppModel {
         let trialEnds = Date.now.addingTimeInterval(2 * 86_400)
         let entitlement: Entitlement = switch state {
-        case .todayFree, .journeysFree, .todayTrialEnded, .lockedStop, .allSessionsFree, .progressFree, .progressLowerFree: .free
+        case .todayFree, .journeysFree, .todayTrialEnded, .lockedStop, .allSessionsFree, .progressFree, .progressLowerFree,
+             .progressResultsOne, .progressResultsThree, .progressResultsFour, .progressTreeSeed: .free
         case .todayTrialEnding: .trial(ends: trialEnds)
         case .me: .trial(ends: Date.now.addingTimeInterval(12 * 86_400))
         case .meLifetime, .meLifetimeAndSubscription: .lifetime
@@ -148,7 +152,7 @@ struct AppCaptureScene: View {
         let start = calendar.date(byAdding: .day, value: calendar.firstWeekday == 2 ? 0 : 1, to: sunday) ?? .now
         let monday = start > .now ? start.addingTimeInterval(-7 * 86_400) : start
         let day = state == .todayLastWeek ? monday : Date.now
-        let app = AppModel.capture(entitlement: entitlement, healthConnected: ![.progressNoHealth, .progressLowerFree, .progressEmpty].contains(state), day: day) { context, now, calendar in
+        let app = AppModel.capture(entitlement: entitlement, healthConnected: ![.progressNoHealth, .progressLowerFree, .progressEmpty, .progressTreeSeed].contains(state), day: day) { context, now, calendar in
             seed(context, now: now, calendar: calendar)
         }
         seedPersonalisation(app)
@@ -174,7 +178,7 @@ struct AppCaptureScene: View {
     private func seedPersonalisation(_ app: AppModel) {
         let now = app.now()
         switch state {
-        case .todayLastWeek, .progressResults:
+        case .todayLastWeek, .progressResults, .progressResultsTwo:
             let calendar = app.calendar
             // The Monday–Sunday week before this one (as the check-in asks about it on Sunday to Tuesday).
             let thisWeek = calendar.dateInterval(of: .weekOfYear, for: now)?.start ?? now
@@ -186,7 +190,7 @@ struct AppCaptureScene: View {
             store.add(WeeklyNote(weekStart: before, effort: .right, better: .gettingUp, answeredAt: lastWeek))
             store.add(WeeklyNote(weekStart: lastWeek, effort: .right, better: .stairs,
                                  answeredAt: min(now, thisMonday.addingTimeInterval(-3_600))))
-            if state == .progressResults {
+            if state == .progressResults || state == .progressResultsTwo {
                 SupportLadderStore(defaults: app.defaults).record(steady: ["bl.tandem"], troubled: [], announced: [])
                 SupportLadderStore(defaults: app.defaults).record(steady: ["bl.tandem"], troubled: [], announced: [])
             }
@@ -272,26 +276,25 @@ struct AppCaptureScene: View {
                 context.insert(WorkoutRecord(date: at, kind: "walk", level: "seated", intensity: "steady",
                                              place: "indoors", activeSeconds: 480, journeyMiles: 0.4))
             }
-        case .progressResults:
-            // Five weeks of sessions growing from about 25 to 55 minutes a week, and three checks (7, 8, 9).
+        case .progressResults, .progressResultsFour:
+            seedResults(context, now: now, calendar: calendar, perWeek: nil, walks: true, checks: true)
+        case .progressResultsOne:
+            seedResults(context, now: now, calendar: calendar, perWeek: 2, walks: false, checks: false)
+        case .progressResultsTwo:
+            seedResults(context, now: now, calendar: calendar, perWeek: 2, walks: true, checks: false)
+        case .progressResultsThree:
+            seedResults(context, now: now, calendar: calendar, perWeek: 2, walks: true, checks: true)
+        case .progressTreeSeed:
             ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).forEach(context.delete)
             ((try? context.fetch(FetchDescriptor<SelfCheckRecord>())) ?? []).forEach(context.delete)
-            let weekStart = calendar.dateInterval(of: .weekOfYear, for: now)?.start ?? now
-            let plan: [(weeksAgo: Int, minutes: [Int])] = [(4, [5, 8, 6]), (3, [8, 9, 12, 9]), (2, [10, 12, 9, 14]),
-                                                          (1, [12, 10, 14, 12]), (0, [12, 14])]
-            for week in plan {
-                for (index, minutes) in week.minutes.enumerated() {
-                    guard let day = calendar.date(byAdding: .day, value: -7 * week.weeksAgo + index + (week.weeksAgo == 0 ? 0 : 1),
-                                                  to: weekStart),
-                          let at = calendar.date(byAdding: .minute, value: 600, to: day), at < now else { continue }
-                    context.insert(WorkoutRecord(date: at, kind: index % 2 == 0 ? "walk" : "chair", level: "seated",
-                                                 intensity: "steady", place: "indoors", activeSeconds: minutes * 60,
-                                                 journeyMiles: 0.3))
-                }
-            }
-            for (index, count) in [7, 8, 9].enumerated() {
-                context.insert(SelfCheckRecord(date: now.addingTimeInterval(-Double(30 - index * 14) * 86_400), count: count,
-                                               usedHands: true, week: index * 2))
+        case .progressTreeSapling, .progressTreeGrown:
+            // One walk a day for 30 or 90 days before today: Sapling (21+), or Tree with a year ring (84+).
+            ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).forEach(context.delete)
+            for daysAgo in 1...(state == .progressTreeSapling ? 30 : 90) {
+                guard let day = calendar.date(byAdding: .day, value: -daysAgo, to: calendar.startOfDay(for: now)),
+                      let at = calendar.date(byAdding: .minute, value: 600, to: day) else { continue }
+                context.insert(WorkoutRecord(date: at, kind: "walk", level: "seated", intensity: "steady", place: "indoors",
+                                             activeSeconds: 8 * 60, journeyMiles: 0.4))
             }
         case .progressEmpty:
             ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).forEach(context.delete)
@@ -327,6 +330,32 @@ struct AppCaptureScene: View {
         case .programRecaps, .journeyWithStages: 52
         case .programFinishedRoute: 86
         default: nil
+        }
+    }
+
+    /// "Your results" (P8): five weeks of sessions growing from about 25 to 55 minutes a week (or the first
+    /// `perWeek` of each week), every other one a walk with no Break unless `walks` is false (chair only),
+    /// and three checks (7, 8, 9) when `checks`.
+    private func seedResults(_ context: ModelContext, now: Date, calendar: Calendar, perWeek: Int?, walks: Bool, checks: Bool) {
+        ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).forEach(context.delete)
+        ((try? context.fetch(FetchDescriptor<SelfCheckRecord>())) ?? []).forEach(context.delete)
+        let weekStart = calendar.dateInterval(of: .weekOfYear, for: now)?.start ?? now
+        let plan: [(weeksAgo: Int, minutes: [Int])] = [(4, [5, 8, 6]), (3, [8, 9, 12, 9]), (2, [10, 12, 9, 14]),
+                                                      (1, [12, 10, 14, 12]), (0, [12, 14])]
+        for week in plan {
+            for (index, minutes) in week.minutes.prefix(perWeek ?? week.minutes.count).enumerated() {
+                guard let day = calendar.date(byAdding: .day, value: -7 * week.weeksAgo + index + (week.weeksAgo == 0 ? 0 : 1),
+                                              to: weekStart),
+                      let at = calendar.date(byAdding: .minute, value: 600, to: day), at < now else { continue }
+                context.insert(WorkoutRecord(date: at, kind: walks && index % 2 == 0 ? "walk" : "chair", level: "seated",
+                                             intensity: "steady", place: "indoors", activeSeconds: minutes * 60,
+                                             journeyMiles: 0.3))
+            }
+        }
+        guard checks else { return }
+        for (index, count) in [7, 8, 9].enumerated() {
+            context.insert(SelfCheckRecord(date: now.addingTimeInterval(-Double(30 - index * 14) * 86_400), count: count,
+                                           usedHands: true, week: index * 2))
         }
     }
 
@@ -384,7 +413,8 @@ struct AppCaptureScene: View {
             app.onboarding.jump(to: .plan)
         case .journey, .lockedStop, .journeyWithStages: app.tab = .journey
         case .whereNext: app.tab = .journey
-        case .progress, .progressNoHealth, .progressFree, .progressResults: app.tab = .progress
+        case .progress, .progressNoHealth, .progressFree, .progressResults, .progressResultsOne, .progressResultsTwo,
+             .progressResultsThree, .progressResultsFour, .progressTreeSeed: app.tab = .progress
         case .me, .meLifetime, .meLifetimeAndSubscription: app.tab = .me
         // Me's rows open their screens (plan 08/10/2026 task 3.4).
         case .meNotifications:

@@ -219,6 +219,28 @@ extension HealthServiceTests {
         #expect(ResultTile.order(for: .chairs).first == .sitToStands)
         #expect(ResultTile.order(for: .steadier).first == .hands)
     }
+
+    /// Owner 09/10/2026: a lone tile left half the card empty. Two to a row; one alone on its row spans it.
+    @Test func aLoneTileSpansTheCard() {
+        let all: [ResultTile] = [.hands, .sitToStands, .longestWalk, .steadyWeeks]
+        let shape = { (count: Int, layout: ResultTileLayout) in
+            ResultTile.rows(Array(all.prefix(count)), layout: layout).map { "\($0.tiles.count)\($0.isWide ? "w" : "")" }
+        }
+        #expect(shape(1, .grid) == ["1w"])
+        #expect(shape(2, .grid) == ["2"])
+        #expect(shape(3, .grid) == ["2", "1w"])
+        #expect(shape(4, .grid) == ["2", "2"])
+        // Large text on a phone: one flat tile a row; accessibility sizes: one upright tile a row.
+        #expect(shape(3, .list) == ["1w", "1w", "1w"])
+        #expect(shape(3, .stack) == ["1", "1", "1"])
+        #expect(ResultTile.rows([], layout: .grid).isEmpty)
+        #expect(ResultTile.rows(Array(all.prefix(3)), layout: .grid).last?.tiles == [.longestWalk])
+        #expect(ResultTileLayout.choose(typeSize: .large, regularWidth: false) == .grid)
+        #expect(ResultTileLayout.choose(typeSize: .xLarge, regularWidth: false) == .grid)
+        #expect(ResultTileLayout.choose(typeSize: .xxLarge, regularWidth: false) == .list)
+        #expect(ResultTileLayout.choose(typeSize: .xxxLarge, regularWidth: true) == .grid)
+        #expect(ResultTileLayout.choose(typeSize: .accessibility1, regularWidth: true) == .stack)
+    }
 }
 
 extension AppFlowTests {

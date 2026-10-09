@@ -39,12 +39,13 @@ enum Art: String, CaseIterable, Sendable {
     }
 
     /// The painted part of each tree picture (the rest is paper), as a share of its width and height:
-    /// measured on the PNGs in Assets.xcassets/Art (opaque, non-paper pixels), 09/10/2026.
+    /// measured on the PNGs in Assets.xcassets/Art (opaque, non-paper pixels), 09/10/2026. The sapling's
+    /// excludes the strip of the next painting's leaves at its right edge (x 0.84–1), left when the sheet was cut.
     static func treeContentRect(level: TreeLevel) -> CGRect {
         switch level {
         case .seed: CGRect(x: 0.10, y: 0.78, width: 0.85, height: 0.18)
         case .sprout: CGRect(x: 0.0, y: 0.64, width: 0.82, height: 0.32)
-        case .sapling: CGRect(x: 0.0, y: 0.26, width: 1.0, height: 0.70)
+        case .sapling: CGRect(x: 0.0, y: 0.27, width: 0.69, height: 0.69)
         case .tree: CGRect(x: 0.0, y: 0.07, width: 0.95, height: 0.89)
         }
     }
@@ -123,7 +124,7 @@ struct ArtImage: View {
     /// Figures in dark mode: painted on the light paper they were cut from, then the whole card dimmed.
     /// On the darker paper the cut-out's paper grain showed as white specks and the card glared on the
     /// dark screen (review A/C, 09/10/2026); dimming the finished card keeps the grain invisible.
-    private static let darkFigureDim = Color(white: 0.7)
+    static let darkFigureDim = Color(white: 0.7)
 
     var body: some View {
         if let name = resolvedName {

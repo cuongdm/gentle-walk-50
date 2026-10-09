@@ -61,7 +61,8 @@ enum ResultTile: Hashable { case longestWalk, sitToStands, hands, steadyWeeks
     }
 }
 
-/// "Your results" at the top of Progress: minutes each week for four weeks, then up to four tiles.
+/// "Your results" at the top of Progress: minutes each week for four weeks, then up to four tiles
+/// (`ResultTileGrid`: two to a row, one alone on its row across the card).
 struct YourResultsCard: View {
     let summary: ResultsSummary
     /// Pro: her hands level in tandem stance; free shows two hands and a line about Pro.
@@ -70,8 +71,6 @@ struct YourResultsCard: View {
     var goal: Goal?
     var onSeePlans: () -> Void = {}
 
-    @Environment(\.dynamicTypeSize) private var typeSize
-
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             VStack(alignment: .leading, spacing: 4) {
@@ -79,10 +78,7 @@ struct YourResultsCard: View {
                 Text("The last 4 weeks, compared only with you.").typeRole(.caption).foregroundStyle(Palette.textMuted)
             }
             if summary.hasMinutes { minutesChart }
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10, alignment: .top),
-                                     count: typeSize.isAccessibilitySize ? 1 : 2), spacing: 10) {
-                ForEach(tiles, id: \.self) { tile($0) }
-            }
+            ResultTileGrid(tiles: tiles) { tile($0, wide: $1) }
             Text("Counted on this phone from your own sessions and checks. \(AppBrand.name) is for general fitness, not medical advice.")
                 .typeRole(.caption).foregroundStyle(Palette.textMuted)
         }
@@ -106,23 +102,32 @@ struct YourResultsCard: View {
         let top = max(1, summary.weeks.map(\.minutes).max() ?? 1)
         return VStack(alignment: .leading, spacing: 10) {
             Text("Minutes moving each week").typeRole(.body).fontWeight(.semibold).foregroundStyle(Palette.text)
-            HStack(alignment: .bottom, spacing: 12) {
-                ForEach(Array(summary.weeks.enumerated()), id: \.element.weekStart) { index, week in
-                    let isThisWeek = index == summary.weeks.count - 1
-                    VStack(spacing: 4) {
-                        Text(verbatim: "\(week.minutes)").font(.system(.callout, design: .rounded).weight(.bold))
-                            .foregroundStyle(Palette.text)
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .fill(Palette.secondary.opacity(isThisWeek ? 1 : 0.45 + 0.15 * Double(index)))
-                            .frame(height: max(6, 92 * Double(week.minutes) / Double(top)))
-                        Text(label(index)).typeRole(.caption).fontWeight(isThisWeek ? .semibold : .regular)
-                            .foregroundStyle(isThisWeek ? Palette.text : Palette.textMuted)
-                            .lineLimit(1).minimumScaleFactor(0.7)
+            // Bars and week labels on rows of their own: at the largest text sizes the labels wrap ("This
+            // wk" was cut to "This…") without lifting their bar, and the numbers grow the chart upwards
+            // instead of running into the heading (a fixed 150 pt frame overflowed).
+            VStack(spacing: 4) {
+                HStack(alignment: .bottom, spacing: 12) {
+                    ForEach(Array(summary.weeks.enumerated()), id: \.element.weekStart) { index, week in
+                        VStack(spacing: 4) {
+                            Text(verbatim: "\(week.minutes)").font(.system(.callout, design: .rounded).weight(.bold))
+                                .foregroundStyle(Palette.text)
+                            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                .fill(Palette.secondary.opacity(isThisWeek(index) ? 1 : 0.45 + 0.15 * Double(index)))
+                                .frame(height: max(6, 92 * Double(week.minutes) / Double(top)))
+                        }
+                        .frame(maxWidth: .infinity)
                     }
-                    .frame(maxWidth: .infinity)
+                }
+                .frame(minHeight: 126, alignment: .bottom)
+                HStack(alignment: .top, spacing: 12) {
+                    ForEach(Array(summary.weeks.enumerated()), id: \.element.weekStart) { index, _ in
+                        Text(label(index)).typeRole(.caption).fontWeight(isThisWeek(index) ? .semibold : .regular)
+                            .foregroundStyle(isThisWeek(index) ? Palette.text : Palette.textMuted)
+                            .multilineTextAlignment(.center).lineLimit(2).minimumScaleFactor(0.7)
+                            .frame(maxWidth: .infinity)
+                    }
                 }
             }
-            .frame(height: 150, alignment: .bottom)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(Text(verbatim: spokenWeeks))
             if let line = summary.trendLine {
@@ -130,6 +135,8 @@ struct YourResultsCard: View {
             }
         }
     }
+
+    private func isThisWeek(_ index: Int) -> Bool { index == summary.weeks.count - 1 }
 
     private func label(_ index: Int) -> LocalizedStringResource {
         index == summary.weeks.count - 1 ? "This wk" : "Wk \(index + 1)"
@@ -143,54 +150,29 @@ struct YourResultsCard: View {
 
     // MARK: Tiles
 
-    @ViewBuilder private func tile(_ tile: ResultTile) -> some View {
+    @ViewBuilder private func tile(_ tile: ResultTile, wide: Bool) -> some View {
         switch tile {
         case .longestWalk:
             ResultTileView(icon: .longWalk, value: String(localized: "\(summary.longestWalk ?? 0) min"),
                            label: "Longest walk without a break",
-                           detail: summary.firstWeekLongestWalk.map { String(localized: "First week: \($0) min") })
+                           detail: summary.firstWeekLongestWalk.map { String(localized: "First week: \($0) min") }, isWide: wide)
         case .sitToStands:
             ResultTileView(icon: .chair, value: "\(summary.latestCheck ?? 0)", label: "Sit-to-stands in 30 seconds",
-                           detail: summary.firstCheck.map { String(localized: "First check: \($0)") })
+                           detail: summary.firstCheck.map { String(localized: "First check: \($0)") }, isWide: wide)
         case .hands:
             if isPro, let tandem {
                 ResultTileView(icon: .balance, value: String(localized: tandem.shortLabel), label: "On the chair in tandem stance",
-                               detail: tandem == .twoHands ? nil : String(localized: "Started with two"))
+                               detail: tandem == .twoHands ? nil : String(localized: "Started with two"), isWide: wide)
             } else {
                 ResultTileView(icon: .balance, value: String(localized: SupportLevel.twoHands.shortLabel),
                                label: "On the chair in tandem stance",
-                               detail: String(localized: "With Pro, less hand on the chair as you get steadier."))
+                               detail: String(localized: "With Pro, less hand on the chair as you get steadier."), isWide: wide)
             }
         case .steadyWeeks:
             ResultTileView(icon: .activeDay, value: Plural.weeks(summary.steadyWeeks),
-                           label: "In a row with 3+ active days", detail: String(localized: "Rest days never break it"))
+                           label: "In a row with 3+ active days", detail: String(localized: "Rest days never break it"),
+                           isWide: wide)
         }
-    }
-}
-
-/// One result: an icon on a wash, the number, what it is, and where she started.
-struct ResultTileView: View {
-    let icon: AppIcon
-    let value: String
-    let label: LocalizedStringResource
-    let detail: String?
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            icon.image.resizable().scaledToFit().frame(width: 20, height: 20)
-                .foregroundStyle(Palette.primary)
-                .frame(width: 36, height: 36)
-                .background(Palette.secondary.opacity(0.18), in: WashShape(variant: WashShape.variant(for: icon.rawValue)))
-                .accessibilityHidden(true)
-            Text(verbatim: value).font(.system(.title, design: .rounded).weight(.bold))
-                .foregroundStyle(Palette.text).lineLimit(1).minimumScaleFactor(0.6)
-            Text(label).typeRole(.body).foregroundStyle(Palette.text)
-            if let detail { Text(verbatim: detail).typeRole(.caption).foregroundStyle(Palette.textMuted) }
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(12)
-        .background(Palette.bg.opacity(0.6), in: .rect(cornerRadius: 14, style: .continuous))
-        .accessibilityElement(children: .combine)
     }
 }
 

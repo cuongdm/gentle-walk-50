@@ -71,7 +71,8 @@ struct StepsSummary: Equatable {
     var lastWeek: Double
 }
 
-/// The tree and "6 of 14 active days to Sapling"; after Tree, the rings and the next one.
+/// The tree (cropped to the plant, `TreeArtTile`) and "6 of 14 active days to Sapling"; after Tree, the
+/// rings and the next one.
 struct TreeCard: View {
     let level: TreeLevel
     let activeDays: Int
@@ -82,11 +83,11 @@ struct TreeCard: View {
     var body: some View {
         // At accessibility sizes the tree goes above the text: beside it the line "6 of 14 active days to…"
         // was cut short.
-        let layout = typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12))
-                                                  : AnyLayout(HStackLayout(spacing: 16))
+        let stacked = typeSize.isAccessibilitySize
+        let layout = stacked ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12))
+                             : AnyLayout(HStackLayout(spacing: 16))
         layout {
-            ArtImage(name: Art.treeName(level: level), height: 140, fallbackSymbol: level.symbol)
-                .frame(width: 120)
+            TreeArtTile(level: level, side: stacked ? 150 : 108)
             VStack(alignment: .leading, spacing: 6) {
                 Text(level.title).typeRole(.cardTitle)
                 if rings > 0 {
