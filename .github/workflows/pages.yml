@@ -1,0 +1,44 @@
+# Publishes the static pages in site/ (home, Privacy Policy, Support) with GitHub Pages.
+# This file only describes the deployment. GitHub Pages must be switched on by the repo owner
+# (Settings > Pages > Build and deployment > Source: GitHub Actions) before a run can succeed.
+# Action versions follow GitHub's own "static content" Pages workflow template.
+name: Deploy site to GitHub Pages
+
+on:
+  # A push to main that changes the site.
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+  # Run by hand from the Actions tab.
+  workflow_dispatch:
+
+# Least privilege for the deployment (read the repo, publish to Pages).
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; do not cancel one that is already publishing.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Pages
+        uses: actions/configure-pages@v5
+      - name: Upload the site folder
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
