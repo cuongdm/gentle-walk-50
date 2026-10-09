@@ -76,6 +76,9 @@ struct AppCaptureScene: View {
                 }
         case .progressLower, .progressLowerFree, .progressEmpty:
             NavigationStack { ProgressTab(app: app, initialAnchor: state == .progressLowerFree ? .bottom : UnitPoint(x: 0.5, y: state == .progressEmpty ? 0.5 : 0.68)) }
+        case .progressTreeSapling, .progressTreeGrown:
+            // The tree card sits under "Your results": opened a little down so it shows whole.
+            NavigationStack { ProgressTab(app: app, initialAnchor: UnitPoint(x: 0.5, y: 0.22)) }
         case .progressSessions:
             NavigationStack { SessionHistoryScreen(sessions: app.progress.sessions, calendar: app.calendar) }
         case .program:
@@ -123,7 +126,7 @@ struct AppCaptureScene: View {
         let trialEnds = Date.now.addingTimeInterval(2 * 86_400)
         let entitlement: Entitlement = switch state {
         case .todayFree, .journeysFree, .todayTrialEnded, .lockedStop, .allSessionsFree, .progressFree, .progressLowerFree,
-             .progressResultsOne, .progressResultsThree, .progressResultsFour: .free
+             .progressResultsOne, .progressResultsThree, .progressResultsFour, .progressTreeSeed: .free
         case .todayTrialEnding: .trial(ends: trialEnds)
         case .me: .trial(ends: Date.now.addingTimeInterval(12 * 86_400))
         case .meLifetime, .meLifetimeAndSubscription: .lifetime
@@ -135,7 +138,7 @@ struct AppCaptureScene: View {
         let start = calendar.date(byAdding: .day, value: calendar.firstWeekday == 2 ? 0 : 1, to: sunday) ?? .now
         let monday = start > .now ? start.addingTimeInterval(-7 * 86_400) : start
         let day = state == .todayLastWeek ? monday : Date.now
-        let app = AppModel.capture(entitlement: entitlement, healthConnected: ![.progressNoHealth, .progressLowerFree, .progressEmpty].contains(state), day: day) { context, now, calendar in
+        let app = AppModel.capture(entitlement: entitlement, healthConnected: ![.progressNoHealth, .progressLowerFree, .progressEmpty, .progressTreeSeed].contains(state), day: day) { context, now, calendar in
             seed(context, now: now, calendar: calendar)
         }
         seedPersonalisation(app)
@@ -262,6 +265,18 @@ struct AppCaptureScene: View {
             seedResults(context, now: now, calendar: calendar, perWeek: 2, walks: true, checks: false)
         case .progressResultsThree:
             seedResults(context, now: now, calendar: calendar, perWeek: 2, walks: true, checks: true)
+        case .progressTreeSeed:
+            ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).forEach(context.delete)
+            ((try? context.fetch(FetchDescriptor<SelfCheckRecord>())) ?? []).forEach(context.delete)
+        case .progressTreeSapling, .progressTreeGrown:
+            // One walk a day for 30 or 90 days before today: Sapling (21+), or Tree with a year ring (84+).
+            ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).forEach(context.delete)
+            for daysAgo in 1...(state == .progressTreeSapling ? 30 : 90) {
+                guard let day = calendar.date(byAdding: .day, value: -daysAgo, to: calendar.startOfDay(for: now)),
+                      let at = calendar.date(byAdding: .minute, value: 600, to: day) else { continue }
+                context.insert(WorkoutRecord(date: at, kind: "walk", level: "seated", intensity: "steady", place: "indoors",
+                                             activeSeconds: 8 * 60, journeyMiles: 0.4))
+            }
         case .progressEmpty:
             ((try? context.fetch(FetchDescriptor<WorkoutRecord>())) ?? []).forEach(context.delete)
             ((try? context.fetch(FetchDescriptor<SelfCheckRecord>())) ?? []).forEach(context.delete)
@@ -370,7 +385,7 @@ struct AppCaptureScene: View {
         case .journey, .lockedStop: app.tab = .journey
         case .whereNext: app.tab = .journey
         case .progress, .progressNoHealth, .progressFree, .progressResults, .progressResultsOne, .progressResultsTwo,
-             .progressResultsThree, .progressResultsFour: app.tab = .progress
+             .progressResultsThree, .progressResultsFour, .progressTreeSeed: app.tab = .progress
         case .me, .meLifetime, .meLifetimeAndSubscription: app.tab = .me
         // Me's rows open their screens (plan 08/10/2026 task 3.4).
         case .meNotifications:
