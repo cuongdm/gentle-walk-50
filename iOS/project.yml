@@ -48,7 +48,7 @@ targets:
         # Colour roles are read by name through Palette; generated symbols would clash with Color.primary.
         ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS: NO
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: primary
-        # Placeholder icon from scripts/make_placeholder_icon.swift until the designed icon arrives.
+        # App icon: the designed icon lives in App/Assets.xcassets/AppIcon.appiconset.
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
       configs:
         Release:
@@ -58,6 +58,8 @@ targets:
       path: App/Info.plist
       properties:
         CFBundleDisplayName: Good Footing
+        # Only standard HTTPS is used, which is exempt from export compliance documentation.
+        ITSAppUsesNonExemptEncryption: false
         UILaunchScreen: {}
         # RevenueCat public SDK key from Config/Local.xcconfig (REVENUECAT_PUBLIC_KEY); empty → no store.
         RevenueCatPublicKey: $(REVENUECAT_PUBLIC_KEY)
