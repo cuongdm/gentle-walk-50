@@ -35,3 +35,9 @@ docs/design/research-2026-10-08/spec-system-dark.png
 docs/design/research-2026-10-08/icon-mockups/art/
 docs/design/research-2026-10-08/after-m3/
 docs/design/research-2026-10-08/m5/
+
+# App Store screenshots: raw simulator captures and renderer scratch, regenerated (appstore/README.md)
+docs/release/1.0/shots/
+docs/release/1.0/shots-ipad/
+appstore/input/
+appstore/style-preview/

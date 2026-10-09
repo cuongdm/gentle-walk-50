@@ -1,0 +1,34 @@
+# Good Footing — App Store screenshot captions · English (en)
+# Format: appstore-mockup skill (references/captions.md). [ ] marks the accent word.
+# Stems follow the iPhone gallery. appstore/prepare-mockup-inputs.py matches blocks by the
+# slug after "NN-" and writes a renumbered copy into appstore/input/<Device>/en/ (the iPad
+# gallery skips "today"). Subtitles stay under ~72 characters so they fit on two lines.
+# Wording rules: app-context.md Tone & copy, docs/design/steady-claims.md.
+
+## 01-hero
+title:    Get moving again, [gently]
+subtitle: Walks, chair moves and stretches at home. No getting down on the floor.
+
+## 02-today
+title:    Set to [how you feel] today
+subtitle: Tap Achy, Okay or Great, and today's session adjusts to match.
+
+## 03-voice
+title:    Just [listen] and move
+subtitle: Good Footing's calm voice guides each step. No need to watch the screen.
+
+## 04-chair
+title:    Up from a chair, [more easily]
+subtitle: Sit-to-stands and balance moves, with a chair right beside you.
+
+## 05-plan
+title:    A plan that [grows with you]
+subtitle: Four gentle stages over twelve weeks, for steadier feet.
+
+## 06-results
+title:    Compare only with [yourself]
+subtitle: Weekly minutes and your own chair check every two weeks. No age charts.
+
+## 07-journey
+title:    See the world [from home]
+subtitle: Every minute you move takes you further along a painted New York route.

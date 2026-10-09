@@ -5,6 +5,9 @@ _29/09/2026. Mọi màn chụp bằng hook `-ScreenshotMode <state>` (dữ liệ
 iOS/scripts/capture_states.sh docs/release/1.0/shots "iPhone 17 Pro Max" walk-player chair-player paywall-eligible today journey complete stretch-player progress
 ```
 
+## Bộ ảnh store đã làm (09/10/2026)
+Ảnh có khung và chữ: `appstore/output/iPhone/en` (7 ảnh) và `appstore/output/iPad/en` (6 ảnh), chữ ở `appstore/captions.txt`, cách làm lại ở `appstore/README.md`. iPhone: onboarding-welcome, today-goal-line, walk-player, chair-player, program, progress-results, journey. iPad bỏ Welcome (một cột hẹp trên trang trống), dùng Today làm ảnh đầu.
+
 ## Thứ tự mới theo chương trình vững chân (08/10/2026, kế hoạch steady-program Task 6.1) — dùng bảng này
 ```bash
 iOS/scripts/capture_states.sh docs/release/1.0/shots "iPhone 17 Pro Max" onboarding-welcome today-program chair-player progress-checks journey
