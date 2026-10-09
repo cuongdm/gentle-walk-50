@@ -41,6 +41,8 @@ struct SpecialCard: View {
                     Button("Connect", action: actions.onConnectHealth).buttonStyle(PillButtonStyle(isSelected: true))
                     Button("Not now", action: actions.onDismissCard).buttonStyle(.textLink)
                 }
+            case .stageDone(let recap):
+                StageDoneCardContent(recap: recap, onSeePlan: actions.onStageRecapPlan, onDismiss: actions.onDismissStageRecap)
             case .setAside(let name):
                 Text("We've set \(name) aside for now. Bring it back in Me.").typeRole(.body)
                 Button("Moves set aside", action: actions.onOpenMe).buttonStyle(TextLinkButtonStyle(role: .caption, horizontalPadding: 0))

@@ -31,6 +31,8 @@ extension AppIcon {
         case .pain, .setAside: .hurts
         case .shorter, .movedDown: .levelDown
         case .movedUp: .levelUp
+        // A stage of the 12-week program ended: the program's calendar.
+        case .stageDone: .program
         case .connectHealth: .health
         case .busyDay: .steps
         case .moveReminder, .fewerReminders: .reminder

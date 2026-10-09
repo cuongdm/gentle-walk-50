@@ -8,6 +8,8 @@ struct JourneyView: View {
     let onAllJourneys: () -> Void
     let onPostcard: (Journey.Stop) -> Void
     let onSeePlans: () -> Void
+    /// This route's stops by the stage of her 12 weeks she was in when she reached them (plan 09/10/2026).
+    var stages: [StageStops] = []
     /// Start today's session; nil hides the button (rest day, or already done).
     var onWalkNow: (() -> Void)? = nil
 
@@ -35,6 +37,9 @@ struct JourneyView: View {
                         nextStopCard(in: journey)
                     }
                     RouteList(journey: journey, snapshot: snapshot, onPostcard: onPostcard, onLocked: onSeePlans)
+                    if !stages.isEmpty {
+                        JourneyStagesCard(groups: stages)
+                    }
                     Text("Outdoor walks count their real distance.")
                         .typeRole(.caption).foregroundStyle(Palette.textMuted)
                 }

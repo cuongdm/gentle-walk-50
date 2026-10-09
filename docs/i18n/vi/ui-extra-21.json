@@ -1,0 +1,17 @@
+{
+  "^[%lld stop](inflect: true)": "%lld điểm dừng",
+  "%@ moving": "tập %@",
+  "%@ on your journey": "%@ trên hành trình",
+  "%@ on your journey, %@ of it walked outdoors": "%@ trên hành trình, trong đó %@ đi bộ ngoài trời",
+  "From %@ to %@.": "Từ %@ đến %@.",
+  "Next stop: %@ · %@ to go": "Điểm dừng tiếp theo: %@ · còn %@",
+  "See my plan": "Xem kế hoạch",
+  "So far": "Đến giờ",
+  "Stage %lld is done: %@": "Xong giai đoạn %lld: %@",
+  "The stage of your plan when you reached each stop.": "Bạn đang ở giai đoạn nào của kế hoạch khi đến từng điểm dừng.",
+  "You reached %@, the latest %@.": "Bạn đã đến %@, mới nhất là %@.",
+  "You reached %@.": "Bạn đã đến %@.",
+  "You're now in Stage %lld · %@. Your sessions change only when you're ready.": "Giờ bạn đang ở giai đoạn %lld · %@. Buổi tập chỉ thay đổi khi bạn sẵn sàng.",
+  "Your 2-week check: %lld": "Tự kiểm tra 2 tuần: %lld lần",
+  "Your whole route": "Cả lộ trình của bạn"
+}

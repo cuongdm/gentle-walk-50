@@ -22,7 +22,7 @@ struct AppCaptureScene: View {
                 // The same cover presenter as AppRootView, so taps in a capture scene (a session card,
                 // Start, the paywall) open their screens instead of setting `app.cover` with nobody to show it.
                 scene(app)
-                    .modifier(LargestTextAnchor(anchor: largestTextAnchor))
+                    .modifier(LargestTextAnchor(anchor: largestTextAnchor, always: storyAnchor))
                     .fullScreenCover(item: Binding(get: { app.cover }, set: { app.cover = $0 })) { cover in
                         CoverView(app: app, cover: cover)
                     }
@@ -79,7 +79,7 @@ struct AppCaptureScene: View {
             NavigationStack { ProgressTab(app: app, initialAnchor: state == .progressLowerFree ? .bottom : UnitPoint(x: 0.5, y: state == .progressEmpty ? 0.5 : 0.68)) }
         case .progressSessions:
             NavigationStack { SessionHistoryScreen(sessions: app.progress.sessions, calendar: app.calendar) }
-        case .program:
+        case .program, .programRecaps:
             NavigationStack { ProgramScreen(app: app) }
         case .journeys, .journeysFree:
             NavigationStack {
@@ -98,6 +98,17 @@ struct AppCaptureScene: View {
         // The Day 1 card with "Stop" sits a little past the middle of Your plan.
         case .onboardingPlanCoach: UnitPoint(x: 0.5, y: 0.6)
         case .paywallMonthly, .paywallLifetime, .paywallLifetimeWhileSubscribed: .center
+        default: nil
+        }
+    }
+
+    /// The stage-recap states open where their new card is (plan 09/10/2026); x 0 keeps horizontal rows at
+    /// their start.
+    private var storyAnchor: UnitPoint? {
+        switch state {
+        case .todayStageRecap: UnitPoint(x: 0, y: 0.42)
+        case .programRecaps: UnitPoint(x: 0, y: 0.5)
+        case .journeyWithStages: UnitPoint(x: 0, y: 1)
         default: nil
         }
     }
@@ -191,6 +202,11 @@ struct AppCaptureScene: View {
 
     /// Extra data per state on top of the Margaret fixture.
     private func seed(_ context: ModelContext, now: Date, calendar: Calendar) {
+        if let days = Self.storyDays(state) {
+            ProgramStory.seed(context, now: now, calendar: calendar, programDays: days, journeys: AppContent.bundle.journeys,
+                              restDays: [7, 1], reminderMinutes: 510)
+            return
+        }
         switch state {
         case .todayDone:
             context.insert(WorkoutRecord(date: now.addingTimeInterval(-3_600), kind: "walk", level: "seated", intensity: "steady",
@@ -304,6 +320,16 @@ struct AppCaptureScene: View {
         }
     }
 
+    /// Days since week 1 began in the stage-recap states (`ProgramStory`); nil for the others.
+    static func storyDays(_ state: CaptureState) -> Int? {
+        switch state {
+        case .todayStageRecap: 22
+        case .programRecaps, .journeyWithStages: 52
+        case .programFinishedRoute: 86
+        default: nil
+        }
+    }
+
     private func prepare(_ app: AppModel) {
         switch state {
         case .reminderOffer: app.cover = .reminderOffer
@@ -313,7 +339,7 @@ struct AppCaptureScene: View {
             if state != .selfcheckIntro { model.ready() }
             if state == .selfcheckCount { model.stopEarly() }
             app.cover = .selfCheck(model)
-        case .programFinished: app.cover = .programFinished
+        case .programFinished, .programFinishedRoute: app.cover = .programFinished
         case .progressChecks: app.tab = .progress
         case .allSessions:
             app.favourites.toggle("walk.long")
@@ -356,7 +382,7 @@ struct AppCaptureScene: View {
             app.onboarding.toggleLimit(.noFloor)
             app.onboarding.toggleLimit(.unsteady)
             app.onboarding.jump(to: .plan)
-        case .journey, .lockedStop: app.tab = .journey
+        case .journey, .lockedStop, .journeyWithStages: app.tab = .journey
         case .whereNext: app.tab = .journey
         case .progress, .progressNoHealth, .progressFree, .progressResults: app.tab = .progress
         case .me, .meLifetime, .meLifetimeAndSubscription: app.tab = .me
@@ -375,13 +401,15 @@ struct AppCaptureScene: View {
         }
     }
 }
-/// Opens the scene's scroll view at `anchor`, at accessibility text sizes only (other shots stay as they were).
+/// Opens the scene's scroll view at `anchor` at accessibility text sizes (other shots stay as they were), or at
+/// `always` for every size when a state asks for it.
 private struct LargestTextAnchor: ViewModifier {
     let anchor: UnitPoint?
+    var always: UnitPoint? = nil
     @Environment(\.dynamicTypeSize) private var typeSize
 
     func body(content: Content) -> some View {
-        content.defaultScrollAnchor(typeSize.isAccessibilitySize ? anchor : nil)
+        content.defaultScrollAnchor(typeSize.isAccessibilitySize ? (anchor ?? always) : always)
     }
 }
 #endif

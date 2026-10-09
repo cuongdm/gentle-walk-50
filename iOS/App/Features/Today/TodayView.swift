@@ -131,6 +131,9 @@ struct TodayActions {
     var onSelfCheckLater: () -> Void = {}
     var onPickUpProgram: () -> Void = {}
     var onProgramFinished: () -> Void = {}
+    /// "Stage N is done" (plan 09/10/2026): "See my plan" and "Got it"; either way the card does not come back.
+    var onStageRecapPlan: () -> Void = {}
+    var onDismissStageRecap: () -> Void = {}
 }
 
 /// "Good morning, Margaret", then one line: the tree ring, "13 active days · Week 3 of 12 · Plan ›"

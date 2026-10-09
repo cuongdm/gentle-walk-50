@@ -160,6 +160,15 @@ enum CaptureState: String, CaseIterable, Sendable {
     case progressLowerFree = "progress-lower-free"
     /// No session yet: the empty Recent sessions and 2-week checks cards (opened in the middle).
     case progressEmpty = "progress-empty"
+    // Plan and journey as one story (docs/plans/2026-10-09-plan-journey-link.md), all from `ProgramStory`.
+    /// Week 4, the day after stage 1 ended: "Stage 1 is done: Steady base" on Today.
+    case todayStageRecap = "today-stage-recap"
+    /// Week 8: stages 1 and 2 done with their recaps and postcards, stage 3 "So far" with the next stop.
+    case programRecaps = "program-recaps"
+    /// Past week 12: the finish screen with "Your whole route".
+    case programFinishedRoute = "program-finished-route"
+    /// Week 8 on the second route: "Your 12 weeks" groups its stops by stage.
+    case journeyWithStages = "journey-with-stages"
 }
 
 enum CaptureHook {

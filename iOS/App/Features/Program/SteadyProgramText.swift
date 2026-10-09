@@ -13,12 +13,6 @@ extension ProgramStage {
         }
     }
 
-    /// "Weeks 1–3".
-    var weeks: ClosedRange<Int> {
-        let first = (rawValue - 1) * 3 + 1
-        return first...(first + 2)
-    }
-
     var summary: LocalizedStringResource {
         switch self {
         case .base: "Learn the moves seated or with your chair. Short, easy sessions."

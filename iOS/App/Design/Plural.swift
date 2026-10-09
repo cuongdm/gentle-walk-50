@@ -26,4 +26,9 @@ enum Plural {
     static func weeks(_ count: Int) -> String {
         String(AttributedString(localized: "^[\(count) week](inflect: true)").characters)
     }
+
+    /// Journey stops reached ("1 stop", "9 stops"; stage recaps, plan 09/10/2026).
+    static func stops(_ count: Int) -> String {
+        String(AttributedString(localized: "^[\(count) stop](inflect: true)").characters)
+    }
 }

@@ -7,6 +7,10 @@ struct ProgramSnapshot: Equatable {
     /// Weeks of the checks done this round (0 = the first check), for the seven marks.
     var checkWeeks: [Int]
     var checkStatus: SelfCheckStatus
+    /// What she did in each stage done and in the current one (plan 09/10/2026).
+    var recaps: [StageRecap] = []
+    /// Her current route, for the next stop under the current stage.
+    var route: RoutePosition? = nil
 }
 
 /// Pushed from Today's program strip (option A, task 4.4).
@@ -24,7 +28,8 @@ struct ProgramScreen: View {
     private var snapshot: ProgramSnapshot {
         let position = app.programState().map { ProgramCalendar.position($0.programRound, on: app.now(), calendar: app.calendar) }
         return ProgramSnapshot(position: position, checkWeeks: app.progress.selfChecks.map(\.week),
-                               checkStatus: app.today?.checkCard ?? SelfCheckStatus.none)
+                               checkStatus: app.today?.checkCard ?? SelfCheckStatus.none,
+                               recaps: app.programRecap.stages.filter(\.hasActivity), route: app.programRecap.route)
     }
 }
 
@@ -50,7 +55,7 @@ struct ProgramView: View {
                     // This week's theme, as on Today (plan 08/10/2026 task 3.10).
                     WeekThemeCard(theme: WeekTheme.forWeek(week))
                 }
-                ProgramStageList(current: currentStage, currentWeek: currentWeek)
+                ProgramStageList(current: currentStage, currentWeek: currentWeek, recaps: snapshot.recaps, route: snapshot.route)
                 SelfCheckDots(doneWeeks: snapshot.checkWeeks, status: snapshot.checkStatus, onStart: onSelfCheck)
                 if let onSeeResults {
                     Button("See how far you've come", action: onSeeResults).buttonStyle(.textLink)
@@ -74,31 +79,42 @@ struct ProgramView: View {
 }
 
 /// Four stages: name, weeks and what happens, and the themes of its three weeks (this week in bold); the
-/// current stage outlined in green.
+/// current stage outlined in green. A stage done shows what she did instead of what it holds, the current one
+/// adds "so far" (plan 09/10/2026).
 struct ProgramStageList: View {
     let current: ProgramStage?
     var currentWeek: Int? = nil
+    /// Recaps with at least one session.
+    var recaps: [StageRecap] = []
+    var route: RoutePosition? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             ForEach(ProgramStage.allCases, id: \.rawValue) { stage in
                 let isCurrent = stage == current
+                let recap = recaps.first { $0.stage == stage }
                 VStack(alignment: .leading, spacing: 4) {
                     Text(verbatim: String(localized: "Stage \(stage.rawValue) · Weeks \(stage.weeks.lowerBound)–\(stage.weeks.upperBound)"))
                         .typeRole(.caption).foregroundStyle(Palette.textMuted)
                     Text(stage.title).typeRole(.cardTitle).foregroundStyle(Palette.text)
-                    Text(stage.summary).typeRole(.body).foregroundStyle(Palette.text)
-                    VStack(alignment: .leading, spacing: 2) {
-                        ForEach(Array(stage.weeks), id: \.self) { week in
-                            Text(verbatim: WeekTheme.forWeek(week).kicker)
-                                .typeRole(.caption)
-                                .fontWeight(week == currentWeek ? .bold : .regular)
-                                .foregroundStyle(week == currentWeek ? Palette.text : Palette.textMuted)
+                    // Done: what she did replaces what the stage holds (the plan is behind her).
+                    if recap?.status != .done {
+                        Text(stage.summary).typeRole(.body).foregroundStyle(Palette.text)
+                        VStack(alignment: .leading, spacing: 2) {
+                            ForEach(Array(stage.weeks), id: \.self) { week in
+                                Text(verbatim: WeekTheme.forWeek(week).kicker)
+                                    .typeRole(.caption)
+                                    .fontWeight(week == currentWeek ? .bold : .regular)
+                                    .foregroundStyle(week == currentWeek ? Palette.text : Palette.textMuted)
+                            }
                         }
+                        .padding(.top, 2)
                     }
-                    .padding(.top, 2)
                     if isCurrent {
                         Text("You're here").typeRole(.caption).fontWeight(.semibold).foregroundStyle(Palette.text)
+                    }
+                    if let recap {
+                        StageRecapBlock(recap: recap, route: isCurrent ? route : nil).padding(.top, 6)
                     }
                 }
                 .cardStyle()

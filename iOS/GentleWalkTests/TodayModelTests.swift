@@ -250,6 +250,45 @@ import GentleWalkCore
         #expect(model(value).programStrip?.pickUpWeek == 2)
     }
 
+    /// "Stage 1 is done" (plan 09/10/2026): in the special-card slot after the level cards, before the rest; it
+    /// waits while Welcome back, "Pick up at week N" or the trial card speaks, and replaces the week's theme.
+    @Test func stageDoneCardSitsAfterLevelCardsAndNeverStacks() {
+        let recap = StageRecap(stage: .base, status: .done, activeDays: 11, activeSeconds: 90 * 60, journeyMiles: 4.5,
+                               outdoorMiles: 0, stops: [], check: nil)
+        var value = input(healthConnected: false)
+        // Started Monday Sep 7: Monday Sep 28 is week 4, stage 2.
+        value.program = ProgramRound(start: at(7, hour: 0))
+        value.stageDone = recap
+        let shown = model(value)
+        #expect(shown.specialCard == .stageDone(recap))
+        #expect(shown.weekTheme == nil)
+
+        var moved = value
+        moved.level = .inPlace
+        moved.levelCard = .movedUp(to: .inPlace)
+        #expect(model(moved).specialCard == .movedUp(to: .inPlace))
+        #expect(model(moved).weekTheme == .aLittleMore)
+
+        // Away since Sep 21: Welcome back speaks; the stage card waits.
+        var away = value
+        away.workouts = [TodayInput.Workout(date: at(21), feeling: nil, breakCount: 0, level: .seated)]
+        #expect(model(away).welcomeBack != nil)
+        #expect(model(away).specialCard == .connectHealth)
+
+        // Two weeks away: "Pick up at week N" first.
+        var pickUp = value
+        pickUp.workouts = [TodayInput.Workout(date: at(10), feeling: nil, breakCount: 0, level: .seated)]
+        #expect(model(pickUp).programStrip?.pickUpWeek != nil)
+        #expect(model(pickUp).specialCard != .stageDone(recap))
+
+        // The trial's last days: its card speaks alone.
+        var trial = value
+        trial.entitlement = .trial(ends: at(30, hour: 19))
+        trial.trialEnds = at(30, hour: 19)
+        #expect(model(trial).trialEndingDate != nil)
+        #expect(model(trial).specialCard == .connectHealth)
+    }
+
     @Test func checkCardFollowsSchedule() {
         var value = input()
         // After the first session, before any check: the week-0 invite.

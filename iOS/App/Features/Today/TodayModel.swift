@@ -62,6 +62,8 @@ struct TodayInput: Equatable {
     var lengthSignal: LengthSignal? = nil
     /// She has been on her feet a lot today, by her own Apple Health steps (P11).
     var busyDay = false
+    /// A stage of the 12 weeks just ended (≤ 7 program days) and its card was not tapped away (plan 09/10/2026).
+    var stageDone: StageRecap? = nil
 }
 
 /// "Week 3 of 12 · Steady base" above today's session (steady program task 4.2).
@@ -102,6 +104,8 @@ enum TodaySpecialCard: Equatable, Sendable {
     case movedDown(to: WalkLevel)
     /// "You're ready for a little more" (plan 08/10/2026 task 0.5).
     case movedUp(to: WalkLevel)
+    /// "Stage 1 is done": what she did in it and the stops she reached (plan 09/10/2026). Recognition only.
+    case stageDone(StageRecap)
     /// "We've set Mini-squat aside for now. Bring it back in Me." (P3).
     case setAside(name: String)
     /// "You've been on your feet a lot today. A gentle stretch fits." (P11).
@@ -250,9 +254,11 @@ struct TodaySwapOption: Equatable, Identifiable {
         GreetingText.text(Greetings.pick(now: input.now, calendar: input.calendar), name: input.name)
     }
 
-    /// The theme of her program week while the 12 weeks run (tasks 3.5, 3.10); nil before and after.
+    /// The theme of her program week while the 12 weeks run (tasks 3.5, 3.10); nil before and after, and while
+    /// the "Stage N is done" card says which stage she is in now.
     var weekTheme: WeekTheme? {
         guard case .week(let week, _)? = programStrip?.kind else { return nil }
+        if case .stageDone? = specialCard { return nil }
         return WeekTheme.forWeek(week)
     }
 
@@ -396,6 +402,7 @@ struct TodaySwapOption: Equatable, Identifiable {
         case .movedUp(let to)?: return .movedUp(to: to)
         case .shorter?, nil: break
         }
+        if let recap = input.stageDone, stageCardFits { return .stageDone(recap) }
         if let name = personal.setAsideName { return .setAside(name: name) }
         if input.busyDay, !doneToday, !plannedDay.isRest, plannedDay.main != .stretch, !isNew { return .busyDay }
         if let minutes = input.reminderSuggestion { return .moveReminder(minutes: minutes) }
@@ -404,6 +411,12 @@ struct TodaySwapOption: Equatable, Identifiable {
         if !input.healthConnected, !isNew { return .connectHealth }
         if input.suggestFewerReminders { return .fewerReminders }
         return nil
+    }
+
+    /// The stage card never stacks with Welcome back, "Pick up at week N" or the trial's last days: it waits
+    /// (plan 09/10/2026). Safety and level cards come before it in `specialCard`.
+    private var stageCardFits: Bool {
+        restart == nil && programStrip?.pickUpWeek == nil && trialEndingDate == nil
     }
 
     /// "Try something else": the other kinds and five gentle minutes, built with her limits. It

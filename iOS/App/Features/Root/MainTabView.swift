@@ -103,7 +103,9 @@ struct TodayTab: View {
                 onSelfCheck: app.openSelfCheck,
                 onSelfCheckLater: app.selfCheckLater,
                 onPickUpProgram: app.pickUpProgram,
-                onProgramFinished: { app.cover = .programFinished }))
+                onProgramFinished: { app.cover = .programFinished },
+                onStageRecapPlan: app.openPlanFromStageRecap,
+                onDismissStageRecap: app.dismissStageRecap))
         } else {
             ProgressView()
         }
@@ -123,6 +125,7 @@ struct JourneyTab: View {
                         onAllJourneys: { app.journeyPath.append(.allJourneys) },
                         onPostcard: { app.journeyPath.append(.postcard(journeyID: app.journey.journeyID, stopID: $0.id)) },
                         onSeePlans: { app.offerPlans(.lockedContent) },
+                        stages: app.programRecap.journeyStages,
                         // Only when today's session is waiting: not on a rest day, not once done (review D20).
                         onWalkNow: app.today.flatMap { $0.doneToday || $0.request == nil ? nil : { app.openTodaySession() } })
         }

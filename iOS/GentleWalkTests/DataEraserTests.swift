@@ -1,6 +1,7 @@
 import Foundation
 import SwiftData
 import Testing
+import GentleWalkCore
 @testable import GentleWalk
 
 @MainActor final class FakePendingNotifications: PendingNotificationClearing {
@@ -54,6 +55,20 @@ import Testing
 
         #expect(defaults.data(forKey: WalkLevelStore.defaultsKey) == nil)
         #expect(WalkLevelStore(defaults: defaults).state(startLevel: .seated).level == .seated)
+    }
+
+    /// Stage recaps (plan 09/10/2026): the breaks picked up from and the stage card tapped away go too.
+    @Test func eraseClearsStageRecapMemory() throws {
+        let store = ProgramMemoryStore(defaults: defaults)
+        store.addPause(ProgramPause(after: Date(), days: 20))
+        store.dismissStage(StageMark(round: 1, stage: 1))
+        #expect(store.pauses.count == 1)
+        #expect(store.dismissedStage == StageMark(round: 1, stage: 1))
+
+        try DataEraser(context: container.mainContext, defaults: defaults, notifications: FakePendingNotifications()).eraseAll()
+
+        #expect(store.pauses.isEmpty)
+        #expect(store.dismissedStage == nil)
     }
 
     @Test func textSizeStepsWithinRange() {

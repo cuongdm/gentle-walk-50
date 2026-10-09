@@ -41,6 +41,8 @@ import GentleWalkCore
     private(set) var today: TodayModel?
     private(set) var journey = JourneySnapshot.empty
     private(set) var progress = ProgressSnapshot.empty
+    /// Stage recaps: the plan and the journey as one story (plan 09/10/2026).
+    private(set) var programRecap = ProgramRecapSnapshot.empty
     var textSize: TextSizeOverride { didSet { textSize.save(to: defaults) } }
     /// Distance, weight and height units (Me → Language & units).
     var units: UnitPreferences {
@@ -181,6 +183,7 @@ import GentleWalkCore
         let checks = selfCheckRecords()
         let program = ensureProgram(firstWorkout: records.first?.date)
         journey = JourneySnapshot(states: states, unlocks: unlocks, content: content, entitlement: entitlement)
+        programRecap = makeProgramRecap(program: program, records: records, unlocks: unlocks, checks: checks)
         // Pro: the hands level she has earned on each balance exercise (Progress, task 4.10). View only: today's
         // session caps it by the day's intensity and her limits when it starts (`prepareAndPlay`).
         let support = isPro ? SupportLadder.earned(SupportLadderStore(defaults: defaults).progress) : [:]
@@ -215,6 +218,7 @@ import GentleWalkCore
         input.reminderSuggestion = habits.reminder
         input.lengthSignal = habits.length
         input.busyDay = isBusyToday
+        input.stageDone = programRecap.turn
         today = TodayModel(input: input, content: content)
         refreshBusyDayIfNeeded()
     }
