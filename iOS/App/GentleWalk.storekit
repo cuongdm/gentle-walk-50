@@ -8,8 +8,8 @@
       "internalID" : "6A0B2C11-0003-4000-8000-000000000003",
       "localizations" : [
         {
-          "description" : "All walks, chair moves, stretches and journeys, yours to keep.",
-          "displayName" : "Good Footing Pro, one payment",
+          "description" : "Every walk, chair move and stretch.",
+          "displayName" : "Good Footing Pro Lifetime",
           "locale" : "en_US"
         }
       ],
@@ -27,7 +27,13 @@
   "subscriptionGroups" : [
     {
       "id" : "6A0B2C11-0100-4000-8000-000000000100",
-      "localizations" : [ ],
+      "localizations" : [
+        {
+          "description" : "Every walk, chair move and stretch.",
+          "displayName" : "Good Footing Pro",
+          "locale" : "en_US"
+        }
+      ],
       "name" : "Good Footing Pro",
       "subscriptions" : [
         {
@@ -44,8 +50,8 @@
           },
           "localizations" : [
             {
-              "description" : "All walks, chair moves, stretches and journeys.",
-              "displayName" : "Good Footing Pro, yearly",
+              "description" : "Every walk, chair move and stretch.",
+              "displayName" : "Good Footing Pro Yearly",
               "locale" : "en_US"
             }
           ],
@@ -65,8 +71,8 @@
           "internalID" : "6A0B2C11-0002-4000-8000-000000000002",
           "localizations" : [
             {
-              "description" : "All walks, chair moves, stretches and journeys.",
-              "displayName" : "Good Footing Pro, monthly",
+              "description" : "Every walk, chair move and stretch.",
+              "displayName" : "Good Footing Pro Monthly",
               "locale" : "en_US"
             }
           ],

@@ -1,0 +1,41 @@
+{
+  "page_title": "MyApp - App Store Metadata",
+  "intro_html": "Run <code>tools/appstore/asc-studio.py</code> to push this to App Store Connect.",
+  "shared_title": "General info (not per-language)",
+
+  "languages": [
+    { "code": "en", "label": "English (United States)", "locale": "en-US" },
+    { "code": "vi", "label": "Vietnamese (Vietnam)", "locale": "vi" }
+  ],
+
+  "shared": [
+    { "label": "Primary Category", "value": "Health & Fitness  ·  Secondary: Lifestyle" },
+    { "label": "Age Rating", "value": "4+" },
+    { "label": "Copyright", "value": "2026 <LEGAL ENTITY>" },
+    { "label": "App Review Notes", "id": "review-notes", "copy": true,
+      "value": "Demo account, entitlements to test, IAP sandbox notes." }
+  ],
+
+  "sync": {
+    "bundle_id": "com.example.myapp",
+    "platform": "IOS",
+    "marketing_url": "https://example.com",
+    "support_url": "https://example.com/support",
+
+    "paths": {
+      "metadata_dir": "appstore/metadata-json",
+      "screenshots_dir": "appstore/output",
+      "storekit": null
+    },
+
+    "locales": {
+      "en": { "asc": "en-US", "privacy_url": "https://example.com/privacy/" },
+      "vi": { "asc": "vi",    "privacy_url": "https://example.com/vi/privacy/" }
+    },
+
+    "storekit_locales": {
+      "en_US": "en-US",
+      "vi_VN": "vi"
+    }
+  }
+}

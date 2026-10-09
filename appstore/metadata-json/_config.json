@@ -1,0 +1,17 @@
+{
+  "sync": {
+    "bundle_id": "com.kmd.goodfooting",
+    "platform": "IOS",
+    "marketing_url": null,
+    "support_url": null,
+    "paths": {
+      "metadata_dir": "appstore/metadata-json",
+      "screenshots_dir": "appstore/output",
+      "storekit": "iOS/App/GentleWalk.storekit"
+    },
+    "locales": {
+      "en": { "asc": "en-US", "privacy_url": "TODO: set after site/privacy.html is published" }
+    },
+    "storekit_locales": { "en_US": "en-US" }
+  }
+}

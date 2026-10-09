@@ -1,0 +1,322 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>App Store Connect studio</title>
+<style>
+  :root{
+    --bg:#faf8f5; --panel:#fff; --ink:#1c1a22; --dim:#6b6577; --line:#e6e1dc;
+    --accent:#6d4aff; --new:#12855b; --upd:#a86200; --same:#8c8798; --bad:#c0392b;
+    --newbg:#e8f6f0; --updbg:#fdf3e0; --badbg:#fdeceb;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+    --bg:#141318; --panel:#1c1b22; --ink:#eceaf2; --dim:#9d97ab; --line:#2e2c37;
+    --accent:#a78bfa; --new:#4ade80; --upd:#fbbf24; --same:#6b6577; --bad:#f87171;
+    --newbg:#12281f; --updbg:#2b2313; --badbg:#2e1717;
+  }}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:14px/1.55 ui-sans-serif,-apple-system,"SF Pro Text",Inter,system-ui,sans-serif}
+  header{position:sticky;top:0;z-index:10;background:var(--panel);border-bottom:1px solid var(--line);
+         padding:14px 22px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  h1{font-size:15px;margin:0;font-weight:650;letter-spacing:-.01em}
+  h1 small{font-weight:400;color:var(--dim);margin-left:8px}
+  main{max-width:1180px;margin:0 auto;padding:22px}
+  .row{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+  .f{display:flex;flex-direction:column;gap:5px}
+  label{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--dim);font-weight:600}
+  select,input,button{font:inherit;color:inherit;border:1px solid var(--line);border-radius:8px;
+                      padding:8px 11px;background:var(--panel)}
+  select,input{min-width:230px}
+  button{cursor:pointer;font-weight:560;background:var(--panel)}
+  button:hover:not(:disabled){border-color:var(--accent)}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+        padding:18px;margin:18px 0}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 0}
+  .tag{font-size:12px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--dim)}
+  .tag.new{color:var(--new);background:var(--newbg);border-color:transparent}
+  .tag.update{color:var(--upd);background:var(--updbg);border-color:transparent}
+  .sec{margin:22px 0 0}
+  .sec>h2{font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--dim);
+          margin:0 0 10px;font-weight:650}
+  details{border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--panel);
+          overflow:hidden}
+  details[open]{border-color:var(--accent)}
+  summary{cursor:pointer;padding:11px 14px;display:flex;gap:12px;align-items:center;
+          list-style:none;font-weight:560}
+  summary::-webkit-details-marker{display:none}
+  summary .loc{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
+               min-width:64px;color:var(--dim)}
+  summary .fields{color:var(--dim);font-weight:400;font-size:12.5px;margin-left:auto}
+  .body{padding:0 14px 14px;border-top:1px solid var(--line)}
+  .fld{margin-top:13px}
+  .fld .k{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--dim);
+          font-weight:650;display:flex;gap:8px;align-items:baseline}
+  .fld .n{font-weight:400;text-transform:none;letter-spacing:0}
+  .val{white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+       font-size:12.5px;padding:8px 10px;border-radius:7px;margin-top:5px;border:1px solid var(--line)}
+  .val.old{color:var(--dim);text-decoration:line-through;text-decoration-color:var(--bad);opacity:.75}
+  .val.new{background:var(--newbg)}
+  .over{color:var(--bad);font-weight:700}
+  #result{white-space:pre-wrap}
+  .err{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+  .muted{color:var(--dim)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:9px;margin-top:12px}
+  .cell{border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:12.5px}
+  .cell b{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+  .cell.has{background:var(--updbg)}
+  .cell.blocked{background:var(--badbg);border-color:var(--bad)}
+  progress{width:100%;height:9px;margin-top:10px;accent-color:var(--accent)}
+  .bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+  .spin{width:13px;height:13px;border:2px solid var(--line);border-top-color:var(--accent);
+        border-radius:50%;animation:s .7s linear infinite;display:inline-block;vertical-align:-2px}
+  @keyframes s{to{transform:rotate(360deg)}}
+</style>
+
+<header>
+  <h1>App Store Connect studio <small id="bundle"></small></h1>
+  <span class="muted" style="margin-left:auto;font-size:12px">loopback only · nothing is written until you press Publish</span>
+</header>
+
+<main>
+  <div class="card">
+    <div class="row">
+      <div class="f">
+        <label for="app">App (by bundle id)</label>
+        <select id="app"><option>loading…</option></select>
+      </div>
+      <div class="f">
+        <label for="ver">Version</label>
+        <select id="ver"><option>—</option></select>
+      </div>
+      <div class="f">
+        <label for="newver">Create new version</label>
+        <input id="newver" placeholder="e.g. 1.0.0" size="10" style="min-width:120px">
+      </div>
+      <button id="mkver">Create</button>
+      <div class="f">
+        <label for="scope">Scope</label>
+        <select id="scope" style="min-width:150px">
+          <option value="all">Listing + IAP</option>
+          <option value="listing">Listing only</option>
+          <option value="iap">Subscriptions only</option>
+          <option value="shots">Screenshots only</option>
+        </select>
+      </div>
+      <button id="load" class="primary">Preview</button>
+    </div>
+    <div class="bar" id="status"></div>
+  </div>
+
+  <div id="out"></div>
+</main>
+
+<script>
+const TOKEN = "__TOKEN__";
+const LIMITS = {name:30, subtitle:30, keywords:100, promotionalText:170,
+                description:4000, whatsNew:4000, privacyPolicyUrl:255};
+const IAP_LIMITS = {name:30, description:45};
+const $ = s => document.querySelector(s);
+let PREVIEW = null;
+
+async function api(path, opts={}){
+  const r = await fetch(path, {...opts, headers:{"X-Studio-Token":TOKEN,
+             "Content-Type":"application/json", ...(opts.headers||{})}});
+  const j = await r.json().catch(()=>({error:"bad response"}));
+  if(!r.ok || j.error) throw new Error(j.error || ("HTTP "+r.status));
+  return j;
+}
+function status(html, bad){ $("#status").innerHTML =
+  `<span class="${bad?'over':'muted'}" style="font-size:12.5px">${html}</span>`; }
+
+function limitFor(kind, key){
+  return kind==="subscriptionLocalizations" || kind==="subscriptionGroupLocalizations"
+    ? IAP_LIMITS[key] : LIMITS[key];
+}
+const esc = s => (s??"").replace(/[&<>]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+function renderField(kind, key, v){
+  const lim = limitFor(kind, key), n = (v.new||"").length;
+  const over = lim && n > lim;
+  return `<div class="fld">
+    <div class="k">${esc(key)}
+      <span class="n ${over?'over':'muted'}">${n}${lim?" / "+lim:""}${over?" OVER":""}</span></div>
+    ${v.old ? `<div class="val old">${esc(v.old)}</div>` : ""}
+    <div class="val new">${esc(v.new)}</div></div>`;
+}
+
+function renderShots(d){
+  const byDev = {};
+  for(const r of d.rows) (byDev[r.device] ||= []).push(r);
+  const already = d.rows.reduce((n,r)=>n + (r.files.length - r.missing.length), 0);
+  let html = `<div class="tags"><span class="tag new">${d.total} to upload</span>
+    <span class="tag">${already} already there</span>
+    <span class="tag">${d.rows.length} set(s)</span></div>`;
+  if(d.warnings?.length) html += `<div class="card err">${d.warnings.map(esc).join("<br>")}</div>`;
+  for(const [dev, rows] of Object.entries(byDev)){
+    html += `<div class="sec"><h2>${esc(dev)} · ${esc(rows[0].displayType)}</h2><div class="grid">`;
+    for(const r of rows){
+      const done = r.files.length - r.missing.length;
+      const partial = r.missing.length && r.existing;
+      html += `<div class="cell ${r.blocked?'blocked':(r.missing.length?(partial?'':'has'):'has')}">
+        <b>${esc(r.locale)}</b> — ${done}/${r.files.length} on App Store Connect
+        ${r.missing.length ? `<br><span class="${partial?'over':'muted'}">${r.missing.length} to upload${partial?" (set is incomplete)":""}</span>`
+                           : `<br><span class="muted">complete</span>`}
+        ${r.blocked ? `<br><span class="over">blocked, see warnings</span>` : ""}</div>`;
+    }
+    html += `</div></div>`;
+  }
+  html += `<div class="card"><div class="row" style="align-items:center">
+      <label style="display:flex;gap:7px;align-items:center;text-transform:none;letter-spacing:0;font-size:13px">
+        <input type="checkbox" id="replace" style="min-width:auto"> Replace sets that already have screenshots
+        <span class="muted">(deletes the existing ones first)</span></label></div>
+    <div class="bar"><button id="upl" class="primary" ${d.total?"":"disabled"}>Upload ${d.total} screenshot(s)</button>
+      <span class="muted" style="font-size:12.5px">Only missing images are sent; complete sets are skipped.</span></div>
+    <progress id="prog" max="1" value="0" hidden></progress>
+    <div id="result" class="muted" style="margin-top:10px;font-size:12.5px"></div></div>`;
+  $("#out").innerHTML = html;
+  $("#upl").onclick = uploadShots;
+}
+
+async function uploadShots(){
+  const replace = $("#replace").checked;
+  if(!confirm(replace
+      ? "Replace screenshots on App Store Connect?\n\nExisting images in those sets are DELETED first."
+      : "Upload screenshots to App Store Connect?")) return;
+  const btn = $("#upl"); btn.disabled = true;
+  const prog = $("#prog"); prog.hidden = false;
+  try{
+    const {job} = await api("/api/screenshots/start", {method:"POST",
+      body: JSON.stringify({version:$("#ver").value, replace})});
+    for(;;){
+      await new Promise(r=>setTimeout(r,900));
+      const p = await api("/api/screenshots/progress?job="+job);
+      prog.max = Math.max(p.total,1); prog.value = p.done;
+      const miss = p.stillMissing || [];
+      $("#result").innerHTML =
+        `<b>${p.done} / ${p.total || "?"}</b> ${esc(p.current||"")}` +
+        (p.skipped.length ? `<br><span class="muted">${p.skipped.length} set(s) already complete</span>` : "") +
+        (p.errors.length ? `<br><details><summary class="muted" style="padding:4px 0">${p.errors.length} retry/error line(s)</summary>
+             <div class="muted" style="font-size:12px">${p.errors.map(esc).join("<br>")}</div></details>` : "") +
+        (p.finished && miss.length ? `<br><span class="over">still missing:<br>${miss.map(esc).join("<br>")}</span>` : "");
+      if(p.finished){
+        if(miss.length) status(`Stopped with ${miss.length} set(s) incomplete — press Upload again to resume.`, true);
+        else status(`All sets complete — ${p.done} uploaded this run.`);
+        btn.disabled = false;
+        break;
+      }
+    }
+  }catch(e){ $("#result").innerHTML = `<span class="over">${esc(e.message)}</span>`; btn.disabled=false; }
+}
+
+function render(data){
+  const c = data.counts;
+  let html = `<div class="tags">
+    <span class="tag new">${c.create} to create</span>
+    <span class="tag update">${c.update} to update</span>
+    <span class="tag">${c.same} already match</span></div>`;
+  if(data.warnings) html += data.warnings.map(w=>`<div class="card err">${esc(w)}</div>`).join("");
+
+  for(const sec of data.sections){
+    const changed = sec.plan.filter(p=>p.action!=="same");
+    html += `<div class="sec"><h2>${esc(sec.title)} · ${changed.length} of ${sec.plan.length} locale(s) change</h2>`;
+    if(!changed.length) html += `<div class="muted" style="font-size:12.5px">Everything matches the repo.</div>`;
+    for(const p of sec.plan){
+      if(p.action==="same") continue;
+      html += `<details><summary>
+          <span class="tag ${p.action==='create'?'new':'update'}">${p.action}</span>
+          <span class="loc">${esc(p.locale)}</span>
+          <span class="fields">${Object.keys(p.fields).join(", ")}</span></summary>
+        <div class="body">${Object.entries(p.fields)
+            .map(([k,v])=>renderField(sec.kind,k,v)).join("")}</div></details>`;
+    }
+    html += `</div>`;
+  }
+  const n = c.create + c.update;
+  html += `<div class="card"><div class="row" style="align-items:center">
+      <button id="pub" class="primary" ${n?"":"disabled"}>Publish ${n} change(s) to App Store Connect</button>
+      <span class="muted" style="font-size:12.5px">Writes only what is listed above.</span>
+    </div><div id="result" class="muted" style="margin-top:12px;font-size:12.5px"></div></div>`;
+  $("#out").innerHTML = html;
+  const pub = $("#pub");
+  if(pub) pub.onclick = publish;
+}
+
+async function loadApps(){
+  const b = await api("/api/bootstrap");
+  $("#bundle").textContent = b.bundleId;
+  document.title = `App Store Connect studio - ${b.bundleId}`;
+  status(`<span class="spin"></span> loading apps…`);
+  const {apps} = await api("/api/apps");
+  $("#app").innerHTML = apps.map(a=>
+    `<option value="${a.id}" ${a.bundleId===b.bundleId?"selected":""}>${esc(a.bundleId)} — ${esc(a.name||"")}</option>`
+  ).join("") || `<option value="">no apps visible to this API key</option>`;
+  await loadVersions();
+  status(`${apps.length} app(s) visible to this API key.`);
+}
+
+async function loadVersions(){
+  const app = $("#app").value; if(!app) return;
+  const {versions} = await api("/api/versions?app="+encodeURIComponent(app));
+  $("#ver").innerHTML = versions.map(v=>
+    `<option value="${v.id}" ${v.editable?"":"disabled"}>${esc(v.versionString)} — ${esc(v.state)}${v.editable?"":" (read-only)"}</option>`
+  ).join("") || `<option value="">no versions</option>`;
+  const first = versions.find(v=>v.editable);
+  if(first) $("#ver").value = first.id;
+}
+
+$("#app").onchange = () => loadVersions().catch(e=>status(esc(e.message), true));
+$("#load").onclick = async () => {
+  try{
+    status(`<span class="spin"></span> reading App Store Connect…`);
+    if($("#scope").value === "shots"){
+      const q = new URLSearchParams({app:$("#app").value, version:$("#ver").value});
+      renderShots(await api("/api/screenshots?"+q));
+      status(`Screenshot plan ready. Nothing has been uploaded.`);
+      return;
+    }
+    const q = new URLSearchParams({app:$("#app").value, version:$("#ver").value, scope:$("#scope").value});
+    PREVIEW = await api("/api/preview?"+q);
+    render(PREVIEW);
+    status(`Preview ready. Nothing has been written.`);
+  }catch(e){ status(esc(e.message), true); $("#out").innerHTML=""; }
+};
+$("#mkver").onclick = async () => {
+  const v = $("#newver").value.trim();
+  if(!v) return status("Type a version string first, e.g. 1.0.0", true);
+  if(!confirm(`Create version ${v} on App Store Connect?`)) return;
+  try{
+    status(`<span class="spin"></span> creating ${esc(v)}…`);
+    await api("/api/version", {method:"POST",
+      body: JSON.stringify({app:$("#app").value, versionString:v})});
+    $("#newver").value = "";
+    await loadVersions();
+    status(`Version ${esc(v)} created.`);
+  }catch(e){ status(esc(e.message), true); }
+};
+
+async function publish(){
+  const n = PREVIEW.counts.create + PREVIEW.counts.update;
+  if(!confirm(`Write ${n} change(s) to App Store Connect?\n\nThis edits your live App Store listing.`)) return;
+  const pub = $("#pub"); pub.disabled = true;
+  $("#result").innerHTML = `<span class="spin"></span> publishing…`;
+  try{
+    const r = await api("/api/publish", {method:"POST", body: JSON.stringify({
+      app:$("#app").value, version:$("#ver").value, scope:$("#scope").value})});
+    const bad = r.written.flatMap(w=>w.errors||[]);
+    $("#result").innerHTML = `<b>${esc(r.message)}</b><br>` + r.written.map(w=>
+      `${esc(w.section)}: ${w.locales.map(esc).join(", ") || "<span class=muted>none</span>"}`
+      ).join("<br>")
+      + (bad.length ? `<br><br><span class="over">refused:<br>${bad.map(esc).join("<br>")}</span>` : "");
+    status(bad.length ? `Published with ${bad.length} refusal(s) - see below.`
+                      : "Published. Re-run Preview to confirm everything now matches.", bad.length>0);
+    if(bad.length) $("#pub").disabled = false;
+  }catch(e){
+    $("#result").innerHTML = `<span class="over">${esc(e.message)}</span>`;
+    pub.disabled = false;
+  }
+}
+
+loadApps().catch(e=>status(esc(e.message), true));
+</script>
