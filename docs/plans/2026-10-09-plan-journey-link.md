@@ -35,3 +35,6 @@ Chưa có buổi nào / chưa có chương trình · giai đoạn 0 buổi · kh
 
 ## Chủ app quyết định (chưa làm)
 - **Câu HLV khi mở buổi đầu của giai đoạn mới** (chưa thu): "A new stage starts today. Same pace, same you. We only add more when it feels easy." — VI: "Hôm nay sang giai đoạn mới. Vẫn nhịp cũ, vẫn là bạn. Mình chỉ thêm khi bạn thấy dễ."
+
+## Kết quả (09/10/2026)
+Core `swift test` 307/307 (62 suite; +12 `StageRecapTests`, RED `cannot find type 'RecapSession'` → GREEN). App `xcodebuild test` Pro Max 304/304 (57 suite; mới: `StageRecapAppTests` 3, `TodayModelTests.stageDoneCardSitsAfterLevelCardsAndNeverStacks`, `DataEraserTests.eraseClearsStageRecapMemory`, `CaptureHookTests` 129 trạng thái + `programStoryIsConsistent` ×3). `extract_sources` ui.json 1030 khoá; vi 1086/1086, coverage en/vi 0; copy_lint 0 findings. Ảnh Pro Max sáng/tối/XXL đã xem (không cắt chữ); XXL tách "ngày · phút" và "+N since your first check" ra dòng riêng. Chưa chụp iPhone SE (xem docs/todo.md).

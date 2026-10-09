@@ -80,6 +80,8 @@ extension AppModel {
     func pickUpProgram() {
         guard let state = programState(),
               let last = (try? container.mainContext.fetch(FetchDescriptor<WorkoutRecord>()))?.map(\.date).max() else { return }
+        // Kept so the sessions before the break stay in their stage (stage recaps, plan 09/10/2026).
+        programMemory.addPause(ProgramCalendar.pickUpPause(lastWorkout: last, now: now(), calendar: calendar))
         state.apply(ProgramCalendar.pickUp(state.programRound, lastWorkout: last, now: now(), calendar: calendar))
         try? container.mainContext.save()
         // P13: after a long break the ladders start one step lower; the coach says so next time.
@@ -93,6 +95,7 @@ extension AppModel {
         guard let state = programState() else { return }
         state.apply(ProgramCalendar.restart(state.programRound, on: now(), calendar: calendar))
         state.finishedAt = nil
+        programMemory.clearPauses()
         try? container.mainContext.save()
         if case .programFinished? = cover { cover = nil }
         todayPath = []
@@ -108,13 +111,15 @@ extension AppModel {
         reload()
     }
 
-    /// The finish screen: her latest check against week 0, done the same way.
+    /// The finish screen: her active days and whole route in this round, her latest check against week 0, done
+    /// the same way.
     func programFinishedSummary() -> ProgramFinishedSummary {
         let results = selfCheckResults()
         let delta = results.last.map { SelfCheckComparison.delta(latest: $0, history: results) }
-        return ProgramFinishedSummary(activeDays: progress.activeDays, checks: results.count,
+        let whole = programRecap.whole
+        return ProgramFinishedSummary(activeDays: whole?.activeDays ?? progress.activeDays, checks: results.count,
                                       first: results.first.map(\.count), latest: results.last.map(\.count),
-                                      sinceFirst: delta?.sinceFirst)
+                                      sinceFirst: delta?.sinceFirst, route: whole)
     }
 }
 
@@ -126,4 +131,6 @@ struct ProgramFinishedSummary: Equatable {
     var latest: Int?
     /// Only when the latest check was done the same way as the first one.
     var sinceFirst: Int?
+    /// "Your whole route": the miles and stops of this round (plan 09/10/2026).
+    var route: RoundRecap? = nil
 }

@@ -1959,6 +1959,7 @@
   "files": [
    "MeSections",
    "MeView",
+   "StageRecapViews",
    "MeRows"
   ]
  },
@@ -2121,7 +2122,8 @@
   "key": "Got it",
   "comment": "",
   "files": [
-   "MoveGuidance"
+   "MoveGuidance",
+   "StageRecapViews"
   ]
  },
  {
@@ -3903,6 +3905,13 @@
   ]
  },
  {
+  "key": "^[%lld stop](inflect: true)",
+  "comment": "",
+  "files": [
+   "Plural"
+  ]
+ },
+ {
   "key": "^[%lld week](inflect: true)",
   "comment": "",
   "files": [
@@ -3943,7 +3952,8 @@
   "comment": "",
   "files": [
    "ProgramFinishedView",
-   "ProgressScreen"
+   "ProgressScreen",
+   "StageRecapText"
   ]
  },
  {
@@ -4443,7 +4453,8 @@
   "files": [
    "SelfCheckViews",
    "JourneyListView",
-   "CompleteView"
+   "CompleteView",
+   "StageRecapViews"
   ]
  },
  {
@@ -4916,6 +4927,112 @@
   "comment": "Sound: explanation under Move introductions.",
   "files": [
    "SoundControls"
+  ]
+ },
+ {
+  "key": "%@ moving",
+  "comment": "",
+  "files": [
+   "StageRecapText"
+  ]
+ },
+ {
+  "key": "%@ on your journey",
+  "comment": "",
+  "files": [
+   "StageRecapText"
+  ]
+ },
+ {
+  "key": "%@ on your journey, %@ of it walked outdoors",
+  "comment": "",
+  "files": [
+   "StageRecapText"
+  ]
+ },
+ {
+  "key": "From %@ to %@.",
+  "comment": "",
+  "files": [
+   "StageRecapText"
+  ]
+ },
+ {
+  "key": "Next stop: %@ · %@ to go",
+  "comment": "",
+  "files": [
+   "StageRecapText"
+  ]
+ },
+ {
+  "key": "Stage %lld is done: %@",
+  "comment": "",
+  "files": [
+   "StageRecapText"
+  ]
+ },
+ {
+  "key": "Stage %lld · %@",
+  "comment": "",
+  "files": [
+   "StageRecapText",
+   "TodayModel"
+  ]
+ },
+ {
+  "key": "You reached %@, the latest %@.",
+  "comment": "",
+  "files": [
+   "StageRecapText"
+  ]
+ },
+ {
+  "key": "You reached %@.",
+  "comment": "",
+  "files": [
+   "StageRecapText"
+  ]
+ },
+ {
+  "key": "You're now in Stage %lld · %@. Your sessions change only when you're ready.",
+  "comment": "",
+  "files": [
+   "StageRecapText"
+  ]
+ },
+ {
+  "key": "Your 2-week check: %lld",
+  "comment": "",
+  "files": [
+   "StageRecapText"
+  ]
+ },
+ {
+  "key": "See my plan",
+  "comment": "",
+  "files": [
+   "StageRecapViews"
+  ]
+ },
+ {
+  "key": "So far",
+  "comment": "",
+  "files": [
+   "StageRecapViews"
+  ]
+ },
+ {
+  "key": "The stage of your plan when you reached each stop.",
+  "comment": "",
+  "files": [
+   "StageRecapViews"
+  ]
+ },
+ {
+  "key": "Your whole route",
+  "comment": "",
+  "files": [
+   "StageRecapViews"
   ]
  },
  {
@@ -5674,13 +5791,6 @@
  },
  {
   "key": "Rest days are part of the plan.",
-  "comment": "",
-  "files": [
-   "TodayModel"
-  ]
- },
- {
-  "key": "Stage %lld · %@",
   "comment": "",
   "files": [
    "TodayModel"

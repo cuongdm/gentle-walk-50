@@ -30,6 +30,8 @@ import UserNotifications
         SessionHabitStore.reminderAnsweredKey,
         // Complete cheers (plan 08/10/2026 task 3.6).
         CheerMemoryStore.defaultsKey,
+        // Stage recaps (plan 09/10/2026): breaks picked up from, the stage card tapped away.
+        ProgramMemoryStore.pausesKey, ProgramMemoryStore.stageCardKey,
     ]
 }
 

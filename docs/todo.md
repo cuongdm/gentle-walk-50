@@ -10,6 +10,13 @@ Kế hoạch: [plans/2026-10-09-revenuecat.md](plans/2026-10-09-revenuecat.md). 
 - [ ] **Chủ app quyết** — nhãn App Privacy: có khai thêm Identifiers → Device ID không (SDK gửi IDFV trong header; RevenueCat nói không bắt buộc). Xem [release/1.0/checklist.md](release/1.0/checklist.md) mục 3.
 - [ ] **Chủ app** — đăng lại `site/privacy.html` (đã thêm mục RevenueCat).
 
+## Nối Kế hoạch 12 tuần với Hành trình (09/10/2026) — code xong trên nhánh `local/plan-journey-link`
+Kế hoạch: [plans/2026-10-09-plan-journey-link.md](plans/2026-10-09-plan-journey-link.md). Tóm tắt từng giai đoạn (Kế hoạch), thẻ "Stage N is done" (Hôm nay), "Your whole route" (kết thúc 12 tuần), "Your 12 weeks" (Hành trình). Ảnh Pro Max sáng/tối/XXL đã xem.
+- [ ] **Chủ app quyết** — thu câu HLV mở buổi đầu của giai đoạn mới không (mặc định: không thu, chỉ có chữ): "A new stage starts today. Same pace, same you. We only add more when it feels easy." / "Hôm nay sang giai đoạn mới. Vẫn nhịp cũ, vẫn là bạn. Mình chỉ thêm khi bạn thấy dễ."
+- [ ] **Chủ app xem** — thẻ "Stage N is done" tự ẩn sau 7 ngày chương trình nếu không bấm (giữ tóm tắt trên màn Kế hoạch); muốn giữ tới khi bấm thì đổi `StageRecaps.cardDays`.
+- [ ] **Claude** — chụp lại trên iPhone SE (sáng + XXL): `today-stage-recap`, `program-recaps`, `program-finished-route` (thêm thẻ nên màn kết thúc giờ phải cuộn trên SE, nút vẫn ghim đáy), `journey-with-stages`.
+- [ ] **Claude** — chụp bản tiếng Việt của 4 trạng thái trên khi chủ app yêu cầu (chữ đã dịch, chưa xem trên ảnh).
+
 ## Chương trình vững chân (08/10/2026) — đang làm
 Kế hoạch: [plans/2026-10-08-steady-program.md](plans/2026-10-08-steady-program.md). Bàn giao cho phiên Mac: [handoff/2026-10-08-steady-program-local.md](handoff/2026-10-08-steady-program-local.md).
 - [x] Nhóm 1–2 (lint, core) xanh trên cloud; nhóm 6 (tài liệu phát hành) xong.

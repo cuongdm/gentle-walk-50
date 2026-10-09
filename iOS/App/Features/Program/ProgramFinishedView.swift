@@ -39,6 +39,10 @@ struct ProgramFinishedView: View {
                 }
                 .foregroundStyle(Palette.text)
                 .cardStyle()
+                // The plan and the journey as one story (plan 09/10/2026): where her minutes took her.
+                if let route = summary.route, route.journeyMiles >= 0.05 {
+                    WholeRouteCard(route: route)
+                }
                 // Two short lines that match the two buttons (plan 08/10/2026 task 1.16).
                 VStack(alignment: .leading, spacing: 6) {
                     Text("What next?").typeRole(.cardTitle)
